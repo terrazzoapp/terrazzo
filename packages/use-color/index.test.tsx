@@ -1,16 +1,9 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import type { Color } from 'culori';
+import type { ColorConstructor } from 'colorjs.io/fn';
 import { useEffect } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
-import useColor, {
-  type ColorInput,
-  type ColorOutput,
-  createMemoizedColor,
-  formatCss,
-  parse,
-  type Rgb,
-} from './index.js';
+import useColor, { type ColorInput, type ColorOutput, parse } from './index.js';
 
 type ColorType = ReturnType<typeof useColor>[0];
 
@@ -49,7 +42,14 @@ function UseColorTester({
         <button type='submit'>Save</button>
       </form>
 
-      <div data-testid='color-display'>{JSON.stringify(color[display])}</div>
+      <div data-testid='color-display'>
+        {color[display]?.space
+          ? JSON.stringify({
+              ...color[display],
+              space: { id: color[display].space.id }, // prevent circular JSON
+            })
+          : ''}
+      </div>
     </>
   );
 }
@@ -60,113 +60,89 @@ describe('useColor', () => {
   });
 
   describe('parse', () => {
-    const formatTests: [string, { given: any; want: Color }][] = [
+    const formatTests: [string, { given: any; want: ColorConstructor }][] = [
       [
         'hex',
         {
           given: '#663399',
-          want: {
-            mode: 'rgb',
-            r: 0.39999999999999974,
-            g: 0.20000000000000046,
-            b: 0.6,
-            alpha: 1,
-          },
+          want: { spaceId: 'srgb', coords: [0.4, 0.2, 0.6], alpha: 1 },
         },
       ],
       [
         'hsl',
         {
           given: 'hsl(270 50% 40%)',
-          want: { mode: 'hsl', h: 270, s: 0.5, l: 0.4, alpha: 1 },
+          want: { spaceId: 'hsl', coords: [270, 50, 40], alpha: 1 },
         },
       ],
       [
         'oklab',
         {
           given: 'oklab(0.7 0.3 0.4)',
-          want: { mode: 'oklab', l: 0.7, a: 0.3, b: 0.4, alpha: 1 },
+          want: { spaceId: 'oklab', coords: [0.7, 0.3, 0.4], alpha: 1 },
         },
       ],
       [
         'oklch',
         {
           given: 'oklch(0.7 0.2 150)',
-          want: { mode: 'oklch', l: 0.7, c: 0.2, h: 150, alpha: 1 },
+          want: { spaceId: 'oklch', coords: [0.7, 0.2, 150], alpha: 1 },
         },
       ],
       [
         'okhsv',
         {
           given: 'color(--okhsv 150 0.6 0.8)',
-          want: { mode: 'okhsv', h: 150, s: 0.6, v: 0.8, alpha: 1 },
+          want: { spaceId: 'okhsv', coords: [150, 0.6, 0.8], alpha: 1 },
         },
       ],
       [
         'okhsl',
         {
           given: 'color(--okhsl 150 0.8 0.5)',
-          want: { mode: 'okhsl', h: 150, s: 0.8, l: 0.5, alpha: 1 },
+          want: { spaceId: 'okhsl', coords: [150, 0.8, 0.5], alpha: 1 },
         },
       ],
       [
         'display-p3',
         {
           given: 'color(display-p3 0.3 0.1 0.6)',
-          want: {
-            mode: 'p3',
-            r: 0.2999999999999998,
-            g: 0.10000000000000045,
-            b: 0.5999999999999999,
-            alpha: 1,
-          },
+          want: { spaceId: 'p3', coords: [0.3, 0.1, 0.6], alpha: 1 },
         },
       ],
       [
         'lrgb',
         {
           given: 'color(srgb-linear 0.3 0.1 0.6)',
-          want: { mode: 'lrgb', r: 0.3, g: 0.1, b: 0.6, alpha: 1 },
+          want: { spaceId: 'srgb-linear', coords: [0.3, 0.1, 0.6], alpha: 1 },
         },
       ],
       [
         'rgb',
         {
           given: 'rgb(30% 10% 60%)',
-          want: {
-            mode: 'rgb',
-            r: 0.2999999999999993,
-            g: 0.10000000000000084,
-            b: 0.6,
-            alpha: 1,
-          },
+          want: { spaceId: 'srgb', coords: [0.3, 0.1, 0.6], alpha: 1 },
         },
       ],
       [
         'srgb',
         {
           given: 'color(srgb 0.3 0.1 0.6)',
-          want: {
-            mode: 'rgb',
-            r: 0.2999999999999993,
-            g: 0.10000000000000084,
-            b: 0.6,
-            alpha: 1,
-          },
+          want: { spaceId: 'srgb', coords: [0.3, 0.1, 0.6], alpha: 1 },
         },
       ],
       [
-        'xyz50',
+        'xyz-d50',
         {
           given: 'color(xyz-d50 0.7 0.3 -0.05)',
-          want: { mode: 'xyz50', x: 0.7, y: 0.3, z: -0.05, alpha: 1 },
+          want: { spaceId: 'xyz-d50', coords: [0.7, 0.3, -0.05], alpha: 1 },
         },
       ],
       [
-        'xyz65',
+        'xyz-d65',
         {
           given: 'color(xyz-d65 0.7 0.3 -0.05)',
-          want: { mode: 'xyz65', x: 0.7, y: 0.3, z: -0.05, alpha: 1 },
+          want: { spaceId: 'xyz-d65', coords: [0.7, 0.3, -0.05], alpha: 1 },
         },
       ],
     ];
@@ -177,7 +153,7 @@ describe('useColor', () => {
         if (typeof (result as any)[k] === 'number') {
           expect((result as any)[k]).toBeCloseTo((want as any)[k]);
         } else {
-          expect((result as any)[k]).toBe((want as any)[k]);
+          expect((result as any)[k]).toStrictEqual((want as any)[k]);
         }
       }
     });
@@ -200,11 +176,11 @@ describe('useColor', () => {
       );
 
       // assert color displays as-expected
-      const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML) as Rgb;
-      expect(displayedColor.mode).toBe('rgb');
-      expect(displayedColor.r).toBeCloseTo(0.0001617559902515342);
-      expect(displayedColor.g).toBeCloseTo(0.30008212426886693);
-      expect(displayedColor.b).toBeCloseTo(0.9998580363362607);
+      const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML);
+      expect(displayedColor.space.id).toBe('srgb');
+      expect(displayedColor.coords[0]).toBeCloseTo(0.0001617559902515342);
+      expect(displayedColor.coords[1]).toBeCloseTo(0.30008212426886693);
+      expect(displayedColor.coords[2]).toBeCloseTo(0.9998580363362607);
       expect(displayedColor.alpha).toBeCloseTo(1);
 
       // assert only 1 render happened
@@ -249,11 +225,11 @@ describe('useColor', () => {
       await user.click(screen.getByRole('button'));
 
       // assert `setColor()` works
-      const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML) as Rgb;
-      expect(displayedColor.mode).toBe('rgb');
-      expect(displayedColor.r).toBeCloseTo(0.6);
-      expect(displayedColor.g).toBeCloseTo(0.3);
-      expect(displayedColor.b).toBeCloseTo(0.5);
+      const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML);
+      expect(displayedColor.space.id).toBe('srgb');
+      expect(displayedColor.coords[0]).toBeCloseTo(0.6);
+      expect(displayedColor.coords[1]).toBeCloseTo(0.3);
+      expect(displayedColor.coords[2]).toBeCloseTo(0.5);
       expect(displayedColor.alpha).toBeCloseTo(1);
 
       // assert only 1 onChange happened (+1 first render)
@@ -293,30 +269,5 @@ describe('useColor', () => {
       // assert rerendering happened once per color space (+1 for first render)
       expect(rerenderCount).toBe(colorSpaces.length + 1);
     });
-  });
-});
-
-describe('formatCss', () => {
-  const source = createMemoizedColor('#663399');
-  const tests: [string, string][] = [
-    ['a98', 'color(a98-rgb 0.35800 0.21232 0.58434)'],
-    ['hsl', 'hsl(270.00 50.00% 40.00%)'],
-    ['hwb', 'hwb(270.00 20.00% 40.00%)'],
-    ['lab', 'lab(32.39 38.42 -47.69)'],
-    ['lrgb', 'color(srgb-linear 0.13287 0.03310 0.31855)'],
-    ['okhsl', 'color(--okhsl 303.37 0.72916 0.35328)'],
-    ['okhsv', 'color(--okhsv 303.37 0.80572 0.60825)'],
-    ['oklab', 'oklab(0.44027 0.08818 -0.13386)'],
-    ['oklch', 'oklch(0.44027 0.16030 303.37)'],
-    ['p3', 'color(display-p3 0.37367 0.21033 0.57911)'],
-    ['prophoto', 'color(prophoto-rgb 0.31642 0.19133 0.49481)'],
-    ['rec2020', 'color(rec2020 0.30459 0.16817 0.53086)'],
-    ['rgb', 'color(srgb 0.40000 0.20000 0.60000)'],
-    ['srgb', 'color(srgb 0.40000 0.20000 0.60000)'],
-    ['xyz50', 'color(xyz-d50 0.11627 0.07260 0.23254)'],
-    ['xyz65', 'color(xyz-d65 0.12412 0.07493 0.30930)'],
-  ];
-  it.each(tests)('%s', (key, want) => {
-    expect(formatCss(source[key as keyof typeof source])).toBe(want);
   });
 });

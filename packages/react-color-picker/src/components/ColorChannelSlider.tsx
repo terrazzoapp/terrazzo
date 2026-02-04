@@ -1,15 +1,11 @@
 import { Slider } from '@terrazzo/tiles';
-import { type ColorOutput, formatCss, type Oklab, type default as useColor, withAlpha } from '@terrazzo/use-color';
-import { modeLrgb, modeOklab, modeRgb, useMode } from 'culori';
+import type { ColorOutput, default as useColor } from '@terrazzo/use-color';
+import { to as convert, serialize } from 'colorjs.io/fn';
 import { type ReactElement, useMemo } from 'react';
 import { calculateBounds } from '../lib/color.js';
 import HueWheel from './HueWheel.js';
 import TrueGradient from './TrueGradient.js';
 import './ColorChannelSlider.css';
-
-useMode(modeRgb);
-useMode(modeLrgb);
-const toOklab = useMode(modeOklab);
 
 /** size, in px, to pad inner track */
 export const TRACK_PADDING = 4;
@@ -32,9 +28,7 @@ const CHANNEL_LABEL: Record<string, string | undefined> = {
 
 const CHANNEL_PRECISION = 5;
 
-const RGB_COLORSPACES = ['a98', 'lrgb', 'p3', 'rgb', 'prophoto', 'rec2020'];
-// const SRGB_COLORSPACES = ['rgb', 'hsv', 'hsl', 'hwb'];
-// const P3_COLORSPACES = ['p3'];
+const RGB_COLORSPACES = ['a98', 'p3', 'srgb', 'srgb-linear', 'prophoto', 'rec2020'];
 
 function isPerc(color: ColorOutput, channel: string): boolean {
   if (RGB_COLORSPACES.includes(color.original.mode)) {
@@ -73,11 +67,11 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
           className='tz-color-channel-slider-bg tz-color-channel-slider-bg__alpha'
           style={{
             // don’t use "transparent" to prevent the “fade to black” problem that could exist in some browsers in higher colorspaces
-            '--left-color': formatCss({
+            '--left-color': serialize({
               ...(RGB_COLORSPACES.includes(color.original.mode) ? color.original : color.oklab),
               alpha: 0,
             })!,
-            '--right-color': formatCss({
+            '--right-color': serialize({
               ...(RGB_COLORSPACES.includes(color.original.mode) ? color.original : color.oklab),
               alpha: 1,
             })!,
@@ -90,8 +84,8 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
   const range = (displayMax ?? max) - (displayMin ?? min);
   const leftColor = { ...color.original, [channel]: displayMin ?? min };
   const rightColor = { ...color.original, [channel]: displayMax ?? max };
-  const leftOklab = useMemo(() => withAlpha(toOklab(leftColor) as Oklab) as Oklab, [color.css]);
-  const rightOklab = useMemo(() => withAlpha(toOklab(rightColor) as Oklab) as Oklab, [color.css]);
+  const leftOklab = useMemo(() => convert(leftColor, 'oklab'), [color.css]);
+  const rightOklab = useMemo(() => convert(rightColor, 'oklab'), [color.css]);
 
   return (
     <div className='tz-color-channel-slider-bg-wrapper'>
@@ -116,7 +110,7 @@ export interface ColorChannelSliderProps {
   channel: string;
   className?: string;
   color: ReturnType<typeof useColor>[0];
-  gamut?: 'rgb' | 'p3' | 'rec2020';
+  gamut?: 'srgb' | 'p3' | 'rec2020';
   setColor: ReturnType<typeof useColor>[1];
 }
 

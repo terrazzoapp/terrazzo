@@ -1,13 +1,14 @@
 {
   "name": "@terrazzo/use-color",
-  "version": "0.1.4",
-  "description": "React hook for memoizing and transforming any web-compatible color. Uses Culori.",
+  "version": "0.2.0",
+  "description": "React hook for memoizing and transforming any web-compatible color. Uses Color.js.",
   "license": "MIT",
   "type": "module",
   "keywords": [
     "color",
     "color-module-4",
     "culori",
+    "color.js",
     "react",
     "hooks"
   ],
@@ -33,8 +34,7 @@
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
-    "@types/culori": "catalog:",
-    "culori": "catalog:"
+    "colorjs.io": "catalog:"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.2.0",

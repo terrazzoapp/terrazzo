@@ -4,14 +4,14 @@
 
 :root {
   --ds-border-base: var(--ds-border-size-default) var(--ds-border-style-default) var(--ds-border-color-default);
-  --ds-border-color-default: color(srgb 0.9725490196 0.9725490196 0.9725490196);
+  --ds-border-color-default: crgb(97.255% 97.255% 97.255%);
   --ds-border-size-default: 1px;
   --ds-border-style-default: solid;
-  --ds-color-base-blue: color(srgb 0.784 0.478 0.953);
-  --ds-color-base-green: color(srgb 0 0.478 0.302);
+  --ds-color-base-blue: rgb(78.4% 47.8% 95.3%);
+  --ds-color-base-green: rgb(0% 47.8% 30.2%);
   --ds-color-gradient-blue-to-green: var(--ds-color-base-blue) 0%, var(--ds-color-base-green) 100%;
   --ds-color-semantic-primary: var(--ds-color-base-blue);
-  --ds-shadow-md: 0 var(--ds-space-1) var(--ds-space-1) 0 color(srgb 0 0 0 / 0.1);
+  --ds-shadow-md: 0 var(--ds-space-1) var(--ds-space-1) 0 rgb(0% 0% 0% / 0.1);
   --ds-space-1: 0.25rem;
   --ds-space-2: 0.5rem;
   --ds-space-3: 1rem;

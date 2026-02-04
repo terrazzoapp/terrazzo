@@ -42,9 +42,6 @@ catalogs:
     '@swc/core-win32-x64-msvc':
       specifier: 1.13.19
       version: 1.13.19
-    '@types/culori':
-      specifier: ^4.0.1
-      version: 4.0.1
     '@types/react':
       specifier: ^19.2.11
       version: 19.2.11
@@ -63,9 +60,9 @@ catalogs:
     '@vitest/coverage-v8':
       specifier: ^4.0.18
       version: 4.0.18
-    culori:
-      specifier: ^4.0.2
-      version: 4.0.2
+    colorjs.io:
+      specifier: ^0.6.1
+      version: 0.6.1
     dtcg-examples:
       specifier: ^1.0.2
       version: 1.0.2
@@ -352,12 +349,9 @@ importers:
       '@types/babel__code-frame':
         specifier: ^7.27.0
         version: 7.27.0
-      '@types/culori':
+      colorjs.io:
         specifier: 'catalog:'
-        version: 4.0.1
-      culori:
-        specifier: 'catalog:'
-        version: 4.0.2
+        version: 0.6.1
       fast-deep-equal:
         specifier: ^3.1.3
         version: 3.1.3
@@ -456,9 +450,9 @@ importers:
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
-      culori:
+      colorjs.io:
         specifier: 'catalog:'
-        version: 4.0.2
+        version: 0.6.1
     devDependencies:
       '@terrazzo/cli':
         specifier: workspace:*
@@ -466,9 +460,6 @@ importers:
       '@terrazzo/parser':
         specifier: workspace:^
         version: link:../parser
-      '@types/culori':
-        specifier: 'catalog:'
-        version: 4.0.1
 
   packages/plugin-tailwind:
     dependencies:
@@ -578,9 +569,6 @@ importers:
       '@testing-library/react':
         specifier: ^16.3.2
         version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.11))(@types/react@19.2.11)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@types/culori':
-        specifier: 'catalog:'
-        version: 4.0.1
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.11
@@ -593,9 +581,9 @@ importers:
       chokidar-cli:
         specifier: ^3.0.0
         version: 3.0.0
-      culori:
+      colorjs.io:
         specifier: 'catalog:'
-        version: 4.0.2
+        version: 0.6.1
       jsdom:
         specifier: ^24.1.3
         version: 24.1.3
@@ -644,9 +632,6 @@ importers:
       '@terrazzo/use-color':
         specifier: workspace:^
         version: link:../use-color
-      '@types/culori':
-        specifier: 'catalog:'
-        version: 4.0.1
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.11
@@ -659,9 +644,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: 'catalog:'
         version: 4.0.18(@vitest/browser@4.0.18(vite@7.3.1(@types/node@25.2.0)(jiti@2.6.1)(sass-embedded@1.85.1)(yaml@2.8.2))(vitest@4.0.18))(vitest@4.0.18)
-      culori:
+      colorjs.io:
         specifier: 'catalog:'
-        version: 4.0.2
+        version: 0.6.1
       react:
         specifier: 'catalog:'
         version: 19.2.4
@@ -698,9 +683,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
-      culori:
+      colorjs.io:
         specifier: 'catalog:'
-        version: 4.0.2
+        version: 0.6.1
       shiki:
         specifier: ^1.29.2
         version: 1.29.2
@@ -711,9 +696,6 @@ importers:
       '@size-limit/preset-small-lib':
         specifier: ^11.2.0
         version: 11.2.0(size-limit@11.2.0)
-      '@types/culori':
-        specifier: 'catalog:'
-        version: 4.0.1
       '@types/react':
         specifier: 'catalog:'
         version: 19.2.11
@@ -808,16 +790,12 @@ importers:
       '@humanwhocodes/momoa':
         specifier: 'catalog:'
         version: 3.3.10
-      culori:
+      colorjs.io:
         specifier: 'catalog:'
-        version: 4.0.2
+        version: 0.6.1
       wildcard-match:
         specifier: ^5.1.4
         version: 5.1.4
-    devDependencies:
-      '@types/culori':
-        specifier: 'catalog:'
-        version: 4.0.1
 
   packages/tokens:
     devDependencies:
@@ -836,12 +814,9 @@ importers:
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
-      '@types/culori':
+      colorjs.io:
         specifier: 'catalog:'
-        version: 4.0.1
-      culori:
-        specifier: 'catalog:'
-        version: 4.0.2
+        version: 0.6.1
     devDependencies:
       '@size-limit/preset-small-lib':
         specifier: ^11.2.0
@@ -3064,9 +3039,6 @@ packages:
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
 
-  '@types/culori@4.0.1':
-    resolution: {integrity: sha512-43M51r/22CjhbOXyGT361GZ9vncSVQ39u62x5eJdBQFviI8zWp2X5jzqg7k4M6PVgDQAClpy2bUe2dtwEgEDVQ==}
-
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
 
@@ -3606,6 +3578,9 @@ packages:
   colorjs.io@0.5.2:
     resolution: {integrity: sha512-twmVoizEW7ylZSN32OgKdXRmo1qg+wT5/6C3xu5b9QsWzSFAhHLn2xd8ro0diCsKfCj1RdaTP/nrcW+vAoQPIw==}
 
+  colorjs.io@0.6.1:
+    resolution: {integrity: sha512-8lyR2wHzuIykCpqHKgluGsqQi5iDm3/a2IgP2GBZrasn2sBRkE4NOGsglZxWLs/jZQoNkmA/KM/8NV16rLUdBg==}
+
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
@@ -3742,10 +3717,6 @@ packages:
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
-
-  culori@4.0.2:
-    resolution: {integrity: sha512-1+BhOB8ahCn4O0cep0Sh2l9KCOfOdY+BXJnKMHFFzDEouSr/el18QwXEMRlOj9UY5nCeA8UN3a/82rUWRBeyBw==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   data-urls@5.0.0:
     resolution: {integrity: sha512-ZYP5VBHshaDAiVZxjbRVcFJpc+4xGgT0bK3vzy1HLN8jTO975HEbuYzZJcHoQEY5K1a0z8YayJkyVETa08eNTg==}
@@ -8692,8 +8663,6 @@ snapshots:
       '@types/deep-eql': 4.0.2
       assertion-error: 2.0.1
 
-  '@types/culori@4.0.1': {}
-
   '@types/debug@4.1.12':
     dependencies:
       '@types/ms': 2.1.0
@@ -9457,6 +9426,8 @@ snapshots:
 
   colorjs.io@0.5.2: {}
 
+  colorjs.io@0.6.1: {}
+
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -9633,8 +9604,6 @@ snapshots:
       rrweb-cssom: 0.8.0
 
   csstype@3.2.3: {}
-
-  culori@4.0.2: {}
 
   data-urls@5.0.0:
     dependencies:

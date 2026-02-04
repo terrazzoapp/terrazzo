@@ -136,8 +136,8 @@
   --tz-radius-400: 0.5rem;
   --tz-radius-500: 0.75rem;
   --tz-radius-1000: 999px;
-  --tz-shadow-100: 0 1px 1px 0 color(srgb 0 0 0 / 0.1);
-  --tz-shadow-300: 0 0.5rem 1rem 0 color(srgb 0 0 0 / 0.1);
+  --tz-shadow-100: 0 1px 1px 0 rgb(0% 0% 0% / 0.1);
+  --tz-shadow-300: 0 0.5rem 1rem 0 rgb(0% 0% 0% / 0.1);
   --tz-space-000: 0.125rem;
   --tz-space-100: 0.25rem;
   --tz-space-200: 0.5rem;

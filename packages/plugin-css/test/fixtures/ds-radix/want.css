@@ -19,7 +19,7 @@
   --color-bg-warn-default: var(--color-primitive-amber-9);
   --color-bg-warn-hover: var(--color-primitive-amber-10);
   --color-overlay-black-1: color(srgb 0 0 0 / 0.05);
-  --color-overlay-black-2: color(srgb 0 0 0 / 0.1);
+  --color-overlay-black-2: rgb(0% 0% 0% / 0.1);
   --color-overlay-black-3: color(srgb 0 0 0 / 0.15);
   --color-overlay-black-4: color(srgb 0 0 0 / 0.2);
   --color-overlay-black-5: color(srgb 0 0 0 / 0.3);
@@ -143,7 +143,7 @@
   --color-primitive-gray-3: color(srgb 0.9411764705882353 0.9411764705882353 0.9411764705882353);
   --color-primitive-gray-4: color(srgb 0.9098039215686274 0.9098039215686274 0.9098039215686274);
   --color-primitive-gray-5: color(srgb 0.8784313725490196 0.8784313725490196 0.8784313725490196);
-  --color-primitive-gray-6: color(srgb 0.8509803921568627 0.8509803921568627 0.8509803921568627);
+  --color-primitive-gray-6: rgb(85.098% 85.098% 85.098%);
   --color-primitive-gray-7: color(srgb 0.807843137254902 0.807843137254902 0.807843137254902);
   --color-primitive-gray-8: color(srgb 0.7333333333333333 0.7333333333333333 0.7333333333333333);
   --color-primitive-gray-9: color(srgb 0.5529411764705883 0.5529411764705883 0.5529411764705883);
@@ -525,7 +525,7 @@
     --color-primitive-gray-3: color(srgb 0.9411764705882353 0.9411764705882353 0.9411764705882353);
     --color-primitive-gray-4: color(srgb 0.9098039215686274 0.9098039215686274 0.9098039215686274);
     --color-primitive-gray-5: color(srgb 0.8784313725490196 0.8784313725490196 0.8784313725490196);
-    --color-primitive-gray-6: color(srgb 0.8509803921568627 0.8509803921568627 0.8509803921568627);
+    --color-primitive-gray-6: rgb(85.098% 85.098% 85.098%);
     --color-primitive-gray-7: color(srgb 0.807843137254902 0.807843137254902 0.807843137254902);
     --color-primitive-gray-8: color(srgb 0.7333333333333333 0.7333333333333333 0.7333333333333333);
     --color-primitive-gray-9: color(srgb 0.5529411764705883 0.5529411764705883 0.5529411764705883);
@@ -922,7 +922,7 @@
   --color-primitive-gray-3: color(srgb 0.9411764705882353 0.9411764705882353 0.9411764705882353);
   --color-primitive-gray-4: color(srgb 0.9098039215686274 0.9098039215686274 0.9098039215686274);
   --color-primitive-gray-5: color(srgb 0.8784313725490196 0.8784313725490196 0.8784313725490196);
-  --color-primitive-gray-6: color(srgb 0.8509803921568627 0.8509803921568627 0.8509803921568627);
+  --color-primitive-gray-6: rgb(85.098% 85.098% 85.098%);
   --color-primitive-gray-7: color(srgb 0.807843137254902 0.807843137254902 0.807843137254902);
   --color-primitive-gray-8: color(srgb 0.7333333333333333 0.7333333333333333 0.7333333333333333);
   --color-primitive-gray-9: color(srgb 0.5529411764705883 0.5529411764705883 0.5529411764705883);

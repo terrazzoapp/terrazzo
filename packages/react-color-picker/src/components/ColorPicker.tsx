@@ -1,14 +1,15 @@
 import { ColorFilterOutline } from '@terrazzo/icons';
 import { Select, SelectItem } from '@terrazzo/tiles';
-import { COLORSPACES, formatCss, parse, type default as useColor } from '@terrazzo/use-color';
+import { parse, type default as useColor } from '@terrazzo/use-color';
 import clsx from 'clsx';
+import { to as convert, serialize } from 'colorjs.io/fn';
 import { type ComponentProps, useEffect, useMemo, useState } from 'react';
-import { channelOrder, updateColor } from '../lib/color.js';
+import { channelOrder } from '../lib/color.js';
 import ColorChannelSlider from './ColorChannelSlider.js';
 import './ColorPicker.css';
 
 /** sRGB → P3 → Rec2020 */
-export type Gamut = 'rgb' | 'p3' | 'rec2020';
+export type Gamut = 'srgb' | 'p3' | 'rec2020';
 
 export const COLOR_PICKER_SPACES = {
   rgb: 'RGB',
@@ -29,7 +30,7 @@ export interface ColorPickerProps extends Omit<ComponentProps<'div'>, 'color'> {
 
 export default function ColorPicker({ className, color, setColor, ...rest }: ColorPickerProps) {
   const [codeColor, setCodeColor] = useState(color.css);
-  const [maxGamut] = useState<Gamut>('rgb');
+  const [maxGamut] = useState<Gamut>('srgb');
   const normalizedColorMode = useMemo(
     () => (['p3', 'rec2020', 'lrgb'].includes(color.original.mode) ? 'rgb' : color.original.mode),
     [color],
@@ -42,7 +43,7 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
     <div
       className={clsx('tz-color-picker', className)}
       style={{
-        '--current-color': ['okhsl', 'okhsv'].includes(color.original.mode) ? formatCss(color.oklab)! : color.css,
+        '--current-color': ['okhsl', 'okhsv'].includes(color.original.mode) ? serialize(color.oklab)! : color.css,
       }}
       {...rest}
     >
@@ -53,11 +54,8 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
         <Select
           value={normalizedColorMode}
           trigger={color.original.mode}
-          onValueChange={(newValue: keyof typeof COLORSPACES) => {
-            if (newValue in COLORSPACES) {
-              setColor(updateColor(COLORSPACES[newValue].converter(color.original)!, maxGamut));
-            } else {
-            }
+          onValueChange={(colorSpace) => {
+            setColor(convert(color.original, colorSpace, { inGamut: { space: maxGamut } }));
           }}
         >
           {Object.entries(COLOR_PICKER_SPACES).map(([id, label]) => (
@@ -86,7 +84,7 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
             setCodeColor(evt.target.value);
             const parsed = parse(evt.currentTarget.value);
             if (parsed) {
-              setColor(updateColor(parsed, maxGamut));
+              setColor(convert(parsed, parsed.spaceId, { inGamut: { space: maxGamut } }));
             }
           }}
         />

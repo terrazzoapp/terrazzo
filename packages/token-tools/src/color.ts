@@ -1,202 +1,91 @@
-import 'culori/css';
-import { type Color, formatHex, parse } from 'culori/fn';
+import {
+  A98RGB,
+  type ColorConstructor,
+  ColorSpace as ColorJS,
+  type Coords,
+  to as convert,
+  HSL,
+  HWB,
+  Lab,
+  Lab_D65,
+  LCH,
+  OKLab,
+  OKLCH,
+  Okhsl,
+  Okhsv,
+  P3,
+  ProPhoto,
+  parse,
+  REC_2020,
+  serialize,
+  sRGB,
+  sRGB_Linear,
+  XYZ_D50,
+  XYZ_D65,
+} from 'colorjs.io/fn';
 import type { ColorSpace, ColorValueNormalized } from './types.js';
 
 const HEX_RE = /^#?([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/i;
 
-export const CULORI_TO_CSS: Record<
-  Extract<
-    Color['mode'],
-    | 'a98'
-    | 'lab'
-    | 'lab65'
-    | 'lch'
-    | 'oklab'
-    | 'oklch'
-    | 'okhsv'
-    | 'hsl'
-    | 'hwb'
-    | 'lrgb'
-    | 'p3'
-    | 'prophoto'
-    | 'rec2020'
-    | 'rgb'
-    | 'xyz50'
-    | 'xyz65'
-  >,
-  ColorSpace
-> = {
-  a98: 'a98-rgb',
-  hsl: 'hsl',
-  hwb: 'hwb',
-  lab: 'lab',
-  lab65: 'lab-d65',
-  lch: 'lch',
-  lrgb: 'srgb-linear',
-  oklab: 'oklab',
-  oklch: 'oklch',
-  okhsv: 'okhsv',
-  p3: 'display-p3',
-  prophoto: 'prophoto-rgb',
-  rec2020: 'rec2020',
-  rgb: 'srgb',
-  xyz50: 'xyz-d50',
-  xyz65: 'xyz-d65',
-} as const;
+ColorJS.register(A98RGB);
+ColorJS.register(HSL);
+ColorJS.register(HWB);
+ColorJS.register(Lab_D65);
+ColorJS.register(Lab);
+ColorJS.register(LCH);
+ColorJS.register(Okhsl);
+ColorJS.register(Okhsv);
+ColorJS.register(OKLab);
+ColorJS.register(OKLCH);
+ColorJS.register(P3);
+ColorJS.register(ProPhoto);
+ColorJS.register(REC_2020);
+ColorJS.register(sRGB_Linear);
+ColorJS.register(sRGB);
+ColorJS.register(XYZ_D50);
+ColorJS.register(XYZ_D65);
 
-export const CSS_TO_CULORI = {
-  'a98-rgb': 'a98',
+const CSS_ID_TO_COLOR_ID: Record<string, string | undefined> = {
+  'a98-rgb': 'a98rgb',
   'display-p3': 'p3',
-  hsl: 'hsl',
-  hwb: 'hwb',
-  lab: 'lab',
-  'lab-d65': 'lab65',
-  lch: 'lch',
-  oklab: 'oklab',
-  oklch: 'oklch',
-  okhsv: 'okhsv',
   'prophoto-rgb': 'prophoto',
-  rec2020: 'rec2020',
-  srgb: 'rgb',
-  'srgb-linear': 'lrgb',
-  xyz: 'xyz65',
-  'xyz-d50': 'xyz50',
-  'xyz-d65': 'xyz65',
-} as const;
+};
+
+const COLOR_ID_TO_CSS_ID = Object.fromEntries(Object.entries(CSS_ID_TO_COLOR_ID).map(([k, v]) => [v, k]));
 
 /** Parse any color */
 export function parseColor(color: string): ColorValueNormalized {
   const result = parse(color);
-  if (!result) {
-    throw new Error(`Unable to parse color "${color}"`);
-  }
-  if (!(result.mode in CULORI_TO_CSS)) {
-    throw new Error(`Unsupported color space: ${result.mode}`);
-  }
-  const colorSpace = CULORI_TO_CSS[result.mode as keyof typeof CULORI_TO_CSS]!;
-  let components: [number, number, number] = [0, 0, 0];
-  switch (result.mode) {
-    case 'a98':
-    case 'rec2020':
-    case 'p3':
-    case 'prophoto':
-    case 'lrgb':
-    case 'rgb': {
-      components = [result.r, result.g, result.b];
-      break;
-    }
-    case 'hsl': {
-      const maxS = COLORSPACE[colorSpace].ranges[1]?.[1] ?? 1.0;
-      const maxL = COLORSPACE[colorSpace].ranges[2]?.[1] ?? 1.0;
-      components = [result.h ?? 0, result.s * maxS, result.l * maxL];
-      break;
-    }
-    case 'hwb': {
-      const maxW = COLORSPACE[colorSpace].ranges[1]?.[1] ?? 1.0;
-      const maxB = COLORSPACE[colorSpace].ranges[2]?.[1] ?? 1.0;
-      components = [result.h ?? 0, result.w * maxW, result.b * maxB];
-      break;
-    }
-    case 'lab':
-    case 'lab65':
-    case 'oklab': {
-      components = [result.l, result.a, result.b];
-      break;
-    }
-    case 'lch':
-    case 'oklch': {
-      components = [result.l, result.c, result.h ?? 0];
-      break;
-    }
-    case 'okhsv': {
-      components = [result.h ?? 0, result.s, result.v];
-      break;
-    }
-    case 'xyz50':
-    case 'xyz65': {
-      components = [result.x, result.y, result.z];
-      break;
-    }
-  }
   const value: ColorValueNormalized = {
-    colorSpace,
-    components,
+    colorSpace: COLOR_ID_TO_CSS_ID[result.spaceId] || (result.spaceId as ColorSpace),
+    components: result.coords,
     alpha: result.alpha ?? 1,
   };
   if (HEX_RE.test(color)) {
     // Note: this intentionally does NOT include alpha; it’s already in alpha.
     // Always use formatHex (not formatHex8).
-    value.hex = formatHex(result);
+    const srgb =
+      result.spaceId !== 'srgb' ? convert({ ...result, alpha: undefined }, 'sRGB') : { ...result, alpha: undefined };
+    value.hex = serialize(srgb, { inGamut: true, format: 'hex' });
   }
   return value;
 }
 
-/** Convert a color token to a Culori color */
-export function tokenToCulori(value: ColorValueNormalized): Color | undefined {
-  switch (value.colorSpace) {
-    case 'a98-rgb':
-    case 'display-p3':
-    case 'prophoto-rgb':
-    case 'rec2020':
-    case 'srgb':
-    case 'srgb-linear': {
-      const [r, g, b] = value.components;
-      return {
-        mode: CSS_TO_CULORI[value.colorSpace] || value.colorSpace,
-        r,
-        g,
-        b,
-        alpha: value.alpha,
-      } as Color;
-    }
-    case 'hsl': {
-      const [h, s, l] = value.components;
-      const maxS = COLORSPACE[value.colorSpace].ranges[1]?.[1] ?? 1;
-      const maxL = COLORSPACE[value.colorSpace].ranges[2]?.[1] ?? 1;
-      return { mode: 'hsl', h: h!, s: s! / maxS, l: l! / maxL, alpha: value.alpha };
-    }
-    case 'hwb': {
-      const [h, w, b] = value.components;
-      const maxW = COLORSPACE[value.colorSpace].ranges[1]?.[1] ?? 1;
-      const maxB = COLORSPACE[value.colorSpace].ranges[2]?.[1] ?? 1;
-      return { mode: 'hwb', h: h!, w: w! / maxW, b: b! / maxB, alpha: value.alpha };
-    }
-    case 'lab':
-    case 'lab-d65':
-    case 'oklab': {
-      const [l = 0, a = 0, b = 0] = value.components;
-      const mode = value.colorSpace === 'lab-d65' ? 'lab65' : value.colorSpace;
-      return { mode, l: l!, a: a!, b: b!, alpha: value.alpha };
-    }
-    case 'lch':
-    case 'oklch': {
-      const [l, c, h] = value.components;
-      return { mode: value.colorSpace, l: l!, c: c!, h: h!, alpha: value.alpha };
-    }
-    case 'okhsv': {
-      const [h, s, v] = value.components;
-      return { mode: value.colorSpace, h: h!, s: s!, v: v!, alpha: value.alpha };
-    }
-    case 'xyz':
-    case 'xyz-d50':
-    case 'xyz-d65': {
-      const [x, y, z] = value.components;
-      return { mode: CSS_TO_CULORI[value.colorSpace], x: x!, y: y!, z: z!, alpha: value.alpha };
-    }
-    default: {
-      throw new Error(
-        `Invalid colorSpace "${value.colorSpace}". Expected one of ${Object.keys(CSS_TO_CULORI).join(', ')}`,
-      );
-    }
-  }
+/** Convert a color token to a Color.js color */
+export function tokenToColor(value: ColorValueNormalized): ColorConstructor {
+  return {
+    spaceId: CSS_ID_TO_COLOR_ID[value.colorSpace] || value.colorSpace,
+    coords: value.components as Coords,
+    alpha: value.alpha,
+  };
 }
 
 export interface ColorSpaceDefinition {
   ranges: [min: number, max: number][];
 }
 
-/** Complete list of CSS Module 4 Colorspaces */
-export const COLORSPACE: Record<ColorSpace, ColorSpaceDefinition> = {
+/** Complete list of CSS Module 4 color spaces */
+export const COLOR_SPACE: Record<ColorSpace, ColorSpaceDefinition> = {
   'a98-rgb': {
     ranges: [
       [0.0, 1.0],
@@ -246,6 +135,13 @@ export const COLORSPACE: Record<ColorSpace, ColorSpaceDefinition> = {
       [0.0, 360.0],
     ],
   },
+  okhsv: {
+    ranges: [
+      [0.0, 360.0],
+      [0.0, 1.0],
+      [0.0, 1.0],
+    ],
+  },
   oklab: {
     ranges: [
       [0.0, 1.0],
@@ -258,13 +154,6 @@ export const COLORSPACE: Record<ColorSpace, ColorSpaceDefinition> = {
       [0.0, 1.0],
       [0.0, 0.4],
       [0.0, 360.0],
-    ],
-  },
-  okhsv: {
-    ranges: [
-      [0.0, 360.0],
-      [0.0, 1.0],
-      [0.0, 1.0],
     ],
   },
   'prophoto-rgb': {
@@ -295,14 +184,14 @@ export const COLORSPACE: Record<ColorSpace, ColorSpaceDefinition> = {
       [0.0, 1.0],
     ],
   },
-  'xyz-d50': {
+  xyz: {
     ranges: [
       [0.0, 1.0],
       [0.0, 1.0],
       [0.0, 1.0],
     ],
   },
-  xyz: {
+  'xyz-d50': {
     ranges: [
       [0.0, 1.0],
       [0.0, 1.0],

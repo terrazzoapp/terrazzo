@@ -1,8 +1,6 @@
-import { formatCss, formatHex, parse, type Rgb } from 'culori';
 import { describe, expect, it } from 'vitest';
 import {
   makeCSSVar,
-  roundColor,
   transformBoolean,
   transformColor,
   transformCSSValue,
@@ -95,7 +93,7 @@ describe('transformCSSValue', () => {
           } as any,
           { tokensSet: {}, transformAlias: (id) => `--${id}` },
         ],
-        want: { success: 'color(srgb 0 0 1)' },
+        want: { success: 'rgb(0% 0% 100%)' },
       },
     ],
     [
@@ -215,7 +213,7 @@ describe('transformColor', () => {
       'string',
       {
         given: [{ $value: '#663399' }, { tokensSet: {} }],
-        want: { success: 'color(srgb 0.4 0.2 0.6)' },
+        want: { success: 'rgb(40% 20% 60%)' },
       },
     ],
     [
@@ -227,7 +225,7 @@ describe('transformColor', () => {
           },
           { tokensSet: {} },
         ],
-        want: { success: 'color(srgb 0.4 0.2 0.6)' },
+        want: { success: 'rgb(40% 20% 60%)' },
       },
     ],
     [
@@ -370,7 +368,7 @@ describe('transformColor', () => {
       'oklab',
       {
         given: [{ $value: { colorSpace: 'oklab', components: [0.40101, 0.1147, 0.0453] } }, { tokensSet: {} }],
-        want: { success: 'oklab(0.40101 0.1147 0.0453)' },
+        want: { success: 'oklab(40.101% 0.1147 0.0453)' },
       },
     ],
     [
@@ -382,7 +380,7 @@ describe('transformColor', () => {
           } as any,
           { tokensSet: {} },
         ],
-        want: { success: 'oklch(0 0 0)' },
+        want: { success: 'oklch(0% 0 0)' },
       },
     ],
     [
@@ -413,7 +411,7 @@ describe('transformColor', () => {
           } as any,
           { tokensSet: {} },
         ],
-        want: { success: 'color(--okhsv 218 0.5 0.67)' },
+        want: { success: 'color(--okhsv 218 50% 67%)' },
       },
     ],
     [
@@ -441,7 +439,7 @@ describe('transformColor', () => {
       'invalid',
       {
         given: [{ $value: '#wtf' } as any, { tokensSet: {} }],
-        want: { error: 'Unable to parse color "#wtf"' },
+        want: { error: 'Could not parse #wtf as a color. Missing a plugin?' },
       },
     ],
     [
@@ -449,8 +447,7 @@ describe('transformColor', () => {
       {
         given: [{ $value: { colorSpace: 'bad', components: [0.1, 0.1, 0.1] } } as any, { tokensSet: {} }],
         want: {
-          error:
-            'Invalid colorSpace "bad". Expected one of a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, oklab, oklch, okhsv, prophoto-rgb, rec2020, srgb, srgb-linear, xyz, xyz-d50, xyz-d65',
+          error: 'No color space found with id = "bad"',
         },
       },
     ],
@@ -469,34 +466,6 @@ describe('transformColor', () => {
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
-  });
-});
-
-describe('roundColor', () => {
-  it.each([24, 30, 36, 48] as const)('%s', (depth) => {
-    const range = 2 ** (depth / 3);
-    const value = 1 / range;
-    const errorTolerance = 0.1 * value; // 10%
-
-    let lastValue = -1;
-    for (let i = 0; i < range; i++) {
-      const original = { mode: 'rgb' as const, r: i * value, g: 0, b: 0 } as Rgb;
-      // for 24-bit color, compare hex codes which are clearer examples of rounding
-      if (depth === 24) {
-        expect(formatHex(original)).toBe(formatHex(roundColor(original, depth)));
-      } else {
-        const reParsed = parse(formatCss(original)) as Rgb;
-        const rounded = parse(formatCss(roundColor(original, depth))) as Rgb;
-        expect(Math.abs(reParsed.r - rounded.r)).toBeLessThan(errorTolerance);
-        expect(rounded.r, `Duplicated value for ${i}/${range}`).not.toBe(lastValue);
-        lastValue = rounded.r;
-      }
-    }
-  }, 10_000);
-
-  it('unlimited', () => {
-    const original = { mode: 'rgb' as const, r: 0.1 + 0.2, g: 0, b: 0 } as Rgb;
-    expect(roundColor(original, 'unlimited')).toEqual(original);
   });
 });
 
@@ -609,7 +578,7 @@ describe('transformGradient', () => {
           { tokensSet: {} },
         ],
         want: {
-          success: 'color(srgb 1 0 1) 0%, color(srgb 0 1 0) 50%, color(srgb 1 0 0) 100%',
+          success: 'rgb(100% 0% 100%) 0%, rgb(0% 100% 0%) 50%, rgb(100% 0% 0%) 100%',
         },
       },
     ],
@@ -693,7 +662,7 @@ describe('transformShadow', () => {
           } as any,
           { tokensSet: {} },
         ],
-        want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.1)' },
+        want: { success: '0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.1)' },
       },
     ],
     [
@@ -718,7 +687,7 @@ describe('transformShadow', () => {
           } as any,
           { tokensSet: {} },
         ],
-        want: { success: 'inset 0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.1)' },
+        want: { success: 'inset 0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.1)' },
       },
     ],
     [
@@ -756,7 +725,7 @@ describe('transformShadow', () => {
           { tokensSet: {} },
         ],
         want: {
-          success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.05), 0 0.5rem 1rem 0 color(srgb 0 0 0 / 0.05)',
+          success: '0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.05), 0 0.5rem 1rem 0 rgb(0% 0% 0% / 0.05)',
         },
       },
     ],

@@ -1,1 +1,1 @@
-export default [{ ignore: ['culori'], path: './index.js', limit: '12 kB' }];
+export default [{ ignore: ['colorjs.io'], path: './index.js', limit: '12 kB' }];

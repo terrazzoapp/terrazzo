@@ -1,12 +1,11 @@
-import { COLORSPACES, type Color, type ColorInput, type P3, type Rgb } from '@terrazzo/use-color';
-import { toGamut } from 'culori';
+import type { ColorConstructor } from 'colorjs.io/fn';
 
 /** Calculate min, max, displayMin, and displayMax for a given color/colorspace/gamut */
-export function calculateBounds(color: Color, channel: string) {
+export function calculateBounds(color: ColorConstructor, channel: string) {
   let min = 0;
   let max = 1;
 
-  switch (color.mode) {
+  switch (color.spaceId) {
     case 'hsl':
     case 'hwb':
     case 'okhsl':
@@ -83,42 +82,13 @@ export function calculateBounds(color: Color, channel: string) {
   return result;
 }
 
-/** Handle color gamut clamping */
-export function updateColor(color: Color, gamut: 'rgb' | 'p3' | 'rec2020' = 'rgb'): ColorInput {
-  switch (gamut) {
-    // encompasses P3
-    case 'rec2020': {
-      // no clamping necessary
-      if (color.mode === 'rgb' || color.mode === 'p3' || color.mode === 'hsl' || color.mode === 'hwb') {
-        return COLORSPACES.rec2020.converter(color); // if this is in a non-Rec2020-compatible colorspace, convert it
-      }
-      break;
-    }
-    case 'p3': {
-      if (color.mode === 'rec2020' || color.mode === 'rgb' || color.mode === 'hsl' || color.mode === 'hwb') {
-        const clamped = toGamut('p3', 'oklch')(color); // clamp color to P3 gamut
-        return COLORSPACES.p3.converter(clamped as P3); // if this is in a non-P3-compatible colorspace, convert it
-      }
-      break;
-    }
-    default: {
-      if (color.mode === 'a98' || color.mode === 'rec2020' || color.mode === 'p3' || color.mode === 'prophoto') {
-        const clamped = toGamut('rgb', 'oklch')(color); // clamp to sRGB gamut
-        return COLORSPACES.srgb.converter(clamped as Rgb); // if this is in a non-sRGB-compatible colorspace, convert it
-      }
-      break;
-    }
-  }
-  return color;
-}
-
 /** Order color components in proper order */
-export function channelOrder(color: Color): string[] {
-  switch (color.mode) {
-    case 'rgb':
+export function channelOrder(color: ColorConstructor): string[] {
+  switch (color.spaceId) {
+    case 'srgb':
+    case 'srgb-linear':
     case 'rec2020':
-    case 'lrgb':
-    case 'a98':
+    case 'a98rgb':
     case 'prophoto': {
       return ['r', 'g', 'b', 'alpha'];
     }
@@ -140,8 +110,8 @@ export function channelOrder(color: Color): string[] {
     case 'oklch': {
       return ['l', 'c', 'h', 'alpha'];
     }
-    case 'xyz50':
-    case 'xyz65': {
+    case 'xyz-d50':
+    case 'xyz-d65': {
       return ['x', 'y', 'z', 'alpha'];
     }
     default: {

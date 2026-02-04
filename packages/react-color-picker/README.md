@@ -1,6 +1,6 @@
 # @terrazzo/react-color-picker
 
-Pick colors using CSS Color Module 4, wide color gamut (WCG), and all supported web colorspaces using React and WebGL for monitor-accurate colors. Powered by 🌈 [Culori](https://culorijs.org/).
+Pick colors using CSS Color Module 4, wide color gamut (WCG), and all supported web colorspaces using React and WebGL for monitor-accurate colors. Powered by 🌈 [Color.js](https://colorjs.io/).
 
 `15 kB`, enforced by [size-limit](https://www.npmjs.com/package/size-limit)
 
