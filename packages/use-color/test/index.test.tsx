@@ -3,7 +3,7 @@ import { userEvent } from '@testing-library/user-event';
 import type { ColorConstructor } from 'colorjs.io/fn';
 import { useEffect } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
-import useColor, { type ColorInput, type ColorOutput, parse } from './index.js';
+import useColor, { type ColorInput, type ColorOutput, parse } from '../src/index.js';
 
 type ColorType = ReturnType<typeof useColor>[0];
 
@@ -43,10 +43,10 @@ function UseColorTester({
       </form>
 
       <div data-testid='color-display'>
-        {color[display]?.space
+        {color[display]
           ? JSON.stringify({
-              ...color[display],
-              space: { id: color[display].space.id }, // prevent circular JSON
+              ...(color[display] as any),
+              space: undefined, // prevent circular JSON
             })
           : ''}
       </div>
@@ -149,13 +149,7 @@ describe('useColor', () => {
 
     it.each(formatTests)('%s', (_, { given, want }) => {
       const result = parse(given)!;
-      for (const k of Object.keys(result)) {
-        if (typeof (result as any)[k] === 'number') {
-          expect((result as any)[k]).toBeCloseTo((want as any)[k]);
-        } else {
-          expect((result as any)[k]).toStrictEqual((want as any)[k]);
-        }
-      }
+      expect(result.original).toEqual(expect.objectContaining(want));
     });
   });
 
@@ -177,11 +171,7 @@ describe('useColor', () => {
 
       // assert color displays as-expected
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML);
-      expect(displayedColor.space.id).toBe('srgb');
-      expect(displayedColor.coords[0]).toBeCloseTo(0.0001617559902515342);
-      expect(displayedColor.coords[1]).toBeCloseTo(0.30008212426886693);
-      expect(displayedColor.coords[2]).toBeCloseTo(0.9998580363362607);
-      expect(displayedColor.alpha).toBeCloseTo(1);
+      expect(displayedColor).toEqual(expect.objectContaining({ spaceId: 'srgb', coords: [0, 0.3, 1], alpha: 1 }));
 
       // assert only 1 render happened
       expect(renderCount).toBe(1);
@@ -226,11 +216,7 @@ describe('useColor', () => {
 
       // assert `setColor()` works
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML);
-      expect(displayedColor.space.id).toBe('srgb');
-      expect(displayedColor.coords[0]).toBeCloseTo(0.6);
-      expect(displayedColor.coords[1]).toBeCloseTo(0.3);
-      expect(displayedColor.coords[2]).toBeCloseTo(0.5);
-      expect(displayedColor.alpha).toBeCloseTo(1);
+      expect(displayedColor).toEqual(expect.objectContaining({ spaceId: 'srgb', coords: [0.6, 0.3, 0.5], alpha: 1 }));
 
       // assert only 1 onChange happened (+1 first render)
       expect(onChangeCount).toBe(1 + 1);

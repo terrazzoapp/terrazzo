@@ -447,7 +447,7 @@ describe('transformColor', () => {
       {
         given: [{ $value: { colorSpace: 'bad', components: [0.1, 0.1, 0.1] } } as any, { tokensSet: {} }],
         want: {
-          error: 'No color space found with id = "bad"',
+          error: 'Invalid color space "bad".',
         },
       },
     ],

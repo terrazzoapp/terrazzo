@@ -11,23 +11,12 @@ export default {
 
 export const srgb = {
   render() {
-    const [color, setColor] = useColor('color(srgb 1 0 0)');
-
+    const [color, setColor] = useColor('rgb(100% 0% 0%)');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '15rem' }}>
-        {Object.keys(color.original).map((channel) => {
-          if (channel === 'mode') {
-            return null;
-          }
-          return (
-            <ColorChannelSlider
-              key={`${color.original.mode}-${channel}`}
-              color={color}
-              channel={channel}
-              setColor={setColor}
-            />
-          );
-        })}
+        {Object.keys(color.original.space.coords).map((channel) => (
+          <ColorChannelSlider key={channel} color={color} channel={channel} setColor={setColor} />
+        ))}
       </div>
     );
   },
@@ -35,23 +24,12 @@ export const srgb = {
 
 export const oklch = {
   render() {
-    const [color, setColor] = useColor('oklch(0.7 0.2 150)');
-
+    const [color, setColor] = useColor('oklch(70% 0.2 150)');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '15rem' }}>
-        {Object.keys(color.original).map((channel) => {
-          if (channel === 'mode') {
-            return null;
-          }
-          return (
-            <ColorChannelSlider
-              key={`${color.original.mode}-${channel}`}
-              color={color}
-              channel={channel}
-              setColor={setColor}
-            />
-          );
-        })}
+        {Object.keys(color.original.space.coords).map((channel) => (
+          <ColorChannelSlider key={channel} color={color} channel={channel} setColor={setColor} />
+        ))}
       </div>
     );
   },

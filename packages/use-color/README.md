@@ -1,6 +1,6 @@
 # @terrazzo/use-color
 
-React hook for memoizing and transforming any web-compatible color. Only 12 kB (with full support for all web color spaces!) thanks to [Color.js](https://colorjs.io).
+React hook for memoizing and transforming any web-compatible color. Only 18 kB (with full support for all web color spaces!) thanks to [Color.js](https://colorjs.io).
 
 ## Setup
 
@@ -52,8 +52,7 @@ The color is fully memoized, so it can be used in any `useEffect()` hooks. This 
 | `p3`          | `object` | Color.js P3 color object                                                                                      |
 | `prophotoRgb` | `object` | Color.js ProPhotoRGB color object                                                                             |
 | `rec2020`     | `object` | Color.js Rec2020 color object                                                                                 |
-| `rgb`         | `object` | (sRGB) Color.js RGB color object                                                                              |
-| `srgb`        | `object` | (alias of `rgb`)                                                                                              |
+| `srgb`        | `object` | Color.js sRGB color object                                                                                    |
 | `xyz`         | `object` | (alias of `xyz65`)                                                                                            |
 | `xyz50`       | `object` | Color.js Xyz50 color object                                                                                   |
 | `xyz65`       | `object` | Color.js Xyz65 color object                                                                                   |
@@ -73,7 +72,7 @@ Or any Color.js object:
 ```tsx
 const [color, setColor] = useColor();
 
-setColor({ space: "p3", coords: [0.12, 0.3, 0.98] });
+setColor({ spaceId: "p3", coords: [0.12, 0.3, 0.98] });
 ```
 
 Or adjusting the color object relatively (tip: for most purposes, adjusting by `oklab` will yield the best results):
@@ -82,8 +81,12 @@ Or adjusting the color object relatively (tip: for most purposes, adjusting by `
 const [color, setColor] = useColor();
 
 setColor({
-  ...color.original.oklab,
-  l: color.oklab.l + 0.1, // Lighten by 10% via Oklab
+  ...color.oklab,
+  coords: [
+    color.oklab.coords[0] + 0.1, // Lighten by 10% via Oklab
+    color.oklab.coords[1],
+    color.oklab.coords[2],
+  ],
 });
 ```
 

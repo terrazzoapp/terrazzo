@@ -5,5 +5,5 @@
     "noEmit": true,
     "outDir": "dist"
   },
-  "include": ["./*.{js,ts}", "./index.test.tsx"]
+  "include": ["./*.{js,ts}", "test/index.test.tsx"]
 }
