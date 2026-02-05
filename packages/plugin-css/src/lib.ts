@@ -49,8 +49,7 @@ export interface CSSPluginOptions {
   /** Override certain token values */
   transform?: (
     token: TokenNormalized,
-    /** @deprecated */
-    mode?: string,
+    options: TransformCSSValueOptions,
   ) => TokenTransformed['value'] | undefined | null;
   /** Generate utility CSS from groups */
   utility?: Partial<Record<UtilityCSSGroup, string[]>>;
