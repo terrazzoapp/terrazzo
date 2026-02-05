@@ -116,8 +116,10 @@ Sometimes the token source you’re reading from isn’t in a perfect state, and
 ```ts
 import * as momoa from "@humanwhocodes/momoa";
 import { parse } from "@terrazzo/parser";
-import culori from "culori";
+import { ColorSpace, parseColor, serialize, sRGB } from "colorjs.io/fn";
 import fs from "node:fs/promises";
+
+ColorSpace.register(sRGB);
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
 const config = defineConfig({}, { cwd: new URL(import.meta.url) });
@@ -138,19 +140,17 @@ const { sources } = await parse(
       },
 
       // Transform color tokens, converting them from CSS strings into color objects
-      color(node, path) {
-        const color = culori.parse(momoa.evaluate(json).$value);
-        if (!color) return;
-
-        const { mode: colorSpace, alpha, ...components } = color;
-
+      color(json, path, ast) {
+        const color = parseColor(json.$value);
+        const space = ColorSpace.get(color.spaceId);
         return (node.members.find(
           (m) => m.name.type === "String" && m.name.value === "$value",
         ).value = momoa.parse({
-          colorSpace,
-          components,
-          alpha,
-        })).body;
+          colorSpace: space.cssId,
+          components: color.coords,
+          alpha: color.alpha,
+          hex: serialize(color, { format: "hex" }),
+        }));
       },
     },
   },

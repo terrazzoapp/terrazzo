@@ -37,15 +37,20 @@ To see what this looks like in code, we’ll look at a simplified version of the
 
 :::code-group
 
-```js [my-css-plugin.js]
-import { formatCss } from "culori";
+```ts [my-css-plugin.js]
+import { serialize } from "colorjs.io/fn";
 import { kebabCase } from "scule";
 
 export default function clampColor(userOptions) {
   return {
     name: "my-css-plugin",
     async transform({ resolver, setTransform }) {
-      const permutations = [{ colorMode: 'light', size: 'mobile' }, { colorMode: 'dark', size: 'mobile' }, { colorMode: 'light', size: 'desktop' }, { colorMode: 'light', size: 'desktop' }]
+      const permutations = [
+        { colorMode: "light", size: "mobile" },
+        { colorMode: "dark", size: "mobile" },
+        { colorMode: "light", size: "desktop" },
+        { colorMode: "light", size: "desktop" },
+      ];
       for (const input of permutations) {
         const tokens = resolver.apply(input);
         for (const [id, token] of Object.entries(tokens)) {
@@ -54,12 +59,20 @@ export default function clampColor(userOptions) {
               setTransform(id, {
                 format: "css",
                 localID: `--${kebabCase(id)}`,
-                value: formatCss(token.$value), // convert original format into CSS-friendly value
+                value: serialize(
+                  {
+                    spaceId: "srgb",
+                    coords: token.$value.components,
+                    alpha: token.$value.alpha,
+                  },
+                  { format: "hex" },
+                ),
                 input,
               });
               break;
             }
             // … other $types here
+          }
         }
       }
     },
@@ -311,24 +324,22 @@ The **transform** hook can populate a format with transformed values. A **format
 
 :::code-group
 
-```js [my-plugin.js]
-import { rgb } from "culori";
-
+```ts [my-plugin.js]
 export default function myPlugin() {
-  name: "my-plugin",
   return {
+    name: "my-plugin",
     async transform({ tokens, setTransform }) {
       setTransform("color.base.blue.500", {
         format: "js",
         localID: "color.base.blue.500",
-        value: rgb(tokens["color.base.blue.500"].$value),
+        value: tokens["color.base.blue.500"].$value,
       });
       setTransform("color.base.blue.500", {
         format: "ts",
         localID: "color.base.blue.500",
         value: "ReturnType<typeof rgb>",
       });
-    }
+    },
   };
 }
 ```
