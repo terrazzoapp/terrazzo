@@ -59,5 +59,5 @@ export function applyTemplate(template: string, generatedTheme: string): string 
   if (!template.includes(TERRAZZO_SLOT)) {
     throw new Error(`Template must contain "${TERRAZZO_SLOT}" directive`);
   }
-  return template.replace(TERRAZZO_SLOT, generatedTheme);
+  return template.replace(TERRAZZO_SLOT, generatedTheme).replace(/\n{3,}/g, '\n\n');
 }
