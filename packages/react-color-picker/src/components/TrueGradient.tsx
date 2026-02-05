@@ -1,10 +1,10 @@
-import type { Oklab } from '@terrazzo/use-color';
+import type { PlainColorObject } from 'colorjs.io/fn';
 import { type ComponentProps, useEffect, useRef, useState } from 'react';
 import { GradientOklab } from '../lib/webgl.js';
 
 export interface TrueGradientProps extends ComponentProps<'canvas'> {
-  start: Oklab;
-  end: Oklab;
+  start: PlainColorObject;
+  end: PlainColorObject;
 }
 
 function TrueGradient({ start, end, ...props }: TrueGradientProps) {

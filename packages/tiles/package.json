@@ -39,13 +39,12 @@
     "@terrazzo/use-color": "workspace:^",
     "@use-gesture/react": "^10.3.1",
     "clsx": "^2.1.1",
-    "culori": "catalog:",
+    "colorjs.io": "catalog:",
     "shiki": "^1.29.2"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.3.0",
     "@size-limit/preset-small-lib": "^11.2.0",
-    "@types/culori": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react-swc": "catalog:",

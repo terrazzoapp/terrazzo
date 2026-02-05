@@ -3,7 +3,7 @@ import { ChevronDown } from '@terrazzo/icons';
 import ColorPicker, { COLOR_PICKER_SPACES } from '@terrazzo/react-color-picker';
 import { Select, SelectItem } from '@terrazzo/tiles';
 import type { ColorValueNormalized } from '@terrazzo/token-tools';
-import useColor, { type ColorOutput } from '@terrazzo/use-color';
+import useColor from '@terrazzo/use-color';
 import c from './EditableColorToken.module.css';
 
 export interface EditableColorTokenProps {
@@ -14,7 +14,6 @@ export interface EditableColorTokenProps {
 
 export default function EditableColorToken({ id, value }: EditableColorTokenProps) {
   const [color, setColor] = useColor(value);
-  const components = normalizedComponents(color);
 
   return (
     <div className={c.container}>
@@ -29,8 +28,8 @@ export default function EditableColorToken({ id, value }: EditableColorTokenProp
       <div className={c.components}>
         <Select
           className={c.colorSpaceDropdown}
-          value={color.original.mode}
-          trigger={color.original.mode}
+          value={color.original.space.id}
+          trigger={color.original.space.id}
           triggerIcon={<ChevronDown />}
           onValueChange={(space) => setColor(color[space as keyof typeof color] ?? color.original)}
         >
@@ -40,50 +39,15 @@ export default function EditableColorToken({ id, value }: EditableColorTokenProp
             </SelectItem>
           ))}
         </Select>
-        {components.map((v, i) => (
+        {color.original.coords.map((v, i) => (
           <output className={c.channel} key={i}>
             {trimTrailingZeros(String(v).slice(0, 6))}
           </output>
         ))}
       </div>
-      <output className={c.alpha}>{trimTrailingZeros(String(color.original.alpha * 100).slice(0, 6))}%</output>
+      <output className={c.alpha}>{trimTrailingZeros(String(color.original.alpha ?? 1 * 100).slice(0, 6))}%</output>
     </div>
   );
-}
-
-function normalizedComponents({ original }: ColorOutput): ColorValueNormalized['components'] {
-  switch (original.mode) {
-    case 'a98':
-    case 'lrgb':
-    case 'p3':
-    case 'prophoto':
-    case 'rec2020':
-    case 'rgb': {
-      return [original.r, original.g, original.b];
-    }
-    case 'hsl':
-    case 'okhsl': {
-      return [original.h, original.s, original.l];
-    }
-    case 'okhsv': {
-      return [original.h, original.s, original.v];
-    }
-    case 'hwb': {
-      return [original.h, original.w, original.b];
-    }
-    case 'lab':
-    case 'oklab': {
-      return [original.l, original.a, original.b];
-    }
-    case 'lch':
-    case 'oklch': {
-      return [original.l, original.c, original.h];
-    }
-    case 'xyz50':
-    case 'xyz65': {
-      return [original.x, original.y, original.z];
-    }
-  }
 }
 
 function trimTrailingZeros(value: string) {

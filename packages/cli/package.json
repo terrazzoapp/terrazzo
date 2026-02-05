@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/cli",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "CLI for managing design tokens using the Design Tokens Community Group (DTCG) standard and generating code for any platform via plugins.",
   "license": "MIT",
   "type": "module",

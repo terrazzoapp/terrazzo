@@ -1,6 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
-import { tokenToCulori } from '@terrazzo/token-tools';
-import { toGamut } from 'culori';
+import { tokenToColor } from '@terrazzo/token-tools';
+import { to as convert } from 'colorjs.io/fn';
 
 export const FORMAT = 'swift';
 
@@ -27,8 +27,6 @@ export interface ColorData {
   };
 }
 
-const toP3 = toGamut('p3', 'oklch');
-
 export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptions = {}): Plugin {
   return {
     name: '@terrazzo/plugin-swift',
@@ -40,11 +38,11 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
               if (!modeValue) {
                 continue;
               }
-              const parsed = tokenToCulori(modeValue.$value);
-              if (!parsed) {
-                throw new Error(`Can’t convert color ${JSON.stringify(modeValue)} to Culori color`);
-              }
-              const { r: red, g: green, b: blue, alpha } = toP3(parsed);
+              const parsed = tokenToColor(modeValue.$value);
+              const {
+                coords: [red, green, blue],
+                alpha,
+              } = convert(parsed, parsed.spaceId, { inGamut: { space: 'p3' } });
               setTransform(id, {
                 format: FORMAT,
                 mode,

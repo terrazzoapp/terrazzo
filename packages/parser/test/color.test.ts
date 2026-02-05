@@ -148,7 +148,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Invalid color space: undefined. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, oklab, oklch, okhsv, prophoto-rgb, rec2020, srgb, srgb-linear, xyz-d50, xyz, or xyz-d65
+          error: `[lint:core/valid-color] Invalid color space: undefined. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, okhsv, oklab, oklch, prophoto-rgb, rec2020, srgb, srgb-linear, xyz, xyz-d50, or xyz-d65.
 
   3 |     "cobalt": {
   4 |       "$type": "color",
@@ -233,7 +233,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Invalid color space: mondrian. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, oklab, oklch, okhsv, prophoto-rgb, rec2020, srgb, srgb-linear, xyz-d50, xyz, or xyz-d65
+          error: `[lint:core/valid-color] Invalid color space: mondrian. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, okhsv, oklab, oklch, prophoto-rgb, rec2020, srgb, srgb-linear, xyz, xyz-d50, or xyz-d65.
 
   4 |       "$type": "color",
   5 |       "$value": {

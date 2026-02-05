@@ -104,7 +104,7 @@
       "border": {
         "color": {
           "$type": "color",
-          "$value":  {
+          "$value": {
             "colorSpace": "srgb",
             "components": [0.6509803921568628, 0.6901960784313725, 0.7098039215686275],
             "alpha": 1,
@@ -124,7 +124,7 @@
       "border": {
         "color": {
           "$type": "color",
-          "$value":  {
+          "$value": {
             "colorSpace": "srgb",
             "components": [0.0784313725490196, 0.09019607843137255, 0.10588235294117647],
             "alpha": 1,

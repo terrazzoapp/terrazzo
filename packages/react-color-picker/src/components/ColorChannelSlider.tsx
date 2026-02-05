@@ -1,15 +1,10 @@
 import { Slider } from '@terrazzo/tiles';
-import { type ColorOutput, formatCss, type Oklab, type default as useColor, withAlpha } from '@terrazzo/use-color';
-import { modeLrgb, modeOklab, modeRgb, useMode } from 'culori';
+import type { default as useColor } from '@terrazzo/use-color';
+import { type ColorConstructor, type ColorSpace, to as convert, serialize } from 'colorjs.io/fn';
 import { type ReactElement, useMemo } from 'react';
-import { calculateBounds } from '../lib/color.js';
 import HueWheel from './HueWheel.js';
 import TrueGradient from './TrueGradient.js';
 import './ColorChannelSlider.css';
-
-useMode(modeRgb);
-useMode(modeLrgb);
-const toOklab = useMode(modeOklab);
 
 /** size, in px, to pad inner track */
 export const TRACK_PADDING = 4;
@@ -18,35 +13,36 @@ export const BODY_DRAGGING_CLASS = 'tz-color-channel-slider-is-grabbing';
 /** Amount Shift key affects drag rate */
 export const SHIFT_FACTOR = 0.25;
 
-const CHANNEL_LABEL: Record<string, string | undefined> = {
-  alpha: 'Alpha',
-  b: 'Blue', // note: conflicts with Lab “B”! Handle conditionally though
-  c: 'Chroma',
-  g: 'Green',
-  h: 'Hue',
-  l: 'Lightness',
-  r: 'Red',
-  s: 'Saturation',
-  v: 'Value',
-};
-
 const CHANNEL_PRECISION = 5;
 
-const RGB_COLORSPACES = ['a98', 'lrgb', 'p3', 'rgb', 'prophoto', 'rec2020'];
-// const SRGB_COLORSPACES = ['rgb', 'hsv', 'hsl', 'hwb'];
-// const P3_COLORSPACES = ['p3'];
+// Note: this is deep within Color.js but it’s too annoying to fish out, just make it simple
+const CHANNEL_ORDER: Record<string, Record<string, number | undefined>> = {
+  a98: { r: 0, g: 1, b: 2 },
+  hsl: { h: 0, s: 1, l: 2 },
+  hsv: { h: 0, s: 1, v: 2 },
+  hwb: { h: 0, w: 1, b: 2 },
+  lab: { l: 0, a: 1, b: 2 },
+  'lab-d65': { l: 0, a: 1, b: 2 },
+  lch: { l: 0, c: 1, h: 2 },
+  okhsl: { h: 0, s: 1, l: 2 },
+  okhsv: { h: 0, s: 1, v: 2 },
+  oklab: { l: 0, a: 1, b: 2 },
+  oklch: { l: 0, c: 1, h: 2 },
+  prophoto: { r: 0, g: 1, b: 2 },
+  rec2020: { r: 0, g: 1, b: 2 },
+  srgb: { r: 0, g: 1, b: 2 },
+  'srgb-linear': { r: 0, g: 1, b: 2 },
+  'xyz-d50': { x: 0, y: 1, z: 2 },
+  'xyz-d65': { x: 0, y: 1, z: 2 },
+};
 
-function isPerc(color: ColorOutput, channel: string): boolean {
-  if (RGB_COLORSPACES.includes(color.original.mode)) {
+function isPerc(color: ColorSpace, channel: string | 'alpha'): boolean {
+  if (channel === 'alpha') {
     return true;
   }
-  if (channel === 'l' || channel === 'c' || channel === 's' || channel === 'v' || channel === 'alpha') {
-    return true;
-  }
-  if (channel === 'h') {
-    return false;
-  }
-  return false;
+  const lower = color.coords[channel]?.range?.[0];
+  const upper = color.coords[channel]?.range?.[1];
+  return lower === 0 && (upper === 1 || upper === 100);
 }
 
 export interface ColorChannelBGProps {
@@ -59,7 +55,7 @@ export interface ColorChannelBGProps {
 }
 
 function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: ColorChannelBGProps) {
-  if (channel === 'h') {
+  if (['hsl', 'okhsl'].includes(color.original.spaceId) && channel === 'h') {
     return (
       <div className='tz-color-channel-slider-bg-wrapper'>
         <HueWheel className='tz-color-channel-slider-bg' />
@@ -72,15 +68,9 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
         <div
           className='tz-color-channel-slider-bg tz-color-channel-slider-bg__alpha'
           style={{
-            // don’t use "transparent" to prevent the “fade to black” problem that could exist in some browsers in higher colorspaces
-            '--left-color': formatCss({
-              ...(RGB_COLORSPACES.includes(color.original.mode) ? color.original : color.oklab),
-              alpha: 0,
-            })!,
-            '--right-color': formatCss({
-              ...(RGB_COLORSPACES.includes(color.original.mode) ? color.original : color.oklab),
-              alpha: 1,
-            })!,
+            // don’t use "transparent" to prevent the “fade to black” problem that could exist in some browsers in higher color spaces
+            '--left-color': serialize({ ...color.oklab, alpha: 0 }),
+            '--right-color': serialize({ ...color.oklab, alpha: 1 }),
           }}
         />
       </div>
@@ -88,10 +78,16 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
   }
 
   const range = (displayMax ?? max) - (displayMin ?? min);
-  const leftColor = { ...color.original, [channel]: displayMin ?? min };
-  const rightColor = { ...color.original, [channel]: displayMax ?? max };
-  const leftOklab = useMemo(() => withAlpha(toOklab(leftColor) as Oklab) as Oklab, [color.css]);
-  const rightOklab = useMemo(() => withAlpha(toOklab(rightColor) as Oklab) as Oklab, [color.css]);
+  const leftOklab = useMemo(() => {
+    const leftColor: ColorConstructor = { ...color.original, coords: [...color.original.coords] };
+    leftColor.coords[CHANNEL_ORDER[color.original.spaceId]?.[channel] ?? -1] = displayMin ?? min;
+    return convert(leftColor, 'oklab');
+  }, [color, channel, displayMin, min]);
+  const rightOklab = useMemo(() => {
+    const rightColor: ColorConstructor = { ...color.original, coords: [...color.original.coords] };
+    rightColor.coords[CHANNEL_ORDER[color.original.spaceId]?.[channel] ?? -1] = displayMax ?? max;
+    return convert(rightColor, 'oklab');
+  }, [color, channel, displayMax, max]);
 
   return (
     <div className='tz-color-channel-slider-bg-wrapper'>
@@ -116,7 +112,6 @@ export interface ColorChannelSliderProps {
   channel: string;
   className?: string;
   color: ReturnType<typeof useColor>[0];
-  gamut?: 'rgb' | 'p3' | 'rec2020';
   setColor: ReturnType<typeof useColor>[1];
 }
 
@@ -124,23 +119,32 @@ export default function ColorChannelSlider({
   channel,
   className,
   color,
-  // gamut = 'rgb',
   setColor,
 }: ColorChannelSliderProps): ReactElement {
-  const { min, max } = useMemo(() => calculateBounds(color.original, channel), [color.original, channel]);
+  const [min, max] = color.original.space.coords[channel]?.range ??
+    color.original.space.coords[channel]?.refRange ?? [0, 1];
+  const coordI = CHANNEL_ORDER[color.original.spaceId]?.[channel] ?? -1;
 
   return (
     <Slider
       bg={<ColorChannelBG channel={channel} color={color} min={min} max={max} />}
       className={className}
       handleColor={color.css}
-      label={CHANNEL_LABEL[channel] ?? channel}
+      label={color.original.space.coords[channel]?.name ?? channel}
       max={max}
       min={min}
-      onChange={(newValue: number) => setColor({ ...color.original, [channel]: newValue })}
-      percentage={isPerc(color, channel)}
+      onChange={(newValue: number) => {
+        if (channel === 'alpha') {
+          setColor({ ...color.original, alpha: newValue });
+          return;
+        }
+        const next: ColorConstructor = { ...color.original, coords: [...color.original.coords] };
+        next.coords[coordI] = newValue;
+        setColor(next);
+      }}
+      percentage={isPerc(color.original.space, channel)}
       step={1 / 10 ** CHANNEL_PRECISION}
-      value={color.original[channel as keyof typeof color.original] as number}
+      value={channel === 'alpha' ? (color.original.alpha ?? 1) : color.original.coords[coordI] || 0}
     />
   );
 }

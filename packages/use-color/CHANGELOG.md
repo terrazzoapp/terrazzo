@@ -1,5 +1,11 @@
 # @terrazzo/use-color
 
+## 0.2.0
+
+### Minor Changes
+
+- ⚠️ Breaking: use [Color.js](https://colorjs.io) for color operations. This improves performance and reduces code by being a closer implementation to CSS Module 4 and DTCG colors than Culori.
+
 ## 0.1.4
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 import { Select, SelectItem } from '@terrazzo/tiles';
 
 export default function VersionSwitcher() {
-  const value = globalThis.location && globalThis.location.pathname.includes('/2.0/') ? '2' : '0';
+  const value = globalThis.location?.pathname.includes('/2.0/') ? '2' : '0';
 
   return (
     <Select
