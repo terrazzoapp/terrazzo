@@ -2,18 +2,18 @@
   "$type": "color",
   "light": {
     "orange": {
-      "$value": "{light-orange}"
+      "$value": "{primitives.light-orange}"
     },
     "blue": {
-      "$value": "{light-blue}"
+      "$value": "{primitives.light-blue}"
     }
   },
   "dark": {
     "orange": {
-      "$value": "{dark-orange}"
+      "$value": "{primitives.dark-orange}"
     },
     "blue": {
-      "$value": "{dark-blue}"
+      "$value": "{primitives.dark-blue}"
     }
   }
 }

@@ -4,10 +4,10 @@
 
 
 :root {
-  --dark-blue: color(srgb 0.05078125 0.16015625 0.46875);
-  --dark-orange: color(srgb 0.4765625 0.1015625 0.109375);
-  --light-blue: color(srgb 0.5625 0.73046875 1);
-  --light-orange: color(srgb 0.9765625 0.83203125 0.82421875);
+  --primitives-dark-blue: color(srgb 0.05078125 0.16015625 0.46875);
+  --primitives-dark-orange: color(srgb 0.4765625 0.1015625 0.109375);
+  --primitives-light-blue: color(srgb 0.5625 0.73046875 1);
+  --primitives-light-orange: color(srgb 0.9765625 0.83203125 0.82421875);
 }
 
 
@@ -22,12 +22,12 @@
 
 
 .mode-light {
-  --blue: var(--light-blue);
-  --orange: var(--light-orange);
+  --blue: var(--primitives-light-blue);
+  --orange: var(--primitives-light-orange);
 }
 
 
 .mode-dark {
-  --blue: var(--dark-blue);
-  --orange: var(--dark-orange);
+  --blue: var(--primitives-dark-blue);
+  --orange: var(--primitives-dark-orange);
 }
