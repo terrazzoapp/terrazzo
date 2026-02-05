@@ -3,7 +3,7 @@ import css from '@terrazzo/plugin-css';
 import vanillaExtract from '../../../dist/index.js';
 
 export default defineConfig({
-  outDir: './test/fixtures/github-primer',
+  outDir: '.',
   tokens: ['dtcg-examples/github-primer.resolver.json'],
   lint: {
     rules: {

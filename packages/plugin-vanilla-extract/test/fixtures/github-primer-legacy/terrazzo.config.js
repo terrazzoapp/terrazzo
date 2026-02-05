@@ -3,8 +3,8 @@ import css from '@terrazzo/plugin-css';
 import vanillaExtract from '../../../dist/index.js';
 
 export default defineConfig({
-  outDir: './test/fixtures/github-primer-legacy',
-  tokens: ['./test/fixtures/github-primer-legacy/github-primer.tokens.json'],
+  outDir: '.',
+  tokens: ['github-primer.tokens.json'],
   lint: {
     rules: {
       'core/consistent-naming': 'off',
