@@ -9,14 +9,14 @@ export const VALID_TYPOGRAPHY = 'core/valid-typography';
 const ERROR = 'ERROR';
 const ERROR_MISSING = 'ERROR_MISSING';
 
-export interface RuleRequiredTypographyPropertiesOptions {
+export interface RuleValidTypographyOptions {
   /** Required typography properties */
   requiredProperties: string[];
   /** Token globs to ignore */
   ignore?: string[];
 }
 
-const rule: LintRule<typeof ERROR | typeof ERROR_MISSING, RuleRequiredTypographyPropertiesOptions> = {
+const rule: LintRule<typeof ERROR | typeof ERROR_MISSING, RuleValidTypographyOptions> = {
   meta: {
     messages: {
       [ERROR]: `Expected object, received {{ value }}.`,

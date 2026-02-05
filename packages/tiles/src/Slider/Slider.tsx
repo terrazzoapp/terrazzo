@@ -189,7 +189,7 @@ export default function Slider({
         min={minNorm}
         max={maxNorm}
         step={step}
-        value={intermediaryInputValue.toPrecision(precision)}
+        value={Number(intermediaryInputValue).toPrecision(precision)}
         onChange={(evt) => setIntermediaryInputValue(clamp(Number(evt.currentTarget.value), minNorm, maxNorm))}
         onBlur={() => onChange(clamp(Number(intermediaryInputValue) / percModifier, min, max))}
         onKeyUp={(evt) => {

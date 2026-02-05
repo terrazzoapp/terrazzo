@@ -1,4 +1,5 @@
-import { displayable } from 'culori';
+import { inGamut, parse } from 'colorjs.io/fn';
+import '../color.js'; // load Color.js side-effects
 import type {
   BorderTokenNormalized,
   ColorTokenNormalized,
@@ -31,7 +32,8 @@ export function transformBorder(token: BorderTokenNormalized, options: Transform
   const formatBorder = (colorKey: string) =>
     [width, style, typeof color === 'string' ? color : color[colorKey as keyof typeof color]].join(' ');
 
-  return typeof color === 'string' || displayable(color.p3)
+  // Note: ../color.js has already loaded color spaces as side effects so we don’t need to load those again
+  return typeof color === 'string' || inGamut(parse(color.p3), 'display-p3')
     ? formatBorder('.')
     : {
         '.': formatBorder('.'),

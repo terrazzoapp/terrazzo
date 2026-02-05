@@ -29,7 +29,7 @@
             ],
             "alpha": 1
           },
-          "previewValue": "#000000",
+          "previewValue": "#000",
           "source": {
             "resource": "file://<root>/styles/tokens.json",
             "loc": {

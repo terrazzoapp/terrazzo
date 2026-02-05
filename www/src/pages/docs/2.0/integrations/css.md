@@ -137,7 +137,7 @@ The result is color that “just works” in any browser and hardware type autom
 
 #### Color gamut handling
 
-Colors are downconverted using Culori’s [toGamut()](https://culorijs.org/api/#toGamut) method which uses the same underlying math as CSS Color Level 4’s [Gamut mapping algorithm](https://drafts.csswg.org/css-color/#css-gamut-mapping) and also described in Björn Ottosen’s [sRGB Gamut Clipping](https://bottosson.github.io/posts/gamutclipping/) article. This produces the best results for most applications on the web, using the best-available color research.
+Colors are downconverted using Color.js’ [gamut clamping](https://colorjs.io/docs/gamut-mapping) method which uses the same underlying math as CSS Color Level 4’s [Gamut mapping algorithm](https://drafts.csswg.org/css-color/#css-gamut-mapping). This produces the best results for most applications on the web, using the best-available color research.
 
 This is an improvement over Cobalt 1.x’s “expand into P3” method that oversaturated sRGB colors automatically unless opting out.
 

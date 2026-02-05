@@ -6,7 +6,6 @@ export * from './components/HueWheel.js';
 export { default as HueWheel } from './components/HueWheel.js';
 export * from './components/TrueGradient.js';
 export { default as TrueGradient } from './components/TrueGradient.js';
-export * from './lib/color.js';
 export * from './lib/oklab.js';
 export * from './lib/rgb.js';
 export * from './lib/webgl.js';

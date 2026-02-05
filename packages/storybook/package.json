@@ -14,22 +14,21 @@
     "sb": "storybook dev -p 9009"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^10.1.11",
-    "@storybook/react-vite": "^10.1.11",
+    "@storybook/addon-docs": "^10.2.6",
+    "@storybook/react-vite": "^10.2.6",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/react-color-picker": "workspace:^",
     "@terrazzo/tiles": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
-    "@types/culori": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react-swc": "catalog:",
     "@vitest/coverage-v8": "catalog:",
-    "culori": "catalog:",
+    "colorjs.io": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "storybook": "^10.1.11"
+    "storybook": "^10.2.6"
   }
 }
