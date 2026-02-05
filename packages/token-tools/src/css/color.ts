@@ -34,7 +34,7 @@ export function transformColor(
     throw new Error(`Can’t convert color ${JSON.stringify(token.$value)} to Culori color`);
   }
 
-  return inGamut(color)
+  return inGamut(color, 'srgb')
     ? serialize(color, { format: options.color?.legacyHex ? 'hex' : undefined })
     : downsample({ colorSpace, components, alpha }, color, options.color?.depth);
 }
@@ -53,7 +53,7 @@ export type Depth = keyof typeof DEPTH_ROUNDING | 'unlimited';
  */
 function downsample($value: ColorTokenNormalized['$value'], color: ColorConstructor, depth: Depth = 30) {
   const srgb = convert(color, $value.colorSpace, { inGamut: { space: 'srgb' } });
-  const p3 = convert(color, $value.colorSpace, { inGamut: { space: 'display-p3' } });
+  const p3 = convert(color, $value.colorSpace, { inGamut: { space: 'p3' } });
   const rec2020 = convert(color, $value.colorSpace, { inGamut: { space: 'rec2020' } });
   if (typeof depth === 'number' && !DEPTH_ROUNDING[depth]) {
     throw new Error(`Invalid bit depth: ${depth}. Supported values: ${Object.keys(DEPTH_ROUNDING).join(', ')}`);

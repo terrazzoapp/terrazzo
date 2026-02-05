@@ -16,7 +16,7 @@
   --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
-  --ds-color-hdr-blue: oklch(0.6334 0.2011 253.922);
+  --ds-color-hdr-blue: oklch(63.34% 0.2011 253.9);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
@@ -26,7 +26,7 @@
 @media (color-gamut: p3) {
   :root {
     color-scheme: light dark;
-    --ds-color-hdr-blue: oklch(0.6313 0.2184 253.284);
+    --ds-color-hdr-blue: oklch(63.13% 0.2184 253.3);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -34,7 +34,7 @@
 @media (color-gamut: rec2020) {
   :root {
     color-scheme: light dark;
-    --ds-color-hdr-blue: oklch(0.6337 0.2187 254.2013);
+    --ds-color-hdr-blue: oklch(63.37% 0.2187 254.2);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -53,7 +53,7 @@
   --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
-  --ds-color-hdr-blue: oklch(0.6334 0.2011 253.922);
+  --ds-color-hdr-blue: oklch(63.34% 0.2011 253.9);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
@@ -63,7 +63,7 @@
 @media (color-gamut: p3) {
   [data-color-theme="light"] {
     color-scheme: light;
-    --ds-color-hdr-blue: oklch(0.6313 0.2184 253.284);
+    --ds-color-hdr-blue: oklch(63.13% 0.2184 253.3);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -71,7 +71,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="light"] {
     color-scheme: light;
-    --ds-color-hdr-blue: oklch(0.6337 0.2187 254.2013);
+    --ds-color-hdr-blue: oklch(63.37% 0.2187 254.2);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -91,7 +91,7 @@
     --ds-color-control-border-focus: var(--ds-color-blue-6);
     --ds-color-blue-8: #0c2d6b;
     --ds-color-blue-9: #051d4d;
-    --ds-color-hdr-blue: oklch(0.6378 0.197 255.7476);
+    --ds-color-hdr-blue: oklch(63.79% 0.1969 255.8);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
     --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
     --ds-gradient-default: var(--ds-gradient-blue-pink);
@@ -103,7 +103,7 @@
   @media (prefers-color-scheme: dark) {
     :root {
       color-scheme: dark;
-      --ds-color-hdr-blue: oklch(0.6373 0.2123 255.9389);
+      --ds-color-hdr-blue: oklch(63.74% 0.2123 255.9);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
@@ -113,7 +113,7 @@
   @media (prefers-color-scheme: dark) {
     :root {
       color-scheme: dark;
-      --ds-color-hdr-blue: oklch(0.6397 0.2128 256.8441);
+      --ds-color-hdr-blue: oklch(63.97% 0.2128 256.8);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
@@ -133,7 +133,7 @@
   --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-blue-8: #0c2d6b;
   --ds-color-blue-9: #051d4d;
-  --ds-color-hdr-blue: oklch(0.6378 0.197 255.7476);
+  --ds-color-hdr-blue: oklch(63.79% 0.1969 255.8);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
@@ -143,7 +143,7 @@
 @media (color-gamut: p3) {
   [data-color-theme="dark"] {
     color-scheme: dark;
-    --ds-color-hdr-blue: oklch(0.6373 0.2123 255.9389);
+    --ds-color-hdr-blue: oklch(63.74% 0.2123 255.9);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -151,7 +151,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="dark"] {
     color-scheme: dark;
-    --ds-color-hdr-blue: oklch(0.6397 0.2128 256.8441);
+    --ds-color-hdr-blue: oklch(63.97% 0.2128 256.8);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -169,7 +169,7 @@
   --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
-  --ds-color-hdr-blue: oklch(0.6334 0.2011 253.922);
+  --ds-color-hdr-blue: oklch(63.34% 0.2011 253.9);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
@@ -178,14 +178,14 @@
 
 @media (color-gamut: p3) {
   [data-color-theme="light-colorblind"] {
-    --ds-color-hdr-blue: oklch(0.6313 0.2184 253.284);
+    --ds-color-hdr-blue: oklch(63.13% 0.2184 253.3);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light-colorblind"] {
-    --ds-color-hdr-blue: oklch(0.6337 0.2187 254.2013);
+    --ds-color-hdr-blue: oklch(63.37% 0.2187 254.2);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -203,7 +203,7 @@
   --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: #032563;
   --ds-color-blue-9: #021a4a;
-  --ds-color-hdr-blue: oklch(0.5435 0.2531 262.092);
+  --ds-color-hdr-blue: oklch(54.35% 0.2531 262.1);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
@@ -212,14 +212,14 @@
 
 @media (color-gamut: p3) {
   [data-color-theme="light-high-contrast"] {
-    --ds-color-hdr-blue: oklch(0.5437 0.2721 259.4652);
+    --ds-color-hdr-blue: oklch(54.36% 0.2721 259.5);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light-high-contrast"] {
-    --ds-color-hdr-blue: oklch(0.5441 0.274 259.2);
+    --ds-color-hdr-blue: oklch(54.41% 0.274 259.2);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -259,7 +259,7 @@
   --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-blue-8: #1e60d5;
   --ds-color-blue-9: #194fb1;
-  --ds-color-hdr-blue: oklch(0.6905 0.1695 249.7823);
+  --ds-color-hdr-blue: oklch(69.05% 0.1695 249.8);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
@@ -269,7 +269,7 @@
 @media (color-gamut: p3) {
   [data-color-theme="dark-high-contrast"] {
     color-scheme: dark;
-    --ds-color-hdr-blue: oklch(0.695 0.1786 251.4698);
+    --ds-color-hdr-blue: oklch(69.49% 0.1787 251.5);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -277,7 +277,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="dark-high-contrast"] {
     color-scheme: dark;
-    --ds-color-hdr-blue: oklch(0.6961 0.1798 251.8486);
+    --ds-color-hdr-blue: oklch(69.6% 0.1799 251.8);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -296,7 +296,7 @@
   --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-blue-8: #0c2d6b;
   --ds-color-blue-9: #051d4d;
-  --ds-color-hdr-blue: oklch(0.6378 0.197 255.7476);
+  --ds-color-hdr-blue: oklch(63.79% 0.1969 255.8);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
@@ -306,7 +306,7 @@
 @media (color-gamut: p3) {
   [data-color-theme="dark-colorblind"] {
     color-scheme: dark;
-    --ds-color-hdr-blue: oklch(0.6373 0.2123 255.9389);
+    --ds-color-hdr-blue: oklch(63.74% 0.2123 255.9);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -314,7 +314,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="dark-colorblind"] {
     color-scheme: dark;
-    --ds-color-hdr-blue: oklch(0.6397 0.2128 256.8441);
+    --ds-color-hdr-blue: oklch(63.97% 0.2128 256.8);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }

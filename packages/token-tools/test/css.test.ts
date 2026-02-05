@@ -80,7 +80,7 @@ describe('transformCSSValue', () => {
           {
             id: 'color.blue.6',
             $type: 'color',
-            originalValue: { $type: 'color', $value: '#0000ff' },
+            originalValue: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0, 1] } },
             $value: { colorSpace: 'srgb', components: [0, 0, 1], alpha: 1 },
             mode: {
               '.': {
@@ -94,6 +94,36 @@ describe('transformCSSValue', () => {
           { tokensSet: {}, transformAlias: (id) => `--${id}` },
         ],
         want: { success: 'rgb(0% 0% 100%)' },
+      },
+    ],
+    [
+      'hdr',
+      {
+        given: [
+          {
+            id: 'color.blue.6',
+            $type: 'color',
+            originalValue: { $type: 'color', $value: { colorSpace: 'lab', components: [80, -75, 100] } },
+            $value: { colorSpace: 'lab', components: [80, -75, 100], alpha: 1 },
+            mode: {
+              '.': {
+                id: 'color.blue.6',
+                $type: 'color',
+                originalValue: { $type: 'color', $value: { colorSpace: 'lab', components: [80, -75, 100] } },
+                $value: { colorSpace: 'lab', components: [80, -75, 100], alpha: 1 },
+              },
+            },
+          } as any,
+          { tokensSet: {}, transformAlias: (id) => `--${id}` },
+        ],
+        want: {
+          success: {
+            '.': 'lab(80% -75 100)',
+            p3: 'lab(80.01% -74.84 97.85)',
+            rec2020: 'lab(80% -75 100)',
+            srgb: 'lab(79.98% -68.8 75.12)',
+          },
+        },
       },
     ],
     [
@@ -312,13 +342,13 @@ describe('transformColor', () => {
       {
         given: [
           {
-            $value: { colorSpace: 'lab', components: [0.97607, -15.753, 93.388] },
+            $value: { colorSpace: 'lab', components: [97.607, -15.753, 93.388] },
           } as any,
           { tokensSet: {}, color: { depth: 'unlimited' } },
         ],
         want: {
           success: {
-            '.': 'lab(0.97607 -15.753 93.388)',
+            '.': 'lab(97.607% -15.753 93.388)',
             p3: 'lab(0.9992456122453213 -0.22075576349825377 1.6354688171982878)',
             rec2020: 'lab(0.9909312517695597 -0.24730031693993848 1.649082035846855)',
             srgb: 'lab(1.001832729252527 -0.1892285324187476 1.4850469752498152)',
@@ -331,16 +361,16 @@ describe('transformColor', () => {
       {
         given: [
           {
-            $value: { colorSpace: 'lab-d65', components: [0.97607, -15.753, 93.388] },
+            $value: { colorSpace: 'lab-d65', components: [97.607, -15.753, 93.388] },
           } as any,
           { tokensSet: {}, color: { depth: 'unlimited' } },
         ],
         want: {
           success: {
-            '.': 'color(--lab-d65 0.97607 -15.753 93.388)',
-            p3: 'color(--lab-d65 1.8855122166091576 -0.360479905092595 3.1148289149372954)',
-            rec2020: 'color(--lab-d65 1.8734299289396539 -0.39990148710858375 3.1455705440267545)',
-            srgb: 'color(--lab-d65 1.894456898976582 -0.28385578499251496 2.832328734182904)',
+            '.': 'lab-d65(97.607 -15.753 93.388)',
+            srgb: 'lab-d65(96.691 -20.496 92.288)',
+            p3: 'lab-d65(96.823 -20.523 92.036)',
+            rec2020: 'lab-d65(97.413 -17.198 93.054)',
           },
         },
       },
@@ -350,13 +380,13 @@ describe('transformColor', () => {
       {
         given: [
           {
-            $value: { colorSpace: 'lch', components: [0.292345, 44.2, 27] },
+            $value: { colorSpace: 'lch', components: [29.2345, 44.2, 27] },
           } as any,
           { tokensSet: {}, color: { depth: 'unlimited' } },
         ],
         want: {
           success: {
-            '.': 'lch(0.292345 44.2 27)',
+            '.': 'lch(29.2345% 44.2 27)',
             p3: 'lch(0.3008995559138441 1.5469628958122028 19.61978258664296)',
             rec2020: 'lch(0.2981584825921537 1.538049285636121 19.485853861927055)',
             srgb: 'lch(0.3214049466640958 1.5192684802362915 19.699130975077715)',
@@ -394,10 +424,10 @@ describe('transformColor', () => {
         ],
         want: {
           success: {
-            '.': /oklch\(0.9 0.1 40\)/,
-            srgb: /oklch\(0\.88711\d* 0\.06383\d* 44\.99492\d*\)/,
-            p3: /oklch\(0\.88796\d* 0\.08088\d* 44\.27402\d*\)/,
-            rec2020: /oklch\(0\.9\d* 0\.(09|1)\d* (39|40)\.?\d*\)/,
+            '.': 'oklch(90% 0.1 40)',
+            srgb: 'oklch(88.717% 0.06379 44.978)',
+            p3: 'oklch(88.796% 0.08088 44.274)',
+            rec2020: 'oklch(90% 0.1 40)',
           },
         },
       },
@@ -456,15 +486,13 @@ describe('transformColor', () => {
     let result: typeof want.success;
     try {
       result = transformColor(...given);
-      if (typeof result === 'string') {
-        expect(result).toMatch(want.success as string);
-      } else {
-        for (const k of Object.keys(result as any)) {
-          expect((result as any)[k]).toMatch((want.success as any)[k]);
-        }
-      }
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
+    }
+    if (typeof result === 'string') {
+      expect(result).toMatch(want.success as string);
+    } else if (result) {
+      expect(result).toEqual(expect.objectContaining(want.success));
     }
   });
 });

@@ -4,7 +4,7 @@
 
 :root {
   --ds-border-base: var(--ds-border-size-default) var(--ds-border-style-default) var(--ds-border-color-default);
-  --ds-border-color-default: crgb(97.255% 97.255% 97.255%);
+  --ds-border-color-default: rgb(97.255% 97.255% 97.255%);
   --ds-border-size-default: 1px;
   --ds-border-style-default: solid;
   --ds-color-base-blue: rgb(78.4% 47.8% 95.3%);

@@ -4,7 +4,6 @@ import {
   type BorderValue,
   COLOR_SPACE,
   type ColorSpace,
-  type ColorSpaceDefinition,
   type ColorValueNormalized,
   type GradientStopNormalized,
   type GradientValueNormalized,
@@ -172,7 +171,7 @@ const rule: LintRule<
           // Color space
           const colorSpace =
             'colorSpace' in value && typeof value.colorSpace === 'string' ? value.colorSpace : undefined;
-          const csData = (COLOR_SPACE as Record<string, ColorSpaceDefinition>)[colorSpace!] || undefined;
+          const csData = COLOR_SPACE[colorSpace as keyof typeof COLOR_SPACE] || undefined;
           if (!('colorSpace' in value) || !csData) {
             report({
               messageId: ERROR_INVALID_COLOR_SPACE,
@@ -186,12 +185,14 @@ const rule: LintRule<
           // Component ranges
           const components = 'components' in value ? value.components : undefined;
           if (Array.isArray(components)) {
-            if (csData?.ranges && components?.length === csData.ranges.length) {
+            const coords = Object.values(csData.coords);
+            if (components?.length === coords.length) {
               for (let i = 0; i < components.length; i++) {
+                const range = coords[i]?.range ?? coords[i]?.refRange;
                 if (
                   !Number.isFinite(components[i]) ||
-                  components[i]! < csData.ranges[i]![0] ||
-                  components[i]! > csData.ranges[i]![1]
+                  components[i]! < (range?.[0] ?? -Infinity) ||
+                  components[i]! > (range?.[1] ?? Infinity)
                 ) {
                   // special case for any hue-based components: allow null
                   if (
@@ -202,7 +203,7 @@ const rule: LintRule<
                   ) {
                     report({
                       messageId: ERROR_OUT_OF_RANGE,
-                      data: { colorSpace, range: `[${csData.ranges.map((r) => `${r[0]}–${r[1]}`).join(', ')}]` },
+                      data: { colorSpace, range: `[${range?.[0]}–${range?.[1]}]` },
                       node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
                       filename,
                     });
@@ -212,7 +213,7 @@ const rule: LintRule<
             } else {
               report({
                 messageId: ERROR_INVALID_COMPONENT_LENGTH,
-                data: { expected: csData?.ranges.length, got: (components as number[] | undefined)?.length ?? 0 },
+                data: { expected: coords.length ?? 0, got: components?.length },
                 node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
                 filename,
               });

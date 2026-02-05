@@ -3,8 +3,8 @@
  * ------------------------------------------- */
 
 :root {
-  --color-black: color(srgb 0 0 0);
-  --color-black100: color(srgb 0 0 0);
+  --color-black: rgb(0% 0% 0%);
+  --color-black100: rgb(0% 0% 0%);
   --color-black-hover: color(srgb 0.12941176470588237 0.12941176470588237 0.12941176470588237);
   --color-blue10: color(srgb 0.9294117647058824 0.9607843137254902 1);
   --color-blue10-hover: color(srgb 0.8588235294117647 0.9215686274509803 1);
@@ -227,8 +227,8 @@
   --color-warm-gray90-hover: color(srgb 0.20392156862745098 0.19607843137254902 0.19607843137254902);
   --color-warm-gray100: color(srgb 0.09019607843137255 0.0784313725490196 0.0784313725490196);
   --color-warm-gray100-hover: color(srgb 0.17254901960784313 0.14901960784313725 0.14901960784313725);
-  --color-white: color(srgb 1 1 1);
-  --color-white0: color(srgb 1 1 1);
+  --color-white: rgb(100% 100% 100%);
+  --color-white0: rgb(100% 100% 100%);
   --color-white-hover: color(srgb 0.9098039215686274 0.9098039215686274 0.9098039215686274);
   --color-yellow: color(srgb 0.9450980392156862 0.7607843137254902 0.10588235294117647);
   --color-yellow10: color(srgb 0.9882352941176471 0.9568627450980393 0.8392156862745098);

@@ -2372,16 +2372,16 @@ export const [lightClass, light] = createTheme(vars, {
     "color": {
       "black": "color(srgb 0.12156862745098039 0.13725490196078433 0.1568627450980392)",
       "blue": {
-        "0": "color(srgb 0.8666666666666667 0.9568627450980393 1)",
-        "1": "color(srgb 0.7137254901960784 0.8901960784313725 1)",
-        "2": "color(srgb 0.5019607843137255 0.8 1)",
-        "3": "color(srgb 0.32941176470588235 0.6823529411764706 1)",
-        "4": "color(srgb 0.12941176470588237 0.5450980392156862 1)",
-        "5": "color(srgb 0.03529411764705882 0.4117647058823529 0.8549019607843137)",
-        "6": "color(srgb 0.0196078431372549 0.3137254901960784 0.6823529411764706)",
-        "7": "color(srgb 0.011764705882352941 0.23921568627450981 0.5450980392156862)",
-        "8": "color(srgb 0.0392156862745098 0.18823529411764706 0.4117647058823529)",
-        "9": "color(srgb 0 0.12941176470588237 0.3333333333333333)"
+        "0": "rgb(86.667% 95.686% 100%)",
+        "1": "rgb(71.373% 89.02% 100%)",
+        "2": "rgb(50.196% 80% 100%)",
+        "3": "rgb(32.941% 68.235% 100%)",
+        "4": "rgb(12.941% 54.51% 100%)",
+        "5": "rgb(3.5294% 41.176% 85.49%)",
+        "6": "rgb(1.9608% 31.373% 68.235%)",
+        "7": "rgb(1.1765% 23.922% 54.51%)",
+        "8": "rgb(3.9216% 18.824% 41.176%)",
+        "9": "rgb(0% 12.941% 33.333%)"
       },
       "coral": {
         "0": "color(srgb 1 0.9411764705882353 0.9215686274509803)",
@@ -2472,8 +2472,8 @@ export const [lightClass, light] = createTheme(vars, {
         "8": "color(srgb 0.4 0 0.09411764705882353)",
         "9": "color(srgb 0.2980392156862745 0 0.0784313725490196)"
       },
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
+      "transparent": "rgb(100% 100% 100%))",
+      "white": "rgb(100% 100% 100%))",
       "yellow": {
         "0": "color(srgb 1 0.9725490196078431 0.7725490196078432)",
         "1": "color(srgb 0.9803921568627451 0.8823529411764706 0.49019607843137253)",
@@ -2706,7 +2706,7 @@ export const [lightClass, light] = createTheme(vars, {
           "8": "color(srgb 0.0392156862745098 0.2823529411764706 0.3215686274509804)",
           "9": "color(srgb 0.027450980392156862 0.21568627450980393 0.25098039215686274)"
         },
-        "white": "color(srgb 1 1 1)",
+        "white": "rgb(100% 100% 100%))",
         "yellow": {
           "0": "color(srgb 1 0.9254901960784314 0.6196078431372549)",
           "1": "color(srgb 1 0.8392156862745098 0.25882352941176473)",
@@ -3041,7 +3041,7 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "outline": {
       "bgColor": {
-        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "active": "rgb(2.7451% 34.118% 72.941%)",
         "disabled": vars.control.bgColor.disabled,
         "hover": vars.bgColor.accent.emphasis,
         "rest": vars.control.bgColor.rest
@@ -3386,9 +3386,9 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "checked": {
       "bgColor": {
-        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "active": "rgb(2.7451% 34.118% 72.941%)",
         "disabled": vars.fgColor.disabled,
-        "hover": "color(srgb 0.03137254901960784 0.3764705882352941 0.792156862745098)",
+        "hover": "rgb(3.1373% 37.647% 79.216%)",
         "rest": vars.bgColor.accent.emphasis
       },
       "borderColor": {
@@ -4147,7 +4147,7 @@ export const [lightClass, light] = createTheme(vars, {
     "attention": vars.base.color.yellow[5],
     "black": vars.base.color.neutral[13],
     "closed": vars.fgColor.danger,
-    "danger": "color(srgb 0.8196078431372549 0.1411764705882353 0.1843137254901961)",
+    "danger": "rgb(81.961% 14.118% 18.431%)",
     "default": vars.base.color.neutral[13],
     "disabled": vars.base.color.neutral[8],
     "done": vars.base.color.purple[5],
@@ -4507,7 +4507,7 @@ export const [lightClass, light] = createTheme(vars, {
   "reactionButton": {
     "selected": {
       "bgColor": {
-        "hover": "color(srgb 0.792156862745098 0.9254901960784314 1)",
+        "hover": "rgb(79.216% 92.549% 100%)",
         "rest": vars.base.color.blue['0']
       },
       "fgColor": {
@@ -4740,7 +4740,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "3": "color(srgb 0.21176470588235294 0.5490196078431373 0.9764705882352941)",
         "4": "color(srgb 0.06666666666666667 0.40784313725490196 0.8901960784313725)",
         "5": "color(srgb 0.011764705882352941 0.28627450980392155 0.7058823529411765)",
-        "6": "color(srgb 0.00784313725490196 0.23137254901960785 0.5843137254901961)",
+        "6": "rgb(0.78431% 23.137% 58.431%)",
         "7": "color(srgb 0.00784313725490196 0.1843137254901961 0.47843137254901963)",
         "8": "color(srgb 0.011764705882352941 0.1450980392156863 0.38823529411764707)",
         "9": "color(srgb 0.00784313725490196 0.10196078431372549 0.2901960784313726)"
@@ -4834,8 +4834,8 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "8": "color(srgb 0.35294117647058826 0 0.08627450980392157)",
         "9": "color(srgb 0.2627450980392157 0 0.06666666666666667)"
       },
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
+      "transparent": "rgb(100% 100% 100%))",
+      "white": "rgb(100% 100% 100%))",
       "yellow": {
         "0": "color(srgb 0.9882352941176471 0.9686274509803922 0.7450980392156863)",
         "1": "color(srgb 0.9411764705882353 0.807843137254902 0.3254901960784314)",
@@ -5068,7 +5068,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
           "8": "color(srgb 0.0392156862745098 0.2823529411764706 0.3215686274509804)",
           "9": "color(srgb 0.027450980392156862 0.21568627450980393 0.25098039215686274)"
         },
-        "white": "color(srgb 1 1 1)",
+        "white": "rgb(100% 100% 100%))",
         "yellow": {
           "0": "color(srgb 1 0.9254901960784314 0.6196078431372549)",
           "1": "color(srgb 1 0.8392156862745098 0.25882352941176473)",
@@ -5403,7 +5403,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "outline": {
       "bgColor": {
-        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "active": "rgb(2.7451% 34.118% 72.941%)",
         "disabled": vars.control.bgColor.disabled,
         "hover": vars.bgColor.accent.emphasis,
         "rest": vars.control.bgColor.rest
@@ -5748,9 +5748,9 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "checked": {
       "bgColor": {
-        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "active": "rgb(2.7451% 34.118% 72.941%)",
         "disabled": vars.fgColor.disabled,
-        "hover": "color(srgb 0.03137254901960784 0.3764705882352941 0.792156862745098)",
+        "hover": "rgb(3.1373% 37.647% 79.216%)",
         "rest": vars.bgColor.accent.emphasis
       },
       "borderColor": {
@@ -6509,7 +6509,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "attention": vars.base.color.yellow[5],
     "black": vars.base.color.neutral[13],
     "closed": vars.fgColor.danger,
-    "danger": "color(srgb 0.8196078431372549 0.1411764705882353 0.1843137254901961)",
+    "danger": "rgb(81.961% 14.118% 18.431%)",
     "default": vars.base.color.neutral[13],
     "disabled": vars.base.color.neutral[8],
     "done": vars.base.color.purple[5],
@@ -6869,7 +6869,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
   "reactionButton": {
     "selected": {
       "bgColor": {
-        "hover": "color(srgb 0.792156862745098 0.9254901960784314 1)",
+        "hover": "rgb(79.216% 92.549% 100%)",
         "rest": vars.base.color.blue['0']
       },
       "fgColor": {
@@ -7096,14 +7096,14 @@ export const [darkClass, dark] = createTheme(vars, {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
       "blue": {
-        "0": "color(srgb 0.792156862745098 0.9098039215686274 1)",
-        "1": "color(srgb 0.6470588235294118 0.8392156862745098 1)",
-        "2": "color(srgb 0.4745098039215686 0.7529411764705882 1)",
-        "3": "color(srgb 0.34509803921568627 0.6509803921568628 1)",
-        "4": "color(srgb 0.2196078431372549 0.5450980392156862 0.9921568627450981)",
-        "5": "color(srgb 0.12156862745098039 0.43529411764705883 0.9215686274509803)",
-        "6": "color(srgb 0.06666666666666667 0.34509803921568627 0.7803921568627451)",
-        "7": "color(srgb 0.050980392156862744 0.2549019607843137 0.615686274509804)",
+        "0": "rgb(79.216% 90.98% 100%)",
+        "1": "rgb(64.706% 83.922% 100%)",
+        "2": "rgb(47.451% 75.294% 100%)",
+        "3": "rgb(34.51% 65.098% 100%)",
+        "4": "rgb(21.961% 54.51% 99.216%)",
+        "5": "rgb(12.157% 43.529% 92.157%)",
+        "6": "rgb(6.6667% 34.51% 78.039%)",
+        "7": "rgb(5.098% 25.49% 61.569%)",
         "8": "color(srgb 0.047058823529411764 0.17647058823529413 0.4196078431372549)",
         "9": "color(srgb 0.0196078431372549 0.11372549019607843 0.30196078431372547)"
       },
@@ -7196,8 +7196,8 @@ export const [darkClass, dark] = createTheme(vars, {
         "8": "color(srgb 0.403921568627451 0.023529411764705882 0.047058823529411764)",
         "9": "color(srgb 0.28627450980392155 0.00784313725490196 0.00784313725490196)"
       },
-      "transparent": "color(srgb 0 0 0)",
-      "white": "color(srgb 1 1 1)",
+      "transparent": "rgb(0% 0% 0%)",
+      "white": "rgb(100% 100% 100%))",
       "yellow": {
         "0": "color(srgb 0.9725490196078431 0.8901960784313725 0.6313725490196078)",
         "1": "color(srgb 0.9490196078431372 0.8 0.3764705882352941)",
@@ -7430,7 +7430,7 @@ export const [darkClass, dark] = createTheme(vars, {
           "8": "color(srgb 0.0392156862745098 0.2823529411764706 0.3215686274509804)",
           "9": "color(srgb 0.027450980392156862 0.21568627450980393 0.25098039215686274)"
         },
-        "white": "color(srgb 1 1 1)",
+        "white": "rgb(100% 100% 100%))",
         "yellow": {
           "0": "color(srgb 1 0.9254901960784314 0.6196078431372549)",
           "1": "color(srgb 1 0.8392156862745098 0.25882352941176473)",
@@ -7765,7 +7765,7 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "outline": {
       "bgColor": {
-        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "active": "rgb(2.7451% 34.118% 72.941%)",
         "disabled": vars.control.bgColor.disabled,
         "hover": vars.bgColor.accent.emphasis,
         "rest": vars.control.bgColor.rest
@@ -8110,9 +8110,9 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "checked": {
       "bgColor": {
-        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "active": "rgb(2.7451% 34.118% 72.941%)",
         "disabled": vars.fgColor.disabled,
-        "hover": "color(srgb 0.03137254901960784 0.3764705882352941 0.792156862745098)",
+        "hover": "rgb(3.1373% 37.647% 79.216%)",
         "rest": vars.bgColor.accent.emphasis
       },
       "borderColor": {
@@ -8871,7 +8871,7 @@ export const [darkClass, dark] = createTheme(vars, {
     "attention": vars.base.color.yellow[5],
     "black": vars.base.color.neutral[13],
     "closed": vars.fgColor.danger,
-    "danger": "color(srgb 0.8196078431372549 0.1411764705882353 0.1843137254901961)",
+    "danger": "rgb(81.961% 14.118% 18.431%)",
     "default": vars.base.color.neutral[13],
     "disabled": vars.base.color.neutral[8],
     "done": vars.base.color.purple[5],
@@ -9231,7 +9231,7 @@ export const [darkClass, dark] = createTheme(vars, {
   "reactionButton": {
     "selected": {
       "bgColor": {
-        "hover": "color(srgb 0.792156862745098 0.9254901960784314 1)",
+        "hover": "rgb(79.216% 92.549% 100%)",
         "rest": vars.base.color.blue['0']
       },
       "fgColor": {
@@ -9458,13 +9458,13 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
       "blue": {
-        "0": "color(srgb 0.792156862745098 0.9176470588235294 1)",
-        "1": "color(srgb 0.6784313725490196 0.8627450980392157 1)",
-        "2": "color(srgb 0.5686274509803921 0.796078431372549 1)",
-        "3": "color(srgb 0.44313725490196076 0.7176470588235294 1)",
+        "0": "rgb(79.216% 91.765% 100%)",
+        "1": "rgb(67.843% 86.275% 100%)",
+        "2": "rgb(56.863% 79.608% 100%)",
+        "3": "rgb(44.314% 71.765% 100%)",
         "4": "color(srgb 0.3607843137254902 0.6745098039215687 1)",
         "5": "color(srgb 0.25098039215686274 0.6196078431372549 1)",
-        "6": "color(srgb 0.19215686274509805 0.5450980392156862 0.9725490196078431)",
+        "6": "rgb(19.216% 54.51% 97.255%)",
         "7": "color(srgb 0.14901960784313725 0.4470588235294118 0.9529411764705882)",
         "8": "color(srgb 0.11764705882352941 0.3764705882352941 0.8352941176470589)",
         "9": "color(srgb 0.09803921568627451 0.30980392156862746 0.6941176470588235)"
@@ -9558,8 +9558,8 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "8": "color(srgb 0.8 0.0784313725490196 0.12941176470588237)",
         "9": "color(srgb 0.6784313725490196 0.00392156862745098 0.08627450980392157)"
       },
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
+      "transparent": "rgb(100% 100% 100%))",
+      "white": "rgb(100% 100% 100%))",
       "yellow": {
         "0": "color(srgb 0.984313725490196 0.8980392156862745 0.6196078431372549)",
         "1": "color(srgb 0.984313725490196 0.8392156862745098 0.4117647058823529)",
@@ -9792,7 +9792,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
           "8": "color(srgb 0.0392156862745098 0.2823529411764706 0.3215686274509804)",
           "9": "color(srgb 0.027450980392156862 0.21568627450980393 0.25098039215686274)"
         },
-        "white": "color(srgb 1 1 1)",
+        "white": "rgb(100% 100% 100%))",
         "yellow": {
           "0": "color(srgb 1 0.9254901960784314 0.6196078431372549)",
           "1": "color(srgb 1 0.8392156862745098 0.25882352941176473)",
@@ -10127,7 +10127,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "outline": {
       "bgColor": {
-        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "active": "rgb(2.7451% 34.118% 72.941%)",
         "disabled": vars.control.bgColor.disabled,
         "hover": vars.bgColor.accent.emphasis,
         "rest": vars.control.bgColor.rest
@@ -10472,9 +10472,9 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "checked": {
       "bgColor": {
-        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "active": "rgb(2.7451% 34.118% 72.941%)",
         "disabled": vars.fgColor.disabled,
-        "hover": "color(srgb 0.03137254901960784 0.3764705882352941 0.792156862745098)",
+        "hover": "rgb(3.1373% 37.647% 79.216%)",
         "rest": vars.bgColor.accent.emphasis
       },
       "borderColor": {
@@ -11233,7 +11233,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "attention": vars.base.color.yellow[5],
     "black": vars.base.color.neutral[13],
     "closed": vars.fgColor.danger,
-    "danger": "color(srgb 0.8196078431372549 0.1411764705882353 0.1843137254901961)",
+    "danger": "rgb(81.961% 14.118% 18.431%)",
     "default": vars.base.color.neutral[13],
     "disabled": vars.base.color.neutral[8],
     "done": vars.base.color.purple[5],
@@ -11593,7 +11593,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
   "reactionButton": {
     "selected": {
       "bgColor": {
-        "hover": "color(srgb 0.792156862745098 0.9254901960784314 1)",
+        "hover": "rgb(79.216% 92.549% 100%)",
         "rest": vars.base.color.blue['0']
       },
       "fgColor": {

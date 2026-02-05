@@ -26,13 +26,13 @@
   --ds-color-base-gray-90: oklch(90% 0.00525 31);
   --ds-color-base-gray-95: oklch(94% 0.00513 31);
   --ds-color-base-gray-100: oklch(100% 0 0);
-  --ds-color-red: oklch(63.47% 0.254 16.4402);
+  --ds-color-red: oklch(63.47% 0.254 16.44);
 }
 
 @media (color-gamut: p3) {
   :root {
     color-scheme: light dark;
-    --ds-color-red: oklch(64% 0.2889 16.5768);
+    --ds-color-red: oklch(64% 0.2889 16.57);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
@@ -40,14 +40,14 @@
 @media (color-gamut: rec2020) {
   :root {
     color-scheme: light dark;
-    --ds-color-red: oklch(63.88% 0.3368 16.2926);
+    --ds-color-red: oklch(63.87% 0.3367 16.29);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 [data-color-theme="light"] {
   color-scheme: light;
-  --ds-border-color: rgb(65.098% 690196% 70.98%);
+  --ds-border-color: rgb(65.098% 69.02% 70.98%);
   --ds-border-dashed: 1.5px dashed var(--ds-border-color);
   --ds-border-ridge: 1px ridge var(--ds-border-color);
   --ds-border-solid: 1px solid var(--ds-border-color);
@@ -69,13 +69,13 @@
   --ds-color-base-gray-90: oklch(90% 0.00525 31);
   --ds-color-base-gray-95: oklch(94% 0.00513 31);
   --ds-color-base-gray-100: oklch(100% 0 0);
-  --ds-color-red: oklch(63.47% 0.254 16.4402);
+  --ds-color-red: oklch(63.47% 0.254 16.44);
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="light"] {
     color-scheme: light;
-    --ds-color-red: oklch(64% 0.2889 16.5768);
+    --ds-color-red: oklch(64% 0.2889 16.57);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
@@ -83,7 +83,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="light"] {
     color-scheme: light;
-    --ds-color-red: oklch(63.88% 0.3368 16.2926);
+    --ds-color-red: oklch(63.87% 0.3367 16.29);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
@@ -91,7 +91,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --ds-border-color: rgb(7.843% 9.0196% 10.588%);
+    --ds-border-color: rgb(7.8431% 9.0196% 10.588%);
     --ds-border-dashed: 1.5px dashed var(--ds-border-color);
     --ds-border-ridge: 1px ridge var(--ds-border-color);
     --ds-border-solid: 1px solid var(--ds-border-color);
@@ -113,7 +113,7 @@
     --ds-color-base-gray-90: oklch(90% 0.00525 31);
     --ds-color-base-gray-95: oklch(94% 0.00513 31);
     --ds-color-base-gray-100: oklch(100% 0 0);
-    --ds-color-red: oklch(35.3% 0.1415 18.1514);
+    --ds-color-red: oklch(35.3% 0.1414 18.14);
   }
 }
 
@@ -121,7 +121,7 @@
   @media (prefers-color-scheme: dark) {
     :root {
       color-scheme: dark;
-      --ds-color-red: oklch(35.18$ 0.159 17.9744);
+      --ds-color-red: oklch(35.18% 0.159 17.96);
       --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
@@ -131,7 +131,7 @@
   @media (prefers-color-scheme: dark) {
     :root {
       color-scheme: dark;
-      --ds-color-red: oklch(35.05$ 0.1849 17.4534);
+      --ds-color-red: oklch(35.05% 0.1849 17.45);
       --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
@@ -139,7 +139,7 @@
 
 [data-color-theme="dark"] {
   color-scheme: dark;
-  --ds-border-color: rgb(7.8431% 9.0196% 10.5882%);
+  --ds-border-color: rgb(7.8431% 9.0196% 10.588%);
   --ds-border-dashed: 1.5px dashed var(--ds-border-color);
   --ds-border-ridge: 1px ridge var(--ds-border-color);
   --ds-border-solid: 1px solid var(--ds-border-color);
@@ -161,13 +161,13 @@
   --ds-color-base-gray-90: oklch(90% 0.00525 31);
   --ds-color-base-gray-95: oklch(94% 0.00513 31);
   --ds-color-base-gray-100: oklch(100% 0 0);
-  --ds-color-red: oklch(35.3% 0.1415 18.1514);
+  --ds-color-red: oklch(35.3% 0.1414 18.14);
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="dark"] {
     color-scheme: dark;
-    --ds-color-red: oklch(35.18% 0.159 17.9744);
+    --ds-color-red: oklch(35.18% 0.159 17.96);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
@@ -175,7 +175,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="dark"] {
     color-scheme: dark;
-    --ds-color-red: oklch(35.05% 0.1849 17.4534);
+    --ds-color-red: oklch(35.05% 0.1849 17.45);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
