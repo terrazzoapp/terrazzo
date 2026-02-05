@@ -49,9 +49,13 @@ export default function transformCSS({
           if (ignore?.(token.id) || exclude?.(token.id)) {
             continue;
           }
-          const options: TransformCSSValueOptions = { tokensSet: tokens, transformAlias, color: { legacyHex } };
-          const value =
-            p.transform?.(token, options) ?? customTransform?.(token, options) ?? transformCSSValue(token, options);
+          const options: TransformCSSValueOptions = {
+            tokensSet: tokens,
+            transformAlias,
+            color: { legacyHex },
+            permutation: input,
+          };
+          const value = customTransform?.(token, options) ?? transformCSSValue(token, options);
           // Don’t duplicate values when unnecessary
           if (value && isDifferentValue(value, getTransforms({ format: FORMAT_ID, id: token.id })[0]?.value)) {
             const localID = transformName(token);
@@ -85,7 +89,12 @@ export default function transformCSS({
     }
     for (const mode of Object.keys(token.mode)) {
       const tokenArgs: TokenNormalized = { ...token, ...(token.mode[mode] as any) };
-      const options: TransformCSSValueOptions = { tokensSet: baseTokens, transformAlias, color: { legacyHex } };
+      const options: TransformCSSValueOptions = {
+        tokensSet: baseTokens,
+        transformAlias,
+        color: { legacyHex },
+        permutation: { tzMode: '.' },
+      };
       const value = customTransform?.(tokenArgs, options) ?? transformCSSValue(tokenArgs, options);
       if (value) {
         const localID = transformName(token);

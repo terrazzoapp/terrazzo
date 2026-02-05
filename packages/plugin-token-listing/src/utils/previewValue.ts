@@ -41,6 +41,9 @@ export function computePreviewValue({
         tokensSet,
         transformAlias: recursiveNoAliasTransform,
         color: { legacyHex: true },
+        permutation: {
+          tzMode: modeToTransformWith,
+        },
       },
     );
 
