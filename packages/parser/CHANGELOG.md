@@ -51,6 +51,8 @@
 
 - [#589](https://github.com/terrazzoapp/terrazzo/pull/589) [`8f32d44`](https://github.com/terrazzoapp/terrazzo/commit/8f32d44792bba62194e674c9b60cfdeb366c96c7) Thanks [@michaelurban](https://github.com/michaelurban)! - feat: add typography shorthand, improve Sass plugin
 
+- Replace Culori with [Color.js](https://colorjs.io) for color parsing, a more performant and CSS spec-compliant color science library.
+
 ### Patch Changes
 
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug where border tokens’ partial aliases would sometimes refer to themselves
