@@ -91,7 +91,7 @@ describe('transformCSSValue', () => {
               },
             },
           } as any,
-          { tokensSet: {}, transformAlias: (id) => `--${id}` },
+          { tokensSet: {}, transformAlias: (id) => `--${id}`, permutation: {} },
         ],
         want: { success: 'rgb(0% 0% 100%)' },
       },
@@ -114,7 +114,7 @@ describe('transformCSSValue', () => {
               },
             },
           } as any,
-          { tokensSet: {}, transformAlias: (id) => `--${id}` },
+          { tokensSet: {}, transformAlias: (id) => `--${id}`, permutation: {} },
         ],
         want: {
           success: {
@@ -192,6 +192,7 @@ describe('transformCSSValue', () => {
                 dependencies: undefined,
               },
             } as any,
+            permutation: {},
           },
         ],
         want: { success: 'var(--bool-nuh-uh)' },
@@ -214,14 +215,14 @@ describe('transformBoolean', () => {
     [
       'true',
       {
-        given: [{ $value: true } as any, { tokensSet: {} }],
+        given: [{ $value: true } as any, { tokensSet: {}, permutation: {} }],
         want: { success: '1' },
       },
     ],
     [
       'false',
       {
-        given: [{ $value: false } as any, { tokensSet: {} }],
+        given: [{ $value: false } as any, { tokensSet: {}, permutation: {} }],
         want: { success: '0' },
       },
     ],
@@ -242,7 +243,7 @@ describe('transformColor', () => {
     [
       'string',
       {
-        given: [{ $value: '#663399' }, { tokensSet: {} }],
+        given: [{ $value: '#663399' } as any, { tokensSet: {}, permutation: {} }],
         want: { success: 'rgb(40% 20% 60%)' },
       },
     ],
@@ -250,10 +251,8 @@ describe('transformColor', () => {
       'srgb',
       {
         given: [
-          {
-            $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6] } as any,
-          },
-          { tokensSet: {} },
+          { $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6] } } as any,
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'rgb(40% 20% 60%)' },
       },
@@ -262,10 +261,8 @@ describe('transformColor', () => {
       'a98-rgb',
       {
         given: [
-          {
-            $value: { colorSpace: 'a98-rgb', components: [0.4, 0.2, 0.6] } as any,
-          },
-          { tokensSet: {} },
+          { $value: { colorSpace: 'a98-rgb', components: [0.4, 0.2, 0.6] } } as any,
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(a98-rgb 0.4 0.2 0.6)' },
       },
@@ -274,10 +271,8 @@ describe('transformColor', () => {
       'lrgb',
       {
         given: [
-          {
-            $value: { colorSpace: 'srgb-linear', components: [0.4, 0.2, 0.6] } as any,
-          },
-          { tokensSet: {} },
+          { $value: { colorSpace: 'srgb-linear', components: [0.4, 0.2, 0.6] } } as any,
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(srgb-linear 0.4 0.2 0.6)' },
       },
@@ -286,10 +281,8 @@ describe('transformColor', () => {
       'p3',
       {
         given: [
-          {
-            $value: { colorSpace: 'display-p3', components: [0.4, 0.2, 0.6] } as any,
-          },
-          { tokensSet: {} },
+          { $value: { colorSpace: 'display-p3', components: [0.4, 0.2, 0.6] } } as any,
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(display-p3 0.4 0.2 0.6)' },
       },
@@ -298,10 +291,8 @@ describe('transformColor', () => {
       'prophoto-rgb',
       {
         given: [
-          {
-            $value: { colorSpace: 'prophoto-rgb', components: [0.4, 0.2, 0.6] } as any,
-          },
-          { tokensSet: {} },
+          { $value: { colorSpace: 'prophoto-rgb', components: [0.4, 0.2, 0.6] } } as any,
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(prophoto-rgb 0.4 0.2 0.6)' },
       },
@@ -310,10 +301,8 @@ describe('transformColor', () => {
       'rec2020',
       {
         given: [
-          {
-            $value: { colorSpace: 'rec2020', components: [0.4, 0.2, 0.6] } as any,
-          },
-          { tokensSet: {} },
+          { $value: { colorSpace: 'rec2020', components: [0.4, 0.2, 0.6] } } as any,
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(rec2020 0.4 0.2 0.6)' },
       },
@@ -325,7 +314,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'hsl', components: [218, 50, 67] },
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'hsl(218 50% 67%)' },
       },
@@ -333,7 +322,7 @@ describe('transformColor', () => {
     [
       'hwb',
       {
-        given: [{ $value: { colorSpace: 'hwb', components: [45, 40, 80] } } as any, { tokensSet: {} }],
+        given: [{ $value: { colorSpace: 'hwb', components: [45, 40, 80] } } as any, { tokensSet: {}, permutation: {} }],
         want: { success: 'hwb(45 40% 80%)' },
       },
     ],
@@ -344,7 +333,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'lab', components: [97.607, -15.753, 93.388] },
           } as any,
-          { tokensSet: {}, color: { depth: 'unlimited' } },
+          { tokensSet: {}, color: { depth: 'unlimited' }, permutation: {} },
         ],
         want: {
           success: {
@@ -363,7 +352,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'lab-d65', components: [97.607, -15.753, 93.388] },
           } as any,
-          { tokensSet: {}, color: { depth: 'unlimited' } },
+          { tokensSet: {}, color: { depth: 'unlimited' }, permutation: {} },
         ],
         want: {
           success: {
@@ -382,7 +371,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'lch', components: [29.2345, 44.2, 27] },
           } as any,
-          { tokensSet: {}, color: { depth: 'unlimited' } },
+          { tokensSet: {}, color: { depth: 'unlimited' }, permutation: {} },
         ],
         want: {
           success: {
@@ -397,7 +386,10 @@ describe('transformColor', () => {
     [
       'oklab',
       {
-        given: [{ $value: { colorSpace: 'oklab', components: [0.40101, 0.1147, 0.0453] } }, { tokensSet: {} }],
+        given: [
+          { $value: { colorSpace: 'oklab', components: [0.40101, 0.1147, 0.0453] } },
+          { tokensSet: {}, permutation: {} },
+        ],
         want: { success: 'oklab(40.101% 0.1147 0.0453)' },
       },
     ],
@@ -408,7 +400,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'oklch', components: [0, 0, 0], alpha: 1 },
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'oklch(0% 0 0)' },
       },
@@ -420,7 +412,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'oklch', components: [0.9, 0.1, 40], alpha: 1 },
           } as any,
-          { tokensSet: {}, color: { depth: 'unlimited' } },
+          { tokensSet: {}, color: { depth: 'unlimited' }, permutation: {} },
         ],
         want: {
           success: {
@@ -439,7 +431,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'okhsv', components: [218, 0.5, 0.67] },
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(--okhsv 218 50% 67%)' },
       },
@@ -447,35 +439,47 @@ describe('transformColor', () => {
     [
       'xyz',
       {
-        given: [{ $value: { colorSpace: 'xyz', components: [0.2005, 0.14089, 0.4472] } } as any, { tokensSet: {} }],
+        given: [
+          { $value: { colorSpace: 'xyz', components: [0.2005, 0.14089, 0.4472] } } as any,
+          { tokensSet: {}, permutation: {} },
+        ],
         want: { success: 'color(xyz-d65 0.2005 0.14089 0.4472)' },
       },
     ],
     [
       'xyz-d50',
       {
-        given: [{ $value: { colorSpace: 'xyz-d50', components: [0.2005, 0.14089, 0.4472] } } as any, { tokensSet: {} }],
+        given: [
+          { $value: { colorSpace: 'xyz-d50', components: [0.2005, 0.14089, 0.4472] } } as any,
+          { tokensSet: {}, permutation: {} },
+        ],
         want: { success: 'color(xyz-d50 0.2005 0.14089 0.4472)' },
       },
     ],
     [
       'xyz-d65',
       {
-        given: [{ $value: { colorSpace: 'xyz-d65', components: [0.2005, 0.14089, 0.4472] } } as any, { tokensSet: {} }],
+        given: [
+          { $value: { colorSpace: 'xyz-d65', components: [0.2005, 0.14089, 0.4472] } } as any,
+          { tokensSet: {}, permutation: {} },
+        ],
         want: { success: 'color(xyz-d65 0.2005 0.14089 0.4472)' },
       },
     ],
     [
       'invalid',
       {
-        given: [{ $value: '#wtf' } as any, { tokensSet: {} }],
+        given: [{ $value: '#wtf' } as any, { tokensSet: {}, permutation: {} }],
         want: { error: 'Could not parse #wtf as a color. Missing a plugin?' },
       },
     ],
     [
       'unknown colorSpace',
       {
-        given: [{ $value: { colorSpace: 'bad', components: [0.1, 0.1, 0.1] } } as any, { tokensSet: {} }],
+        given: [
+          { $value: { colorSpace: 'bad', components: [0.1, 0.1, 0.1] } } as any,
+          { tokensSet: {}, permutation: {} },
+        ],
         want: {
           error: 'Invalid color space "bad".',
         },
@@ -502,7 +506,7 @@ describe('transformCubicBezier', () => {
     [
       'basic',
       {
-        given: [{ $value: [0.33, 1, 0.68, 1] } as any, { tokensSet: {} }],
+        given: [{ $value: [0.33, 1, 0.68, 1] } as any, { tokensSet: {}, permutation: {} }],
         want: { success: 'cubic-bezier(0.33, 1, 0.68, 1)' },
       },
     ],
@@ -523,21 +527,21 @@ describe('transformDimension', () => {
     [
       '10px',
       {
-        given: [{ $value: { value: 10, unit: 'px' } } as any, { tokensSet: {} }],
+        given: [{ $value: { value: 10, unit: 'px' } } as any, { tokensSet: {}, permutation: {} }],
         want: { success: '10px' },
       },
     ],
     [
       '1.5rem',
       {
-        given: [{ $value: { value: 1.5, unit: 'rem' } } as any, { tokensSet: {} }],
+        given: [{ $value: { value: 1.5, unit: 'rem' } } as any, { tokensSet: {}, permutation: {} }],
         want: { success: '1.5rem' },
       },
     ],
     [
       '0.75em',
       {
-        given: [{ $value: { value: 0.75, unit: 'em' } } as any, { tokensSet: {} }],
+        given: [{ $value: { value: 0.75, unit: 'em' } } as any, { tokensSet: {}, permutation: {} }],
         want: { success: '0.75em' },
       },
     ],
@@ -558,14 +562,14 @@ describe('transformDuration', () => {
     [
       '100ms',
       {
-        given: [{ $value: { value: 100, unit: 'ms' } } as any, { tokensSet: {} }],
+        given: [{ $value: { value: 100, unit: 'ms' } } as any, { tokensSet: {}, permutation: {} }],
         want: { success: '100ms' },
       },
     ],
     [
       '0.25s',
       {
-        given: [{ $value: { value: 0.25, unit: 's' } } as any, { tokensSet: {} }],
+        given: [{ $value: { value: 0.25, unit: 's' } } as any, { tokensSet: {}, permutation: {} }],
         want: { success: '0.25s' },
       },
     ],
@@ -603,7 +607,7 @@ describe('transformGradient', () => {
               },
             ],
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, permutation: {} },
         ],
         want: {
           success: 'rgb(100% 0% 100%) 0%, rgb(0% 100% 0%) 50%, rgb(100% 0% 0%) 100%',
@@ -627,7 +631,7 @@ describe('transformFontWeight', () => {
     [
       '400',
       {
-        given: [{ $value: 400 } as any, { tokensSet: {} }],
+        given: [{ $value: 400 } as any, { tokensSet: {}, permutation: {} }],
         want: { success: '400' },
       },
     ],
@@ -649,7 +653,7 @@ describe('transformNumber', () => {
     [
       'basic',
       {
-        given: [{ $value: 42 } as any, { tokensSet: {} }],
+        given: [{ $value: 42 } as any, { tokensSet: {}, permutation: {} }],
         want: { success: '42' },
       },
     ],
@@ -688,7 +692,7 @@ describe('transformShadow', () => {
               },
             ],
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: '0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.1)' },
       },
@@ -713,7 +717,7 @@ describe('transformShadow', () => {
               },
             ],
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'inset 0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.1)' },
       },
@@ -750,7 +754,7 @@ describe('transformShadow', () => {
               },
             ],
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, permutation: {} },
         ],
         want: {
           success: '0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.05), 0 0.5rem 1rem 0 rgb(0% 0% 0% / 0.05)',
@@ -792,7 +796,7 @@ describe('transformTypography', () => {
               wordSpacing: { value: 0.25, unit: 'em' },
             },
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, permutation: {} },
         ],
         want: {
           success: {
@@ -834,6 +838,7 @@ describe('transformTypography', () => {
                 $value: { fontFamily: ['Inter'] },
               },
             } as any,
+            permutation: {},
           },
         ],
         want: {
