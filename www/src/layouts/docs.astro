@@ -6,6 +6,8 @@ import HeadMeta from '../components/head-meta.astro';
 import '../styles/docs.css';
 
 const { frontmatter } = Astro.props;
+const isBeta = Astro.url.pathname.includes('/docs/2.0');
+const nonBetaVersion = Astro.url.pathname.replace(/\/docs\/2\.0\/?/, '/docs/');
 ---
 
 <html lang="en">
@@ -26,7 +28,33 @@ const { frontmatter } = Astro.props;
         --sidebar-width: calc(5 * (var(--grid-size)));
 
         display: flex;
-        flex-direction: column;;
+        flex-direction: column;
+      }
+
+      .banner {
+        align-items: center;
+        background-color: var(--tz-color-bg-selected);
+        border-bottom: 1px solid var(--tz-color-border-3);
+        color: var(--tz-color-text-onselected);
+        display: flex;
+        font-size: var(--tz-font-label-small-font-size);
+        justify-content: center;
+        left: 0;
+        padding: var(--tz-space-300);
+        position: sticky;
+        text-align: center;
+        top: 0;
+        z-index: calc(var(--tz-layer-nav) - 1);
+        width: 100%;
+
+        @media (width >= 750px) {
+          padding: 0;
+          position: fixed;
+          height: calc(0.5 * var(--grid-size));
+          left: var(--sidebar-width);
+          top: var(--grid-size);
+          width: calc(100% - var(--sidebar-width));
+        }
       }
 
       .docs-header-nav {
@@ -68,7 +96,9 @@ const { frontmatter } = Astro.props;
         padding-inline: calc(0.5 * var(--grid-size));
 
         @media (width >= 900px) {
-          margin-inline-start: calc(var(--sidebar-width) + 2 * var(--grid-size) + 1px);
+          margin-inline-start: calc(
+            var(--sidebar-width) + 2 * var(--grid-size) + 1px
+          );
         }
       }
     </style>
@@ -79,6 +109,16 @@ const { frontmatter } = Astro.props;
         <DocsHeaderNav />
       </header>
       <main class="main">
+        {
+          isBeta && (
+            <div class="banner" role="status">
+              <div>
+                You are viewing the 2.0 beta version of the docs.
+                <a href={nonBetaVersion}>Return to latest</a>
+              </div>
+            </div>
+          )
+        }
         <div class="docs-sidenav">
           <DocsSidenav />
         </div>
@@ -86,7 +126,6 @@ const { frontmatter } = Astro.props;
           <slot />
           <DocsFooterNav />
         </div>
-        <div />
       </main>
     </div>
     <script src="../scripts/copy-code.js"></script>

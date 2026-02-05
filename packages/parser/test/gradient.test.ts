@@ -50,7 +50,7 @@ describe('9.6 Gradient', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Invalid color space: mud. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, oklab, oklch, okhsv, prophoto-rgb, rec2020, srgb, srgb-linear, xyz-d50, xyz, or xyz-d65
+          error: `[lint:core/valid-color] Invalid color space: mud. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, okhsv, oklab, oklch, prophoto-rgb, rec2020, srgb, srgb-linear, xyz, xyz-d50, or xyz-d65.
 
    5 |       {
    6 |         "color": {

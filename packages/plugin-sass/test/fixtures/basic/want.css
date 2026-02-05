@@ -31,7 +31,7 @@
   --ds-typography-body-font-size: 16px;
   --ds-typography-body-font-weight: 400;
   --ds-typography-body-line-height: 1.5;
-  --ds-shadow: 0px 4px 8px 0px color(srgb 0 0 0 / 0.1);
+  --ds-shadow: 0px 4px 8px 0px rgb(0% 0% 0% / 0.1);
   --ds-transition: var(--ds-transition-duration) var(--ds-transition-delay) var(--ds-transition-timing-function);
   --ds-transition-duration: 0ms;
   --ds-transition-delay: 0ms;

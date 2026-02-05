@@ -2,8 +2,8 @@ import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
 import {
   type BorderValue,
-  COLORSPACE,
-  type ColorSpaceDefinition,
+  COLOR_SPACE,
+  type ColorSpace,
   type ColorValueNormalized,
   type GradientStopNormalized,
   type GradientValueNormalized,
@@ -15,6 +15,27 @@ import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_COLOR = 'core/valid-color';
+
+export const VALID_COLORSPACES = new Set([
+  'a98-rgb',
+  'display-p3',
+  'hsl',
+  'hwb',
+  'lab',
+  'lab-d65',
+  'lab',
+  'lch',
+  'okhsv',
+  'oklab',
+  'oklch',
+  'prophoto-rgb',
+  'rec2020',
+  'srgb',
+  'srgb-linear',
+  'xyz',
+  'xyz-d50',
+  'xyz-d65',
+] satisfies ColorSpace[]);
 
 const ERROR_ALPHA = 'ERROR_ALPHA';
 const ERROR_INVALID_COLOR = 'ERROR_INVALID_COLOR';
@@ -54,7 +75,7 @@ const rule: LintRule<
   meta: {
     messages: {
       [ERROR_ALPHA]: `Alpha {{ alpha }} not in range 0 – 1.`,
-      [ERROR_INVALID_COLOR_SPACE]: `Invalid color space: {{ colorSpace }}. Expected ${new Intl.ListFormat('en-us', { type: 'disjunction' }).format(Object.keys(COLORSPACE))}`,
+      [ERROR_INVALID_COLOR_SPACE]: `Invalid color space: {{ colorSpace }}. Expected ${new Intl.ListFormat('en-us', { type: 'disjunction' }).format(Object.keys(COLOR_SPACE))}.`,
       [ERROR_INVALID_COLOR]: `Could not parse color {{ color }}.`,
       [ERROR_INVALID_COMPONENT_LENGTH]: 'Expected {{ expected }} components, received {{ got }}.',
       [ERROR_INVALID_HEX8]: `Hex value can’t be semi-transparent.`,
@@ -150,7 +171,7 @@ const rule: LintRule<
           // Color space
           const colorSpace =
             'colorSpace' in value && typeof value.colorSpace === 'string' ? value.colorSpace : undefined;
-          const csData = (COLORSPACE as Record<string, ColorSpaceDefinition>)[colorSpace!] || undefined;
+          const csData = COLOR_SPACE[colorSpace as keyof typeof COLOR_SPACE] || undefined;
           if (!('colorSpace' in value) || !csData) {
             report({
               messageId: ERROR_INVALID_COLOR_SPACE,
@@ -164,12 +185,14 @@ const rule: LintRule<
           // Component ranges
           const components = 'components' in value ? value.components : undefined;
           if (Array.isArray(components)) {
-            if (csData?.ranges && components?.length === csData.ranges.length) {
+            const coords = Object.values(csData.coords);
+            if (components?.length === coords.length) {
               for (let i = 0; i < components.length; i++) {
+                const range = coords[i]?.range ?? coords[i]?.refRange;
                 if (
                   !Number.isFinite(components[i]) ||
-                  components[i]! < csData.ranges[i]![0] ||
-                  components[i]! > csData.ranges[i]![1]
+                  components[i]! < (range?.[0] ?? -Infinity) ||
+                  components[i]! > (range?.[1] ?? Infinity)
                 ) {
                   // special case for any hue-based components: allow null
                   if (
@@ -180,7 +203,7 @@ const rule: LintRule<
                   ) {
                     report({
                       messageId: ERROR_OUT_OF_RANGE,
-                      data: { colorSpace, range: `[${csData.ranges.map((r) => `${r[0]}–${r[1]}`).join(', ')}]` },
+                      data: { colorSpace, range: `[${range?.[0]}–${range?.[1]}]` },
                       node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
                       filename,
                     });
@@ -190,7 +213,7 @@ const rule: LintRule<
             } else {
               report({
                 messageId: ERROR_INVALID_COMPONENT_LENGTH,
-                data: { expected: csData?.ranges.length, got: (components as number[] | undefined)?.length ?? 0 },
+                data: { expected: coords.length ?? 0, got: components?.length },
                 node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
                 filename,
               });

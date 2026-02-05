@@ -109,7 +109,7 @@ Any gamuts that are toggled **off** won’t be reachable with the sliders. This 
 
 ### use-color
 
-The `@terrazzo/use-color` hook lets you memoize a color using [Culori](https://culorijs.org/) for fast, scientifically-accurate color operations.
+The `@terrazzo/use-color` hook lets you memoize a color using [Color.js](https://colorjs.io/) for fast, scientifically-accurate color operations.
 
 :::code-group
 
@@ -118,11 +118,11 @@ import useColor, { formatCss } from "@terrazzo/use-color";
 
 const [color, setColor] = useColor("#ff0000");
 
-console.log(color.original); // { mode: "rgb", r: 1, g: 0, b: 0 }
+console.log(color.original); // { space: "rgb", coords: [1, 0, 0] }
 console.log(color.css); // color(srgb 1 0 0)
-console.log(color.p3); // { mode: "p3", r 0.9175, g: 0.2003, b: 0.1386 }
-console.log(color.oklab); // { mode: "oklab", r: 0.628, g: 0.22, b: 0.13 }
-console.log(color.oklch); // { mode: "oklch", r: 0.628, g: 0.257, b: 29.234 }
+console.log(color.p3); // { space: "p3", coords: [0.9175, 0.2003, 0.1386] }
+console.log(color.oklab); // { space: "oklab", coords: [0.628, 0.22, 0.13] }
+console.log(color.oklch); // { space: "oklch", coords: [0.628, 0.257, 29.234] }
 
 console.log(formatCss(color.oklab)); // color(oklab 0.628 0.22 0.13)
 ```
@@ -135,26 +135,24 @@ The `color` object can convert to any [CSS Color Module 4](https://www.w3.org/TR
 
 | Name             |   Type   | Description                       |
 | :--------------- | :------: | :-------------------------------- |
-| `color.original` | `object` | A Culori Color object             |
+| `color.original` | `object` | A Color.js Color object           |
 | `color.css`      | `string` | A CSS Color Module 4 color string |
-| `color.a98`      | `object` | Culori Adobe RGB 98 object        |
-| `color.hsl`      | `object` | Culori HSL object                 |
-| `color.hsv`      | `object` | Culori HSV object                 |
-| `color.hwb`      | `object` | Culori HWB object                 |
-| `color.lab`      | `object` | Culori CIEL\*a\*b\* object        |
-| `color.lch`      | `object` | Culori CIEL\*c\*h\* object        |
-| `color.lrgb`     | `object` | Culori Linear RGB object          |
-| `color.okhsl`    | `object` | Culori Okhsl object               |
-| `color.okhsv`    | `object` | Culori Okhsv object               |
-| `color.oklab`    | `object` | Culori Oklab object               |
-| `color.oklch`    | `object` | Culori Oklch object               |
-| `color.p3`       | `object` | Culori P3 object                  |
-| `color.prophoto` | `object` | Culori Protophoto RGB object      |
-| `color.rec2020`  | `object` | Culori Rec2020 RGB object         |
+| `color.a98`      | `object` | Color.js Adobe RGB 98 object      |
+| `color.hsl`      | `object` | Color.js HSL object               |
+| `color.hsv`      | `object` | Color.js HSV object               |
+| `color.hwb`      | `object` | Color.js HWB object               |
+| `color.lab`      | `object` | Color.js CIEL\*a\*b\* object      |
+| `color.lch`      | `object` | Color.js CIEL\*c\*h\* object      |
+| `color.lrgb`     | `object` | Color.js Linear RGB object        |
+| `color.okhsl`    | `object` | Color.js Okhsl object             |
+| `color.okhsv`    | `object` | Color.js Okhsv object             |
+| `color.oklab`    | `object` | Color.js Oklab object             |
+| `color.oklch`    | `object` | Color.js Oklch object             |
+| `color.p3`       | `object` | Color.js P3 object                |
+| `color.prophoto` | `object` | Color.js Protophoto RGB object    |
+| `color.rec2020`  | `object` | Color.js Rec2020 RGB object       |
 | `color.rgb`      | `object` | (alias for `srgb`)                |
-| `color.srgb`     | `object` | Culori sRGB object                |
+| `color.srgb`     | `object` | Color.js sRGB object              |
 | `color.xyz`      | `object` | (alias for `xyz65`)               |
-| `color.xyz50`    | `object` | Culori XYZ D50 object             |
-| `color.xyz65`    | `object` | Culori XYZ D65 object             |
-
-There’s also a `formatCss()` helper that’s [similar to Culori’s](https://culorijs.org/api/#formatCss) but rounds numbers slightly (without losing accuracy) for a cleaner, easier-to-copy string.
+| `color.xyz50`    | `object` | Color.js XYZ D50 object           |
+| `color.xyz65`    | `object` | Color.js XYZ D65 object           |
