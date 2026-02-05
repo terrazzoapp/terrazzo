@@ -20,6 +20,7 @@ const REC2020_MQ = '@media (color-gamut: rec2020)';
 
 export interface BuildFormatOptions {
   logger: Logger;
+  include: CSSPluginOptions['include'];
   exclude: CSSPluginOptions['exclude'];
   getTransforms: BuildHookOptions['getTransforms'];
   modeSelectors: CSSPluginOptions['modeSelectors'];
@@ -32,6 +33,7 @@ export interface BuildFormatOptions {
 export default function buildCSS({
   logger,
   getTransforms,
+  include: userInclude,
   exclude: userExclude,
   utility,
   permutations,
@@ -39,7 +41,8 @@ export default function buildCSS({
   baseSelector,
   baseScheme,
 }: BuildFormatOptions): string {
-  const exclude = userExclude ? wcmatch(userExclude) : undefined;
+  const include = userInclude ? wcmatch(userInclude) : () => true;
+  const exclude = userExclude ? wcmatch(userExclude) : () => false;
   if (permutations?.length) {
     let output = '';
 
@@ -59,10 +62,15 @@ export default function buildCSS({
         rec2020: [] as CSSDeclaration[],
       };
 
-      const ignore = p.ignore ? wcmatch(p.ignore) : undefined;
-      const include = p.include ? wcmatch(p.include) : () => true;
+      const pInclude = p.include ? wcmatch(p.include) : () => true;
+      const pExclude = p.exclude ? wcmatch(p.exclude) : () => false;
+
+      const includeToken = (tokenId: string): boolean => {
+        return include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
+      };
+
       for (const token of tokens) {
-        if (!include(token.id) || ignore?.(token.id) || exclude?.(token.id)) {
+        if (!includeToken(token.id)) {
           continue;
         }
         const localID = makeCSSVar(token.localID ?? token.token.id);
@@ -110,7 +118,7 @@ export default function buildCSS({
         // redeclare aliases so they have the correct scope
         for (const alias of aliasTokens) {
           if (alias.localID && typeof alias.value === 'string') {
-            if (!include(alias.id) || ignore?.(alias.id) || exclude?.(alias.id)) {
+            if (!includeToken(alias.id)) {
               continue;
             }
             addDeclUnique(root, decl(alias.localID, alias.value, token.token.$description));
@@ -170,7 +178,7 @@ export default function buildCSS({
 
     for (const token of rootTokens) {
       // handle exclude (if any)
-      if (exclude?.(token.token.id)) {
+      if (!include(token.token.id) || exclude(token.token.id)) {
         continue;
       }
 
