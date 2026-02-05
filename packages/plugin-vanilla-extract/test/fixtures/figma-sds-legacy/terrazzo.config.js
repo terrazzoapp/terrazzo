@@ -3,8 +3,8 @@ import css from '@terrazzo/plugin-css';
 import vanillaExtract from '../../../dist/index.js';
 
 export default defineConfig({
-  outDir: './test/fixtures/figma-sds-legacy',
-  tokens: ['./test/fixtures/figma-sds-legacy/figma-sds.tokens.json'],
+  outDir: '.',
+  tokens: ['figma-sds.tokens.json'],
   lint: {
     rules: {
       'core/consistent-naming': 'off',

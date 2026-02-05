@@ -4,4 +4,5 @@ rolldown.*
 src/**
 test/**
 tsconfig.*
+vite.*
 vitest.*

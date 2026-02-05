@@ -1,5 +1,5 @@
-import { createReadStream, createWriteStream, type PathLike } from 'node:fs';
-import { readdir } from 'node:fs/promises';
+import fsSync from 'node:fs';
+import fs from 'node:fs/promises';
 import { Readable, Writable } from 'node:stream';
 import { fileURLToPath } from 'node:url';
 import { serve } from '@hono/node-server';
@@ -19,7 +19,7 @@ export async function labCmd({ config, logger }: LabBuildOptions) {
   const [tokenFileUrl] = config.tokens;
 
   const staticFiles = new Set();
-  const dirEntries = await readdir(fileURLToPath(import.meta.resolve('./lab')), {
+  const dirEntries = await fs.readdir(fileURLToPath(import.meta.resolve('./lab')), {
     withFileTypes: true,
     recursive: true,
   });
@@ -40,7 +40,9 @@ export async function labCmd({ config, logger }: LabBuildOptions) {
         const pathname = url.pathname;
         if (pathname === '/') {
           return new Response(
-            Readable.toWeb(createReadStream(fileURLToPath(import.meta.resolve('./lab/index.html')))) as ReadableStream,
+            Readable.toWeb(
+              fsSync.createReadStream(fileURLToPath(import.meta.resolve('./lab/index.html'))),
+            ) as ReadableStream,
             {
               headers: {
                 'Content-Type': 'text/html',
@@ -50,14 +52,17 @@ export async function labCmd({ config, logger }: LabBuildOptions) {
         }
         if (pathname === '/api/tokens') {
           if (request.method === 'GET') {
-            return new Response(Readable.toWeb(createReadStream(tokenFileUrl as PathLike)) as ReadableStream, {
-              headers: {
-                'Content-Type': 'application/json',
-                'Cache-Control': 'no-cache',
+            return new Response(
+              Readable.toWeb(fsSync.createReadStream(tokenFileUrl as fsSync.PathLike)) as ReadableStream,
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Cache-Control': 'no-cache',
+                },
               },
-            });
+            );
           } else if (request.method === 'POST' && request.body) {
-            await request.body.pipeTo(Writable.toWeb(createWriteStream(tokenFileUrl as PathLike)));
+            await request.body.pipeTo(Writable.toWeb(fsSync.createWriteStream(tokenFileUrl as fsSync.PathLike)));
             return new Response(JSON.stringify({ success: true }), {
               headers: {
                 'Content-Type': 'application/json',
@@ -68,7 +73,9 @@ export async function labCmd({ config, logger }: LabBuildOptions) {
 
         if (staticFiles.has(pathname)) {
           return new Response(
-            Readable.toWeb(createReadStream(fileURLToPath(import.meta.resolve(`./lab${pathname}`)))) as ReadableStream,
+            Readable.toWeb(
+              fsSync.createReadStream(fileURLToPath(import.meta.resolve(`./lab${pathname}`))),
+            ) as ReadableStream,
             {
               headers: { 'Content-Type': mime.getType(pathname) ?? 'application/octet-stream' },
             },
