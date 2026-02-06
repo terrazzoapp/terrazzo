@@ -32,7 +32,7 @@ Generate code from `tokens.json` based on [plugins](/docs/integrations). Require
 npx tz build
 ```
 
-### Build Flags
+### Build flags
 
 | Name              | Description                                      |
 | :---------------- | :----------------------------------------------- |
@@ -46,6 +46,23 @@ Validate all DTCG tokens for syntax errors, and run any [linters](/docs/linting/
 ```sh
 npx tz check [filename]
 ```
+
+## Import
+
+Terrazzo allows importing from Figma files with the `import` command. Automatically import Figma Styles and Variables (note that Variables require an Enterprise plan; Styles work for any plan).
+
+```sh
+npx tz import https://www.figma.com/design/xxxxxxxxxxxxxxxxxvxxx/Design-System-Variables --output my-tokens.tokens.json
+```
+
+[See full guide](/docs/2.0/guides/import-from-figma)
+
+### Import flags
+
+| Name                           | Description                                                                                                                                                     |
+| :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--output [file]`, `-o [file]` | `.tokens.json` file to write to.                                                                                                                                |
+| `--unpublished`                | By default, this will grab the **published library** in the file. If you’d like to just simply grab what the file has, unpublished or not, add `--unpublished`. |
 
 ## Normalize
 
@@ -61,7 +78,7 @@ This will keep your tokens 100% as-authored, but will upgrade older DTCG files t
 | :-------------- | :--------------------- |
 | `--out` \| `-o` | Tokens file to output. |
 
-## Global Flags
+## Global flags
 
 Flags available for any command
 

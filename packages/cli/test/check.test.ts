@@ -60,7 +60,7 @@ describe('tz check', () => {
     }
     await expect(
       command,
-    ).rejects.toThrowError(`✗  [lint:core/valid-color] Expected components to be array of numbers, received "[0, 0.2, 1]".
+    ).rejects.toThrowError(`✗  lint:core/valid-color: Expected components to be array of numbers, received "[0, 0.2, 1]".
 
   4 |       "100": {
   5 |         "$type": "color",
@@ -70,6 +70,6 @@ describe('tz check', () => {
   8 |     }
   9 |   }
 
-[lint:lint] 1 error`);
+lint:lint: 1 error`);
   });
 });

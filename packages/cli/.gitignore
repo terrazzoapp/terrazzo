@@ -1,3 +1,4 @@
 test/fixtures/**/tokens/
 test/fixtures/init/terrazzo.config.js
 test/fixtures/**/actual.json
+test/fixtures/import-figma/*.actual.json

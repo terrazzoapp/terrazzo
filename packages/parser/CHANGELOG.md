@@ -2,6 +2,14 @@
 
 ## 2.0.0
 
+The 2.0.0 release is full of new features:
+
+- Full support for the DTCG v2025.10 spec, including resolvers
+- New and improved [native Figma import](https://terrazzo.app/docs/guides/import-from-figma)
+- `@terrazzo/plugin-js` was reimagined as a resolver API to build your own token machine (server-side)
+- `@terrazzo/plugin-css-in-js` was added as the missing solution for type-safe JS to use in any CSS-in-JS library
+- And of course dozens of bugfixes and quality of life improvements
+
 ### Minor Changes
 
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change; DTCG 2nd Editors draft format will throw errors by default. This means converting all colors and dimensions to the new object format.

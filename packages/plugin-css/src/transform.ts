@@ -16,7 +16,14 @@ export default function transformCSS({
     setTransform,
     tokens: baseTokens,
   },
-  options: { permutations, exclude: userExclude, legacyHex, transform: customTransform, variableName },
+  options: {
+    permutations,
+    include: userInclude,
+    exclude: userExclude,
+    legacyHex,
+    transform: customTransform,
+    variableName,
+  },
 }: TransformOptions) {
   function transformName(token: TokenNormalized) {
     const customName = variableName?.(token);
@@ -34,19 +41,26 @@ export default function transformCSS({
   }
   const transformAlias = (token: TokenNormalized) => `var(${transformName(token)})`;
 
-  const exclude = userExclude ? wcmatch(userExclude) : undefined;
+  const include = userInclude ? wcmatch(userInclude) : () => true;
+  const exclude = userExclude ? wcmatch(userExclude) : () => false;
 
   // permutations
   if (permutations?.length) {
     for (const p of permutations) {
       const input = p.input;
-      const ignore = p.ignore ? wcmatch(p.ignore) : undefined;
+      const pInclude = p.include ? wcmatch(p.include) : () => true;
+      const pExclude = p.exclude ? wcmatch(p.exclude) : () => false;
+
+      const includeToken = (tokenId: string): boolean => {
+        return include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
+      };
+
       // Note: if we throw an error here without specifying the input, a user may
       // find it impossible to debug the issue
       try {
         const tokens = resolver.apply(input);
         for (const token of Object.values(tokens)) {
-          if (ignore?.(token.id) || exclude?.(token.id)) {
+          if (!includeToken(token.id)) {
             continue;
           }
           const options: TransformCSSValueOptions = {
@@ -84,7 +98,7 @@ export default function transformCSS({
 
   // modes (legacy)
   for (const token of Object.values(baseTokens)) {
-    if (exclude?.(token.id)) {
+    if (!include(token.id) || exclude(token.id)) {
       continue;
     }
     for (const mode of Object.keys(token.mode)) {

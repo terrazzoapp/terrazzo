@@ -22,7 +22,7 @@ describe('8.? Boolean', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { 'my-bool': { $type: 'boolean', $value: 'true' } } }],
         want: {
-          error: `[lint:core/valid-boolean] Must be a boolean.
+          error: `lint:core/valid-boolean: Must be a boolean.
 
   2 |   "my-bool": {
   3 |     "$type": "boolean",
@@ -31,7 +31,7 @@ describe('8.? Boolean', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -40,7 +40,7 @@ describe('8.? Boolean', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { 'my-bool': { $type: 'boolean', $value: 0 } } }],
         want: {
-          error: `[lint:core/valid-boolean] Must be a boolean.
+          error: `lint:core/valid-boolean: Must be a boolean.
 
   2 |   "my-bool": {
   3 |     "$type": "boolean",
@@ -49,7 +49,7 @@ describe('8.? Boolean', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -74,7 +74,7 @@ describe('8.? Link', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { icon: { star: { $type: 'link', $value: '' } } } }],
         want: {
-          error: `[lint:core/valid-link] Must be a string.
+          error: `lint:core/valid-link: Must be a string.
 
   3 |     "star": {
   4 |       "$type": "link",
@@ -84,7 +84,7 @@ describe('8.? Link', () => {
   7 |   }
   8 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -93,7 +93,7 @@ describe('8.? Link', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { icon: { star: { $type: 'link', $value: 100 } } } }],
         want: {
-          error: `[lint:core/valid-link] Must be a string.
+          error: `lint:core/valid-link: Must be a string.
 
   3 |     "star": {
   4 |       "$type": "link",
@@ -103,7 +103,7 @@ describe('8.? Link', () => {
   7 |   }
   8 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -133,7 +133,7 @@ describe('8.? String', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { 'my-string': { $type: 'string', $value: 99 } } }],
         want: {
-          error: `[lint:core/valid-string] Must be a string.
+          error: `lint:core/valid-string: Must be a string.
 
   2 |   "my-string": {
   3 |     "$type": "string",
@@ -142,7 +142,7 @@ describe('8.? String', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

@@ -2,7 +2,7 @@
   "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.28.2",
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
@@ -32,7 +32,7 @@
     "@swc/core-win32-arm64-msvc": "catalog:",
     "@swc/core-win32-ia32-msvc": "catalog:",
     "@swc/core-win32-x64-msvc": "catalog:",
-    "@types/node": "^22.19.8",
+    "@types/node": "^25.2.1",
     "@vitest/browser": "catalog:",
     "@vitest/browser-playwright": "catalog:",
     "cspell": "^9.6.4",

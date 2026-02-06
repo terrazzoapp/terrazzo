@@ -27,7 +27,7 @@ describe('8.3 Font Family', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: '' } } }],
         want: {
-          error: `[lint:core/valid-font-family] Must be a string, or array of strings.
+          error: `lint:core/valid-font-family: Must be a string, or array of strings.
 
   2 |   "base": {
   3 |     "$type": "fontFamily",
@@ -36,7 +36,7 @@ describe('8.3 Font Family', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -45,7 +45,7 @@ describe('8.3 Font Family', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: [''] } } }],
         want: {
-          error: `[lint:core/valid-font-family] Must be a string, or array of strings.
+          error: `lint:core/valid-font-family: Must be a string, or array of strings.
 
   2 |   "base": {
   3 |     "$type": "fontFamily",
@@ -55,7 +55,7 @@ describe('8.3 Font Family', () => {
   6 |     ]
   7 |   }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -64,7 +64,7 @@ describe('8.3 Font Family', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: 200 } } }],
         want: {
-          error: `[lint:core/valid-font-family] Must be a string, or array of strings.
+          error: `lint:core/valid-font-family: Must be a string, or array of strings.
 
   2 |   "base": {
   3 |     "$type": "fontFamily",
@@ -73,7 +73,7 @@ describe('8.3 Font Family', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

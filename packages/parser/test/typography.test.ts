@@ -298,7 +298,7 @@ describe('9.7 Typography', () => {
           },
         ],
         want: {
-          error: `[parser:init] Cannot alias to $type "number" from $type "fontWeight".
+          error: `parser:init: Cannot alias to $type "number" from $type "fontWeight".
 
   19 |         "fontStyle": "italic",
   20 |         "fontVariant": "small-caps",
@@ -320,7 +320,7 @@ describe('9.7 Typography', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-typography] Missing required property "fontFamily".
+          error: `lint:core/valid-typography: Missing required property "fontFamily".
 
   3 |     "body": {
   4 |       "$type": "typography",
@@ -330,7 +330,7 @@ describe('9.7 Typography', () => {
   7 |       }
   8 |     }
 
-[lint:core/valid-typography] Missing required property "fontSize".
+lint:core/valid-typography: Missing required property "fontSize".
 
   3 |     "body": {
   4 |       "$type": "typography",
@@ -340,7 +340,7 @@ describe('9.7 Typography', () => {
   7 |       }
   8 |     }
 
-[lint:core/valid-typography] Missing required property "fontWeight".
+lint:core/valid-typography: Missing required property "fontWeight".
 
   3 |     "body": {
   4 |       "$type": "typography",
@@ -350,7 +350,7 @@ describe('9.7 Typography', () => {
   7 |       }
   8 |     }
 
-[lint:core/valid-typography] Missing required property "letterSpacing".
+lint:core/valid-typography: Missing required property "letterSpacing".
 
   3 |     "body": {
   4 |       "$type": "typography",
@@ -360,7 +360,7 @@ describe('9.7 Typography', () => {
   7 |       }
   8 |     }
 
-[lint:core/valid-typography] Missing required property "lineHeight".
+lint:core/valid-typography: Missing required property "lineHeight".
 
   3 |     "body": {
   4 |       "$type": "typography",
@@ -370,7 +370,7 @@ describe('9.7 Typography', () => {
   7 |       }
   8 |     }
 
-[lint:lint] 5 errors`,
+lint:lint: 5 errors`,
         },
       },
     ],
@@ -395,7 +395,7 @@ describe('9.7 Typography', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-dimension] Migrate to the new object format: { "value": 10, "unit": "px" }.
+          error: `lint:core/valid-dimension: Migrate to the new object format: { "value": 10, "unit": "px" }.
 
   4 |     "$value": {
   5 |       "fontFamily": "Helvetica",
@@ -405,7 +405,7 @@ describe('9.7 Typography', () => {
   8 |       "letterSpacing": "0.001em",
   9 |       "lineHeight": "24px"
 
-[lint:core/valid-dimension] Migrate to the new object format: { "value": 10, "unit": "px" }.
+lint:core/valid-dimension: Migrate to the new object format: { "value": 10, "unit": "px" }.
 
    7 |       "fontWeight": 400,
    8 |       "letterSpacing": "0.001em",
@@ -415,7 +415,7 @@ describe('9.7 Typography', () => {
   11 |   }
   12 | }
 
-[lint:core/valid-dimension] Migrate to the new object format: { "value": 10, "unit": "px" }.
+lint:core/valid-dimension: Migrate to the new object format: { "value": 10, "unit": "px" }.
 
    6 |       "fontSize": "16px",
    7 |       "fontWeight": 400,
@@ -425,7 +425,7 @@ describe('9.7 Typography', () => {
   10 |     }
   11 |   }
 
-[lint:core/valid-number] Must be a number.
+lint:core/valid-number: Must be a number.
 
    7 |       "fontWeight": 400,
    8 |       "letterSpacing": "0.001em",
@@ -435,7 +435,7 @@ describe('9.7 Typography', () => {
   11 |   }
   12 | }
 
-[lint:lint] 4 errors`,
+lint:lint: 4 errors`,
         },
       },
     ],

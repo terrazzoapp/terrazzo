@@ -29,7 +29,17 @@ import { createRequire } from 'node:module';
 import { parseArgs } from 'node:util';
 import { Logger } from '@terrazzo/parser';
 import dotenv from 'dotenv';
-import { buildCmd, checkCmd, helpCmd, initCmd, labCmd, loadConfig, normalizeCmd, versionCmd } from '../dist/index.js';
+import {
+  buildCmd,
+  checkCmd,
+  helpCmd,
+  importCmd,
+  initCmd,
+  labCmd,
+  loadConfig,
+  normalizeCmd,
+  versionCmd,
+} from '../dist/index.js';
 
 const require = createRequire(process.cwd());
 
@@ -44,11 +54,13 @@ const { values: flags, positionals } = parseArgs({
   allowPositionals: true,
   options: {
     config: { type: 'string', short: 'c' },
-    out: { type: 'string', short: 'o' },
-    output: { type: 'string' },
+    output: { type: 'string', short: 'o' },
     help: { type: 'boolean' },
     silent: { type: 'boolean' },
+    'skip-styles': { type: 'boolean' },
+    'skip-variables': { type: 'boolean' },
     quiet: { type: 'boolean' }, // secret alias for --silent because I can’t remember it
+    unpublished: { type: 'boolean' },
     watch: { type: 'boolean', short: 'w' },
     version: { type: 'boolean' },
   },
@@ -96,7 +108,12 @@ export default async function main() {
 
   // normalize
   if (cmd === 'normalize') {
-    await normalizeCmd(positionals[1], { logger, output: flags.out ?? flags.output });
+    await normalizeCmd(positionals[1], { logger, output: flags.output });
+    process.exit(0);
+  }
+  // import
+  if (cmd === 'import') {
+    await importCmd({ flags, logger, positionals });
     process.exit(0);
   }
 
@@ -118,6 +135,7 @@ export default async function main() {
       await initCmd({ config, flags, logger });
       break;
     }
+
     case 'lab': {
       try {
         require.resolve('@terrazzo/token-lab');

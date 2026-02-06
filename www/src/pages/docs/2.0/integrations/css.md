@@ -257,6 +257,60 @@ You control the wrapper CSS, so check for mistakes! If using `@media` queries, r
 
 If you inspect the output CSS, you may find more variables than expected in the media queries. This is necessary the way CSS works: if a CSS variable is an alias of another, when the base value changes, all aliases must be redeclared otherwise they are referencing the old value in the parent scope. At first glance, this seems like a bug, with variables being redeclared with the same values, but in actuality it’s necessary so your mode selectors cascade correctly.
 
+### Selective token output
+
+The CSS plugin can filter which tokens are output to CSS. This is useful if you want to generate CSS for only a subset of your tokens, and
+can be applied at the plugin or permutation level using `include` and `exclude` token globs.
+
+#### Selective output at the plugin level
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      include: ['primitives.*'], // include only primitives
+      exclude: ['primitives.typography.*'], // except typography primitives
+    }),
+  ],
+});
+```
+:::
+
+#### Selective output at the permutation level
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      permutations: [
+        {
+          input: {},
+          prepare: (css) => `:root {\n  ${css}\n}`,
+          include: ['primitives.*'], // include only primitives in this permutation
+        },
+        {
+          input: { mode: 'light' },
+          prepare: (css) => `.light {\n  ${css}\n}`,
+          exclude: ['primitives.*'], // include everything but primitives in this permutation
+        },
+      ],
+    }),
+  ],
+});
+```
+
+:::
+
 ### Utility CSS
 
 Using the [Tailwind integration](/docs/integrations/tailwind) isn’t necessary if you want to just have utility classes generated from your tokens. You can generate Tailwind-like utility CSS with minimal config.
