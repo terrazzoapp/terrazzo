@@ -273,8 +273,8 @@ import css from "@terrazzo/plugin-css";
 export default defineConfig({
   plugins: [
     css({
-      include: ['primitives.*'], // include only primitives
-      exclude: ['primitives.typography.*'], // except typography primitives
+      include: ['primitives.**'], // include only primitives
+      exclude: ['primitives.typography.**'], // except typography primitives
     }),
   ],
 });
@@ -296,12 +296,12 @@ export default defineConfig({
         {
           input: {},
           prepare: (css) => `:root {\n  ${css}\n}`,
-          include: ['primitives.*'], // include only primitives in this permutation
+          include: ['primitives.**'], // include only primitives in this permutation
         },
         {
           input: { mode: 'light' },
           prepare: (css) => `.light {\n  ${css}\n}`,
-          exclude: ['primitives.*'], // include everything but primitives in this permutation
+          exclude: ['primitives.**'], // include everything but primitives in this permutation
         },
       ],
     }),
