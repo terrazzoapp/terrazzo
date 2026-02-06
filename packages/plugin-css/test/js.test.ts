@@ -62,13 +62,13 @@ describe('Node.js API', () => {
         'color',
         {
           permutations: [
-            { ...MODE_LIGHT, ignore: ['gradient.*'] },
-            { ...MODE_LIGHT_COLORBLIND, ignore: ['gradient.*'] },
-            { ...MODE_LIGHT_HIGH_CONTRAST, ignore: ['gradient.*'] },
-            { ...MODE_DARK, ignore: ['gradient.*'] },
-            { ...MODE_DARK_DIMMED, ignore: ['gradient.*'] },
-            { ...MODE_DARK_HIGH_CONTRAST, ignore: ['gradient.*'] },
-            { ...MODE_DARK_COLORBLIND, ignore: ['gradient.*'] },
+            { ...MODE_LIGHT, exclude: ['gradient.*'] },
+            { ...MODE_LIGHT_COLORBLIND, exclude: ['gradient.*'] },
+            { ...MODE_LIGHT_HIGH_CONTRAST, exclude: ['gradient.*'] },
+            { ...MODE_DARK, exclude: ['gradient.*'] },
+            { ...MODE_DARK_DIMMED, exclude: ['gradient.*'] },
+            { ...MODE_DARK_HIGH_CONTRAST, exclude: ['gradient.*'] },
+            { ...MODE_DARK_COLORBLIND, exclude: ['gradient.*'] },
           ],
         },
       ],
@@ -97,6 +97,23 @@ describe('Node.js API', () => {
         { cwd },
       );
       const resolverJSON = new URL(`./${name}.resolver.json`, cwd);
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: resolverJSON, src: await fs.readFile(resolverJSON, 'utf8') }],
+        { config },
+      );
+      const result = await build(tokens, { resolver, sources, config });
+      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
+    });
+  });
+
+  describe('contexts', () => {
+    it('flat contexts', async () => {
+      const output = 'actual.css';
+      const cwd = new URL(`./fixtures/flat-contexts/`, import.meta.url);
+      const config = (await import('./fixtures/flat-contexts/terrazzo.config.js')).default;
+      const resolverJSON = new URL(`./resolver.json`, cwd);
       const { tokens, resolver, sources } = await parse(
         [{ filename: resolverJSON, src: await fs.readFile(resolverJSON, 'utf8') }],
         { config },

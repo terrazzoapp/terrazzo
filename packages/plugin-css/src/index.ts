@@ -40,6 +40,7 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
 
       let contents = `${FILE_PREFIX}\n\n`;
       contents += buildCSS({
+        include: options?.include,
         exclude: options?.exclude,
         getTransforms,
         permutations: options?.permutations,
