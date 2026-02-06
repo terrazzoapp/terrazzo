@@ -70,7 +70,7 @@ describe('8.4 Font Weight', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { thinnish: { $type: 'fontWeight', $value: 'thinnish' } } }],
         want: {
-          error: `[lint:core/valid-font-weight] Must either be a valid number (0 - 999) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
+          error: `lint:core/valid-font-weight: Must either be a valid number (0 - 999) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
 
   2 |   "thinnish": {
   3 |     "$type": "fontWeight",
@@ -79,7 +79,7 @@ describe('8.4 Font Weight', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -88,7 +88,7 @@ describe('8.4 Font Weight', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { kakarot: { $type: 'fontWeight', $value: 9001 } } }],
         want: {
-          error: `[lint:core/valid-font-weight] Must either be a valid number (0 - 999) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
+          error: `lint:core/valid-font-weight: Must either be a valid number (0 - 999) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
 
   2 |   "kakarot": {
   3 |     "$type": "fontWeight",
@@ -97,7 +97,7 @@ describe('8.4 Font Weight', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

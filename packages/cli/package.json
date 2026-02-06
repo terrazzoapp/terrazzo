@@ -66,6 +66,7 @@
     "yaml-to-momoa": "catalog:"
   },
   "devDependencies": {
+    "@figma/rest-api-spec": "^0.36.0",
     "@swc/core": "catalog:",
     "@swc/core-darwin-arm64": "catalog:",
     "@swc/core-darwin-x64": "catalog:",

@@ -44,7 +44,7 @@ describe('9.3 Border', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-border] Border token missing required properties: color, width, and style.
+          error: `lint:core/valid-border: Border token missing required properties: color, width, and style.
 
   2 |   "border": {
   3 |     "$type": "border",
@@ -54,7 +54,7 @@ describe('9.3 Border', () => {
   6 |       "width": {
   7 |         "value": 1,
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -78,7 +78,7 @@ describe('9.3 Border', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-border] Unknown property: "bad".
+          error: `lint:core/valid-border: Unknown property: "bad".
 
   17 |         "unit": "px"
   18 |       },
@@ -88,7 +88,7 @@ describe('9.3 Border', () => {
   21 |   }
   22 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

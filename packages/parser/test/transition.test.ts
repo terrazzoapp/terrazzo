@@ -71,7 +71,7 @@ describe('9.4 Transition', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-transition] Missing required properties: duration, delay, and timingFunction.
+          error: `lint:core/valid-transition: Missing required properties: duration, delay, and timingFunction.
 
   3 |     "ease-in-out": {
   4 |       "$type": "transition",
@@ -81,7 +81,7 @@ describe('9.4 Transition', () => {
   7 |           0.42,
   8 |           0,
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -105,7 +105,7 @@ describe('9.4 Transition', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-transition] Missing required properties: duration, delay, and timingFunction.
+          error: `lint:core/valid-transition: Missing required properties: duration, delay, and timingFunction.
 
   3 |     "ease-in-out": {
   4 |       "$type": "transition",
@@ -115,7 +115,7 @@ describe('9.4 Transition', () => {
   7 |           "value": 150,
   8 |           "unit": "ms"
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -139,7 +139,7 @@ describe('9.4 Transition', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-transition] Missing required properties: duration, delay, and timingFunction.
+          error: `lint:core/valid-transition: Missing required properties: duration, delay, and timingFunction.
 
   3 |     "ease-in-out": {
   4 |       "$type": "transition",
@@ -149,7 +149,7 @@ describe('9.4 Transition', () => {
   7 |           "value": 150,
   8 |           "unit": "ms"
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -175,7 +175,7 @@ describe('9.4 Transition', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-transition] Unknown property: "bad".
+          error: `lint:core/valid-transition: Unknown property: "bad".
 
   18 |           "unit": "ms"
   19 |         },
@@ -185,7 +185,7 @@ describe('9.4 Transition', () => {
   22 |     }
   23 |   }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

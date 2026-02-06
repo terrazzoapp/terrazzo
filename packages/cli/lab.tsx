@@ -18,6 +18,7 @@ root.render(
       });
 
       if (!response.ok) {
+        // biome-ignore lint/suspicious/noConsole: this is its job
         console.error(`Failed to save tokens: ${response.status}`);
       }
     }}

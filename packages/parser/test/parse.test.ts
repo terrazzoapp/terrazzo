@@ -40,7 +40,7 @@ describe('Additional cases', () => {
       expect(() => result).toThrow;
     } catch (err) {
       expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
-        "[parser:init] Install yaml-to-momoa package to parse YAML, and pass in as option, e.g.:
+        "parser:init: Install yaml-to-momoa package to parse YAML, and pass in as option, e.g.:
 
           import { bundle } from '@terrazzo/json-schema-tools';
           import yamlToMomoa from 'yaml-to-momoa';

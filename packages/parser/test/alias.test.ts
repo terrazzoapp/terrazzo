@@ -766,7 +766,7 @@ font:
           },
         ],
         want: {
-          error: `[parser:init] Could not resolve alias {color.base.blue.600}.
+          error: `parser:init: Could not resolve alias {color.base.blue.600}.
 
   17 |     },
   18 |     "semantic": {
@@ -798,7 +798,7 @@ font:
           },
         ],
         want: {
-          error: `[parser:init] Could not resolve alias {color.base.blue.600}.
+          error: `parser:init: Could not resolve alias {color.base.blue.600}.
 
   1 | {
   2 |   "semantic": {
@@ -819,7 +819,7 @@ font:
           },
         ],
         want: {
-          error: `[parser:init] Invalid alias syntax.
+          error: `parser:init: Invalid alias syntax.
 
   1 | {
   2 |   "alias": {
@@ -846,7 +846,7 @@ font:
           },
         ],
         want: {
-          error: `[parser:init] Circular alias detected.
+          error: `parser:init: Circular alias detected.
 
   3 |     "$type": "color",
   4 |     "primary": {
@@ -878,7 +878,7 @@ font:
           },
         ],
         want: {
-          error: `[parser:init] Cannot alias to $type "dimension" from $type "border".
+          error: `parser:init: Cannot alias to $type "dimension" from $type "border".
 
   12 |     "base": {
   13 |       "$type": "border",
@@ -904,7 +904,7 @@ font:
           },
         ],
         want: {
-          error: `[parser:init] Cannot alias to $type "number" from $type "color".
+          error: `parser:init: Cannot alias to $type "number" from $type "color".
 
    7 |     "base": {
    8 |       "$type": "color",
@@ -951,7 +951,7 @@ font:
           },
         ],
         want: {
-          error: `[parser:init] Cannot alias to $type "color" from $type "dimension".
+          error: `parser:init: Cannot alias to $type "color" from $type "dimension".
 
   25 |       "$value": {
   26 |         "color": "{color.blue}",
@@ -1001,7 +1001,7 @@ font:
           },
         ],
         want: {
-          error: `[parser:init] Cannot alias to $type "duration" from $type "number".
+          error: `parser:init: Cannot alias to $type "duration" from $type "number".
 
   39 |         {
   40 |           "color": "{color.blue}",
@@ -1030,7 +1030,7 @@ font:
           },
         ],
         want: {
-          error: `[parser:init] Cannot alias to $type "number" from $type "dimension".
+          error: `parser:init: Cannot alias to $type "number" from $type "dimension".
 
   21 |         "dashArray": [
   22 |           "{dimension.s}",
