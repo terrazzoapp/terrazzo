@@ -1,4 +1,4 @@
-import type { Oklab } from '@terrazzo/use-color';
+import type { PlainColorObject } from 'colorjs.io/fn';
 import { OKLAB } from './oklab.js';
 import { LINEAR_RGB } from './rgb.js';
 
@@ -106,8 +106,8 @@ void main() {
  */
 export class GradientOklab {
   gl: WebGL2RenderingContext;
-  startColor: Oklab;
-  endColor: Oklab;
+  startColor: PlainColorObject;
+  endColor: PlainColorObject;
   program: WebGLProgram;
   attr: Record<keyof typeof GRADIENT_RGB_SHADERS.attrs, number> = {
     a_position: -1,
@@ -119,7 +119,11 @@ export class GradientOklab {
 
   private lastFrame: number | undefined;
 
-  constructor({ canvas, startColor, endColor }: { canvas: HTMLCanvasElement; startColor: Oklab; endColor: Oklab }) {
+  constructor({
+    canvas,
+    startColor,
+    endColor,
+  }: { canvas: HTMLCanvasElement; startColor: PlainColorObject; endColor: PlainColorObject }) {
     this.gl = createRenderingContext(canvas);
     this.program = createProgram({
       gl: this.gl,
@@ -150,13 +154,25 @@ export class GradientOklab {
     this.render();
   }
 
-  setColors(startColor: Oklab, endColor: Oklab) {
+  setColors(startColor: PlainColorObject, endColor: PlainColorObject) {
     this.startColor = startColor;
     this.endColor = endColor;
     // note: `drawingBufferColorSpace` is ignored in Firefox, but it shouldn’t throw an error
     this.gl.drawingBufferColorSpace = 'display-p3';
-    this.gl.vertexAttrib4f(this.attr.a_start_color, startColor.l, startColor.a, startColor.b, 1);
-    this.gl.vertexAttrib4f(this.attr.a_end_color, endColor.l, endColor.a, endColor.b, 1);
+    this.gl.vertexAttrib4f(
+      this.attr.a_start_color,
+      startColor.coords[0] as number,
+      startColor.coords[1] as number,
+      startColor.coords[2] as number,
+      1,
+    );
+    this.gl.vertexAttrib4f(
+      this.attr.a_end_color,
+      endColor.coords[0] as number,
+      endColor.coords[1] as number,
+      endColor.coords[2] as number,
+      1,
+    );
     this.render();
   }
 

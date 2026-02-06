@@ -14,12 +14,12 @@ body {
 }
 
 .sb-show-main {
-  background: color(srgb 1 1 1);
+  background: rgb(100% 100% 100%);
 }
 
 @media (prefers-color-scheme: dark) {
   .sb-show-main {
-    background: color(srgb 0 0 0);
-    color: color(srgb 1 1 1);
+    background: rgb(0% 0% 0%);
+    color: rgb(100% 100% 100%);
   }
 }

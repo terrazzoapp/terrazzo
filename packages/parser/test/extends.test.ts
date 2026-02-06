@@ -54,7 +54,7 @@ describe('$extends', () => {
           },
         ],
         want: {
-          error: `[parser:init] $extends must be a valid alias
+          error: `parser:init: $extends must be a valid alias
 
   1 | {
   2 |   "color": {
@@ -84,7 +84,7 @@ describe('$extends', () => {
           },
         ],
         want: {
-          error: `[parser:init] $extends can’t exist within a token
+          error: `parser:init: $extends can’t exist within a token
 
   13 |     },
   14 |     "red": {
@@ -111,7 +111,7 @@ describe('$extends', () => {
           },
         ],
         want: {
-          error: `[parser:init] Circular $extends detected
+          error: `parser:init: Circular $extends detected
 
   13 |     },
   14 |     "secondary": {
@@ -136,7 +136,7 @@ describe('$extends', () => {
           },
         ],
         want: {
-          error: `[parser:init] Circular $extends detected
+          error: `parser:init: Circular $extends detected
 
   1 | {
   2 |   "groupA": {

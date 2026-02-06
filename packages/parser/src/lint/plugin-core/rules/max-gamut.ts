@@ -1,5 +1,5 @@
-import { type ColorValueNormalized, tokenToCulori } from '@terrazzo/token-tools';
-import { type Color, clampChroma } from 'culori';
+import { tokenToColor } from '@terrazzo/token-tools';
+import { inGamut } from 'colorjs.io/fn';
 import wcmatch from 'wildcard-match';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
@@ -11,37 +11,6 @@ export interface RuleMaxGamutOptions {
   gamut: 'srgb' | 'p3' | 'rec2020';
   /** (optional) Token IDs to ignore. Supports globs (`*`). */
   ignore?: string[];
-}
-
-const TOLERANCE = 0.000001; // threshold above which it counts as an error (take rounding errors into account)
-
-/** is a Culori-parseable color within the specified gamut? */
-function isWithinGamut(color: ColorValueNormalized, gamut: RuleMaxGamutOptions['gamut']): boolean {
-  const parsed = tokenToCulori(color);
-  if (!parsed) {
-    return false;
-  }
-  if (['rgb', 'hsl', 'hwb'].includes(parsed.mode)) {
-    return true;
-  }
-  const clamped = clampChroma(parsed, parsed.mode, gamut === 'srgb' ? 'rgb' : gamut);
-  return isWithinThreshold(parsed, clamped);
-}
-
-/** is Color A close enough to Color B? */
-function isWithinThreshold(a: Color, b: Color, tolerance = TOLERANCE) {
-  for (const k in a) {
-    if (k === 'mode' || k === 'alpha') {
-      continue;
-    }
-    if (!(k in b)) {
-      throw new Error(`Can’t compare ${a.mode} to ${b.mode}`);
-    }
-    if (Math.abs((a as any)[k] - (b as any)[k]) > tolerance) {
-      return false;
-    }
-  }
-  return true;
 }
 
 const ERROR_COLOR = 'COLOR';
@@ -89,7 +58,7 @@ const rule: LintRule<
 
       switch (t.$type) {
         case 'color': {
-          if (!isWithinGamut(t.$value, options.gamut)) {
+          if (!inGamut(tokenToColor(t.$value), options.gamut)) {
             report({
               messageId: ERROR_COLOR,
               data: { id: t.id, gamut: options.gamut },
@@ -100,7 +69,7 @@ const rule: LintRule<
           break;
         }
         case 'border': {
-          if (!t.partialAliasOf?.color && !isWithinGamut(t.$value.color, options.gamut)) {
+          if (!t.partialAliasOf?.color && !inGamut(tokenToColor(t.$value.color), options.gamut)) {
             report({
               messageId: ERROR_BORDER,
               data: { id: t.id, gamut: options.gamut },
@@ -112,7 +81,7 @@ const rule: LintRule<
         }
         case 'gradient': {
           for (let stopI = 0; stopI < t.$value.length; stopI++) {
-            if (!t.partialAliasOf?.[stopI]?.color && !isWithinGamut(t.$value[stopI]!.color, options.gamut)) {
+            if (!t.partialAliasOf?.[stopI]?.color && !inGamut(tokenToColor(t.$value[stopI]!.color), options.gamut)) {
               report({
                 messageId: ERROR_GRADIENT,
                 data: { id: t.id, gamut: options.gamut },
@@ -125,7 +94,10 @@ const rule: LintRule<
         }
         case 'shadow': {
           for (let shadowI = 0; shadowI < t.$value.length; shadowI++) {
-            if (!t.partialAliasOf?.[shadowI]?.color && !isWithinGamut(t.$value[shadowI]!.color, options.gamut)) {
+            if (
+              !t.partialAliasOf?.[shadowI]?.color &&
+              !inGamut(tokenToColor(t.$value[shadowI]!.color), options.gamut)
+            ) {
               report({
                 messageId: ERROR_SHADOW,
                 data: { id: t.id, gamut: options.gamut },

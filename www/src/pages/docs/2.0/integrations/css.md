@@ -137,7 +137,7 @@ The result is color that “just works” in any browser and hardware type autom
 
 #### Color gamut handling
 
-Colors are downconverted using Culori’s [toGamut()](https://culorijs.org/api/#toGamut) method which uses the same underlying math as CSS Color Level 4’s [Gamut mapping algorithm](https://drafts.csswg.org/css-color/#css-gamut-mapping) and also described in Björn Ottosen’s [sRGB Gamut Clipping](https://bottosson.github.io/posts/gamutclipping/) article. This produces the best results for most applications on the web, using the best-available color research.
+Colors are downconverted using Color.js’ [gamut clamping](https://colorjs.io/docs/gamut-mapping) method which uses the same underlying math as CSS Color Level 4’s [Gamut mapping algorithm](https://drafts.csswg.org/css-color/#css-gamut-mapping). This produces the best results for most applications on the web, using the best-available color research.
 
 This is an improvement over Cobalt 1.x’s “expand into P3” method that oversaturated sRGB colors automatically unless opting out.
 
@@ -256,6 +256,60 @@ You control the wrapper CSS, so check for mistakes! If using `@media` queries, r
 #### Note on “duplication” (staleness)
 
 If you inspect the output CSS, you may find more variables than expected in the media queries. This is necessary the way CSS works: if a CSS variable is an alias of another, when the base value changes, all aliases must be redeclared otherwise they are referencing the old value in the parent scope. At first glance, this seems like a bug, with variables being redeclared with the same values, but in actuality it’s necessary so your mode selectors cascade correctly.
+
+### Selective token output
+
+The CSS plugin can filter which tokens are output to CSS. This is useful if you want to generate CSS for only a subset of your tokens, and
+can be applied at the plugin or permutation level using `include` and `exclude` token globs.
+
+#### Selective output at the plugin level
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      include: ['primitives.*'], // include only primitives
+      exclude: ['primitives.typography.*'], // except typography primitives
+    }),
+  ],
+});
+```
+:::
+
+#### Selective output at the permutation level
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      permutations: [
+        {
+          input: {},
+          prepare: (css) => `:root {\n  ${css}\n}`,
+          include: ['primitives.*'], // include only primitives in this permutation
+        },
+        {
+          input: { mode: 'light' },
+          prepare: (css) => `.light {\n  ${css}\n}`,
+          exclude: ['primitives.*'], // include everything but primitives in this permutation
+        },
+      ],
+    }),
+  ],
+});
+```
+
+:::
 
 ### Utility CSS
 

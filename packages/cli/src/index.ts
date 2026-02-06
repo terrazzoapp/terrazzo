@@ -6,6 +6,7 @@ import { cwd } from './shared.js';
 export * from './build.js';
 export * from './check.js';
 export * from './help.js';
+export * from './import/index.js';
 export * from './init.js';
 export * from './lab.js';
 export * from './normalize.js';
@@ -29,6 +30,7 @@ export function defineConfig(config: Config): ConfigInit {
       try {
         return pathToFileURL(require.resolve(tokenPath));
       } catch (err) {
+        // biome-ignore lint/suspicious/noConsole: this is its job
         console.error(err);
         // this will throw an error if Node couldn’t automatically resolve it,
         // which will be true for many token paths. We don’t need to surface

@@ -107,7 +107,7 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
 
     return {
       config,
-      configPath: resolvedConfigPath!,
+      configPath: resolvedConfigPath,
     };
   } catch (err) {
     printError((err as Error).message);
@@ -220,11 +220,13 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
 
 /** Print error */
 export function printError(message: string) {
+  // biome-ignore lint/suspicious/noConsole: this is its job
   console.error(pc.red(`✗  ${message}`));
 }
 
 /** Print success */
 export function printSuccess(message: string, startTime?: number) {
+  // biome-ignore lint/suspicious/noConsole: this is its job
   console.log(`${GREEN_CHECK}  ${message}${startTime ? ` ${time(startTime)}` : ''}`);
 }
 

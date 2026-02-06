@@ -50,7 +50,7 @@ describe('9.6 Gradient', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Invalid color space: mud. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, oklab, oklch, okhsv, prophoto-rgb, rec2020, srgb, srgb-linear, xyz-d50, xyz, or xyz-d65
+          error: `lint:core/valid-color: Invalid color space: mud. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, okhsv, oklab, oklch, prophoto-rgb, rec2020, srgb, srgb-linear, xyz, xyz-d50, or xyz-d65.
 
    5 |       {
    6 |         "color": {
@@ -60,7 +60,7 @@ describe('9.6 Gradient', () => {
    9 |         "position": 0
   10 |       },
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -85,7 +85,7 @@ describe('9.6 Gradient', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-gradient] Expected number 0-1, received 12px.
+          error: `lint:core/valid-gradient: Expected number 0-1, received 12px.
 
   27 |           "hex": "#ff9900"
   28 |         },
@@ -95,7 +95,7 @@ describe('9.6 Gradient', () => {
   31 |     ]
   32 |   }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -117,7 +117,7 @@ describe('9.6 Gradient', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-gradient] Must be an array of { color, position } objects.
+          error: `lint:core/valid-gradient: Must be an array of { color, position } objects.
 
   16 |         "position": 0
   17 |       },
@@ -127,7 +127,7 @@ describe('9.6 Gradient', () => {
   20 |           "alpha": 1,
   21 |           "components": [
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -152,7 +152,7 @@ describe('9.6 Gradient', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-gradient] Unknown property "bad".
+          error: `lint:core/valid-gradient: Unknown property "bad".
 
   3 |     "$type": "gradient",
   4 |     "$value": [
@@ -162,7 +162,7 @@ describe('9.6 Gradient', () => {
   7 |           "alpha": 1,
   8 |           "components": [
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

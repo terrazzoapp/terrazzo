@@ -1,0 +1,64 @@
+{
+  "error": false,
+  "status": 200,
+  "meta": {
+    "styles": [
+      {
+        "key": "5706e062721a96556d321af763097aa1c8d8eb1c",
+        "file_key": ":file_key",
+        "node_id": "16:3",
+        "style_type": "EFFECT",
+        "name": "elevation/100",
+        "description": "Default shadow.",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
+      },
+      {
+        "key": "b2079c5e25ef3a330ff92c173487ec0fbc406eb6",
+        "file_key": ":file_key",
+        "node_id": "4:3",
+        "style_type": "TEXT",
+        "name": "text/body/medium",
+        "description": "Default body text style.",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
+      },
+      {
+        "key": "421ab6dfaf40958be927a5e20d5c6a0d9d419f0b",
+        "file_key": ":file_key",
+        "node_id": "4:11",
+        "style_type": "TEXT",
+        "name": "text/body/large",
+        "description": "Large body text style.",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
+      },
+      {
+        "key": "783ebbacdd204a8bab90e9c9115aa3f75751ea96",
+        "file_key": ":file_key",
+        "node_id": "16:2",
+        "style_type": "FILL",
+        "name": "style/green/100",
+        "description": "",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
+      },
+      {
+        "key": "6cd916da62c28968d21fc26660506cb679ea75e6",
+        "file_key": ":file_key",
+        "node_id": "16:4",
+        "style_type": "FILL",
+        "name": "style/gradient/100",
+        "description": "",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
+      }
+    ]
+  },
+  "i18n": null
+}

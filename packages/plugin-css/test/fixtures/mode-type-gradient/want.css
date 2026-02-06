@@ -3,51 +3,51 @@
  * ------------------------------------------- */
 
 :root {
-  --ds-gradient-blue-to-green: oklch(0.4563 0.31 266.0798) 0%, oklch(0.8298 0.2089 154.0957) 100%;
+  --ds-gradient-blue-to-green: oklch(45.63% 0.31 266.1) 0%, oklch(82.98% 0.2088 154.1) 100%;
 }
 
 @media (color-gamut: p3) {
   :root {
-    --ds-gradient-blue-to-green: oklch(0.4674 0.3199 265.3984) 0%, oklch(0.8245 0.2781 155.7383) 100%;
+    --ds-gradient-blue-to-green: oklch(46.75% 0.32 265.4) 0%, oklch(82.46% 0.2781 155.7) 100%;
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
-    --ds-gradient-blue-to-green: oklch(0.4559 0.328 265.76) 0%, oklch(0.8206 0.286 156.71) 100%;
+    --ds-gradient-blue-to-green: oklch(45.59% 0.328 265.8) 0%, oklch(82.06% 0.286 156.7) 100%;
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --ds-gradient-blue-to-green: oklch(0.4563 0.31 266.0798) 0%, oklch(0.8298 0.2089 154.0957) 100%;
+    --ds-gradient-blue-to-green: oklch(45.63% 0.31 266.1) 0%, oklch(82.98% 0.2088 154.1) 100%;
   }
 }
 
 [data-color-theme="light"] {
-  --ds-gradient-blue-to-green: oklch(0.4563 0.31 266.0798) 0%, oklch(0.8298 0.2089 154.0957) 100%;
+  --ds-gradient-blue-to-green: oklch(45.63% 0.31 266.1) 0%, oklch(82.98% 0.2088 154.1) 100%;
 }
 
 @media (color-gamut: p3) {
   @media (prefers-color-scheme: light) {
     :root {
-      --ds-gradient-blue-to-green: oklch(0.4674 0.3199 265.3984) 0%, oklch(0.8245 0.2781 155.7383) 100%;
+      --ds-gradient-blue-to-green: oklch(46.75% 0.32 265.4) 0%, oklch(82.46% 0.2781 155.7) 100%;
     }
   }
 
   [data-color-theme="light"] {
-    --ds-gradient-blue-to-green: oklch(0.4674 0.3199 265.3984) 0%, oklch(0.8245 0.2781 155.7383) 100%;
+    --ds-gradient-blue-to-green: oklch(46.75% 0.32 265.4) 0%, oklch(82.46% 0.2781 155.7) 100%;
   }
 }
 
 @media (color-gamut: rec2020) {
   @media (prefers-color-scheme: light) {
     :root {
-      --ds-gradient-blue-to-green: oklch(0.4559 0.328 265.76) 0%, oklch(0.8206 0.286 156.71) 100%;
+      --ds-gradient-blue-to-green: oklch(45.59% 0.328 265.8) 0%, oklch(82.06% 0.286 156.7) 100%;
     }
   }
 
   [data-color-theme="light"] {
-    --ds-gradient-blue-to-green: oklch(0.4559 0.328 265.76) 0%, oklch(0.8206 0.286 156.71) 100%;
+    --ds-gradient-blue-to-green: oklch(45.59% 0.328 265.8) 0%, oklch(82.06% 0.286 156.7) 100%;
   }
 }

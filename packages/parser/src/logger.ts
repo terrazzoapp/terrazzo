@@ -6,7 +6,7 @@ import { codeFrameColumns } from './lib/code-frame.js';
 export const LOG_ORDER = ['error', 'warn', 'info', 'debug'] as const;
 export type LogSeverity = 'error' | 'warn' | 'info' | 'debug';
 export type LogLevel = LogSeverity | 'silent';
-export type LogGroup = 'config' | 'parser' | 'resolver' | 'lint' | 'plugin' | 'server';
+export type LogGroup = 'config' | 'import' | 'lint' | 'parser' | 'plugin' | 'resolver' | 'server';
 
 export interface LogEntry {
   /** Originator of log message */
@@ -42,7 +42,22 @@ export interface DebugEntry {
   timing?: number;
 }
 
-const MESSAGE_COLOR: Record<string, typeof pc.red | undefined> = { error: pc.red, warn: pc.yellow };
+const GROUP_COLOR = {
+  config: pc.cyan,
+  import: pc.green,
+  lint: pc.yellowBright,
+  parser: pc.magenta,
+  plugin: pc.greenBright,
+  resolver: pc.magentaBright,
+  server: pc.gray,
+};
+
+const MESSAGE_COLOR = {
+  error: pc.red,
+  warn: pc.yellow,
+  info: (msg: string) => msg,
+  debug: pc.gray,
+};
 
 const timeFormatter = new Intl.DateTimeFormat('en-us', {
   hour: 'numeric',
@@ -58,11 +73,10 @@ const timeFormatter = new Intl.DateTimeFormat('en-us', {
  * @return {string}
  */
 export function formatMessage(entry: LogEntry, severity: LogSeverity) {
+  const groupColor = GROUP_COLOR[entry.group];
+  const messageColor = MESSAGE_COLOR[severity];
   let message = entry.message;
-  message = `[${entry.group}${entry.label ? `:${entry.label}` : ''}] ${message}`;
-  if (severity in MESSAGE_COLOR) {
-    message = MESSAGE_COLOR[severity]!(message);
-  }
+  message = `${groupColor(`${entry.group}${entry.label ? `:${entry.label}` : ''}:`)} ${messageColor(message)}`;
   if (typeof entry.timing === 'number') {
     message = `${message} ${formatTiming(entry.timing)}`;
   }

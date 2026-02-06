@@ -3,6 +3,7 @@ import { DiscordLogo, GitHubLogo } from '@terrazzo/icons';
 import SearchBox from './SearchBox.js';
 import ThemeSwitcher from './ThemeSwitcher.js';
 import Terrazzo from './terrazzo.astro';
+import VersionSwitcher from './VersionSwitcher.js';
 ---
 
 <div class="header-nav">
@@ -14,10 +15,18 @@ import Terrazzo from './terrazzo.astro';
         <ThemeSwitcher client:load />
       </li>
       <li>
-        <a href="https://github.com/terrazzoapp/terrazzo" title="Terrazzo on GitHub"><GitHubLogo /></a>
+        <VersionSwitcher client:load />
       </li>
       <li>
-        <a href="https://discord.gg/cju3dXyHNd" title="Join Terrazzo on Discord"><DiscordLogo /></a>
+        <a
+          href="https://github.com/terrazzoapp/terrazzo"
+          title="Terrazzo on GitHub"><GitHubLogo /></a
+        >
+      </li>
+      <li>
+        <a href="https://discord.gg/cju3dXyHNd" title="Join Terrazzo on Discord"
+          ><DiscordLogo /></a
+        >
       </li>
     </ul>
   </nav>
@@ -25,18 +34,22 @@ import Terrazzo from './terrazzo.astro';
 
 <style>
   .header-nav {
-    align-items: center;
+    --nav-height: var(--grid-size);
+
     background-color: var(--tz-color-bg-1);
     border-top: 1px solid var(--grid-color);
     border-bottom: 1px solid var(--grid-color);
     color: var(--tz-color-text-1);
-    display: flex;
-    max-height: var(--grid-size);
-    padding-inline-end: var(--tz-space-500);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
 
     @media (width >= 900px) {
+      align-items: center;
       border-top: none;
+      display: flex;
+      max-height: var(--grid-size);
+      padding-inline-end: var(--tz-space-500);
     }
   }
 
@@ -53,19 +66,24 @@ import Terrazzo from './terrazzo.astro';
     }
   }
 
-  .search {
-  }
-
   .nav {
     align-items: center;
-    flex-grow: 0 0 auto;
+    border-top: 1px solid var(--grid-color);
     display: flex;
-    justify-content: flex-end;
+    grid-column: span 2;
+    justify-content: space-between;
     margin-inline-start: auto;
+    padding-inline: var(--tz-space-200);
     position: relative;
+    width: 100%;
 
     @media (width >= 750px) {
+      border-top: none;
       border-inline-start: 1px solid var(--grid-color);
+      flex: 0 0 auto;
+      justify-content: flex-end;
+      padding-inline-start: var(--tz-space-200);
+      width: auto;
     }
 
     ul {
@@ -74,6 +92,7 @@ import Terrazzo from './terrazzo.astro';
       list-style: none;
       margin: 0;
       padding: 0;
+      width: 100%;
 
       @media (width >= 750px) {
         gap: var(--tz-space-300);

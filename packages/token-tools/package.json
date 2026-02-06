@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/token-tools",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.3",
   "description": "Various utilities for token types",
   "license": "MIT",
   "type": "module",
@@ -45,10 +45,7 @@
   },
   "dependencies": {
     "@humanwhocodes/momoa": "catalog:",
-    "culori": "catalog:",
+    "colorjs.io": "catalog:",
     "wildcard-match": "^5.1.4"
-  },
-  "devDependencies": {
-    "@types/culori": "catalog:"
   }
 }

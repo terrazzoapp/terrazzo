@@ -75,6 +75,7 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
           }
           writeFiles(result, { config, logger });
         } catch (err) {
+          // biome-ignore lint/suspicious/noConsole: this is its job
           console.error(pc.red(`✗  ${(err as Error).message || (err as string)}`));
           // don’t exit! we’re watching, so continue as long as possible
         }

@@ -1,13 +1,14 @@
 {
   "name": "@terrazzo/use-color",
-  "version": "0.1.4",
-  "description": "React hook for memoizing and transforming any web-compatible color. Uses Culori.",
+  "version": "0.2.0",
+  "description": "React hook for memoizing and transforming any web-compatible color. Uses Color.js.",
   "license": "MIT",
   "type": "module",
   "keywords": [
     "color",
     "color-module-4",
     "culori",
+    "color.js",
     "react",
     "hooks"
   ],
@@ -15,7 +16,7 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "main": "./index.js",
+  "main": "./dist/index.js",
   "homepage": "https://terrazzo.app/docs/components/color-picker",
   "repository": {
     "type": "git",
@@ -23,7 +24,8 @@
     "directory": "./packages/use-color/"
   },
   "scripts": {
-    "build": "tsc --noEmit && size-limit && attw --profile esm-only --pack .",
+    "build": "rolldown -c && size-limit && attw --profile esm-only --pack .",
+    "dev": "rolldown --watch -c",
     "format": "biome check --fix --unsafe .",
     "lint": "biome check .",
     "test": "vitest run"
@@ -33,13 +35,12 @@
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
-    "@types/culori": "catalog:",
-    "culori": "catalog:"
+    "colorjs.io": "catalog:"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.2.0",
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.1",
+    "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",

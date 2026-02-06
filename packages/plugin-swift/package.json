@@ -40,11 +40,10 @@
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
-    "culori": "catalog:"
+    "colorjs.io": "catalog:"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:*",
-    "@terrazzo/parser": "workspace:^",
-    "@types/culori": "catalog:"
+    "@terrazzo/parser": "workspace:^"
   }
 }

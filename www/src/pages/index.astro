@@ -10,7 +10,10 @@ import DefaultLayout from '../layouts/default.astro';
     <div class="illo"><IlloHome /></div>
     <section class="card w11 h3 m3">
       <h1 class="title">Design systems <small>for everyone</small></h1>
-      <Tri color="var(--tz-color-text-1)" style="bottom: 0; right: 0; transform: rotate(180deg);" />
+      <Tri
+        color="var(--tz-color-text-1)"
+        style="bottom: 0; right: 0; transform: rotate(180deg);"
+      />
     </section>
     <section class="card w13 h4 m2">
       <h3 class="subheading">Used by</h3>
@@ -214,8 +217,8 @@ import DefaultLayout from '../layouts/default.astro';
   <section class="card w15 h4 m2 has-cta">
     <p class="explainer">
       <b>terrazzo</b> is a collection of MIT licensed open source tools to help you
-      create and manage your design system. It’s free to use, forever. Keep full
-      control over your design system!
+      create and manage your design system. It’s free to use, forever. Keep full control
+      over your design system!
     </p>
     <menu class="cta">
       <ButtonLink href="https://github.com/terrazzoapp/terrazzo" target="_blank"
@@ -236,7 +239,10 @@ import DefaultLayout from '../layouts/default.astro';
     box-sizing: border-box;
     color: var(--tz-color-text-1);
     display: block;
-    margin-inline-start: round(calc(0.5 * (100vw - var(--card-width))), var(--grid-size));
+    margin-inline-start: round(
+      calc(0.5 * (100vw - var(--card-width))),
+      var(--grid-size)
+    );
     margin-block: var(--grid-size);
     max-width: 100%;
     padding: calc(0.5 * var(--grid-size));
@@ -270,7 +276,7 @@ import DefaultLayout from '../layouts/default.astro';
   }
 
   .w13 {
-    --card-width:  calc(8 * var(--grid-size));
+    --card-width: calc(8 * var(--grid-size));
     @media (width >= 750px) {
       --card-width: calc(13 * var(--grid-size));
     }
@@ -287,7 +293,10 @@ import DefaultLayout from '../layouts/default.astro';
     --illo-width: calc(13 * var(--grid-size));
     height: 100vh;
     left: calc(2 * var(--grid-size));
-    margin-inline-start: round(calc(0.5 * (100vw - var(--illo-width))), var(--grid-size));
+    margin-inline-start: round(
+      calc(0.5 * (100vw - var(--illo-width))),
+      var(--grid-size)
+    );
     max-width: 100vw;
     overflow: hidden;
     position: absolute;

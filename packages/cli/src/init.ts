@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
-import fs from 'node:fs';
+import fsSync from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { confirm, intro, multiselect, outro, select, spinner } from '@clack/prompts';
@@ -8,7 +9,7 @@ import { pluralize } from '@terrazzo/token-tools';
 import { detect } from 'detect-package-manager';
 import { generate } from 'escodegen';
 import { type ESTree, parseModule } from 'meriyah';
-import { cwd, DEFAULT_CONFIG_PATH, DEFAULT_TOKENS_PATH, loadConfig, printError } from './shared.js';
+import { cwd, loadConfig, printError } from './shared.js';
 
 const INSTALL_COMMAND = {
   npm: 'install -D --silent',
@@ -16,6 +17,21 @@ const INSTALL_COMMAND = {
   pnpm: 'add -D --silent',
   bun: 'install -D --silent',
 };
+
+const SYNTAX_SETTINGS = {
+  format: {
+    indent: { style: '  ' },
+    quotes: 'single',
+    semicolons: true,
+  },
+};
+
+const EXAMPLE_TOKENS_PATH = 'my-tokens.tokens.json';
+
+interface ImportSpec {
+  specifier: string;
+  path: string;
+}
 
 // Local copy of dtcg-examples/index.json. Copied partially for security (no
 // arbitrary injection of URL fetches), but also efficiency (saves a
@@ -77,16 +93,13 @@ export async function initCmd({ logger }: InitOptions) {
     const packageManager = await detect({ cwd: fileURLToPath(cwd) });
 
     // TODO: pass in CLI flags?
-    const { config, configPath } = await loadConfig({ cmd: 'init', flags: {}, logger });
-    const relConfigPath = configPath
-      ? path.relative(fileURLToPath(cwd), fileURLToPath(new URL(configPath)))
-      : undefined;
-
-    let tokensPath = config.tokens[0]!;
-    let startFromDS = !(tokensPath && fs.existsSync(tokensPath));
+    const { config, configPath = 'terrazzo.config.ts' } = await loadConfig({ cmd: 'init', flags: {}, logger });
+    const tokensPath = config.tokens[0]!;
+    const hasExistingConfig = fsSync.existsSync(configPath);
+    let startFromDS = !(tokensPath && fsSync.existsSync(tokensPath));
 
     // 1. tokens
-    if (tokensPath && fs.existsSync(tokensPath)) {
+    if (tokensPath && fsSync.existsSync(tokensPath)) {
       if (
         await confirm({
           message: `Found tokens at ${path.relative(fileURLToPath(cwd), fileURLToPath(tokensPath))}. Overwrite with a new design system?`,
@@ -94,8 +107,6 @@ export async function initCmd({ logger }: InitOptions) {
       ) {
         startFromDS = true;
       }
-    } else {
-      tokensPath = DEFAULT_TOKENS_PATH;
     }
 
     if (startFromDS) {
@@ -111,6 +122,7 @@ export async function initCmd({ logger }: InitOptions) {
           ],
         })) as keyof typeof DESIGN_SYSTEMS
       ] as (typeof DESIGN_SYSTEMS)[DesignSystem] | undefined;
+
       if (ds) {
         const s = spinner();
         s.start('Downloading');
@@ -120,11 +132,25 @@ export async function initCmd({ logger }: InitOptions) {
           subprocess.on('error', reject);
           subprocess.on('exit', resolve);
         });
-        await s.stop('Download complete');
+        s.stop('Download complete');
+
+        if (hasExistingConfig) {
+          await updateConfigTokens(configPath, ds.tokens);
+        } else {
+          await newConfigFile(configPath, ds.tokens);
+        }
+      } else {
+        startFromDS = false; // we’ll use this later in the final check
       }
     }
 
-    // 2. plugins
+    // 2. If a user selected no DS, and doesn’t have a config file, create one
+    if (!hasExistingConfig) {
+      await newConfigFile(configPath, [EXAMPLE_TOKENS_PATH]);
+      await fs.writeFile(EXAMPLE_TOKENS_PATH, JSON.stringify(EXAMPLE_TOKENS, undefined, 2));
+    }
+
+    // 3. plugins
     const existingPlugins = config.plugins.map((p) => p.name);
     const pluginSelection = await multiselect({
       message: 'Install plugins?',
@@ -140,11 +166,11 @@ export async function initCmd({ logger }: InitOptions) {
       ? Array.from(new Set(pluginSelection.flat().filter((p) => !existingPlugins.includes(p))))
       : [];
     if (newPlugins?.length) {
-      const plugins = newPlugins.map((p) => ({ specifier: p.replace('@terrazzo/plugin-', ''), package: p }));
+      const plugins: ImportSpec[] = newPlugins.map((p) => ({ specifier: p.replace('@terrazzo/plugin-', ''), path: p }));
       const pluginCount = `${newPlugins.length} ${pluralize(newPlugins.length, 'plugin', 'plugins')}`;
       const s = spinner();
       s.start(`Installing ${pluginCount}`);
-      // note: thi sis async to show the spinner
+      // note: this is async to show the spinner
       await new Promise((resolve, reject) => {
         // security: spawn() is much safer than exec()
         const subprocess = spawn(packageManager, [INSTALL_COMMAND[packageManager], newPlugins.join(' ')], { cwd });
@@ -152,101 +178,35 @@ export async function initCmd({ logger }: InitOptions) {
         subprocess.on('exit', resolve);
       });
       s.message('Updating config');
-      if (configPath) {
-        const ast = parseModule(fs.readFileSync(configPath, 'utf8'));
-        const astExport = ast.body.find((node) => node.type === 'ExportDefaultDeclaration');
 
-        // 2a. add plugin imports
-        // note: this has the potential to duplicate plugins, but we tried our
-        // best to filter already, and this may be the user’s fault if they
-        // selected to install a plugin already installed. But also, this is
-        // easily-fixable, so let’s not waste too much time here (and possibly
-        // introduce bugs).
-        ast.body.push(
-          ...plugins.map(
-            (p) =>
-              ({
-                type: 'ImportDeclaration',
-                source: { type: 'Literal', value: p.package },
-                specifiers: [{ type: 'ImportDefaultSpecifier', local: { type: 'Identifier', name: p.specifier } }],
-                attributes: [],
-              }) as ESTree.ImportDeclaration,
-          ),
-        );
+      await updateConfigPlugins(configPath, plugins);
 
-        // 2b. add plugins to config.plugins
-        if (!astExport) {
-          logger.error({ group: 'config', message: `SyntaxError: ${relConfigPath} does not have default export.` });
-          return;
-        }
-        const astConfig = (
-          astExport.declaration.type === 'CallExpression'
-            ? // export default defineConfig({ ... })
-              astExport.declaration.arguments[0]
-            : // export default { ... }
-              astExport.declaration
-        ) as ESTree.ObjectExpression;
-        if (astConfig.type !== 'ObjectExpression') {
-          logger.error({
-            group: 'config',
-            message: `Config: expected object default export, received ${astConfig.type}`,
-          });
-          return;
-        }
-        const pluginsArray = (
-          astConfig.properties.find(
-            (property) =>
-              property.type === 'Property' && property.key.type === 'Identifier' && property.key.name === 'plugins', // ASTs are so fun 😑
-          ) as ESTree.Property
-        )?.value as ESTree.ArrayExpression | undefined;
-        const pluginsAst = plugins.map(
-          (p) =>
-            ({
-              type: 'CallExpression' as const,
-              callee: {
-                type: 'Identifier' as const,
-                name: p.specifier,
-              },
-              arguments: [],
-              optional: false,
-            }) as ESTree.CallExpression,
-        );
-        if (pluginsArray) {
-          pluginsArray.elements.push(...pluginsAst);
-        } else {
-          astConfig.properties.push({
-            type: 'Property',
-            key: { type: 'Identifier', name: 'plugins' },
-            value: { type: 'ArrayExpression', elements: pluginsAst },
-            kind: 'init',
-            computed: false,
-            method: false,
-            shorthand: false,
-          });
-        }
+      s.stop(`Installed ${pluginCount}`);
+    }
 
-        // 2c. update new file (and we’ll probably format it wrong but hey)
-        fs.writeFileSync(
-          configPath,
-          generate(ast, {
-            format: {
-              indent: { style: '  ' },
-              quotes: 'single',
-              semicolons: true,
-            },
-          }),
-        );
-      } else {
-        // 2a. write new config file (easy)
-        fs.writeFileSync(
-          DEFAULT_CONFIG_PATH,
-          `import { defineConfig } from '@terrazzo/cli';
-${plugins.map((p) => `import ${p.specifier} from '${p.package}';`).join('\n')}
+    // 4. No tokens, no plugins
+    if (!startFromDS && !newPlugins?.length) {
+      outro('Nothing to do. Exiting.');
+      return;
+    }
+
+    outro('⛋ Done! 🎉');
+  } catch (err) {
+    printError((err as Error).message);
+    process.exit(1);
+  }
+}
+
+async function newConfigFile(configPath: string, tokens: string[], imports: ImportSpec[] = []) {
+  await fs.writeFile(
+    configPath,
+    `import { defineConfig } from '@terrazzo/cli';
+${imports.map((p) => `import ${p.specifier} from '${p.path}';`).join('\n')}
 
 export default defineConfig({
-  tokens: ['./tokens.json'],
+  tokens: ['${tokens.join("', '")}'],
   plugins: [
-    ${plugins.map((p) => `${p.specifier}(),`).join('\n    ')}
+    ${imports.length ? imports.map((p) => `${p.specifier}(),`).join('\n    ') : '/** @see https://terrazzo.app/docs */'}
   ],
   outDir: './dist/',
   lint: {
@@ -275,14 +235,192 @@ export default defineConfig({
     },
   },
 });`,
-        );
-      }
-      s.stop(`Installed ${pluginCount}`);
-    }
-
-    outro('⛋ Done! 🎉');
-  } catch (err) {
-    printError((err as Error).message);
-    process.exit(1);
-  }
+  );
 }
+
+function getConfigObjFromAst(ast: ESTree.Program, configPath: string) {
+  const astExport = ast.body.find((node) => node.type === 'ExportDefaultDeclaration');
+  if (!astExport) {
+    const relConfigPath = configPath
+      ? path.relative(fileURLToPath(cwd), fileURLToPath(new URL(configPath)))
+      : undefined;
+    throw new Error(`SyntaxError: ${relConfigPath} does not have default export.`);
+  }
+
+  const astConfig = (
+    astExport.declaration.type === 'CallExpression'
+      ? // export default defineConfig({ ... })
+        astExport.declaration.arguments[0]
+      : // export default { ... }
+        astExport.declaration
+  ) as ESTree.ObjectExpression;
+
+  if (astConfig.type !== 'ObjectExpression') {
+    throw new Error(`Config: expected object default export, received ${astConfig.type}.`);
+  }
+
+  return astConfig;
+}
+
+async function updateConfigTokens(configPath: string, tokens: string[]) {
+  const ast = parseModule(await fs.readFile(configPath, 'utf8'));
+  const astConfig = getConfigObjFromAst(ast, configPath);
+
+  let tokensKey = astConfig.properties.find(
+    (p) => p.type === 'Property' && p.key.type === 'Identifier' && p.key.name === 'tokens',
+  ) as ESTree.Property | undefined;
+  if (!tokensKey) {
+    tokensKey = {
+      type: 'Property' as const,
+      key: { type: 'Identifier', name: 'tokens' },
+      method: false,
+      computed: false,
+      shorthand: false,
+      value: {
+        type: 'ArrayExpression',
+        elements: tokens.map((value) => ({ type: 'Literal', value, raw: `'${value}'` })),
+      },
+    } as ESTree.Property;
+    astConfig.properties.unshift(tokensKey); // inject into first position
+  }
+
+  await fs.writeFile(configPath, generate(ast, SYNTAX_SETTINGS));
+}
+
+/**
+ * Add plugin imports
+ * note: this has the potential to duplicate plugins, but we tried our
+ * best to filter already, and this may be the user’s fault if they
+ * selected to install a plugin already installed. But also, this is
+ * easily-fixable, so let’s not waste too much time here (and possibly
+ * introduce bugs).
+ */
+async function updateConfigPlugins(configPath: string, plugins: ImportSpec[]) {
+  const ast = parseModule(await fs.readFile(configPath, 'utf8'));
+
+  ast.body.push(
+    ...plugins.map(
+      (p) =>
+        ({
+          type: 'ImportDeclaration' as const,
+          source: { type: 'Literal', value: p.path },
+          specifiers: [{ type: 'ImportDefaultSpecifier', local: { type: 'Identifier', name: p.specifier } }],
+          attributes: [],
+        }) as ESTree.ImportDeclaration,
+    ),
+  );
+
+  // add plugins to config.plugins
+  const astConfig = getConfigObjFromAst(ast, configPath);
+  const pluginsArray = (
+    astConfig.properties.find(
+      (property) =>
+        property.type === 'Property' && property.key.type === 'Identifier' && property.key.name === 'plugins', // ASTs are so fun 😑
+    ) as ESTree.Property
+  )?.value as ESTree.ArrayExpression | undefined;
+  const pluginsAst = plugins.map(
+    (p) =>
+      ({
+        type: 'CallExpression' as const,
+        callee: { type: 'Identifier' as const, name: p.specifier },
+        arguments: [],
+        optional: false,
+      }) as ESTree.CallExpression,
+  );
+
+  if (pluginsArray) {
+    pluginsArray.elements.push(...pluginsAst);
+  } else {
+    astConfig.properties.push({
+      type: 'Property',
+      key: { type: 'Identifier', name: 'plugins' },
+      value: { type: 'ArrayExpression', elements: pluginsAst },
+      kind: 'init',
+      computed: false,
+      method: false,
+      shorthand: false,
+    });
+  }
+
+  await fs.writeFile(configPath, generate(ast, SYNTAX_SETTINGS));
+}
+
+const EXAMPLE_TOKENS = {
+  color: {
+    $description: 'Color tokens',
+    black: {
+      '100': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.05, hex: '#0c0c0d' },
+      },
+      '200': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.1, hex: '#0c0c0d' },
+      },
+      '300': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.2, hex: '#0c0c0d' },
+      },
+      '400': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.34, hex: '#0c0c04' },
+      },
+      '500': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.7, hex: '#0c0c0d' },
+      },
+      '600': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.8, hex: '#0c0c0d' },
+      },
+      '700': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.85, hex: '#0c0c0d' },
+      },
+      '800': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.9, hex: '#0c0c0d' },
+      },
+      '900': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.95, hex: '#0c0c0d' },
+      },
+      '1000': {
+        $type: 'color',
+        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0, hex: '#0c0c0d' },
+      },
+    },
+  },
+  border: {
+    $description: 'Border tokens',
+    default: {
+      type: 'border',
+      $value: {
+        color: '{color.black.900}',
+        style: 'solid',
+        width: { value: 1, unit: 'px' },
+      },
+    },
+  },
+  radius: {
+    $description: 'Corner radius tokens',
+    '100': { $value: { value: 0.25, unit: 'rem' } },
+  },
+  space: {
+    $description: 'Dimension tokens',
+    '100': { $value: { value: 0.25, unit: 'rem' } },
+  },
+  typography: {
+    $description: 'Typography tokens',
+    body: {
+      $type: 'typography',
+      $value: {
+        fontFamily: '{typography.family.sans}',
+        fontSize: '{typography.scale.03}',
+        fontWeight: '{typography.weight.regular}',
+        letterSpacing: { value: 0, unit: 'em' },
+        lineHeight: 1,
+      },
+    },
+  },
+};

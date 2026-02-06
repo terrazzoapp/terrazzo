@@ -54,7 +54,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Migrate to the new object format, e.g. "#ff0000" → { "colorSpace": "srgb", "components": [1, 0, 0] } }
+          error: `lint:core/valid-color: Migrate to the new object format, e.g. "#ff0000" → { "colorSpace": "srgb", "components": [1, 0, 0] } }
 
   3 |     "cobalt": {
   4 |       "$type": "color",
@@ -64,7 +64,7 @@ describe('8.1 Color', () => {
   7 |   }
   8 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -78,7 +78,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Expected components to be array of numbers, received undefined.
+          error: `lint:core/valid-color: Expected components to be array of numbers, received undefined.
 
   3 |     "cobalt": {
   4 |       "$type": "color",
@@ -88,7 +88,7 @@ describe('8.1 Color', () => {
   7 |         "channels": [
   8 |           0.3,
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -102,7 +102,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Could not parse color "".
+          error: `lint:core/valid-color: Could not parse color "".
 
   2 |   "color": {
   3 |     "$type": "color",
@@ -111,7 +111,7 @@ describe('8.1 Color', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -125,7 +125,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Could not parse color 0.
+          error: `lint:core/valid-color: Could not parse color 0.
 
   2 |   "color": {
   3 |     "$type": "color",
@@ -134,7 +134,7 @@ describe('8.1 Color', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -148,7 +148,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Invalid color space: undefined. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, oklab, oklch, okhsv, prophoto-rgb, rec2020, srgb, srgb-linear, xyz-d50, xyz, or xyz-d65
+          error: `lint:core/valid-color: Invalid color space: undefined. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, okhsv, oklab, oklch, prophoto-rgb, rec2020, srgb, srgb-linear, xyz, xyz-d50, or xyz-d65.
 
   3 |     "cobalt": {
   4 |       "$type": "color",
@@ -158,7 +158,7 @@ describe('8.1 Color', () => {
   7 |           0.3,
   8 |           0.6,
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -172,7 +172,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Expected components to be array of numbers, received undefined.
+          error: `lint:core/valid-color: Expected components to be array of numbers, received undefined.
 
   3 |     "cobalt": {
   4 |       "$type": "color",
@@ -182,7 +182,7 @@ describe('8.1 Color', () => {
   7 |       }
   8 |     }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -207,7 +207,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Expected 3 components, received 4.
+          error: `lint:core/valid-color: Expected 3 components, received 4.
 
    8 |           "$value": {
    9 |             "colorSpace": "srgb",
@@ -217,7 +217,7 @@ describe('8.1 Color', () => {
   12 |               0.6,
   13 |               1,
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -233,7 +233,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Invalid color space: mondrian. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, oklab, oklch, okhsv, prophoto-rgb, rec2020, srgb, srgb-linear, xyz-d50, xyz, or xyz-d65
+          error: `lint:core/valid-color: Invalid color space: mondrian. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, okhsv, oklab, oklch, prophoto-rgb, rec2020, srgb, srgb-linear, xyz, xyz-d50, or xyz-d65.
 
   4 |       "$type": "color",
   5 |       "$value": {
@@ -243,7 +243,7 @@ describe('8.1 Color', () => {
   8 |           0.3,
   9 |           0.6,
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -261,7 +261,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Alpha quack not in range 0 – 1.
+          error: `lint:core/valid-color: Alpha quack not in range 0 – 1.
 
   10 |           1
   11 |         ],
@@ -271,7 +271,7 @@ describe('8.1 Color', () => {
   14 |     }
   15 |   }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -289,7 +289,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Could not parse color #abcde.
+          error: `lint:core/valid-color: Could not parse color #abcde.
 
    5 |       "$value": {
    6 |         "colorSpace": "srgb",
@@ -299,7 +299,7 @@ describe('8.1 Color', () => {
    9 |           0.3,
   10 |           0.6,
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -317,7 +317,7 @@ describe('8.1 Color', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Unknown property "bad".
+          error: `lint:core/valid-color: Unknown property "bad".
 
   10 |           1
   11 |         ],
@@ -327,7 +327,7 @@ describe('8.1 Color', () => {
   14 |     }
   15 |   }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

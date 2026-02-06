@@ -1,5 +1,5 @@
-import { tokenToCulori } from '@terrazzo/token-tools';
-import { wcagContrast } from 'culori';
+import { tokenToColor } from '@terrazzo/token-tools';
+import { contrastWCAG21 } from 'colorjs.io/fn';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -66,12 +66,12 @@ const rule: LintRule<typeof ERROR_INSUFFICIENT_CONTRAST, RuleA11yMinContrastOpti
       }
 
       // Note: if these culors were unparseable, they would have already thrown an error before the linter
-      const a = tokenToCulori(tokens[foreground].$value)!;
-      const b = tokenToCulori(tokens[background].$value)!;
+      const a = tokenToColor(tokens[foreground].$value)!;
+      const b = tokenToColor(tokens[background].$value)!;
 
       // Note: for the purposes of WCAG 2, foreground and background don’t
       // matter. But in other contrast algorithms, they do.
-      const contrast = wcagContrast(a, b);
+      const contrast = contrastWCAG21(a, b);
       const min = WCAG2_MIN_CONTRAST[options.level ?? 'AA'][largeText ? 'large' : 'default'];
       if (contrast < min) {
         report({
