@@ -243,7 +243,7 @@ describe('JSON $refs', () => {
     } catch (err) {
       expect(
         stripAnsi((err as Error).message),
-      ).toMatch(`[parser:init] $ref "#/" can’t recursively embed its parent document
+      ).toMatch(`parser:init: $ref "#/" can’t recursively embed its parent document
 
   2 |   "$ref": "#\\/"
   3 | }`);
@@ -263,7 +263,7 @@ describe('JSON $refs', () => {
       await parse([{ filename: DEFAULT_FILENAME, src }], { config });
       expect(true).toBe(false);
     } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatch(`[parser:init] Circular $ref detected: "#/color/grey"
+      expect(stripAnsi((err as Error).message)).toMatch(`parser:init: Circular $ref detected: "#/color/grey"
 
   3 |     "$type": "color",
   4 |     "gray": {
@@ -287,7 +287,7 @@ describe('JSON $refs', () => {
       await parse([{ filename: DEFAULT_FILENAME, src }], { config });
       expect(true).toBe(false);
     } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatch(`[parser:init] Invalid $ref. Expected string.
+      expect(stripAnsi((err as Error).message)).toMatch(`parser:init: Invalid $ref. Expected string.
 
   4 |     "blue": {
   5 |       "100": {

@@ -50,7 +50,7 @@ describe('8.6 Cubic Bézier', () => {
           { filename: DEFAULT_FILENAME, src: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1, 5] } } },
         ],
         want: {
-          error: `[lint:core/valid-cubic-bezier] Expected [number, number, number, number].
+          error: `lint:core/valid-cubic-bezier: Expected [number, number, number, number].
 
   2 |   "cubic": {
   3 |     "$type": "cubicBezier",
@@ -60,7 +60,7 @@ describe('8.6 Cubic Bézier', () => {
   6 |       1,
   7 |       0.68,
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -74,7 +74,7 @@ describe('8.6 Cubic Bézier', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-cubic-bezier] x values must be between 0-1.
+          error: `lint:core/valid-cubic-bezier: x values must be between 0-1.
 
   3 |     "$type": "cubicBezier",
   4 |     "$value": [
@@ -84,7 +84,7 @@ describe('8.6 Cubic Bézier', () => {
   7 |       "68%",
   8 |       "100%"
 
-[lint:core/valid-cubic-bezier] x values must be between 0-1.
+lint:core/valid-cubic-bezier: x values must be between 0-1.
 
    5 |       "33%",
    6 |       "100%",
@@ -94,7 +94,7 @@ describe('8.6 Cubic Bézier', () => {
    9 |     ]
   10 |   }
 
-[lint:core/valid-cubic-bezier] y values must be a valid number.
+lint:core/valid-cubic-bezier: y values must be a valid number.
 
   4 |     "$value": [
   5 |       "33%",
@@ -104,7 +104,7 @@ describe('8.6 Cubic Bézier', () => {
   8 |       "100%"
   9 |     ]
 
-[lint:core/valid-cubic-bezier] y values must be a valid number.
+lint:core/valid-cubic-bezier: y values must be a valid number.
 
    6 |       "100%",
    7 |       "68%",
@@ -114,7 +114,7 @@ describe('8.6 Cubic Bézier', () => {
   10 |   }
   11 | }
 
-[lint:lint] 4 errors`,
+lint:lint: 4 errors`,
         },
       },
     ],

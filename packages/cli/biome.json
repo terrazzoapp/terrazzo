@@ -5,13 +5,6 @@
   "files": {
     "includes": ["bin/**", "src/**", "test/**/*.test.ts", "**/*.tsx"]
   },
-  "linter": {
-    "rules": {
-      "suspicious": {
-        "noConsole": "off"
-      }
-    }
-  },
   "overrides": [
     {
       "includes": ["./bin/cli.js"],

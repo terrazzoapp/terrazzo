@@ -45,7 +45,7 @@ describe('8.5 Duration', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { quick: { $type: 'duration', $value: '100ms' } } }],
         want: {
-          error: `[lint:core/valid-duration] Migrate to the new object format: { "value": 2, "unit": "ms" }.
+          error: `lint:core/valid-duration: Migrate to the new object format: { "value": 2, "unit": "ms" }.
 
   2 |   "quick": {
   3 |     "$type": "duration",
@@ -54,7 +54,7 @@ describe('8.5 Duration', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -63,7 +63,7 @@ describe('8.5 Duration', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: '' } } }],
         want: {
-          error: `[lint:core/valid-duration] Migrate to the new object format: { "value": 2, "unit": "ms" }.
+          error: `lint:core/valid-duration: Migrate to the new object format: { "value": 2, "unit": "ms" }.
 
   2 |   "moderate": {
   3 |     "$type": "duration",
@@ -72,7 +72,7 @@ describe('8.5 Duration', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -81,7 +81,7 @@ describe('8.5 Duration', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: 'ms' } } }],
         want: {
-          error: `[lint:core/valid-duration] Migrate to the new object format: { "value": 2, "unit": "ms" }.
+          error: `lint:core/valid-duration: Migrate to the new object format: { "value": 2, "unit": "ms" }.
 
   2 |   "moderate": {
   3 |     "$type": "duration",
@@ -90,7 +90,7 @@ describe('8.5 Duration', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -99,7 +99,7 @@ describe('8.5 Duration', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: '250' } } }],
         want: {
-          error: `[lint:core/valid-duration] Migrate to the new object format: { "value": 2, "unit": "ms" }.
+          error: `lint:core/valid-duration: Migrate to the new object format: { "value": 2, "unit": "ms" }.
 
   2 |   "moderate": {
   3 |     "$type": "duration",
@@ -108,7 +108,7 @@ describe('8.5 Duration', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -117,7 +117,7 @@ describe('8.5 Duration', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: 250 } } }],
         want: {
-          error: `[lint:core/valid-duration] Migrate to the new object format: { "value": 2, "unit": "ms" }.
+          error: `lint:core/valid-duration: Migrate to the new object format: { "value": 2, "unit": "ms" }.
 
   2 |   "moderate": {
   3 |     "$type": "duration",
@@ -126,7 +126,7 @@ describe('8.5 Duration', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -140,7 +140,7 @@ describe('8.5 Duration', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-duration] Unknown unit ns. Expected "ms" or "s".
+          error: `lint:core/valid-duration: Unknown unit ns. Expected "ms" or "s".
 
   4 |     "$value": {
   5 |       "value": 200,
@@ -150,7 +150,7 @@ describe('8.5 Duration', () => {
   8 |   }
   9 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -164,7 +164,7 @@ describe('8.5 Duration', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-duration] Unknown property: "bad".
+          error: `lint:core/valid-duration: Unknown property: "bad".
 
    5 |       "value": 100,
    6 |       "unit": "ms",
@@ -174,7 +174,7 @@ describe('8.5 Duration', () => {
    9 |   }
   10 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

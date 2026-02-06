@@ -75,16 +75,14 @@ function normalizeTokens({
       } else {
         logger.error({
           group: 'config',
-          label: 'tokens',
-          message: `Expected array of strings, encountered ${JSON.stringify(file)}`,
+          message: `tokens: Expected array of strings, encountered ${JSON.stringify(file)}`,
         });
       }
     }
   } else {
     logger.error({
       group: 'config',
-      label: 'tokens',
-      message: `Expected string or array of strings, received ${typeof rawConfig.tokens}`,
+      message: `tokens: Expected string or array of strings, received ${typeof rawConfig.tokens}`,
     });
   }
   for (let i = 0; i < config.tokens!.length; i++) {
@@ -111,8 +109,7 @@ function normalizeOutDir({ config, cwd, logger }: { config: ConfigInit; logger: 
   } else if (typeof config.outDir !== 'string') {
     logger.error({
       group: 'config',
-      label: 'outDir',
-      message: `Expected string, received ${JSON.stringify(config.outDir)}`,
+      message: `outDir: Expected string, received ${JSON.stringify(config.outDir)}`,
     });
   } else {
     config.outDir = new URL(config.outDir, cwd);
@@ -130,8 +127,7 @@ function normalizePlugins({ config, logger }: { config: ConfigInit; logger: Logg
   if (!Array.isArray(config.plugins)) {
     logger.error({
       group: 'config',
-      label: 'plugins',
-      message: `Expected array of plugins, received ${JSON.stringify(config.plugins)}`,
+      message: `plugins: Expected array of plugins, received ${JSON.stringify(config.plugins)}`,
     });
   }
   config.plugins.push(coreLintPlugin());
@@ -140,8 +136,7 @@ function normalizePlugins({ config, logger }: { config: ConfigInit; logger: Logg
     if (typeof plugin !== 'object') {
       logger.error({
         group: 'config',
-        label: `plugin[${n}]`,
-        message: `Expected output plugin, received ${JSON.stringify(plugin)}`,
+        message: `plugin#${n}: Expected output plugin, received ${JSON.stringify(plugin)}`,
       });
     } else if (!plugin.name) {
       logger.error({ group: 'config', label: `plugin[${n}]`, message: `Missing "name"` });
@@ -170,8 +165,7 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
       if (typeof config.lint.build.enabled !== 'boolean') {
         logger.error({
           group: 'config',
-          label: 'lint › build › enabled',
-          message: `Expected boolean, received ${JSON.stringify(config.lint.build)}`,
+          message: `lint.build.enabled: Expected boolean, received ${JSON.stringify(config.lint.build)}`,
         });
       }
     } else {
@@ -184,8 +178,7 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
       if (config.lint.rules === null || typeof config.lint.rules !== 'object' || Array.isArray(config.lint.rules)) {
         logger.error({
           group: 'config',
-          label: 'lint › rules',
-          message: `Expected object, received ${JSON.stringify(config.lint.rules)}`,
+          message: `lint.rules: Expected object, received ${JSON.stringify(config.lint.rules)}`,
         });
         return;
       }
@@ -199,8 +192,7 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
         if (!pluginRules || Array.isArray(pluginRules) || typeof pluginRules !== 'object') {
           logger.error({
             group: 'config',
-            label: `plugin › ${plugin.name}`,
-            message: `Expected object for lint() received ${JSON.stringify(pluginRules)}`,
+            message: `${plugin.name}: Expected object for lint() received ${JSON.stringify(pluginRules)}`,
           });
           continue;
         }
@@ -211,8 +203,7 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
           if (allRules.get(rule) && allRules.get(rule) !== plugin.name) {
             logger.error({
               group: 'config',
-              label: `plugin › ${plugin.name}`,
-              message: `Duplicate rule ${rule} already registered by plugin ${allRules.get(rule)}`,
+              message: `${plugin.name}: Duplicate rule ${rule} already registered by plugin ${allRules.get(rule)}`,
             });
           }
           allRules.set(rule, plugin.name);
@@ -223,8 +214,7 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
         if (!allRules.has(id)) {
           logger.error({
             group: 'config',
-            label: `lint › rule › ${id}`,
-            message: 'Unknown rule. Is the plugin installed?',
+            message: `lint.rules.${id}: Unknown rule. Is the plugin installed?`,
           });
         }
 
@@ -239,8 +229,7 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
         } else if (value !== undefined) {
           logger.error({
             group: 'config',
-            label: `lint › rule › ${id}`,
-            message: `Invalid eyntax. Expected \`string | number | Array\`, received ${JSON.stringify(value)}}`,
+            message: `lint.rules.${id}: Invalid syntax. Expected \`string | number | Array\`, received ${JSON.stringify(value)}}`,
           });
         }
         config.lint.rules[id] = [severity, options];
@@ -248,8 +237,7 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
           if (severity !== 0 && severity !== 1 && severity !== 2) {
             logger.error({
               group: 'config',
-              label: `lint › rule › ${id}`,
-              message: `Invalid number ${severity}. Specify 0 (off), 1 (warn), or 2 (error).`,
+              message: `lint.rules.${id}: Invalid number ${severity}. Specify 0 (off), 1 (warn), or 2 (error).`,
             });
           }
           config.lint.rules[id]![0] = (['off', 'warn', 'error'] as const)[severity]!;
@@ -257,15 +245,13 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
           if (severity !== 'off' && severity !== 'warn' && severity !== 'error') {
             logger.error({
               group: 'config',
-              label: `lint › rule › ${id}`,
-              message: `Invalid string ${JSON.stringify(severity)}. Specify "off", "warn", or "error".`,
+              message: `lint.rules.${id}: Invalid string ${JSON.stringify(severity)}. Specify "off", "warn", or "error".`,
             });
           }
         } else if (value !== null) {
           logger.error({
             group: 'config',
-            label: `lint › rule › ${id}`,
-            message: `Expected string or number, received ${JSON.stringify(value)}`,
+            message: `lint.rules.${id}: Expected string or number, received ${JSON.stringify(value)}`,
           });
         }
       }
@@ -287,15 +273,13 @@ function normalizeIgnore({ config, logger }: { config: ConfigInit; logger: Logge
   if (!Array.isArray(config.ignore.tokens) || config.ignore.tokens.some((x) => typeof x !== 'string')) {
     logger.error({
       group: 'config',
-      label: 'ignore › tokens',
-      message: `Expected array of strings, received ${JSON.stringify(config.ignore.tokens)}`,
+      message: `ignore.tokens: Expected array of strings, received ${JSON.stringify(config.ignore.tokens)}`,
     });
   }
   if (typeof config.ignore.deprecated !== 'boolean') {
     logger.error({
       group: 'config',
-      label: 'ignore › deprecated',
-      message: `Expected boolean, received ${JSON.stringify(config.ignore.deprecated)}`,
+      message: `ignore.deprecated: Expected boolean, received ${JSON.stringify(config.ignore.deprecated)}`,
     });
   }
 }

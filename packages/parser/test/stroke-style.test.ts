@@ -50,7 +50,7 @@ describe('9.2 Stroke Style', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { 'border-style': { $type: 'strokeStyle', $value: 'thicc' } } }],
         want: {
-          error: `[lint:core/valid-stroke-style] Value most be one of solid, dashed, dotted, double, groove, ridge, outset, or inset.
+          error: `lint:core/valid-stroke-style: Value most be one of solid, dashed, dotted, double, groove, ridge, outset, or inset.
 
   2 |   "border-style": {
   3 |     "$type": "strokeStyle",
@@ -59,7 +59,7 @@ describe('9.2 Stroke Style', () => {
   5 |   }
   6 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -78,7 +78,7 @@ describe('9.2 Stroke Style', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-dimension] Migrate to the new object format: { "value": 10, "unit": "px" }.
+          error: `lint:core/valid-dimension: Migrate to the new object format: { "value": 10, "unit": "px" }.
 
    5 |       "lineCap": "round",
    6 |       "dashArray": [
@@ -88,7 +88,7 @@ describe('9.2 Stroke Style', () => {
    9 |       ]
   10 |     }
 
-[lint:core/valid-dimension] Migrate to the new object format: { "value": 10, "unit": "px" }.
+lint:core/valid-dimension: Migrate to the new object format: { "value": 10, "unit": "px" }.
 
    6 |       "dashArray": [
    7 |         "0.25rem",
@@ -98,7 +98,7 @@ describe('9.2 Stroke Style', () => {
   10 |     }
   11 |   }
 
-[lint:lint] 2 errors`,
+lint:lint: 2 errors`,
         },
       },
     ],
@@ -124,7 +124,7 @@ describe('9.2 Stroke Style', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-stroke-style] Unknown property: "bad".
+          error: `lint:core/valid-stroke-style: Unknown property: "bad".
 
   14 |         }
   15 |       ],
@@ -134,7 +134,7 @@ describe('9.2 Stroke Style', () => {
   18 |   }
   19 | }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

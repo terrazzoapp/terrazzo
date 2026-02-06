@@ -119,7 +119,7 @@ describe('9.5 Shadow', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-dimension] Invalid dimension: 0. Expected object with "value" and "unit".
+          error: `lint:core/valid-dimension: Invalid dimension: 0. Expected object with "value" and "unit".
 
   13 |           "alpha": 0.1
   14 |         },
@@ -129,7 +129,7 @@ describe('9.5 Shadow', () => {
   17 |           "value": 0.25,
   18 |           "unit": "rem"
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -153,7 +153,7 @@ describe('9.5 Shadow', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-shadow] Missing required properties: color, offsetX, offsetY, blur, and spread.
+          error: `lint:core/valid-shadow: Missing required properties: color, offsetX, offsetY, blur, and spread.
 
   2 |   "shadow-base": {
   3 |     "$type": "shadow",
@@ -163,7 +163,7 @@ describe('9.5 Shadow', () => {
   6 |         "value": 0,
   7 |         "unit": "rem"
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],
@@ -231,7 +231,7 @@ describe('9.5 Shadow', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-shadow] Unknown property "bad".
+          error: `lint:core/valid-shadow: Unknown property "bad".
 
   30 |         },
   31 |         "inset": false,
@@ -241,7 +241,7 @@ describe('9.5 Shadow', () => {
   34 |     ]
   35 |   }
 
-[lint:lint] 1 error`,
+lint:lint: 1 error`,
         },
       },
     ],

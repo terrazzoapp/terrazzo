@@ -24,7 +24,7 @@ describe('Resolver module', () => {
             },
           ],
           want: {
-            error: `[parser:init] Resolver must be the only input, found 2 sources.`,
+            error: `parser:init: Resolver must be the only input, found 2 sources.`,
           },
         },
       ],
@@ -64,7 +64,7 @@ describe('Resolver module', () => {
           given: {
             resolutionOrder: [{ $ref: '#/sets/base' }],
           },
-          want: `[parser:resolver] Missing "version".
+          want: `parser:resolver: Missing "version".
 
 > 1 | {
     | ^
@@ -80,7 +80,7 @@ describe('Resolver module', () => {
             version: 1,
             resolutionOrder: [{ $ref: '#/sets/base' }],
           },
-          want: `[parser:resolver] Expected "version" to be "2025.10".
+          want: `parser:resolver: Expected "version" to be "2025.10".
 
   1 | {
 > 2 |   "version": 1,
@@ -105,7 +105,7 @@ describe('Resolver module', () => {
             },
             resolutionOrder: [{ $ref: '#/modifiers/theme' }],
           },
-          want: `[parser:resolver] Expected array.
+          want: `parser:resolver: Expected array.
 
    9 |           }
   10 |         ],
@@ -122,7 +122,7 @@ describe('Resolver module', () => {
           given: {
             version: '2025.10',
           },
-          want: `[parser:resolver] Missing "resolutionOrder".
+          want: `parser:resolver: Missing "resolutionOrder".
 
 > 1 | {
     | ^
@@ -137,7 +137,7 @@ describe('Resolver module', () => {
             version: '2025.10',
             resolutionOrder: { foo: 'bar' },
           },
-          want: `[parser:resolver] Expected array.
+          want: `parser:resolver: Expected array.
 
   1 | {
   2 |   "version": "2025.10",
