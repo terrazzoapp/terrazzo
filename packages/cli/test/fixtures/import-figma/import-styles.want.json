@@ -8,16 +8,8 @@
         {
           "elevation": {
             "100": {
-              "$description": "Default shadow.",
-              "$extensions": {
-                "figma.com": {
-                  "name": "elevation/100",
-                  "node_id": "16:3",
-                  "created_at": "2025-10-30T12:00:00Z",
-                  "updated_at": "2025-10-30T12:00:00Z"
-                }
-              },
               "$type": "shadow",
+              "$description": "Default shadow.",
               "$value": [
                 {
                   "inset": false,
@@ -47,22 +39,22 @@
                     "alpha": 0.25
                   }
                 }
-              ]
+              ],
+              "$extensions": {
+                "figma.com": {
+                  "name": "elevation/100",
+                  "node_id": "16:3",
+                  "created_at": "2025-10-30T12:00:00Z",
+                  "updated_at": "2025-10-30T12:00:00Z"
+                }
+              }
             }
           },
           "text": {
             "body": {
               "medium": {
-                "$description": "Default body text style.",
-                "$extensions": {
-                  "figma.com": {
-                    "name": "text/body/medium",
-                    "node_id": "4:3",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
-                  }
-                },
                 "$type": "typography",
+                "$description": "Default body text style.",
                 "$value": {
                   "fontFamily": [
                     "SF Pro"
@@ -78,19 +70,19 @@
                     "unit": "px"
                   },
                   "lineHeight": 7.142857074737549
-                }
-              },
-              "large": {
-                "$description": "Large body text style.",
+                },
                 "$extensions": {
                   "figma.com": {
-                    "name": "text/body/large",
-                    "node_id": "4:11",
+                    "name": "text/body/medium",
+                    "node_id": "4:3",
                     "created_at": "2025-10-30T12:00:00Z",
                     "updated_at": "2025-10-30T12:00:00Z"
                   }
-                },
+                }
+              },
+              "large": {
                 "$type": "typography",
+                "$description": "Large body text style.",
                 "$value": {
                   "fontFamily": [
                     "SF Pro"
@@ -106,6 +98,14 @@
                     "unit": "px"
                   },
                   "lineHeight": 6.25
+                },
+                "$extensions": {
+                  "figma.com": {
+                    "name": "text/body/large",
+                    "node_id": "4:11",
+                    "created_at": "2025-10-30T12:00:00Z",
+                    "updated_at": "2025-10-30T12:00:00Z"
+                  }
                 }
               }
             }
@@ -113,14 +113,6 @@
           "style": {
             "green": {
               "100": {
-                "$extensions": {
-                  "figma.com": {
-                    "name": "style/green/100",
-                    "node_id": "16:2",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
-                  }
-                },
                 "$type": "color",
                 "$value": {
                   "colorSpace": "srgb",
@@ -130,20 +122,20 @@
                     0.369611918926239
                   ],
                   "alpha": 1
+                },
+                "$extensions": {
+                  "figma.com": {
+                    "name": "style/green/100",
+                    "node_id": "16:2",
+                    "created_at": "2025-10-30T12:00:00Z",
+                    "updated_at": "2025-10-30T12:00:00Z"
+                  }
                 }
               }
             },
             "gradient": {
               "100": {
-                "$extensions": {
-                  "figma.com": {
-                    "name": "style/gradient/100",
-                    "node_id": "16:4",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
-                  }
-                },
-                "$type": "color",
+                "$type": "gradient",
                 "$value": [
                   {
                     "position": 0,
@@ -181,7 +173,15 @@
                       "alpha": 1
                     }
                   }
-                ]
+                ],
+                "$extensions": {
+                  "figma.com": {
+                    "name": "style/gradient/100",
+                    "node_id": "16:4",
+                    "created_at": "2025-10-30T12:00:00Z",
+                    "updated_at": "2025-10-30T12:00:00Z"
+                  }
+                }
               }
             }
           }
