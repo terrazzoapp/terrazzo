@@ -1,18 +1,9 @@
-import type {
-  GetFileNodesResponse,
-  GetFileStylesResponse,
-  GetLocalVariablesResponse,
-  GetPublishedVariablesResponse,
-  LocalVariable,
-  LocalVariableCollection,
-  PublishedVariable,
-  PublishedVariableCollection,
-} from '@figma/rest-api-spec';
 import type { Logger } from '@terrazzo/parser';
+import { pluralize } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
-import { effectStyle } from './effect-style.js';
-import { fillStyle } from './fill-style.js';
-import { textStyle } from './text-style.js';
+import { formatNumber, getFileID } from './lib.js';
+import { getStyles } from './styles.js';
+import { getVariables } from './variables.js';
 
 export interface importFromFigmaOptions {
   url: string;
@@ -21,6 +12,12 @@ export interface importFromFigmaOptions {
   unpublished?: boolean;
   skipStyles?: boolean;
   skipVariables?: boolean;
+  /** RegEx for overriding Variable types with fontFamily tokens */
+  fontFamilyNames?: string;
+  /** RegEx for overriding Variable types with fontWeight tokens */
+  fontWeightNames?: string;
+  /** RegEx for overriding Variable types with number tokens */
+  numberNames?: string;
 }
 
 export interface FigmaOutput {
@@ -30,22 +27,15 @@ export interface FigmaOutput {
   code: Record<string, any>;
 }
 
-const KEY = ':key';
-const FILE_KEY = ':file_key';
-const API = {
-  fileNodes: `https://api.figma.com/v1/files/${FILE_KEY}/nodes`,
-  fileStyles: `https://api.figma.com/v1/files/${FILE_KEY}/styles`,
-  localVariables: `https://api.figma.com/v1/files/${FILE_KEY}/variables/local`,
-  publishedVariables: `https://api.figma.com/v1/files/${FILE_KEY}/variables/published`,
-  styles: `https://api.figma.com/v1/styles/${KEY}`,
-};
-
 export async function importFromFigma({
   url,
   logger,
   unpublished,
   skipStyles,
   skipVariables,
+  fontFamilyNames,
+  fontWeightNames,
+  numberNames,
 }: importFromFigmaOptions): Promise<FigmaOutput> {
   const fileKey = getFileID(url);
   if (!fileKey) {
@@ -66,8 +56,18 @@ export async function importFromFigma({
 
   try {
     const [styles, vars] = await Promise.all([
-      ...(!skipStyles ? [getStyles(fileKey!, { logger })] : []),
-      ...(!skipVariables ? [getVariables(fileKey!, { logger, unpublished })] : []),
+      !skipStyles ? getStyles(fileKey!, { logger }) : null,
+      !skipVariables
+        ? getVariables(fileKey!, {
+            logger,
+            unpublished,
+            matchers: {
+              fontFamily: new RegExp(fontFamilyNames || '/fontFamily$'),
+              fontWeight: new RegExp(fontWeightNames || '/fontWeight$'),
+              number: numberNames ? new RegExp(numberNames) : undefined,
+            },
+          })
+        : null,
     ]);
     if (styles) {
       result.styleCount += styles.count;
@@ -76,9 +76,22 @@ export async function importFromFigma({
     if (vars) {
       result.variableCount += vars.count;
       result.code = merge(result.code, vars.code);
+      if (vars.remoteCount) {
+        logger.warn({
+          group: 'import',
+          message: `${formatNumber(vars.remoteCount)} ${pluralize(vars.remoteCount, 'Variable', 'Variables')} were remote and could not be accessed. Try importing from other files to grab them.`,
+        });
+      }
     }
   } catch (err) {
     logger.error({ group: 'import', message: (err as Error).message });
+  }
+
+  // Arbitrarily guess on resolutionOrder
+  for (const group of ['sets', 'modifiers'] as const) {
+    for (const name of Object.keys(result.code[group])) {
+      result.code.resolutionOrder.push({ $ref: `#/${group}/${name}` });
+    }
   }
 
   return result;
@@ -92,231 +105,4 @@ export function isFigmaPath(url: string) {
   } catch {
     return false;
   }
-}
-
-/** Get File ID from design URL */
-export function getFileID(url: string) {
-  return url.match(/^https:\/\/(www\.)?figma\.com\/design\/([^/]+)/)?.[2];
-}
-
-/** /v1/files/:file_key/nodes */
-export async function getFileNodes(fileKey: string, { ids, logger }: { logger: Logger; ids?: string[] }) {
-  let url = API.fileNodes.replace(FILE_KEY, fileKey);
-  if (ids?.length) {
-    url += `?ids=${ids.join(',')}`;
-  }
-  const fileRes = await fetch(url, {
-    method: 'GET',
-    headers: { 'X-Figma-Token': process.env.FIGMA_ACCESS_TOKEN! },
-  });
-  if (!fileRes.ok) {
-    logger.error({ group: 'import', message: `${fileRes.status} ${await fileRes.text()}` });
-  }
-  return (await fileRes.json()) as GetFileNodesResponse;
-}
-
-export interface TokenExport {
-  count: number;
-  code: Record<string, any>;
-}
-
-/** /v1/files/:file_key/styles */
-export async function getStyles(
-  fileKey: string,
-  { logger }: Pick<importFromFigmaOptions, 'logger'>,
-): Promise<TokenExport> {
-  const result: TokenExport = {
-    count: 0,
-    code: {
-      sets: {
-        styles: {
-          sources: [{}],
-        },
-      },
-    },
-  };
-
-  const stylesRes = await fetch(API.fileStyles.replace(FILE_KEY, fileKey), {
-    method: 'GET',
-    headers: { 'X-Figma-Token': process.env.FIGMA_ACCESS_TOKEN! },
-  });
-  if (!stylesRes.ok) {
-    logger.error({ group: 'import', message: `${stylesRes.status} ${await stylesRes.text()}` });
-  }
-  const styles = (await stylesRes.json()) as GetFileStylesResponse;
-
-  const fileNodes = await getFileNodes(fileKey, { ids: styles.meta.styles.map((s) => s.node_id), logger });
-
-  result.count += styles.meta.styles.length;
-  for (const s of styles.meta.styles) {
-    let node = result.code.sets.styles.sources[0];
-    const path = s.name.split('/');
-    const name = path.pop()!;
-    for (const key of path) {
-      if (!(key in node)) {
-        node[key] = {};
-      }
-      node = node[key];
-    }
-
-    node[name] = {
-      $description: s.description || undefined,
-      $extensions: {
-        'figma.com': {
-          name: s.name,
-          node_id: s.node_id,
-          created_at: s.created_at,
-          updated_at: s.updated_at,
-        },
-      },
-    };
-
-    switch (s.style_type) {
-      case 'FILL': {
-        node[name].$type = 'color';
-        const $value = fillStyle(fileNodes.nodes[s.node_id]!.document);
-        if (!$value) {
-          logger.error({ group: 'import', message: `Could not parse fill for ${s.name}`, continueOnError: true });
-        }
-        node[name].$value = $value;
-        break;
-      }
-      case 'TEXT': {
-        node[name].$type = 'typography';
-        const $value = textStyle(fileNodes.nodes[s.node_id]!.document);
-        if (!$value) {
-          logger.error({ group: 'import', message: `Could not parse text for ${s.name}`, continueOnError: true });
-        }
-        node[name].$value = $value;
-        break;
-      }
-      case 'EFFECT': {
-        node[name].$type = 'shadow';
-        const $value = effectStyle(fileNodes.nodes[s.node_id]!.document);
-        if (!$value) {
-          logger.error({ group: 'import', message: `Could not parse effect for ${s.name}`, continueOnError: true });
-        }
-        node[name].$value = $value;
-        break;
-      }
-      case 'GRID': {
-        logger.error({ group: 'import', message: `Could not parse grid for ${s.name}`, continueOnError: true });
-        break;
-      }
-    }
-  }
-
-  return result;
-}
-
-/** /v1/files/:file_key/variables/published | /v1/files/:file_key/variables/local */
-export async function getVariables(
-  fileKey: string,
-  { logger, unpublished }: Pick<importFromFigmaOptions, 'logger' | 'unpublished'>,
-): Promise<TokenExport> {
-  const result: TokenExport = {
-    count: 0,
-    code: { sets: {} },
-  };
-
-  const variables: Record<string, LocalVariable | PublishedVariable> = {};
-  const variableCollections: Record<string, LocalVariableCollection | PublishedVariableCollection> = {};
-
-  if (unpublished !== true) {
-    const publishedRes = await fetch(API.publishedVariables.replace(FILE_KEY, fileKey), {
-      method: 'GET',
-      headers: { 'X-Figma-Token': process.env.FIGMA_ACCESS_TOKEN! },
-    });
-    if (!publishedRes.ok) {
-      logger.error({ group: 'import', message: `${publishedRes.status} ${await publishedRes.text()}` });
-    }
-    const published = (await publishedRes.json()) as GetPublishedVariablesResponse;
-    for (const id of Object.keys(published.meta.variables)) {
-      result.count++;
-      variables[id] = published.meta.variables[id]!;
-    }
-    for (const id of Object.keys(published.meta.variableCollections)) {
-      variableCollections[id] = published.meta.variableCollections[id]!;
-    }
-  }
-  if (unpublished || !result.count) {
-    const localRes = await fetch(API.localVariables.replace(FILE_KEY, fileKey), {
-      method: 'GET',
-      headers: { 'X-Figma-Token': process.env.FIGMA_ACCESS_TOKEN! },
-    });
-    if (!localRes.ok) {
-      logger.error({ group: 'import', message: `${localRes.status} ${await localRes.text}` });
-    }
-    const local = (await localRes.json()) as GetLocalVariablesResponse;
-    for (const id of Object.keys(local.meta.variables)) {
-      result.count++;
-      variables[id] = local.meta.variables[id]!;
-    }
-    for (const id of Object.keys(local.meta.variableCollections)) {
-      variableCollections[id] = local.meta.variableCollections[id]!;
-    }
-  }
-
-  for (const id of Object.keys(variables)) {
-    const variable = variables[id]!;
-
-    if (
-      ('remote' in variable && variable.remote) ||
-      ('hiddenFromPublishing' in variable && variable.hiddenFromPublishing)
-    ) {
-      continue;
-    }
-
-    const collection = variableCollections[variable.variableCollectionId]!;
-    if (!(collection.name in result.code.sets)) {
-      result.code.sets[collection.name] = { sources: [] };
-    }
-    let node = result.code.sets[collection.name].sources[0];
-    const path = variable.name.split('/');
-    const name = path.pop()!;
-    for (const key of path) {
-      if (!(key in node)) {
-        node[key] = {};
-      }
-      node = node[key];
-    }
-
-    node[name] = {
-      $description: (variable as LocalVariable).description || undefined,
-      $extensions: {
-        'figma.com': {
-          name: variable.name,
-          id: variable.id,
-          key: variable.key,
-          subscribed_id: (variable as PublishedVariable).subscribed_id,
-          updated_at: (variable as PublishedVariable).updatedAt,
-        },
-      },
-    };
-    const variableType = 'resolvedDataType' in variable ? variable.resolvedDataType : variable.resolvedType;
-    switch (variableType) {
-      case 'BOOLEAN': {
-        node[name].$type = 'boolean';
-        node[name].$value = false;
-        break;
-      }
-      case 'FLOAT': {
-        node[name].$type = 'number';
-        node[name].$value = 0.123;
-        break;
-      }
-      case 'STRING': {
-        node[name].$type = 'string';
-        node[name].$value = 'foo';
-        break;
-      }
-      case 'COLOR': {
-        node[name].$type = 'color';
-        node[name].$value = { colorSpace: 'srgb', components: [], alpha: 1 };
-        break;
-      }
-    }
-  }
-
-  return result;
 }
