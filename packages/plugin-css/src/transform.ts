@@ -1,6 +1,6 @@
 import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
+import { getTokenMatcher } from '@terrazzo/token-tools';
 import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
-import wcmatch from 'wildcard-match';
 import { type CSSPluginOptions, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 
 export interface TransformOptions {
@@ -41,20 +41,19 @@ export default function transformCSS({
   }
   const transformAlias = (token: TokenNormalized) => `var(${transformName(token)})`;
 
-  const include = userInclude ? wcmatch(userInclude) : () => true;
-  const exclude = userExclude ? wcmatch(userExclude) : () => false;
+  const include = userInclude ? getTokenMatcher(userInclude) : () => true;
+  const exclude = userExclude ? getTokenMatcher(userExclude) : () => false;
 
   // permutations
   if (permutations?.length) {
     for (const p of permutations) {
       const input = p.input;
-      const pInclude = p.include ? wcmatch(p.include) : () => true;
-      const pExclude = p.exclude ? wcmatch(p.exclude) : () => false;
+      const pInclude = p.include ? getTokenMatcher(p.include) : () => true;
+      const pExclude = p.exclude ? getTokenMatcher(p.exclude) : () => false;
 
       const includeToken = (tokenId: string): boolean => {
         return include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
       };
-
       // Note: if we throw an error here without specifying the input, a user may
       // find it impossible to debug the issue
       try {

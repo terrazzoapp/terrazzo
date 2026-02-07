@@ -1,4 +1,4 @@
-import wcmatch from 'wildcard-match';
+import { getTokenMatcher } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -41,7 +41,7 @@ const rule: LintRule<never, RuleRequiredModesOptions> = {
         throw new Error(`Match ${matchI}: must declare \`modes: […]\``);
       }
 
-      const matcher = wcmatch(match);
+      const matcher = getTokenMatcher(match);
 
       let tokensMatched = false;
       for (const t of Object.values(tokens)) {

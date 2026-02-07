@@ -18,12 +18,12 @@ export default defineConfig({
       ],
       theme: {
         color: {
-          blue: ['color.blue.*'],
-          green: ['color.green.*'],
-          neutral: ['color.neutral.*'],
-          orange: ['color.orange.*'],
-          purple: ['color.purple.*'],
-          red: ['color.red.*'],
+          blue: ['color.blue.**'],
+          green: ['color.green.**'],
+          neutral: ['color.neutral.**'],
+          orange: ['color.orange.**'],
+          purple: ['color.purple.**'],
+          red: ['color.red.**'],
           yellow: {
             0: 'color.yellow.0',
             1: 'color.yellow.1',
@@ -48,11 +48,11 @@ export default defineConfig({
           lg: 'space.large',
           xl: 'space.xlarge',
         },
-        radius: ['borderRadius.*'],
+        radius: ['borderRadius.**'],
 
         // test arbitrary values
         fooSingle: 'color.orange.100',
-        fooArray: ['color.green.*'],
+        fooArray: ['color.green.**'],
         foo: {
           bar: 'color.purple.500',
           baz: 'color.purple.600',

@@ -101,7 +101,7 @@ describe('config', () => {
       const config = defineConfig(
         {
           ignore: {
-            tokens: ['color-legacy.*'],
+            tokens: ['color-legacy.**'],
             deprecated: true,
           },
         },

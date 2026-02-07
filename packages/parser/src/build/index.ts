@@ -1,5 +1,6 @@
 import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import type { TokenNormalized } from '@terrazzo/token-tools';
+import { getTokenMatcher } from '@terrazzo/token-tools';
 import wcmatch from 'wildcard-match';
 import Logger, { type LogEntry } from '../logger.js';
 import type { BuildRunnerResult, ConfigInit, Resolver, TokenTransformed, TransformParams } from '../types.js';
@@ -67,7 +68,7 @@ export default async function build(
         return [];
       }
 
-      const tokenMatcher = params.id && params.id !== '*' ? wcmatch(params.id) : null;
+      const tokenMatcher = params.id && params.id !== '*' ? getTokenMatcher(params.id) : null;
       const modeMatcher = params.mode ? wcmatch(params.mode) : null;
       const permutationID = params.input ? resolver.getPermutationID(params.input) : JSON.stringify({ tzMode: '*' });
 
