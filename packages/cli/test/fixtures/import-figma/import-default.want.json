@@ -3,6 +3,9 @@
   "version": "2025.10",
   "resolutionOrder": [
     {
+      "$ref": "#/sets/styles"
+    },
+    {
       "$ref": "#/sets/baseSize"
     },
     {
@@ -25,6 +28,251 @@
     }
   ],
   "sets": {
+    "styles": {
+      "sources": [
+        {
+          "elevation": {
+            "100": {
+              "$type": "shadow",
+              "$description": "Default shadow.",
+              "$value": [
+                {
+                  "inset": false,
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 4,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 4,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "alpha": 0.25
+                  }
+                }
+              ],
+              "$extensions": {
+                "figma.com": {
+                  "name": "elevation/100",
+                  "node_id": "16:3",
+                  "created_at": "2025-10-30T12:00:00Z",
+                  "updated_at": "2025-10-30T12:00:00Z"
+                }
+              }
+            }
+          },
+          "text": {
+            "body": {
+              "medium": {
+                "$type": "typography",
+                "$description": "Default body text style.",
+                "$value": {
+                  "fontFamily": [
+                    "SF Pro"
+                  ],
+                  "fontWeight": 400,
+                  "fontStyle": "Regular",
+                  "fontSize": {
+                    "value": 14,
+                    "unit": "px"
+                  },
+                  "letterSpacing": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "lineHeight": 7.142857074737549
+                },
+                "$extensions": {
+                  "figma.com": {
+                    "name": "text/body/medium",
+                    "node_id": "4:3",
+                    "created_at": "2025-10-30T12:00:00Z",
+                    "updated_at": "2025-10-30T12:00:00Z"
+                  }
+                }
+              },
+              "large": {
+                "$type": "typography",
+                "$description": "Large body text style.",
+                "$value": {
+                  "fontFamily": [
+                    "SF Pro"
+                  ],
+                  "fontWeight": 400,
+                  "fontStyle": "Regular",
+                  "fontSize": {
+                    "value": 16,
+                    "unit": "px"
+                  },
+                  "letterSpacing": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "lineHeight": 6.25
+                },
+                "$extensions": {
+                  "figma.com": {
+                    "name": "text/body/large",
+                    "node_id": "4:11",
+                    "created_at": "2025-10-30T12:00:00Z",
+                    "updated_at": "2025-10-30T12:00:00Z"
+                  }
+                }
+              }
+            }
+          },
+          "style": {
+            "green": {
+              "100": {
+                "$type": "color",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [
+                    0.2835651934146881,
+                    0.8572100400924683,
+                    0.369611918926239
+                  ],
+                  "alpha": 1
+                },
+                "$extensions": {
+                  "figma.com": {
+                    "name": "style/green/100",
+                    "node_id": "16:2",
+                    "created_at": "2025-10-30T12:00:00Z",
+                    "updated_at": "2025-10-30T12:00:00Z"
+                  }
+                }
+              }
+            },
+            "gradient": {
+              "100": {
+                "$type": "gradient",
+                "$value": [
+                  {
+                    "position": 0,
+                    "color": {
+                      "colorSpace": "srgb",
+                      "components": [
+                        0.9221681356430054,
+                        0.0945836678147316,
+                        0.0945836678147316
+                      ],
+                      "alpha": 1
+                    }
+                  },
+                  {
+                    "position": 0.33173078298568726,
+                    "color": {
+                      "colorSpace": "srgb",
+                      "components": [
+                        0.18287979066371918,
+                        0.2011471837759018,
+                        0.5482274889945984
+                      ],
+                      "alpha": 1
+                    }
+                  },
+                  {
+                    "position": 1,
+                    "color": {
+                      "colorSpace": "srgb",
+                      "components": [
+                        0.7361242175102234,
+                        0.18885448575019836,
+                        0.9351313710212708
+                      ],
+                      "alpha": 1
+                    }
+                  }
+                ],
+                "$extensions": {
+                  "figma.com": {
+                    "name": "style/gradient/100",
+                    "node_id": "16:4",
+                    "created_at": "2025-10-30T12:00:00Z",
+                    "updated_at": "2025-10-30T12:00:00Z"
+                  }
+                }
+              }
+            }
+          },
+          "grid": {
+            "base": {
+              "rows": {
+                "sectionSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 20,
+                    "unit": "px"
+                  }
+                },
+                "gutterSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 20,
+                    "unit": "px"
+                  }
+                },
+                "count": {
+                  "$type": "number",
+                  "$value": 5
+                }
+              },
+              "columns": {
+                "sectionSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 4,
+                    "unit": "px"
+                  }
+                },
+                "gutterSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 4,
+                    "unit": "px"
+                  }
+                },
+                "count": {
+                  "$type": "number",
+                  "$value": 5
+                }
+              },
+              "grid": {
+                "sectionSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 10,
+                    "unit": "px"
+                  }
+                },
+                "gutterSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 10,
+                    "unit": "px"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "baseSize": {
       "sources": [
         {

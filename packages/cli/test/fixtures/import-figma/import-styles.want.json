@@ -1,7 +1,11 @@
 {
   "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
   "version": "2025.10",
-  "resolutionOrder": [],
+  "resolutionOrder": [
+    {
+      "$ref": "#/sets/styles"
+    }
+  ],
   "sets": {
     "styles": {
       "sources": [
@@ -180,6 +184,66 @@
                     "node_id": "16:4",
                     "created_at": "2025-10-30T12:00:00Z",
                     "updated_at": "2025-10-30T12:00:00Z"
+                  }
+                }
+              }
+            }
+          },
+          "grid": {
+            "base": {
+              "rows": {
+                "sectionSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 20,
+                    "unit": "px"
+                  }
+                },
+                "gutterSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 20,
+                    "unit": "px"
+                  }
+                },
+                "count": {
+                  "$type": "number",
+                  "$value": 5
+                }
+              },
+              "columns": {
+                "sectionSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 4,
+                    "unit": "px"
+                  }
+                },
+                "gutterSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 4,
+                    "unit": "px"
+                  }
+                },
+                "count": {
+                  "$type": "number",
+                  "$value": 5
+                }
+              },
+              "grid": {
+                "sectionSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 10,
+                    "unit": "px"
+                  }
+                },
+                "gutterSize": {
+                  "$type": "dimension",
+                  "$value": {
+                    "value": 10,
+                    "unit": "px"
                   }
                 }
               }

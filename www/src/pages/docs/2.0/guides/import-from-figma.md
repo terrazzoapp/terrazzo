@@ -46,6 +46,31 @@ It’s intentional that `tz import` always happens separately from `tz build`. S
 
 :::
 
+### Mapping Types
+
+Since Figma Styles & Variables don’t map 1:1 with DTCG token types, these are the following conversions:
+
+| Figma Type         | DTCG Type                                                                                                                                                            |
+| :----------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Style `FILL`       | [color](/docs/reference/tokens/#color) if a solid fill, or [gradient](/docs/reference/tokens/#gradient) if a gradient fill (complex fills may not translate cleanly) |
+| Style `TEXT`       | [typography](/docs/reference/tokens/#typography)                                                                                                                     |
+| Style `EFFECT`     | [shadow](/docs/reference/tokens/#shadow)                                                                                                                             |
+| Style `GRID`       | Object of [dimension](/docs/reference/tokens/#dimension) / [number](/docs/reference/tokens/#number) tokens                                                           |
+| Variable `COLOR`   | [color](/docs/reference/tokens/#color)                                                                                                                               |
+| Variable `FLOAT`   | [dimension](/docs/reference/tokens/#dimension) (px)                                                                                                                  |
+| Variable `STRING`  | `string` (⚠️ non-standard type)                                                                                                                                      |
+| Variable `BOOLEAN` | `boolean` (⚠️ non-standard type)                                                                                                                                     |
+
+#### String and Boolean types
+
+DTCG does not allow string types, but these are a dominant typeof Figma Variable, especially in typography. In order to override certain Variables by name, pass in `--[type]-names` flags:
+
+```sh
+npx tz import [file] --font-family-names ".*/(family|fontName}$" --font-weight-names ".*/weight$" --number-names ".*/lineHeight$"
+```
+
+The flags are RegEx patterns, so passing in a string will return any match. You can also use slashes to get more specific with token targets.
+
 ### Libraries
 
 If the Figma file has a [Published Library](https://help.figma.com/hc/en-us/articles/360025508373-Publish-a-library) associated with it, Terrazzo will **pull the Published version.** This means that local, unpublished changes will be ignored. To pull unpublished changes, run:
@@ -54,17 +79,18 @@ If the Figma file has a [Published Library](https://help.figma.com/hc/en-us/arti
 npx tz import [file] --unpublished
 ```
 
-If the file has _no library_ associated with it, it will simply grab whatever’s in the file at the time of import.
-
-External Libraries used in an imported file will be ignored. In order to import any Library, **you must import its source file.**
+If the file has nothing published, it will grab Styles and Variables in the file regardless of the `--unpublished` flag.
 
 ### CLI Flags
 
 You can add all the following flags to `tz import`:
 
-| Name                           | Description                                                                                         |
-| :----------------------------- | :-------------------------------------------------------------------------------------------------- |
-| `--output [file]`, `-o [file]` | File to export. If this is omitted, it will output to stdout.                                       |
-| `--unpublished`                | Pulls unpublished Variables and Styles (by default the most recent Published Library will be used). |
-| `--skip-styles`                | Don’t import Styles from this file.                                                                 |
-| `--skip-variables`             | Don’t import Variables from this file (required if not on the Enterprise Plan).                     |
+| Name                           | Description                                                                                                             |
+| :----------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| `--output [file]`, `-o [file]` | File to export. If this is omitted, it will output to stdout.                                                           |
+| `--unpublished`                | Pulls unpublished Variables and Styles (by default the most recent Published Library will be used).                     |
+| `--skip-styles`                | Don’t import Styles from this file.                                                                                     |
+| `--skip-variables`             | Don’t import Variables from this file (required if not on the Enterprise Plan).                                         |
+| `--font-family-names [regex]`  | Import these names as [fontFamily](/docs/reference/tokens/#fontfamily) tokens. Accepts RegEx. (default: `/fontFamily$`) |
+| `--font-weight-names [regex]`  | Import these names as [fontWeight](/docs/reference/tokens/#fontweight) tokens. Accepts RegEx. (default: `/fontWeight$`) |
+| `--number-names [regex]`       | Import these names as [number](/docs/reference/tokens/#number) tokens. Accepts RegEx. (default: undefined)              |

@@ -37,18 +37,21 @@ describe('import', () => {
       globalThis.fetch = originalFetch;
     });
 
-    it('both', async () => {
+    it('default', async () => {
       await importCmd({
         logger: new Logger(),
         positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
-        flags: { output: 'test/fixtures/import-figma/import-both.actual.json' },
+        flags: { output: 'test/fixtures/import-figma/import-default.actual.json' },
       });
-      await expect(await fs.readFile(new URL('import-both.actual.json', cwd), 'utf8')).toMatchFileSnapshot(
-        fileURLToPath(new URL('import-both.want.json', cwd)),
-      );
+      const actual = new URL('import-default.actual.json', cwd);
+      const actualSrc = await fs.readFile(actual, 'utf8');
+      await expect(actualSrc).toMatchFileSnapshot(fileURLToPath(new URL('import-default.want.json', cwd)));
+
+      // Note: previously we’d validate the Resolver, however, with our current example, there are connection errors
+      // so we get unresolvable aliases
     });
 
-    it('styles only', async () => {
+    it('--skip-variables', async () => {
       await importCmd({
         logger: new Logger(),
         positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
@@ -59,7 +62,7 @@ describe('import', () => {
       );
     });
 
-    it('variables only', async () => {
+    it('--skip-styles', async () => {
       await importCmd({
         logger: new Logger(),
         positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
@@ -67,6 +70,35 @@ describe('import', () => {
       });
       await expect(await fs.readFile(new URL('import-variables.actual.json', cwd), 'utf8')).toMatchFileSnapshot(
         fileURLToPath(new URL('import-variables.want.json', cwd)),
+      );
+    });
+
+    it('--unpublished', async () => {
+      // This should contain legacy/* variables that the previous snapshots did not
+      await importCmd({
+        logger: new Logger(),
+        positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
+        flags: { output: 'test/fixtures/import-figma/import-unpublished.actual.json', unpublished: true },
+      });
+      await expect(await fs.readFile(new URL('import-unpublished.actual.json', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('import-unpublished.want.json', cwd)),
+      );
+    });
+
+    it('--font-family-names, --font-weight-names, --number-names', async () => {
+      // This should contain legacy/* variables that the previous snapshots did not
+      await importCmd({
+        logger: new Logger(),
+        positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
+        flags: {
+          output: 'test/fixtures/import-figma/import-name-matchers.actual.json',
+          'font-family-names': 'fontStack',
+          'font-weight-names': 'weight',
+          'number-names': 'foobar',
+        },
+      });
+      await expect(await fs.readFile(new URL('import-name-matchers.actual.json', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('import-name-matchers.want.json', cwd)),
       );
     });
   });

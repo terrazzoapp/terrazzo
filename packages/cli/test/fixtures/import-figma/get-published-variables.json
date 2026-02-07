@@ -826,15 +826,6 @@
         "resolvedDataType": "COLOR",
         "updatedAt": "2025-10-30T12:00:00Z"
       },
-      "VariableID:32578:5192": {
-        "id": "VariableID:32578:5192",
-        "subscribed_id": "VariableID:5f39001eb6c6fd3266aa91f7fdbd96b21e9e0040/38794:1308",
-        "name": "shadow/floating/legacy/1/offsetX",
-        "key": "5f39001eb6c6fd3266aa91f7fdbd96b21e9e0040",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "FLOAT",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
       "VariableID:31518:11233": {
         "id": "VariableID:31518:11233",
         "subscribed_id": "VariableID:b4bbea12fc79a7b41fea9ac4a51b42d60ebd1577/38794:1108",
@@ -970,15 +961,6 @@
         "resolvedDataType": "FLOAT",
         "updatedAt": "2025-10-30T12:00:00Z"
       },
-      "VariableID:32578:5198": {
-        "id": "VariableID:32578:5198",
-        "subscribed_id": "VariableID:e34e813819dadca43d1a907256918398c5cf30c8/38794:1180",
-        "name": "shadow/floating/legacy/2/offsetY",
-        "key": "e34e813819dadca43d1a907256918398c5cf30c8",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "FLOAT",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
       "VariableID:27057:2692": {
         "id": "VariableID:27057:2692",
         "subscribed_id": "VariableID:54834d787f559c1b74234d4a914fabd8249add30/38794:1162",
@@ -1015,29 +997,11 @@
         "resolvedDataType": "FLOAT",
         "updatedAt": "2025-10-30T12:00:00Z"
       },
-      "VariableID:32578:5195": {
-        "id": "VariableID:32578:5195",
-        "subscribed_id": "VariableID:a21236cdc5e069466a4523cd4a68f3c910057244/38794:1170",
-        "name": "shadow/floating/legacy/1/spread",
-        "key": "a21236cdc5e069466a4523cd4a68f3c910057244",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "FLOAT",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
       "VariableID:31518:11182": {
         "id": "VariableID:31518:11182",
         "subscribed_id": "VariableID:8e286d59e763562b0d8225d06750b19dab9038d1/38794:710",
         "name": "shadow/floating/xlarge/1/spread",
         "key": "8e286d59e763562b0d8225d06750b19dab9038d1",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "FLOAT",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
-      "VariableID:32578:5200": {
-        "id": "VariableID:32578:5200",
-        "subscribed_id": "VariableID:000597dea88ad5ed7b6bde3f555b1fb40a9692b0/38794:1168",
-        "name": "shadow/floating/legacy/2/spread",
-        "key": "000597dea88ad5ed7b6bde3f555b1fb40a9692b0",
         "variableCollectionId": "VariableCollectionId:27057:2312",
         "resolvedDataType": "FLOAT",
         "updatedAt": "2025-10-30T12:00:00Z"
@@ -1375,15 +1339,6 @@
         "resolvedDataType": "COLOR",
         "updatedAt": "2025-10-30T12:00:00Z"
       },
-      "VariableID:32578:5193": {
-        "id": "VariableID:32578:5193",
-        "subscribed_id": "VariableID:9b293ce723177855dc5ecbda32d84ff14f501063/38794:971",
-        "name": "shadow/floating/legacy/1/offsetY",
-        "key": "9b293ce723177855dc5ecbda32d84ff14f501063",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "FLOAT",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
       "VariableID:27057:2685": {
         "id": "VariableID:27057:2685",
         "subscribed_id": "VariableID:bbec049bd812a52346787c325a637700239343e9/38794:879",
@@ -1661,15 +1616,6 @@
         "key": "c3a136930c555e4407806de21a82cc438af4f813",
         "variableCollectionId": "VariableCollectionId:27057:2312",
         "resolvedDataType": "COLOR",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
-      "VariableID:32578:5199": {
-        "id": "VariableID:32578:5199",
-        "subscribed_id": "VariableID:1a74b132403be5fa9cb022431dcef1b6e39b221b/38794:1185",
-        "name": "shadow/floating/legacy/2/blur",
-        "key": "1a74b132403be5fa9cb022431dcef1b6e39b221b",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "FLOAT",
         "updatedAt": "2025-10-30T12:00:00Z"
       },
       "VariableID:31518:11231": {
@@ -2419,15 +2365,6 @@
         "resolvedDataType": "COLOR",
         "updatedAt": "2025-10-30T12:00:00Z"
       },
-      "VariableID:32578:5196": {
-        "id": "VariableID:32578:5196",
-        "subscribed_id": "VariableID:5bcb36ab77b14bcde057758f1a7ed2425d306ee8/38794:986",
-        "name": "shadow/floating/legacy/1/color",
-        "key": "5bcb36ab77b14bcde057758f1a7ed2425d306ee8",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "COLOR",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
       "VariableID:27057:2862": {
         "id": "VariableID:27057:2862",
         "subscribed_id": "VariableID:48c53731e6b41403a040d8a49db519166dad9f82/38794:1304",
@@ -2885,15 +2822,6 @@
         "key": "d00b2d7e513bb2781310d16bc9e3802a2c7ba542",
         "variableCollectionId": "VariableCollectionId:27057:2312",
         "resolvedDataType": "COLOR",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
-      "VariableID:32578:5197": {
-        "id": "VariableID:32578:5197",
-        "subscribed_id": "VariableID:0e84868ad518c38726275bacb125cfda1b0fb86e/38794:1184",
-        "name": "shadow/floating/legacy/2/offsetX",
-        "key": "0e84868ad518c38726275bacb125cfda1b0fb86e",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "FLOAT",
         "updatedAt": "2025-10-30T12:00:00Z"
       },
       "VariableID:27057:2879": {
@@ -3562,15 +3490,6 @@
         "resolvedDataType": "COLOR",
         "updatedAt": "2025-10-30T12:00:00Z"
       },
-      "VariableID:32578:5194": {
-        "id": "VariableID:32578:5194",
-        "subscribed_id": "VariableID:d04886dca3d0e7b7945cefac86a020feb2e68b19/38794:1002",
-        "name": "shadow/floating/legacy/1/blur",
-        "key": "d04886dca3d0e7b7945cefac86a020feb2e68b19",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "FLOAT",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
       "VariableID:27057:2688": {
         "id": "VariableID:27057:2688",
         "subscribed_id": "VariableID:b3ba5e919f4c2d103ef2e1ccaf7dd31952fb1a86/39836:631",
@@ -3819,15 +3738,6 @@
         "subscribed_id": "VariableID:fdfd0bf17dcd46c8374c9c669d2bcbfb1a555946/38794:1373",
         "name": "codeMirror/gutterMarker/fgColor/muted",
         "key": "fdfd0bf17dcd46c8374c9c669d2bcbfb1a555946",
-        "variableCollectionId": "VariableCollectionId:27057:2312",
-        "resolvedDataType": "COLOR",
-        "updatedAt": "2025-10-30T12:00:00Z"
-      },
-      "VariableID:32578:5201": {
-        "id": "VariableID:32578:5201",
-        "subscribed_id": "VariableID:553a80a102bd0ecb5f4cefe9b07ce177e08f1a73/38794:842",
-        "name": "shadow/floating/legacy/2/color",
-        "key": "553a80a102bd0ecb5f4cefe9b07ce177e08f1a73",
         "variableCollectionId": "VariableCollectionId:27057:2312",
         "resolvedDataType": "COLOR",
         "updatedAt": "2025-10-30T12:00:00Z"
