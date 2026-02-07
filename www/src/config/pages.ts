@@ -48,6 +48,7 @@ export const DOCS_NAV_V2 = [
       { url: '/docs/2.0/guides/dtcg/', title: 'DTCG Tokens' },
       { url: '/docs/2.0/guides/resolvers/', title: 'Resolvers' },
       { url: '/docs/2.0/guides/resolver-contexts/', title: 'Resolver Contexts' },
+      { url: '/docs/2.0/guides/import-from-figma/', title: 'Import from Figma' },
       { url: '/docs/2.0/guides/styleguide/', title: 'DS Styleguide' },
       { url: '/docs/2.0/guides/migrating-v2/', title: 'Migrating to 2.x' },
     ],
