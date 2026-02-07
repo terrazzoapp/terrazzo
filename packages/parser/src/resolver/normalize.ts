@@ -2,7 +2,13 @@ import * as momoa from '@humanwhocodes/momoa';
 import { bundle, encodeFragment, parseRef, replaceNode } from '@terrazzo/json-schema-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
 import type Logger from '../logger.js';
-import type { Group, ReferenceObject, ResolverSourceNormalized } from '../types.js';
+import type {
+  Group,
+  ReferenceObject,
+  ResolverModifierNormalized,
+  ResolverSetNormalized,
+  ResolverSourceNormalized,
+} from '../types.js';
 
 export interface NormalizeResolverOptions {
   logger: Logger;
@@ -71,7 +77,7 @@ export async function normalizeResolver(
 
 /** Resolve $refs for already-initialized JS */
 function resolvePartials(
-  source: Group | ReferenceObject,
+  source: Group | ReferenceObject | ResolverSetNormalized | ResolverModifierNormalized,
   {
     resolver,
     logger,

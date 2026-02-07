@@ -282,11 +282,9 @@ export interface GroupCore {
   $extensions?: Record<string, unknown>;
 }
 
-export type Group =
-  | GroupCore
-  | {
-      [key: string]: GroupOrToken;
-    };
+export type Group = GroupCore & {
+  [key: Exclude<string, keyof GroupCore>]: GroupOrToken;
+};
 
 export type GroupOrToken = Group | Token;
 
