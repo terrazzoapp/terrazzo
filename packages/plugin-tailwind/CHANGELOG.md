@@ -1,5 +1,11 @@
 # @terrazzo/plugin-tailwind
 
+## 2.0.0-alpha.4
+
+### Minor Changes
+
+- [#646](https://github.com/terrazzoapp/terrazzo/pull/646) [`fd9de2b`](https://github.com/terrazzoapp/terrazzo/commit/fd9de2b4a93f42e1f1bfd81cf4a63475b506488d) Thanks [@9rotama](https://github.com/9rotama)! - feat: add template option to plugin-tailwind
+
 ## 2.0.0
 
 ### Minor Changes
