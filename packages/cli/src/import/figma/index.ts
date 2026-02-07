@@ -33,8 +33,8 @@ export async function importFromFigma({
   unpublished,
   skipStyles,
   skipVariables,
-  fontFamilyNames,
-  fontWeightNames,
+  fontFamilyNames = '/fontFamily$',
+  fontWeightNames = '/fontWeight$',
   numberNames,
 }: importFromFigmaOptions): Promise<FigmaOutput> {
   const fileKey = getFileID(url);
@@ -62,8 +62,8 @@ export async function importFromFigma({
             logger,
             unpublished,
             matchers: {
-              fontFamily: new RegExp(fontFamilyNames || '/fontFamily$'),
-              fontWeight: new RegExp(fontWeightNames || '/fontWeight$'),
+              fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
+              fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
               number: numberNames ? new RegExp(numberNames) : undefined,
             },
           })
