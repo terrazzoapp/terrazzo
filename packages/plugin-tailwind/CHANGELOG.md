@@ -1,11 +1,5 @@
 # @terrazzo/plugin-tailwind
 
-## 2.0.0-alpha.4
-
-### Minor Changes
-
-- [#646](https://github.com/terrazzoapp/terrazzo/pull/646) [`fd9de2b`](https://github.com/terrazzoapp/terrazzo/commit/fd9de2b4a93f42e1f1bfd81cf4a63475b506488d) Thanks [@9rotama](https://github.com/9rotama)! - feat: add template option to plugin-tailwind
-
 ## 2.0.0
 
 ### Minor Changes
@@ -15,6 +9,8 @@
   If your lint plugin is not using the `src` context value, no changes are needed. If it is, you’ll need to instead read from the `sources` array, and look up sources with a token’s `source.loc` filename manually. This change was because lint rules now run on all files in one pass, essentially.
 
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ [Plugin API] Minor breaking change: token.originalValue may be undefined for tokens created with $ref. This shouldn’t affect any tokens or plugins not using $refs. But going forward this value will be missing if the token was created dynamically via $ref.
+
+- [#646](https://github.com/terrazzoapp/terrazzo/pull/646) [`fd9de2b`](https://github.com/terrazzoapp/terrazzo/commit/fd9de2b4a93f42e1f1bfd81cf4a63475b506488d) Thanks [@9rotama](https://github.com/9rotama)! - feat: add template option to plugin-tailwind
 
 ### Patch Changes
 

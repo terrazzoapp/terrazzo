@@ -2,7 +2,7 @@
   "mode": "pre",
   "tag": "alpha",
   "initialVersions": {
-    "@terrazzo/cli": "2.0.0-beta.3",
+    "@terrazzo/cli": "2.0.0-beta.0",
     "@terrazzo/fonts": "0.1.0",
     "@terrazzo/icons": "0.1.1",
     "@terrazzo/json-schema-tools": "0.2.0",
@@ -22,8 +22,5 @@
     "@terrazzo/tokens": "0.1.0",
     "@terrazzo/use-color": "0.1.4",
     "@terrazzo/plugin-css-in-js": "2.0.0.beta.0"
-  },
-  "changesets": [
-    "bright-clouds-glow"
-  ]
+  }
 }
