@@ -68,7 +68,8 @@ export default function transformCSS({
             color: { legacyHex },
             permutation: input,
           };
-          const value = customTransform?.(token, options) ?? transformCSSValue(token, options);
+          const value =
+            p.transform?.(token, options) ?? customTransform?.(token, options) ?? transformCSSValue(token, options);
           // Don’t duplicate values when unnecessary
           if (value && isDifferentValue(value, getTransforms({ format: FORMAT_ID, id: token.id })[0]?.value)) {
             const localID = transformName(token);
