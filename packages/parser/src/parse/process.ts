@@ -216,6 +216,7 @@ export function processTokens(
         const tokenRawValues = tokenRawValuesFromNode(node, { filename: source.filename!.href, path });
         if (tokenRawValues && tokens[tokenRawValues?.jsonID]) {
           tokens[tokenRawValues.jsonID]!.originalValue = tokenRawValues.originalValue;
+          tokens[tokenRawValues.jsonID]!.mode['.'].originalValue = tokenRawValues.originalValue;
           tokens[tokenRawValues.jsonID]!.source = tokenRawValues.source;
           for (const mode of Object.keys(tokenRawValues.mode)) {
             tokens[tokenRawValues.jsonID]!.mode[mode]!.originalValue = tokenRawValues.mode[mode]!.originalValue;

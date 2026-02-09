@@ -17,35 +17,6 @@ import { isLikelyResolver } from '../resolver/validate.js';
 import type { ParseOptions, TransformVisitors } from '../types.js';
 import { processTokens } from './process.js';
 
-/** Ephemeral format that only exists while parsing the document. This is not confirmed to be DTCG yet. */
-export interface IntermediaryToken {
-  id: string;
-  /** Was this token aliasing another? */
-  $ref?: string;
-  $type?: string;
-  $description?: string;
-  $deprecated?: string | boolean;
-  $value: unknown;
-  $extensions?: Record<string, unknown>;
-  group: TokenNormalized['group'];
-  aliasOf?: string;
-  partialAliasOf?: Record<string, any> | any[];
-  mode: Record<
-    string,
-    {
-      $type?: string;
-      $value: unknown;
-      aliasOf?: string;
-      partialAliasOf?: Record<string, any> | any[];
-      source?: { filename?: URL; node: momoa.ObjectNode };
-    }
-  >;
-  source: {
-    filename?: URL;
-    node: momoa.ObjectNode;
-  };
-}
-
 export interface LoadOptions extends Pick<ParseOptions, 'config' | 'continueOnError' | 'yamlToMomoa' | 'transform'> {
   req: NonNullable<ParseOptions['req']>;
   logger: Logger;
