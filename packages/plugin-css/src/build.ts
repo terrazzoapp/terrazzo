@@ -1,11 +1,11 @@
 import type { BuildHookOptions, Logger } from '@terrazzo/parser';
-import { getTokenMatcher } from '@terrazzo/token-tools';
 import { generateShorthand, makeCSSVar } from '@terrazzo/token-tools/css';
 import {
   addDeclUnique,
   type CSSDeclaration,
   type CSSPluginOptions,
   type CSSRule,
+  cachedMatcher,
   decl,
   FORMAT_ID,
   getIndentFromPrepare,
@@ -41,8 +41,8 @@ export default function buildCSS({
   baseSelector,
   baseScheme,
 }: BuildFormatOptions): string {
-  const include = userInclude ? getTokenMatcher(userInclude) : () => true;
-  const exclude = userExclude ? getTokenMatcher(userExclude) : () => false;
+  const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
+  const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
   if (permutations?.length) {
     let output = '';
 
@@ -62,8 +62,8 @@ export default function buildCSS({
         rec2020: [] as CSSDeclaration[],
       };
 
-      const pInclude = p.include ? getTokenMatcher(p.include) : () => true;
-      const pExclude = p.exclude ? getTokenMatcher(p.exclude) : () => false;
+      const pInclude = p.include ? cachedMatcher.tokenIDMatch(p.include) : () => true;
+      const pExclude = p.exclude ? cachedMatcher.tokenIDMatch(p.exclude) : () => false;
 
       const includeToken = (tokenId: string): boolean => {
         return include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);

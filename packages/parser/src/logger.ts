@@ -1,6 +1,6 @@
 import * as momoa from '@humanwhocodes/momoa';
+import { CachedWildcardMatcher } from '@terrazzo/token-tools';
 import pc from 'picocolors';
-import wcmatch from 'wildcard-match';
 import { codeFrameColumns } from './lib/code-frame.js';
 
 export const LOG_ORDER = ['error', 'warn', 'info', 'debug'] as const;
@@ -96,6 +96,8 @@ export function formatMessage(entry: LogEntry, severity: LogSeverity) {
   return message;
 }
 
+const debugMatch = new CachedWildcardMatcher();
+
 export default class Logger {
   level = 'info' as LogLevel;
   debugScope = '*';
@@ -175,7 +177,7 @@ export default class Logger {
       let message = formatMessage(entry, 'debug');
 
       const debugPrefix = entry.label ? `${entry.group}:${entry.label}` : entry.group;
-      if (this.debugScope !== '*' && !wcmatch(this.debugScope)(debugPrefix)) {
+      if (this.debugScope !== '*' && !debugMatch.match(this.debugScope)(debugPrefix)) {
         return;
       }
 

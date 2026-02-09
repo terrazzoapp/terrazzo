@@ -7,9 +7,41 @@ export function isAlias(value: string): boolean {
   return ALIAS_RE.test(value);
 }
 
-/** Create a token matcher function using . separated glob patterns */
-export function getTokenMatcher(globPatterns: string | string[]): (tokenId: string) => boolean {
-  return wcmatch(globPatterns, '.');
+const _CATCHALL_MATCHER = wcmatch('.*');
+
+/** Only create unique wcmatch instances, and cache across the lifespan of a run */
+export class CachedWildcardMatcher {
+  cachedMatchers: Record<string, ReturnType<typeof wcmatch>> = {};
+  /** This is a separate cache because of the "." separator. */
+  cachedTokenIDMatchers: Record<string, ReturnType<typeof wcmatch>> = {};
+
+  constructor() {
+    this.reset();
+  }
+
+  /** Generic wildcard matcher */
+  match(...params: Parameters<typeof wcmatch>): ReturnType<typeof wcmatch> {
+    const key = JSON.stringify(params[0]); // Note: believe-it-or-not, JSON.stringify() beats String() for coercion speed here
+    if (!(key in this.cachedMatchers)) {
+      this.cachedMatchers[key] = wcmatch(...params);
+    }
+    return this.cachedMatchers[key]!;
+  }
+
+  /** Wildcard matcher specifically for Token IDs (provides "." as separator). */
+  tokenIDMatch(pattern: Parameters<typeof wcmatch>[0]): ReturnType<typeof wcmatch> {
+    const key = JSON.stringify(pattern);
+    if (!(key in this.cachedTokenIDMatchers)) {
+      this.cachedTokenIDMatchers[key] = wcmatch(pattern, '.');
+    }
+    return this.cachedTokenIDMatchers[key]!;
+  }
+
+  /** Garbage collect all caches, reset to initial state */
+  reset() {
+    this.cachedMatchers = { '': _CATCHALL_MATCHER, '*': _CATCHALL_MATCHER, '**': _CATCHALL_MATCHER };
+    this.cachedTokenIDMatchers = { '': _CATCHALL_MATCHER, '*': _CATCHALL_MATCHER, '**': _CATCHALL_MATCHER };
+  }
 }
 
 /** Make an alias */

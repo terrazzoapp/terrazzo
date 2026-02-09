@@ -207,9 +207,11 @@ describe('Resolver module', () => {
               name: 'tzMode',
               description: 'Automatically built from $extensions.mode',
               contexts: {
+                '.': [{ color: { blue: { '600': lightToken } } }],
                 light: [{ color: { blue: { '600': lightToken } } }],
                 dark: [{ color: { blue: { '600': darkToken } } }],
               },
+              default: '.',
             },
           ],
           sets: {
@@ -225,9 +227,11 @@ describe('Resolver module', () => {
               type: 'modifier',
               description: 'Automatically built from $extensions.mode',
               contexts: {
+                '.': [{ color: { blue: { '600': lightToken } } }],
                 light: [{ color: { blue: { '600': lightToken } } }],
                 dark: [{ color: { blue: { '600': darkToken } } }],
               },
+              default: '.',
             },
           },
           _source: expect.objectContaining({}), // ignore specifics here, as long as it exists

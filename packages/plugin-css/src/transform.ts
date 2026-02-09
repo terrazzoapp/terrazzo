@@ -1,7 +1,6 @@
 import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
-import { getTokenMatcher } from '@terrazzo/token-tools';
 import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
-import { type CSSPluginOptions, FORMAT_ID, PLUGIN_NAME } from './lib.js';
+import { type CSSPluginOptions, cachedMatcher, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 
 export interface TransformOptions {
   transform: TransformHookOptions;
@@ -41,15 +40,15 @@ export default function transformCSS({
   }
   const transformAlias = (token: TokenNormalized) => `var(${transformName(token)})`;
 
-  const include = userInclude ? getTokenMatcher(userInclude) : () => true;
-  const exclude = userExclude ? getTokenMatcher(userExclude) : () => false;
+  const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
+  const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
 
   // permutations
   if (permutations?.length) {
     for (const p of permutations) {
       const input = p.input;
-      const pInclude = p.include ? getTokenMatcher(p.include) : () => true;
-      const pExclude = p.exclude ? getTokenMatcher(p.exclude) : () => false;
+      const pInclude = p.include ? cachedMatcher.tokenIDMatch(p.include) : () => true;
+      const pExclude = p.exclude ? cachedMatcher.tokenIDMatch(p.exclude) : () => false;
 
       const includeToken = (tokenId: string): boolean => {
         return include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);

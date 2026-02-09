@@ -22,9 +22,6 @@ export async function createSyntheticResolver(
   const contexts: Record<string, any[]> = {};
   for (const token of Object.values(tokens)) {
     for (const [mode, value] of Object.entries(token.mode)) {
-      if (mode === '.') {
-        continue;
-      }
       if (!(mode in contexts)) {
         contexts[mode] = [{}];
       }
@@ -44,6 +41,7 @@ export async function createSyntheticResolver(
         tzMode: {
           description: 'Automatically built from $extensions.mode',
           contexts,
+          default: '.',
         },
       },
     },

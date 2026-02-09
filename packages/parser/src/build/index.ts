@@ -1,7 +1,5 @@
 import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
-import type { TokenNormalized } from '@terrazzo/token-tools';
-import { getTokenMatcher } from '@terrazzo/token-tools';
-import wcmatch from 'wildcard-match';
+import { CachedWildcardMatcher, type TokenNormalized } from '@terrazzo/token-tools';
 import Logger, { type LogEntry } from '../logger.js';
 import type { BuildRunnerResult, ConfigInit, Resolver, TokenTransformed, TransformParams } from '../types.js';
 
@@ -47,7 +45,11 @@ function validateTransformParams({
   }
 }
 
-const FALLBACK_PERMUTATION_ID = JSON.stringify({ tzMode: '*' });
+const FALLBACK_PERMUTATION_ID = JSON.stringify({ tzMode: '.' });
+
+// Important: getTransforms() will likely be called hundreds of times, and creating wcmatch instances is expensive!
+// Use this cached matcher to significantly speed up matching
+const cachedMatcher = new CachedWildcardMatcher();
 
 /** Run build stage */
 export default async function build(
@@ -68,11 +70,17 @@ export default async function build(
         return [];
       }
 
-      const tokenMatcher = params.id && params.id !== '*' ? getTokenMatcher(params.id) : null;
-      const modeMatcher = params.mode ? wcmatch(params.mode) : null;
-      const permutationID = params.input ? resolver.getPermutationID(params.input) : JSON.stringify({ tzMode: '*' });
+      let permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
+      if (!params.input && params.mode) {
+        permutationID = JSON.stringify({ tzMode: params.mode });
+      }
 
-      return (formats[params.format!]?.[permutationID] ?? []).filter((token) => {
+      // Optimization: don’t create wildcard matcher if single token IDs are requested—it’s slow and pointless
+      const isSingleTokenID = params.id && typeof params.id === 'string' && params.id in tokens;
+      const tokenMatcher = params.id && !isSingleTokenID ? cachedMatcher.tokenIDMatch(params.id) : null;
+      const modeMatcher = params.mode ? cachedMatcher.match(params.mode) : null;
+
+      const final = (formats[params.format!]?.[permutationID] ?? []).filter((token) => {
         if (params.$type) {
           if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
             return false;
@@ -80,7 +88,10 @@ export default async function build(
             return false;
           }
         }
-        if (tokenMatcher && !tokenMatcher(token.token.id)) {
+        // Optimization: skip wildcard matcher for single token IDs
+        if (typeof params.id === 'string' && params.id in tokens) {
+          return token.id === params.id;
+        } else if (tokenMatcher && !tokenMatcher(token.token.id)) {
           return false;
         }
         if (params.input && token.permutationID !== resolver.getPermutationID(params.input)) {
@@ -91,6 +102,7 @@ export default async function build(
         }
         return true;
       });
+      return final;
     };
   }
 
@@ -99,6 +111,7 @@ export default async function build(
   const startTransform = performance.now();
   for (const plugin of config.plugins) {
     if (typeof plugin.transform === 'function') {
+      const pt = performance.now();
       await plugin.transform({
         context: { logger },
         tokens,
@@ -114,7 +127,10 @@ export default async function build(
             return;
           }
           const token = tokens[id]!;
-          const permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
+          let permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
+          if (!params.input && params.mode) {
+            permutationID = JSON.stringify({ tzMode: params.mode });
+          }
           const cleanValue: TokenTransformed['value'] =
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
           validateTransformParams({
@@ -170,13 +186,14 @@ export default async function build(
         },
         resolver,
       });
+      logger.debug({ group: 'plugin', label: plugin.name, message: 'transform()', timing: performance.now() - pt });
     }
   }
   transformsLocked = true;
   logger.debug({
     group: 'parser',
     label: 'transform',
-    message: 'transform() step',
+    message: 'All plugins finished transform()',
     timing: performance.now() - startTransform,
   });
 
@@ -185,7 +202,7 @@ export default async function build(
   await Promise.all(
     config.plugins.map(async (plugin) => {
       if (typeof plugin.build === 'function') {
-        const pluginBuildStart = performance.now();
+        const pb = performance.now();
         await plugin.build({
           context: { logger },
           tokens,
@@ -201,23 +218,21 @@ export default async function build(
                 label: plugin.name,
               });
             }
-            result.outputFiles.push({
-              filename,
-              contents,
-              plugin: plugin.name,
-              time: performance.now() - pluginBuildStart,
-            });
+            result.outputFiles.push({ filename, contents, plugin: plugin.name, time: performance.now() - pb });
           },
         });
+        logger.debug({ group: 'plugin', label: plugin.name, message: 'build()', timing: performance.now() - pb });
       }
     }),
   );
   logger.debug({
     group: 'parser',
     label: 'build',
-    message: 'build() step',
+    message: 'All plugins finished build()',
     timing: performance.now() - startBuild,
   });
+
+  cachedMatcher.reset(); // Garbage collect wildcard matches accumulated in the build process. This is needed in watch mode especially and long sessions.
 
   // buildEnd()
   const startBuildEnd = performance.now();

@@ -1,3 +1,6 @@
+export const FORMAT_ID = 'tailwind';
+export const PLUGIN_NAME = '@terrazzo/plugin-tailwind';
+
 export interface TailwindPluginOptions {
   /**
    * Filename to output.
@@ -11,8 +14,13 @@ export interface TailwindPluginOptions {
   template?: string;
   /** @see https://tailwindcss.com/docs/theme */
   theme: Record<string, unknown>;
-  /** Array of mapping variants to DTCG modes. */
-  modeVariants?: { variant: string; mode: string }[];
+  /** Default permutation */
+  defaultPermutation?: Record<string, string>;
+  /**
+   * Associate Tailwind variants with Resolver permutations
+   * @see https://v2.tailwindcss.com/docs/configuring-variants
+   */
+  variants?: Record<string, Record<string, string>>;
 }
 
 /** Flatten an arbitrarily-nested object */

@@ -7,7 +7,7 @@ import tailwind from '../src/index.js';
 const cmd = '../../../../cli/bin/cli.js';
 
 describe('CLI', () => {
-  const fixtures = ['primer', 'template'];
+  const fixtures = ['primer', 'template', 'resolver'];
 
   test.each(fixtures)('%s', async (dir) => {
     const cwd = new URL(`./fixtures/${dir}/`, import.meta.url);

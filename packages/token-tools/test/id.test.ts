@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getTokenMatcher, isAlias, makeAlias, parseAlias, splitID } from '../src/id.js';
+import { CachedWildcardMatcher, isAlias, makeAlias, parseAlias, splitID } from '../src/id.js';
 
 describe('isAlias', () => {
   it('returns true for valid ID', () => {
@@ -25,13 +25,13 @@ describe('makeAlias', () => {
   });
 });
 
-describe('getTokenMatcher', () => {
+describe('CachedWildcardMatcher', () => {
   it('basic', () => {
-    expect(getTokenMatcher('color.*')('color.blue.60')).toBeFalsy();
-    expect(getTokenMatcher('color.**')('color.blue.60')).toBeTruthy();
-    expect(getTokenMatcher('color.*.60')('color.blue.60')).toBeTruthy();
-    expect(getTokenMatcher('color.*.60')('color.blue.tint.60')).toBeFalsy();
-    expect(getTokenMatcher('color.**.60')('color.blue.tint.60')).toBeTruthy();
+    expect(new CachedWildcardMatcher().tokenIDMatch('color.*')('color.blue.60')).toBeFalsy();
+    expect(new CachedWildcardMatcher().tokenIDMatch('color.**')('color.blue.60')).toBeTruthy();
+    expect(new CachedWildcardMatcher().tokenIDMatch('color.*.60')('color.blue.60')).toBeTruthy();
+    expect(new CachedWildcardMatcher().tokenIDMatch('color.*.60')('color.blue.tint.60')).toBeFalsy();
+    expect(new CachedWildcardMatcher().tokenIDMatch('color.**.60')('color.blue.tint.60')).toBeTruthy();
   });
 });
 

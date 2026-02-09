@@ -1,6 +1,7 @@
-import { getTokenMatcher, isAlias } from '@terrazzo/token-tools';
+import { isAlias } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
+import { cachedLintMatcher } from '../lib/matchers.js';
 
 export const DUPLICATE_VALUES = 'core/duplicate-values';
 
@@ -25,7 +26,7 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
   create({ report, tokens, options }) {
     const values: Record<string, Set<any>> = {};
 
-    const shouldIgnore = options.ignore ? getTokenMatcher(options.ignore) : null;
+    const shouldIgnore = options.ignore ? cachedLintMatcher.tokenIDMatch(options.ignore) : null;
 
     for (const t of Object.values(tokens)) {
       // skip ignored tokens

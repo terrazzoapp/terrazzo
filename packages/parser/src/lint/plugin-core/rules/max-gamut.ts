@@ -1,7 +1,8 @@
-import { getTokenMatcher, tokenToColor } from '@terrazzo/token-tools';
+import { tokenToColor } from '@terrazzo/token-tools';
 import { inGamut } from 'colorjs.io/fn';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
+import { cachedLintMatcher } from '../lib/matchers.js';
 
 export const MAX_GAMUT = 'core/max-gamut';
 
@@ -42,7 +43,7 @@ const rule: LintRule<
       throw new Error(`Unknown gamut "${options.gamut}". Options are "srgb", "p3", or "rec2020"`);
     }
 
-    const shouldIgnore = options.ignore ? getTokenMatcher(options.ignore) : null;
+    const shouldIgnore = options.ignore ? cachedLintMatcher.tokenIDMatch(options.ignore) : null;
 
     for (const t of Object.values(tokens)) {
       // skip ignored tokens

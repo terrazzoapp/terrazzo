@@ -1,6 +1,5 @@
 import { type BuildHookOptions, MULTI_VALUE } from '@terrazzo/parser';
-import { getTokenMatcher } from '@terrazzo/token-tools';
-import { FORMAT_ID, type SassPluginOptions } from './lib.js';
+import { cachedMatcher, FORMAT_ID, type SassPluginOptions } from './lib.js';
 import { CssVarReferenceSassToken, RootSassToken, type SassMapKey, type SassMapValue, type SassToken } from './node.js';
 
 export interface BuildParams {
@@ -58,7 +57,7 @@ export default async function build({ getTransforms, options }: BuildParams): Pr
 
   const tokenValuesMap = root.createMap();
 
-  const exclude = options?.exclude ? getTokenMatcher(options?.exclude) : undefined;
+  const exclude = options?.exclude ? cachedMatcher.tokenIDMatch(options.exclude) : undefined;
 
   for (const token of getTransforms({ format: FORMAT_ID, id: '*', mode: '.' })) {
     if (exclude?.(token.token.id)) {

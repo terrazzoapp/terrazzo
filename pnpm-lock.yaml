@@ -482,6 +482,9 @@ importers:
       '@terrazzo/plugin-css':
         specifier: workspace:^
         version: link:../plugin-css
+      dtcg-examples:
+        specifier: 'catalog:'
+        version: 1.0.2
       tailwindcss:
         specifier: ^4.1.18
         version: 4.1.18

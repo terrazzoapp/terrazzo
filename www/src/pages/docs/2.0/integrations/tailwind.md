@@ -28,13 +28,22 @@ import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import tailwind from "@terrazzo/plugin-tailwind";
 
+const prepare = (css: string) => string;
+
 export default defineConfig({
   outDir: "./tokens/",
   plugins: [
-    css(),
+    css({
+      skipBuild: true, // Optional, don’t generate another .css file if tailwind is all that’s needed
+      permutations: [
+        { theme: "light", prepare },
+        { theme: "dark", prepare },
+        { theme: "light-high-contrast", prepare },
+        { theme: "dark-high-contrast", prepare },
+      ],
+    }),
     tailwind({
-      filename: "tailwind.js",
-
+      filename: "tailwind-theme.css",
       theme: {
         /** @see https://tailwindcss.com/docs/configuration#theme */
         color: ["color.*"],
@@ -44,6 +53,13 @@ export default defineConfig({
         spacing: ["spacing.*"],
         radius: ["borderRadius.*"],
       },
+      defaultPermutation: { theme: "light" },
+      variants: [
+        light: { theme: "light" },
+        dark: { theme: "dark" },
+        "light-hc": { theme: "light-hc" },
+        "dark-hc": { theme: "dark-hc" },
+      ],
     }),
   ],
 });
@@ -61,11 +77,12 @@ And you’ll see a `tokens/tailwind-theme.css` file generated in your project.
 
 ## Options
 
-| Name           | Type                                  | Description                                             |
-| :------------- | :------------------------------------ | :------------------------------------------------------ |
-| `filename`     | `string`                              | Filename to generate (default: `"tailwind-theme.css"`). |
-| `theme`        | `Record<string, any>`                 | Tailwind theme ([docs](#theme))                         |
-| `modeVariants` | `{ variant: string, mode: string }[]` | See [Dark mode & variants](#dark-mode-&-variants).      |
+| Name                 | Type                                              | Description                                             |
+| :------------------- | :------------------------------------------------ | :------------------------------------------------------ |
+| `filename`           | `string`                                          | Filename to generate (default: `"tailwind-theme.css"`). |
+| `theme`              | `Record<string, any>`                             | Tailwind theme ([docs](#theme))                         |
+| `defaultPermutation` | `Record<string, string>`                          | Set the default permutation input.                      |
+| `variants`           | `Record<string, string>, Record<string, string>>` | See [Dark mode & variants](#permutations).              |
 
 ## Theme
 
@@ -157,42 +174,80 @@ You’d wind up with `--color-0`, `--color-1`, etc. which would point to `color.
 
 All that said, keep in mind that **theme mapping is up to you!** So the theme will be built exactly as you’ve declared.
 
-### Dark mode & variants
+### Permutations
 
-Tailwind considers dark mode as a [variant](https://tailwindcss.com/docs/functions-and-directives#variant-directive) underneath, which means you’re not restricted to simply dark mode when using modes in tokens.
+You’ll map permutations from your resolver 1:1 with [Tailwind Variants](https://tailwindcss.com/docs/functions-and-directives#variant-directive).
 
-By declaring a `variants` array with both `selector` (Tailwind) and `mode` (DTCG mode), you can generate the following CSS:
+The CSS plugin is responsible for generating the initial values that the Tailwind plugin reads. The Tailwind plugin then just maps it to variants. So you can only access permutations if they’re built in the CSS plugin:
 
 ```diff
-  tailwind({
-    theme: {
-      color: ["color.*"],
-    },
-+   modeVariants: [
-+     { variant: "dark", mode: "dark" },
-+     { variant: "hc", mode: "high-contrast" },
-+   ],
-  });
+  const prepare = (css: string) => css;
+
+  export default defineConfig({
+    plugins: [
+      css({
+        skipBuild: true,
+        permutations: [
+          { input: { theme: "light" }, prepare },
+          { input: { theme: "dark" }, prepare },
+          { input: { theme: "light-high-contrast" }, prepare },
+          { input: { theme: "dark-high-contrast" }, prepare },
+        ],
+      }),
+      tailwind({
+        theme: {
+          color: ["color.*"],
+        },
++       defaultPermutation: { theme: "light" },
++       variants: {
++         dark: { theme: "dark" },
++         "light-hc": { theme: "light-high-contrast" },
++         "dark-hc": { theme: "dark-high-contrast" },
++       },
+      });
+    ],
 ```
 
-Produces:
+- In the CSS plugin settings, the `prepare` function normally formats the CSS template, but if `skipBuild: true` is set, it doesn’t matter.
+- In the Tailwind plugin settings, `variants` are a key–value map from `@variant` to a resolver input. This will be empty if it’s missing from the CSS options!
+
+In this example, all the following yields:
 
 ```css
 @theme {
-  /* base tokens */
+  /* … */
 }
 
 @variant dark {
-  /* mode: dark tokens */
+  /* … */
 }
 
-@variant hc {
-  /* mode: hc tokens */
+@variant light-hc {
+  /* … */
+}
+
+@variant dark-hc {
+  /* … */
 }
 ```
 
-:::note
+:::tip
 
-As of 2.0, since plugin-css no longer computes all permutations of tokens automatically (due to DTCG Resolvers, some design systems have thousands of permutations that are a waste of time to build), you’ll need to add `modeSelectors` for the variants you want to generate.
+If you see an empty block generated in your Tailwind theme, check the CSS plugin options! You may be missing that `permutation` you’re trying to access.
 
 :::
+
+#### Accessing legacy $extensions.mode
+
+You don’t have to have your tokens in a resolver format to use permutations! You can access the values from $extensions.mode via the virtual `tzMode` modifier:
+
+```ts
+exportdefineConfig({
+  plugins: [
+    tailwind({
+      defaultPermutation: { tzMode: "light" },
+      permutations: [{ variant: "dark", input: { tzMode: "dark" } }],
+    }),
+  ],
+});
+```

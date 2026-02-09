@@ -1,13 +1,14 @@
 import * as momoa from '@humanwhocodes/momoa';
 import { encodeFragment, getObjMember, type InputSourceWithDocument, parseRef } from '@terrazzo/json-schema-tools';
 import {
+  CachedWildcardMatcher,
   type GroupNormalized,
-  getTokenMatcher,
   isAlias,
   parseAlias,
   type TokenNormalized,
   type TokenNormalizedSet,
 } from '@terrazzo/token-tools';
+import { alphaComparator } from '../lib/array.js';
 import type { default as Logger } from '../logger.js';
 import type { Config, ReferenceObject, RefMap } from '../types.js';
 
@@ -39,6 +40,8 @@ export interface TokenFromNodeOptions {
   source: InputSourceWithDocument;
   ignore: Config['ignore'];
 }
+
+const cachedMatcher = new CachedWildcardMatcher();
 
 /** Generate a TokenNormalized from a Momoa node */
 export function tokenFromNode(
@@ -98,7 +101,10 @@ export function tokenFromNode(
 
   // after assembling token, handle ignores to see if the final result should be ignored or not
   // filter out ignored
-  if ((ignore?.deprecated && token.$deprecated) || (ignore?.tokens && getTokenMatcher(ignore.tokens)(token.id))) {
+  if (
+    (ignore?.deprecated && token.$deprecated) ||
+    (ignore?.tokens && cachedMatcher.tokenIDMatch(ignore.tokens)(token.id))
+  ) {
     return;
   }
 
@@ -250,7 +256,7 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
       modeValue.dependencies = [];
     }
     modeValue.dependencies.push(...refChain.filter((r) => !modeValue.dependencies!.includes(r)));
-    modeValue.dependencies.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
+    modeValue.dependencies.sort(alphaComparator);
 
     // Top alias
     const isTopLevelAlias = jsonID.endsWith('/$value') || tokens[jsonID];
@@ -343,7 +349,7 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
           }
         }
       }
-      baseToken.aliasedBy.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true })); // sort, because the ordering is arbitrary and flaky
+      baseToken.aliasedBy.sort(alphaComparator); // sort, because the ordering is arbitrary and flaky
     }
 
     if (mode === '.') {

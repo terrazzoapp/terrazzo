@@ -1,7 +1,6 @@
 import type { Logger, TokenTransformed } from '@terrazzo/parser';
-import { kebabCase } from '@terrazzo/token-tools';
+import { CachedWildcardMatcher, kebabCase } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
-import wcmatch from 'wildcard-match';
 import { type CSSRule, decl, PLUGIN_NAME, rule, type UtilityCSSGroup, type UtilityCSSPrefix } from './lib.js';
 
 // micro-optimization: precompile all RegExs (which can be known) because dynamic compilation is a waste of resources
@@ -25,6 +24,8 @@ function makeVarValue(token: TokenTransformed): string {
   return makeCSSVar(token.localID ?? token.token.id, { wrapVar: true });
 }
 
+const utilityMatcher = new CachedWildcardMatcher();
+
 export default function generateUtilityCSS(
   groups: Partial<Record<UtilityCSSGroup, string[]>>,
   tokens: TokenTransformed[],
@@ -35,7 +36,7 @@ export default function generateUtilityCSS(
   groupEntries.sort((a, b) => a[0].localeCompare(b[0]));
 
   for (const [group, selectors] of groupEntries) {
-    const selectorMatcher = wcmatch(selectors);
+    const selectorMatcher = utilityMatcher.match(selectors);
     const matchingTokens = tokens.filter((token) => selectorMatcher(token.token.id));
     if (!matchingTokens.length) {
       logger.warn({

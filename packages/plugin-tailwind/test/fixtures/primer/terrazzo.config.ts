@@ -1,21 +1,25 @@
 import { defineConfig } from '@terrazzo/cli';
-import css from '../../../../plugin-css/dist/index.js';
+import css from '@terrazzo/plugin-css';
 import tailwind from '../../../dist/index.js';
 
 export default defineConfig({
   outDir: '.',
+  lint: {
+    rules: {
+      'core/consistent-naming': 'off',
+    },
+  },
   plugins: [
     css({
-      legacyHex: true,
       skipBuild: true,
     }),
     tailwind({
       filename: 'actual.css',
-      modeVariants: [
-        { variant: 'dark', mode: 'dark' },
-        { variant: 'light-hc', mode: 'light-high-contrast' },
-        { variant: 'dark-hc', mode: 'dark-high-contrast' },
-      ],
+      variants: {
+        dark: { tzMode: 'dark' },
+        'light-hc': { tzMode: 'light-hc' },
+        'dark-hc': { tzMode: 'dark-hc' },
+      },
       theme: {
         color: {
           blue: ['color.blue.**'],
@@ -51,11 +55,11 @@ export default defineConfig({
         radius: ['borderRadius.**'],
 
         // test arbitrary values
-        fooSingle: 'color.orange.100',
+        fooSingle: 'color.orange.1',
         fooArray: ['color.green.**'],
         foo: {
-          bar: 'color.purple.500',
-          baz: 'color.purple.600',
+          bar: 'color.purple.5',
+          baz: 'color.purple.6',
         },
       },
     }),

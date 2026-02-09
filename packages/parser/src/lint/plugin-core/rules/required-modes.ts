@@ -1,6 +1,6 @@
-import { getTokenMatcher } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
+import { cachedLintMatcher } from '../lib/matchers.js';
 
 export const REQUIRED_MODES = 'core/required-modes';
 
@@ -41,7 +41,7 @@ const rule: LintRule<never, RuleRequiredModesOptions> = {
         throw new Error(`Match ${matchI}: must declare \`modes: […]\``);
       }
 
-      const matcher = getTokenMatcher(match);
+      const matcher = cachedLintMatcher.tokenIDMatch(match);
 
       let tokensMatched = false;
       for (const t of Object.values(tokens)) {

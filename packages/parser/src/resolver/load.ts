@@ -1,10 +1,9 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { type InputSource, type InputSourceWithDocument, maybeRawJSON } from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
-import { merge } from 'merge-anything';
 import type yamlToMomoa from 'yaml-to-momoa';
 import { toMomoa } from '../lib/momoa.js';
-import { getPermutationID } from '../lib/resolver-utils.js';
+import { destructiveMerge, getPermutationID } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
 import { processTokens } from '../parse/process.js';
 import type { ConfigInit, Resolver, ResolverSourceNormalized } from '../types.js';
@@ -123,7 +122,7 @@ export function createResolver(
 
   return {
     apply(inputRaw) {
-      let tokensRaw: TokenNormalizedSet = {};
+      const tokensRaw: TokenNormalizedSet = {};
       const input = { ...inputDefaults, ...inputRaw };
       const permutationID = getPermutationID(input);
 
@@ -135,7 +134,7 @@ export function createResolver(
         switch (item.type) {
           case 'set': {
             for (const s of item.sources) {
-              tokensRaw = merge(tokensRaw, s) as TokenNormalizedSet;
+              destructiveMerge(tokensRaw, s);
             }
             break;
           }
@@ -149,7 +148,7 @@ export function createResolver(
               });
             }
             for (const s of sources ?? []) {
-              tokensRaw = merge(tokensRaw, s) as TokenNormalizedSet;
+              destructiveMerge(tokensRaw, s);
             }
             break;
           }
