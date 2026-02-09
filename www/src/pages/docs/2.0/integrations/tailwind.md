@@ -129,7 +129,7 @@ tailwind({
 
 Which will generate the same CSS. Terrazzo simply expanded the keys & values into an object for you.
 
-Globs are powered by [picomatch](https://www.npmjs.com/package/picomatch), so you could do advanced filters like `['color.{red,blue}.*']`. [See the picomatch docs](https://www.npmjs.com/package/picomatch) for supported syntax.
+Globs are powered by [picomatch](https://www.npmjs.com/package/picomatch), so you could do advanced filters like `['color.{red,blue}.**']`. [See the picomatch docs](https://www.npmjs.com/package/picomatch) for supported syntax.
 
 #### Gotchas
 

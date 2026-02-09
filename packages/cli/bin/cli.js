@@ -57,12 +57,15 @@ const { values: flags, positionals } = parseArgs({
     output: { type: 'string', short: 'o' },
     help: { type: 'boolean' },
     silent: { type: 'boolean' },
-    'skip-styles': { type: 'boolean' },
-    'skip-variables': { type: 'boolean' },
     quiet: { type: 'boolean' }, // secret alias for --silent because I can’t remember it
-    unpublished: { type: 'boolean' },
     watch: { type: 'boolean', short: 'w' },
     version: { type: 'boolean' },
+    unpublished: { type: 'boolean' },
+    'skip-styles': { type: 'boolean' },
+    'skip-variables': { type: 'boolean' },
+    'font-family-names': { type: 'string' },
+    'font-weight-names': { type: 'string' },
+    'number-names': { type: 'string' },
   },
 });
 

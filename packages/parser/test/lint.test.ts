@@ -84,7 +84,7 @@ describe('rules', () => {
       {
         given: {
           rule: COLORSPACE,
-          options: { colorSpace: 'oklab', ignore: ['color.*'] },
+          options: { colorSpace: 'oklab', ignore: ['color.**'] },
           tokens: {
             color: {
               blue: {
@@ -199,7 +199,7 @@ describe('rules', () => {
       {
         given: {
           rule: DESCRIPTIONS,
-          options: { ignore: ['number.*'] },
+          options: { ignore: ['number.**'] },
           tokens: { number: { 42: { $type: 'number', $value: 42 } } },
         },
         want: { success: true },
@@ -269,7 +269,7 @@ describe('rules', () => {
       {
         given: {
           rule: DUPLICATE_VALUES,
-          options: { ignore: ['color.*'] },
+          options: { ignore: ['color.**'] },
           tokens: {
             color: {
               blue: {
@@ -287,7 +287,7 @@ describe('rules', () => {
       {
         given: {
           rule: DUPLICATE_VALUES,
-          options: { ignore: ['color.*'] },
+          options: { ignore: ['color.**'] },
           tokens: {
             foo: {
               baz: {
@@ -383,7 +383,7 @@ describe('rules', () => {
       {
         given: {
           rule: REQUIRED_CHILDREN,
-          options: { matches: [{ match: ['color.*'], requiredTokens: ['100', '200'] }] },
+          options: { matches: [{ match: ['color.**'], requiredTokens: ['100', '200'] }] },
           tokens: {
             color: {
               blue: {
@@ -401,7 +401,7 @@ describe('rules', () => {
       {
         given: {
           rule: REQUIRED_CHILDREN,
-          options: { matches: [{ match: ['color.*'], requiredTokens: ['100', '200'] }] },
+          options: { matches: [{ match: ['color.**'], requiredTokens: ['100', '200'] }] },
           tokens: {
             color: {
               blue: { '100': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.235, 0.235, 0.263] } } },
@@ -416,7 +416,7 @@ describe('rules', () => {
       {
         given: {
           rule: REQUIRED_CHILDREN,
-          options: { matches: [{ match: ['color.*'], requiredGroups: ['action', 'error'] }] },
+          options: { matches: [{ match: ['color.**'], requiredGroups: ['action', 'error'] }] },
           tokens: {
             color: {
               semantic: {
@@ -440,7 +440,7 @@ describe('rules', () => {
       {
         given: {
           rule: REQUIRED_CHILDREN,
-          options: { matches: [{ match: ['color.*'], requiredGroups: ['action', 'error'] }] },
+          options: { matches: [{ match: ['color.**'], requiredGroups: ['action', 'error'] }] },
           tokens: {
             color: {
               semantic: {
@@ -460,7 +460,7 @@ describe('rules', () => {
       {
         given: {
           rule: REQUIRED_MODES,
-          options: { matches: [{ match: ['typography.*'], modes: ['mobile', 'desktop'] }] },
+          options: { matches: [{ match: ['typography.**'], modes: ['mobile', 'desktop'] }] },
           tokens: {
             typography: {
               size: {
@@ -481,7 +481,7 @@ describe('rules', () => {
       {
         given: {
           rule: REQUIRED_MODES,
-          options: { matches: [{ match: ['typography.*'], modes: ['mobile', 'desktop'] }] },
+          options: { matches: [{ match: ['typography.**'], modes: ['mobile', 'desktop'] }] },
           tokens: {
             typography: {
               size: {

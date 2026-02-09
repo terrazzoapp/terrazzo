@@ -57,6 +57,17 @@
         "created_at": "2025-10-30T12:00:00Z",
         "updated_at": "2025-10-30T12:00:00Z",
         "user": {}
+      },
+      {
+        "key": "6cd916da62c28968d21fc26660506cb679ea75e6",
+        "file_key": ":file_key",
+        "node_id": "20:2",
+        "style_type": "GRID",
+        "name": "grid/base",
+        "description": "",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
       }
     ]
   },

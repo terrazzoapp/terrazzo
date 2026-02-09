@@ -1,4 +1,4 @@
-import wcmatch from 'wildcard-match';
+import { getTokenMatcher } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -56,7 +56,7 @@ const rule: LintRule<
         throw new Error(`Match ${matchI}: must declare either \`requiredTokens: […]\` or \`requiredGroups: […]\``);
       }
 
-      const matcher = wcmatch(match);
+      const matcher = getTokenMatcher(match);
 
       const matchGroups: string[] = [];
       const matchTokens: string[] = [];

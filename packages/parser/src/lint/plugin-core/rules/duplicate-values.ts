@@ -1,5 +1,4 @@
-import { isAlias } from '@terrazzo/token-tools';
-import wcmatch from 'wildcard-match';
+import { getTokenMatcher, isAlias } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -26,7 +25,7 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
   create({ report, tokens, options }) {
     const values: Record<string, Set<any>> = {};
 
-    const shouldIgnore = options.ignore ? wcmatch(options.ignore) : null;
+    const shouldIgnore = options.ignore ? getTokenMatcher(options.ignore) : null;
 
     for (const t of Object.values(tokens)) {
       // skip ignored tokens

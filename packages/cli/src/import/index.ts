@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import type { Logger } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
 import { importFromFigma, isFigmaPath } from './figma/index.js';
+import { formatNumber } from './figma/lib.js';
 
 export * from './figma/index.js';
 
@@ -14,8 +15,6 @@ export interface ImportCmdOptions {
   positionals: string[];
   logger: Logger;
 }
-
-const nf = new Intl.NumberFormat('en-us');
 
 export async function importCmd({ flags, positionals, logger }: ImportCmdOptions) {
   const [_cmd, url] = positionals;
@@ -42,6 +41,9 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
       unpublished: flags.unpublished,
       skipStyles: flags['skip-styles'],
       skipVariables: flags['skip-variables'],
+      fontFamilyNames: flags['font-family-names'],
+      fontWeightNames: flags['font-weight-names'],
+      numberNames: flags['number-names'],
     });
     const end = performance.now() - start;
 
@@ -52,7 +54,7 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
         $schema: result.code.$schema, // Reset $schema
         version: result.code.version, // Reset version
         // Note: it’s important to have resolutionOrder higher up, since sets and modifiers will be a mess
-        resolutionOrder: oldFile.resolutionOrder ?? result.code.resolutionOrder, // Rely on old file, since the Figma file won’t understand resolutionOrder
+        resolutionOrder: oldFile.resolutionOrder?.length ? oldFile.resolutionOrder : result.code.resolutionOrder, // Rely on old file, since the Figma file won’t understand resolutionOrder
         sets: result.code.sets, // Overwrite old sets
         modifiers: result.code.modifiers, // Overwrite old modifiers
         $defs: oldFile.$defs, // Just in case
@@ -61,7 +63,7 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
       await fs.writeFile(flags.output, `${JSON.stringify(code, undefined, 2)}\n`);
       logger.info({
         group: 'import',
-        message: `Imported ${nf.format(result.variableCount)} ${pluralize(result.variableCount, 'Variable', 'Variables')}, ${nf.format(result.styleCount)} ${pluralize(result.styleCount, 'Style', 'Styles')} → ${flags.output}`,
+        message: `Imported ${formatNumber(result.variableCount)} ${pluralize(result.variableCount, 'Variable', 'Variables')}, ${formatNumber(result.styleCount)} ${pluralize(result.styleCount, 'Style', 'Styles')} → ${flags.output}`,
         timing: end,
       });
     } else {

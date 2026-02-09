@@ -1,6 +1,6 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
-import wcmatch from 'wildcard-match';
+import { getTokenMatcher } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -31,7 +31,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_MISSING, RuleValidTypographyOpt
     requiredProperties: ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'lineHeight'],
   },
   create({ tokens, options, report }) {
-    const isIgnored = options.ignore ? wcmatch(options.ignore) : () => false;
+    const isIgnored = options.ignore ? getTokenMatcher(options.ignore) : () => false;
     for (const t of Object.values(tokens)) {
       if (t.aliasOf || !t.originalValue || t.$type !== 'typography' || isIgnored(t.id)) {
         continue;
