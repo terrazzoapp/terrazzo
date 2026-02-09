@@ -10,9 +10,16 @@ describe('tz build', () => {
   // This tests errors, and simplified plugin examples
   describe('transform', () => {
     it('getTransforms / setTransform', async () => {
-      const cwd = new URL('./fixtures/get-transforms/', import.meta.url);
-      await execa('node', [cmd, 'build'], { cwd });
-      const given = fs.readFileSync(new URL('given.json', cwd), 'utf8');
+      const cwd = new URL('./fixtures/get-transforms-resolver/', import.meta.url);
+      await execa('node', [cmd, 'build'], { cwd, stdout: 'inherit' });
+      const given = fs.readFileSync(new URL('actual.json', cwd), 'utf8');
+      await expect(given).toMatchFileSnapshot(fileURLToPath(new URL('want.json', cwd)));
+    });
+
+    it('getTransforms / setTransform (legacy modes)', async () => {
+      const cwd = new URL('./fixtures/get-transforms-mode/', import.meta.url);
+      await execa('node', [cmd, 'build'], { cwd, stdout: 'inherit' });
+      const given = fs.readFileSync(new URL('actual.json', cwd), 'utf8');
       await expect(given).toMatchFileSnapshot(fileURLToPath(new URL('want.json', cwd)));
     });
   });

@@ -42,6 +42,14 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         logger.error({ group: 'plugin', label: PLUGIN_NAME, message: 'Missing Tailwind `theme` option.' });
       }
 
+      if (options && 'modeVariants' in options) {
+        logger.error({
+          group: 'plugin',
+          label: PLUGIN_NAME,
+          message: 'Migrate "modeVariants" to "variants" in config (see docs)',
+        });
+      }
+
       // store cwd for template resolution (parent of outDir)
       cwd = new URL('./', config.outDir);
       if (options?.template && !fsSync.existsSync(new URL(options.template, cwd))) {
@@ -56,8 +64,15 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       const flatTheme = flattenThemeObj(options.theme);
 
       for (const input of Object.values(variations)) {
+        // Note: it’s important to remember that under-the-hood, getting/setting modes is NOT the same as having an { tzMode: value } input.
+        // The former allows glob searching across all modes, the latter does not. Especially in the Tailwind plugin, confusing the two
+        // will result in many dropped tokens.
+        //
+        // This is all behavior that will go away in 3.0, but for 2.0 this needs to be backwards-compatible with 0.x, hence the complexity.
+        const transformContext = input && isLegacyModes(input) ? { mode: input.tzMode } : { input };
+
         for (const { path, value } of flatTheme) {
-          const variantTokens = getTransforms({ format: FORMAT_CSS, id: value, input });
+          const variantTokens = getTransforms({ format: FORMAT_CSS, id: value, ...transformContext });
           // Warn the user if they are trying to generate an empty Tailwind variant
           if (!variantTokens.length) {
             logger.warn({ group: 'plugin', label: PLUGIN_NAME, message: `${value} matched 0 tokens` });
@@ -73,7 +88,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
               format: FORMAT_TAILWIND,
               localID: makeCSSVar(`${path.join('-')}-${relName.replace(/\./g, '-')}`),
               value: typeof token.value === 'object' ? token.value['.']! : token.value,
-              input,
+              ...transformContext,
             });
           }
         }
@@ -82,11 +97,13 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
     async build({ getTransforms, outputFile }) {
       let generatedTheme = '';
       for (const [variant, input] of Object.entries(variations)) {
+        const transformContext = input && isLegacyModes(input) ? { mode: input.tzMode } : { input };
+
         if (generatedTheme) {
           generatedTheme += '\n'; // add extra line break if continuing
         }
         generatedTheme += `${variant === DEFAULT_THEME ? '@theme' : `@variant ${variant}`} {\n`;
-        for (const token of getTransforms({ format: FORMAT_TAILWIND, input })) {
+        for (const token of getTransforms({ format: FORMAT_TAILWIND, ...transformContext })) {
           generatedTheme += `  ${token.localID}: ${token.value};\n`;
         }
         generatedTheme += '}\n';
@@ -107,4 +124,9 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       outputFile(filename, [header, '', finalOutput].join('\n'));
     },
   };
+}
+
+/** This is a backwards-compat way for someone  */
+function isLegacyModes(input: Record<string, string>): boolean {
+  return Object.keys(input).length === 0 && 'tzMode' in input;
 }

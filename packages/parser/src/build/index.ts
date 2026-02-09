@@ -45,7 +45,7 @@ function validateTransformParams({
   }
 }
 
-const FALLBACK_PERMUTATION_ID = JSON.stringify({ tzMode: '.' });
+const FALLBACK_PERMUTATION_ID = JSON.stringify({ tzMode: '*' });
 
 // Important: getTransforms() will likely be called hundreds of times, and creating wcmatch instances is expensive!
 // Use this cached matcher to significantly speed up matching
@@ -70,10 +70,7 @@ export default async function build(
         return [];
       }
 
-      let permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
-      if (!params.input && params.mode) {
-        permutationID = JSON.stringify({ tzMode: params.mode });
-      }
+      const permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
 
       // Optimization: don’t create wildcard matcher if single token IDs are requested—it’s slow and pointless
       const isSingleTokenID = params.id && typeof params.id === 'string' && params.id in tokens;
@@ -127,10 +124,7 @@ export default async function build(
             return;
           }
           const token = tokens[id]!;
-          let permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
-          if (!params.input && params.mode) {
-            permutationID = JSON.stringify({ tzMode: params.mode });
-          }
+          const permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
           const cleanValue: TokenTransformed['value'] =
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
           validateTransformParams({
@@ -149,7 +143,7 @@ export default async function build(
           let foundTokenI = -1;
           if (params.mode) {
             foundTokenI = formats[params.format]![permutationID]!.findIndex(
-              (t) => id === t.id && (!params.localID || params.localID === t.localID) && params.mode === t.mode,
+              (t) => id === t.id && (!params.localID || params.localID === t.localID) && t.mode === params.mode,
             );
           } else if (params.input) {
             if (!formats[params.format]![permutationID]) {

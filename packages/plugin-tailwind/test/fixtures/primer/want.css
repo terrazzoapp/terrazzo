@@ -25,7 +25,7 @@
   --color-green-7: rgb(1.5686% 30.98% 11.765%);
   --color-green-8: rgb(0% 23.922% 8.6275%);
   --color-green-9: rgb(0% 17.647% 6.6667%);
-  --color-neutral-0: rgb(96.471% 97.255% 98.039%);
+  --color-neutral-0: var(--base-color-white);
   --color-neutral-1: rgb(91.765% 93.333% 94.902%);
   --color-neutral-2: rgb(81.569% 84.314% 87.059%);
   --color-neutral-3: rgb(68.627% 72.157% 75.686%);
@@ -35,6 +35,10 @@
   --color-neutral-7: rgb(25.882% 29.02% 32.549%);
   --color-neutral-8: rgb(19.608% 21.961% 24.706%);
   --color-neutral-9: rgb(14.118% 16.078% 18.431%);
+  --color-neutral-10: rgb(27.059% 29.804% 32.941%);
+  --color-neutral-11: rgb(22.353% 24.706% 27.451%);
+  --color-neutral-12: rgb(14.51% 16.078% 18.039%);
+  --color-neutral-13: var(--base-color-black);
   --color-orange-0: rgb(100% 94.51% 89.804%);
   --color-orange-1: rgb(100% 84.706% 70.98%);
   --color-orange-2: rgb(100% 71.765% 48.627%);
@@ -77,11 +81,12 @@
   --color-yellow-9: rgb(23.137% 13.725% 0%);
   --font-sans: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Noto Sans", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --spacing-xxs: 2px;
-  --spacing-xs: var(--size-4);
-  --spacing-sm: 6px;
-  --spacing-md: var(--size-8);
-  --spacing-lg: var(--size-12);
-  --spacing-xl: var(--size-16);
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 32px;
+  --radius-default: var(--border-radius-medium);
   --radius-full: 9999px;
   --radius-large: 12px;
   --radius-medium: 6px;
@@ -122,7 +127,7 @@
   --color-green-7: rgb(5.8824% 32.549% 13.725%);
   --color-green-8: rgb(1.1765% 22.745% 8.6275%);
   --color-green-9: rgb(1.5686% 14.902% 5.8824%);
-  --color-neutral-0: rgb(94.118% 96.471% 98.824%);
+  --color-neutral-0: var(--base-color-black);
   --color-neutral-1: rgb(78.824% 81.961% 85.098%);
   --color-neutral-2: rgb(69.412% 72.941% 76.863%);
   --color-neutral-3: rgb(54.51% 58.039% 61.961%);

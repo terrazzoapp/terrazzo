@@ -251,3 +251,9 @@ exportdefineConfig({
   ],
 });
 ```
+
+:::warning
+
+For the Tailwind plugin, don’t mix-and-match `tzMode` with newer resolvers—you’ll get stranded tokens lost between permutations and you won’t get correct output. For this plugin, either use **ONLY** `tzMode` by itself, or convert all your tokens to the new [resolver format](https://www.designtokens.org/TR/2025.10/resolver/).
+
+:::
