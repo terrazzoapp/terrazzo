@@ -12,7 +12,7 @@ export const PERMUTATIONS: Record<string, TokenNormalizedSet>;
 
 type InputType = {
   "breakpoint": "md" | "lg" | "xlg" | "max";
-};;
+};
 
 export type Color = Pick<ColorTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type Number = Pick<NumberTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;

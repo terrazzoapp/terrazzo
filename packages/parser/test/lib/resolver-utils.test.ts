@@ -46,7 +46,26 @@ describe('descructiveMerge', () => {
         want: { a: { b: { c: false, d: 23 } } },
       },
     ],
-    ['array', { given: [{ merged: [0] }, { merged: [1, 2, 3] }], want: { merged: [1, 2, 3] } }],
+    ['array: simple', { given: [{ a: [0] }, { a: [1, 2, 3] }], want: { a: [1, 2, 3] } }],
+    ['array: nested object', { given: [{ a: [{ a: 1 }] }, { a: [{ b: 2 }] }], want: { a: [{ b: 2 }] } }],
+    ['null', { given: [{ a: { b: 1 } }, { a: { b: null } }], want: { a: { b: null } } }],
+    [
+      'nested array',
+      {
+        given: [
+          {
+            a: [
+              [
+                [1, 2],
+                [2, 3],
+              ],
+            ],
+          },
+          { a: [[[0], [1], [[2, 3]], 4]] },
+        ],
+        want: { a: [[[0], [1], [[2, 3]], 4]] },
+      },
+    ],
     ['undefined (one)', { given: [undefined, { b: 2 }], want: undefined }],
     ['undefined (both)', { given: [undefined, undefined], want: undefined }],
   ];

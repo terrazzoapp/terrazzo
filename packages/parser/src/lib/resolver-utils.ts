@@ -45,19 +45,24 @@ export function getPermutationID(input: Record<string, string | undefined>): str
  * configurations like terrazzo.config.ts files, but that’s too slow for tokens.
  */
 export function destructiveMerge(a: object, b: object): void {
-  if (!a || !b || typeof a !== 'object' || typeof b !== 'object') {
+  if (!a || !b || typeof b !== 'object') {
     return;
   }
   for (const k in b) {
     if (!Object.hasOwn(b, k)) {
       continue;
     }
-    const a2 = (a as any)[k];
     const b2 = (b as any)[k];
-    if (k in a && typeof a2 === 'object' && typeof b2 === 'object' && !Array.isArray(a2) && !Array.isArray(b2)) {
-      destructiveMerge(a2, { ...b2 }); // shallow-clone objects (we don’t want deep clones; that will “top down” our “bottom up”)
-    } else if (Array.isArray(b2)) {
-      (a as any)[k] = [...b2]; // shallow-clone arrays (we don’t want deep clones; that will “top down” our “bottom up”)
+    if (b2 != null && typeof b2 === 'object') {
+      if (Array.isArray(b2)) {
+        (a as any)[k] = []; // arrays are overwritten; always make an empty one
+        destructiveMerge((a as any)[k], [...b2]); // shallow copy
+      } else {
+        if (!(k in a)) {
+          (a as any)[k] = {}; // objects are merged; create empty one if none exists
+        }
+        destructiveMerge((a as any)[k], { ...b2 }); // shallow copy
+      }
     } else {
       (a as any)[k] = b2;
     }
