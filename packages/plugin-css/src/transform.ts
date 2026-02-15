@@ -1,4 +1,4 @@
-import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
+import type { TokenNormalized, TransformHookOptions } from '@terrazzo/parser';
 import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
 import { type CSSPluginOptions, cachedMatcher, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 
@@ -11,7 +11,6 @@ export default function transformCSS({
   transform: {
     context: { logger },
     resolver,
-    getTransforms,
     setTransform,
     tokens: baseTokens,
   },
@@ -64,14 +63,14 @@ export default function transformCSS({
           const value =
             customTransform?.(token) ??
             transformCSSValue(token, { tokensSet: tokens, transformAlias, color: { legacyHex } });
-          // Don’t duplicate values when unnecessary
-          if (value && isDifferentValue(value, getTransforms({ format: FORMAT_ID, id: token.id })[0]?.value)) {
+          if (value) {
             const localID = transformName(token);
             setTransform(token.id, {
               format: FORMAT_ID,
               value,
               localID,
               input,
+              // TODO: plugin-css shouldn’t set metadata for plugin-token-listing; move this there
               meta: { 'token-listing': { name: localID } },
             });
           }
@@ -109,35 +108,10 @@ export default function transformCSS({
           localID,
           value,
           mode,
+          // TODO: plugin-css shouldn’t set metadata for plugin-token-listing; move this there
           meta: { 'token-listing': { name: localID } },
         });
       }
     }
   }
-}
-
-/** Is the transformed value different from the base value? */
-function isDifferentValue(
-  value: TokenTransformed['value'] | undefined,
-  baseValue: TokenTransformed['value'] | undefined,
-): boolean {
-  if (!value || !baseValue || typeof value !== typeof baseValue) {
-    return true;
-  }
-  if (typeof value === 'string' && typeof baseValue === 'string') {
-    return value !== baseValue;
-  }
-  const keysA = Object.keys(value);
-  const keysB = Object.keys(baseValue);
-  if (keysA.length !== keysB.length) {
-    return true;
-  }
-  if (
-    !keysA.every(
-      (k) => keysB.includes(k) && (value as Record<string, string>)[k] === (baseValue as Record<string, string>)[k],
-    )
-  ) {
-    return true;
-  }
-  return false;
 }

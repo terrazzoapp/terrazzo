@@ -24,11 +24,20 @@ export default defineConfig({
     }),
     tailwind({
       filename: 'actual.css',
-      defaultPermutation: { theme: 'light' },
-      variants: {
-        dark: { theme: 'dark' },
-        'light-hc': { theme: 'light-hc' },
-        'dark-hc': { theme: 'dark-hc' },
+      defaultTheme: { theme: 'light' },
+      customVariants: {
+        dark: {
+          selector: ':where(.dark, .dark *)',
+          input: { theme: 'dark' },
+        },
+        'light-hc': {
+          selector: ':where(.light-hc, .light-hc *)',
+          input: { theme: 'light-hc' },
+        },
+        'dark-hc': {
+          selector: ':where(.dark-hc, .dark-hc *)',
+          input: { theme: 'dark-hc' },
+        },
       },
       theme: {
         color: {

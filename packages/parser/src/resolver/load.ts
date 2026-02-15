@@ -6,7 +6,7 @@ import { toMomoa } from '../lib/momoa.js';
 import { destructiveMerge, getPermutationID } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
 import { processTokens } from '../parse/process.js';
-import type { ConfigInit, Resolver, ResolverSourceNormalized } from '../types.js';
+import type { ConfigInit, Resolver, ResolverInput, ResolverSourceNormalized } from '../types.js';
 import { normalizeResolver } from './normalize.js';
 import { isLikelyResolver, validateResolver } from './validate.js';
 
@@ -75,7 +75,7 @@ export async function loadResolver(
     resolver = createResolver(normalized, { config, logger, sources: [{ ...inputs[0]!, document: resolverDoc }] });
 
     // If a resolver is present, load a single permutation to get a base token set.
-    const firstInput: Record<string, string> = {};
+    const firstInput: ResolverInput = {};
     for (const m of resolver.source.resolutionOrder) {
       if (m.type !== 'modifier') {
         continue;
@@ -103,9 +103,9 @@ export function createResolver(
   resolverSource: ResolverSourceNormalized,
   { config, logger, sources }: CreateResolverOptions,
 ): Resolver {
-  const inputDefaults: Record<string, string> = {};
+  const inputDefaults: ResolverInput = {};
   const validContexts: Record<string, string[]> = {};
-  const allPermutations: Record<string, string>[] = [];
+  const allPermutations: ResolverInput[] = [];
 
   const resolverCache: Record<string, any> = {};
 
@@ -190,6 +190,9 @@ export function createResolver(
       for (const [name, contexts] of Object.entries(validContexts)) {
         // Note: empty strings are valid! Don’t check for truthiness.
         if (name in input) {
+          if (name === 'tzMode') {
+            continue; // reserved modifier
+          }
           if (!contexts.includes(input[name]!)) {
             if (throwError) {
               logger.error({
@@ -226,7 +229,7 @@ export function calculatePermutations(options: [string, string[]][]) {
   }
   const permutations: Record<string, string>[] = [];
   for (let i = 0; i < permutationCount.at(-1)!; i++) {
-    const input: Record<string, string> = {};
+    const input: ResolverInput = {};
     for (let j = 0; j < options.length; j++) {
       const [name, contexts] = options[j]!;
       input[name] = contexts[Math.floor(i / permutationCount[j]!) % contexts.length]!;

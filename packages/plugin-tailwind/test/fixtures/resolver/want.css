@@ -106,7 +106,7 @@
   --foo-baz: rgb(40% 22.353% 72.941%);
 }
 
-@variant dark {
+@custom-variant dark (:where(.dark, .dark *)) {
   --color-blue-0: rgb(79.216% 90.98% 100%);
   --color-blue-1: rgb(64.706% 83.922% 100%);
   --color-blue-2: rgb(47.451% 75.294% 100%);
@@ -208,7 +208,7 @@
   --foo-baz: rgb(43.137% 25.098% 78.824%);
 }
 
-@variant light-hc {
+@custom-variant light-hc (:where(.light-hc, .light-hc *)) {
   --color-blue-0: rgb(87.451% 96.863% 100%);
   --color-blue-1: rgb(61.176% 84.314% 100%);
   --color-blue-2: rgb(40.392% 70.196% 99.216%);
@@ -229,20 +229,20 @@
   --color-green-7: rgb(0.39216% 23.922% 7.8431%);
   --color-green-8: rgb(0% 19.216% 6.2745%);
   --color-green-9: rgb(0% 13.725% 4.3137%);
-  --color-neutral-0: var(--base-color-black);
-  --color-neutral-1: rgb(5.098% 6.6667% 9.0196%);
-  --color-neutral-2: rgb(8.2353% 10.588% 13.725%);
-  --color-neutral-3: rgb(12.941% 15.686% 18.824%);
-  --color-neutral-4: rgb(14.902% 17.255% 21.176%);
-  --color-neutral-5: rgb(16.471% 19.216% 23.529%);
-  --color-neutral-6: rgb(18.431% 21.569% 25.882%);
-  --color-neutral-7: rgb(23.922% 26.667% 30.196%);
-  --color-neutral-8: rgb(39.608% 42.353% 46.275%);
-  --color-neutral-9: rgb(56.863% 59.608% 63.137%);
-  --color-neutral-10: rgb(71.765% 74.118% 78.431%);
-  --color-neutral-11: rgb(81.961% 84.314% 87.843%);
-  --color-neutral-12: rgb(94.118% 96.471% 98.824%);
-  --color-neutral-13: var(--base-color-white);
+  --color-neutral-0: var(--base-color-white);
+  --color-neutral-1: rgb(96.471% 97.255% 98.039%);
+  --color-neutral-2: rgb(93.725% 94.902% 96.078%);
+  --color-neutral-3: rgb(90.196% 91.765% 93.725%);
+  --color-neutral-4: rgb(87.843% 90.196% 92.157%);
+  --color-neutral-5: rgb(85.49% 87.843% 90.588%);
+  --color-neutral-6: rgb(81.961% 85.098% 87.843%);
+  --color-neutral-7: rgb(78.431% 81.961% 85.49%);
+  --color-neutral-8: rgb(50.588% 54.51% 59.608%);
+  --color-neutral-9: rgb(34.902% 38.824% 43.137%);
+  --color-neutral-10: rgb(27.059% 29.804% 32.941%);
+  --color-neutral-11: rgb(22.353% 24.706% 27.451%);
+  --color-neutral-12: rgb(14.51% 16.078% 18.039%);
+  --color-neutral-13: var(--base-color-black);
   --color-orange-0: rgb(100% 94.902% 83.529%);
   --color-orange-1: rgb(100% 77.647% 48.235%);
   --color-orange-2: rgb(97.647% 58.824% 21.176%);
@@ -310,7 +310,7 @@
   --foo-baz: rgb(31.765% 14.51% 59.608%);
 }
 
-@variant dark-hc {
+@custom-variant dark-hc (:where(.dark-hc, .dark-hc *)) {
   --color-blue-0: rgb(79.216% 91.765% 100%);
   --color-blue-1: rgb(67.843% 86.275% 100%);
   --color-blue-2: rgb(56.863% 79.608% 100%);

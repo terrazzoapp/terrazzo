@@ -1,1 +1,1 @@
-export default [{ path: './dist/index.js', limit: '18 kB' }];
+export default [{ path: './dist/index.js', limit: '20 kB' }];

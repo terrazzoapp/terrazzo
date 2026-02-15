@@ -148,9 +148,13 @@ export default function buildCSS({
     // add utility CSS
     if (utility && Object.keys(utility).length) {
       if (output) {
-        output += '\n\n';
+        output += '\n';
       }
-      output += generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID }), { logger });
+      output += printRules(
+        generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, input: permutations[0]?.input ?? {} }), {
+          logger,
+        }),
+      );
     }
 
     return output;
@@ -184,7 +188,7 @@ export default function buildCSS({
 
       const localID = token.localID ?? token.token.id;
       const aliasTokens = token.token.aliasedBy?.length
-        ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy, mode: '.' })
+        ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy })
         : [];
 
       // single-value token

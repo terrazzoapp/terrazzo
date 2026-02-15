@@ -1,6 +1,8 @@
 export const FORMAT_ID = 'tailwind';
 export const PLUGIN_NAME = '@terrazzo/plugin-tailwind';
 
+export type ResolverInput = Record<string, string>;
+
 export interface TailwindPluginOptions {
   /**
    * Filename to output.
@@ -15,12 +17,19 @@ export interface TailwindPluginOptions {
   /** @see https://tailwindcss.com/docs/theme */
   theme: Record<string, unknown>;
   /** Default permutation */
-  defaultPermutation?: Record<string, string>;
+  defaultTheme?: ResolverInput;
   /**
-   * Associate Tailwind variants with Resolver permutations
-   * @see https://v2.tailwindcss.com/docs/configuring-variants
+   * Associate Tailwind custom variants with Resolver permutations
+   * @see https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
    */
-  variants?: Record<string, Record<string, string>>;
+  customVariants?: {
+    [name: string]: {
+      /** The CSS selector to apply to this variant */
+      selector: string;
+      /** The resolver input to load for this custom variant */
+      input: ResolverInput;
+    };
+  };
 }
 
 /** Flatten an arbitrarily-nested object */

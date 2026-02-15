@@ -26,7 +26,12 @@ describe('makeAlias', () => {
 });
 
 describe('CachedWildcardMatcher', () => {
-  it('basic', () => {
+  it('mode', () => {
+    expect(new CachedWildcardMatcher().match('.')('.')).toBeTruthy();
+    expect(new CachedWildcardMatcher().match('.')('light')).toBeFalsy();
+  });
+
+  it('tokenIDMatch', () => {
     expect(new CachedWildcardMatcher().tokenIDMatch('color.*')('color.blue.60')).toBeFalsy();
     expect(new CachedWildcardMatcher().tokenIDMatch('color.**')('color.blue.60')).toBeTruthy();
     expect(new CachedWildcardMatcher().tokenIDMatch('color.*.60')('color.blue.60')).toBeTruthy();

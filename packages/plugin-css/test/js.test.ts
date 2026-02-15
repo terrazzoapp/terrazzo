@@ -168,7 +168,11 @@ describe('Node.js API', () => {
                     tokens: ['color.**'],
                     selectors: ['[data-color-theme="light-high-contrast"]'],
                   },
-                  { mode: 'dark-dimmed', tokens: ['color.**'], selectors: ['[data-color-theme="dark-dimmed"]'] },
+                  {
+                    mode: 'dark-dimmed',
+                    tokens: ['color.**'],
+                    selectors: ['[data-color-theme="dark-dimmed"]'],
+                  },
                   {
                     mode: 'dark-high-contrast',
                     tokens: ['color.**'],
@@ -371,6 +375,51 @@ describe('Node.js API', () => {
     it('utility', async () => {
       const output = 'actual.css';
       const cwd = new URL('./fixtures/utility-css/', import.meta.url);
+      const config = defineConfig(
+        {
+          lint: { rules: { 'core/consistent-naming': 'off' } },
+          plugins: [
+            css({
+              filename: output,
+              variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
+              utility: {
+                bg: ['color.semantic.**', 'color.gradient.**'],
+                border: ['border.**'],
+                font: ['typography.**'],
+                layout: ['space.**'],
+                shadow: ['shadow.**'],
+                text: ['color.semantic.**', 'color.gradient.**'],
+              },
+              permutations: [
+                { prepare: (css) => `:root {\n  ${css}\n}`, input: { theme: 'light' } },
+                {
+                  prepare: (css) => `@media (prefers-color-theme: dark) {\n  :root {\n    ${css}\n  }\n}`,
+                  input: { theme: 'dark' },
+                },
+                {
+                  prepare: (css) => `@media (width < 600px) {\n  :root {\n    ${css}\n  }\n}`,
+                  input: { size: 'mobile' },
+                },
+              ],
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const tokensJSON = new URL('./resolver.json', cwd);
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: tokensJSON, src: await fs.readFile(tokensJSON, 'utf8') }],
+        { config },
+      );
+      const result = await build(tokens, { resolver, sources, config });
+      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
+    });
+
+    it('utility (legacy modes)', async () => {
+      const output = 'actual.css';
+      const cwd = new URL('./fixtures/utility-css-modes/', import.meta.url);
       const config = defineConfig(
         {
           lint: { rules: { 'core/consistent-naming': 'off' } },

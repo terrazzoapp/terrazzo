@@ -50,6 +50,6 @@
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^",
     "dtcg-examples": "catalog:",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.2.0"
   }
 }

@@ -70,36 +70,35 @@ export default async function build(
         return [];
       }
 
-      const permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
-
+      const isLegacyModes = params.input && Object.keys(params.input).length === 1 && 'tzMode' in params.input;
+      const permutationID =
+        params.input && !isLegacyModes ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
+      const mode = params.mode || (isLegacyModes && params.input.tzMode) || undefined;
       // Optimization: don’t create wildcard matcher if single token IDs are requested—it’s slow and pointless
-      const isSingleTokenID = params.id && typeof params.id === 'string' && params.id in tokens;
-      const tokenMatcher = params.id && !isSingleTokenID ? cachedMatcher.tokenIDMatch(params.id) : null;
-      const modeMatcher = params.mode ? cachedMatcher.match(params.mode) : null;
+      const singleTokenID =
+        (typeof params.id === 'string' && tokens[params.id]?.id) ||
+        (Array.isArray(params.id) && params.id.length === 1 && tokens[params.id[0]!]?.id) ||
+        undefined;
+      const $type =
+        (typeof params.$type === 'string' && [params.$type]) ||
+        (Array.isArray(params.$type) && params.$type) ||
+        undefined;
+      const idMatcher =
+        params.id && !singleTokenID && !isFullWildcard(params.id) ? cachedMatcher.tokenIDMatch(params.id) : null;
+      const modeMatcher = mode && mode !== '.' && !isFullWildcard(mode) ? cachedMatcher.match(mode) : null;
 
-      const final = (formats[params.format!]?.[permutationID] ?? []).filter((token) => {
-        if (params.$type) {
-          if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
-            return false;
-          } else if (Array.isArray(params.$type) && !params.$type.some(($type) => token.token.$type === $type)) {
-            return false;
-          }
-        }
-        // Optimization: skip wildcard matcher for single token IDs
-        if (typeof params.id === 'string' && params.id in tokens) {
-          return token.id === params.id;
-        } else if (tokenMatcher && !tokenMatcher(token.token.id)) {
+      return (formats[params.format!]?.[permutationID] ?? []).filter((token) => {
+        if ((singleTokenID && token.id !== singleTokenID) || (idMatcher && !idMatcher(token.id))) {
           return false;
         }
-        if (params.input && token.permutationID !== resolver.getPermutationID(params.input)) {
+        if (params.$type && !$type?.some((value) => token.token.$type === value)) {
           return false;
         }
-        if (modeMatcher && !modeMatcher(token.mode)) {
+        if ((mode === '.' && token.mode !== '.') || (modeMatcher && !modeMatcher(token.mode))) {
           return false;
         }
         return true;
       });
-      return final;
     };
   }
 
@@ -124,7 +123,13 @@ export default async function build(
             return;
           }
           const token = tokens[id]!;
-          const permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
+          if (!token) {
+            logger.error({ group: 'plugin', label: plugin.name, message: `No token "${id}"` });
+          }
+          const isLegacyModes = params.input && Object.keys(params.input).length === 1 && 'tzMode' in params.input;
+          const permutationID =
+            params.input && !isLegacyModes ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
+          const mode = params.mode || (isLegacyModes && params.input.tzMode) || undefined;
           const cleanValue: TokenTransformed['value'] =
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
           validateTransformParams({
@@ -140,24 +145,9 @@ export default async function build(
           if (!formats[params.format]![permutationID]) {
             formats[params.format]![permutationID] = [];
           }
-          let foundTokenI = -1;
-          if (params.mode) {
-            foundTokenI = formats[params.format]![permutationID]!.findIndex(
-              (t) => id === t.id && (!params.localID || params.localID === t.localID) && t.mode === params.mode,
-            );
-          } else if (params.input) {
-            if (!formats[params.format]![permutationID]) {
-              formats[params.format]![permutationID] = [];
-            }
-            foundTokenI = formats[params.format]![permutationID]!.findIndex(
-              (t) =>
-                id === t.id && (!params.localID || params.localID === t.localID) && permutationID === t.permutationID,
-            );
-          } else {
-            foundTokenI = formats[params.format]![permutationID]!.findIndex(
-              (t) => id === t.id && (!params.localID || params.localID === t.localID),
-            );
-          }
+          const foundTokenI = formats[params.format]![permutationID]!.findIndex(
+            (t) => id === t.id && (!params.localID || params.localID === t.localID) && (!mode || t.mode === mode),
+          );
           if (foundTokenI === -1) {
             // backwards compat: upconvert mode into "tzMode" modifier. This
             // allows newer plugins to use resolver syntax without disrupting
@@ -167,8 +157,8 @@ export default async function build(
               id,
               value: cleanValue,
               type: typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE,
-              mode: params.mode || '.',
-              token: structuredClone(token),
+              mode: mode || '.',
+              token: makeReadOnlyToken(token),
               permutationID,
               input: JSON.parse(permutationID),
             } as TokenTransformed);
@@ -249,4 +239,68 @@ export default async function build(
   });
 
   return result;
+}
+
+function isFullWildcard(value: string | string[]): boolean {
+  return (
+    (typeof value === 'string' && (value === '*' || value === '**')) ||
+    (Array.isArray(value) && value.some((v) => v === '*' || v === '**'))
+  );
+}
+
+/** Generate getters for transformed tokens. Reduces memory usage while improving accuracy. Provides some safety for read-only values. */
+function makeReadOnlyToken(token: TokenNormalized) {
+  return {
+    get id() {
+      return token.id;
+    },
+    get $value() {
+      return token.$value;
+    },
+    get $type() {
+      return token.$type;
+    },
+    get $description() {
+      return token.$description;
+    },
+    get $deprecated() {
+      return token.$deprecated;
+    },
+    get $extends() {
+      return token.$extends;
+    },
+    get $extensions() {
+      return token.$extensions;
+    },
+    get mode() {
+      return token.mode;
+    },
+    get originalValue() {
+      return token.originalValue;
+    },
+    get aliasChain() {
+      return token.aliasChain;
+    },
+    get aliasOf() {
+      return token.aliasOf;
+    },
+    get partialAliasOf() {
+      return token.partialAliasOf;
+    },
+    get aliasedBy() {
+      return token.aliasedBy;
+    },
+    get group() {
+      return token.group;
+    },
+    get source() {
+      return token.source;
+    },
+    get jsonID() {
+      return token.jsonID;
+    },
+    get dependencies() {
+      return token.dependencies;
+    },
+  };
 }

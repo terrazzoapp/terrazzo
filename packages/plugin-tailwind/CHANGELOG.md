@@ -6,7 +6,8 @@
 
 - Fully supports DTCG 2025.10 and resolvers.
 
-- ⚠️ Breaking change: Minor config change from `modeVariations` → `variations`. The behavior is backwards-compatible with 0.x but requires a config update.
+- ⚠️ Breaking change: plugin-tailwind now uses [Custom variants](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually) which allow for closer 1:1 translation from tokens.
+  - This results in a config change from `modeVariations` → `customVariants`.
 
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change: lint on plugins no longer runs on individual files, rather, the full set once merged.
 

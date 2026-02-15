@@ -15,10 +15,20 @@ export default defineConfig({
     }),
     tailwind({
       filename: 'actual.css',
-      variants: {
-        dark: { tzMode: 'dark' },
-        'light-hc': { tzMode: 'light-hc' },
-        'dark-hc': { tzMode: 'dark-hc' },
+      defaultTheme: { tzMode:'.' },
+      customVariants: {
+        dark: {
+          selector: ':where(.dark, .dark *)',
+          input: { tzMode: 'dark' },
+        },
+        'light-hc': {
+          selector: ':where(.light-hc, .light-hc *)',
+          input: { tzMode: 'light-hc' },
+        },
+        'dark-hc': {
+          selector: ':where(.dark-hc, .dark-hc *)',
+          input: { tzMode: 'dark-hc' },
+        },
       },
       theme: {
         color: {

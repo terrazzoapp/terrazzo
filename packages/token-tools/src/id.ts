@@ -23,7 +23,7 @@ export class CachedWildcardMatcher {
   match(...params: Parameters<typeof wcmatch>): ReturnType<typeof wcmatch> {
     const key = JSON.stringify(params[0]); // Note: believe-it-or-not, JSON.stringify() beats String() for coercion speed here
     if (!(key in this.cachedMatchers)) {
-      this.cachedMatchers[key] = wcmatch(...params);
+      this.cachedMatchers[key] = wcmatch(params[0], params[1] ?? false);
     }
     return this.cachedMatchers[key]!;
   }
