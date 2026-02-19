@@ -835,15 +835,25 @@ describe('Additional cases', () => {
   });
 
   it('empty sources', async () => {
-    await expect(parse([], { config: defineConfig({}, { cwd: new URL('file:///') }) })).rejects.toThrow(
-      'parser:init: Nothing to parse.',
-    );
+    try {
+      const result = await parse([], { config: defineConfig({}, { cwd: new URL('file:///') }) });
+      expect(result).toThrow();
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`"parser:init: Nothing to parse."`);
+    }
   });
 
   it('invalid sources', async () => {
-    await expect(
-      parse([{ filename: 'foo' } as any], { config: defineConfig({}, { cwd: new URL('file:///') }) }),
-    ).rejects.toThrow('parser:init: Input 0: expected { src: any; filename: URL }');
+    try {
+      const result = await parse([{ filename: 'foo' } as any], {
+        config: defineConfig({}, { cwd: new URL('file:///') }),
+      });
+      expect(result).toThrow();
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(
+        `"parser:init: Input 0: expected { src: any; filename: URL }"`,
+      );
+    }
   });
 });
 

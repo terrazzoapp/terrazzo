@@ -23,7 +23,7 @@ catalog:
   '@vitest/browser-playwright': ^4.0.18
   '@vitest/coverage-v8': ^4.0.18
   colorjs.io: ^0.6.1
-  dtcg-examples: ^1.0.2
+  dtcg-examples: ^1.0.3
   playwright: ^1.58.2
   react: ^19.2.4
   react-dom: ^19.2.4

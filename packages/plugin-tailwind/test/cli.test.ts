@@ -17,7 +17,7 @@ describe('CLI', () => {
     await expect(actual).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
   });
 
-  describe.skip('errors', () => {
+  describe('errors', () => {
     test('plugin-css missing', async () => {
       const cwd = new URL('./fixtures/primer/', import.meta.url);
       expect(() => defineConfig({ plugins: [tailwind({ theme: {} })] }, { cwd })).toThrowError(

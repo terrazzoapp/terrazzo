@@ -64,8 +64,8 @@ catalogs:
       specifier: ^0.6.1
       version: 0.6.1
     dtcg-examples:
-      specifier: ^1.0.2
-      version: 1.0.2
+      specifier: ^1.0.3
+      version: 1.0.3
     playwright:
       specifier: ^1.58.2
       version: 1.58.2
@@ -395,7 +395,7 @@ importers:
         version: link:../parser
       dtcg-examples:
         specifier: 'catalog:'
-        version: 1.0.2
+        version: 1.0.3
 
   packages/plugin-css-in-js:
     dependencies:
@@ -414,7 +414,7 @@ importers:
         version: link:../plugin-css
       dtcg-examples:
         specifier: 'catalog:'
-        version: 1.0.2
+        version: 1.0.3
 
   packages/plugin-js:
     dependencies:
@@ -430,7 +430,7 @@ importers:
         version: link:../cli
       dtcg-examples:
         specifier: 'catalog:'
-        version: 1.0.2
+        version: 1.0.3
 
   packages/plugin-sass:
     dependencies:
@@ -484,7 +484,7 @@ importers:
         version: link:../plugin-css
       dtcg-examples:
         specifier: 'catalog:'
-        version: 1.0.2
+        version: 1.0.3
       tailwindcss:
         specifier: ^4.2.0
         version: 4.2.0
@@ -540,7 +540,7 @@ importers:
         version: 5.1.4(@types/node@25.2.3)(jiti@2.6.1)(sass-embedded@1.85.1)(vite@7.3.1(@types/node@25.2.3)(jiti@2.6.1)(sass-embedded@1.85.1)(yaml@2.8.2))(yaml@2.8.2)
       dtcg-examples:
         specifier: 'catalog:'
-        version: 1.0.2
+        version: 1.0.3
       react:
         specifier: 'catalog:'
         version: 19.2.4
@@ -767,7 +767,7 @@ importers:
         version: 2.1.1
       dtcg-examples:
         specifier: 'catalog:'
-        version: 1.0.2
+        version: 1.0.3
       jotai:
         specifier: ^2.17.1
         version: 2.17.1(@babel/core@7.29.0)(@babel/template@7.28.6)(@types/react@19.2.14)(react@19.2.4)
@@ -3912,6 +3912,9 @@ packages:
 
   dtcg-examples@1.0.2:
     resolution: {integrity: sha512-g8d2zqxa/fvEp1kraGjVCbNN4F4bigFrOzfCxpUU/jbBS4GHhxCezjEWBvupVaTJ5urNAlCarwYNaFc84y9B2g==}
+
+  dtcg-examples@1.0.3:
+    resolution: {integrity: sha512-gKHpa3kLAYDP8g36sDtjG6oLQHrxfSYm5HW97QIwo4C6d0XnhU5H+N2q0j++uSMuCAxAu17JUG6Q6T5e2T6N0g==}
 
   dts-resolver@2.1.3:
     resolution: {integrity: sha512-bihc7jPC90VrosXNzK0LTE2cuLP6jr0Ro8jk+kMugHReJVLIpHz/xadeq3MhuwyO4TD4OA3L1Q8pBBFRc08Tsw==}
@@ -9687,6 +9690,8 @@ snapshots:
   dset@3.1.4: {}
 
   dtcg-examples@1.0.2: {}
+
+  dtcg-examples@1.0.3: {}
 
   dts-resolver@2.1.3: {}
 

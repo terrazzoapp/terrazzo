@@ -4,9 +4,12 @@ import { build, defineConfig, parse } from '../src/index.js';
 
 describe('Plugin API', () => {
   it('name', async () => {
-    expect(() => defineConfig({ plugins: [{} as any] }, { cwd: new URL('file:///') })).toThrow(
-      'config:plugin[0]: Missing "name"',
-    );
+    try {
+      const config = defineConfig({ plugins: [{} as any] }, { cwd: new URL('file:///') });
+      expect(config).toThrow();
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`"config:plugin[0]: Missing "name""`);
+    }
   });
 
   describe('getTransforms / setTransforms', () => {

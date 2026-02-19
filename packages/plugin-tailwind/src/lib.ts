@@ -77,5 +77,5 @@ export function applyTemplate(template: string, generatedTheme: string): string 
     throw new Error(`Template must contain "${TERRAZZO_SLOT}" directive`);
   }
   // Replace slot and any following newlines (CRLF or LF) with theme + single newline
-  return template.replace(/@terrazzo-slot;[\r\n]+/, `${generatedTheme.trimEnd()}\n\n`);
+  return template.replace(/@terrazzo-slot;(\r?\n)+/, `${generatedTheme.trimEnd()}\n\n`);
 }
