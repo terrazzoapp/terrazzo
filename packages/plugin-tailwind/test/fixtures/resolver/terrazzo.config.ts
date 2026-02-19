@@ -9,6 +9,7 @@ export default defineConfig({
   outDir: '.',
   lint: {
     rules: {
+      'core/consistent-naming': 'off',
       'core/valid-typography': 'off',
     },
   },

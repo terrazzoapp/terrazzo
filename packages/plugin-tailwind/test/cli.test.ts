@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from '@terrazzo/parser';
-import { execa } from 'execa';
+import { execaNode } from 'execa';
 import { describe, expect, test } from 'vitest';
 import tailwind from '../src/index.js';
 
@@ -12,8 +12,8 @@ describe('CLI', () => {
 
   test.each(fixtures)('%s', async (dir) => {
     const cwd = new URL(`./fixtures/${dir}/`, import.meta.url);
-    await execa('node', [cmd, 'build'], { cwd, stdout: 'inherit' });
-    const actual = fs.readFileSync(new URL('./actual.css', cwd), 'utf8');
+    await execaNode({ cwd })`${cmd} build`;
+    const actual = fs.readFileSync(new URL('./actual.css', cwd), 'utf8').replace(/\r\n/g, '\n');
     await expect(actual).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
   });
 
