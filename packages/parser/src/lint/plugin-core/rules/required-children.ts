@@ -1,6 +1,6 @@
-import { getTokenMatcher } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
+import { cachedLintMatcher } from '../lib/matchers.js';
 
 export const REQUIRED_CHILDREN = 'core/required-children';
 
@@ -56,7 +56,7 @@ const rule: LintRule<
         throw new Error(`Match ${matchI}: must declare either \`requiredTokens: […]\` or \`requiredGroups: […]\``);
       }
 
-      const matcher = getTokenMatcher(match);
+      const matcher = cachedLintMatcher.tokenIDMatch(match);
 
       const matchGroups: string[] = [];
       const matchTokens: string[] = [];

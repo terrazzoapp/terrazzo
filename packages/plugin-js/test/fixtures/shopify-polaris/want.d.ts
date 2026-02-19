@@ -10,7 +10,7 @@ import type {
 export const PERMUTATIONS: Record<string, TokenNormalizedSet>;
 
 type InputType = {
-};;
+};
 
 export type Color = Pick<ColorTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type FontFamily = Pick<FontFamilyTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;

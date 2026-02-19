@@ -45,7 +45,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@clack/prompts": "^1.0.0",
+    "@clack/prompts": "^1.0.1",
     "@hono/node-server": "^1.19.9",
     "@humanwhocodes/momoa": "catalog:",
     "@terrazzo/json-schema-tools": "workspace:^",

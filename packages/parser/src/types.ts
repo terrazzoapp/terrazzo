@@ -335,6 +335,8 @@ export interface ReferenceObject {
   $ref: string;
 }
 
+export type ResolverInput = Record<string, string>;
+
 export interface Resolver<
   Inputs extends Record<string, string[]> = Record<string, string[]>,
   Input = Record<keyof Inputs, Inputs[keyof Inputs][number]>,
@@ -461,7 +463,7 @@ export interface TransformParamsLegacy extends TransformParamsBase {
 export interface TransformParamsResolver extends TransformParamsBase {
   mode?: never;
   /** Input that marks the transformation as a permutation */
-  input: Record<string, string>;
+  input: ResolverInput;
 }
 
 export interface TransformHookOptions {
@@ -489,7 +491,7 @@ export interface TransformHookOptions {
           localID?: string;
           value: string | Record<string, string>;
           mode?: never;
-          input: Record<string, string>;
+          input: ResolverInput;
           meta?: TokenTransformedBase['meta'];
         },
   ): void;

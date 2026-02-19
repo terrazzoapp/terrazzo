@@ -32,6 +32,21 @@ export default async function parse(
   let resolver: Resolver | undefined;
   let sources: InputSourceWithDocument[] = [];
 
+  // 0. validate
+  if (inputs.length === 0) {
+    logger.error({ group: 'parser', label: 'init', message: 'Nothing to parse.' });
+  }
+  for (let i = 0; i < inputs.length; i++) {
+    if (
+      !inputs[i] ||
+      typeof inputs[i] !== 'object' ||
+      !inputs[i]?.src ||
+      (inputs[i]?.filename && !(inputs[i]!.filename instanceof URL))
+    ) {
+      logger.error({ group: 'parser', label: 'init', message: `Input ${i}: expected { src: any; filename: URL }` });
+    }
+  }
+
   const totalStart = performance.now();
 
   // 1. Load tokens

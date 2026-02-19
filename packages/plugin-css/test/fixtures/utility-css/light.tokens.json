@@ -1,0 +1,70 @@
+{
+  "border": {
+    "base": {
+      "$type": "border",
+      "$value": {
+        "color": "{border.color.default}",
+        "width": "{border.size.default}",
+        "style": "{border.style.default}"
+      }
+    },
+    "color": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.9725490196, 0.9725490196, 0.9725490196],
+          "alpha": 1
+        }
+      }
+    },
+    "size": {
+      "default": {
+        "$type": "dimension",
+        "$value": { "value": 1, "unit": "px" }
+      }
+    },
+    "style": {
+      "default": { "$type": "strokeStyle", "$value": "solid" }
+    }
+  },
+  "color": {
+    "base": {
+      "blue": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.784, 0.478, 0.953] }
+      },
+      "green": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0, 0.478, 0.302] }
+      }
+    },
+    "semantic": {
+      "primary": { "$type": "color", "$value": "{color.base.blue}" }
+    },
+    "gradient": {
+      "blue-to-green": {
+        "$type": "gradient",
+        "$value": [
+          {
+            "color": "{color.base.blue}",
+            "position": 0
+          },
+          { "color": "{color.base.green}", "position": 1 }
+        ]
+      }
+    }
+  },
+  "shadow": {
+    "md": {
+      "$type": "shadow",
+      "$value": {
+        "offsetX": { "value": 0, "unit": "px" },
+        "offsetY": "{space.1}",
+        "blur": "{space.1}",
+        "spread": { "value": 0, "unit": "px" },
+        "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.1 }
+      }
+    }
+  }
+}

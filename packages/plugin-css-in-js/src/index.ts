@@ -1,4 +1,4 @@
-import type { Plugin } from '@terrazzo/parser';
+import type { Plugin, TokenTransformed } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
 import { camelCase } from 'scule';
 
@@ -20,7 +20,7 @@ export default function cssInJs({ filename = 'vars.js' }: CssInJsOptions = {}): 
       const tokens = {} as any;
 
       // 1. Get base groups
-      css.sort((a, b) => a.id.localeCompare(b.id, 'en-us', { numeric: true }));
+      css.sort(alphaComparator);
       for (const token of css) {
         if (!token.localID) {
           context.logger.warn({
@@ -102,4 +102,9 @@ export default function cssInJs({ filename = 'vars.js' }: CssInJsOptions = {}): 
 /** Make a name into a valid JS identifier by adding a preceding _ */
 function jsIdent(name: string): string {
   return !/^[A-Za-z$_]/.test(name) ? `_${name}` : name;
+}
+
+/** JS compiler-optimizable comparator */
+export function alphaComparator(a: TokenTransformed, b: TokenTransformed): number {
+  return a.id.localeCompare(b.id, 'en-us', { numeric: true });
 }

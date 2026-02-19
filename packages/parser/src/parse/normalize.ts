@@ -53,7 +53,6 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
       for (const mode of Object.keys(token.mode)) {
         token.mode[mode]!.$value = normalizeColor(token.mode[mode]!.$value, token.mode[mode]!.source.node);
       }
-      token.$value = token.mode['.'].$value;
       break;
     }
 
@@ -61,7 +60,6 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
       for (const mode of Object.keys(token.mode)) {
         token.mode[mode]!.$value = normalizeFontFamily(token.mode[mode]!.$value);
       }
-      token.$value = token.mode['.'].$value;
       break;
     }
 
@@ -69,7 +67,6 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
       for (const mode of Object.keys(token.mode)) {
         token.mode[mode]!.$value = normalizeFontWeight(token.mode[mode]!.$value);
       }
-      token.$value = token.mode['.'].$value;
       break;
     }
 
@@ -86,7 +83,6 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
           );
         }
       }
-      token.$value = token.mode['.'].$value;
       break;
     }
 
@@ -115,7 +111,6 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
           }
         }
       }
-      token.$value = token.mode['.'].$value;
       break;
     }
 
@@ -136,7 +131,6 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
           }
         }
       }
-      token.$value = token.mode['.'].$value;
       break;
     }
 
@@ -159,7 +153,6 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
           }
         }
       }
-      token.$value = token.mode['.'].$value;
       break;
     }
   }

@@ -569,12 +569,24 @@ describe('graphAliases', () => {
       tokens[jsonID] = {
         id: refToTokenID(jsonID)!,
         $type: token.$type as any,
-        $value: (TOKEN_DATA as any)[token.$type].$value as any,
-        aliasOf: undefined,
-        partialAliasOf: undefined,
-        aliasedBy: undefined,
-        aliasChain: undefined,
-        dependencies: undefined,
+        get $value() {
+          return this.mode['.'].$value;
+        },
+        get aliasOf() {
+          return this.mode['.'].aliasOf;
+        },
+        get partialAliasOf() {
+          return this.mode['.'].partialAliasOf;
+        },
+        get aliasedBy() {
+          return this.mode['.'].aliasedBy;
+        },
+        get aliasChain() {
+          return this.mode['.'].aliasChain;
+        },
+        get dependencies() {
+          return this.mode['.'].dependencies;
+        },
         source,
         mode: Object.fromEntries(
           Object.keys(token.mode).map((name) => [

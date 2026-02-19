@@ -1,3 +1,8 @@
+export const FORMAT_ID = 'tailwind';
+export const PLUGIN_NAME = '@terrazzo/plugin-tailwind';
+
+export type ResolverInput = Record<string, string>;
+
 export interface TailwindPluginOptions {
   /**
    * Filename to output.
@@ -11,8 +16,20 @@ export interface TailwindPluginOptions {
   template?: string;
   /** @see https://tailwindcss.com/docs/theme */
   theme: Record<string, unknown>;
-  /** Array of mapping variants to DTCG modes. */
-  modeVariants?: { variant: string; mode: string }[];
+  /** Default permutation */
+  defaultTheme?: ResolverInput;
+  /**
+   * Associate Tailwind custom variants with Resolver permutations
+   * @see https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
+   */
+  customVariants?: {
+    [name: string]: {
+      /** The CSS selector to apply to this variant */
+      selector: string;
+      /** The resolver input to load for this custom variant */
+      input: ResolverInput;
+    };
+  };
 }
 
 /** Flatten an arbitrarily-nested object */
@@ -60,5 +77,5 @@ export function applyTemplate(template: string, generatedTheme: string): string 
     throw new Error(`Template must contain "${TERRAZZO_SLOT}" directive`);
   }
   // Replace slot and any following newlines (CRLF or LF) with theme + single newline
-  return template.replace(/@terrazzo-slot;[\r\n]+/, `${generatedTheme.trimEnd()}\n\n`);
+  return template.replace(/@terrazzo-slot;(\r?\n)+/, `${generatedTheme.trimEnd()}\n\n`);
 }

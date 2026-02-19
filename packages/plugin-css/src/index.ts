@@ -4,7 +4,20 @@ import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID, PLUGIN_NAME } from './li
 import transformCSS from './transform.js';
 
 export * from './build.js';
-export * from './lib.js';
+export {
+  type CSSDeclaration,
+  type CSSPluginOptions,
+  type CSSRule,
+  FILE_PREFIX,
+  FORMAT_ID,
+  type ModeSelector,
+  type Permutation,
+  PLUGIN_NAME,
+  printNode,
+  printRules,
+  type UtilityCSSGroup,
+  type UtilityCSSPrefix,
+} from './lib.js';
 export * from './transform.js';
 export * from './utility-css.js';
 

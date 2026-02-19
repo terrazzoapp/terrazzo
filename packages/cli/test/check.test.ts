@@ -1,5 +1,5 @@
 import os from 'node:os';
-import { execa } from 'execa';
+import { execaNode } from 'execa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 
@@ -10,30 +10,28 @@ const cmd = './bin/cli.js';
 describe('tz check', () => {
   it('valid', async () => {
     const cwd = new URL('../', import.meta.url);
-    const { stdout } = await execa('node', [cmd, 'check', 'test/fixtures/check-valid/tokens.json'], { cwd });
+    const { stdout } = await execaNode({ cwd })`${cmd} check test/fixtures/check-valid/tokens.json`;
     const output = stripAnsi(stdout);
     expect(output).toMatch('✔  No errors'); // note: this contains a timestamp that would be flaky
   });
 
   it('valid (config)', async () => {
     const cwd = new URL('./fixtures/check-config/', import.meta.url);
-    const { stdout } = await execa('node', ['../../../bin/cli.js', 'check'], { cwd });
+    const { stdout } = await execaNode({ cwd })`../../../bin/cli.js check`;
     const output = stripAnsi(stdout);
     expect(output).toMatch('✔  No errors'); // note: this contains a timestamp that would be flaky
   });
 
   it('valid, npm packages', async () => {
     const cwd = new URL('./fixtures/check-npm/', import.meta.url);
-    const { stdout } = await execa('node', ['../../../bin/cli.js', 'check'], { cwd });
+    const { stdout } = await execaNode({ cwd })`../../../bin/cli.js check`;
     const output = stripAnsi(stdout);
     expect(output).toMatch('✔  No errors');
   });
 
   it('TS', async () => {
     const cwd = new URL('../', import.meta.url);
-    const { stdout } = await execa('node', [cmd, '--config', 'test/fixtures/check-ts/terrazzo.config.ts', 'check'], {
-      cwd,
-    });
+    const { stdout } = await execaNode({ cwd })`${cmd} --config test/fixtures/check-ts/terrazzo.config.ts check`;
     const output = stripAnsi(stdout);
     expect(output).toMatch('✔  No errors');
   });
@@ -41,17 +39,9 @@ describe('tz check', () => {
   it('invalid', async () => {
     const command = async () => {
       const cwd = new URL('../', import.meta.url);
-      await execa(
-        'node',
-        [
-          cmd,
-          'check',
-          'test/fixtures/check-invalid/tokens.json',
-          '--config',
-          'test/fixtures/check-invalid/terrazzo.config.mjs',
-        ],
-        { cwd, stdout: 'inherit' },
-      );
+      await execaNode({
+        cwd,
+      })`${cmd} check test/fixtures/check-invalid/tokens.json --config test/fixtures/check-invalid/terrazzo.config.mjs`;
     };
 
     if (PLATFORM === 'win32') {

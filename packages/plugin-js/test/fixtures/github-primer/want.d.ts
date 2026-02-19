@@ -20,7 +20,7 @@ export const PERMUTATIONS: Record<string, TokenNormalizedSet>;
 type InputType = {
   "theme": "light" | "light-hc" | "dark" | "dark-hc";
   "size": "default" | "coarse" | "fine";
-};;
+};
 
 export type Color = Pick<ColorTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type Shadow = Pick<ShadowTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;

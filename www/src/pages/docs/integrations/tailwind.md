@@ -33,8 +33,7 @@ export default defineConfig({
   plugins: [
     css(),
     tailwind({
-      filename: "tailwind.js",
-
+      filename: "tailwind-theme.css",
       theme: {
         /** @see https://tailwindcss.com/docs/configuration#theme */
         color: ["color.*"],

@@ -1,0 +1,18 @@
+{
+  "typography": {
+    "base": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "Helvetica",
+        "fontSize": "{typography.size.sm}",
+        "fontStyle": "normal",
+        "fontWeight": 400,
+        "fontVariantNumeric": "tabular-nums",
+        "letterSpacing": { "value": 0, "unit": "rem" },
+        "lineHeight": 1.4,
+        "textDecoration": "none",
+        "textTransform": "none"
+      }
+    }
+  }
+}

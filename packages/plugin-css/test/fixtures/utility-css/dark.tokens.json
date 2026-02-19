@@ -1,0 +1,14 @@
+{
+  "border": {
+    "color": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0.9411764706, 0.9411764706, 0.9411764706],
+          "alpha": 1
+        }
+      }
+    }
+  }
+}

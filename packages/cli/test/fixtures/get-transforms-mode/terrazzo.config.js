@@ -4,8 +4,8 @@ import { defineConfig } from '../../../dist/index.js';
 const MY_FORMAT = 'my-format'
 
 export default defineConfig({
+  tokens: [fileURLToPath(new URL('tokens.json', import.meta.url))],
   outDir: '.',
-  tokens: [fileURLToPath( new URL('tokens.json', import.meta.url))],
   plugins: [
     {
       name: 'test-transforms',
@@ -28,7 +28,7 @@ export default defineConfig({
         for (const token of getTransforms({ format: MY_FORMAT, mode: ['.', 'light'] })) {
           output[token.id] = token.value;
         }
-        outputFile('given.json', JSON.stringify(output, undefined, 2));
+        outputFile('actual.json', JSON.stringify(output, undefined, 2));
       }
     }
   ]

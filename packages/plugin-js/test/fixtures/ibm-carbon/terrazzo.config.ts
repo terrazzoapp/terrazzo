@@ -6,6 +6,8 @@ export default defineConfig({
   outDir: '.',
   plugins: [js({ filename: 'actual.js' })],
   lint: {
-    rules: {},
+    rules: {
+      'core/consistent-naming': 'off',
+    },
   }
 })

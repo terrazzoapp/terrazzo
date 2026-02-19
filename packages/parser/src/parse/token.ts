@@ -1,13 +1,14 @@
 import * as momoa from '@humanwhocodes/momoa';
 import { encodeFragment, getObjMember, type InputSourceWithDocument, parseRef } from '@terrazzo/json-schema-tools';
 import {
+  CachedWildcardMatcher,
   type GroupNormalized,
-  getTokenMatcher,
   isAlias,
   parseAlias,
   type TokenNormalized,
   type TokenNormalizedSet,
 } from '@terrazzo/token-tools';
+import { alphaComparator } from '../lib/array.js';
 import type { default as Logger } from '../logger.js';
 import type { Config, ReferenceObject, RefMap } from '../types.js';
 
@@ -40,6 +41,8 @@ export interface TokenFromNodeOptions {
   ignore: Config['ignore'];
 }
 
+const cachedMatcher = new CachedWildcardMatcher();
+
 /** Generate a TokenNormalized from a Momoa node */
 export function tokenFromNode(
   node: momoa.AnyNode,
@@ -67,27 +70,39 @@ export function tokenFromNode(
     $type: originalToken.$type || group.$type,
     $description: originalToken.$description || undefined,
     $deprecated: originalToken.$deprecated ?? group.$deprecated ?? undefined, // ⚠️ MUST use ?? here to inherit false correctly
-    $value: originalToken.$value,
+    get $value() {
+      return this.mode['.'].$value as typeof originalToken.$value;
+    },
     $extensions: originalToken.$extensions || undefined,
     $extends: originalToken.$extends || undefined,
-    aliasChain: undefined,
-    aliasedBy: undefined,
-    aliasOf: undefined,
-    partialAliasOf: undefined,
-    dependencies: undefined,
+    get aliasChain() {
+      return this.mode['.'].aliasChain;
+    },
+    get aliasedBy() {
+      return this.mode['.'].aliasedBy;
+    },
+    get aliasOf() {
+      return this.mode['.'].aliasOf;
+    },
+    get partialAliasOf() {
+      return this.mode['.'].partialAliasOf;
+    },
+    get dependencies() {
+      return this.mode['.'].dependencies;
+    },
     group,
-    originalValue: undefined, // undefined because we are not sure if the value has been modified or not
+    originalValue: undefined, // This is different from mode’s originalValue and includes the entire token shape, thus can’t be a getter
     source: nodeSource,
     jsonID,
     mode: {
       '.': {
         $value: originalToken.$value,
-        aliasOf: undefined,
         aliasChain: undefined,
-        partialAliasOf: undefined,
         aliasedBy: undefined,
-        originalValue: undefined,
+        aliasOf: undefined,
+        partialAliasOf: undefined,
         dependencies: undefined,
+        originalValue: undefined, // undefined because we are not sure if the value has been modified or not
         source: {
           ...nodeSource,
           node: (getObjMember(nodeSource.node, '$value') ?? nodeSource.node) as momoa.ObjectNode,
@@ -98,7 +113,10 @@ export function tokenFromNode(
 
   // after assembling token, handle ignores to see if the final result should be ignored or not
   // filter out ignored
-  if ((ignore?.deprecated && token.$deprecated) || (ignore?.tokens && getTokenMatcher(ignore.tokens)(token.id))) {
+  if (
+    (ignore?.deprecated && token.$deprecated) ||
+    (ignore?.tokens && cachedMatcher.tokenIDMatch(ignore.tokens)(token.id))
+  ) {
     return;
   }
 
@@ -250,7 +268,7 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
       modeValue.dependencies = [];
     }
     modeValue.dependencies.push(...refChain.filter((r) => !modeValue.dependencies!.includes(r)));
-    modeValue.dependencies.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
+    modeValue.dependencies.sort(alphaComparator);
 
     // Top alias
     const isTopLevelAlias = jsonID.endsWith('/$value') || tokens[jsonID];
@@ -323,7 +341,7 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
     const aliasedByRefs = [jsonID, ...refChain].reverse();
     for (let i = 0; i < aliasedByRefs.length; i++) {
       const baseRef = getTokenRef(aliasedByRefs[i]!);
-      const baseToken = tokens[baseRef]?.mode[mode] || tokens[baseRef];
+      const baseToken = tokens[baseRef]?.mode[mode] || tokens[baseRef]?.mode['.'];
       if (!baseToken) {
         continue;
       }
@@ -338,20 +356,9 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
         const downstream = refToTokenID(upstream[j]!)!;
         if (!baseToken.aliasedBy.includes(downstream)) {
           baseToken.aliasedBy.push(downstream);
-          if (mode === '.') {
-            tokens[baseRef]!.aliasedBy = baseToken.aliasedBy;
-          }
         }
       }
-      baseToken.aliasedBy.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true })); // sort, because the ordering is arbitrary and flaky
-    }
-
-    if (mode === '.') {
-      tokens[rootRef]!.aliasChain = modeValue.aliasChain;
-      tokens[rootRef]!.aliasedBy = modeValue.aliasedBy;
-      tokens[rootRef]!.aliasOf = modeValue.aliasOf;
-      tokens[rootRef]!.dependencies = modeValue.dependencies;
-      tokens[rootRef]!.partialAliasOf = modeValue.partialAliasOf;
+      baseToken.aliasedBy.sort(alphaComparator); // sort, because the ordering is arbitrary and flaky
     }
   }
 }
@@ -546,11 +553,6 @@ export function resolveAliases(
       }
       if ($value) {
         token.mode[mode]!.$value = $value;
-      }
-
-      // fill in $type and $value
-      if (mode === '.') {
-        token.$value = token.mode[mode]!.$value;
       }
     }
   }

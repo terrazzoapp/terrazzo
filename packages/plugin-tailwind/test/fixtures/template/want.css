@@ -6,8 +6,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #36c;
-  --color-secondary: #c36;
+  --color-primary: rgb(20% 40% 80%);
+  --color-secondary: rgb(80% 20% 40%);
 }
 
 /* Custom styles */
