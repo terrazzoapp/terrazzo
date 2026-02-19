@@ -1,12 +1,11 @@
 import { defineConfig } from '@terrazzo/cli';
-import css from '../../../../plugin-css/dist/index.js';
+import css from '@terrazzo/plugin-css';
 import tailwind from '../../../dist/index.js';
 
 export default defineConfig({
   outDir: '.',
   plugins: [
     css({
-      legacyHex: true,
       skipBuild: true,
     }),
     tailwind({

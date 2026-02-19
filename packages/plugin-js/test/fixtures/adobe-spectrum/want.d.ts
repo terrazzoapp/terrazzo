@@ -14,7 +14,7 @@ export const PERMUTATIONS: Record<string, TokenNormalizedSet>;
 type InputType = {
   "theme": "light" | "dark";
   "size": "desktop" | "mobile";
-};;
+};
 
 export type Color = Pick<ColorTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type Dimension = Pick<DimensionTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;

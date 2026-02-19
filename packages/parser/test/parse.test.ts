@@ -833,6 +833,28 @@ describe('Additional cases', () => {
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
     expect(tokens['color.blue.06']?.$value).toEqual({ alpha: 1, components: [0, 0, 1], colorSpace: 'srgb' });
   });
+
+  it('empty sources', async () => {
+    try {
+      const result = await parse([], { config: defineConfig({}, { cwd: new URL('file:///') }) });
+      expect(result).toThrow();
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`"parser:init: Nothing to parse."`);
+    }
+  });
+
+  it('invalid sources', async () => {
+    try {
+      const result = await parse([{ filename: 'foo' } as any], {
+        config: defineConfig({}, { cwd: new URL('file:///') }),
+      });
+      expect(result).toThrow();
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(
+        `"parser:init: Input 0: expected { src: any; filename: URL }"`,
+      );
+    }
+  });
 });
 
 interface Visit {

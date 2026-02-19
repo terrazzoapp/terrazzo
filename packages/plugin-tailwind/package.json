@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-tailwind",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "description": "Generate Tailwind v4 theme using DTCG design tokens.",
   "license": "MIT",
   "type": "module",
@@ -49,6 +49,7 @@
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^",
-    "tailwindcss": "^4.1.18"
+    "dtcg-examples": "catalog:",
+    "tailwindcss": "^4.2.0"
   }
 }

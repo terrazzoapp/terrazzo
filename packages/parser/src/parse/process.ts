@@ -10,6 +10,7 @@ import {
   traverse,
 } from '@terrazzo/json-schema-tools';
 import { type GroupNormalized, isAlias, type TokenNormalizedSet } from '@terrazzo/token-tools';
+import { alphaComparator } from '../lib/array.js';
 import { filterResolverPaths } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
 import type { ConfigInit, RefMap } from '../types.js';
@@ -215,6 +216,7 @@ export function processTokens(
         const tokenRawValues = tokenRawValuesFromNode(node, { filename: source.filename!.href, path });
         if (tokenRawValues && tokens[tokenRawValues?.jsonID]) {
           tokens[tokenRawValues.jsonID]!.originalValue = tokenRawValues.originalValue;
+          tokens[tokenRawValues.jsonID]!.mode['.'].originalValue = tokenRawValues.originalValue;
           tokens[tokenRawValues.jsonID]!.source = tokenRawValues.source;
           for (const mode of Object.keys(tokenRawValues.mode)) {
             tokens[tokenRawValues.jsonID]!.mode[mode]!.originalValue = tokenRawValues.mode[mode]!.originalValue;
@@ -253,14 +255,14 @@ export function processTokens(
 
   const sortStart = performance.now();
   const tokensSorted: TokenNormalizedSet = {};
-  tokenIDs.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
+  tokenIDs.sort(alphaComparator);
   for (const path of tokenIDs) {
     const id = refToTokenID(path)!;
     tokensSorted[id] = tokens[path]!;
   }
   // Sort group IDs once, too
   for (const group of Object.values(groups)) {
-    group.tokens.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
+    group.tokens.sort(alphaComparator);
   }
   logger.debug({ ...entry, message: 'Sorted tokens', timing: performance.now() - sortStart });
 

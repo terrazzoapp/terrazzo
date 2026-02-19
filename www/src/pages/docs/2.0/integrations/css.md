@@ -273,12 +273,13 @@ import css from "@terrazzo/plugin-css";
 export default defineConfig({
   plugins: [
     css({
-      include: ['primitives.**'], // include only primitives
-      exclude: ['primitives.typography.**'], // except typography primitives
+      include: ["primitives.**"], // include only primitives
+      exclude: ["primitives.typography.**"], // except typography primitives
     }),
   ],
 });
 ```
+
 :::
 
 #### Selective output at the permutation level
@@ -296,12 +297,12 @@ export default defineConfig({
         {
           input: {},
           prepare: (css) => `:root {\n  ${css}\n}`,
-          include: ['primitives.**'], // include only primitives in this permutation
+          include: ["primitives.**"], // include only primitives in this permutation
         },
         {
-          input: { mode: 'light' },
+          input: { mode: "light" },
           prepare: (css) => `.light {\n  ${css}\n}`,
-          exclude: ['primitives.**'], // include everything but primitives in this permutation
+          exclude: ["primitives.**"], // include everything but primitives in this permutation
         },
       ],
     }),
@@ -500,7 +501,7 @@ export default defineConfig({
 | `variableName` | `(token: TokenNormalized) => string`                             | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
 | `transform`    | `(token: TokenNormalized, options: TransformCSSValueOptions) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                                |
 | `utility`      | [Utility CSS mapping](#utility-css)                              | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                                     |
-| `legacyHex`    | `boolean`                                                        | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                  |
+| `legacyHex`    | `boolean`                                                        | Output colors as hex-6/hex-8 instead of [rgb() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                    |
 | `skipBuild`    | `boolean`                                                        | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
 | `colorDepth`   | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                            | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
 

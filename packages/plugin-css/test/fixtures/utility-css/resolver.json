@@ -1,0 +1,30 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/modifiers/theme" },
+    { "$ref": "#/modifiers/size" }
+  ],
+  "modifiers": {
+    "theme": {
+      "contexts": {
+        "light": [{ "$ref": "./light.tokens.json" }],
+        "dark": [
+          { "$ref": "./light.tokens.json" },
+          { "$ref": "./dark.tokens.json" }
+        ]
+      },
+      "default": "light"
+    },
+    "size": {
+      "contexts": {
+        "default": [{ "$ref": "./size-default.tokens.json" }],
+        "mobile": [
+          { "$ref": "./size-default.tokens.json" },
+          { "$ref": "./size-mobile.tokens.json" }
+        ]
+      },
+      "default": "default"
+    }
+  }
+}

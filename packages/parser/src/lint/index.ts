@@ -3,6 +3,7 @@ import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
 import type { LogEntry, default as Logger } from '../logger.js';
 import type { ConfigInit } from '../types.js';
+import { cachedLintMatcher } from './plugin-core/lib/matchers.js';
 
 export { RECOMMENDED_CONFIG } from './plugin-core/index.js';
 
@@ -119,6 +120,8 @@ export default async function lintRunner({
         message: 'Finished',
         timing: performance.now() - s,
       });
+
+      cachedLintMatcher.reset(); // this is overly-defensive, but after a lint run, clear the state of the wc matcher cache
     }
   }
 

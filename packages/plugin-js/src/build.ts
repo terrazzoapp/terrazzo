@@ -118,7 +118,7 @@ export function buildDTS({
   output += '} from "@terrazzo/parser";';
   output += '\n\n';
   output += 'export const PERMUTATIONS: Record<string, TokenNormalizedSet>;\n\n';
-  output += `type InputType = ${buildInputType(resolver, contexts)};\n\n`;
+  output += `type InputType = ${buildInputType(resolver, contexts)}\n\n`;
   for (const $type of unique$type) {
     if (!($type in TYPE_MAP)) {
       continue;

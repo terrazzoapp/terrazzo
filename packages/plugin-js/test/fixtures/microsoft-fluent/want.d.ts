@@ -12,7 +12,7 @@ export const PERMUTATIONS: Record<string, TokenNormalizedSet>;
 
 type InputType = {
   "theme": "default" | "inverted";
-};;
+};
 
 export type Shadow = Pick<ShadowTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type Dimension = Pick<DimensionTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;

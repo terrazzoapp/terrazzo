@@ -1,7 +1,6 @@
-import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
-import { getTokenMatcher } from '@terrazzo/token-tools';
+import type { TokenNormalized, TransformHookOptions } from '@terrazzo/parser';
 import { makeCSSVar, type TransformCSSValueOptions, transformCSSValue } from '@terrazzo/token-tools/css';
-import { type CSSPluginOptions, FORMAT_ID, PLUGIN_NAME } from './lib.js';
+import { type CSSPluginOptions, cachedMatcher, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 
 export interface TransformOptions {
   transform: TransformHookOptions;
@@ -12,7 +11,6 @@ export default function transformCSS({
   transform: {
     context: { logger },
     resolver,
-    getTransforms,
     setTransform,
     tokens: baseTokens,
   },
@@ -41,15 +39,15 @@ export default function transformCSS({
   }
   const transformAlias = (token: TokenNormalized) => `var(${transformName(token)})`;
 
-  const include = userInclude ? getTokenMatcher(userInclude) : () => true;
-  const exclude = userExclude ? getTokenMatcher(userExclude) : () => false;
+  const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
+  const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
 
   // permutations
   if (permutations?.length) {
     for (const p of permutations) {
       const input = p.input;
-      const pInclude = p.include ? getTokenMatcher(p.include) : () => true;
-      const pExclude = p.exclude ? getTokenMatcher(p.exclude) : () => false;
+      const pInclude = p.include ? cachedMatcher.tokenIDMatch(p.include) : () => true;
+      const pExclude = p.exclude ? cachedMatcher.tokenIDMatch(p.exclude) : () => false;
 
       const includeToken = (tokenId: string): boolean => {
         return include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
@@ -70,14 +68,14 @@ export default function transformCSS({
           };
           const value =
             p.transform?.(token, options) ?? customTransform?.(token, options) ?? transformCSSValue(token, options);
-          // Don’t duplicate values when unnecessary
-          if (value && isDifferentValue(value, getTransforms({ format: FORMAT_ID, id: token.id })[0]?.value)) {
+          if (value) {
             const localID = transformName(token);
             setTransform(token.id, {
               format: FORMAT_ID,
               value,
               localID,
               input,
+              // TODO: plugin-css shouldn’t set metadata for plugin-token-listing; move this there
               meta: { 'token-listing': { name: localID } },
             });
           }
@@ -117,35 +115,10 @@ export default function transformCSS({
           localID,
           value,
           mode,
+          // TODO: plugin-css shouldn’t set metadata for plugin-token-listing; move this there
           meta: { 'token-listing': { name: localID } },
         });
       }
     }
   }
-}
-
-/** Is the transformed value different from the base value? */
-function isDifferentValue(
-  value: TokenTransformed['value'] | undefined,
-  baseValue: TokenTransformed['value'] | undefined,
-): boolean {
-  if (!value || !baseValue || typeof value !== typeof baseValue) {
-    return true;
-  }
-  if (typeof value === 'string' && typeof baseValue === 'string') {
-    return value !== baseValue;
-  }
-  const keysA = Object.keys(value);
-  const keysB = Object.keys(baseValue);
-  if (keysA.length !== keysB.length) {
-    return true;
-  }
-  if (
-    !keysA.every(
-      (k) => keysB.includes(k) && (value as Record<string, string>)[k] === (baseValue as Record<string, string>)[k],
-    )
-  ) {
-    return true;
-  }
-  return false;
 }

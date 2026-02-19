@@ -1,6 +1,6 @@
-import { getTokenMatcher } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
+import { cachedLintMatcher } from '../lib/matchers.js';
 
 export const DESCRIPTIONS = 'core/descriptions';
 
@@ -23,7 +23,7 @@ const rule: LintRule<typeof ERROR_MISSING_DESCRIPTION, RuleDescriptionsOptions> 
   },
   defaultOptions: {},
   create({ tokens, options, report }) {
-    const shouldIgnore = options.ignore ? getTokenMatcher(options.ignore) : null;
+    const shouldIgnore = options.ignore ? cachedLintMatcher.tokenIDMatch(options.ignore) : null;
 
     for (const t of Object.values(tokens)) {
       if (shouldIgnore?.(t.id)) {

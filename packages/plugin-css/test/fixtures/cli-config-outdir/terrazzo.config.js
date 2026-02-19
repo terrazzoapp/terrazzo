@@ -1,11 +1,14 @@
 import { defineConfig } from '@terrazzo/cli';
 import css from '../../../dist/index.js';
 
+/** @type {import("@terrazzo/cli").Config} */
 export default defineConfig({
   tokens: ['./styles/tokens.json'],
   outDir: './styles/',
-  rule: {
-    'core/consistent-naming': 'off',
+  lint: {
+    rules: {
+      'core/consistent-naming': 'off',
+    },
   },
   plugins: [
     css({
