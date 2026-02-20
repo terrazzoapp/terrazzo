@@ -46,6 +46,7 @@
     "@terrazzo/token-tools": "workspace:^"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.2.0",
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^",
