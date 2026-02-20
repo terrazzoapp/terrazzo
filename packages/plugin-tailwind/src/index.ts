@@ -2,7 +2,7 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import type { Plugin } from '@terrazzo/parser';
-import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
+import { FORMAT_ID as FORMAT_CSS, printRules } from '@terrazzo/plugin-css';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import {
   applyTemplate,
@@ -92,11 +92,31 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         if (generatedTheme) {
           generatedTheme += '\n'; // add extra line break if continuing
         }
-        generatedTheme += `${variant === DEFAULT_THEME ? '@theme' : `@custom-variant ${variant} (${selector})`} {\n`;
-        for (const token of getTransforms({ ...getTokenQuery(input), format: FORMAT_TAILWIND })) {
-          generatedTheme += `  ${token.localID}: ${token.value};\n`;
+
+        const tokens = getTransforms({ ...getTokenQuery(input), format: FORMAT_TAILWIND });
+
+        if (variant === DEFAULT_THEME) {
+          generatedTheme += '@theme {\n';
+          for (const token of tokens) {
+            generatedTheme += `  ${token.localID}: ${token.value};\n`;
+          }
+          generatedTheme += '}\n';
+        } else {
+          generatedTheme += printRules([
+            {
+              type: 'Rule',
+              prelude: [`@custom-variant ${variant}`],
+              children: [
+                {
+                  type: 'Rule',
+                  prelude: [selector],
+                  children: tokens.map((t) => ({ type: 'Declaration', property: t.localID!, value: String(t.value) })),
+                },
+              ],
+            },
+          ]);
+          generatedTheme += '\n';
         }
-        generatedTheme += '}\n';
       }
 
       // build the output combining theme and template
