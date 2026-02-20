@@ -14,8 +14,8 @@
     "sb": "storybook dev -p 9009"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^10.2.8",
-    "@storybook/react-vite": "^10.2.8",
+    "@storybook/addon-docs": "^10.2.10",
+    "@storybook/react-vite": "^10.2.10",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/react-color-picker": "workspace:^",
@@ -29,6 +29,6 @@
     "colorjs.io": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "storybook": "^10.2.8"
+    "storybook": "^10.2.10"
   }
 }

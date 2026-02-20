@@ -25,10 +25,10 @@
  * SOFTWARE.
  */
 
+import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import { parseArgs } from 'node:util';
 import { Logger } from '@terrazzo/parser';
-import dotenv from 'dotenv';
 import {
   buildCmd,
   checkCmd,
@@ -43,9 +43,13 @@ import {
 
 const require = createRequire(process.cwd());
 
-// Load env vars before anything else
-// (a user may not use these at all, but in the offchance they do)
-dotenv.config();
+// Load .env file into process.env
+for (const envFile of ['.env', 'production.env', 'development.env']) {
+  if (fs.existsSync(envFile)) {
+    process.loadEnvFile(envFile);
+    break;
+  }
+}
 
 const [, , ...argsRaw] = process.argv;
 const { values: flags, positionals } = parseArgs({
