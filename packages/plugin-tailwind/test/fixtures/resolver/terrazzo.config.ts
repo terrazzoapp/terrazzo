@@ -24,22 +24,8 @@ export default defineConfig({
       ]
     }),
     tailwind({
+      template: 'tailwind.template.css',
       filename: 'actual.css',
-      defaultTheme: { theme: 'light' },
-      customVariants: {
-        dark: {
-          selector: ':where(.dark, .dark *)',
-          input: { theme: 'dark' },
-        },
-        'light-hc': {
-          selector: ':where(.light-hc, .light-hc *)',
-          input: { theme: 'light-hc' },
-        },
-        'dark-hc': {
-          selector: ':where(.dark-hc, .dark-hc *)',
-          input: { theme: 'dark-hc' },
-        },
-      },
       theme: {
         color: {
           blue: ['base.color.blue.**'],

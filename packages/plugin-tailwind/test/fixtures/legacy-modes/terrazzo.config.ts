@@ -10,26 +10,10 @@ export default defineConfig({
     },
   },
   plugins: [
-    css({
-      skipBuild: true,
-    }),
+    css({ skipBuild: true }),
     tailwind({
+      template: 'tailwind.template.css',
       filename: 'actual.css',
-      defaultTheme: { tzMode:'.' },
-      customVariants: {
-        dark: {
-          selector: ':where(.dark, .dark *)',
-          input: { tzMode: 'dark' },
-        },
-        'light-hc': {
-          selector: ':where(.light-hc, .light-hc *)',
-          input: { tzMode: 'light-hc' },
-        },
-        'dark-hc': {
-          selector: ':where(.dark-hc, .dark-hc *)',
-          input: { tzMode: 'dark-hc' },
-        },
-      },
       theme: {
         color: {
           blue: ['color.blue.**'],

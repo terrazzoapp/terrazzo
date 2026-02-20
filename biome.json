@@ -28,6 +28,7 @@
         "noSvgWithoutTitle": "off"
       },
       "complexity": {
+        "noUselessContinue": "off",
         "useArrowFunction": "off"
       },
       "correctness": {

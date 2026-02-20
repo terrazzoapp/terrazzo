@@ -62,7 +62,7 @@ export default async function lintRunner({
               if (!descriptor.message && !descriptor.messageId) {
                 logger.error({
                   group: 'lint',
-                  label: `${plugin.name} › lint › ${id}`,
+                  label: `${plugin.name}:${id}`,
                   message: 'Unable to report error: missing message or messageId',
                 });
               }
@@ -74,7 +74,7 @@ export default async function lintRunner({
                 if (!(descriptor.messageId! in (rule.meta?.messages ?? {}))) {
                   logger.error({
                     group: 'lint',
-                    label: `${plugin.name} › lint › ${id}`,
+                    label: `${plugin.name}:${id}`,
                     message: `messageId "${descriptor.messageId}" does not exist`,
                   });
                 }
