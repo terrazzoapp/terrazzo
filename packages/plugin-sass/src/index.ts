@@ -27,16 +27,17 @@ Please install @terrazzo/plugin-css and follow setup to add to your config.`,
       const tokens = getTransforms({ format: CSS_FORMAT_ID });
       for (const token of tokens) {
         const value = `var(${token.localID})`;
+
+        // TODO: don’t embed listingName into plugin-sass
         let listingName = `token("${token.token.id}")`;
         if (token.token.$type === 'typography') {
-          listingName =
-            token.mode !== '.' ? `typography("${token.token.id}", "${token.mode}")` : `typography("${token.token.id}")`;
+          listingName = `typography("${token.token.id}")`;
         }
+
         setTransform(token.id, {
           format: FORMAT_ID,
           localID: token.id,
           value,
-          mode: token.mode,
           meta: { 'token-listing': { name: listingName } },
         });
       }

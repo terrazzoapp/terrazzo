@@ -1,0 +1,156 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/sets/base" },
+    { "$ref": "#/modifiers/theme" }
+  ],
+  "sets": {
+    "base": {
+      "sources": [
+        {
+          "color": {
+            "red": {
+              "$type": "color",
+              "$value": { "colorSpace": "srgb", "components": [1, 0, 0], "alpha": 1, "hex": "#ff0000" }
+            },
+            "blue": {
+              "$type": "color",
+              "$value": { "colorSpace": "srgb", "components": [0, 0, 1], "alpha": 1, "hex": "#0000ff" }
+            }
+          },
+          "gradient": {
+            "g-b": {
+              "$type": "gradient",
+              "$value": [
+                { "color": { "colorSpace": "srgb", "components": [0, 1, 0], "hex": "#00ff00" }, "position": 0 },
+                { "color": { "colorSpace": "srgb", "components": [0, 0, 1], "hex": "#0000ff" }, "position": 1 }
+              ]
+            }
+          },
+          "typography": {
+            "family": {
+              "body": { "$type": "fontFamily", "$value": ["IBM Plex Sans", "-system-ui", "sans-serif"] },
+              "heading": { "$type": "fontFamily", "$value": "Helvetica" }
+            },
+            "page-title": {
+              "$type": "typography",
+              "$value": {
+                "fontFamily": "{typography.family.heading}",
+                "fontSize": { "value": 48, "unit": "px" },
+                "fontWeight": 600,
+                "lineHeight": 1.25,
+                "letterSpacing": { "value": 0.125, "unit": "rem" }
+              }
+            },
+            "subheading": {
+              "$type": "typography",
+              "$value": {
+                "fontFamily": "{typography.family.heading}",
+                "fontSize": { "value": 18, "unit": "px" },
+                "fontWeight": 500,
+                "lineHeight": 1.375,
+                "letterSpacing": { "value": 0.25, "unit": "rem" },
+                "textTransform": "uppercase"
+              }
+            },
+            "callout": {
+              "$type": "typography",
+              "$value": {
+                "fontFamily": "{typography.family.body}",
+                "fontSize": { "value": 18, "unit": "px" },
+                "fontWeight": 300,
+                "font-style": "italic",
+                "lineHeight": 1.5,
+                "letterSpacing": { "value": 0, "unit": "rem" }
+              }
+            },
+            "body": {
+              "$type": "typography",
+              "$value": {
+                "fontFamily": "{typography.family.body}",
+                "fontSize": { "value": 16, "unit": "px" },
+                "fontWeight": 400,
+                "lineHeight": 1.5,
+                "letterSpacing": { "value": 0, "unit": "rem" }
+              }
+            }
+          },
+          "shadow": {
+            "$type": "shadow",
+            "$value": {
+              "offsetX": { "value": 0, "unit": "px" },
+              "offsetY": { "value": 4, "unit": "px" },
+              "blur": { "value": 8, "unit": "px" },
+              "spread": { "value": 0, "unit": "px" },
+              "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.1 }
+            }
+          },
+          "transition": {
+            "$type": "transition",
+            "$value": {
+              "timingFunction": [0.4, 0, 0.6, 1],
+              "delay": { "value": 0, "unit": "ms" },
+              "duration": { "value": 0, "unit": "ms" }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "contexts": {
+        "light": [
+          {
+            "border": {
+              "std": {
+                "$type": "border",
+                "$value": {
+                  "color": { "colorSpace": "srgb", "components": [0.05, 0.012, 0], "hex": "#0d0300" },
+                  "width": { "value": 1, "unit": "px" },
+                  "style": "solid"
+                }
+              }
+            },
+            "color": {
+              "green": {
+                "$type": "color",
+                "$value": { "colorSpace": "srgb", "components": [0.43529411764705883, 0.8666666666666667, 0.5450980392156862], "alpha": 1, "hex": "#6fdd8b" }
+              },
+              "greenblue": {
+                "$type": "color",
+                "$value": "{color.green}"
+              }
+            }
+          }
+        ],
+        "dark": [
+          {
+            "border": {
+              "std": {
+                "$type": "border",
+                "$value": {
+                  "color": { "colorSpace": "srgb", "components": [1, 1, 1], "hex": "#ffffff" },
+                  "width": { "value": 1, "unit": "px" },
+                  "style": "solid"
+                }
+              }
+            },
+            "color": {
+              "green": {
+                "$type": "color",
+                "$value": { "colorSpace": "srgb", "components": [0.33725490196078434, 0.8274509803921568, 0.39215686274509803], "alpha": 1, "hex": "#56d364" }
+              },
+              "greenblue": {
+                "$type": "color",
+                "$value": "{color.blue}"
+              }
+            }
+          }
+        ]
+      },
+      "default": "light"
+    }
+  }
+}

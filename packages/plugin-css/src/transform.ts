@@ -43,8 +43,18 @@ export default function transformCSS({
   const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
 
   // permutations
-  if (permutations?.length) {
-    for (const p of permutations) {
+  if (Array.isArray(permutations)) {
+    // For backwards-compat, if this resolver allows a “default” input,
+    // also duplicate the token in the global space. This plays nicer with
+    // plugins that haven’t upgraded to resolvers yet.
+    // If there is no “default” permutation, then take the first one
+    let defaultPermutationI = permutations.findIndex((p) => !Object.keys(p).length);
+    if (defaultPermutationI === -1) {
+      defaultPermutationI = 0;
+    }
+
+    for (let i = 0; i < permutations.length; i++) {
+      const p = permutations[i]!;
       const input = p.input;
       const pInclude = p.include ? cachedMatcher.tokenIDMatch(p.include) : () => true;
       const pExclude = p.exclude ? cachedMatcher.tokenIDMatch(p.exclude) : () => false;
@@ -73,6 +83,19 @@ export default function transformCSS({
               // TODO: plugin-css shouldn’t set metadata for plugin-token-listing; move this there
               meta: { 'token-listing': { name: localID } },
             });
+
+            // If this is the default permutation, also duplicate to the default mode.
+            // Be sure to only do this for ONE permutation! Otherwise output would break.
+            if (defaultPermutationI === i) {
+              setTransform(token.id, {
+                format: FORMAT_ID,
+                value,
+                localID,
+                mode: '.',
+                // TODO: plugin-css shouldn’t set metadata for plugin-token-listing; move this there
+                meta: { 'token-listing': { name: localID } },
+              });
+            }
           }
         }
       } catch (err) {

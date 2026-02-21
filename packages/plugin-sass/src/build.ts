@@ -59,42 +59,39 @@ export default async function build({ getTransforms, options }: BuildParams): Pr
 
   const exclude = options?.exclude ? cachedMatcher.tokenIDMatch(options.exclude) : undefined;
 
-  for (const token of getTransforms({ format: FORMAT_ID, id: '*', mode: '.' })) {
-    if (exclude?.(token.token.id)) {
+  for (const token of getTransforms({ format: FORMAT_ID })) {
+    if (exclude?.(token.id)) {
       continue;
     }
-    const tokenId = token.token.id;
-    const tokenName = token.localID ?? tokenId;
+    const tokenName = token.localID ?? token.id;
     if (token.token.$type === 'typography' && token.type === MULTI_VALUE) {
       const tokenValue = token.value;
       const typographySassVars = new Map<SassMapKey, SassToken>(
         Object.keys(tokenValue).map((key) => [
-          `${tokenId}.${key}`,
+          `${token.id}.${key}`,
           new CssVarReferenceSassToken(`${tokenName}-${key}`),
         ]),
       );
       if ('font-size' in tokenValue && 'font-family' in tokenValue) {
-        typographySassVars.set(tokenId, new CssVarReferenceSassToken(tokenName));
+        typographySassVars.set(token.id, new CssVarReferenceSassToken(tokenName));
       }
       tokenValuesMap.extend(typographySassVars);
     } else {
-      tokenValuesMap.set(tokenId, new CssVarReferenceSassToken(tokenName));
+      tokenValuesMap.set(token.id, new CssVarReferenceSassToken(tokenName));
     }
   }
   root.appendVariableDefinition('$__token-values', tokenValuesMap);
   root.appendBlankLine();
   const tokenTypographyMixinsMap = root.createMap();
 
-  for (const token of getTransforms({ format: 'css', id: '*', mode: '.', $type: 'typography' })) {
+  for (const token of getTransforms({ format: 'css', $type: 'typography' })) {
     if (typeof token.value === 'string') {
       continue;
     }
-    const tokenId = token.token.id;
-    const tokenName = token.localID ?? tokenId;
-    const tokenValue = token.value;
+    const tokenName = token.localID ?? token.id;
     const values = { ...token.value };
     const fontMap = tokenTypographyMixinsMap.createMap();
-    if ('font-size' in tokenValue && 'font-family' in tokenValue) {
+    if ('font-size' in token.value && 'font-family' in token.value) {
       fontMap.set('font', new CssVarReferenceSassToken(`${tokenName}`));
       for (const property of FONT_SHORTHAND_PROPERTIES) {
         delete values[property];
@@ -106,7 +103,7 @@ export default async function build({ getTransforms, options }: BuildParams): Pr
           [propertyName, new CssVarReferenceSassToken(`${tokenName}-${propertyName}`)] as [SassMapKey, SassMapValue],
       ),
     );
-    tokenTypographyMixinsMap.set(tokenId, fontMap);
+    tokenTypographyMixinsMap.set(token.id, fontMap);
   }
 
   root.appendVariableDefinition('$__token-typography-mixins', tokenTypographyMixinsMap);
