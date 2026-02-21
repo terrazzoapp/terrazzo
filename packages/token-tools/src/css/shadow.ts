@@ -3,6 +3,7 @@ import type {
   DimensionTokenNormalized,
   ShadowTokenNormalized,
   ShadowValueNormalized,
+  TokenTransformed,
 } from '../types.js';
 import { transformColor } from './color.js';
 import type { TransformCSSValueOptions } from './css-types.js';
@@ -39,7 +40,7 @@ export function transformShadowLayer(
 export function transformShadow(
   token: ShadowTokenNormalized,
   options: TransformCSSValueOptions,
-): string | Record<string, string> {
+): TokenTransformed['value'] {
   const { tokensSet, transformAlias = defaultAliasTransform } = options;
   if (token.aliasChain?.[0]) {
     return transformAlias(tokensSet[token.aliasChain[0]]!);

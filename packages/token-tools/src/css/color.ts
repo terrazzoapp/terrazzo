@@ -1,6 +1,6 @@
 import { type ColorConstructor, to as convert, inGamut, serialize } from 'colorjs.io/fn';
 import { parseColor, tokenToColor } from '../color.js';
-import type { ColorTokenNormalized } from '../types.js';
+import type { ColorTokenNormalized, TokenTransformed } from '../types.js';
 import type { TransformCSSValueOptions } from './css-types.js';
 import { defaultAliasTransform } from './lib.js';
 
@@ -15,7 +15,7 @@ export type WideGamutColorValue = {
 export function transformColor(
   token: ColorTokenNormalized,
   options: TransformCSSValueOptions,
-): string | WideGamutColorValue {
+): TokenTransformed['value'] {
   const { transformAlias = defaultAliasTransform, tokensSet } = options;
 
   const firstAlias = token.aliasChain?.[0];

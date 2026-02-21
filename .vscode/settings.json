@@ -1,4 +1,7 @@
 {
+  "json.schemaDownload.trustedDomains": {
+    "https://www.designtokens.org": true
+  },
   "[css]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
@@ -22,6 +25,5 @@
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "biomejs.biome"
-  },
-  "vitest.disableWorkspaceWarning": true
+  }
 }

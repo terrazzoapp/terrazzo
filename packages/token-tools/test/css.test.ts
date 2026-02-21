@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   makeCSSVar,
+  type TransformCSSValueOptions,
   transformBoolean,
   transformColor,
   transformCSSValue,
@@ -72,7 +73,7 @@ describe('makeCSSVar', () => {
 });
 
 describe('transformCSSValue', () => {
-  const tests: Test<Parameters<typeof transformCSSValue>, ReturnType<typeof transformCSSValue>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformCSSValue>>[] = [
     [
       'basic',
       {
@@ -90,7 +91,7 @@ describe('transformCSSValue', () => {
                 $value: { colorSpace: 'srgb', components: [0, 0, 1], alpha: 1 },
               },
             },
-          } as any,
+          },
           { tokensSet: {}, transformAlias: (id) => `--${id}`, permutation: {} },
         ],
         want: { success: 'rgb(0% 0% 100%)' },
@@ -113,7 +114,7 @@ describe('transformCSSValue', () => {
                 $value: { colorSpace: 'lab', components: [80, -75, 100], alpha: 1 },
               },
             },
-          } as any,
+          },
           { tokensSet: {}, transformAlias: (id) => `--${id}`, permutation: {} },
         ],
         want: {
@@ -211,18 +212,18 @@ describe('transformCSSValue', () => {
 });
 
 describe('transformBoolean', () => {
-  const tests: Test<Parameters<typeof transformBoolean>, ReturnType<typeof transformBoolean>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformBoolean>>[] = [
     [
       'true',
       {
-        given: [{ $value: true } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: true }, { tokensSet: {}, permutation: {} }],
         want: { success: '1' },
       },
     ],
     [
       'false',
       {
-        given: [{ $value: false } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: false }, { tokensSet: {}, permutation: {} }],
         want: { success: '0' },
       },
     ],
@@ -239,31 +240,25 @@ describe('transformBoolean', () => {
 });
 
 describe('transformColor', () => {
-  const tests: Test<Parameters<typeof transformColor>, string | RegExp | Record<string, string | RegExp>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], string | RegExp | Record<string, string | RegExp>>[] = [
     [
       'string',
       {
-        given: [{ $value: '#663399' } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: '#663399' }, { tokensSet: {}, permutation: {} }],
         want: { success: 'rgb(40% 20% 60%)' },
       },
     ],
     [
       'srgb',
       {
-        given: [
-          { $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6] } } as any,
-          { tokensSet: {}, permutation: {} },
-        ],
+        given: [{ $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6] } }, { tokensSet: {}, permutation: {} }],
         want: { success: 'rgb(40% 20% 60%)' },
       },
     ],
     [
       'a98-rgb',
       {
-        given: [
-          { $value: { colorSpace: 'a98-rgb', components: [0.4, 0.2, 0.6] } } as any,
-          { tokensSet: {}, permutation: {} },
-        ],
+        given: [{ $value: { colorSpace: 'a98-rgb', components: [0.4, 0.2, 0.6] } }, { tokensSet: {}, permutation: {} }],
         want: { success: 'color(a98-rgb 0.4 0.2 0.6)' },
       },
     ],
@@ -271,7 +266,7 @@ describe('transformColor', () => {
       'lrgb',
       {
         given: [
-          { $value: { colorSpace: 'srgb-linear', components: [0.4, 0.2, 0.6] } } as any,
+          { $value: { colorSpace: 'srgb-linear', components: [0.4, 0.2, 0.6] } },
           { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(srgb-linear 0.4 0.2 0.6)' },
@@ -281,7 +276,7 @@ describe('transformColor', () => {
       'p3',
       {
         given: [
-          { $value: { colorSpace: 'display-p3', components: [0.4, 0.2, 0.6] } } as any,
+          { $value: { colorSpace: 'display-p3', components: [0.4, 0.2, 0.6] } },
           { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(display-p3 0.4 0.2 0.6)' },
@@ -291,7 +286,7 @@ describe('transformColor', () => {
       'prophoto-rgb',
       {
         given: [
-          { $value: { colorSpace: 'prophoto-rgb', components: [0.4, 0.2, 0.6] } } as any,
+          { $value: { colorSpace: 'prophoto-rgb', components: [0.4, 0.2, 0.6] } },
           { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(prophoto-rgb 0.4 0.2 0.6)' },
@@ -300,29 +295,21 @@ describe('transformColor', () => {
     [
       'rec2020',
       {
-        given: [
-          { $value: { colorSpace: 'rec2020', components: [0.4, 0.2, 0.6] } } as any,
-          { tokensSet: {}, permutation: {} },
-        ],
+        given: [{ $value: { colorSpace: 'rec2020', components: [0.4, 0.2, 0.6] } }, { tokensSet: {}, permutation: {} }],
         want: { success: 'color(rec2020 0.4 0.2 0.6)' },
       },
     ],
     [
       'hsl',
       {
-        given: [
-          {
-            $value: { colorSpace: 'hsl', components: [218, 50, 67] },
-          } as any,
-          { tokensSet: {}, permutation: {} },
-        ],
+        given: [{ $value: { colorSpace: 'hsl', components: [218, 50, 67] } }, { tokensSet: {}, permutation: {} }],
         want: { success: 'hsl(218 50% 67%)' },
       },
     ],
     [
       'hwb',
       {
-        given: [{ $value: { colorSpace: 'hwb', components: [45, 40, 80] } } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: { colorSpace: 'hwb', components: [45, 40, 80] } }, { tokensSet: {}, permutation: {} }],
         want: { success: 'hwb(45 40% 80%)' },
       },
     ],
@@ -330,9 +317,7 @@ describe('transformColor', () => {
       'lab',
       {
         given: [
-          {
-            $value: { colorSpace: 'lab', components: [97.607, -15.753, 93.388] },
-          } as any,
+          { $value: { colorSpace: 'lab', components: [97.607, -15.753, 93.388] } },
           { tokensSet: {}, color: { depth: 'unlimited' }, permutation: {} },
         ],
         want: {
@@ -349,9 +334,7 @@ describe('transformColor', () => {
       'lab-d65',
       {
         given: [
-          {
-            $value: { colorSpace: 'lab-d65', components: [97.607, -15.753, 93.388] },
-          } as any,
+          { $value: { colorSpace: 'lab-d65', components: [97.607, -15.753, 93.388] } },
           { tokensSet: {}, color: { depth: 'unlimited' }, permutation: {} },
         ],
         want: {
@@ -368,9 +351,7 @@ describe('transformColor', () => {
       'lch',
       {
         given: [
-          {
-            $value: { colorSpace: 'lch', components: [29.2345, 44.2, 27] },
-          } as any,
+          { $value: { colorSpace: 'lch', components: [29.2345, 44.2, 27] } },
           { tokensSet: {}, color: { depth: 'unlimited' }, permutation: {} },
         ],
         want: {
@@ -397,9 +378,7 @@ describe('transformColor', () => {
       'oklch (in gamut)',
       {
         given: [
-          {
-            $value: { colorSpace: 'oklch', components: [0, 0, 0], alpha: 1 },
-          } as any,
+          { $value: { colorSpace: 'oklch', components: [0, 0, 0], alpha: 1 } },
           { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'oklch(0% 0 0)' },
@@ -409,9 +388,7 @@ describe('transformColor', () => {
       'oklch (out of gamut)',
       {
         given: [
-          {
-            $value: { colorSpace: 'oklch', components: [0.9, 0.1, 40], alpha: 1 },
-          } as any,
+          { $value: { colorSpace: 'oklch', components: [0.9, 0.1, 40], alpha: 1 } },
           { tokensSet: {}, color: { depth: 'unlimited' }, permutation: {} },
         ],
         want: {
@@ -440,7 +417,7 @@ describe('transformColor', () => {
       'xyz',
       {
         given: [
-          { $value: { colorSpace: 'xyz', components: [0.2005, 0.14089, 0.4472] } } as any,
+          { $value: { colorSpace: 'xyz', components: [0.2005, 0.14089, 0.4472] } },
           { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(xyz-d65 0.2005 0.14089 0.4472)' },
@@ -450,7 +427,7 @@ describe('transformColor', () => {
       'xyz-d50',
       {
         given: [
-          { $value: { colorSpace: 'xyz-d50', components: [0.2005, 0.14089, 0.4472] } } as any,
+          { $value: { colorSpace: 'xyz-d50', components: [0.2005, 0.14089, 0.4472] } },
           { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(xyz-d50 0.2005 0.14089 0.4472)' },
@@ -460,7 +437,7 @@ describe('transformColor', () => {
       'xyz-d65',
       {
         given: [
-          { $value: { colorSpace: 'xyz-d65', components: [0.2005, 0.14089, 0.4472] } } as any,
+          { $value: { colorSpace: 'xyz-d65', components: [0.2005, 0.14089, 0.4472] } },
           { tokensSet: {}, permutation: {} },
         ],
         want: { success: 'color(xyz-d65 0.2005 0.14089 0.4472)' },
@@ -469,17 +446,14 @@ describe('transformColor', () => {
     [
       'invalid',
       {
-        given: [{ $value: '#wtf' } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: '#wtf' }, { tokensSet: {}, permutation: {} }],
         want: { error: 'Could not parse #wtf as a color. Missing a plugin?' },
       },
     ],
     [
       'unknown colorSpace',
       {
-        given: [
-          { $value: { colorSpace: 'bad', components: [0.1, 0.1, 0.1] } } as any,
-          { tokensSet: {}, permutation: {} },
-        ],
+        given: [{ $value: { colorSpace: 'bad', components: [0.1, 0.1, 0.1] } }, { tokensSet: {}, permutation: {} }],
         want: {
           error: 'Invalid color space "bad".',
         },
@@ -502,11 +476,11 @@ describe('transformColor', () => {
 });
 
 describe('transformCubicBezier', () => {
-  const tests: Test<Parameters<typeof transformCubicBezier>, ReturnType<typeof transformCubicBezier>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformCubicBezier>>[] = [
     [
       'basic',
       {
-        given: [{ $value: [0.33, 1, 0.68, 1] } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: [0.33, 1, 0.68, 1] }, { tokensSet: {}, permutation: {} }],
         want: { success: 'cubic-bezier(0.33, 1, 0.68, 1)' },
       },
     ],
@@ -523,25 +497,25 @@ describe('transformCubicBezier', () => {
 });
 
 describe('transformDimension', () => {
-  const tests: Test<Parameters<typeof transformDimension>, ReturnType<typeof transformDimension>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformDimension>>[] = [
     [
       '10px',
       {
-        given: [{ $value: { value: 10, unit: 'px' } } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: { value: 10, unit: 'px' } }, { tokensSet: {}, permutation: {} }],
         want: { success: '10px' },
       },
     ],
     [
       '1.5rem',
       {
-        given: [{ $value: { value: 1.5, unit: 'rem' } } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: { value: 1.5, unit: 'rem' } }, { tokensSet: {}, permutation: {} }],
         want: { success: '1.5rem' },
       },
     ],
     [
       '0.75em',
       {
-        given: [{ $value: { value: 0.75, unit: 'em' } } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: { value: 0.75, unit: 'em' } }, { tokensSet: {}, permutation: {} }],
         want: { success: '0.75em' },
       },
     ],
@@ -558,18 +532,18 @@ describe('transformDimension', () => {
 });
 
 describe('transformDuration', () => {
-  const tests: Test<Parameters<typeof transformDuration>, ReturnType<typeof transformDuration>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformDuration>>[] = [
     [
       '100ms',
       {
-        given: [{ $value: { value: 100, unit: 'ms' } } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: { value: 100, unit: 'ms' } }, { tokensSet: {}, permutation: {} }],
         want: { success: '100ms' },
       },
     ],
     [
       '0.25s',
       {
-        given: [{ $value: { value: 0.25, unit: 's' } } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: { value: 0.25, unit: 's' } }, { tokensSet: {}, permutation: {} }],
         want: { success: '0.25s' },
       },
     ],
@@ -586,7 +560,7 @@ describe('transformDuration', () => {
 });
 
 describe('transformGradient', () => {
-  const tests: Test<Parameters<typeof transformGradient>, ReturnType<typeof transformGradient>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformGradient>>[] = [
     [
       'basic',
       {
@@ -606,7 +580,7 @@ describe('transformGradient', () => {
                 position: 1,
               },
             ],
-          } as any,
+          },
           { tokensSet: {}, permutation: {} },
         ],
         want: {
@@ -627,11 +601,11 @@ describe('transformGradient', () => {
 });
 
 describe('transformFontWeight', () => {
-  const tests: Test<Parameters<typeof transformFontWeight>, ReturnType<typeof transformFontWeight>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformFontWeight>>[] = [
     [
       '400',
       {
-        given: [{ $value: 400 } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: 400 }, { tokensSet: {}, permutation: {} }],
         want: { success: '400' },
       },
     ],
@@ -649,11 +623,11 @@ describe('transformFontWeight', () => {
 });
 
 describe('transformNumber', () => {
-  const tests: Test<Parameters<typeof transformNumber>, ReturnType<typeof transformNumber>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformNumber>>[] = [
     [
       'basic',
       {
-        given: [{ $value: 42 } as any, { tokensSet: {}, permutation: {} }],
+        given: [{ $value: 42 }, { tokensSet: {}, permutation: {} }],
         want: { success: '42' },
       },
     ],
@@ -671,7 +645,7 @@ describe('transformNumber', () => {
 });
 
 describe('transformShadow', () => {
-  const tests: Test<Parameters<typeof transformShadow>, ReturnType<typeof transformShadow>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformShadow>>[] = [
     [
       'basic',
       {
@@ -691,7 +665,7 @@ describe('transformShadow', () => {
                 inset: false,
               },
             ],
-          } as any,
+          },
           { tokensSet: {}, permutation: {} },
         ],
         want: { success: '0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.1)' },
@@ -753,7 +727,7 @@ describe('transformShadow', () => {
                 inset: false,
               },
             ],
-          } as any,
+          },
           { tokensSet: {}, permutation: {} },
         ],
         want: {
@@ -775,7 +749,7 @@ describe('transformShadow', () => {
 });
 
 describe('transformTypography', () => {
-  const tests: Test<Parameters<typeof transformTypography>, ReturnType<typeof transformTypography>>[] = [
+  const tests: Test<[any, TransformCSSValueOptions], ReturnType<typeof transformTypography>>[] = [
     [
       'basic',
       {
@@ -795,7 +769,7 @@ describe('transformTypography', () => {
               paragraphSpacing: { value: 14, unit: 'px' },
               wordSpacing: { value: 0.25, unit: 'em' },
             },
-          } as any,
+          },
           { tokensSet: {}, permutation: {} },
         ],
         want: {
@@ -826,7 +800,7 @@ describe('transformTypography', () => {
               fontFamily: ['Inter'],
             },
             partialAliasOf: { fontFamily: 'font.sans' },
-          } as any,
+          },
           {
             tokensSet: {
               'typography.labelSmall': {

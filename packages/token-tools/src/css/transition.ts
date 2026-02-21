@@ -1,11 +1,19 @@
-import type { CubicBezierTokenNormalized, DurationTokenNormalized, TransitionTokenNormalized } from '../types.js';
+import type {
+  CubicBezierTokenNormalized,
+  DurationTokenNormalized,
+  TokenTransformedSingleValue,
+  TransitionTokenNormalized,
+} from '../types.js';
 import type { TransformCSSValueOptions } from './css-types.js';
 import { transformCubicBezier } from './cubic-bezier.js';
 import { transformDuration } from './duration.js';
 import { defaultAliasTransform } from './lib.js';
 
 /** Convert transition value to shorthand */
-export function transformTransition(token: TransitionTokenNormalized, options: TransformCSSValueOptions) {
+export function transformTransition(
+  token: TransitionTokenNormalized,
+  options: TransformCSSValueOptions,
+): TokenTransformedSingleValue['value'] {
   const { tokensSet, transformAlias = defaultAliasTransform } = options;
   if (token.aliasChain?.[0]) {
     return transformAlias(tokensSet[token.aliasChain[0]]!);
