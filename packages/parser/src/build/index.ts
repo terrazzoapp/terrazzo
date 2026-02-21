@@ -140,7 +140,7 @@ export default async function build(
 
           // upsert
           if (!formats[params.format]) {
-            formats[params.format] = {};
+            formats[params.format] = { [FALLBACK_PERMUTATION_ID]: [] };
           }
           if (!formats[params.format]![permutationID]) {
             formats[params.format]![permutationID] = [];
@@ -149,10 +149,7 @@ export default async function build(
             (t) => id === t.id && (!params.localID || params.localID === t.localID) && (!mode || t.mode === mode),
           );
           if (foundTokenI === -1) {
-            // backwards compat: upconvert mode into "tzMode" modifier. This
-            // allows newer plugins to use resolver syntax without disrupting
-            // older plugins.
-            formats[params.format]![permutationID]!.push({
+            const transformedToken = {
               ...params,
               id,
               value: cleanValue,
@@ -161,7 +158,16 @@ export default async function build(
               token: makeReadOnlyToken(token),
               permutationID,
               input: JSON.parse(permutationID),
-            } as TokenTransformed);
+            } as TokenTransformed;
+            // backwards compat: upconvert mode into "tzMode" modifier. This
+            // allows newer plugins to use resolver syntax without disrupting
+            // older plugins.
+            formats[params.format]![permutationID]!.push(transformedToken);
+
+            // If this is a “default” permutation, this should also be duplicated in the global space
+            if (params.input && !Object.keys(params.input).length && permutationID !== FALLBACK_PERMUTATION_ID) {
+              formats[params.format]![FALLBACK_PERMUTATION_ID]!.push(transformedToken);
+            }
           } else {
             formats[params.format]![permutationID]![foundTokenI]!.value = cleanValue;
             formats[params.format]![permutationID]![foundTokenI]!.type =

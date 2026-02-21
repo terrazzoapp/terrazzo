@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { execa } from 'execa';
+import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
 
 describe('@terrazzo/plugin-js', () => {
@@ -15,7 +15,7 @@ describe('@terrazzo/plugin-js', () => {
       'shopify-polaris',
     ])('%s', async (ds) => {
       const cwd = new URL(`./fixtures/${ds}/`, import.meta.url);
-      await execa('../../../../cli/bin/cli.js', ['build'], { cwd, stdout: 'inherit' });
+      await execaNode({ cwd })`../../../../cli/bin/cli.js build`;
 
       await expect(await fs.readFile(new URL('actual.d.ts', cwd), 'utf8'), '.d.ts mismatch!').toMatchFileSnapshot(
         fileURLToPath(new URL('want.d.ts', cwd)),

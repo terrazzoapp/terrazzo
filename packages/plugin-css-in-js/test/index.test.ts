@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 describe('plugin-css-in-js', () => {
   it('Figma SDS', async () => {
     const cwd = new URL('./fixtures/figma-sds/', import.meta.url);
-    await execa('../../../../cli/bin/cli.js', ['build'], { cwd, stdout: 'inherit' });
+    await execa('../../../../cli/bin/cli.js', ['build'], { cwd });
 
     const js = await fs.readFile(new URL('./actual.js', cwd), 'utf8');
     await expect(js).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
