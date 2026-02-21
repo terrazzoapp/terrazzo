@@ -129,11 +129,15 @@ import css from "@terrazzo/plugin-css";
 export default {
   plugins: [
     css({
-      contextSelectors: [
-        { selector: ":root", context: { theme: "light" } },
+      permutations: [
         {
-          selector: "@media (prefers-color-scheme: dark)",
-          context: { theme: "dark" },
+          input: { tzMode: "light" },
+          prepare: (css) => `:root {\n  ${css}\n}`,
+        },
+        {
+          input: { tzMode: "dark" },
+          prepare: (css) =>
+            `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}`,
         },
       ],
     }),
@@ -174,9 +178,9 @@ Here’s an example how the options would change for the CSS plugin:
 -       modeSelectors: [
 -         { selector: ":root", mode: "light" },
 -         { selector: "@media (prefers-color-scheme: dark)", mode: "dark" },
-+       contextSelectors: [
-+         { selector: ":root", context: { tzMode: "light" } },
-+         { selector: "@media (prefers-color-scheme: dark)", context: { tzMode: "dark" } },
++       permutations: [
++         { input: { tzMode: "light" }, prepare: (css) => `:root {\n  ${css}\n}` },
++         { input: { tzMode: "dark" }, prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}` },
         ],
       }),
     ],
