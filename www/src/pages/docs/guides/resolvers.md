@@ -106,25 +106,25 @@ Each modifier has a `contexts` map that maps a condition to the tokens that get 
         "light": [],
         "dark": [{ "$ref": "./theme/dark.json" }],
         "light-high-contrast": [{ "$ref": "./theme/light-hc.json" }],
-        "dark-high-contrast": [{ "$ref": "./theme/dark-hc.json" }]
-      }
+        "dark-high-contrast": [{ "$ref": "./theme/dark-hc.json" }],
+      },
     },
     "breakpoint": {
       "description": "Responsive size",
       "contexts": {
         "sm": [
           { "$ref": "./breakpoint/sm.json" },
-          { "$ref": "./typography/sm.json" }
-        ]
+          { "$ref": "./typography/sm.json" },
+        ],
         "md": [],
         "lg": [
           { "$ref": "./breakpoint/lg.json" },
-          { "$ref": "./typography/lg.json" }
+          { "$ref": "./typography/lg.json" },
         ],
       },
-      "default": "md"
-    }
-  }
+      "default": "md",
+    },
+  },
 }
 ```
 
@@ -174,6 +174,19 @@ Another way to look at this is `#/sets/[name]` and `#/modifiers/[name]` are the 
 Most of the time, modifiers come after sets, because conditional values almost always mean to override unconditional ones. Some systems may have some exceptions, of course, but in most systems, modifiers come at the end, and sets at the beginning.
 
 :::
+
+### Permutations
+
+A **permutation** is another way of referring to the input, in a sense. Or more specifically, it’s **the input + all defaults.** So if you had a `theme` modifier that defaulted to `"light"`, and a `text-size` modifier that defaulted to `medium`, then all of the following would result:
+
+| Input                                         | Permutation                                   |
+| :-------------------------------------------- | :-------------------------------------------- |
+| `{}`                                          | `{ "theme": "light", "text-size": "medium" }` |
+| `{ "theme": "light" }`                        | `{ "theme": "light", "text-size": "medium" }` |
+| `{ "text-size": "medium" }`                   | `{ "theme": "light", "text-size": "medium" }` |
+| `{ "theme": "light", "text-size": "medium" }` | `{ "theme": "light", "text-size": "medium" }` |
+
+Notice how 4 different inputs will yield 1 permutation.
 
 ## FAQ
 

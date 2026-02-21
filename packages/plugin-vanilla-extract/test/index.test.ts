@@ -25,7 +25,7 @@ describe('vanilla-extract', () => {
       // 2. evalute whether Vanilla CSS (Vite plugin) can build this, without trying to snapshot a third-party library
       await execa({ cwd })`pnpm exec vite build ${fileURLToPath(cwd)}`;
       expect(fs.existsSync(new URL('dist/', cwd))).toBeTruthy();
-    }, 60_000); // these are doing large builds + building with Vite. They may take extra time in CI
+    }, 120_000); // these are doing large builds + building with Vite. They may take extra time in CI
   });
 
   describe('options', () => {

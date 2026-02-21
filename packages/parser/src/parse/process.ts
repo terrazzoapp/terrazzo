@@ -185,7 +185,7 @@ export function processTokens(
   // 3a. Token & group population
   traverse(rootSource.document, {
     enter(node, _parent, rawPath) {
-      if (node.type !== 'Object') {
+      if (node.type !== 'Object' || rawPath.includes('$value') || rawPath.includes('$extensions')) {
         return;
       }
       groupFromNode(node, { path: isResolver ? filterResolverPaths(rawPath) : rawPath, groups });
@@ -203,9 +203,9 @@ export function processTokens(
   });
 
   logger.debug({ ...entry, message: 'Parsing: 1st pass', timing: performance.now() - firstPass });
-  const secondPass = performance.now();
 
   // 3b. Resolve originalValue and original sources
+  const secondPass = performance.now();
   for (const source of Object.values(sourceByFilename)) {
     traverse(source.document, {
       enter(node, _parent, path) {

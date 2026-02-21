@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  @tz(tzMode: ".");
+}
+
+@variant dark {
+  @tz(tzMode: "dark");
+}
+
+@custom-variant light-hc (:where(.light-hc, .light-hc *));
+
+@variant light-hc {
+  @tz(tzMode: "light-hc");
+}
+
+@custom-variant dark-hc (:where(.dark-hc, .dark-hc *));
+
+@variant dark-hc {
+  @tz(tzMode: "dark-hc");
+}
+
+/* Custom styles */
+.custom-class {
+  color: red;
+
+  @variant dark {
+    color: var(--color-blue-6);
+  }
+
+  @variant light-hc {
+    color: var(--color-blue-6);
+  }
+
+  @variant dark-hc {
+    color: var(--color-blue-6);
+  }
+}

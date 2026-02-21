@@ -1,29 +1,25 @@
 import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
 import type { Plugin } from '@terrazzo/parser';
-import { FORMAT_ID as FORMAT_CSS, printRules } from '@terrazzo/plugin-css';
+import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import {
-  applyTemplate,
   buildFileHeader,
   FORMAT_ID as FORMAT_TAILWIND,
   flattenThemeObj,
   PLUGIN_NAME,
+  parseTzAtRules,
   type TailwindPluginOptions,
+  type TzAtRule,
 } from './lib.js';
 
 export * from './lib.js';
 
-const DEFAULT_THEME = '.';
-
 export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
   const filename = options?.filename ?? 'tailwind-theme.css';
-  const variations = {
-    [DEFAULT_THEME]: { selector: '', input: options.defaultTheme ?? { tzMode: '.' } },
-    ...options?.customVariants,
-  };
   let cwd: URL;
+  let template: string;
+  const tzAtRules: TzAtRule[] = [];
   const msg = { group: 'plugin' as const, label: PLUGIN_NAME };
 
   return {
@@ -48,17 +44,24 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
 
       // store cwd for template resolution (parent of outDir)
       cwd = new URL('./', config.outDir);
-      if (options?.template && !fsSync.existsSync(new URL(options.template, cwd))) {
-        logger.error({
-          ...msg,
-          message: `Could not locate template ${fileURLToPath(new URL(options.template, cwd))}. Does the file exist?`,
-        });
+      if (!fsSync.existsSync(new URL(options.template, cwd))) {
+        logger.error({ ...msg, message: `Could not locate template "${options.template}". Does the file exist?` });
       }
     },
     async transform({ getTransforms, setTransform, context: { logger } }) {
-      const flatTheme = flattenThemeObj(options.theme);
+      // First, validate template, and parse the locations of all @tz at-rules.
+      template = await fs.readFile(options.template, 'utf8');
+      if (!template.includes('@tz')) {
+        logger.error({
+          ...msg,
+          message: `${options.template}: missing @tz helper! Terrazzo won’t generate any output for Tailwind. See https://terrazzo.app/docs/integrations/tailwind.`,
+        });
+      }
+      tzAtRules.push(...parseTzAtRules(template));
 
-      for (const { input } of Object.values(variations)) {
+      // Next, iterate over the occurrences of @tz and generate the appropriate token values.
+      const flatTheme = flattenThemeObj(options.theme);
+      for (const { input } of tzAtRules) {
         const query = getTokenQuery(input);
         // Note: it’s important to remember that under-the-hood, getting/setting modes is NOT the same as having an { tzMode: value } input.
         // The former allows glob searching across all modes, the latter does not. Especially in the Tailwind plugin, confusing the two
@@ -87,51 +90,18 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       }
     },
     async build({ getTransforms, outputFile }) {
-      let generatedTheme = '';
-      for (const [variant, { input, selector }] of Object.entries(variations)) {
-        if (generatedTheme) {
-          generatedTheme += '\n'; // add extra line break if continuing
-        }
-
+      // Classic replacement hack: If we replace back-to-front, rather than
+      // front-to-back, all our start/end locations will still be valid and we
+      // won’t have to reparse the template every time.
+      const reversedAtRules = [...tzAtRules].reverse();
+      let generatedTemplate = template;
+      for (const { start, end, input } of reversedAtRules) {
         const tokens = getTransforms({ ...getTokenQuery(input), format: FORMAT_TAILWIND });
-
-        if (variant === DEFAULT_THEME) {
-          generatedTheme += '@theme {\n';
-          for (const token of tokens) {
-            generatedTheme += `  ${token.localID}: ${token.value};\n`;
-          }
-          generatedTheme += '}\n';
-        } else {
-          generatedTheme += printRules([
-            {
-              type: 'Rule',
-              prelude: [`@custom-variant ${variant}`],
-              children: [
-                {
-                  type: 'Rule',
-                  prelude: [selector],
-                  children: tokens.map((t) => ({ type: 'Declaration', property: t.localID!, value: String(t.value) })),
-                },
-              ],
-            },
-          ]);
-          generatedTheme += '\n';
-        }
+        const indent = getIndentAtPos(template, start);
+        generatedTemplate = `${generatedTemplate.slice(0, start)}${tokens.map((t) => `${t.localID}: ${t.value};`).join(`\n${indent}`)}${generatedTemplate.slice(end)}`;
       }
-
-      // build the output combining theme and template
-      let finalOutput = '';
-      if (options.template) {
-        const templateUrl = new URL(options.template, cwd);
-        const templateContent = await fs.readFile(fileURLToPath(templateUrl), 'utf8');
-        finalOutput += applyTemplate(templateContent, generatedTheme);
-      } else {
-        finalOutput += '@import "tailwindcss";\n\n';
-        finalOutput += generatedTheme;
-      }
-
-      const header = buildFileHeader(options.template);
-      outputFile(filename, [header, '', finalOutput].join('\n'));
+      // Note: don’t append the header till the end, otherwise start/end will all be wrong
+      outputFile(filename, `${buildFileHeader(options.template)}\n\n${generatedTemplate}`);
     },
   };
 }
@@ -144,4 +114,9 @@ function isLegacyModes(input: Record<string, string>): boolean {
 /** Build query for both resolvers and legacy modes */
 function getTokenQuery(input: Record<string, string>) {
   return isLegacyModes(input) ? { mode: input.tzMode ?? '.' } : { input };
+}
+
+/** Get the current indent based on the previous line break from char */
+function getIndentAtPos(text: string, pos: number) {
+  return text.slice(0, pos).match(/\n(( |\t)+)$/)?.[1] || '';
 }

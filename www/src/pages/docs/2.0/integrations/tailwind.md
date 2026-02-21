@@ -40,9 +40,13 @@ export default defineConfig({
         { theme: "dark", prepare },
         { theme: "light-high-contrast", prepare },
         { theme: "dark-high-contrast", prepare },
+        { motion: "reduced", prepare },
       ],
     }),
     tailwind({
+      /** Input */
+      template: "tailwind.template.css",
+      /** Output */
       filename: "tailwind-theme.css",
       theme: {
         /** @see https://tailwindcss.com/docs/configuration#theme */
@@ -53,21 +57,6 @@ export default defineConfig({
         spacing: ["spacing.*"],
         radius: ["borderRadius.*"],
       },
-      defaultTheme: { theme: "light" },
-      customVariants: [
-        dark: {
-          selector: "&:where(.dark, .dark *)",
-          input: { theme: "dark" },
-        },
-        "light-hc": {
-          selector: "&:where(.light-hc, .light-hc *)",
-          input; { theme: "light-hc" },
-        },
-        "dark-hc": {
-          selector: "&:where(.dark-hc .dark-hc *)",
-          input: { theme: "dark-hc" },
-        },
-      ],
     }),
   ],
 });
@@ -85,16 +74,15 @@ And you’ll see a `tokens/tailwind-theme.css` file generated in your project.
 
 ## Options
 
-| Name             | Type                                                             | Description                                             |
-| :--------------- | :--------------------------------------------------------------- | :------------------------------------------------------ |
-| `filename`       | `string`                                                         | Filename to generate (default: `"tailwind-theme.css"`). |
-| `theme`          | `Record<string, any>`                                            | Tailwind theme ([docs](#theme))                         |
-| `defaultTheme`   | `ResolverInput`                                                  | Set the default permutation input.                      |
-| `customVariants` | `Record<string, string>, selector:string; input: ResolverInput>` | See [Dark mode & variants](#permutations).              |
+| Name       | Type                  | Description                                             |
+| :--------- | :-------------------- | :------------------------------------------------------ |
+| `template` | `string`              | The [template](#template) to use.                       |
+| `filename` | `string`              | Filename to generate (default: `"tailwind-theme.css"`). |
+| `theme`    | `Record<string, any>` | Tailwind theme ([docs](#theme))                         |
 
 ## Theme
 
-Tailwind has [theme docs](https://tailwindcss.com/docs/theme) that map CSS variables to Tailwind classes. This plugin generates that CSS for you, but you still have to provide the desired mapping here.
+The `theme` option of the config is where you control the mapping of your DTCG token names to Tailwind classes. This affects your API! The level of granular control here is important to generate the utility classes you want.
 
 ### Token mapping
 
@@ -136,7 +124,7 @@ Being explicit is fine! And it’s needed when you need to rename or remap compl
 tailwind({
   theme: {
     color: {
-      blue: ["color.blue.*"],
+      blue: ["color.blue.**"],
     },
   },
 });
@@ -147,7 +135,7 @@ Or even more tersely:
 ```js
 tailwind({
   theme: {
-    color: ["color.*"],
+    color: ["color.**"],
   },
 });
 ```
@@ -182,75 +170,88 @@ You’d wind up with `--color-0`, `--color-1`, etc. which would point to `color.
 
 All that said, keep in mind that **theme mapping is up to you!** So the theme will be built exactly as you’ve declared.
 
-### Permutations
+## Template
 
-You’ll map permutations from your resolver 1:1 with [Tailwind Custom Variants](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually).
+Tailwind adds features all the time, and it‘s important that Terrazzo doesn’t block you from any functionality. Since Tailwind v4 relies on [CSS config](https://tailwindcss.com/docs/functions-and-directives), Terrazzo gives you full control over your Tailwind setup, and only fills in token values.
 
-The CSS plugin is responsible for generating the initial values that the Tailwind plugin reads. The Tailwind plugin then just maps it to custom variants. So you can only access permutations if they’re built in the CSS plugin:
+Here’s an example of a token system with the following modifiers:
 
-```diff
-  const prepare = (css: string) => css;
-
-  export default defineConfig({
-    plugins: [
-      css({
-        skipBuild: true,
-        permutations: [
-          { input: { theme: "light" }, prepare },
-          { input: { theme: "dark" }, prepare },
-          { input: { theme: "light-high-contrast" }, prepare },
-          { input: { theme: "dark-high-contrast" }, prepare },
-        ],
-      }),
-      tailwind({
-        theme: {
-          color: ["color.*"],
-        },
-+       defaultTheme: { theme: "light" },
-+       customVariants: {
-+         dark: {
-+           selector: "&:where(.dark, .dark *)",
-+           input: { theme: "dark" },
-+         },
-+         "light-hc": {
-+           selector: "&:where(.light-hc, .light-hc *)",
-+           input: { theme: "light-hc" },
-+         },
-+         "dark-hc": {
-+           selector: "&:where(.dark-hc, .dark-hc *)",
-+           input: { theme: "dark-hc" },
-+         },
-+       },
-      });
-    ],
-```
-
-- In the CSS plugin settings, the `prepare` function normally formats the CSS template, but if `skipBuild: true` is set, it doesn’t matter.
-- In the Tailwind plugin settings, `customVariants` are a key–value map from `@custom-variant` to a resolver input. This will be empty if it’s missing from the CSS options!
-
-In this example, all the following yields:
+- `{ theme: "light" }`
+- `{ theme: "dark" }`
+- `{ theme: "light-high-contrast" }`
+- `{ theme: "dark-high-contrast" }`
+- `{ motion: "reduced" }`
 
 ```css
+@import "tailwindcss";
+
+/* Default theme */
 @theme {
-  /* … */
+  @tz (theme: "light");
 }
 
-@custom-variant dark (&:where(.dark, .dark *)) {
-  /* … */
+/* Uncomment to change conditions for dark mode */
+/* @custom-variant dark ([data-theme="dark"] &); */
+
+/* Dark mode (@see https://tailwindcss.com/docs/dark-mode) */
+@variant dark {
+  @tz (theme: "dark");
 }
 
-@custom-variant light-hc (&:where(.light-hc, .light-hc *)) {
-  /* … */
+/* Custom variant: light-high-contrast (shortened to "light-hc" in Tailwind) */
+@custom-variant light-hc ([data-theme="light-hc"] &);
+
+@variant light-hc {
+  @tz (theme: "light-high-contrast");
 }
 
-@custom-variant dark-h (&:where(.dark-hc, .dark-hc *)) {
-  /* … */
+/* Custom variant: dark-high-contrast (shortened to "dark-hc" in Tailwind) */
+@custom-variant dark-hc ([data-theme="dark-hc"] &);
+
+@variant dark-hc {
+  @tz (theme: "dark-high-contrast");
+}
+
+/* Custom variant for reduced motion */
+@custom-variant reduced-motion (@media (prefers-reduced-motion: reduce));
+
+@variant reduced-motion {
+  @tz (motion: "reduced");
+}
+
+/* Custom CSS is allowed */
+.my-custom-util {
+  color: red;
 }
 ```
+
+You’ll notice the `@tz` function is used to pull tokens from a specific resolver [input](/docs/2.0/guides/resolvers/#modifiers). This will inject CSS variables generated from [plugin-css](/docs/2.0/integrations/css/).
 
 :::tip
 
-If you see an empty block generated in your Tailwind theme, check the CSS plugin options! You may be missing that `permutation` you’re trying to access.
+Tailwind v4 requires registering new variants with [@custom-variant](https://tailwindcss.com/docs/hover-focus-and-other-states#custom-variants) before using it. `@variant dark` is a special variant that Tailwind acknowledges automatically, but you can still [customize its conditions if desired](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually).
+
+:::
+
+Note that for every permutation, you’ll have to make sure you also specify that permutation in `plugin-css`’ [permutations](/docs/2.0/integrations/css/) setting. plugin-tailwind will throw an error if nothing generated. The reason for this is resolvers can be too slow generating impossible combinations of tokens for contexts you’ll never use! And while, yes, managing config between plugin-css and plugin-tailwind is cumbersome, it is done so that a project that is using both never gets out-of-sync or generates incompatible styles.
+
+### @tz
+
+This is a special at-rule that will inject a resolver output at that point in the CSS. The syntax is a function that accepts comma-separated inputs for each modifier:
+
+```css
+@tz (modifier1: "value", modifier2: "value", …);
+```
+
+Note that if all your modifiers have defaults, you can also simply write:
+
+```css
+@tz;
+```
+
+:::warning
+
+The modifier values MUST be surrounded with quotes! In other words, `@tz(modifier1: value)` is invalid ❌.
 
 :::
 
@@ -258,31 +259,25 @@ If you see an empty block generated in your Tailwind theme, check the CSS plugin
 
 You don’t have to have your tokens in a resolver format to use permutations! You can access the values from $extensions.mode via the virtual `tzMode` modifier:
 
-```ts
-export default defineConfig({
-  plugins: [
-    tailwind({
-      defaultPermutation: { tzMode: "light" },
-      customVariants: {
-        dark: {
-          selector: "&:where(.dark, .dark *)",
-          input: { tzMode: "dark" },
-        },
-      },
-    }),
-  ],
-});
+```css
+@theme {
+  @tz (tzMode: "."); /* . is necessary for default! */
+}
+
+@variant dark {
+  @tz (tzMode: "dark");
+}
 ```
 
 :::warning
 
-For the Tailwind plugin, don’t mix-and-match `tzMode` with newer resolvers—you’ll get stranded tokens lost between permutations and you won’t get correct output. For this plugin, either use **ONLY** `tzMode` by itself, or convert all your tokens to the new [resolver format](https://www.designtokens.org/TR/2025.10/resolver/).
+For the Tailwind plugin, don’t mix-and-match `tzMode` with resolver modifiers—you’ll get stranded tokens lost between permutations and you won’t get correct output. For this plugin, either use **ONLY** `tzMode` by itself, or convert all your tokens to the new [resolver format](https://www.designtokens.org/TR/2025.10/resolver/).
 
 :::
 
 ## Migrating from 0.x
 
-The major change is changing from `modeVariants` to `defaultTheme` + `customVariants`:
+The major change to this plugin is relying fully on [a template](https://tailwindcss.com/docs/functions-and-directives), and discarding your manual `modeVariants` setting:
 
 ```diff
   export default defineConfig({
@@ -291,16 +286,10 @@ The major change is changing from `modeVariants` to `defaultTheme` + `customVari
 -       modeVariants: [
 -         { variant: "dark", mode: "dark" },
 -       ],
-+       defaultTheme: { theme: "light" },
-+       customVariants: {
-+         dark: {
-+           input: { theme: "dark" },
-+           selector: "&:where(.dark, .dark *)",
-+         },
-+       },
++       template: "tailwind.template.css",
       }),
     ],
   });
 ```
 
-Remember you can still use the new `input` format even with [legacy $extensions.mode](#accessing-legacy-$extensions-mode)
+You’ll then use the [@tz at-rule](#tz) to inject tokens in the places you’d like them. But otherwise you’re in full control!

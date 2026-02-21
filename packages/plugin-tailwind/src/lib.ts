@@ -5,15 +5,58 @@ export type ResolverInput = Record<string, string>;
 
 export interface TailwindPluginOptions {
   /**
+   * Path to a template file.
+   *
+   * @example "tailwind.template.css";
+   *
+   * @example
+   * ```css
+   * @import "tailwindcss";
+   * /* Default theme *\/
+   * @theme {
+   * @tz (theme: "light");
+   * }
+   * /* Uncomment to change conditions for dark mode *\/
+   * /* @custom-variant dark ([data-theme="dark"]); *\/
+   *
+   * /* Dark mode (@see https://tailwindcss.com/docs/dark-mode) *\/
+   * @variant dark {
+   *   @tz (theme: "dark");
+   * }
+   *
+   * /* Custom variant: light-high-contrast (shortened to "light-hc" in Tailwind) *\/
+   * @custom-variant light-hc ([data-theme="light-hc"]);
+   *
+   * @variant light-hc {
+   *   @tz (theme: "light-high-contrast");
+   * }
+   *
+   * /* Custom variant: dark-high-contrast (shortened to "dark-hc" in Tailwind) *\/
+   * @custom-variant dark-hc ([data-theme="dark-hc"]);
+   *
+   * @variant dark-hc {
+   *   @tz (theme: "dark-high-contrast");
+   * }
+   *
+   * /* Custom variant for reduced motion *\/
+   * @custom-variant reduced-motion (@media (prefers-reduced-motion: reduce));
+   *
+   * @variant reduced-motion {
+   *   @tz (motion: "reduced");
+   * }
+   *
+   * /* Custom CSS is allowed *\/
+   * .my-custom-util {
+   *   color: red;
+   * }
+   * ```
+   */
+  template: string;
+  /**
    * Filename to output.
    * @default "tailwind-theme.css"
    */
   filename?: string;
-  /**
-   * Path to a template file. The template should contain `@terrazzo-slot;`
-   * which will be replaced with the generated theme.
-   */
-  template?: string;
   /** @see https://tailwindcss.com/docs/theme */
   theme: Record<string, unknown>;
   /** Default permutation */
@@ -70,12 +113,118 @@ export function buildFileHeader(templatePath?: string): string {
   return FILE_HEADER;
 }
 
-export const TERRAZZO_SLOT = '@terrazzo-slot;';
+export interface TzAtRule {
+  start: number;
+  end: number;
+  input: Record<string, string>;
+}
 
-export function applyTemplate(template: string, generatedTheme: string): string {
-  if (!template.includes(TERRAZZO_SLOT)) {
-    throw new Error(`Template must contain "${TERRAZZO_SLOT}" directive`);
+/**
+ * Parse @tz at-rules in CSS.
+ */
+export function parseTzAtRules(css: string): TzAtRule[] {
+  let i = 0;
+  const atRules: TzAtRule[] = [];
+  while (i < css.length) {
+    const next = parseTzAtRule(css.slice(i));
+    if (!next) {
+      break;
+    }
+    next.start += i;
+    next.end += i;
+    atRules.push(next);
+    i = next.end;
   }
-  // Replace slot and any following newlines (CRLF or LF) with theme + single newline
-  return template.replace(/@terrazzo-slot;(\r?\n)+/, `${generatedTheme.trimEnd()}\n\n`);
+  return atRules;
+}
+
+/**
+ * Parse an individual @tz at-rule in CSS.
+ *
+ * This algorithm requires 2 passes:
+ * 1. Determine the beginning and end of the expression, accounting for arbitrary whitespace, comments, and even CSS-omittable semicolons
+ * 2. Take the inner body of the at-rule and parse the parameters.
+ */
+export function parseTzAtRule(css: string): TzAtRule | undefined {
+  // Cheap optimization: don’t bother doing work if something _looks_ like it contains @tz.
+  // But note that this will match comments and at-rules like "@tzap" so we have to parse
+  // to verify it’s valid.
+  if (!css.includes('@tz')) {
+    return;
+  }
+  let start = -1;
+  let end = -1;
+  const input: Record<string, string> = {};
+
+  // first pass: determine the end of the expression, taking comments into account as well as omitting semicolons
+  for (let i = 0; i < css.length; i++) {
+    const char = css[i];
+    // skip over comments, while still keeping count
+    if (char === '/' && css[i + 1] === '*') {
+      const commentEnd = css.slice(i + 1).indexOf('*/');
+      i += commentEnd + '*/'.length;
+      continue;
+    }
+
+    // We’ve found a match (not in a comment!) begin the search
+    if (char === '@' && css[i + 1] === 't' && css[i + 2] === 'z' && !/[A-Za-z0-9]/.test(css[i + 3] || '')) {
+      start = i;
+    }
+
+    // Only calculate once we’ve found @tz outside a comment
+    if (start !== -1) {
+      // handle semi-colon or end-of-file
+      if (char === ';' || i === css.length - 1) {
+        end = i + 1;
+        break;
+      }
+      // handle end of block
+      if (char === '}') {
+        end = i;
+        break;
+      }
+    }
+  }
+
+  // We never found a valid @tz match; return
+  if (start === -1) {
+    return;
+  }
+
+  const syntaxErr = new Error(
+    `Invalid syntax: ${css.slice(start, end)}. Expected @tz(modifier1: "value", modifier2: "value", …).`,
+  );
+
+  // second pass: now that we know where the expression ends, parse the inner body (if any), and extract the inputs
+  const bodyRaw = css
+    .slice(start + '@tz'.length, end)
+    .replace(/\/\*.*\*\//g, '')
+    .trim();
+  // because we ignored parens in parsing, make sure we don’t have mismatched pairs
+  if ((bodyRaw.includes('(') && !bodyRaw.includes(')')) || (!bodyRaw.includes('(') && bodyRaw.includes(')'))) {
+    throw syntaxErr;
+  }
+  const body = bodyRaw
+    .replace(/^\(\s*/, '') // discard opening paren, and any whitespace
+    .replace(/\s*[)}]?;?$/, ''); // discard closing paren, or terminating semicolon or bracket, along with whitespace
+  if (body) {
+    const params = body.split(',');
+    for (const param of params) {
+      const [name, value] = param.split(':');
+      if (!name || !value) {
+        throw syntaxErr;
+      }
+      try {
+        input[name.trim()] = JSON.parse(value.trim());
+      } catch {
+        throw syntaxErr;
+      }
+    }
+  }
+
+  return {
+    start,
+    end,
+    input,
+  };
 }

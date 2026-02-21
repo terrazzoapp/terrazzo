@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  /* Note: folks should prefer the more explicit `@tz (theme: "light")`, but test this still works nonetheless. */
+  @tz;
+}
+
+@variant dark {
+  @tz(theme: "dark");
+}
+
+@custom-variant light-hc ([data-theme="light-hc"] &);
+
+@variant light-hc {
+  @tz(theme: "light-hc");
+}
+
+@custom-variant dark-hc ([data-theme="dark-hc"] &);
+
+@variant dark-hc {
+  @tz(theme: "dark-hc");
+}
+
+/* Custom styles */
+.custom-class {
+  color: var(--color-blue-6);
+
+  @variant dark {
+    color: var(--color-blue-6);
+  }
+
+  @variant light-hc {
+    color: var(--color-blue-6);
+  }
+
+  @variant dark-hc {
+    color: var(--color-blue-6);
+  }
+}
