@@ -187,9 +187,9 @@ With the release of the [Resolver spec](https://www.designtokens.org/TR/2025.10/
 -       modeSelectors: [
 -         { selector: ":root", mode: "light" },
 -         { selector: "@media (prefers-color-scheme: dark)", mode: "dark" },
-+       contextSelectors: [
-+         { selector: ":root", context: { tzMode: "light" } },
-+         { selector: "@media (prefers-color-scheme: dark)", context: { tzMode: "dark" } },
++       permutations: [
++         { input: { tzMode: "light" }, prepare: (css) => `:root {\n  ${css}\n}` },
++         { input: { tzMode: "dark" }, prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}` },
         ],
       }),
     ],

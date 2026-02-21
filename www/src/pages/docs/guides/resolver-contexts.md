@@ -129,11 +129,15 @@ import css from "@terrazzo/plugin-css";
 export default {
   plugins: [
     css({
-      contextSelectors: [
-        { selector: ":root", context: { theme: "light" } },
+      permutations: [
         {
-          selector: "@media (prefers-color-scheme: dark)",
-          context: { theme: "dark" },
+          input: { tzMode: "light" },
+          prepare: (css) => `:root {\n  ${css}\n}`,
+        },
+        {
+          input: { tzMode: "dark" },
+          prepare: (css) =>
+            `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}`,
         },
       ],
     }),
@@ -161,7 +165,7 @@ To see more examples of how resolvers can work, [**play around with Resolvers in
 
 Legacy modes are still supported, if you were using Cobalt 1.0 or Terrazzo beta. In your tokens, you can keep `$extensions.mode`. But just map each context to a special `tzMode` namespace. In this way, you can use both old and new syntax together, without conflicts!
 
-Here’s an example how the options would change for the CSS plugin:
+Here’s an example how the options would change for the [CSS plugin](/docs/integrations/css) (⚠️ currently only available in `@terrazzo/cli@alpha` & `@terrazzo/plugin-css@alpha`):
 
 :::code-group
 
@@ -174,9 +178,9 @@ Here’s an example how the options would change for the CSS plugin:
 -       modeSelectors: [
 -         { selector: ":root", mode: "light" },
 -         { selector: "@media (prefers-color-scheme: dark)", mode: "dark" },
-+       contextSelectors: [
-+         { selector: ":root", context: { tzMode: "light" } },
-+         { selector: "@media (prefers-color-scheme: dark)", context: { tzMode: "dark" } },
++       permutations: [
++         { input: { tzMode: "light" }, prepare: (css) => `:root {\n  ${css}\n}` },
++         { input: { tzMode: "dark" }, prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}` },
         ],
       }),
     ],
