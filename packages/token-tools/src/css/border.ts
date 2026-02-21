@@ -5,6 +5,7 @@ import type {
   ColorTokenNormalized,
   DimensionTokenNormalized,
   StrokeStyleTokenNormalized,
+  TokenTransformed,
 } from '../types.js';
 import { transformColor } from './color.js';
 import type { TransformCSSValueOptions } from './css-types.js';
@@ -13,7 +14,10 @@ import { defaultAliasTransform } from './lib.js';
 import { transformStrokeStyle } from './stroke-style.js';
 
 /** Convert border value to multiple CSS values */
-export function transformBorder(token: BorderTokenNormalized, options: TransformCSSValueOptions) {
+export function transformBorder(
+  token: BorderTokenNormalized,
+  options: TransformCSSValueOptions,
+): TokenTransformed['value'] {
   const { tokensSet, transformAlias = defaultAliasTransform } = options;
   if (token.aliasChain?.[0]) {
     return transformAlias(tokensSet[token.aliasChain[0]]!);
@@ -33,7 +37,7 @@ export function transformBorder(token: BorderTokenNormalized, options: Transform
     [width, style, typeof color === 'string' ? color : color[colorKey as keyof typeof color]].join(' ');
 
   // Note: ../color.js has already loaded color spaces as side effects so we don’t need to load those again
-  return typeof color === 'string' || inGamut(parse(color.p3), 'display-p3')
+  return typeof color === 'string' || inGamut(parse(color.p3!), 'display-p3')
     ? formatBorder('.')
     : {
         '.': formatBorder('.'),

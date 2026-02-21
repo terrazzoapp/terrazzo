@@ -1,6 +1,11 @@
 {
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
   "version": "2025.10",
-  "name": "flat-contexts",
+  "name": "transforms-per-permutation",
+  "resolutionOrder": [
+    { "$ref": "#/modifiers/mode" },
+    { "$ref": "#/sets/primitives" }
+  ],
   "sets": {
     "primitives": {
       "sources": [{ "$ref": "primitives.json" }]
@@ -14,9 +19,5 @@
         "dark": [{ "$ref": "modes.json#dark" }]
       }
     }
-  },
-  "resolutionOrder": [
-    { "$ref": "#/modifiers/mode" },
-    { "$ref": "#/sets/primitives" }
-  ]
+  }
 }

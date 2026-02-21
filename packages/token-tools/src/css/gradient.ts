@@ -1,5 +1,5 @@
-import type { ColorTokenNormalized, GradientTokenNormalized } from '../types.js';
-import { transformColor, type WideGamutColorValue } from './color.js';
+import type { ColorTokenNormalized, GradientTokenNormalized, TokenTransformed } from '../types.js';
+import { transformColor } from './color.js';
 import type { TransformCSSValueOptions } from './css-types.js';
 import { defaultAliasTransform } from './lib.js';
 
@@ -7,7 +7,7 @@ import { defaultAliasTransform } from './lib.js';
 export function transformGradient(
   token: GradientTokenNormalized,
   options: TransformCSSValueOptions,
-): string | WideGamutColorValue {
+): TokenTransformed['value'] {
   const { tokensSet, transformAlias = defaultAliasTransform } = options;
   if (token.aliasChain?.[0]) {
     return transformAlias(tokensSet[token.aliasChain[0]]!);
@@ -15,7 +15,7 @@ export function transformGradient(
 
   let isHDR = false;
 
-  const colors: (string | WideGamutColorValue)[] = [];
+  const colors: TokenTransformed['value'][] = [];
   const positions: string[] = [];
 
   for (let i = 0; i < token.$value.length; i++) {

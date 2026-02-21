@@ -3,6 +3,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
+import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
 import css, { type CSSPluginOptions, type Permutation } from '../src/index.js';
 
@@ -108,21 +109,15 @@ describe('Node.js API', () => {
     });
   });
 
-  describe('custom transforms', async () => {
+  describe('custom transforms', () => {
     it.each([
-      ['resolve-primitives', (await import('./fixtures/transforms-resolve-primitives/terrazzo.config.js')).default],
-      ['with-hex', (await import('./fixtures/transforms-with-hex/terrazzo.config.js')).default],
-      ['per-permutation', (await import('./fixtures/transforms-per-permutation/terrazzo.config.js')).default],
-    ])('%s', async (name, config) => {
-      const output = 'actual.css';
-      const cwd = new URL(`./fixtures/transforms-${name}/`, import.meta.url);
-      const resolverJSON = new URL(`./resolver.json`, cwd);
-      const { tokens, resolver, sources } = await parse(
-        [{ filename: resolverJSON, src: await fs.readFile(resolverJSON, 'utf8') }],
-        { config },
-      );
-      const result = await build(tokens, { resolver, sources, config });
-      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+      ['transforms-resolve-primitives'],
+      ['transforms-with-hex'],
+      ['transforms-per-permutation'],
+    ])('%s', async (dir) => {
+      const cwd = new URL(`./fixtures/${dir}/`, import.meta.url);
+      await execaNode({ cwd })`../../../../cli/bin/cli.js build`;
+      await expect(await fs.readFile(new URL('actual.css', cwd), 'utf8')).toMatchFileSnapshot(
         fileURLToPath(new URL('./want.css', cwd)),
       );
     });
@@ -130,16 +125,9 @@ describe('Node.js API', () => {
 
   describe('contexts', () => {
     it('flat contexts', async () => {
-      const output = 'actual.css';
       const cwd = new URL(`./fixtures/flat-contexts/`, import.meta.url);
-      const config = (await import('./fixtures/flat-contexts/terrazzo.config.js')).default;
-      const resolverJSON = new URL(`./resolver.json`, cwd);
-      const { tokens, resolver, sources } = await parse(
-        [{ filename: resolverJSON, src: await fs.readFile(resolverJSON, 'utf8') }],
-        { config },
-      );
-      const result = await build(tokens, { resolver, sources, config });
-      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+      await execaNode({ cwd })`../../../../cli/bin/cli.js build`;
+      await expect(await fs.readFile(new URL('actual.css', cwd), 'utf8')).toMatchFileSnapshot(
         fileURLToPath(new URL('./want.css', cwd)),
       );
     });

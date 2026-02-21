@@ -36,59 +36,29 @@ export * from './stroke-style.js';
 export * from './transition.js';
 export * from './typography.js';
 
+const TRANSFORMS = {
+  boolean: transformBoolean,
+  border: transformBorder,
+  color: transformColor,
+  cubicBezier: transformCubicBezier,
+  dimension: transformDimension,
+  duration: transformDuration,
+  fontFamily: transformFontFamily,
+  fontWeight: transformFontWeight,
+  gradient: transformGradient,
+  link: transformLink,
+  number: transformNumber,
+  shadow: transformShadow,
+  string: transformString,
+  strokeStyle: transformStrokeStyle,
+  transition: transformTransition,
+  typography: transformTypography,
+};
+
 /** Main CSS Transform */
 export function transformCSSValue<T extends TokenNormalized = TokenNormalized>(
   token: T,
   options: TransformCSSValueOptions,
 ) {
-  switch (token.$type) {
-    case 'boolean': {
-      return transformBoolean(token, options);
-    }
-    case 'border': {
-      return transformBorder(token, options);
-    }
-    case 'color': {
-      return transformColor(token, options);
-    }
-    case 'cubicBezier': {
-      return transformCubicBezier(token, options);
-    }
-    case 'dimension': {
-      return transformDimension(token, options);
-    }
-    case 'duration': {
-      return transformDuration(token, options);
-    }
-    case 'fontFamily': {
-      return transformFontFamily(token, options);
-    }
-    case 'fontWeight': {
-      return transformFontWeight(token, options);
-    }
-    case 'gradient': {
-      return transformGradient(token, options);
-    }
-    case 'link': {
-      return transformLink(token, options);
-    }
-    case 'number': {
-      return transformNumber(token, options);
-    }
-    case 'shadow': {
-      return transformShadow(token, options);
-    }
-    case 'string': {
-      return transformString(token, options);
-    }
-    case 'strokeStyle': {
-      return transformStrokeStyle(token, options);
-    }
-    case 'transition': {
-      return transformTransition(token, options);
-    }
-    case 'typography': {
-      return transformTypography(token, options);
-    }
-  }
+  return TRANSFORMS[token.$type]?.(token as any, options);
 }
