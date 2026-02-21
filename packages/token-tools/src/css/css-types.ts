@@ -4,6 +4,8 @@ import type { IDGenerator } from './lib.js';
 export interface TransformCSSValueOptions {
   /** Complete set of tokens (needed to resolve full and partial aliases) */
   tokensSet: TokenNormalizedSet;
+  /** Values of the current permutation */
+  permutation: Record<string, string>;
   transformAlias?: IDGenerator;
   /** Options for color tokens */
   color?: {

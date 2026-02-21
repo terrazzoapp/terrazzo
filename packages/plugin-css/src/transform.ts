@@ -1,5 +1,5 @@
 import type { TokenNormalized, TransformHookOptions } from '@terrazzo/parser';
-import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
+import { makeCSSVar, type TransformCSSValueOptions, transformCSSValue } from '@terrazzo/token-tools/css';
 import { type CSSPluginOptions, cachedMatcher, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 
 export interface TransformOptions {
@@ -70,9 +70,14 @@ export default function transformCSS({
           if (!includeToken(token.id)) {
             continue;
           }
+          const options: TransformCSSValueOptions = {
+            tokensSet: tokens,
+            transformAlias,
+            color: { legacyHex },
+            permutation: input,
+          };
           const value =
-            customTransform?.(token) ??
-            transformCSSValue(token, { tokensSet: tokens, transformAlias, color: { legacyHex } });
+            p.transform?.(token, options) ?? customTransform?.(token, options) ?? transformCSSValue(token, options);
           if (value) {
             const localID = transformName(token);
             setTransform(token.id, {
@@ -118,12 +123,14 @@ export default function transformCSS({
       continue;
     }
     for (const mode of Object.keys(token.mode)) {
-      const value =
-        customTransform?.(token, '.') ??
-        transformCSSValue(
-          { ...token, ...(token.mode[mode] as any) },
-          { tokensSet: baseTokens, transformAlias, color: { legacyHex } },
-        );
+      const tokenArgs: TokenNormalized = { ...token, ...(token.mode[mode] as any) };
+      const options: TransformCSSValueOptions = {
+        tokensSet: baseTokens,
+        transformAlias,
+        color: { legacyHex },
+        permutation: { tzMode: '.' },
+      };
+      const value = customTransform?.(tokenArgs, options) ?? transformCSSValue(tokenArgs, options);
       if (value) {
         const localID = transformName(token);
         setTransform(token.id, {

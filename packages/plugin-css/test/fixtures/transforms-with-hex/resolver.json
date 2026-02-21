@@ -1,0 +1,22 @@
+{
+  "version": "2025.10",
+  "name": "flat-contexts",
+  "sets": {
+    "primitives": {
+      "sources": [{ "$ref": "primitives.json" }]
+    }
+  },
+  "modifiers": {
+    "mode": {
+      "default": "light",
+      "contexts": {
+        "light": [{ "$ref": "modes.json#light" }],
+        "dark": [{ "$ref": "modes.json#dark" }]
+      }
+    }
+  },
+  "resolutionOrder": [
+    { "$ref": "#/modifiers/mode" },
+    { "$ref": "#/sets/primitives" }
+  ]
+}

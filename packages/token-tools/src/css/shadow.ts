@@ -55,6 +55,7 @@ export function transformShadow(
     token.$value
       .map((v, i) =>
         transformShadowLayer(v, {
+          ...options,
           tokensSet,
           colorValue:
             typeof colors[i] === 'string'

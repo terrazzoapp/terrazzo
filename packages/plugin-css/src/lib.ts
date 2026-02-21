@@ -1,6 +1,8 @@
 import type { TokenNormalized, TokenTransformed } from '@terrazzo/parser';
 import { CachedWildcardMatcher } from '@terrazzo/token-tools';
 
+import type { TransformCSSValueOptions } from '@terrazzo/token-tools/css';
+
 export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'layout' | 'shadow' | 'text';
 
 export type UtilityCSSPrefix = 'bg' | 'border' | 'font' | 'gap' | 'm' | 'p' | 'shadow' | 'text';
@@ -52,8 +54,7 @@ export interface CSSPluginOptions {
   /** Override certain token values */
   transform?: (
     token: TokenNormalized,
-    /** @deprecated */
-    mode?: string,
+    options: TransformCSSValueOptions,
   ) => TokenTransformed['value'] | undefined | null;
   /** Generate utility CSS from groups */
   utility?: Partial<Record<UtilityCSSGroup, string[]>>;
@@ -78,6 +79,13 @@ export interface Permutation<T extends Record<string, string> = Record<string, s
   include?: string[];
   /** Provide token(s) to exclude (Note: excluding tokens that are used as aliases for other tokens could cause visual bugs in generated CSS) */
   exclude?: string[];
+  /**
+   * Custom transform for this permutation
+   */
+  transform?: (
+    token: TokenNormalized,
+    options: TransformCSSValueOptions,
+  ) => TokenTransformed['value'] | undefined | null;
 }
 
 export interface ModeSelector {

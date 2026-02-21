@@ -20,6 +20,7 @@ import { transformTypography } from './typography.js';
 export * from './boolean.js';
 export * from './border.js';
 export * from './color.js';
+export * from './css-types.js';
 export * from './cubic-bezier.js';
 export * from './dimension.js';
 export * from './duration.js';
