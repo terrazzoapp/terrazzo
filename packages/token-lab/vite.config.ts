@@ -1,7 +1,9 @@
+import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
-import react from '@vitejs/plugin-react-oxc';
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import tsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [react(), vanillaExtractPlugin()],
+  plugins: [tsConfigPaths(), tanstackStart(), react(), vanillaExtractPlugin()],
 });

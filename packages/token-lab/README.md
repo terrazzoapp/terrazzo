@@ -2,17 +2,18 @@
 
 Tokens.json editor and viewer.
 
+> [!WARNING]
+> This is a work in progress.
+
 ## Setup
 
 ```sh
-pnpm
+pnpm i
 ```
 
 ```tsx
-import TokenLab from '@terrazzo/token-lab';
-import tokens from './tokens.json' with { type: 'json' };
+import TokenLab from "@terrazzo/token-lab";
+import resolver from "./my-ds.resolver.json" with { type: "json" };
 
-<TokenLab
-  tokens={tokens}
-/>;
+<TokenLab resolver={resolver} />;
 ```

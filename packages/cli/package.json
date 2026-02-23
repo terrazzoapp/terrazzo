@@ -68,7 +68,7 @@
   "devDependencies": {
     "@figma/rest-api-spec": "^0.36.0",
     "@types/escodegen": "^0.0.10",
-    "@vitejs/plugin-react-oxc": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   }

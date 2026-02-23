@@ -47,7 +47,7 @@
     "@size-limit/preset-small-lib": "^12.0.0",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react-oxc": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
     "chokidar-cli": "^3.0.0",
     "react": "catalog:",
     "react-dom": "catalog:",
