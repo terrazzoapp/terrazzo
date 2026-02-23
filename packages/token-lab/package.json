@@ -49,12 +49,15 @@
     "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
     "dtcg-examples": "catalog:",
-    "monaco-editor": "^0.52.2"
+    "monaco-editor": "^0.55.1"
   },
   "devDependencies": {
+    "@tanstack/react-router": "^1.162.4",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react-swc": "catalog:",
+    "@vanilla-extract/css": "^1.18.0",
+    "@vanilla-extract/vite-plugin": "^5.1.4",
+    "@vitejs/plugin-react-oxc": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   }

@@ -1,5 +1,6 @@
 import { defineConfig } from '@terrazzo/cli';
 import css from '@terrazzo/plugin-css';
+import cssInJs from '@terrazzo/plugin-css-in-js';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 
 export default defineConfig({
@@ -10,7 +11,9 @@ export default defineConfig({
       variableName: (token) => makeCSSVar(token.id, { prefix: 'tz' }),
       permutations: [
         {
-          prepare: (css) => `:root{\n  ${css}\n}`,
+          prepare: (css) => `:root {
+  ${css}
+}`,
           input: { theme: 'light' },
         },
         {
@@ -27,6 +30,7 @@ export default defineConfig({
         },
       ],
     }),
+    cssInJs(),
   ],
   lint: {
     rules: {

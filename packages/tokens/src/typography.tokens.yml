@@ -23,6 +23,20 @@ font:
       - ui-monospace
       - monospace
 
+  body:
+    $type: typography
+    $value:
+      fontFamily: "{font.sans}"
+      fontVariationSettings: '"wght" 400'
+      fontWeight: 400
+      fontSize:
+        value: 0.875
+        unit: rem
+      letterSpacing:
+        value: 0
+        unit: rem
+      lineHeight: 1.4375
+
   bodyLongform:
     $type: typography
     $value:
@@ -32,10 +46,10 @@ font:
       fontSize:
         value: 1.125
         unit: rem
-      lineHeight: 1.4375
       letterSpacing:
         value: -0.0025
         unit: rem
+      lineHeight: 1.4375
 
   bodyStrong:
     $type: typography

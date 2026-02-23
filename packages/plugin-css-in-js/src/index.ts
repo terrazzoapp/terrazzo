@@ -39,11 +39,15 @@ export default function cssInJs({ filename = 'vars.js' }: CssInJsOptions = {}): 
           node = node[next];
         }
 
-        if (token.token.jsonID.endsWith('/$root')) {
-          node[camelCase(last)] = { $root: `var(${token.localID})` };
-        } else {
-          node[camelCase(last)] = `var(${token.localID})`;
+        let tokenValue: any = `var(${token.localID})`;
+        if (token.token.$type === 'typography' && token.type === 'MULTI_VALUE') {
+          tokenValue = {};
+          for (const property of Object.keys(token.value)) {
+            tokenValue[camelCase(property)] = `var(${token.localID}-${property})`;
+          }
         }
+
+        node[camelCase(last)] = token.token.jsonID.endsWith('/$root') ? { $root: tokenValue } : tokenValue;
       }
 
       // 2. for groups with $root, flatten the nesting

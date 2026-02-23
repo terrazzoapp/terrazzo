@@ -67,19 +67,8 @@
   },
   "devDependencies": {
     "@figma/rest-api-spec": "^0.36.0",
-    "@swc/core": "catalog:",
-    "@swc/core-darwin-arm64": "catalog:",
-    "@swc/core-darwin-x64": "catalog:",
-    "@swc/core-linux-arm-gnueabihf": "catalog:",
-    "@swc/core-linux-arm64-gnu": "catalog:",
-    "@swc/core-linux-arm64-musl": "catalog:",
-    "@swc/core-linux-x64-gnu": "catalog:",
-    "@swc/core-linux-x64-musl": "catalog:",
-    "@swc/core-win32-arm64-msvc": "catalog:",
-    "@swc/core-win32-ia32-msvc": "catalog:",
-    "@swc/core-win32-x64-msvc": "catalog:",
     "@types/escodegen": "^0.0.10",
-    "@vitejs/plugin-react-swc": "catalog:",
+    "@vitejs/plugin-react-oxc": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   }

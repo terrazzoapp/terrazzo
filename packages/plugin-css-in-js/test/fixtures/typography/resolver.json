@@ -1,0 +1,26 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [{ "$ref": "#/sets/base" }],
+  "sets": {
+    "base": {
+      "sources": [
+        {
+          "font": {
+            "body": {
+              "$type": "typography",
+              "$value": {
+                "fontFamily": ["Instrument Sans", "sans-serif"],
+                "fontSize": { "value": 0.875, "unit": "rem" },
+                "fontVariationSettings": "\"wght\" 400",
+                "fontWeight": 400,
+                "letterSpacing": { "value": 0, "unit": "rem" },
+                "lineHeight": 1.4375
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
