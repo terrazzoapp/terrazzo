@@ -1,0 +1,380 @@
+$schema: "https://www.designtokens.org/schemas/2025.10/format.json"
+border:
+  "1":
+    $type: border
+    $value:
+      width:
+        value: 1
+        unit: px
+      style: solid
+      color: "{color.border.1}"
+  "2":
+    $type: border
+    $value:
+      width:
+        value: 1
+        unit: px
+      style: solid
+      color: "{color.border.2}"
+  "3":
+    $type: border
+    $value:
+      width:
+        value: 1
+        unit: px
+      style: solid
+      color: "{color.border.3}"
+  focus:
+    $type: border
+    $value:
+      width:
+        value: 2
+        unit: px
+      style: solid
+      color: "{color.border.focus}"
+color:
+  base:
+    blue:
+      "100":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0, 0.00392156862745098, 0.011764705882352941]
+          alpha: 1
+          hex: "#000103"
+      "200":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0, 0.07450980392156863, 0.10980392156862745]
+          alpha: 1
+          hex: "#00131c"
+      "300":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0, 0.1803921568627451, 0.2235294117647059]
+          alpha: 1
+          hex: "#002e39"
+      "400":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0, 0.29411764705882354, 0.34901960784313724]
+          alpha: 1
+          hex: "#004b59"
+      "500":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0, 0.4117647058823529, 0.4823529411764706]
+          alpha: 1
+          hex: "#00697b"
+      "600":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0, 0.5372549019607843, 0.6196078431372549]
+          alpha: 1
+          hex: "#00899e"
+      "700":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0, 0.6666666666666666, 0.7647058823529411]
+          alpha: 1
+          hex: "#00aac3"
+      "800":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.1568627450980392, 0.8, 0.9176470588235294]
+          alpha: 1
+          hex: "#28ccea"
+      "900":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.35294117647058826, 0.9137254901960784, 1]
+          alpha: 1
+          hex: "#5ae9ff"
+      "1000":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.8549019607843137, 0.9686274509803922, 1]
+          alpha: 1
+          hex: "#daf7ff"
+    gray:
+      "100":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.00392156862745098, 0, 0]
+          alpha: 1
+          hex: "#010000"
+      "200":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.054901960784313725, 0.0392156862745098, 0.03137254901960784]
+          alpha: 1
+          hex: "#0e0a08"
+      "300":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.1450980392156863, 0.12941176470588237, 0.11764705882352941]
+          alpha: 1
+          hex: "#25211e"
+      "400":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.24313725490196078, 0.2235294117647059, 0.21176470588235294]
+          alpha: 1
+          hex: "#3e3936"
+      "500":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.3529, 0.3494, 0.3137]
+          hex: "#5a5450"
+      "600":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.4666666666666667, 0.4392156862745098, 0.4196078431372549]
+          alpha: 1
+          hex: "#77706b"
+      "700":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.5803921568627451, 0.5568627450980392, 0.5372549019607843]
+          alpha: 1
+          hex: "#948e89"
+      "800":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.7019607843137254, 0.6784313725490196, 0.6588235294117647]
+          alpha: 1
+          hex: "#b3ada8"
+      "900":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.8235294117647058, 0.803921568627451, 0.788235294117647]
+          alpha: 1
+          hex: "#d2cdc9"
+      "950":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.9176470588235294, 0.8941176470588236, 0.8745098039215686]
+          alpha: 1
+          hex: "#eae4df"
+      "1000":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [1, 1, 1]
+          hex: "#ffffff"
+    lime:
+      "100":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0, 0.00392156862745098, 0]
+          alpha: 1
+          hex: "#000100"
+      "200":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.050980392156862744, 0.14901960784313725, 0]
+          alpha: 1
+          hex: "#0d2600"
+      "300":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.19607843137254902, 0.3411764705882353, 0]
+          alpha: 1
+          hex: "#325700"
+      "400":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.3607843137254902, 0.5568627450980392, 0]
+          alpha: 1
+          hex: "#5c8e00"
+      "500":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.5450980392156862, 0.7843137254901961, 0]
+          alpha: 1
+          hex: "#8bc800"
+      "600":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.6666666666666666, 0.9215686274509803, 0.20392156862745098]
+          alpha: 1
+          hex: "#aaeb34"
+      "700":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.7254901960784313, 0.9529411764705882, 0.3764705882352941]
+          alpha: 1
+          hex: "#b9f360"
+      "800":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.7843137254901961, 0.984313725490196, 0.5098039215686274]
+          alpha: 1
+          hex: "#c8fb82"
+      "900":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.8470588235294118, 1, 0.6352941176470588]
+          alpha: 1
+          hex: "#d8ffa2"
+      "1000":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.9294117647058824, 1, 0.807843137254902]
+          alpha: 1
+          hex: "#edffce"
+    orange:
+      "100":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.027450980392156862, 0, 0]
+          alpha: 1
+          hex: "#070000"
+      "200":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.15294117647058825, 0, 0]
+          alpha: 1
+          hex: "#270000"
+      "300":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [0.2823529411764706, 0, 0]
+          alpha: 1
+          hex: "#480000"
+      "400":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.4117647058823529, 0.10980392156862745, 0.0196078431372549]
+          alpha: 1
+          hex: "#691c05"
+      "500":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.5490196078431373, 0.21568627450980393, 0.10980392156862745]
+          alpha: 1
+          hex: "#8c371c"
+      "600":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.6901960784313725, 0.3215686274509804, 0.19607843137254902]
+          alpha: 1
+          hex: "#b05232"
+      "700":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.8352941176470589, 0.43137254901960786, 0.2784313725490196]
+          alpha: 1
+          hex: "#d56e47"
+      "800":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.984313725490196, 0.5450980392156862, 0.36470588235294116]
+          alpha: 1
+          hex: "#fb8b5d"
+      "900":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components: [1, 0.7019607843137254, 0.5490196078431373]
+          alpha: 1
+          hex: "#ffb38c"
+      "1000":
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            [0.996078431372549, 0.9176470588235294, 0.8862745098039215]
+          alpha: 1
+          hex: "#feeae2"
+shadow:
+  "100":
+    $type: shadow
+    $value:
+      offsetX:
+        value: 0
+        unit: px
+      offsetY:
+        value: 1
+        unit: px
+      blur:
+        value: 1
+        unit: px
+      spread:
+        value: 0
+        unit: px
+      color:
+        colorSpace: srgb
+        components: [0, 0, 0]
+        alpha: 0.1
+  "300":
+    $type: shadow
+    $value:
+      offsetX:
+        value: 0
+        unit: px
+      offsetY:
+        value: 0.5
+        unit: rem
+      blur:
+        value: 1
+        unit: rem
+      spread:
+        value: 0
+        unit: px
+      color:
+        colorSpace: srgb
+        components: [0, 0, 0]
+        alpha: 0.1

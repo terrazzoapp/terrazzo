@@ -1,7 +1,9 @@
-import react from '@vitejs/plugin-react-swc';
+import { tanstackStart } from '@tanstack/react-start/plugin/vite';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import sassDts from 'vite-plugin-sass-dts';
+import tsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [react({ devTarget: 'esnext' }), sassDts({ esmExport: true })],
+  plugins: [tsConfigPaths(), tanstackStart(), react(), vanillaExtractPlugin()],
 });

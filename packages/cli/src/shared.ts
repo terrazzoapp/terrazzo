@@ -74,7 +74,7 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
         // even in watch mode we don’t reload the config, so keeping a vite-node
         // “hot” instance doesn’t provide obvious benefits (only potential memory leaks)
         viteServer = await createServer({ mode: 'development' });
-        const viteNodeServer = new ViteNodeServer(viteServer);
+        const viteNodeServer = new ViteNodeServer(viteServer as any);
         const viteNodeRunner = new ViteNodeRunner({
           root: viteServer.config.root,
           base: viteServer.config.base,

@@ -31,12 +31,13 @@ export interface ProcessTokensOptions {
   logger: Logger;
   sourceByFilename: Record<string, InputSourceWithDocument>;
   sources: InputSourceWithDocument[];
+  resolveAliases?: boolean;
   isResolver?: boolean;
 }
 
 export function processTokens(
   rootSource: InputSourceWithDocument,
-  { config, logger, sourceByFilename, isResolver }: ProcessTokensOptions,
+  { config, logger, sourceByFilename, resolveAliases: shouldResolveAliases = true, isResolver }: ProcessTokensOptions,
 ): TokenNormalizedSet {
   const entry = { group: 'parser' as const, label: 'init' };
 
@@ -229,8 +230,10 @@ export function processTokens(
 
   // 3c. DTCG alias resolution
   // Unlike $refs which can be resolved as we go, these can’t happen until the final, flattened set
-  resolveAliases(tokens, { logger, sources: sourceByFilename, refMap });
-  logger.debug({ ...entry, message: 'Parsing: 2nd pass', timing: performance.now() - secondPass });
+  if (shouldResolveAliases) {
+    resolveAliases(tokens, { logger, sources: sourceByFilename, refMap });
+    logger.debug({ ...entry, message: 'Parsing: 2nd pass', timing: performance.now() - secondPass });
+  }
 
   // 4. Alias graph
   // We’ve resolved aliases, but we need this pass for reverse linking i.e. “aliasedBy”

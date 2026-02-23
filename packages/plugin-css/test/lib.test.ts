@@ -323,4 +323,23 @@ describe('getIndentFromPrepare', () => {
       ),
     ).toEqual({ indentChar: '  ', indentLv: 3 });
   });
+
+  //   it('multiple', () => {
+  //     expect(
+  //       getIndentFromPrepare(
+  //         (css) => `:root {
+  //   ${css}
+  // }
+
+  // @media (width >= 600px) {
+  //   :root {
+  //     ${css}
+  //   }
+  // }`,
+  //       ),
+  //     ).toEqual([
+  //       { indentChar: '  ', indentLv: 1 },
+  //       { indentChar: '  ', indentLv: 2 },
+  //     ]);
+  //   });
 });

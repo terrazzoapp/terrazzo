@@ -31,7 +31,7 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
   const [codeColor, setCodeColor] = useState(color.css);
   const [maxGamut] = useState<Gamut>('srgb');
   const normalizedColorMode = useMemo(
-    () => (['p3', 'rec2020', 'srgb-linear'].includes(color.original.spaceId) ? 'srgb' : color.original.spaceId),
+    () => (['p3', 'rec2020', 'srgb-linear'].includes(color.original.space.id) ? 'srgb' : color.original.space.id),
     [color],
   );
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
     <div
       className={clsx('tz-color-picker', className)}
       style={{
-        '--current-color': ['okhsl', 'okhsv'].includes(color.original.spaceId) ? serialize(color.oklab)! : color.css,
+        '--current-color': ['okhsl', 'okhsv'].includes(color.original.space.id) ? serialize(color.oklab)! : color.css,
       }}
       {...rest}
     >
@@ -52,7 +52,7 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
       <div className='tz-color-picker-colorspace'>
         <Select
           value={normalizedColorMode}
-          trigger={color.original.spaceId}
+          trigger={color.original.space.id}
           onValueChange={(colorSpace) => {
             setColor(convert(color.original, colorSpace, { inGamut: { space: maxGamut } }) as any);
           }}

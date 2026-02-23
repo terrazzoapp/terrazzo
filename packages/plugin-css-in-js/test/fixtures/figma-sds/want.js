@@ -299,14 +299,50 @@ export const size = {
 };
 export const typography = {
   "body": {
-    "large": "var(--typography-body-large)",
-    "medium": "var(--typography-body-medium)",
-    "small": "var(--typography-body-small)"
+    "large": {
+      "fontFamily": "var(--typography-body-large-font-family)",
+      "fontSize": "var(--typography-body-large-font-size)",
+      "fontWeight": "var(--typography-body-large-font-weight)",
+      "letterSpacing": "var(--typography-body-large-letter-spacing)",
+      "lineHeight": "var(--typography-body-large-line-height)"
+    },
+    "medium": {
+      "fontFamily": "var(--typography-body-medium-font-family)",
+      "fontSize": "var(--typography-body-medium-font-size)",
+      "fontWeight": "var(--typography-body-medium-font-weight)",
+      "letterSpacing": "var(--typography-body-medium-letter-spacing)",
+      "lineHeight": "var(--typography-body-medium-line-height)"
+    },
+    "small": {
+      "fontFamily": "var(--typography-body-small-font-family)",
+      "fontSize": "var(--typography-body-small-font-size)",
+      "fontWeight": "var(--typography-body-small-font-weight)",
+      "letterSpacing": "var(--typography-body-small-letter-spacing)",
+      "lineHeight": "var(--typography-body-small-line-height)"
+    }
   },
   "code": {
-    "large": "var(--typography-code-large)",
-    "medium": "var(--typography-code-medium)",
-    "small": "var(--typography-code-small)"
+    "large": {
+      "fontFamily": "var(--typography-code-large-font-family)",
+      "fontSize": "var(--typography-code-large-font-size)",
+      "fontWeight": "var(--typography-code-large-font-weight)",
+      "letterSpacing": "var(--typography-code-large-letter-spacing)",
+      "lineHeight": "var(--typography-code-large-line-height)"
+    },
+    "medium": {
+      "fontFamily": "var(--typography-code-medium-font-family)",
+      "fontSize": "var(--typography-code-medium-font-size)",
+      "fontWeight": "var(--typography-code-medium-font-weight)",
+      "letterSpacing": "var(--typography-code-medium-letter-spacing)",
+      "lineHeight": "var(--typography-code-medium-line-height)"
+    },
+    "small": {
+      "fontFamily": "var(--typography-code-small-font-family)",
+      "fontSize": "var(--typography-code-small-font-size)",
+      "fontWeight": "var(--typography-code-small-font-weight)",
+      "letterSpacing": "var(--typography-code-small-letter-spacing)",
+      "lineHeight": "var(--typography-code-small-line-height)"
+    }
   },
   "family": {
     "mono": "var(--typography-family-mono)",
@@ -314,9 +350,27 @@ export const typography = {
     "serif": "var(--typography-family-serif)"
   },
   "heading": {
-    "base": "var(--typography-heading-base)",
-    "large": "var(--typography-heading-large)",
-    "small": "var(--typography-heading-small)"
+    "base": {
+      "fontFamily": "var(--typography-heading-base-font-family)",
+      "fontSize": "var(--typography-heading-base-font-size)",
+      "fontWeight": "var(--typography-heading-base-font-weight)",
+      "letterSpacing": "var(--typography-heading-base-letter-spacing)",
+      "lineHeight": "var(--typography-heading-base-line-height)"
+    },
+    "large": {
+      "fontFamily": "var(--typography-heading-large-font-family)",
+      "fontSize": "var(--typography-heading-large-font-size)",
+      "fontWeight": "var(--typography-heading-large-font-weight)",
+      "letterSpacing": "var(--typography-heading-large-letter-spacing)",
+      "lineHeight": "var(--typography-heading-large-line-height)"
+    },
+    "small": {
+      "fontFamily": "var(--typography-heading-small-font-family)",
+      "fontSize": "var(--typography-heading-small-font-size)",
+      "fontWeight": "var(--typography-heading-small-font-weight)",
+      "letterSpacing": "var(--typography-heading-small-letter-spacing)",
+      "lineHeight": "var(--typography-heading-small-line-height)"
+    }
   },
   "scale": {
     "10": "var(--typography-scale-10)",
@@ -331,20 +385,80 @@ export const typography = {
     "09": "var(--typography-scale-09)"
   },
   "subheading": {
-    "base": "var(--typography-subheading-base)",
-    "large": "var(--typography-subheading-large)",
-    "small": "var(--typography-subheading-small)"
+    "base": {
+      "fontFamily": "var(--typography-subheading-base-font-family)",
+      "fontSize": "var(--typography-subheading-base-font-size)",
+      "fontWeight": "var(--typography-subheading-base-font-weight)",
+      "letterSpacing": "var(--typography-subheading-base-letter-spacing)",
+      "lineHeight": "var(--typography-subheading-base-line-height)"
+    },
+    "large": {
+      "fontFamily": "var(--typography-subheading-large-font-family)",
+      "fontSize": "var(--typography-subheading-large-font-size)",
+      "fontWeight": "var(--typography-subheading-large-font-weight)",
+      "letterSpacing": "var(--typography-subheading-large-letter-spacing)",
+      "lineHeight": "var(--typography-subheading-large-line-height)"
+    },
+    "small": {
+      "fontFamily": "var(--typography-subheading-small-font-family)",
+      "fontSize": "var(--typography-subheading-small-font-size)",
+      "fontWeight": "var(--typography-subheading-small-font-weight)",
+      "letterSpacing": "var(--typography-subheading-small-letter-spacing)",
+      "lineHeight": "var(--typography-subheading-small-line-height)"
+    }
   },
   "subtitle": {
-    "base": "var(--typography-subtitle-base)",
-    "large": "var(--typography-subtitle-large)",
-    "small": "var(--typography-subtitle-small)"
+    "base": {
+      "fontFamily": "var(--typography-subtitle-base-font-family)",
+      "fontSize": "var(--typography-subtitle-base-font-size)",
+      "fontWeight": "var(--typography-subtitle-base-font-weight)",
+      "letterSpacing": "var(--typography-subtitle-base-letter-spacing)",
+      "lineHeight": "var(--typography-subtitle-base-line-height)"
+    },
+    "large": {
+      "fontFamily": "var(--typography-subtitle-large-font-family)",
+      "fontSize": "var(--typography-subtitle-large-font-size)",
+      "fontWeight": "var(--typography-subtitle-large-font-weight)",
+      "letterSpacing": "var(--typography-subtitle-large-letter-spacing)",
+      "lineHeight": "var(--typography-subtitle-large-line-height)"
+    },
+    "small": {
+      "fontFamily": "var(--typography-subtitle-small-font-family)",
+      "fontSize": "var(--typography-subtitle-small-font-size)",
+      "fontWeight": "var(--typography-subtitle-small-font-weight)",
+      "letterSpacing": "var(--typography-subtitle-small-letter-spacing)",
+      "lineHeight": "var(--typography-subtitle-small-line-height)"
+    }
   },
-  "titleHero": "var(--typography-title-hero)",
+  "titleHero": {
+    "fontFamily": "var(--typography-title-hero-font-family)",
+    "fontSize": "var(--typography-title-hero-font-size)",
+    "fontWeight": "var(--typography-title-hero-font-weight)",
+    "letterSpacing": "var(--typography-title-hero-letter-spacing)",
+    "lineHeight": "var(--typography-title-hero-line-height)"
+  },
   "titlePage": {
-    "base": "var(--typography-title-page-base)",
-    "large": "var(--typography-title-page-large)",
-    "small": "var(--typography-title-page-small)"
+    "base": {
+      "fontFamily": "var(--typography-title-page-base-font-family)",
+      "fontSize": "var(--typography-title-page-base-font-size)",
+      "fontWeight": "var(--typography-title-page-base-font-weight)",
+      "letterSpacing": "var(--typography-title-page-base-letter-spacing)",
+      "lineHeight": "var(--typography-title-page-base-line-height)"
+    },
+    "large": {
+      "fontFamily": "var(--typography-title-page-large-font-family)",
+      "fontSize": "var(--typography-title-page-large-font-size)",
+      "fontWeight": "var(--typography-title-page-large-font-weight)",
+      "letterSpacing": "var(--typography-title-page-large-letter-spacing)",
+      "lineHeight": "var(--typography-title-page-large-line-height)"
+    },
+    "small": {
+      "fontFamily": "var(--typography-title-page-small-font-family)",
+      "fontSize": "var(--typography-title-page-small-font-size)",
+      "fontWeight": "var(--typography-title-page-small-font-weight)",
+      "letterSpacing": "var(--typography-title-page-small-letter-spacing)",
+      "lineHeight": "var(--typography-title-page-small-line-height)"
+    }
   },
   "weight": {
     "black": "var(--typography-weight-black)",

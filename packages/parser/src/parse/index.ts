@@ -23,6 +23,7 @@ export default async function parse(
     skipLint = false,
     config = {} as ConfigInit,
     continueOnError = false,
+    resolveAliases = true,
     yamlToMomoa,
     transform,
   }: ParseOptions = {} as ParseOptions,
@@ -65,6 +66,7 @@ export default async function parse(
       config,
       continueOnError,
       yamlToMomoa,
+      resolveAliases,
       transform,
     });
     tokens = tokenResult.tokens;

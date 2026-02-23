@@ -18,20 +18,9 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@biomejs/biome": "^2.4.3",
+    "@biomejs/biome": "^2.4.4",
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
-    "@swc/core": "catalog:",
-    "@swc/core-darwin-arm64": "catalog:",
-    "@swc/core-darwin-x64": "catalog:",
-    "@swc/core-linux-arm-gnueabihf": "catalog:",
-    "@swc/core-linux-arm64-gnu": "catalog:",
-    "@swc/core-linux-arm64-musl": "catalog:",
-    "@swc/core-linux-x64-gnu": "catalog:",
-    "@swc/core-linux-x64-musl": "catalog:",
-    "@swc/core-win32-arm64-msvc": "catalog:",
-    "@swc/core-win32-ia32-msvc": "catalog:",
-    "@swc/core-win32-x64-msvc": "catalog:",
     "@types/node": "^25.3.0",
     "@vitest/browser": "catalog:",
     "@vitest/browser-playwright": "catalog:",
@@ -43,17 +32,12 @@
     "rolldown": "1.0.0-rc.5",
     "rolldown-plugin-dts": "^0.22.1",
     "strip-ansi": "^7.1.2",
-    "stylelint": "^16.26.1",
-    "stylelint-config-standard": "^36.0.1",
-    "stylelint-order": "^6.0.4",
+    "stylelint": "^17.3.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^7.0.1",
     "turbo": "^2.8.10",
     "typescript": "^5.9.3",
     "vite": "catalog:",
     "vitest": "catalog:"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "vite-plugin-sass-dts": "patches/vite-plugin-sass-dts.patch"
-    }
   }
 }

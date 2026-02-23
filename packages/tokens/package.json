@@ -7,6 +7,11 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
+  "exports": {
+    ".": "./dist/vars.js",
+    "./*": "./dist/*",
+    "./package.json": "./package.json"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
@@ -21,6 +26,7 @@
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^",
+    "@terrazzo/plugin-css-in-js": "workspace:^",
     "@terrazzo/token-tools": "workspace:^"
   }
 }

@@ -299,14 +299,50 @@ export const size: {
 };
 export const typography: {
   "body": {
-    "large": string,
-    "medium": string,
-    "small": string
+    "large": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "medium": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "small": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    }
   },
   "code": {
-    "large": string,
-    "medium": string,
-    "small": string
+    "large": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "medium": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "small": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    }
   },
   "family": {
     "mono": string,
@@ -314,9 +350,27 @@ export const typography: {
     "serif": string
   },
   "heading": {
-    "base": string,
-    "large": string,
-    "small": string
+    "base": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "large": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "small": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    }
   },
   "scale": {
     "10": string,
@@ -331,20 +385,80 @@ export const typography: {
     "09": string
   },
   "subheading": {
-    "base": string,
-    "large": string,
-    "small": string
+    "base": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "large": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "small": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    }
   },
   "subtitle": {
-    "base": string,
-    "large": string,
-    "small": string
+    "base": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "large": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "small": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    }
   },
-  "titleHero": string,
+  "titleHero": {
+    "fontFamily": string,
+    "fontSize": string,
+    "fontWeight": string,
+    "letterSpacing": string,
+    "lineHeight": string
+  },
   "titlePage": {
-    "base": string,
-    "large": string,
-    "small": string
+    "base": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "large": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    },
+    "small": {
+      "fontFamily": string,
+      "fontSize": string,
+      "fontWeight": string,
+      "letterSpacing": string,
+      "lineHeight": string
+    }
   },
   "weight": {
     "black": string,

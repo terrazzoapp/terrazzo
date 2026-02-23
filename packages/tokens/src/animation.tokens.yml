@@ -1,0 +1,38 @@
+$schema: https://www.designtokens.org/schemas/2025.10/format.json
+
+ease:
+  linear:
+    $type: cubicBezier
+    $value: [0, 0, 1, 1]
+  quint-out:
+    $type: cubicBezier
+    $value: [0.22, 1, 0.36, 1]
+  quint-in:
+    $type: cubicBezier
+    $value: [0.64, 0, 0.78, 0]
+  quint-in-out:
+    $type: cubicBezier
+    $value: [0.83, 0, 0.17, 1]
+
+timing:
+  $type: duration
+  quick:
+    $value:
+      value: 50
+      unit: ms
+  default:
+    $value:
+      value: 100
+      unit: ms
+  moderate:
+    $value:
+      value: 225
+      unit: ms
+  deliberate:
+    $value:
+      value: 500
+      unit: ms
+  slow:
+    $value:
+      value: 1000
+      unit: ms

@@ -1,47 +1,27 @@
 packages:
   - packages/**
   - www
-  - "!packages/**/test/**"
+  - '!packages/**/test/**'
 
 catalog:
-  "@humanwhocodes/momoa": ^3.3.10
-  "@swc/core": 1.13.19
-  "@swc/core-darwin-arm64": 1.13.19
-  "@swc/core-darwin-x64": 1.13.19
-  "@swc/core-linux-arm-gnueabihf": 1.13.19
-  "@swc/core-linux-arm64-gnu": 1.13.19
-  "@swc/core-linux-arm64-musl": 1.13.19
-  "@swc/core-linux-x64-gnu": 1.13.19
-  "@swc/core-linux-x64-musl": 1.13.19
-  "@swc/core-win32-arm64-msvc": 1.13.19
-  "@swc/core-win32-ia32-msvc": 1.13.19
-  "@swc/core-win32-x64-msvc": 1.13.19
-  "@types/react": ^19.2.14
-  "@types/react-dom": ^19.2.3
-  "@vitejs/plugin-react-swc": ^4.2.3
-  "@vitest/browser": ^4.0.18
-  "@vitest/browser-playwright": ^4.0.18
-  "@vitest/coverage-v8": ^4.0.18
+  '@humanwhocodes/momoa': ^3.3.10
+  '@types/react': ^19.2.14
+  '@types/react-dom': ^19.2.3
+  '@vitejs/plugin-react': ^5.1.4
+  '@vitest/browser': ^4.0.18
+  '@vitest/browser-playwright': ^4.0.18
+  '@vitest/coverage-v8': ^4.0.18
   colorjs.io: ^0.6.1
   dtcg-examples: ^1.0.3
   playwright: ^1.58.2
   react: ^19.2.4
   react-dom: ^19.2.4
-  vite: ^7.3.1
+  vite: 8.0.0-beta.15
   vitest: ^4.0.18
-  yaml-to-momoa: 0.0.8
+  yaml-to-momoa: 0.0.9
 
 onlyBuiltDependencies:
-  - "@biomejs/biome"
-  - "@swc/core"
-  - "@swc/core-darwin-arm64"
-  - "@swc/core-darwin-x64"
-  - "@swc/core-linux-arm64-gnu"
-  - "@swc/core-linux-arm-gnueabihf"
-  - "@swc/core-linux-x64-gnu"
-  - "@swc/core-linux-x64-musl"
-  - "@swc/core-win32-arm64-msvc"
-  - "@swc/core-win32-x64-msvc"
+  - '@biomejs/biome'
   - esbuild
   - sharp
 
