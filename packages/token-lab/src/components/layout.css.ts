@@ -12,6 +12,10 @@ export const layout = style({
   minHeight: '100svh',
 });
 
+export const main = style({
+  flex: '0 1 auto',
+});
+
 export const sidebar = style({
   background: token.color.bg[2],
   borderRight: token.border[3],

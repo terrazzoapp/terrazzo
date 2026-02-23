@@ -1,6 +1,6 @@
 import { Slider } from '@terrazzo/tiles';
 import type { default as useColor } from '@terrazzo/use-color';
-import { type ColorConstructor, type ColorSpace, to as convert, serialize } from 'colorjs.io/fn';
+import { type ColorSpace, to as convert, get, serialize, set } from 'colorjs.io/fn';
 import { type ReactElement, useMemo } from 'react';
 import HueWheel from './HueWheel.js';
 import TrueGradient from './TrueGradient.js';
@@ -14,27 +14,6 @@ export const BODY_DRAGGING_CLASS = 'tz-color-channel-slider-is-grabbing';
 export const SHIFT_FACTOR = 0.25;
 
 const CHANNEL_PRECISION = 5;
-
-// Note: this is deep within Color.js but it’s too annoying to fish out, just make it simple
-const CHANNEL_ORDER: Record<string, Record<string, number | undefined>> = {
-  a98: { r: 0, g: 1, b: 2 },
-  hsl: { h: 0, s: 1, l: 2 },
-  hsv: { h: 0, s: 1, v: 2 },
-  hwb: { h: 0, w: 1, b: 2 },
-  lab: { l: 0, a: 1, b: 2 },
-  'lab-d65': { l: 0, a: 1, b: 2 },
-  lch: { l: 0, c: 1, h: 2 },
-  okhsl: { h: 0, s: 1, l: 2 },
-  okhsv: { h: 0, s: 1, v: 2 },
-  oklab: { l: 0, a: 1, b: 2 },
-  oklch: { l: 0, c: 1, h: 2 },
-  prophoto: { r: 0, g: 1, b: 2 },
-  rec2020: { r: 0, g: 1, b: 2 },
-  srgb: { r: 0, g: 1, b: 2 },
-  'srgb-linear': { r: 0, g: 1, b: 2 },
-  'xyz-d50': { x: 0, y: 1, z: 2 },
-  'xyz-d65': { x: 0, y: 1, z: 2 },
-};
 
 function isPerc(color: ColorSpace, channel: string | 'alpha'): boolean {
   if (channel === 'alpha') {
@@ -55,7 +34,7 @@ export interface ColorChannelBGProps {
 }
 
 function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: ColorChannelBGProps) {
-  if (['hsl', 'okhsl'].includes(color.original.spaceId) && channel === 'h') {
+  if (['hsl', 'lch', 'okhsl', 'okhsv', 'oklch'].includes(color.original.space.id) && channel === 'h') {
     return (
       <div className='tz-color-channel-slider-bg-wrapper'>
         <HueWheel className='tz-color-channel-slider-bg' />
@@ -79,14 +58,20 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
 
   const range = (displayMax ?? max) - (displayMin ?? min);
   const leftOklab = useMemo(() => {
-    const leftColor: ColorConstructor = { ...color.original, coords: [...color.original.coords] };
-    leftColor.coords[CHANNEL_ORDER[color.original.spaceId]?.[channel] ?? -1] = displayMin ?? min;
-    return convert(leftColor, 'oklab');
+    const minColor = set(
+      { space: color.original.space, coords: [...color.original.coords], alpha: 1 },
+      channel,
+      displayMin ?? min,
+    );
+    return convert(minColor, 'oklab', { inGamut: { space: 'p3' } });
   }, [color, channel, displayMin, min]);
   const rightOklab = useMemo(() => {
-    const rightColor: ColorConstructor = { ...color.original, coords: [...color.original.coords] };
-    rightColor.coords[CHANNEL_ORDER[color.original.spaceId]?.[channel] ?? -1] = displayMax ?? max;
-    return convert(rightColor, 'oklab');
+    const maxColor = set(
+      { space: color.original.space, coords: [...color.original.coords], alpha: 1 },
+      channel,
+      displayMax ?? max,
+    );
+    return convert(maxColor, 'oklab', { inGamut: { space: 'p3' } });
   }, [color, channel, displayMax, max]);
 
   return (
@@ -123,7 +108,6 @@ export default function ColorChannelSlider({
 }: ColorChannelSliderProps): ReactElement {
   const [min, max] = color.original.space.coords[channel]?.range ??
     color.original.space.coords[channel]?.refRange ?? [0, 1];
-  const coordI = CHANNEL_ORDER[color.original.spaceId]?.[channel] ?? -1;
 
   return (
     <Slider
@@ -133,18 +117,12 @@ export default function ColorChannelSlider({
       label={color.original.space.coords[channel]?.name ?? channel}
       max={max}
       min={min}
-      onChange={(newValue: number) => {
-        if (channel === 'alpha') {
-          setColor({ ...color.original, alpha: newValue });
-          return;
-        }
-        const next: ColorConstructor = { ...color.original, coords: [...color.original.coords] };
-        next.coords[coordI] = newValue;
-        setColor(next);
+      onChange={(newValue) => {
+        setColor(set(color.original, channel, newValue));
       }}
       percentage={isPerc(color.original.space, channel)}
       step={1 / 10 ** CHANNEL_PRECISION}
-      value={channel === 'alpha' ? (color.original.alpha ?? 1) : color.original.coords[coordI] || 0}
+      value={get(color.original, channel)}
     />
   );
 }

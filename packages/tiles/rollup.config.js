@@ -12,7 +12,16 @@ export default {
     }),
   ],
   input: 'src/index.ts',
-  external: ['*'],
+  external: [
+    '@radix-ui/react-select',
+    '@radix-ui/react-tooltip',
+    '@terrazzo/icons',
+    '@use-gesture/react',
+    'clsx',
+    'react',
+    'react/jsx-runtime',
+    'shiki',
+  ],
   output: {
     dir: './dist/',
     sourcemap: true,

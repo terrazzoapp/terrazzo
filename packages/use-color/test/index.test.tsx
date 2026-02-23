@@ -1,6 +1,18 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import type { ColorConstructor } from 'colorjs.io/fn';
+import {
+  HSL,
+  OKLab,
+  OKLCH,
+  Okhsl,
+  Okhsv,
+  P3,
+  type PlainColorObject,
+  sRGB,
+  sRGB_Linear,
+  XYZ_D50,
+  XYZ_D65,
+} from 'colorjs.io/fn';
 import { useEffect } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 import useColor, { type ColorInput, type ColorOutput, parse } from '../src/index.js';
@@ -46,7 +58,7 @@ function UseColorTester({
         {color[display]
           ? JSON.stringify({
               ...(color[display] as any),
-              space: undefined, // prevent circular JSON
+              space: { id: (color[display] as any)?.space?.id }, // prevent circular JSON
             })
           : ''}
       </div>
@@ -60,89 +72,89 @@ describe('useColor', () => {
   });
 
   describe('parse', () => {
-    const formatTests: [string, { given: any; want: ColorConstructor }][] = [
+    const formatTests: [string, { given: any; want: PlainColorObject }][] = [
       [
         'hex',
         {
           given: '#663399',
-          want: { spaceId: 'srgb', coords: [0.4, 0.2, 0.6], alpha: 1 },
+          want: { space: sRGB, coords: [0.4, 0.2, 0.6], alpha: 1 },
         },
       ],
       [
         'hsl',
         {
           given: 'hsl(270 50% 40%)',
-          want: { spaceId: 'hsl', coords: [270, 50, 40], alpha: 1 },
+          want: { space: HSL, coords: [270, 50, 40], alpha: 1 },
         },
       ],
       [
         'oklab',
         {
           given: 'oklab(0.7 0.3 0.4)',
-          want: { spaceId: 'oklab', coords: [0.7, 0.3, 0.4], alpha: 1 },
+          want: { space: OKLab, coords: [0.7, 0.3, 0.4], alpha: 1 },
         },
       ],
       [
         'oklch',
         {
           given: 'oklch(0.7 0.2 150)',
-          want: { spaceId: 'oklch', coords: [0.7, 0.2, 150], alpha: 1 },
+          want: { space: OKLCH, coords: [0.7, 0.2, 150], alpha: 1 },
         },
       ],
       [
         'okhsv',
         {
           given: 'color(--okhsv 150 0.6 0.8)',
-          want: { spaceId: 'okhsv', coords: [150, 0.6, 0.8], alpha: 1 },
+          want: { space: Okhsv, coords: [150, 0.6, 0.8], alpha: 1 },
         },
       ],
       [
         'okhsl',
         {
           given: 'color(--okhsl 150 0.8 0.5)',
-          want: { spaceId: 'okhsl', coords: [150, 0.8, 0.5], alpha: 1 },
+          want: { space: Okhsl, coords: [150, 0.8, 0.5], alpha: 1 },
         },
       ],
       [
         'display-p3',
         {
           given: 'color(display-p3 0.3 0.1 0.6)',
-          want: { spaceId: 'p3', coords: [0.3, 0.1, 0.6], alpha: 1 },
+          want: { space: P3, coords: [0.3, 0.1, 0.6], alpha: 1 },
         },
       ],
       [
         'lrgb',
         {
           given: 'color(srgb-linear 0.3 0.1 0.6)',
-          want: { spaceId: 'srgb-linear', coords: [0.3, 0.1, 0.6], alpha: 1 },
+          want: { space: sRGB_Linear, coords: [0.3, 0.1, 0.6], alpha: 1 },
         },
       ],
       [
         'rgb',
         {
           given: 'rgb(30% 10% 60%)',
-          want: { spaceId: 'srgb', coords: [0.3, 0.1, 0.6], alpha: 1 },
+          want: { space: sRGB, coords: [0.3, 0.1, 0.6], alpha: 1 },
         },
       ],
       [
         'srgb',
         {
           given: 'color(srgb 0.3 0.1 0.6)',
-          want: { spaceId: 'srgb', coords: [0.3, 0.1, 0.6], alpha: 1 },
+          want: { space: sRGB, coords: [0.3, 0.1, 0.6], alpha: 1 },
         },
       ],
       [
         'xyz-d50',
         {
           given: 'color(xyz-d50 0.7 0.3 -0.05)',
-          want: { spaceId: 'xyz-d50', coords: [0.7, 0.3, -0.05], alpha: 1 },
+          want: { space: XYZ_D50, coords: [0.7, 0.3, -0.05], alpha: 1 },
         },
       ],
       [
         'xyz-d65',
         {
           given: 'color(xyz-d65 0.7 0.3 -0.05)',
-          want: { spaceId: 'xyz-d65', coords: [0.7, 0.3, -0.05], alpha: 1 },
+          want: { space: XYZ_D65, coords: [0.7, 0.3, -0.05], alpha: 1 },
         },
       ],
     ];
@@ -171,7 +183,7 @@ describe('useColor', () => {
 
       // assert color displays as-expected
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML);
-      expect(displayedColor).toEqual(expect.objectContaining({ spaceId: 'srgb', coords: [0, 0.3, 1], alpha: 1 }));
+      expect(displayedColor).toEqual(expect.objectContaining({ space: { id: 'srgb' }, coords: [0, 0.3, 1], alpha: 1 }));
 
       // assert only 1 render happened
       expect(renderCount).toBe(1);
@@ -216,7 +228,9 @@ describe('useColor', () => {
 
       // assert `setColor()` works
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML);
-      expect(displayedColor).toEqual(expect.objectContaining({ spaceId: 'srgb', coords: [0.6, 0.3, 0.5], alpha: 1 }));
+      expect(displayedColor).toEqual(
+        expect.objectContaining({ space: { id: 'srgb' }, coords: [0.6, 0.3, 0.5], alpha: 1 }),
+      );
 
       // assert only 1 onChange happened (+1 first render)
       expect(onChangeCount).toBe(1 + 1);

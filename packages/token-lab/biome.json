@@ -2,6 +2,9 @@
   "root": false,
   "$schema": "https://biomejs.dev/schemas/2.4.4/schema.json",
   "extends": "//",
+  "files": {
+    "includes": ["!src/styles/tokens.d.ts", "!src/routeTree.gen.ts"]
+  },
   "linter": {
     "rules": {
       "a11y": {
@@ -10,11 +13,6 @@
       "suspicious": {
         "noArrayIndexKey": "off"
       }
-    }
-  },
-  "css": {
-    "parser": {
-      "cssModules": true
     }
   }
 }
