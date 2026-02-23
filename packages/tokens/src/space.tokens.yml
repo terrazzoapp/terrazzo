@@ -57,4 +57,11 @@ space:
       unit: rem
   control-m:
     $type: dimension
-    $value: "{space.600}"
+    $value:
+      value: 2
+      unit: rem
+  control-l:
+    $type: dimension
+    $value:
+      value: 3
+      unit: rem

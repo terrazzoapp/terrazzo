@@ -1,0 +1,88 @@
+---
+export interface Props extends HTMLButtonElement {
+  variant?: 'default' | 'secondary' | 'lime' | 'blue' | 'orange';
+}
+
+const { type = 'button', variant = 'secondary', ...props } = Astro.props;
+---
+
+<button
+  class="grid-btn"
+  type={type}
+  data-variant={variant}
+  {...props}
+>
+  <slot />
+</button>
+
+<style is:global>
+.grid-btn {
+  --tz-button-text: var(--tz-color-bg-1);
+  --tz-button-bg: var(--tz-color-text-1);
+  --tz-button-border: var(--tz-button-bg);
+  --tz-button-height: var(--grid-size, 3rem);
+  --tz-button-gap: var(--tz-space-200);
+  --tz-button-padding: 1em;
+
+  align-items: center;
+  background-color: var(--tz-button-bg);
+  border-color: var(--tz-button-border);
+  border-radius: 0;
+  border-style: solid;
+  border-width: 1px;
+  color: var(--tz-button-text);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-strong-font-size);
+  font-weight: var(--tz-font-body-strong-font-weight);
+  gap: var(--tz-button-gap);
+  min-height: var(--tz-button-height);
+  justify-content: center;
+  letter-spacing: var(--tz-font-body-strong-letter-spacing);
+  line-height: 1;
+  min-width: var(--grid-size);
+  outline-color: transparent;
+  outline-offset: 2px;
+  outline-style: solid;
+  outline-width: 2px;
+  padding-bottom: 0;
+  padding-left: var(--tz-button-padding);
+  padding-right: var(--tz-button-padding);
+  padding-top: 0;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline-color: var(--tz-color-base-lime-600);
+  }
+
+  &[data-variant="lime"] {
+    --tz-button-bg: var(--tz-color-base-lime-600);
+    --tz-button-text: var(--tz-color-base-lime-200);
+    --tz-button-border: var(--tz-color-base-lime-400);
+  }
+
+  &[data-variant="blue"] {
+    --tz-button-bg: var(--tz-color-base-blue-700);
+    --tz-button-text: var(--tz-color-base-blue-200);
+    --tz-button-border: var(--tz-color-base-blue-500);
+  }
+
+  &[data-variant="orange"] {
+    --tz-button-bg: var(--tz-color-base-orange-700);
+    --tz-button-text: var(--tz-color-base-orange-200);
+    --tz-button-border: var(--tz-color-base-orange-500);
+  }
+
+  &[data-variant="secondary"] {
+    --tz-button-bg: var(--tz-color-bg-1);
+    --tz-button-border: var(--tz-color-border-1);
+    --tz-button-text: var(--tz-color-text-1);
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+}
+</style>
