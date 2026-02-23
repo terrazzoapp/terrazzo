@@ -1,5 +1,11 @@
 # @terrazzo/react-color-picker
 
+## 0.2.1
+
+### Patch Changes
+
+- Fix color bug for out-of-gamut colors, minor performance improvements
+
 ## 0.2.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/tokens",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Internal design tokens for @terrazzo/tiles",
   "type": "module",
   "author": {

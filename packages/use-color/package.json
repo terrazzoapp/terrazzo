@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/use-color",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React hook for memoizing and transforming any web-compatible color. Uses Color.js.",
   "license": "MIT",
   "type": "module",

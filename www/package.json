@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:app": "astro build && cp -r ../packages/storybook/storybook dist",
+    "build:app": "astro build && cp -r ../packages/storybook/storybook dist && cp -r ../packages/token-lab/dist dist/lab",
     "dev": "astro dev",
     "format": "biome check --fix --unsafe src",
     "lint": "pnpm --filter @terrazzo/www run \"/^lint:(js|css)/\"",
@@ -31,6 +31,7 @@
     "@astrojs/react": "4.4.2",
     "@astrojs/sitemap": "^3.7.0",
     "@terrazzo/storybook": "workspace:^",
+    "@terrazzo/token-lab": "workspace:^",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "astro": "^5.17.3",
