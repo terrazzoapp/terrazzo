@@ -310,6 +310,8 @@ export interface ParseOptions {
   transform?: TransformVisitors;
   /** (internal cache; do not use) */
   _sources?: Record<string, InputSourceWithDocument>;
+  /** Resolve DTCG aliases? You’d typically only pass in `false` when normalizing or performing partial parsing. */
+  resolveAliases?: boolean;
 }
 
 export interface Plugin {

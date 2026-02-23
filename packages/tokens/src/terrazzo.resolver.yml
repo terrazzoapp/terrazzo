@@ -1,0 +1,26 @@
+$schema: https://www.designtokens.org/schemas/2025.10/resolver.json
+version: "2025.10"
+
+resolutionOrder:
+  - $ref: "#/sets/base"
+  - $ref: "#/modifiers/theme"
+
+sets:
+  base:
+    sources:
+      - $ref: animation.tokens.yml
+      - $ref: layer.tokens.yml
+      - $ref: palette.tokens.yml
+      - $ref: radius.tokens.yml
+      - $ref: space.tokens.yml
+      - $ref: typography.tokens.yml
+
+modifiers:
+  theme:
+    contexts:
+      light:
+        - $ref: colors-light.tokens.yml
+      dark:
+        - $ref: colors-dark.tokens.yml
+
+    default: light

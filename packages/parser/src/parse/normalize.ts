@@ -33,7 +33,7 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
       logger.warn({
         ...entry,
         node,
-        message: `${token.id}: string colors will be deprecated in a future version. Please update to object notation`,
+        message: `${token.id}: string colors will be deprecated in a future version. Please update to object notation.`,
       });
       try {
         return parseColor(value);

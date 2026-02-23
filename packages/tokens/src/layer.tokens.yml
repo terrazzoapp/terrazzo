@@ -1,0 +1,20 @@
+$schema: https://www.designtokens.org/schemas/2025.10/format.json
+layer:
+  base:
+    $type: number
+    $value: 10
+  tooltip:
+    $type: number
+    $value: 20
+  nav:
+    $type: number
+    $value: 30
+  popover:
+    $type: number
+    $value: 40
+  menu:
+    $type: number
+    $value: 50
+  modal:
+    $type: number
+    $value: 100

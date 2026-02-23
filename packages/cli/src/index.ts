@@ -1,3 +1,4 @@
+import fsSync from 'node:fs';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { type Config, type ConfigInit, defineConfig as defineConfigCore } from '@terrazzo/parser';
@@ -26,6 +27,8 @@ export function defineConfig(config: Config): ConfigInit {
     ).map((tokenPath) => {
       if (tokenPath.startsWith('.') || /^(https?|file):\/\//i.test(tokenPath)) {
         return tokenPath;
+      } else if (fsSync.existsSync(new URL(tokenPath, cwd))) {
+        return new URL(tokenPath, cwd);
       }
       try {
         return pathToFileURL(require.resolve(tokenPath));

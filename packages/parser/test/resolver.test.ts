@@ -276,7 +276,9 @@ describe('Resolver module', () => {
                     contexts: {
                       light: [
                         {
-                          color: { bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } } },
+                          color: {
+                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
+                          },
                         },
                       ],
                       dark: [
@@ -314,6 +316,84 @@ describe('Resolver module', () => {
           $value: { colorSpace: 'srgb', components: [0.1, 0.1, 0.1], alpha: 1 },
           aliasChain: ['color.bg'],
           aliasOf: 'color.bg',
+        }),
+      );
+    });
+
+    it('alias in modifier (compound token)', async () => {
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const { resolver } = await parse(
+        [
+          {
+            filename: new URL('file:///'),
+            src: JSON.stringify(
+              {
+                version: '2025.10',
+                resolutionOrder: [{ $ref: '#/sets/palette' }, { $ref: '#/modifiers/theme' }],
+                sets: {
+                  palette: {
+                    sources: [
+                      {
+                        border: {
+                          1: {
+                            $type: 'border',
+                            $value: { width: { value: 1, unit: 'px' }, style: 'solid', color: '{color.border.1}' },
+                          },
+                        },
+                        color: {
+                          base: {
+                            gray: {
+                              500: {
+                                $type: 'color',
+                                $value: { colorSpace: 'srgb', components: [0.3529, 0.3494, 0.3137] },
+                              },
+                              1000: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
+                            },
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+                modifiers: {
+                  theme: {
+                    contexts: {
+                      light: [{ color: { border: { 1: { $type: 'color', $value: '{color.base.gray.500}' } } } }],
+                      dark: [{ color: { border: { 1: { $type: 'color', $value: '{color.base.gray.1000}' } } } }],
+                    },
+                  },
+                },
+              },
+              undefined,
+              2,
+            ),
+          },
+        ],
+        { config },
+      );
+
+      const lightTokens = resolver.apply({ theme: 'light' });
+      expect(lightTokens['border.1'], 'light').toEqual(
+        expect.objectContaining({
+          $type: 'border',
+          $value: {
+            width: { value: 1, unit: 'px' },
+            style: 'solid',
+            color: { colorSpace: 'srgb', components: [0.3529, +0.3494, +0.3137], alpha: 1 },
+          },
+          partialAliasOf: { color: 'color.border.1' },
+        }),
+      );
+      const darkTokens = resolver.apply({ theme: 'dark' });
+      expect(darkTokens['border.1'], 'dark').toEqual(
+        expect.objectContaining({
+          $type: 'border',
+          $value: {
+            width: { value: 1, unit: 'px' },
+            style: 'solid',
+            color: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 1 },
+          },
+          partialAliasOf: { color: 'color.border.1' },
         }),
       );
     });

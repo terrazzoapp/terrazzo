@@ -50,10 +50,5 @@
     "typescript": "^5.9.3",
     "vite": "catalog:",
     "vitest": "catalog:"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "vite-plugin-sass-dts": "patches/vite-plugin-sass-dts.patch"
-    }
   }
 }

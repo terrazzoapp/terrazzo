@@ -1,0 +1,142 @@
+$schema: https://www.designtokens.org/schemas/2025.10/format.json
+font:
+  sans:
+    $type: fontFamily
+    $value:
+      - Instrument Sans
+      - system-ui
+      - -apple-system
+      - Aptos
+      - Helvetica Neue
+      - Helvetica
+      - Arial
+      - Noto Sans
+      - sans-serif
+      - Helvetica
+      - Apple Color Emoji
+      - Segoe UI Emoji
+      - Noto Color Emoji
+  mono:
+    $type: fontFamily
+    $value:
+      - Fragment Mono
+      - ui-monospace
+      - monospace
+
+  bodyLongform:
+    $type: typography
+    $value:
+      fontFamily: "{font.sans}"
+      fontVariationSettings: '"wght" 400'
+      fontWeight: 400
+      fontSize:
+        value: 1.125
+        unit: rem
+      lineHeight: 1.4375
+      letterSpacing:
+        value: -0.0025
+        unit: rem
+
+  bodyStrong:
+    $type: typography
+    $value:
+      fontFamily: "{font.sans}"
+      fontVariationSettings: '"wght" 500'
+      fontWeight: 400
+      fontSize:
+        value: 0.875
+        unit: rem
+      letterSpacing:
+        value: 0
+        unit: rem
+      lineHeight: 1.4375
+
+  heading1:
+    $type: typography
+    $value:
+      fontFamily: "{font.sans}"
+      fontVariationSettings: '"wght" 600'
+      fontWeight: 400
+      fontSize:
+        value: 1.75
+        unit: rem
+      lineHeight: 1.5
+      letterSpacing:
+        value: -0.0075
+        unit: rem
+
+  heading2:
+    $type: typography
+    $value:
+      fontFamily: "{font.sans}"
+      fontVariationSettings: '"wght" 600'
+      fontWeight: 400
+      fontSize:
+        value: 1.5
+        unit: rem
+      lineHeight:
+        value: 1.875
+        unit: rem
+      letterSpacing:
+        value: -0.00625
+        unit: rem
+
+  heading3:
+    $type: typography
+    $value:
+      fontFamily: "{font.sans}"
+      fontVariationSettings: '"wght" 500'
+      fontWeight: 400
+      fontSize:
+        value: 1.25
+        unit: rem
+      lineHeight: 1.4
+      letterSpacing:
+        value: -0.005
+        unit: rem
+
+  heading4:
+    $type: typography
+    $value:
+      fontFamily: "{font.sans}"
+      fontVariationSettings: '"wght" 500'
+      fontWeight: 400
+      fontSize:
+        value: 1.125
+        unit: rem
+      letterSpacing:
+        value: -0.0025
+        unit: rem
+      lineHeight: 1.4375
+
+  heading5:
+    $type: typography
+    $value:
+      fontFamily: "{font.sans}"
+      fontVariationSettings: '"wght" 500'
+      fontWeight: 400
+      fontSize:
+        value: 1
+        unit: rem
+      letterSpacing:
+        value: 0
+        unit: rem
+      lineHeight: 1.4375
+
+  heading6:
+    $type: typography
+    $value: "{font.bodyStrong}"
+
+  labelSmall:
+    $type: typography
+    $value:
+      fontFamily: "{font.sans}"
+      fontVariationSettings: '"wght" 500'
+      fontWeight: 400
+      fontSize:
+        value: 0.75
+        unit: rem
+      lineHeight: 1.25
+      letterSpacing:
+        value: 0.0025
+        unit: rem

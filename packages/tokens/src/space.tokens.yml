@@ -1,0 +1,60 @@
+$schema: https://www.designtokens.org/schemas/2025.10/format.json
+space:
+  "000":
+    $type: dimension
+    $value:
+      value: 0.125
+      unit: rem
+  100:
+    $type: dimension
+    $value:
+      value: 0.25
+      unit: rem
+  200:
+    $type: dimension
+    $value:
+      value: 0.5
+      unit: rem
+  300:
+    $type: dimension
+    $value:
+      value: 0.75
+      unit: rem
+  400:
+    $type: dimension
+    $value:
+      value: 1
+      unit: rem
+  500:
+    $type: dimension
+    $value:
+      value: 1.5
+      unit: rem
+  600:
+    $type: dimension
+    $value:
+      value: 2
+      unit: rem
+  700:
+    $type: dimension
+    $value:
+      value: 2.5
+      unit: rem
+  800:
+    $type: dimension
+    $value:
+      value: 3
+      unit: rem
+  900:
+    $type: dimension
+    $value:
+      value: 4
+      unit: rem
+  control-s:
+    $type: dimension
+    $value:
+      value: 1.75
+      unit: rem
+  control-m:
+    $type: dimension
+    $value: "{space.600}"

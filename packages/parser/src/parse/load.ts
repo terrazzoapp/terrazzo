@@ -17,7 +17,8 @@ import { isLikelyResolver } from '../resolver/validate.js';
 import type { ParseOptions, TransformVisitors } from '../types.js';
 import { processTokens } from './process.js';
 
-export interface LoadOptions extends Pick<ParseOptions, 'config' | 'continueOnError' | 'yamlToMomoa' | 'transform'> {
+export interface LoadOptions
+  extends Pick<ParseOptions, 'config' | 'continueOnError' | 'yamlToMomoa' | 'resolveAliases' | 'transform'> {
   req: NonNullable<ParseOptions['req']>;
   logger: Logger;
 }
@@ -30,7 +31,7 @@ export interface LoadSourcesResult {
 /** Load from multiple entries, while resolving remote files */
 export async function loadSources(
   inputs: InputSource[],
-  { config, logger, req, continueOnError, yamlToMomoa, transform }: LoadOptions,
+  { config, logger, req, continueOnError, yamlToMomoa, resolveAliases = true, transform }: LoadOptions,
 ): Promise<LoadSourcesResult> {
   const entry = { group: 'parser' as const, label: 'init' };
 
@@ -85,7 +86,7 @@ export async function loadSources(
   };
 
   return {
-    tokens: processTokens(rootSource, { config, logger, sources, sourceByFilename }),
+    tokens: processTokens(rootSource, { config, logger, resolveAliases, sources, sourceByFilename }),
     sources,
   };
 }

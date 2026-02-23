@@ -1,0 +1,69 @@
+$schema: https://www.designtokens.org/schemas/2025.10/format.json
+
+color:
+  bg:
+    1:
+      $type: color
+      $value: "{color.base.gray.1000}"
+
+    2:
+      $type: color
+      $value: "{color.base.gray.950}"
+
+    3:
+      $type: color
+      $value: "{color.base.gray.900}"
+
+    selected-hint:
+      $type: color
+      $value: "{color.base.lime.700}"
+
+    selected:
+      $type: color
+      $value: "{color.base.lime.800}"
+
+    error:
+      $type: color
+      $value: "{color.base.orange.600}"
+
+  border:
+    1:
+      $type: color
+      $value: "{color.base.gray.500}"
+
+    2:
+      $type: color
+      $value: "{color.base.gray.600}"
+
+    3:
+      $type: color
+      $value: "{color.base.gray.900}"
+
+    focus:
+      $type: color
+      $value: "{color.base.lime.600}"
+
+    selected:
+      $type: color
+      $value: "{color.base.gray.300}"
+
+  text:
+    1:
+      $type: color
+      $value: "{color.base.gray.100}"
+
+    2:
+      $type: color
+      $value: "{color.base.gray.300}"
+
+    3:
+      $type: color
+      $value: "{color.base.gray.600}"
+
+    selected:
+      $type: color
+      $value: "{color.base.blue.700}"
+
+    error:
+      $type: color
+      $value: "{color.base.gray.1000}"

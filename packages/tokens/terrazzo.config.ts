@@ -3,19 +3,27 @@ import css from '@terrazzo/plugin-css';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 
 export default defineConfig({
-  tokens: './tokens.yaml',
-  outDir: './dist/',
+  tokens: 'src/terrazzo.resolver.yml',
+  outDir: 'dist',
   plugins: [
     css({
       variableName: (token) => makeCSSVar(token.id, { prefix: 'tz' }),
-      modeSelectors: [
+      permutations: [
         {
-          mode: 'light',
-          selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"][data-color-mode="light"]'],
+          prepare: (css) => `:root{\n  ${css}\n}`,
+          input: { theme: 'light' },
         },
         {
-          mode: 'dark',
-          selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"][data-color-mode="dark"]'],
+          prepare: (css) => `@media (prefers-color-scheme: dark) {
+  :root {
+    ${css}
+  }
+}
+
+[data-color-mode="dark"] {
+  ${css}
+}`,
+          input: { theme: 'dark' },
         },
       ],
     }),

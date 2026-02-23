@@ -1,0 +1,37 @@
+$schema: https://www.designtokens.org/schemas/format.json
+radius:
+  "000":
+    $type: dimension
+    $value:
+      value: 1
+      unit: px
+  100:
+    $type: dimension
+    $value:
+      value: 0.125
+      unit: rem
+  200:
+    $type: dimension
+    $value:
+      value: 0.25
+      unit: rem
+  300:
+    $type: dimension
+    $value:
+      value: 6
+      unit: px
+  400:
+    $type: dimension
+    $value:
+      value: 0.5
+      unit: rem
+  500:
+    $type: dimension
+    $value:
+      value: 0.75
+      unit: rem
+  1000:
+    $type: dimension
+    $value:
+      value: 999
+      unit: px

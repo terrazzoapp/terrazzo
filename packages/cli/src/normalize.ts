@@ -4,6 +4,8 @@ import * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers, traverse } from '@terrazzo/json-schema-tools';
 import { defineConfig, type Logger, parse } from '@terrazzo/parser';
 import { isAlias } from '@terrazzo/token-tools';
+import yaml from 'yaml';
+import yamlToMomoa from 'yaml-to-momoa';
 import { cwd, printError } from './shared.js';
 
 export interface NormalizeOptions {
@@ -30,13 +32,16 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
         message: `Couldn’t find ${path.relative(cwd.href, sourceLoc.href)}. Does it exist?`,
       });
     }
+
     const sourceData = fs.readFileSync(sourceLoc, 'utf8');
-    const document = momoa.parse(sourceData, { mode: 'jsonc' });
+    const isYaml = filename.endsWith('.yml') || filename.endsWith('.yaml') || !sourceData.startsWith('{');
+    const document = isYaml ? yamlToMomoa(sourceData) : momoa.parse(sourceData, { mode: 'jsonc' });
     const { tokens } = await parse([{ src: sourceData, filename: sourceLoc }], {
       config: defineConfig(
         {
           lint: {
             rules: {
+              'core/consistent-naming': 'off',
               'core/valid-color': 'off',
               'core/valid-dimension': 'off',
               'core/valid-duration': 'off',
@@ -47,6 +52,8 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
         { cwd },
       ),
       logger,
+      resolveAliases: false,
+      yamlToMomoa,
     });
 
     traverse(document, {
@@ -128,8 +135,9 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
     });
 
     const outputLoc = new URL(output, cwd);
+    const contents = isYaml ? yaml.stringify(JSON.parse(momoa.print(document))) : momoa.print(document, { indent: 2 });
     fs.mkdirSync(new URL('.', outputLoc), { recursive: true });
-    fs.writeFileSync(outputLoc, momoa.print(document, { indent: 2 }));
+    fs.writeFileSync(outputLoc, contents);
   } catch (err) {
     printError((err as Error).message);
     process.exit(1);
