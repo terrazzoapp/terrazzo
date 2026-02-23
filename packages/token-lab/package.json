@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+terrazzoapp/terrazzo.git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/token-lab/"
   },
   "files": [

@@ -10,8 +10,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+terrazzoapp/terrazzo.git",
-    "directory": "./packages/tiles"
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/tiles/"
   },
   "main": "./dist/index.js",
   "scripts": {

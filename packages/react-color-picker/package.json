@@ -21,8 +21,8 @@
   "homepage": "https://terrazzo.app/docs/components/color-picker",
   "repository": {
     "type": "git",
-    "url": "git+terrazzoapp/terrazzo.git",
-    "directory": "./packages/react-color-picker"
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/react-color-picker/"
   },
   "scripts": {
     "build": "rollup -c rollup.config.js && size-limit",
