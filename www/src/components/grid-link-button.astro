@@ -1,0 +1,18 @@
+---
+import './grid-button.astro'; // ensure CSS is always loaded
+
+export interface Props extends HTMLLinkElement {
+  href: string;
+  variant?: 'default' | 'secondary' | 'lime' | 'blue' | 'orange';
+}
+
+const { variant = 'secondary', ...props } = Astro.props;
+---
+
+<a
+  class="grid-btn"
+  data-variant={variant}
+  {...props}
+>
+  <slot />
+</a>

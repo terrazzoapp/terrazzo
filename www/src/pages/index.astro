@@ -1,5 +1,5 @@
 ---
-import { ButtonLink } from '@terrazzo/tiles';
+import GridLinkButton from '../components/grid-link-button.astro';
 import IlloHome from '../components/illo/home.astro';
 import Tri from '../components/tri.astro';
 import DefaultLayout from '../layouts/default.astro';
@@ -237,12 +237,10 @@ import DefaultLayout from '../layouts/default.astro';
       create and manage your design system. It’s free to use, forever. Keep full control
       over your design system!
     </p>
-    <menu class="cta">
-      <ButtonLink href="https://github.com/terrazzoapp/terrazzo" target="_blank"
-        >View on GitHub</ButtonLink
-      >
-      <ButtonLink href="/docs" variant="lime">Get Started</ButtonLink>
-    </menu>
+    <div class="cta">
+      <GridLinkButton href="https://github.com/terrazzoapp/terrazzo" target="_blank" style="min-width:calc(3 * var(--grid-size))">View on GitHub</GridLinkButton>
+      <GridLinkButton href="/docs" variant="lime" style="min-width:calc(3 * var(--grid-size))">Get Started</GridLinkButton>
+    </div>
   </section>
 </DefaultLayout>
 

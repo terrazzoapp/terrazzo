@@ -1,6 +1,6 @@
 ---
 import { DiscordLogo, GitHubLogo } from '@terrazzo/icons';
-import { ButtonLink } from '@terrazzo/tiles';
+import GridLinkButton from './grid-link-button.astro';
 import Terrazzo from './terrazzo.astro';
 ---
 
@@ -11,7 +11,7 @@ import Terrazzo from './terrazzo.astro';
     </li>
     <li class="nav-item"><a href="/docs">Docs</a></li>
     <li class="nav-item nav-item--sub" style="margin-bottom:-1px">
-      <ButtonLink href="/docs" variant="lime">Get Started</ButtonLink>
+      <GridLinkButton href="/docs" variant="lime">Get Started</GridLinkButton>
     </li>
     <li class="nav-item nav-item--sub nav-item--secondary">
       <a
