@@ -19,10 +19,10 @@ function findMember(name: string) {
   };
 }
 
-export async function normalizeCmd(filename: string, { logger, output }: NormalizeOptions) {
+export async function formatCmd(filename: string, { logger, output }: NormalizeOptions) {
   try {
     if (!filename) {
-      logger.error({ group: 'config', message: 'Expected input: `tz normalize <tokens.json> -o output.json`' });
+      logger.error({ group: 'config', message: 'Expected input: `tz format <tokens.json> -o output.json`' });
       return;
     }
     const sourceLoc = new URL(filename, cwd);
@@ -102,13 +102,13 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
               if (isAlias(node.value.members[$valueI]!.value.value)) {
                 return;
               }
-              node.value.members[$valueI]!.value = normalizeDurationDimension(node.value.members[$valueI]!.value);
+              node.value.members[$valueI]!.value = formatDurationDimension(node.value.members[$valueI]!.value);
               const $extensions = getObjMember(node.value, '$extensions');
               if ($extensions?.type === 'Object') {
                 const mode = getObjMember($extensions, 'mode');
                 if (mode?.type === 'Object') {
                   for (let i = 0; i < mode.members.length; i++) {
-                    mode.members[i]!.value = normalizeDurationDimension(node.value.members[$valueI]!.value);
+                    mode.members[i]!.value = formatDurationDimension(node.value.members[$valueI]!.value);
                   }
                 }
               }
@@ -119,13 +119,13 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
             if (node.value.members[$valueI]?.value.type !== 'Object') {
               return;
             }
-            node.value.members[$valueI].value = normalizeTypography(node.value.members[$valueI].value);
+            node.value.members[$valueI].value = formatTypography(node.value.members[$valueI].value);
             const $extensions = getObjMember(node.value, '$extensions');
             if ($extensions?.type === 'Object') {
               const mode = getObjMember($extensions, 'mode');
               if (mode?.type === 'Object') {
                 for (let i = 0; i < mode.members.length; i++) {
-                  mode.members[i]!.value = normalizeTypography(mode.members[i]!.value as momoa.ObjectNode);
+                  mode.members[i]!.value = formatTypography(mode.members[i]!.value as momoa.ObjectNode);
                 }
               }
             }
@@ -144,7 +144,7 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
   }
 }
 
-function normalizeDurationDimension(node: momoa.StringNode) {
+function formatDurationDimension(node: momoa.StringNode) {
   const value = Number.parseFloat(node.value);
   if (!Number.isFinite(value)) {
     return node;
@@ -157,7 +157,7 @@ function normalizeDurationDimension(node: momoa.StringNode) {
   return node;
 }
 
-function normalizeTypography(node: momoa.ObjectNode) {
+function formatTypography(node: momoa.ObjectNode) {
   const { fontFamily, fontSize, fontWeight, letterSpacing, lineHeight } = getObjMembers(node);
   if (!fontFamily) {
     node.members.push((momoa.parse('{"fontFamily":["inherit"]}').body as momoa.ObjectNode).members[0]!);

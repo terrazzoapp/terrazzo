@@ -47,19 +47,27 @@ Validate all DTCG tokens for syntax errors, and run any [linters](/docs/linting)
 npx tz check [filename]
 ```
 
-## Normalize
+## Format
 
-The DTCG format has gone through many iterations over the years. Terrazzo lenient in the inputs it allows, such as allowing legacy sRGB hex colors without throwing a parsing error. To quickly update your tokens to the latest version of the format, run the following command:
+Format tokens into the current DTCG standard. Note that a separate output is required. If you wish to overwrite your files dangerously, just specify the same file after `-o`.
 
 ```sh
-tz normalize <input.json> -o normalized.json
+tz format <input.json> -o normalized.json
 ```
-
-This will keep your tokens 100% as-authored, but will upgrade older DTCG files to the updated format and will safely fix minor issues. But just as a safety precaution, it requires saving to a new location just so you can review the changes before committing them.
 
 | Name            | Description            |
 | :-------------- | :--------------------- |
 | `--out` \| `-o` | Tokens file to output. |
+
+## Import
+
+Export Figma Variables and Styles to a resolver JSON. Requires a Figma account and auth token.
+
+```sh
+tz import https://figma.com/[file] -o my-ds.resolver.json
+```
+
+[See full guide](/docs/2.0/guides/import-from-figma)
 
 ## Global Flags
 

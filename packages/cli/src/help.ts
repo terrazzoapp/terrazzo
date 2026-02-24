@@ -8,6 +8,9 @@ export function helpCmd() {
       --no-lint      Disable linters running on build
     check [path]     Check tokens.json for errors and run linters
     lint [path]      (alias of check)
+    format [path]    Format your tokens
+      --o [file]     Output file
+    normalize        (alias of format)
     init             Create a starter tokens.json file
     lab              Manage your tokens with a web interface
     import [path]    Import from a Figma Design file

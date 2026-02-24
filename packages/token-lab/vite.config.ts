@@ -5,5 +5,17 @@ import { defineConfig } from 'vite';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [tsConfigPaths(), tanstackStart(), react(), vanillaExtractPlugin()],
+  plugins: [
+    tsConfigPaths(),
+    tanstackStart({
+      spa: {
+        enabled: true,
+        prerender: {
+          crawlLinks: true,
+        },
+      },
+    }),
+    react(), // MUST come after TanStack
+    vanillaExtractPlugin(),
+  ],
 });

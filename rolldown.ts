@@ -8,7 +8,7 @@ export const defineConfig = (options: RolldownOptions): RolldownOptions => {
   return merge(
     {
       platform: 'browser',
-      plugins: [dts({ resolve: true })],
+      plugins: [dts()],
       external: [
         ...Object.keys(pkg.peerDependencies ?? {}),
         ...Object.keys(pkg.dependencies ?? {}),

@@ -10,11 +10,13 @@ import remarkVitepress from './src/plugins/remark-vitepress.js';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react({ devTarget: 'esnext' }), mdx(), sitemap()],
+  integrations: [react({}), mdx(), sitemap()],
   site: 'https://terrazzo.app',
+
   devToolbar: {
     enabled: false,
   },
+
   markdown: {
     shikiConfig: {
       theme: 'ayu-dark',
@@ -25,6 +27,7 @@ export default defineConfig({
     remarkPlugins: [remarkDirective, remarkVitepress],
     rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeAutoToc],
   },
+
   redirects: {
     '/docs/cli/api/js/': '/docs/reference/js-api/',
     '/docs/cli/api/node/': '/docs/reference/js-api/',
