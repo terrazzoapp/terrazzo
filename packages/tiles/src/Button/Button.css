@@ -4,12 +4,12 @@
   --tz-button-border: var(--tz-button-bg);
   --tz-button-height: var(--tz-space-control-m);
   --tz-button-gap: var(--tz-space-200);
-  --tz-button-padding: 1em;
+  --tz-button-padding: 0.75em;
 
   align-items: center;
   background-color: var(--tz-button-bg);
   border-color: var(--tz-button-border);
-  border-radius: 0;
+  border-radius: var(--tz-radius-300);
   border-style: solid;
   border-width: 1px;
   color: var(--tz-button-text);

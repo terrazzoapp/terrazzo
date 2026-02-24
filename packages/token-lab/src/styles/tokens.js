@@ -71,6 +71,11 @@ export const color = {
     focus: 'var(--tz-color-border-focus)',
     selected: 'var(--tz-color-border-selected)',
   },
+  icon: {
+    100: 'var(--tz-color-icon-100)',
+    200: 'var(--tz-color-icon-200)',
+    selected: 'var(--tz-color-icon-selected)',
+  },
   text: {
     1: 'var(--tz-color-text-1)',
     2: 'var(--tz-color-text-2)',
@@ -201,6 +206,7 @@ export const space = {
   800: 'var(--tz-space-800)',
   900: 'var(--tz-space-900)',
   '000': 'var(--tz-space-000)',
+  controlL: 'var(--tz-space-control-l)',
   controlM: 'var(--tz-space-control-m)',
   controlS: 'var(--tz-space-control-s)',
 };

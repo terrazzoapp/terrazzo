@@ -32,12 +32,12 @@ import { Logger } from '@terrazzo/parser';
 import {
   buildCmd,
   checkCmd,
+  formatCmd,
   helpCmd,
   importCmd,
   initCmd,
   labCmd,
   loadConfig,
-  normalizeCmd,
   versionCmd,
 } from '../dist/index.js';
 
@@ -113,9 +113,9 @@ export default async function main() {
     process.exit(0);
   }
 
-  // normalize
-  if (cmd === 'normalize') {
-    await normalizeCmd(positionals[1], { logger, output: flags.output });
+  // format
+  if (cmd === 'format' || cmd === 'normalize') {
+    await formatCmd(positionals[1], { logger, output: flags.output });
     process.exit(0);
   }
   // import

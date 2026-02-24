@@ -6,11 +6,11 @@ import { cwd } from './shared.js';
 
 export * from './build.js';
 export * from './check.js';
+export * from './format.js';
 export * from './help.js';
 export * from './import/index.js';
 export * from './init.js';
 export * from './lab.js';
-export * from './normalize.js';
 export * from './shared.js';
 export * from './version.js';
 

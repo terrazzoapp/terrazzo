@@ -7,6 +7,60 @@ export interface IconProps extends ComponentProps<'svg'> {
   size?: number | string;
 }
 
+/** Custom */
+export function Token({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M10.5 1.86603C11.4282 1.33013 12.5718 1.33013 13.5 1.86603L20.0263 5.63397C20.9545 6.16987 21.5263 7.16025 21.5263 8.23205V15.7679C21.5263 16.8397 20.9545 17.8301 20.0263 18.366L13.5 22.134C12.5718 22.6699 11.4282 22.6699 10.5 22.134L3.97372 18.366C3.04552 17.8301 2.47372 16.8397 2.47372 15.7679V8.23205C2.47372 7.16025 3.04552 6.16987 3.97372 5.63397L10.5 1.86603Z' />
+      <circle cx='12' cy='12' r='4' fill={color} stroke='none' strokeWidth='0' />
+      <path d='M3 7L12 11.9075' />
+      <path d='M21 7L12 12' />
+      <path d='M12 23V12' />
+    </svg>
+  );
+}
+
+/** Custom */
+export function Transition({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      stroke={color}
+      strokeWidth='2'
+      fill='none'
+      viewBox='0 0 24 24'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M8.22504 20.244C8.07674 20.4782 7.89004 20.6674 7.67827 20.7981C7.4665 20.9288 7.23489 20.9977 7 21C6.53199 21 6.08597 20.7249 5.77496 20.244L1.41382 13.4966C1.14615 13.0737 1 12.5452 1 12C1 11.4548 1.14615 10.9263 1.41382 10.5034L5.77496 3.756C5.92326 3.52179 6.10996 3.33258 6.32173 3.20189C6.5335 3.0712 6.76511 3.00226 7 3C7.46801 3 7.91403 3.27514 8.22504 3.756L12.5862 10.5034C12.8539 10.9263 13 11.4548 13 12C13 12.5452 12.8539 13.0737 12.5862 13.4966L8.22504 20.244Z' />
+      <path
+        d='M18 3L22.5862 10.5034C22.8539 10.9263 23 11.4548 23 12C23 12.5452 22.8539 13.0737 22.5862 13.4966L18 21'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+      <path
+        d='M13 3L17.5862 10.5034C17.8539 10.9263 18 11.4548 18 12C18 12.5452 17.8539 13.0737 17.5862 13.4966L13 21'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+}
+
 // Ionicons
 //
 // The MIT License (MIT)
@@ -75,9 +129,28 @@ export function Document({ color = 'currentColor', size = 15, ...props }: IconPr
   );
 }
 
-// Phosphor Icons
+// Lucide Icons
+// ISC License
 //
-// Copyright (c) 2023 Phosphor Icons
+// Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2026 as part of Feather (MIT). All other copyright (c) for Lucide are held by Lucide Contributors 2026.
+//
+// Permission to use, copy, modify, and/or distribute this software for any
+// purpose with or without fee is hereby granted, provided that the above
+// copyright notice and this permission notice appear in all copies.
+//
+// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+// WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+// MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+// ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+// WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+// OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+//
+// ---
+//
+// The MIT License (MIT) (for portions derived from Feather)
+//
+// Copyright (c) 2013-2026 Cole Bemis
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -96,21 +169,133 @@ export function Document({ color = 'currentColor', size = 15, ...props }: IconPr
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-
-export function BezierCurve({ color = 'currentColor', size = 15, ...props }: IconProps) {
+export function Bold({ color = 'currentColor', size = 15, ...props }: IconProps) {
   return (
     <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       width={size}
       height={size}
-      fill={color}
-      stroke='none'
-      viewBox='0 0 256 256'
+      viewBox='0 0 24 24'
+      fill='none'
       xmlns='http://www.w3.org/2000/svg'
       role='graphics-symbol img'
       aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
       {...props}
     >
-      <path d='M221.07,144.41A96.68,96.68,0,0,0,181,88h59a8,8,0,0,0,0-16H159a32,32,0,0,0-62,0H16a8,8,0,0,0,0,16H75a96.68,96.68,0,0,0-40.07,56.41A32,32,0,1,0,51.08,146,80.6,80.6,0,0,1,99,93.44a32,32,0,0,0,58.06,0A80.6,80.6,0,0,1,204.92,146a32,32,0,1,0,16.15-1.57ZM56,176a16,16,0,1,1-16-16A16,16,0,0,1,56,176Zm72-80a16,16,0,1,1,16-16A16,16,0,0,1,128,96Zm88,96a16,16,0,1,1,16-16A16,16,0,0,1,216,192Z' />
+      <path d='M6 12H15C16.0609 12 17.0783 12.4214 17.8284 13.1716C18.5786 13.9217 19 14.9391 19 16C19 17.0609 18.5786 18.0783 17.8284 18.8284C17.0783 19.5786 16.0609 20 15 20H7C6.73478 20 6.48043 19.8946 6.29289 19.7071C6.10536 19.5196 6 19.2652 6 19V5C6 4.73478 6.10536 4.48043 6.29289 4.29289C6.48043 4.10536 6.73478 4 7 4H14C15.0609 4 16.0783 4.42143 16.8284 5.17157C17.5786 5.92172 18 6.93913 18 8C18 9.06087 17.5786 10.0783 16.8284 10.8284C16.0783 11.5786 15.0609 12 14 12' />
+    </svg>
+  );
+}
+
+export function BookOpen({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M12 7V21M12 7C12 5.93913 11.5786 4.92172 10.8284 4.17157C10.0783 3.42143 9.06087 3 8 3H3C2.73478 3 2.48043 3.10536 2.29289 3.29289C2.10536 3.48043 2 3.73478 2 4V17C2 17.2652 2.10536 17.5196 2.29289 17.7071C2.48043 17.8946 2.73478 18 3 18H9C9.79565 18 10.5587 18.3161 11.1213 18.8787C11.6839 19.4413 12 20.2044 12 21M12 7C12 5.93913 12.4214 4.92172 13.1716 4.17157C13.9217 3.42143 14.9391 3 16 3H21C21.2652 3 21.5196 3.10536 21.7071 3.29289C21.8946 3.48043 22 3.73478 22 4V17C22 17.2652 21.8946 17.5196 21.7071 17.7071C21.5196 17.8946 21.2652 18 21 18H15C14.2044 18 13.4413 18.3161 12.8787 18.8787C12.3161 19.4413 12 20.2044 12 21' />
+    </svg>
+  );
+}
+
+export function Cog({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M11 10.27L7 3.34M11 13.73L7 20.66M12 22V20M12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4M12 20C7.58172 20 4 16.4183 4 12M12 2V4M12 4C7.58172 4 4 7.58172 4 12M14 12H22M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12ZM17 20.66L16 18.93M17 3.34L16 5.07M2 12H4M20.66 17L18.93 16M20.66 7L18.93 8M3.34 17L5.07 16M3.34 7L5.07 8' />
+    </svg>
+  );
+}
+
+export function Contrast({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z' />
+      <path d='M12 18C13.5913 18 15.1174 17.3679 16.2426 16.2426C17.3679 15.1174 18 13.5913 18 12C18 10.4087 17.3679 8.88258 16.2426 7.75736C15.1174 6.63214 13.5913 6 12 6V18Z' />
+    </svg>
+  );
+}
+
+export function DraftingCompass({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      fill='none'
+      strokeWidth='2'
+      viewBox='0 0 24 24'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      height={size}
+      width={size}
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='m12.99 6.74 1.93 3.44'></path>
+      <path d='M19.136 12a10 10 0 0 1-14.271 0'></path>
+      <path d='m21 21-2.16-3.84'></path>
+      <path d='m3 21 8.02-14.26'></path>
+      <circle cx='12' cy='5' r='2'></circle>
+    </svg>
+  );
+}
+
+export function FolderImport({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M2 9V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H7.9C8.23449 2.99672 8.56445 3.07739 8.8597 3.23462C9.15495 3.39185 9.40604 3.62062 9.59 3.9L10.4 5.1C10.5821 5.37653 10.83 5.60352 11.1215 5.7606C11.413 5.91769 11.7389 5.99995 12.07 6H20C20.5304 6 21.0391 6.21071 21.4142 6.58579C21.7893 6.96086 22 7.46957 22 8V18C22 18.5304 21.7893 19.0391 21.4142 19.4142C21.0391 19.7893 20.5304 20 20 20H4C3.46957 20 2.96086 19.7893 2.58579 19.4142C2.21071 19.0391 2 18.5304 2 18V17M2 13H12M12 13L9 16M12 13L9 10' />
     </svg>
   );
 }
@@ -118,17 +303,288 @@ export function BezierCurve({ color = 'currentColor', size = 15, ...props }: Ico
 export function Hash({ color = 'currentColor', size = 15, ...props }: IconProps) {
   return (
     <svg
-      width={size}
+      stroke={color}
+      fill='none'
+      strokeWidth='2'
+      viewBox='0 0 24 24'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       height={size}
-      fill={color}
-      stroke='none'
-      viewBox='0 0 256 256'
+      width={size}
       xmlns='http://www.w3.org/2000/svg'
       role='graphics-symbol img'
       aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
       {...props}
     >
-      <path d='M224,88H175.4l8.47-46.57a8,8,0,0,0-15.74-2.86l-9,49.43H111.4l8.47-46.57a8,8,0,0,0-15.74-2.86L95.14,88H48a8,8,0,0,0,0,16H92.23L83.5,152H32a8,8,0,0,0,0,16H80.6l-8.47,46.57a8,8,0,0,0,6.44,9.3A7.79,7.79,0,0,0,80,224a8,8,0,0,0,7.86-6.57l9-49.43H144.6l-8.47,46.57a8,8,0,0,0,6.44,9.3A7.79,7.79,0,0,0,144,224a8,8,0,0,0,7.86-6.57l9-49.43H208a8,8,0,0,0,0-16H163.77l8.73-48H224a8,8,0,0,0,0-16Zm-76.5,64H99.77l8.73-48h47.73Z' />
+      <line x1='4' x2='20' y1='9' y2='9'></line>
+      <line x1='4' x2='20' y1='15' y2='15'></line>
+      <line x1='10' x2='8' y1='3' y2='21'></line>
+      <line x1='16' x2='14' y1='3' y2='21'></line>
+    </svg>
+  );
+}
+
+export function Link({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M10 13C10.4295 13.5741 10.9774 14.0492 11.6066 14.3929C12.2357 14.7367 12.9315 14.9411 13.6467 14.9923C14.3618 15.0436 15.0796 14.9404 15.7513 14.6898C16.4231 14.4392 17.0331 14.0471 17.54 13.54L20.54 10.54C21.4508 9.59699 21.9548 8.33398 21.9434 7.023C21.932 5.71201 21.4061 4.45795 20.4791 3.53091C19.5521 2.60387 18.298 2.07803 16.987 2.06663C15.676 2.05524 14.413 2.55921 13.47 3.47L11.75 5.18M14 11C13.5705 10.4259 13.0226 9.95082 12.3935 9.60706C11.7643 9.26331 11.0685 9.05889 10.3534 9.00767C9.63821 8.95645 8.92041 9.05964 8.24866 9.31022C7.5769 9.56081 6.96689 9.95293 6.46 10.46L3.46 13.46C2.54921 14.403 2.04524 15.666 2.05663 16.977C2.06802 18.288 2.59387 19.5421 3.52091 20.4691C4.44795 21.3961 5.70201 21.922 7.013 21.9334C8.32398 21.9448 9.58699 21.4408 10.53 20.53L12.24 18.82' />
+    </svg>
+  );
+}
+
+export function Network({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M5 16V13C5 12.7348 5.10536 12.4804 5.29289 12.2929C5.48043 12.1054 5.73478 12 6 12H18C18.2652 12 18.5196 12.1054 18.7071 12.2929C18.8946 12.4804 19 12.7348 19 13V16M12 12V8M17 16H21C21.5523 16 22 16.4477 22 17V21C22 21.5523 21.5523 22 21 22H17C16.4477 22 16 21.5523 16 21V17C16 16.4477 16.4477 16 17 16ZM3 16H7C7.55228 16 8 16.4477 8 17V21C8 21.5523 7.55228 22 7 22H3C2.44772 22 2 21.5523 2 21V17C2 16.4477 2.44772 16 3 16ZM10 2H14C14.5523 2 15 2.44772 15 3V7C15 7.55228 14.5523 8 14 8H10C9.44772 8 9 7.55228 9 7V3C9 2.44772 9.44772 2 10 2Z' />
+    </svg>
+  );
+}
+
+export function Pilcrow({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      fill='none'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      height={size}
+      width={size}
+      viewBox='0 0 24 24'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M13 4v16'></path>
+      <path d='M17 4v16'></path>
+      <path d='M19 4H9.5a4.5 4.5 0 0 0 0 9H13'></path>
+    </svg>
+  );
+}
+
+export function Rainbow({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M22 17C22 14.3478 20.9464 11.8043 19.0711 9.92893C17.1957 8.05357 14.6522 7 12 7C9.34784 7 6.8043 8.05357 4.92893 9.92893C3.05357 11.8043 2 14.3478 2 17M6 17C6 15.4087 6.63214 13.8826 7.75736 12.7574C8.88258 11.6321 10.4087 11 12 11C13.5913 11 15.1174 11.6321 16.2426 12.7574C17.3679 13.8826 18 15.4087 18 17M10 17C10 16.4696 10.2107 15.9609 10.5858 15.5858C10.9609 15.2107 11.4696 15 12 15C12.5304 15 13.0391 15.2107 13.4142 15.5858C13.7893 15.9609 14 16.4696 14 17' />
+    </svg>
+  );
+}
+
+export function SearchAlert({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M21 21L16.7 16.7M11 7V11M11 15H11.01M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z' />
+    </svg>
+  );
+}
+
+export function SquareDashedTopSolid({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      stroke={color}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path
+        d='M14 21H15M21 14V15M21 19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21M21 9V10M3 14V15M3 5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5M3 9V10M5 21C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19M9 21H10'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+}
+
+export function Spline({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path
+        d='M17 5C17 6.10457 17.8954 7 19 7C20.1046 7 21 6.10457 21 5C21 3.89543 20.1046 3 19 3C17.8954 3 17 3.89543 17 5ZM17 5C13.8174 5 10.7652 6.26428 8.51472 8.51472C6.26428 10.7652 5 13.8174 5 17M5 17C3.89543 17 3 17.8954 3 19C3 20.1046 3.89543 21 5 21C6.10457 21 7 20.1046 7 19C7 17.8954 6.10457 17 5 17Z'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+}
+
+export function SwatchBook({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path
+        d='M7 21C8.06087 21 9.07828 20.5786 9.82843 19.8284C10.5786 19.0783 11 18.0609 11 17V5C11 4.46957 10.7893 3.96086 10.4142 3.58579C10.0391 3.21071 9.53043 3 9 3H5C4.46957 3 3.96086 3.21071 3.58579 3.58579C3.21071 3.96086 3 4.46957 3 5V17C3 18.0609 3.42143 19.0783 4.17157 19.8284C4.92172 20.5786 5.93913 21 7 21ZM7 21H19C19.5304 21 20.0391 20.7893 20.4142 20.4142C20.7893 20.0391 21 19.5304 21 19V15C21 14.4696 20.7893 13.9609 20.4142 13.5858C20.0391 13.2107 19.5304 13 19 13H16.7M7 17H7.01M11 8L13.3 5.7C13.5233 5.47592 13.7887 5.29819 14.0809 5.17705C14.3732 5.0559 14.6865 4.99373 15.0028 4.9941C15.3192 4.99447 15.6323 5.05738 15.9243 5.17921C16.2162 5.30104 16.4812 5.47939 16.704 5.704L18.6 7.6C18.8306 7.82181 19.0145 8.08749 19.1409 8.38141C19.2674 8.67534 19.3337 8.99157 19.3362 9.31152C19.3386 9.63147 19.277 9.94868 19.155 10.2445C19.0331 10.5403 18.8532 10.8087 18.626 11.034L9.9 19.8'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+}
+
+export function Timer({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M10 2H14M12 14L15 11M20 14C20 18.4183 16.4183 22 12 22C7.58172 22 4 18.4183 4 14C4 9.58172 7.58172 6 12 6C16.4183 6 20 9.58172 20 14Z' />
+    </svg>
+  );
+}
+
+export function ToggleRight({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path d='M15 15C16.6569 15 18 13.6569 18 12C18 10.3431 16.6569 9 15 9C13.3431 9 12 10.3431 12 12C12 13.6569 13.3431 15 15 15Z' />
+      <path d='M15 5H9C5.13401 5 2 8.13401 2 12C2 15.866 5.13401 19 9 19H15C18.866 19 22 15.866 22 12C22 8.13401 18.866 5 15 5Z' />
+    </svg>
+  );
+}
+
+export function Type({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      fill='none'
+      strokeWidth='2'
+      viewBox='0 0 24 24'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      height={size}
+      width={size}
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <polyline points='4 7 4 4 20 4 20 7'></polyline>
+      <line x1='9' x2='15' y1='20' y2='20'></line>
+      <line x1='12' x2='12' y1='4' y2='20'></line>
+    </svg>
+  );
+}
+
+export function VectorSquare({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      stroke={color}
+      width={size}
+      height={size}
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path
+        d='M19.5 7C20.2021 10.2964 20.2021 13.7036 19.5 17M4.5 7C3.79785 10.2964 3.79785 13.7036 4.5 17M7 19.5C10.2964 20.2021 13.7036 20.2021 17 19.5M7 4.5C10.2964 3.79785 13.7036 3.79785 17 4.5M18 17H21C21.5523 17 22 17.4477 22 18V21C22 21.5523 21.5523 22 21 22H18C17.4477 22 17 21.5523 17 21V18C17 17.4477 17.4477 17 18 17ZM18 2H21C21.5523 2 22 2.44772 22 3V6C22 6.55228 21.5523 7 21 7H18C17.4477 7 17 6.55228 17 6V3C17 2.44772 17.4477 2 18 2ZM3 17H6C6.55228 17 7 17.4477 7 18V21C7 21.5523 6.55228 22 6 22H3C2.44772 22 2 21.5523 2 21V18C2 17.4477 2.44772 17 3 17ZM3 2H6C6.55228 2 7 2.44772 7 3V6C7 6.55228 6.55228 7 6 7H3C2.44772 7 2 6.55228 2 6V3C2 2.44772 2.44772 2 3 2Z'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
     </svg>
   );
 }
@@ -156,53 +612,6 @@ export function Hash({ color = 'currentColor', size = 15, ...props }: IconProps)
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-
-export function BorderAll({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path
-        d='M0.25 1C0.25 0.585786 0.585786 0.25 1 0.25H14C14.4142 0.25 14.75 0.585786 14.75 1V14C14.75 14.4142 14.4142 14.75 14 14.75H1C0.585786 14.75 0.25 14.4142 0.25 14V1ZM1.75 1.75V13.25H13.25V1.75H1.75Z'
-        fillRule='evenodd'
-        clipRule='evenodd'
-      />
-      <rect x='7' y='5' width='1' height='1' rx='.5' />
-      <rect x='7' y='3' width='1' height='1' rx='.5' />
-      <rect x='7' y='7' width='1' height='1' rx='.5' />
-      <rect x='5' y='7' width='1' height='1' rx='.5' />
-      <rect x='3' y='7' width='1' height='1' rx='.5' />
-      <rect x='9' y='7' width='1' height='1' rx='.5' />
-      <rect x='11' y='7' width='1' height='1' rx='.5' />
-      <rect x='7' y='9' width='1' height='1' rx='.5' />
-      <rect x='7' y='11' width='1' height='1' rx='.5' />
-    </svg>
-  );
-}
-
-export function BorderWidth({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path d='M1 3H14V4H1V3ZM1 6H14V8H1V6ZM14 10.25H1V12.75H14V10.25Z' fillRule='evenodd' clipRule='evenodd' />
-    </svg>
-  );
-}
 
 export function CaretSort({ color = 'currentColor', size = 15, ...props }: IconProps) {
   return (
@@ -282,27 +691,6 @@ export function ChevronUp({ color = 'currentColor', size = 15, ...props }: IconP
       <path
         d='M3.13523 8.84197C3.3241 9.04343 3.64052 9.05363 3.84197 8.86477L7.5 5.43536L11.158 8.86477C11.3595 9.05363 11.6759 9.04343 11.8648 8.84197C12.0536 8.64051 12.0434 8.32409 11.842 8.13523L7.84197 4.38523C7.64964 4.20492 7.35036 4.20492 7.15803 4.38523L3.15803 8.13523C2.95657 8.32409 2.94637 8.64051 3.13523 8.84197Z'
         fill={color}
-        fillRule='evenodd'
-        clipRule='evenodd'
-      />
-    </svg>
-  );
-}
-
-export function Clock({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path
-        d='M7.50009 0.877014C3.84241 0.877014 0.877258 3.84216 0.877258 7.49984C0.877258 11.1575 3.8424 14.1227 7.50009 14.1227C11.1578 14.1227 14.1229 11.1575 14.1229 7.49984C14.1229 3.84216 11.1577 0.877014 7.50009 0.877014ZM1.82726 7.49984C1.82726 4.36683 4.36708 1.82701 7.50009 1.82701C10.6331 1.82701 13.1729 4.36683 13.1729 7.49984C13.1729 10.6328 10.6331 13.1727 7.50009 13.1727C4.36708 13.1727 1.82726 10.6328 1.82726 7.49984ZM8 4.50001C8 4.22387 7.77614 4.00001 7.5 4.00001C7.22386 4.00001 7 4.22387 7 4.50001V7.50001C7 7.63262 7.05268 7.7598 7.14645 7.85357L9.14645 9.85357C9.34171 10.0488 9.65829 10.0488 9.85355 9.85357C10.0488 9.65831 10.0488 9.34172 9.85355 9.14646L8 7.29291V4.50001Z'
         fillRule='evenodd'
         clipRule='evenodd'
       />
@@ -457,23 +845,6 @@ export function ExternalLink({ color = 'currentColor', size = 15, ...props }: Ic
   );
 }
 
-export function FontBold({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path d='M5.10505 12C4.70805 12 4.4236 11.912 4.25171 11.736C4.0839 11.5559 4 11.2715 4 10.8827V4.11733C4 3.72033 4.08595 3.43588 4.25784 3.26398C4.43383 3.08799 4.71623 3 5.10505 3C6.42741 3 8.25591 3 9.02852 3C10.1373 3 11.0539 3.98153 11.0539 5.1846C11.0539 6.08501 10.6037 6.81855 9.70327 7.23602C10.8657 7.44851 11.5176 8.62787 11.5176 9.48128C11.5176 10.5125 10.9902 12 9.27734 12C8.77742 12 6.42626 12 5.10505 12ZM8.37891 8.00341H5.8V10.631H8.37891C8.9 10.631 9.6296 10.1211 9.6296 9.29877C9.6296 8.47643 8.9 8.00341 8.37891 8.00341ZM5.8 4.36903V6.69577H8.17969C8.53906 6.69577 9.27734 6.35939 9.27734 5.50002C9.27734 4.64064 8.48047 4.36903 8.17969 4.36903H5.8Z' />
-    </svg>
-  );
-}
-
 export function FontFamily({ color = 'currentColor', size = 15, ...props }: IconProps) {
   return (
     <svg
@@ -598,27 +969,6 @@ export function LightningBolt({ color = 'currentColor', size = 15, ...props }: I
   );
 }
 
-export function Link2({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path
-        d='M8.51194 3.00541C9.18829 2.54594 10.0435 2.53694 10.6788 2.95419C10.8231 3.04893 10.9771 3.1993 11.389 3.61119C11.8009 4.02307 11.9513 4.17714 12.046 4.32141C12.4633 4.95675 12.4543 5.81192 11.9948 6.48827C11.8899 6.64264 11.7276 6.80811 11.3006 7.23511L10.6819 7.85383C10.4867 8.04909 10.4867 8.36567 10.6819 8.56093C10.8772 8.7562 11.1938 8.7562 11.389 8.56093L12.0077 7.94221L12.0507 7.89929C12.4203 7.52976 12.6568 7.2933 12.822 7.0502C13.4972 6.05623 13.5321 4.76252 12.8819 3.77248C12.7233 3.53102 12.4922 3.30001 12.1408 2.94871L12.0961 2.90408L12.0515 2.85942C11.7002 2.508 11.4692 2.27689 11.2277 2.11832C10.2377 1.46813 8.94398 1.50299 7.95001 2.17822C7.70691 2.34336 7.47044 2.57991 7.1009 2.94955L7.058 2.99247L6.43928 3.61119C6.24401 3.80645 6.24401 4.12303 6.43928 4.31829C6.63454 4.51355 6.95112 4.51355 7.14638 4.31829L7.7651 3.69957C8.1921 3.27257 8.35757 3.11027 8.51194 3.00541ZM4.31796 7.14672C4.51322 6.95146 4.51322 6.63487 4.31796 6.43961C4.12269 6.24435 3.80611 6.24435 3.61085 6.43961L2.99213 7.05833L2.94922 7.10124C2.57957 7.47077 2.34303 7.70724 2.17788 7.95035C1.50265 8.94432 1.4678 10.238 2.11799 11.2281C2.27656 11.4695 2.50766 11.7005 2.8591 12.0518L2.90374 12.0965L2.94837 12.1411C3.29967 12.4925 3.53068 12.7237 3.77214 12.8822C4.76219 13.5324 6.05589 13.4976 7.04986 12.8223C7.29296 12.6572 7.52943 12.4206 7.89896 12.051L7.89897 12.051L7.94188 12.0081L8.5606 11.3894C8.75586 11.1941 8.75586 10.8775 8.5606 10.6823C8.36533 10.487 8.04875 10.487 7.85349 10.6823L7.23477 11.301C6.80777 11.728 6.6423 11.8903 6.48794 11.9951C5.81158 12.4546 4.95642 12.4636 4.32107 12.0464C4.17681 11.9516 4.02274 11.8012 3.61085 11.3894C3.19896 10.9775 3.0486 10.8234 2.95385 10.6791C2.53661 10.0438 2.54561 9.18863 3.00507 8.51227C3.10993 8.35791 3.27224 8.19244 3.69924 7.76544L4.31796 7.14672ZM9.62172 6.08558C9.81698 5.89032 9.81698 5.57373 9.62172 5.37847C9.42646 5.18321 9.10988 5.18321 8.91461 5.37847L5.37908 8.91401C5.18382 9.10927 5.18382 9.42585 5.37908 9.62111C5.57434 9.81637 5.89092 9.81637 6.08619 9.62111L9.62172 6.08558Z'
-        fillRule='evenodd'
-        clipRule='evenodd'
-      />
-    </svg>
-  );
-}
-
 export function MagnifyingGlass({ color = 'currentColor', size = 15, ...props }: IconProps) {
   return (
     <svg
@@ -656,146 +1006,6 @@ export function Moon({ color = 'currentColor', size = 15, ...props }: IconProps)
         fillRule='evenodd'
         clipRule='evenodd'
         d='M2.89998 0.499976C2.89998 0.279062 2.72089 0.0999756 2.49998 0.0999756C2.27906 0.0999756 2.09998 0.279062 2.09998 0.499976V1.09998H1.49998C1.27906 1.09998 1.09998 1.27906 1.09998 1.49998C1.09998 1.72089 1.27906 1.89998 1.49998 1.89998H2.09998V2.49998C2.09998 2.72089 2.27906 2.89998 2.49998 2.89998C2.72089 2.89998 2.89998 2.72089 2.89998 2.49998V1.89998H3.49998C3.72089 1.89998 3.89998 1.72089 3.89998 1.49998C3.89998 1.27906 3.72089 1.09998 3.49998 1.09998H2.89998V0.499976ZM5.89998 3.49998C5.89998 3.27906 5.72089 3.09998 5.49998 3.09998C5.27906 3.09998 5.09998 3.27906 5.09998 3.49998V4.09998H4.49998C4.27906 4.09998 4.09998 4.27906 4.09998 4.49998C4.09998 4.72089 4.27906 4.89998 4.49998 4.89998H5.09998V5.49998C5.09998 5.72089 5.27906 5.89998 5.49998 5.89998C5.72089 5.89998 5.89998 5.72089 5.89998 5.49998V4.89998H6.49998C6.72089 4.89998 6.89998 4.72089 6.89998 4.49998C6.89998 4.27906 6.72089 4.09998 6.49998 4.09998H5.89998V3.49998ZM1.89998 6.49998C1.89998 6.27906 1.72089 6.09998 1.49998 6.09998C1.27906 6.09998 1.09998 6.27906 1.09998 6.49998V7.09998H0.499976C0.279062 7.09998 0.0999756 7.27906 0.0999756 7.49998C0.0999756 7.72089 0.279062 7.89998 0.499976 7.89998H1.09998V8.49998C1.09998 8.72089 1.27906 8.89997 1.49998 8.89997C1.72089 8.89997 1.89998 8.72089 1.89998 8.49998V7.89998H2.49998C2.72089 7.89998 2.89998 7.72089 2.89998 7.49998C2.89998 7.27906 2.72089 7.09998 2.49998 7.09998H1.89998V6.49998ZM8.54406 0.98184L8.24618 0.941586C8.03275 0.917676 7.90692 1.1655 8.02936 1.34194C8.17013 1.54479 8.29981 1.75592 8.41754 1.97445C8.91878 2.90485 9.20322 3.96932 9.20322 5.10022C9.20322 8.37201 6.82247 11.0878 3.69887 11.6097C3.45736 11.65 3.20988 11.6772 2.96008 11.6906C2.74563 11.702 2.62729 11.9535 2.77721 12.1072C2.84551 12.1773 2.91535 12.2458 2.98667 12.3128L3.05883 12.3795L3.31883 12.6045L3.50684 12.7532L3.62796 12.8433L3.81491 12.9742L3.99079 13.089C4.11175 13.1651 4.23536 13.2375 4.36157 13.3059L4.62496 13.4412L4.88553 13.5607L5.18837 13.6828L5.43169 13.7686C5.56564 13.8128 5.70149 13.8529 5.83857 13.8885C5.94262 13.9155 6.04767 13.9401 6.15405 13.9622C6.27993 13.9883 6.40713 14.0109 6.53544 14.0298L6.85241 14.0685L7.11934 14.0892C7.24637 14.0965 7.37436 14.1002 7.50322 14.1002C11.1483 14.1002 14.1032 11.1453 14.1032 7.50023C14.1032 7.25044 14.0893 7.00389 14.0623 6.76131L14.0255 6.48407C13.991 6.26083 13.9453 6.04129 13.8891 5.82642C13.8213 5.56709 13.7382 5.31398 13.6409 5.06881L13.5279 4.80132L13.4507 4.63542L13.3766 4.48666C13.2178 4.17773 13.0353 3.88295 12.8312 3.60423L12.6782 3.40352L12.4793 3.16432L12.3157 2.98361L12.1961 2.85951L12.0355 2.70246L11.8134 2.50184L11.4925 2.24191L11.2483 2.06498L10.9562 1.87446L10.6346 1.68894L10.3073 1.52378L10.1938 1.47176L9.95488 1.3706L9.67791 1.2669L9.42566 1.1846L9.10075 1.09489L8.83599 1.03486L8.54406 0.98184ZM10.4032 5.30023C10.4032 4.27588 10.2002 3.29829 9.83244 2.40604C11.7623 3.28995 13.1032 5.23862 13.1032 7.50023C13.1032 10.593 10.596 13.1002 7.50322 13.1002C6.63646 13.1002 5.81597 12.9036 5.08355 12.5522C6.5419 12.0941 7.81081 11.2082 8.74322 10.0416C8.87963 10.2284 9.10028 10.3497 9.34928 10.3497C9.76349 10.3497 10.0993 10.0139 10.0993 9.59971C10.0993 9.24256 9.84965 8.94373 9.51535 8.86816C9.57741 8.75165 9.63653 8.63334 9.6926 8.51332C9.88358 8.63163 10.1088 8.69993 10.35 8.69993C11.0403 8.69993 11.6 8.14028 11.6 7.44993C11.6 6.75976 11.0406 6.20024 10.3505 6.19993C10.3853 5.90487 10.4032 5.60464 10.4032 5.30023Z'
-      />
-    </svg>
-  );
-}
-
-export function Pilcrow({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path
-        d='M3 5.5C3 7.983 4.99169 9 7 9V12.5C7 12.7761 7.22386 13 7.5 13C7.77614 13 8 12.7761 8 12.5V9V3.1H9V12.5C9 12.7761 9.22386 13 9.5 13C9.77614 13 10 12.7761 10 12.5V3.1H11.5C11.8038 3.1 12.05 2.85376 12.05 2.55C12.05 2.24624 11.8038 2 11.5 2H9.5H8H7.5H7C4.99169 2 3 3.017 3 5.5Z'
-        fillRule='evenodd'
-        clipRule='evenodd'
-      />
-    </svg>
-  );
-}
-
-export function Shadow({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      fillRule='evenodd'
-      clipRule='evenodd'
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path
-        opacity='.05'
-        d='M6.78296 13.376C8.73904 9.95284 8.73904 5.04719 6.78296 1.62405L7.21708 1.37598C9.261 4.95283 9.261 10.0472 7.21708 13.624L6.78296 13.376Z'
-      />
-      <path
-        opacity='.1'
-        d='M7.28204 13.4775C9.23929 9.99523 9.23929 5.00475 7.28204 1.52248L7.71791 1.2775C9.76067 4.9119 9.76067 10.0881 7.71791 13.7225L7.28204 13.4775Z'
-      />
-      <path
-        opacity='.15'
-        d='M7.82098 13.5064C9.72502 9.99523 9.72636 5.01411 7.82492 1.50084L8.26465 1.26285C10.2465 4.92466 10.2451 10.085 8.26052 13.7448L7.82098 13.5064Z'
-      />
-      <path
-        opacity='.2'
-        d='M8.41284 13.429C10.1952 9.92842 10.1957 5.07537 8.41435 1.57402L8.85999 1.34729C10.7139 4.99113 10.7133 10.0128 8.85841 13.6559L8.41284 13.429Z'
-      />
-      <path
-        opacity='.25'
-        d='M9.02441 13.2956C10.6567 9.8379 10.6586 5.17715 9.03005 1.71656L9.48245 1.50366C11.1745 5.09919 11.1726 9.91629 9.47657 13.5091L9.02441 13.2956Z'
-      />
-      <path
-        opacity='.3'
-        d='M9.66809 13.0655C11.1097 9.69572 11.1107 5.3121 9.67088 1.94095L10.1307 1.74457C11.6241 5.24121 11.6231 9.76683 10.1278 13.2622L9.66809 13.0655Z'
-      />
-      <path
-        opacity='.35'
-        d='M10.331 12.7456C11.5551 9.52073 11.5564 5.49103 10.3347 2.26444L10.8024 2.0874C12.0672 5.42815 12.0659 9.58394 10.7985 12.9231L10.331 12.7456Z'
-      />
-      <path
-        opacity='.4'
-        d='M11.0155 12.2986C11.9938 9.29744 11.9948 5.71296 11.0184 2.71067L11.4939 2.55603C12.503 5.6589 12.502 9.35178 11.4909 12.4535L11.0155 12.2986Z'
-      />
-      <path
-        opacity='.45'
-        d='M11.7214 11.668C12.4254 9.01303 12.4262 5.99691 11.7237 3.34116L12.2071 3.21329C12.9318 5.95292 12.931 9.05728 12.2047 11.7961L11.7214 11.668Z'
-      />
-      <path
-        opacity='.5'
-        d='M12.4432 10.752C12.8524 8.63762 12.8523 6.36089 12.4429 4.2466L12.9338 4.15155C13.3553 6.32861 13.3554 8.66985 12.9341 10.847L12.4432 10.752Z'
-      />
-      <path d='M0.877075 7.49988C0.877075 3.84219 3.84222 0.877045 7.49991 0.877045C11.1576 0.877045 14.1227 3.84219 14.1227 7.49988C14.1227 11.1575 11.1576 14.1227 7.49991 14.1227C3.84222 14.1227 0.877075 11.1575 0.877075 7.49988ZM7.49991 1.82704C4.36689 1.82704 1.82708 4.36686 1.82708 7.49988C1.82708 10.6329 4.36689 13.1727 7.49991 13.1727C10.6329 13.1727 13.1727 10.6329 13.1727 7.49988C13.1727 4.36686 10.6329 1.82704 7.49991 1.82704Z' />
-    </svg>
-  );
-}
-
-export function ShadowOuter({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      fillRule='evenodd'
-      clipRule='evenodd'
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path
-        opacity='.05'
-        d='M12.1398 3.88617C13.8553 4.94159 15 6.83701 15 9.00001C15 12.3137 12.3137 15 9.00002 15C6.84351 15 4.95296 13.8621 3.89569 12.1552L4.32076 11.8919C5.29069 13.4578 7.02376 14.5 9.00002 14.5C12.0376 14.5 14.5 12.0375 14.5 9.00001C14.5 7.01781 13.4516 5.28027 11.8778 4.31203L12.1398 3.88617Z'
-      />
-      <path
-        opacity='.2'
-        d='M12.851 5.07321C13.8684 6.07106 14.5 7.46199 14.5 9C14.5 12.0375 12.0376 14.5 9.00004 14.5C7.46215 14.5 6.07132 13.8685 5.07349 12.8513L5.43043 12.5011C6.3381 13.4264 7.60186 14 9.00004 14C11.7614 14 14 11.7614 14 9C14 7.60171 13.4264 6.33786 12.5009 5.43017L12.851 5.07321Z'
-      />
-      <path
-        opacity='.35'
-        d='M13.3022 6.45071C13.7455 7.19737 14 8.06935 14 9.00001C14 11.7614 11.7614 14 9.00002 14C8.04868 14 7.15868 13.7341 6.40118 13.2724L6.66142 12.8454C7.34275 13.2607 8.14306 13.5 9.00002 13.5C11.4853 13.5 13.5 11.4853 13.5 9.00001C13.5 8.16165 13.271 7.37754 12.8722 6.70599L13.3022 6.45071Z'
-      />
-      <path
-        opacity='.5'
-        d='M13.3745 7.94022C13.4566 8.28031 13.5 8.63525 13.5 9.00001C13.5 11.4853 11.4853 13.5 9.00003 13.5C8.61104 13.5 8.23323 13.4506 7.87268 13.3576L7.99759 12.8734C8.31768 12.956 8.65353 13 9.00003 13C11.2091 13 13 11.2091 13 9.00001C13 8.67509 12.9613 8.35953 12.8884 8.05757L13.3745 7.94022Z'
-      />
-      <path
-        opacity='.65'
-        d='M12.9155 9.82133C12.5898 11.3813 11.3562 12.6072 9.79205 12.9215L9.69354 12.4313C11.0613 12.1565 12.1413 11.0834 12.4261 9.71915L12.9155 9.82133Z'
-      />
-      <path d='M1.2771 7.50253C1.2771 4.06456 4.06413 1.27753 7.5021 1.27753C10.94 1.27753 13.7271 4.06456 13.7271 7.50253C13.7271 10.9405 10.94 13.7275 7.5021 13.7275C4.06413 13.7275 1.2771 10.9405 1.2771 7.50253ZM7.5021 2.22753C4.5888 2.22753 2.2271 4.58923 2.2271 7.50253C2.2271 10.4158 4.5888 12.7775 7.5021 12.7775C10.4154 12.7775 12.7771 10.4158 12.7771 7.50253C12.7771 4.58923 10.4154 2.22753 7.5021 2.22753Z' />
-    </svg>
-  );
-}
-
-export function Size({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path
-        d='M11.5 3.04999C11.7485 3.04999 11.95 3.25146 11.95 3.49999V7.49999C11.95 7.74852 11.7485 7.94999 11.5 7.94999C11.2515 7.94999 11.05 7.74852 11.05 7.49999V4.58639L4.58638 11.05H7.49999C7.74852 11.05 7.94999 11.2515 7.94999 11.5C7.94999 11.7485 7.74852 11.95 7.49999 11.95L3.49999 11.95C3.38064 11.95 3.26618 11.9026 3.18179 11.8182C3.0974 11.7338 3.04999 11.6193 3.04999 11.5L3.04999 7.49999C3.04999 7.25146 3.25146 7.04999 3.49999 7.04999C3.74852 7.04999 3.94999 7.25146 3.94999 7.49999L3.94999 10.4136L10.4136 3.94999L7.49999 3.94999C7.25146 3.94999 7.04999 3.74852 7.04999 3.49999C7.04999 3.25146 7.25146 3.04999 7.49999 3.04999L11.5 3.04999Z'
-        fillRule='evenodd'
-        clipRule='evenodd'
       />
     </svg>
   );
@@ -843,46 +1053,6 @@ export function Sun({ color = 'currentColor', size = 15, ...props }: IconProps) 
   );
 }
 
-export function Switch({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path
-        fillRule='evenodd'
-        clipRule='evenodd'
-        d='M10.5 4C8.567 4 7 5.567 7 7.5C7 9.433 8.567 11 10.5 11C12.433 11 14 9.433 14 7.5C14 5.567 12.433 4 10.5 4ZM7.67133 11C6.65183 10.175 6 8.91363 6 7.5C6 6.08637 6.65183 4.82498 7.67133 4H4.5C2.567 4 1 5.567 1 7.5C1 9.433 2.567 11 4.5 11H7.67133ZM0 7.5C0 5.01472 2.01472 3 4.5 3H10.5C12.9853 3 15 5.01472 15 7.5C15 9.98528 12.9853 12 10.5 12H4.5C2.01472 12 0 9.98528 0 7.5Z'
-      />
-    </svg>
-  );
-}
-
-export function Text({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox='0 0 15 15'
-      fill={color}
-      fillRule='evenodd'
-      clipRule='evenodd'
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path d='M3.94993 2.95002L3.94993 4.49998C3.94993 4.74851 3.74845 4.94998 3.49993 4.94998C3.2514 4.94998 3.04993 4.74851 3.04993 4.49998V2.50004C3.04993 2.45246 3.05731 2.40661 3.07099 2.36357C3.12878 2.18175 3.29897 2.05002 3.49993 2.05002H11.4999C11.6553 2.05002 11.7922 2.12872 11.8731 2.24842C11.9216 2.32024 11.9499 2.40682 11.9499 2.50002L11.9499 2.50004V4.49998C11.9499 4.74851 11.7485 4.94998 11.4999 4.94998C11.2514 4.94998 11.0499 4.74851 11.0499 4.49998V2.95002H8.04993V12.05H9.25428C9.50281 12.05 9.70428 12.2515 9.70428 12.5C9.70428 12.7486 9.50281 12.95 9.25428 12.95H5.75428C5.50575 12.95 5.30428 12.7486 5.30428 12.5C5.30428 12.2515 5.50575 12.05 5.75428 12.05H6.94993V2.95002H3.94993Z' />
-    </svg>
-  );
-}
-
 export function TriangleRight({ color = 'currentColor', size = 15, ...props }: IconProps) {
   return (
     <svg
@@ -898,248 +1068,6 @@ export function TriangleRight({ color = 'currentColor', size = 15, ...props }: I
       {...props}
     >
       <path d='M6 11L6 4L10.5 7.5L6 11Z' />
-    </svg>
-  );
-}
-
-// Tabler Icons
-//
-// MIT License
-//
-// Copyright (c) 2020-2024 Paweł Kuna
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-
-export function ColorSwatch({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill='none'
-      viewBox='0 0 24 24'
-      stroke={color}
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path d='M19 3h-4a2 2 0 0 0 -2 2v12a4 4 0 0 0 8 0v-12a2 2 0 0 0 -2 -2' />
-      <path d='M13 7.35l-2 -2a2 2 0 0 0 -2.828 0l-2.828 2.828a2 2 0 0 0 0 2.828l9 9' />
-      <path d='M7.3 13h-2.3a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h12' />
-      <path d='M17 17l0 .01' />
-    </svg>
-  );
-}
-
-// Material Design Icons
-//
-// Apache License
-// Version 2.0, January 2004
-// http://www.apache.org/licenses/
-//
-// TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-//
-// 1. Definitions.
-//
-// "License" shall mean the terms and conditions for use, reproduction,
-// and distribution as defined by Sections 1 through 9 of this document.
-//
-// "Licensor" shall mean the copyright owner or entity authorized by
-// the copyright owner that is granting the License.
-//
-// "Legal Entity" shall mean the union of the acting entity and all
-// other entities that control, are controlled by, or are under common
-// control with that entity. For the purposes of this definition,
-// "control" means (i) the power, direct or indirect, to cause the
-// direction or management of such entity, whether by contract or
-// otherwise, or (ii) ownership of fifty percent (50%) or more of the
-// outstanding shares, or (iii) beneficial ownership of such entity.
-//
-// "You" (or "Your") shall mean an individual or Legal Entity
-// exercising permissions granted by this License.
-//
-// "Source" form shall mean the preferred form for making modifications,
-// including but not limited to software source code, documentation
-// source, and configuration files.
-//
-// "Object" form shall mean any form resulting from mechanical
-// transformation or translation of a Source form, including but
-// not limited to compiled object code, generated documentation,
-// and conversions to other media types.
-//
-// "Work" shall mean the work of authorship, whether in Source or
-// Object form, made available under the License, as indicated by a
-// copyright notice that is included in or attached to the work
-// (an example is provided in the Appendix below).
-//
-// "Derivative Works" shall mean any work, whether in Source or Object
-// form, that is based on (or derived from) the Work and for which the
-// editorial revisions, annotations, elaborations, or other modifications
-// represent, as a whole, an original work of authorship. For the purposes
-// of this License, Derivative Works shall not include works that remain
-// separable from, or merely link (or bind by name) to the interfaces of,
-// the Work and Derivative Works thereof.
-//
-// "Contribution" shall mean any work of authorship, including
-// the original version of the Work and any modifications or additions
-// to that Work or Derivative Works thereof, that is intentionally
-// submitted to Licensor for inclusion in the Work by the copyright owner
-// or by an individual or Legal Entity authorized to submit on behalf of
-// the copyright owner. For the purposes of this definition, "submitted"
-// means any form of electronic, verbal, or written communication sent
-// to the Licensor or its representatives, including but not limited to
-// communication on electronic mailing lists, source code control systems,
-// and issue tracking systems that are managed by, or on behalf of, the
-// Licensor for the purpose of discussing and improving the Work, but
-// excluding communication that is conspicuously marked or otherwise
-// designated in writing by the copyright owner as "Not a Contribution."
-//
-// "Contributor" shall mean Licensor and any individual or Legal Entity
-// on behalf of whom a Contribution has been received by Licensor and
-// subsequently incorporated within the Work.
-//
-// 2. Grant of Copyright License. Subject to the terms and conditions of
-// this License, each Contributor hereby grants to You a perpetual,
-// worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-// copyright license to reproduce, prepare Derivative Works of,
-// publicly display, publicly perform, sublicense, and distribute the
-// Work and such Derivative Works in Source or Object form.
-//
-// 3. Grant of Patent License. Subject to the terms and conditions of
-// this License, each Contributor hereby grants to You a perpetual,
-// worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-// (except as stated in this section) patent license to make, have made,
-// use, offer to sell, sell, import, and otherwise transfer the Work,
-// where such license applies only to those patent claims licensable
-// by such Contributor that are necessarily infringed by their
-// Contribution(s) alone or by combination of their Contribution(s)
-// with the Work to which such Contribution(s) was submitted. If You
-// institute patent litigation against any entity (including a
-// cross-claim or counterclaim in a lawsuit) alleging that the Work
-// or a Contribution incorporated within the Work constitutes direct
-// or contributory patent infringement, then any patent licenses
-// granted to You under this License for that Work shall terminate
-// as of the date such litigation is filed.
-//
-// 4. Redistribution. You may reproduce and distribute copies of the
-// Work or Derivative Works thereof in any medium, with or without
-// modifications, and in Source or Object form, provided that You
-// meet the following conditions:
-//
-// (a) You must give any other recipients of the Work or
-// Derivative Works a copy of this License; and
-//
-// (b) You must cause any modified files to carry prominent notices
-// stating that You changed the files; and
-//
-// (c) You must retain, in the Source form of any Derivative Works
-// that You distribute, all copyright, patent, trademark, and
-// attribution notices from the Source form of the Work,
-// excluding those notices that do not pertain to any part of
-// the Derivative Works; and
-//
-// (d) If the Work includes a "NOTICE" text file as part of its
-// distribution, then any Derivative Works that You distribute must
-// include a readable copy of the attribution notices contained
-// within such NOTICE file, excluding those notices that do not
-// pertain to any part of the Derivative Works, in at least one
-// of the following places: within a NOTICE text file distributed
-// as part of the Derivative Works; within the Source form or
-// documentation, if provided along with the Derivative Works; or,
-// within a display generated by the Derivative Works, if and
-// wherever such third-party notices normally appear. The contents
-// of the NOTICE file are for informational purposes only and
-// do not modify the License. You may add Your own attribution
-// notices within Derivative Works that You distribute, alongside
-// or as an addendum to the NOTICE text from the Work, provided
-// that such additional attribution notices cannot be construed
-// as modifying the License.
-//
-// You may add Your own copyright statement to Your modifications and
-// may provide additional or different license terms and conditions
-// for use, reproduction, or distribution of Your modifications, or
-// for any such Derivative Works as a whole, provided Your use,
-// reproduction, and distribution of the Work otherwise complies with
-// the conditions stated in this License.
-//
-// 5. Submission of Contributions. Unless You explicitly state otherwise,
-// any Contribution intentionally submitted for inclusion in the Work
-// by You to the Licensor shall be under the terms and conditions of
-// this License, without any additional terms or conditions.
-// Notwithstanding the above, nothing herein shall supersede or modify
-// the terms of any separate license agreement you may have executed
-// with Licensor regarding such Contributions.
-//
-// 6. Trademarks. This License does not grant permission to use the trade
-// names, trademarks, service marks, or product names of the Licensor,
-// except as required for reasonable and customary use in describing the
-// origin of the Work and reproducing the content of the NOTICE file.
-//
-// 7. Disclaimer of Warranty. Unless required by applicable law or
-// agreed to in writing, Licensor provides the Work (and each
-// Contributor provides its Contributions) on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-// implied, including, without limitation, any warranties or conditions
-// of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-// PARTICULAR PURPOSE. You are solely responsible for determining the
-// appropriateness of using or redistributing the Work and assume any
-// risks associated with Your exercise of permissions under this License.
-//
-// 8. Limitation of Liability. In no event and under no legal theory,
-// whether in tort (including negligence), contract, or otherwise,
-// unless required by applicable law (such as deliberate and grossly
-// negligent acts) or agreed to in writing, shall any Contributor be
-// liable to You for damages, including any direct, indirect, special,
-// incidental, or consequential damages of any character arising as a
-// result of this License or out of the use or inability to use the
-// Work (including but not limited to damages for loss of goodwill,
-// work stoppage, computer failure or malfunction, or any and all
-// other commercial damages or losses), even if such Contributor
-// has been advised of the possibility of such damages.
-//
-// 9. Accepting Warranty or Additional Liability. While redistributing
-// the Work or Derivative Works thereof, You may choose to offer,
-// and charge a fee for, acceptance of support, warranty, indemnity,
-// or other liability obligations and/or rights consistent with this
-// License. However, in accepting such obligations, You may act only
-// on Your own behalf and on Your sole responsibility, not on behalf
-// of any other Contributor, and only if You agree to indemnify,
-// defend, and hold each Contributor harmless for any liability
-// incurred by, or claims asserted against, such Contributor by reason
-// of your accepting any such warranty or additional liability.
-
-export function Animation({ color = 'currentColor', size = 15, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      fill={color}
-      viewBox='0 0 24 24'
-      xmlns='http://www.w3.org/2000/svg'
-      role='graphics-symbol img'
-      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
-      {...props}
-    >
-      <path d='M15 2c-2.71 0-5.05 1.54-6.22 3.78a7.062 7.062 0 0 0-3 3A7.014 7.014 0 0 0 2 15c0 3.87 3.13 7 7 7 2.71 0 5.05-1.54 6.22-3.78a7.062 7.062 0 0 0 3-3A7.014 7.014 0 0 0 22 9c0-3.87-3.13-7-7-7zM9 20a5.002 5.002 0 0 1-4-8c0 3.87 3.13 7 7 7-.84.63-1.88 1-3 1zm3-3a5.002 5.002 0 0 1-4-8c0 3.86 3.13 6.99 7 7-.84.63-1.88 1-3 1zm4.7-3.3c-.53.19-1.1.3-1.7.3-2.76 0-5-2.24-5-5 0-.6.11-1.17.3-1.7.53-.19 1.1-.3 1.7-.3 2.76 0 5 2.24 5 5 0 .6-.11 1.17-.3 1.7zM19 12c0-3.86-3.13-6.99-7-7a5.002 5.002 0 0 1 7 7z' />
     </svg>
   );
 }
@@ -1162,21 +1090,29 @@ type TokenType =
   | 'transition'
   | 'typography';
 
-export const BorderToken = BorderAll;
-export const BooleanToken = Switch;
-export const ColorToken = ColorSwatch;
-export const CubicBezierToken = BezierCurve;
-export const DimensionToken = Size;
-export const DurationToken = Clock;
+// Aliases
+export const BooleanToken = ToggleRight;
+export const BorderToken = VectorSquare;
+export const ColorToken = SwatchBook;
+export const Config = Cog;
+export const CubicBezierToken = Spline;
+export const DimensionToken = DraftingCompass;
+export const Docs = BookOpen;
+export const DurationToken = Timer;
+export const Export = FolderImport;
 export const FontFamilyToken = FontFamily;
-export const FontWeightToken = FontBold;
-export const GradientToken = Shadow;
-export const LinkToken = Link2;
+export const FontWeightToken = Bold;
+export const GradientToken = Rainbow;
+export const LinkToken = Link;
+export const Lint = SearchAlert;
 export const NumberToken = Hash;
-export const ShadowToken = ShadowOuter;
-export const StrokeStyleToken = BorderWidth;
-export const TransitionToken = Animation;
-export const TypographyToken = Text;
+export const Output = FolderImport;
+export const Resolver = Network;
+export const Settings = Cog;
+export const ShadowToken = Contrast;
+export const StrokeStyleToken = SquareDashedTopSolid;
+export const TransitionToken = Transition;
+export const TypographyToken = Type;
 
 export interface TokenIconProps extends IconProps {
   type: TokenType;

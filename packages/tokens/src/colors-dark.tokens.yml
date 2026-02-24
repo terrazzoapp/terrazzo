@@ -46,6 +46,17 @@ color:
       $type: color
       $value: "{color.base.lime.700}"
 
+  icon:
+    100:
+      $type: color
+      $value: "{color.base.gray.600}"
+    200:
+      $type: color
+      $value: "{color.base.gray.500}"
+    selected:
+      $type: color
+      $value: "{color.base.lime.600}"
+
   text:
     1:
       $type: color

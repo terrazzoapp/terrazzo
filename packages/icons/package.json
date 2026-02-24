@@ -13,7 +13,7 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "rolldown -c",
     "format": "biome check --fix --unsafe src",
     "lint": "pnpm --filter @terrazzo/icons run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
@@ -24,12 +24,9 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^12.3.0",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "react": "catalog:",
-    "react-dom": "catalog:",
-    "rollup": "^4.57.1",
-    "rollup-plugin-import-css": "^3.5.8"
+    "react-dom": "catalog:"
   }
 }

@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SourcesRouteImport } from './routes/sources'
 import { Route as ResolverRouteImport } from './routes/resolver'
-import { Route as OutputsRouteImport } from './routes/outputs'
+import { Route as OutputRouteImport } from './routes/output'
 import { Route as LintingRouteImport } from './routes/linting'
 import { Route as ConfigRouteImport } from './routes/config'
 import { Route as IndexRouteImport } from './routes/index'
@@ -26,9 +26,9 @@ const ResolverRoute = ResolverRouteImport.update({
   path: '/resolver',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OutputsRoute = OutputsRouteImport.update({
-  id: '/outputs',
-  path: '/outputs',
+const OutputRoute = OutputRouteImport.update({
+  id: '/output',
+  path: '/output',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LintingRoute = LintingRouteImport.update({
@@ -51,7 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/config': typeof ConfigRoute
   '/linting': typeof LintingRoute
-  '/outputs': typeof OutputsRoute
+  '/output': typeof OutputRoute
   '/resolver': typeof ResolverRoute
   '/sources': typeof SourcesRoute
 }
@@ -59,7 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/config': typeof ConfigRoute
   '/linting': typeof LintingRoute
-  '/outputs': typeof OutputsRoute
+  '/output': typeof OutputRoute
   '/resolver': typeof ResolverRoute
   '/sources': typeof SourcesRoute
 }
@@ -68,27 +68,21 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/config': typeof ConfigRoute
   '/linting': typeof LintingRoute
-  '/outputs': typeof OutputsRoute
+  '/output': typeof OutputRoute
   '/resolver': typeof ResolverRoute
   '/sources': typeof SourcesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/config'
-    | '/linting'
-    | '/outputs'
-    | '/resolver'
-    | '/sources'
+  fullPaths: '/' | '/config' | '/linting' | '/output' | '/resolver' | '/sources'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/config' | '/linting' | '/outputs' | '/resolver' | '/sources'
+  to: '/' | '/config' | '/linting' | '/output' | '/resolver' | '/sources'
   id:
     | '__root__'
     | '/'
     | '/config'
     | '/linting'
-    | '/outputs'
+    | '/output'
     | '/resolver'
     | '/sources'
   fileRoutesById: FileRoutesById
@@ -97,7 +91,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConfigRoute: typeof ConfigRoute
   LintingRoute: typeof LintingRoute
-  OutputsRoute: typeof OutputsRoute
+  OutputRoute: typeof OutputRoute
   ResolverRoute: typeof ResolverRoute
   SourcesRoute: typeof SourcesRoute
 }
@@ -118,11 +112,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResolverRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/outputs': {
-      id: '/outputs'
-      path: '/outputs'
-      fullPath: '/outputs'
-      preLoaderRoute: typeof OutputsRouteImport
+    '/output': {
+      id: '/output'
+      path: '/output'
+      fullPath: '/output'
+      preLoaderRoute: typeof OutputRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/linting': {
@@ -153,7 +147,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConfigRoute: ConfigRoute,
   LintingRoute: LintingRoute,
-  OutputsRoute: OutputsRoute,
+  OutputRoute: OutputRoute,
   ResolverRoute: ResolverRoute,
   SourcesRoute: SourcesRoute,
 }
