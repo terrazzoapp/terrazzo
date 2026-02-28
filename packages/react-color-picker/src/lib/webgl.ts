@@ -2,6 +2,12 @@ import type { PlainColorObject } from 'colorjs.io/fn';
 import { OKLAB } from './oklab.js';
 import { LINEAR_RGB } from './rgb.js';
 
+// biome-ignore format: this is formatted
+const TRIANGLES = new Float32Array([
+  -1, -1, 1, -1, -1,  1, // first triangle
+  -1,  1, 1, -1,  1,  1, // second triangle
+]);
+
 /** create a WebGL2 rendering context and throw errors if needed */
 export function createRenderingContext(canvas: HTMLCanvasElement): WebGL2RenderingContext {
   // init GL
@@ -151,6 +157,9 @@ export class GradientOklab {
     this.endColor = endColor;
     this.setColors(startColor, endColor);
     this.gl.vertexAttrib2f(this.attr.a_resolution, this.gl.canvas.width, this.gl.canvas.height);
+    const positionBuffer = this.gl.createBuffer();
+    this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+    this.gl.vertexAttribPointer(this.attr.a_position, 2, this.gl.FLOAT, false, 0, 0);
     this.render();
   }
 
@@ -190,16 +199,8 @@ export class GradientOklab {
       cancelAnimationFrame(this.lastFrame);
     }
     this.lastFrame = requestAnimationFrame(() => {
-      const positionBuffer = this.gl.createBuffer();
-      this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
-      this.gl.vertexAttribPointer(this.attr.a_position, 2, this.gl.FLOAT, false, 0, 0);
-      // biome-ignore format: this is formatted
-      this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array([
-        -1,-1,    1,-1,    -1, 1, // first triangle
-        -1, 1,    1,-1,     1, 1, // second triangle
-      ]), this.gl.STATIC_DRAW);
+      this.gl.bufferData(this.gl.ARRAY_BUFFER, TRIANGLES, this.gl.STATIC_DRAW);
       this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
-
       this.lastFrame = undefined;
     });
   }
@@ -281,6 +282,9 @@ export class HueWheel {
     // init attribs & first paint
     this.setGamut(gamut);
     this.gl.vertexAttrib2f(this.attr.a_resolution, this.gl.canvas.width, this.gl.canvas.height);
+    const positionBuffer = this.gl.createBuffer();
+    this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+    this.gl.vertexAttribPointer(this.attr.a_position, 2, this.gl.FLOAT, false, 0, 0);
     this.render();
   }
 
@@ -305,16 +309,8 @@ export class HueWheel {
       cancelAnimationFrame(this.lastFrame);
     }
     this.lastFrame = requestAnimationFrame(() => {
-      const positionBuffer = this.gl.createBuffer();
-      this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
-      this.gl.vertexAttribPointer(this.attr.a_position, 2, this.gl.FLOAT, false, 0, 0);
-      // biome-ignore format: this is formatted
-      this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array([
-        -1,-1,    1,-1,    -1, 1, // first triangle
-        -1, 1,    1,-1,     1, 1, // second triangle
-      ]), this.gl.STATIC_DRAW);
+      this.gl.bufferData(this.gl.ARRAY_BUFFER, TRIANGLES, this.gl.STATIC_DRAW);
       this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
-
       this.lastFrame = undefined;
     });
   }

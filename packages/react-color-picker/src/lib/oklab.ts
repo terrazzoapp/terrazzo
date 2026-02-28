@@ -155,11 +155,10 @@ vec2 find_cusp(float a, float b) {
 // L = L0 * (1 - t) + t * L1;
 // C = t * C1;
 // a and b must be normalized so a^2 + b^2 == 1
-float find_gamut_intersection(float a, float b, float L1, float C1, float L0) {
-  vec2 cusp = find_cusp(a, b);
+float find_gamut_intersection(float a, float b, float L1, float C1, float L0, vec2 cusp) {
   float cusp_l = cusp.x;
   float cusp_c = cusp.y;
-  // Find the intersection for upper and lower half seprately
+  // Find the intersection for upper and lower half separately
   float t;
 
   // Lower half
@@ -265,14 +264,14 @@ vec4 oklab_to_srgb(vec4 oklab, int clamp_mode) {
 
   float eps = 0.00001;
   float alpha = 0.05; // TODO: allow config?
-  float c = max(eps, sqrt(pow(oklab.y, 2.0) + pow(oklab.z, 2.0)));
+  float c = max(eps, sqrt(oklab.y * oklab.y + oklab.z * oklab.z));
   float L0 = oklab.x;
   float a = oklab.y / c;
   float b = oklab.z / c;
+  vec2 cusp = find_cusp(a, b);
 
   // 1. keep lightness, clamp chroma
   if (clamp_mode == 1) {
-    // The cusp is computed here and in find_gamut_intersection, an optimized solution would only compute it once.
     L0 = clamp(oklab.x, 0.0, 1.0);
   }
   // 2. projection toward point, hue independent
@@ -287,18 +286,17 @@ vec4 oklab_to_srgb(vec4 oklab, int clamp_mode) {
   else if (clamp_mode == 4) {
     float Ld = oklab.x - 0.5;
     float e1 = 0.5 + abs(Ld) + alpha * c;
-    L0 = 0.5 * (1.0 + sign(Ld) * (e1 - sqrt(pow(e1, 2.0) - 2.0 * abs(Ld))));
+    L0 = 0.5 * (1.0 + sign(Ld) * (e1 - sqrt(e1 * e1 - 2.0 * abs(Ld))));
   }
   // 5. adaptive Lightness, hue dependent
   else if (clamp_mode == 5) {
-    float cusp_l = find_cusp(a, b).x;
-    float Ld = oklab.x - cusp_l;
-    float k = 2.0 * (Ld >= 0.0 ? 1.0 - cusp_l : cusp_l);
+    float Ld = oklab.x - cusp.x;
+    float k = 2.0 * (Ld >= 0.0 ? 1.0 - cusp.x : cusp.x);
     float e1 = 0.5 * k + abs(Ld) + alpha * c / k;
-    L0 = cusp_l + 0.5 * (sign(Ld) * (e1 - sqrt(pow(e1, 2.0) - 2.0 * k * abs(Ld))));
+    L0 = cusp.x + 0.5 * (sign(Ld) * (e1 - sqrt(e1 * e1 - 2.0 * k * abs(Ld))));
   }
 
-  float t = find_gamut_intersection(a, b, oklab.x - 0.1, c, L0);
+  float t = find_gamut_intersection(a, b, oklab.x, c, L0, cusp);
   float l_clipped = L0 * (1.0 - t) + t * oklab.x;
   float c_clipped = t * c;
 
@@ -322,7 +320,8 @@ float toe(float x) {
   float k_1 = 0.206;
   float k_2 = 0.03;
   float k_3 = (1.0 + k_1) / (1.0 + k_2);
-  return 0.5 * (k_3 * x - k_1 + sqrtf((k_3 * x - k_1) * (k_3 * x - k_1) + 4 * k_2 * k_3 * x));
+  float t = (k_3 * x - k_1);
+  return 0.5 * (k_3 * x - k_1 + sqrt(t * t + 4 * k_2 * k_3 * x));
 }
 
 // inverse toe function for L_r
@@ -333,23 +332,23 @@ float toe_inv(float x) {
   return (x * x + k_1 * x) / (k_3 * (x + k_2));
 }
 
-to_ST(vec2 cusp) {
+vec2 to_ST(vec2 cusp) {
   float L = cusp.x;
   float C = cusp.y;
   return vec2(C / L, C / (1.0 - L));
 }
 
-okhsv_to_srgb(vec4 hsv) {
+vec4 okhsv_to_srgb(vec4 hsv) {
   float h = hsv.x;
   float s = hsv.y;
   float v = hsv.z;
   float alpha = hsv.w;
 
-  float a_ = cosf(2.0 * pi * h);
-  float b_ = sinf(2.0 * pi * h);
+  float a_ = cos(2.0 * pi * h);
+  float b_ = sin(2.0 * pi * h);
 
-  LC cusp = find_cusp(a_, b_);
-  ST ST_max = to_ST(cusp);
+  vec2 cusp = find_cusp(a_, b_);
+  vec2 ST_max = to_ST(cusp);
   float S_max = ST_max.x;
   float T_max = ST_max.y;
   float S_0 = 0.5;
@@ -358,8 +357,9 @@ okhsv_to_srgb(vec4 hsv) {
   // first we compute L and V as if the gamut is a perfect triangle:
 
   // L, C when v==1:
-  float L_v = 1     - s * S_0 / (S_0 + T_max - T_max * k * s);
-  float C_v = s * T_max * S_0 / (S_0 + T_max - T_max * k * s);
+  float denom = (S_0 + T_max - T_max * k * s);
+  float L_v = 1.0   - s * S_0 / denom;
+  float C_v = s * T_max * S_0 / denom;
 
   float L = v * L_v;
   float C = v * C_v;
@@ -372,13 +372,13 @@ okhsv_to_srgb(vec4 hsv) {
   C = C * L_new / L;
   L = L_new;
 
-  vec4 rgb_scale = oklab_to_linear_srgb(vec4(L_vt, a_ * C_vt, b_ * C_vt, alpha));
-  float scale_L = cbrtf(1.0 / fmax(fmax(rgb_scale.x, rgb_scale.y), fmax(rgb_scale.z, 0.0)));
+  vec4 rgb_scale = oklab_to_linear_rgb(vec4(L_vt, a_ * C_vt, b_ * C_vt, alpha));
+  float scale_L = cbrt(1.0 / max(max(rgb_scale.x, rgb_scale.y), max(rgb_scale.z, 0.0)));
 
   L = L * scale_L;
   C = C * scale_L;
 
-  vec4 rgb = oklab_to_linear_srgb(vec4(L, C * a_, C * b_, alpha));
+  vec4 rgb = oklab_to_linear_rgb(vec4(L, C * a_, C * b_, alpha));
   return vec4(
     srgb_transfer_function(rgb.x),
     srgb_transfer_function(rgb.y),
@@ -388,19 +388,19 @@ okhsv_to_srgb(vec4 hsv) {
 }
 
 vec4 srgb_to_okhsv(vec4 rgb) {
-  vec4 lab = linear_srgb_to_oklab(
+  vec4 lab = linear_rgb_to_oklab(vec4(
     srgb_transfer_function_inv(rgb.x),
     srgb_transfer_function_inv(rgb.y),
     srgb_transfer_function_inv(rgb.z),
     rgb.w
-  );
+  ));
 
-  float C = sqrtf(lab.y * lab.y + lab.z * lab.z);
+  float C = sqrt(lab.y * lab.y + lab.z * lab.z);
   float a_ = lab.y / C;
   float b_ = lab.z / C;
 
   float L = lab.x;
-  float h = 0.5 + 0.5 * atan2f(-lab.z, -lab.y) / pi;
+  float h = 0.5 + 0.5 * atan2(-lab.z, -lab.y) / pi;
 
   vec2 cusp = find_cusp(a_, b_);
   vec2 ST_max = to_ST(cusp);
@@ -419,8 +419,8 @@ vec4 srgb_to_okhsv(vec4 rgb) {
   float C_vt = C_v * L_vt / L_v;
 
   // we can then use these to invert the step that compensates for the toe and the curved top part of the triangle:
-  vec4 rgb_scale = oklab_to_linear_srgb(vec4(L_vt, a_ * C_vt, b_ * C_vt, rgb.w));
-  float scale_L = cbrtf(1.0 / fmax(fmax(rgb_scale.x, rgb_scale.y), fmax(rgb_scale.z, 0.0)));
+  vec4 rgb_scale = oklab_to_linear_rgb(vec4(L_vt, a_ * C_vt, b_ * C_vt, rgb.w));
+  float scale_L = cbrt(1.0 / max(max(rgb_scale.x, rgb_scale.y), max(rgb_scale.z, 0.0)));
 
   L = L / scale_L;
   C = C / scale_L;
@@ -437,19 +437,19 @@ vec4 srgb_to_okhsv(vec4 rgb) {
 }
 
 vec2 get_ST_mid(float a_, float b_) {
-  float S = 0.11516993f + 1.0 / (
-    +7.44778970f + 4.15901240f * b_
-    + a_ * (-2.19557347f + 1.75198401f * b_
-      + a_ * (-2.13704948f - 10.02301043f * b_
-        + a_ * (-4.24894561f + 5.38770819f * b_ + 4.69891013f * a_
+  float S = 0.11516993 + 1.0 / (
+    +7.44778970 + 4.15901240 * b_
+    + a_ * (-2.19557347 + 1.75198401 * b_
+      + a_ * (-2.13704948 - 10.02301043 * b_
+        + a_ * (-4.24894561 + 5.38770819 * b_ + 4.69891013 * a_
           )))
     );
 
-  float T = 0.11239642f + 1.0 / (
-    +1.61320320f - 0.68124379f * b_
-    + a_ * (+0.40370612f + 0.90148123f * b_
-      + a_ * (-0.27087943f + 0.61223990f * b_
-        + a_ * (+0.00299215f - 0.45399568f * b_ - 0.14661872f * a_
+  float T = 0.11239642 + 1.0 / (
+    +1.61320320 - 0.68124379 * b_
+    + a_ * (+0.40370612 + 0.90148123 * b_
+      + a_ * (-0.27087943 + 0.61223990 * b_
+        + a_ * (+0.00299215 - 0.45399568 * b_ - 0.14661872 * a_
           )))
     );
 
@@ -459,11 +459,11 @@ vec2 get_ST_mid(float a_, float b_) {
 vec3 get_Cs(float L, float a_, float b_) {
   vec2 cusp = find_cusp(a_, b_);
 
-  float C_max = find_gamut_intersection(a_, b_, L, 1, L, cusp);
+  float C_max = find_gamut_intersection(a_, b_, L, 1.0, L, cusp);
   vec2 ST_max = to_ST(cusp);
 
   // Scale factor to compensate for the curved part of gamut shape:
-  float k = C_max / fmin((L * ST_max.x), (1 - L) * ST_max.y);
+  float k = C_max / min((L * ST_max.x), (1 - L) * ST_max.y);
 
   float C_mid;
   {
@@ -472,7 +472,7 @@ vec3 get_Cs(float L, float a_, float b_) {
     // Use a soft minimum function, instead of a sharp triangle shape to get a smooth value for chroma.
     float C_a = L * ST_mid.x;
     float C_b = (1.0 - L) * ST_mid.y;
-    C_mid = 0.9f * k * sqrtf(sqrtf(1.0 / (1.0 / (C_a * C_a * C_a * C_a) + 1.0 / (C_b * C_b * C_b * C_b))));
+    C_mid = 0.9 * k * sqrt(sqrt(1.0 / (1.0 / (C_a * C_a * C_a * C_a) + 1.0 / (C_b * C_b * C_b * C_b))));
   }
 
   float C_0;
@@ -482,7 +482,7 @@ vec3 get_Cs(float L, float a_, float b_) {
     float C_b = (1.0 - L) * 0.8;
 
     // Use a soft minimum function, instead of a sharp triangle shape to get a smooth value for chroma.
-    C_0 = sqrtf(1.0 / (1.0 / (C_a * C_a) + 1.0 / (C_b * C_b)));
+    C_0 = sqrt(1.0 / (1.0 / (C_a * C_a) + 1.0 / (C_b * C_b)));
   }
 
   return vec3(C_0, C_mid, C_max);
@@ -501,8 +501,8 @@ vec4 okhsl_to_srgb(vec4 hsl) {
     return vec4(0.0, 0.0, 0.0, hsl.w);
   }
 
-  float a_ = cosf(2.0 * pi * h);
-  float b_ = sinf(2.0 * pi * h);
+  float a_ = cos(2.0 * pi * h);
+  float b_ = sin(2.0 * pi * h);
   float L = toe_inv(l);
 
   vec3 cs = get_Cs(L, a_, b_);
@@ -537,29 +537,29 @@ vec4 okhsl_to_srgb(vec4 hsl) {
     C = k_0 + t * k_1 / (1.0 - k_2 * t);
   }
 
-  vec4 rgb = oklab_to_linear_srgb(vec4(L, C * a_, C * b_, hsl.w));
-  return {
+  vec4 rgb = oklab_to_linear_rgb(vec4(L, C * a_, C * b_, hsl.w));
+  return vec4(
     srgb_transfer_function(rgb.x),
     srgb_transfer_function(rgb.y),
     srgb_transfer_function(rgb.z),
     hsl.w
-  };
+  );
 }
 
 vec4 srgb_to_okhsl(vec4 rgb) {
-  vec4 lab = linear_srgb_to_oklab(
+  vec4 lab = linear_rgb_to_oklab(vec4(
     srgb_transfer_function_inv(rgb.x),
     srgb_transfer_function_inv(rgb.y),
     srgb_transfer_function_inv(rgb.z),
     rgb.w
-  });
+  ));
 
-  float C = sqrtf(lab.y * lab.y + lab.z * lab.z);
+  float C = sqrt(lab.y * lab.y + lab.z * lab.z);
   float a_ = lab.y / C;
-  float b_ = lab.y / C;
+  float b_ = lab.z / C;
 
   float L = lab.x;
-  float h = 0.5 + 0.5 * atan2f(-lab.z, -lab.y) / pi;
+  float h = 0.5 + 0.5 * atan2(-lab.z, -lab.y) / pi;
 
   vec2 cs = get_Cs(L, a_, b_);
   float C_0 = cs.x;
