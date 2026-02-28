@@ -1,5 +1,11 @@
 # @terrazzo/react-color-picker
 
+## 0.2.2
+
+### Patch Changes
+
+- Minor WebGL fixes & perf optimizations
+
 ## 0.2.1
 
 ### Patch Changes
