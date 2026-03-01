@@ -61,7 +61,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "tailwindcss": "^4.2.1",
-    "vite": "8.0.0-beta.16",
+    "vite": "catalog:",
     "vite-tsconfig-paths": "^6.1.1"
   }
 }
