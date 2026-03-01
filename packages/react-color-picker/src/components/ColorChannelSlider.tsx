@@ -4,7 +4,7 @@ import { type ColorSpace, to as convert, get, serialize, set } from 'colorjs.io/
 import { type ReactElement, useMemo } from 'react';
 import HueWheel from './HueWheel.js';
 import TrueGradient from './TrueGradient.js';
-import './ColorChannelSlider.css';
+import './ColorChannelSlider.css.js';
 
 /** size, in px, to pad inner track */
 export const TRACK_PADDING = 4;

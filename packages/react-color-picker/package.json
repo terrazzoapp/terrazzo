@@ -25,7 +25,7 @@
     "directory": "./packages/react-color-picker/"
   },
   "scripts": {
-    "build": "rollup -c rollup.config.js && size-limit",
+    "build": "rolldown -c && size-limit",
     "dev": "pnpm run build && chokidar \"./src/**/*\" -c \"rollup -c rollup.config.js\"",
     "format": "pnpm --filter @terrazzo/react-color-picker run \"/^format:.*/\"",
     "format:js": "biome check --fix --unsafe src",
@@ -54,14 +54,14 @@
     "@testing-library/react": "^16.3.2",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@vanilla-extract/css": "^1.18.0",
+    "@vanilla-extract/rollup-plugin": "^1.5.1",
     "@vitejs/plugin-react": "catalog:",
     "chokidar-cli": "^3.0.0",
     "colorjs.io": "catalog:",
     "jsdom": "^28.1.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "rollup": "^4.59.0",
-    "rollup-plugin-import-css": "^3.5.8",
     "size-limit": "^12.0.0",
     "vitest-axe": "^0.1.0"
   }

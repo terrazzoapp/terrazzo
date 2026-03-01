@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:app": "astro build && cp -r ../packages/storybook/storybook dist && cp -r ../packages/token-lab/dist dist/lab",
+    "build:app": "astro build && cp -r ../packages/storybook/storybook dist",
     "dev": "astro dev",
     "format": "biome check --fix --unsafe src",
     "lint": "pnpm --filter @terrazzo/www run \"/^lint:(js|css)/\"",
