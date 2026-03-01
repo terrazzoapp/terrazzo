@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { to as convert, serialize } from 'colorjs.io/fn';
 import { type ComponentProps, useEffect, useMemo, useState } from 'react';
 import ColorChannelSlider from './ColorChannelSlider.js';
-import './ColorPicker.css';
+import './ColorPicker.css.js';
 
 /** sRGB → P3 → Rec2020 */
 export type Gamut = 'srgb' | 'p3' | 'rec2020';

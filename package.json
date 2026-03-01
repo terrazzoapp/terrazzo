@@ -2,7 +2,7 @@
   "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.30.1",
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
@@ -21,7 +21,7 @@
     "@biomejs/biome": "^2.4.4",
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
-    "@types/node": "^25.3.2",
+    "@types/node": "^25.3.3",
     "@vitest/browser": "catalog:",
     "@vitest/browser-playwright": "catalog:",
     "cspell": "^9.7.0",

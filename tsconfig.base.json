@@ -5,6 +5,7 @@
     "declarationMap": true,
     "esModuleInterop": true,
     "lib": ["ESNext"],
+    "jsx": "react-jsx",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
     "noEmitOnError": true,
