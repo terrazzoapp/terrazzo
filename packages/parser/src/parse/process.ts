@@ -149,6 +149,9 @@ export function processTokens(
       flatten$extends(extended, chain);
 
       replaceNode(node, mergeObjects(extended, node));
+
+      // Remove the $extends key
+      node.members = node.members.filter((n) => !(n.name.type === 'String' && n.name.value === '$extends'));
     }
 
     // Deeply-traverse for any interior $extends (even if it wasn’t at the top level)
