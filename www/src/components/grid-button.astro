@@ -30,7 +30,9 @@ const { type = 'button', variant = 'secondary', ...props } = Astro.props;
   border-radius: 0;
   border-style: solid;
   border-width: 1px;
+  box-sizing: border-box;
   color: var(--tz-button-text);
+  container: grid-btn / inline-size;
   cursor: pointer;
   display: inline-flex;
   font-family: var(--tz-font-sans);
@@ -38,19 +40,17 @@ const { type = 'button', variant = 'secondary', ...props } = Astro.props;
   font-weight: var(--tz-font-body-strong-font-weight);
   gap: var(--tz-button-gap);
   min-height: var(--tz-button-height);
+  min-width: 96px;
   justify-content: center;
   letter-spacing: var(--tz-font-body-strong-letter-spacing);
   line-height: 1;
-  min-width: var(--grid-size);
   outline-color: transparent;
   outline-offset: 2px;
   outline-style: solid;
   outline-width: 2px;
-  padding-bottom: 0;
-  padding-left: var(--tz-button-padding);
-  padding-right: var(--tz-button-padding);
-  padding-top: 0;
+  padding: 0;
   text-decoration: none;
+  white-space: nowrap;
 
   &:focus-visible {
     outline-color: var(--tz-color-base-lime-600);
@@ -83,6 +83,32 @@ const { type = 'button', variant = 'secondary', ...props } = Astro.props;
   &:disabled {
     cursor: default;
     opacity: 0.5;
+  }
+}
+
+@container grid-btn (width > 48px) {
+  .grid-btn {
+    min-width: 96px;
+  }
+}
+@container grid-btn (width > 96px) {
+  .grid-btn {
+    min-width: 144px;
+  }
+}
+@container grid-btn (width > 144px) {
+  .grid-btn {
+    min-width: 192px;
+  }
+}
+@container grid-btn (width > 192px) {
+  .grid-btn {
+    min-width: 240px;
+  }
+}
+@container grid-btn (width > 144px) {
+  .grid-btn {
+    min-width: 284px;
   }
 }
 </style>

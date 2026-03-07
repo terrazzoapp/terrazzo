@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import Default from '../../layouts/default.astro';
+import { formatDate } from '../../lib/date.js';
+
+const allBlogPosts = (await getCollection('blog')).sort((a, b) => b.pubDate - a.pubDate);
+---
+
+<Default title="Blog">
+  <main>
+    <h1>Terrazzo Blog</h1>
+    {
+      allBlogPosts.map((post) => (
+        <article>
+          <a class="post" href={`/blog/${post.id}`}>
+            <span class="post-title">{post.data.title}</span>
+            <time class="post-date">{formatDate(post.data.pubDate)}</time>
+          </a>
+        </article>
+      ))
+    }
+  </main>
+</Default>
+
+<style>
+main {
+  background: var(--tz-color-bg-1);
+  border-left: var(--tz-border-2);
+  border-right: var(--tz-border-2);
+  margin-inline: auto;
+  max-width: 100%;
+  min-height: calc(100vh - 3rem - 16rem);
+  overflow: hidden;;
+  padding-block: var(--tz-space-600);
+  padding-inline: var(--tz-space-600);
+  width: 48rem;
+
+  @media (width >= 800px) {
+    border-left: var(--tz-border-2);
+    border-right: var(--tz-border-2);
+  }
+}
+
+h1 {
+  font-family: var(--tz-font-heading1-font-family);
+  font-size: var(--tz-font-heading1-font-size);
+  font-weight: var(--tz-font-heading1-font-weight);
+  letter-spacing: var(--tz-font-heading1-letter-spacing);
+  line-height: var(--tz-font-heading1-line-height);
+  margin-block-end: var(--tz-space-800);
+}
+
+.post {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--tz-space-300);
+  text-decoration: none;
+}
+
+.post-title {
+  border-bottom: 1px solid var(--tz-color-border-selected);
+  display: inline-block;
+  font-size: var(--tz-font-heading2-font-size);
+  font-weight: var(--tz-font-heading2-font-weight);
+  letter-spacing: var(--tz-font-heading2-letter-spacing);
+  line-height: var(--tz-font-heading2-line-height);
+  order: 2;
+}
+
+.post-date {
+  color: var(--tz-color-text-3);
+  display: block;
+  font-family: var(--tz-font-mono);
+  font-size: var(--tz-font-code-font-size);
+  font-weight: var(--tz-font-code  font-weight);
+  line-height: 1;
+  margin-top: var(--tz-space-300);
+  order: 1;
+  width: 25%;
+}
+</style>
