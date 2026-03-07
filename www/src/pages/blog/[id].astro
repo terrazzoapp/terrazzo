@@ -1,0 +1,117 @@
+---
+import { getCollection, render } from 'astro:content';
+import Default from '../../layouts/default.astro';
+import { formatDate } from '../../lib/date.js';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Default title={post.data.title}>
+  <main>
+    <a class="back" href="/blog">← Back to blog</a>
+    <br />
+    <h1 class="post-title">{post.data.title}</h1>
+    <time class="post-date">{formatDate(post.data.pubDate)}</time>
+    <div class="post-text">
+      <Content />
+    </div>
+  </main>
+</Default>
+
+<style>
+  main {
+    background: var(--tz-color-bg-1);
+    margin-inline: auto;
+    max-width: 100%;
+    min-height: calc(100vh - 3rem - 16rem);
+    overflow: hidden;
+    padding-block: var(--tz-space-600);
+    padding-inline: var(--tz-space-600);
+    width: 48rem;
+
+    @media (width >= 800px) {
+      border-left: var(--tz-border-2);
+      border-right: var(--tz-border-2);
+    }
+  }
+
+  .back {
+    color: var(--tz-color-base-lime-600);
+  }
+
+  .post-title {
+    border-bottom: 1px solid var(--tz-color-border-2);
+    display: inline-block;
+    font-size: var(--tz-font-heading1-font-size);
+    font-weight: var(--tz-font-heading1-font-weight);
+    letter-spacing: var(--tz-font-heading1-letter-spacing);
+    line-height: var(--tz-font-heading1-line-height);
+    margin-bottom: var(--tz-space-400);
+  }
+
+  .post-date {
+    color: var(--tz-color-text-3);
+    display: block;
+    font-family: var(--tz-font-mono);
+    font-size: var(--tz-font-code-font-size);
+    font-weight: var(--tz-font-code font-weight);
+    line-height: 1;
+    margin-bottom: var(--tz-space-800);
+  }
+
+  .post-text :global(h2) {
+    margin-block-start: 2em;
+  }
+
+  .post-text :global(h3) {
+    margin-block-start: 2em;
+  }
+
+  .post-text :global(h4) {
+    margin-block-start: 2em;
+  }
+
+  .post-text :global(h5) {
+    margin-block-start: 2em;
+  }
+
+  .post-text :global(h6) {
+    margin-block-start: 2em;
+  }
+
+  .post-text :global(p) {
+    font-family: var(--tz-font-body-longform-font-family);
+    font-weight: var(--tz-font-body-longform-font-weight);
+    line-height: 1.8;
+    margin-block: var(--tz-space-500);
+
+    @media (width >= 750px) {
+      font-size: var(--tz-font-body-longform-font-size);
+      letter-spacing: var(--tz-font-body-longform-letter-spacing);
+    }
+  }
+
+  .post-text :global(li) {
+    font-family: var(--tz-font-body-longform-font-family);
+    font-weight: var(--tz-font-body-longform-font-weight);
+    line-height: 1.5;
+
+    @media (width >= 750px) {
+      font-size: var(--tz-font-body-longform-font-size);
+      letter-spacing: var(--tz-font-body-longform-letter-spacing);
+    }
+  }
+
+  .post-text :global(.toc) {
+    display: none;
+  }
+</style>

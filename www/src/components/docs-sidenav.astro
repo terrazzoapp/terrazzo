@@ -11,7 +11,7 @@ import { getAriaCurrent } from '../lib/navigation.js';
           <a
             class="nav-link"
             href={section.url}
-            aria-current={getAriaCurrent(section.url, Astro.request.url)}
+            {...getAriaCurrent(section.url, Astro.request.url)}
           >
             <span class="nav-link-inner">{section.title}</span>
           </a>
@@ -26,7 +26,7 @@ import { getAriaCurrent } from '../lib/navigation.js';
                     <a
                       class="nav-link"
                       href={item.url}
-                      aria-current={getAriaCurrent(item.url, Astro.request.url)}
+                      {...getAriaCurrent(item.url, Astro.request.url)}
                     >
                       <span class="nav-link-inner">{item.title}</span>
                     </a>
