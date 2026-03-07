@@ -32,6 +32,8 @@
 
 - Thanks [@drwpow](https://github.com/drwpow)! - Improve extended typography property CSS generation
 
+- Correctness: don’t cache transforms from a previous plugin-css run, which could yield correct or unexpected output.
+
 ## 0.10.4
 
 ### Patch Changes

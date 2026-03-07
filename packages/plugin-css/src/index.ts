@@ -1,6 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import buildCSS from './build.js';
-import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID, PLUGIN_NAME } from './lib.js';
+import { type CSSPluginOptions, FILE_PREFIX, PLUGIN_NAME } from './lib.js';
 import transformCSS from './transform.js';
 
 export * from './build.js';
@@ -39,11 +39,6 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
       }
     },
     async transform(transformOptions) {
-      // skip work if another .css plugin has already run
-      const cssTokens = transformOptions.getTransforms({ format: FORMAT_ID, id: '*' });
-      if (cssTokens.length) {
-        return;
-      }
       transformCSS({ transform: transformOptions, options: options ?? {} });
     },
     async build({ getTransforms, outputFile, context }) {
