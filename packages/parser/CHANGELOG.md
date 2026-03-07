@@ -81,6 +81,8 @@ The 2.0.0 release is full of new features:
 
 - Thanks [@drwpow](https://github.com/drwpow)! - Improve extended typography property CSS generation
 
+- Bugfix: An error is now thrown if `--config [path]` points to a bad location.
+
 ## 0.10.4
 
 ### Patch Changes

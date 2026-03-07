@@ -77,9 +77,9 @@ The 2.0.0 release is full of new features:
 
 - [#568](https://github.com/terrazzoapp/terrazzo/pull/568) [`67c75be`](https://github.com/terrazzoapp/terrazzo/commit/67c75be78978cece52b61cf258ccc3a875e6af48) Thanks [@drwpow](https://github.com/drwpow)! - Fix border tokens not cascading correctly across modes
 
-- An error is now thrown if `--config [path]` points to a bad location.
+- Bugfix: An error is now thrown if `--config [path]` points to a bad location.
 
-- TypeScript config files now fully supported! `terrazzo.config.ts` is now the default.
+- Config: TypeScript files and plugins are now fully supported! `terrazzo.config.ts` is now the default.
 
 ## 0.10.3
 
