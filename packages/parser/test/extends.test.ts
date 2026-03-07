@@ -45,6 +45,34 @@ describe('$extends', () => {
       },
     ],
     [
+      'deep extension',
+      {
+        given: {
+          src: {
+            a: {
+              b: {
+                c: {
+                  $type: 'number',
+                  $value: 2,
+                },
+              },
+            },
+            d: {
+              e: {
+                $extends: '{a.b}',
+              },
+            },
+          },
+        },
+        want: {
+          tokens: {
+            'a.b.c': { $value: 2 },
+            'd.e.c': { $value: 2 },
+          },
+        },
+      },
+    ],
+    [
       'invalid: non-alias',
       {
         given: [
