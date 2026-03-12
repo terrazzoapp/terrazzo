@@ -349,7 +349,7 @@ export interface Resolver<
    * results (it ignores object key order, and takes defaults into account for
    * better caching).
    */
-  apply: (input: Partial<Input>) => TokenNormalizedSet;
+  apply: (input: Partial<Input>, options?: {sets?: string[], modifiers?: string[]}) => TokenNormalizedSet;
   /**
    * List all possible valid input combinations. Ignores default values, as they
    * would duplicate some other permutations. This also caches results, so it’s
