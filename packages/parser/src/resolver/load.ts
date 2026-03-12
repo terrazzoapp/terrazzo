@@ -121,7 +121,7 @@ export function createResolver(
   }
 
   return {
-    apply(inputRaw) {
+    apply(inputRaw, options) {
       const tokensRaw: TokenNormalizedSet = {};
       const input = { ...inputDefaults, ...inputRaw };
       const permutationID = getPermutationID(input);
@@ -133,12 +133,14 @@ export function createResolver(
       for (const item of resolverSource.resolutionOrder) {
         switch (item.type) {
           case 'set': {
+            if (options?.sets && !options.sets.includes(item.name)) continue;
             for (const s of item.sources) {
               destructiveMerge(tokensRaw, s);
             }
             break;
           }
           case 'modifier': {
+            if (options?.modifiers && !options.modifiers.includes(item.name)) continue;
             const context = input[item.name]!;
             const sources = item.contexts[context];
             if (!sources) {
