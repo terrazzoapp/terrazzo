@@ -72,7 +72,7 @@ export interface CSSPluginOptions {
 
 export interface Permutation<T extends Record<string, string> = Record<string, string>> {
   /** Generate the final CSS string, wrapping content in the selector(s) of your choice. */
-  prepare(css: string): string;
+  prepare(contents: string): string;
   /** Input for this permutation. */
   input: T;
   /** Provide token(s) to include (Note: not including tokens that are used as aliases for other tokens could cause visual bugs in generated CSS) */
@@ -191,7 +191,7 @@ export function printNode(
 }
 
 /** Infer indentation preferences from a user-defined wrapping method. */
-export function getIndentFromPrepare(prepare: (css: string) => string): { indentChar: string; indentLv: number } {
+export function getIndentFromPrepare(prepare: Permutation['prepare']): { indentChar: string; indentLv: number } {
   const str = '//css//'; // this is a string that’s invalid CSS that wouldn’t be in the fn itself
   const output = prepare(str).replace(/\/\*.*\*\//g, ''); // strip comments because we don’t need them
   let indentChar = '  ';

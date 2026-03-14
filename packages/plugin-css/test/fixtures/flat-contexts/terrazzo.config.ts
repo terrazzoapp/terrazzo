@@ -17,9 +17,9 @@ export default defineConfig({
       permutations:[
         {
           input: {},
-          prepare: (css) => `
+          prepare: (contents) => `
 :root {
-  ${css}
+  ${contents}
 }`,
           include: ['primitives.*'],
         },

@@ -9,8 +9,8 @@ export default defineConfig({
     css({
       filename: 'actual.css',
       permutations: [
-        { input: { theme: 'light' }, prepare: css => `:root{\n  ${css}\n}\n` },
-        { input: { theme: 'dark' }, prepare: css => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}\n` },
+        { input: { theme: 'light' }, prepare: (contents) => `:root{\n  ${contents}\n}\n` },
+        { input: { theme: 'dark' }, prepare: (contents) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}\n` },
       ]
     }),
     sass({

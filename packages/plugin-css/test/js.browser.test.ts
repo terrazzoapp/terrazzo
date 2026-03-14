@@ -11,15 +11,15 @@ describe('Browser', () => {
           css({
             permutations: [
               {
-                prepare: (css) => `[data-color-theme="light"] {\n  ${css}\n}`,
+                prepare: (contents) => `[data-color-theme="light"] {\n  ${contents}\n}`,
                 input: { theme: 'light' },
               },
               {
-                prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}`,
+                prepare: (contents) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}`,
                 input: { theme: 'dark' },
               },
               {
-                prepare: (css) => `[data-color-theme="dark"] {\n  ${css}\n}`,
+                prepare: (contents) => `[data-color-theme="dark"] {\n  ${contents}\n}`,
                 input: { theme: 'dark' },
               },
             ],
