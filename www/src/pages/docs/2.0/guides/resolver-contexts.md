@@ -132,12 +132,12 @@ export default {
       permutations: [
         {
           input: { tzMode: "light" },
-          prepare: (css) => `:root {\n  ${css}\n}`,
+          prepare: (contents) => `:root {\n  ${contents}\n}`,
         },
         {
           input: { tzMode: "dark" },
-          prepare: (css) =>
-            `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}`,
+          prepare: (contents) =>
+            `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}`,
         },
       ],
     }),
@@ -179,8 +179,8 @@ Here’s an example how the options would change for the CSS plugin:
 -         { selector: ":root", mode: "light" },
 -         { selector: "@media (prefers-color-scheme: dark)", mode: "dark" },
 +       permutations: [
-+         { input: { tzMode: "light" }, prepare: (css) => `:root {\n  ${css}\n}` },
-+         { input: { tzMode: "dark" }, prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}` },
++         { input: { tzMode: "light" }, prepare: (contents) => `:root {\n  ${contents}\n}` },
++         { input: { tzMode: "dark" }, prepare: (contents) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}` },
         ],
       }),
     ],

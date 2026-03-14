@@ -11,47 +11,48 @@ const require = createRequire(import.meta.url);
 
 const MODE_LIGHT_ROOT: Permutation = {
   input: { mode: 'light' },
-  prepare: (css) => `:root {\n  color-scheme: light dark;\n  ${css}\n}`,
+  prepare: (contents) => `:root {\n  color-scheme: light dark;\n  ${contents}\n}`,
 };
 const MODE_LIGHT: Permutation = {
   input: { mode: 'light' },
-  prepare: (css) => `[data-color-theme="light"] {\n  color-scheme: light;\n  ${css}\n}`,
+  prepare: (contents) => `[data-color-theme="light"] {\n  color-scheme: light;\n  ${contents}\n}`,
 };
 const MODE_DARK: Permutation = {
   input: { mode: 'dark' },
-  prepare: (css) => `[data-color-theme="dark"] {\n  color-scheme: dark;\n  ${css}\n}`,
+  prepare: (contents) => `[data-color-theme="dark"] {\n  color-scheme: dark;\n  ${contents}\n}`,
 };
 const MODE_DARK_MQ: Permutation = {
   input: { mode: 'dark' },
-  prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    color-scheme: dark;\n    ${css}\n  }\n}`,
+  prepare: (contents) =>
+    `@media (prefers-color-scheme: dark) {\n  :root {\n    color-scheme: dark;\n    ${contents}\n  }\n}`,
 };
 const MODE_LIGHT_COLORBLIND: Permutation = {
   input: { mode: 'light-colorblind' },
-  prepare: (css) => `[data-color-theme="light-colorblind"] {\n  ${css}\n}`,
+  prepare: (contents) => `[data-color-theme="light-colorblind"] {\n  ${contents}\n}`,
 };
 const MODE_LIGHT_HIGH_CONTRAST: Permutation = {
   input: { mode: 'light-high-contrast' },
-  prepare: (css) => `[data-color-theme="light-high-contrast"] {\n  ${css}\n}`,
+  prepare: (contents) => `[data-color-theme="light-high-contrast"] {\n  ${contents}\n}`,
 };
 const MODE_DARK_DIMMED: Permutation = {
   input: { mode: 'dark-dimmed' },
-  prepare: (css) => `[data-color-theme="dark-dimmed"] {\n  color-scheme: dark;\n  ${css}\n}`,
+  prepare: (contents) => `[data-color-theme="dark-dimmed"] {\n  color-scheme: dark;\n  ${contents}\n}`,
 };
 const MODE_DARK_HIGH_CONTRAST: Permutation = {
   input: { mode: 'dark-high-contrast' },
-  prepare: (css) => `[data-color-theme="dark-high-contrast"] {\n  color-scheme: dark;\n  ${css}\n}`,
+  prepare: (contents) => `[data-color-theme="dark-high-contrast"] {\n  color-scheme: dark;\n  ${contents}\n}`,
 };
 const MODE_DARK_COLORBLIND: Permutation = {
   input: { mode: 'dark-colorblind' },
-  prepare: (css) => `[data-color-theme="dark-colorblind"] {\n  color-scheme: dark;\n  ${css}\n}`,
+  prepare: (contents) => `[data-color-theme="dark-colorblind"] {\n  color-scheme: dark;\n  ${contents}\n}`,
 };
 const SIZE_MOBILE: Permutation = {
   input: { size: 'mobile' },
-  prepare: (css) => `:root {\n  ${css}\n}`,
+  prepare: (contents) => `:root {\n  ${contents}\n}`,
 };
 const SIZE_DESKTOP: Permutation = {
   input: { size: 'desktop' },
-  prepare: (css) => `@media (width >= 600px) {\n  :root {\n    ${css}\n  }\n}`,
+  prepare: (contents) => `@media (width >= 600px) {\n  :root {\n    ${contents}\n  }\n}`,
 };
 
 describe('Node.js API', () => {
@@ -270,10 +271,13 @@ describe('Node.js API', () => {
         'adobe-spectrum',
         {
           permutations: [
-            { prepare: (css) => `:root {\n  ${css}\n}`, input: { theme: 'light', size: 'mobile' } },
-            { prepare: (css) => `[data-theme="dark"] {\n  ${css}\n}`, input: { theme: 'dark', size: 'mobile' } },
+            { prepare: (contents) => `:root {\n  ${contents}\n}`, input: { theme: 'light', size: 'mobile' } },
             {
-              prepare: (css) => `@media (width >= 600px) {\n  :root {\n    ${css}\n  }\n}`,
+              prepare: (contents) => `[data-theme="dark"] {\n  ${contents}\n}`,
+              input: { theme: 'dark', size: 'mobile' },
+            },
+            {
+              prepare: (contents) => `@media (width >= 600px) {\n  :root {\n    ${contents}\n  }\n}`,
               input: { theme: 'light', size: 'desktop' },
             },
           ],
@@ -283,8 +287,8 @@ describe('Node.js API', () => {
         'figma-sds',
         {
           permutations: [
-            { prepare: (css) => `[data-theme="light"] {\n  ${css}\n}`, input: { theme: 'light' } },
-            { prepare: (css) => `[data-theme="dark"] {\n  ${css}\n}`, input: { theme: 'dark' } },
+            { prepare: (contents) => `[data-theme="light"] {\n  ${contents}\n}`, input: { theme: 'light' } },
+            { prepare: (contents) => `[data-theme="dark"] {\n  ${contents}\n}`, input: { theme: 'dark' } },
           ],
         },
       ],
@@ -292,11 +296,11 @@ describe('Node.js API', () => {
         'github-primer',
         {
           permutations: [
-            { prepare: (css) => `:root {\n  ${css}\n}`, input: { size: 'default' } },
-            { prepare: (css) => `[data-theme="light"] {\n  ${css}\n}`, input: { theme: 'light' } },
-            { prepare: (css) => `[data-theme="light-hc"] {\n  ${css}\n}`, input: { theme: 'light-hc' } },
-            { prepare: (css) => `[data-theme="dark"] {\n  ${css}\n}`, input: { theme: 'dark' } },
-            { prepare: (css) => `[data-theme="dark-hc"] {\n  ${css}\n}`, input: { theme: 'dark-hc' } },
+            { prepare: (contents) => `:root {\n  ${contents}\n}`, input: { size: 'default' } },
+            { prepare: (contents) => `[data-theme="light"] {\n  ${contents}\n}`, input: { theme: 'light' } },
+            { prepare: (contents) => `[data-theme="light-hc"] {\n  ${contents}\n}`, input: { theme: 'light-hc' } },
+            { prepare: (contents) => `[data-theme="dark"] {\n  ${contents}\n}`, input: { theme: 'dark' } },
+            { prepare: (contents) => `[data-theme="dark-hc"] {\n  ${contents}\n}`, input: { theme: 'dark-hc' } },
           ],
         },
       ],
@@ -304,12 +308,15 @@ describe('Node.js API', () => {
         'microsoft-fluent',
         {
           permutations: [
-            { prepare: (css) => `:root {\n  ${css}\n}`, input: { theme: 'default' } },
-            { prepare: (css) => `@media (prefers-color-scheme: dark) {\n  ${css}\n}`, input: { theme: 'inverted' } },
+            { prepare: (contents) => `:root {\n  ${contents}\n}`, input: { theme: 'default' } },
+            {
+              prepare: (contents) => `@media (prefers-color-scheme: dark) {\n  ${contents}\n}`,
+              input: { theme: 'inverted' },
+            },
           ],
         },
       ],
-      ['shopify-polaris', { permutations: [{ input: {}, prepare: (css) => `:root {\n  ${css}\n}` }] }],
+      ['shopify-polaris', { permutations: [{ input: {}, prepare: (contents) => `:root {\n  ${contents}\n}` }] }],
     ];
 
     it.each(tests)(
@@ -399,13 +406,13 @@ describe('Node.js API', () => {
                 text: ['color.semantic.**', 'color.gradient.**'],
               },
               permutations: [
-                { prepare: (css) => `:root {\n  ${css}\n}`, input: { theme: 'light' } },
+                { prepare: (contents) => `:root {\n  ${contents}\n}`, input: { theme: 'light' } },
                 {
-                  prepare: (css) => `@media (prefers-color-theme: dark) {\n  :root {\n    ${css}\n  }\n}`,
+                  prepare: (contents) => `@media (prefers-color-theme: dark) {\n  :root {\n    ${contents}\n  }\n}`,
                   input: { theme: 'dark' },
                 },
                 {
-                  prepare: (css) => `@media (width < 600px) {\n  :root {\n    ${css}\n  }\n}`,
+                  prepare: (contents) => `@media (width < 600px) {\n  :root {\n    ${contents}\n  }\n}`,
                   input: { size: 'mobile' },
                 },
               ],

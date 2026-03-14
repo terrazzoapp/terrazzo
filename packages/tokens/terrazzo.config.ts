@@ -11,20 +11,20 @@ export default defineConfig({
       variableName: (token) => makeCSSVar(token.id, { prefix: 'tz' }),
       permutations: [
         {
-          prepare: (css) => `:root {
-  ${css}
+          prepare: (contents) => `:root {
+  ${contents}
 }`,
           input: { theme: 'light' },
         },
         {
-          prepare: (css) => `@media (prefers-color-scheme: dark) {
+          prepare: (contents) => `@media (prefers-color-scheme: dark) {
   :root {
-    ${css}
+    ${contents}
   }
 }
 
 [data-color-mode="dark"] {
-  ${css}
+  ${contents}
 }`,
           input: { theme: 'dark' },
         },

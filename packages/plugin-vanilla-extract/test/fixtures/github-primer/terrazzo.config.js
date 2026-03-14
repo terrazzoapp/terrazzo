@@ -14,10 +14,10 @@ export default defineConfig({
   plugins: [
     css({
       permutations: [
-        { input: { theme: 'light' }, prepare: (css) => `:root{\n  color-scheme: light dark;\n  ${css}\n}` },
-        { input: { theme: 'light-hc' }, prepare: (css) => `[data-theme="light-hc"] {\n  ${css}\n}` },
-        { input: { theme: 'dark' }, prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    color-scheme: dark;\n    ${css}\n  }\n}` },
-        { input: { theme: 'dark-hc' }, prepare: (css) => `[data-theme="dark-hc"] {\n  ${css}\n}` },
+        { input: { theme: 'light' }, prepare: (contents) => `:root{\n  color-scheme: light dark;\n  ${contents}\n}` },
+        { input: { theme: 'light-hc' }, prepare: (contents) => `[data-theme="light-hc"] {\n  ${contents}\n}` },
+        { input: { theme: 'dark' }, prepare: (contents) => `@media (prefers-color-scheme: dark) {\n  :root {\n    color-scheme: dark;\n    ${contents}\n  }\n}` },
+        { input: { theme: 'dark-hc' }, prepare: (contents) => `[data-theme="dark-hc"] {\n  ${contents}\n}` },
       ]
     }),
     vanillaExtract({

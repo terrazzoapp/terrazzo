@@ -15,14 +15,14 @@ export default defineConfig({
       permutations: [
         {
           input: { mode: 'light' },
-          prepare: (css) => `.light {\n  ${css}\n}`,
+          prepare: (contents) => `.light {\n  ${contents}\n}`,
           transform(token, options) {
             return `${transformCSSValue(token, options)} /* light mode rocks */`
           }
         },
         {
           input: { mode: 'dark' },
-          prepare: (css) => `.dark {\n  ${css}\n}`,
+          prepare: (contents) => `.dark {\n  ${contents}\n}`,
           transform(token, options) {
             return `${transformCSSValue(token, options)} /* no dark is better */`
           }

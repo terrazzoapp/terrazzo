@@ -76,8 +76,8 @@ export default defineConfig({
   plugins: [
     css({
       permutations: [
-        { ...light, prepare: (css) => `:root {\n  color-scheme: light dark;\n  ${css}\n}` },
-        { ...dark, prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    color-scheme: dark;\n    ${css}\n  }\n}` },
+        { ...light, prepare: (contents) => `:root {\n  color-scheme: light dark;\n  ${contents}\n}` },
+        { ...dark, prepare: (contents) => `@media (prefers-color-scheme: dark) {\n  :root {\n    color-scheme: dark;\n    ${contents}\n  }\n}` },
       ],
     }),
 

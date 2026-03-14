@@ -175,29 +175,29 @@ The CSS plugin can map [resolver contexts](/docs/guides/resolvers) into CSS medi
 +       permutations: [
 +         {
 +           input: {} // default
-+           prepare: (css) => `:root {\n  color-scheme: light dark;\n  ${css}\n}`,
++           prepare: (contents) => `:root {\n  color-scheme: light dark;\n  ${contents}\n}`,
 +         },
 +         {
 +           input: { mode: "light" },
-+           prepare: (css) => `[data-theme="light"] {\n  color-scheme: light;\n  ${css}}`,
++           prepare: (contents) => `[data-theme="light"] {\n  color-scheme: light;\n  ${contents}}`,
 +         },
 +         {
 +           input: { mode: "dark" },
-+           prepare: (css) => `@media (prefers-color-scheme: "dark") {
++           prepare: (contents) => `@media (prefers-color-scheme: "dark") {
 +   :root {
 +     color-scheme: dark;
-+     ${css}
++     ${contents}
 +   }
 + }
 +
 + [data-theme="dark"] {
 +   color-scheme: dark;
-+   ${css}
++   ${contents}
 + }`,
 +         },
 +         {
 +           input: { size: "desktop" },
-+           prepare: (css) => `@media (width >= 600px) {\n  :root {\n    ${css}\n  }\n}`,
++           prepare: (contents) => `@media (width >= 600px) {\n  :root {\n    ${contents}\n  }\n}`,
 +         },
 +       ],
       }),
@@ -296,12 +296,12 @@ export default defineConfig({
       permutations: [
         {
           input: {},
-          prepare: (css) => `:root {\n  ${css}\n}`,
+          prepare: (contents) => `:root {\n  ${contents}\n}`,
           include: ["primitives.**"], // include only primitives in this permutation
         },
         {
           input: { mode: "light" },
-          prepare: (css) => `.light {\n  ${css}\n}`,
+          prepare: (contents) => `.light {\n  ${contents}\n}`,
           exclude: ["primitives.**"], // include everything but primitives in this permutation
         },
       ],
@@ -458,30 +458,30 @@ export default defineConfig({
       filename: "tokens.css",
       permutations: [
         {
-          prepare: (css) => `:root {\n  ${css}\n}`,
+          prepare: (contents) => `:root {\n  ${contents}\n}`,
           input: { size: "mobile" },
         },
         {
-          prepare: (css) => `[data-theme="light"] {\n  ${css}\n}`,
+          prepare: (contents) => `[data-theme="light"] {\n  ${contents}\n}`,
           input: { theme: "light" },
         },
         {
-          prepare: (css) =>
-            `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}`,
+          prepare: (contents) =>
+            `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}`,
           input: { theme: "dark" },
         },
         {
-          prepare: (css) => `[data-theme="dark"] {\n  ${css}\n}`,
+          prepare: (contents) => `[data-theme="dark"] {\n  ${contents}\n}`,
           input: { theme: "dark" },
         },
         {
-          prepare: (css) =>
-            `@media (width >= 600px) {\n  :root {\n    ${css}\n  }\n}`,
+          prepare: (contents) =>
+            `@media (width >= 600px) {\n  :root {\n    ${contents}\n  }\n}`,
           input: { size: "desktop" },
         },
         {
-          prepare: (css) =>
-            `@media (prefers-reduced-motion) {\n  :root {\n    ${css}\n  }\n}`,
+          prepare: (contents) =>
+            `@media (prefers-reduced-motion) {\n  :root {\n    ${contents}\n  }\n}`,
           input: { motion: "reduced-motion" },
         },
       ],
@@ -493,17 +493,17 @@ export default defineConfig({
 
 :::
 
-| Name           | Type                                                             | Description                                                                                                                                                     |
-| :------------- |:-----------------------------------------------------------------| :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `filename`     | `string`                                                         | Filename to generate (default: `"tokens.css"`).                                                                                                                 |
-| `exclude`      | `string[]`                                                       | Glob pattern(s) of token IDs to exclude.                                                                                                                        |
-| `permutations` | `Permutation[]`                                                  | See [resolvers](#resolvers).                                                                                                                                    |
-| `variableName` | `(token: TokenNormalized) => string`                             | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
+| Name           | Type                                                                                              | Description                                                                                                                                                     |
+| :------------- | :------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filename`     | `string`                                                                                          | Filename to generate (default: `"tokens.css"`).                                                                                                                 |
+| `exclude`      | `string[]`                                                                                        | Glob pattern(s) of token IDs to exclude.                                                                                                                        |
+| `permutations` | `Permutation[]`                                                                                   | See [resolvers](#resolvers).                                                                                                                                    |
+| `variableName` | `(token: TokenNormalized) => string`                                                              | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
 | `transform`    | `(token: TokenNormalized, options: TransformCSSValueOptions) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                                |
-| `utility`      | [Utility CSS mapping](#utility-css)                              | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                                     |
-| `legacyHex`    | `boolean`                                                        | Output colors as hex-6/hex-8 instead of [rgb() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                    |
-| `skipBuild`    | `boolean`                                                        | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
-| `colorDepth`   | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                            | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
+| `utility`      | [Utility CSS mapping](#utility-css)                                                               | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                                     |
+| `legacyHex`    | `boolean`                                                                                         | Output colors as hex-6/hex-8 instead of [rgb() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                    |
+| `skipBuild`    | `boolean`                                                                                         | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
+| `colorDepth`   | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                                                             | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
 
 ### transform()
 
