@@ -1,3 +1,4 @@
 test/__screenshots__/**
 test/fixtures/**/tokens/
-test/fixtures/**/actual.css
+test/fixtures/**/*.css
+!test/fixtures/**/*.want.css

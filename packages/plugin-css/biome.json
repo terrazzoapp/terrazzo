@@ -3,6 +3,6 @@
   "$schema": "https://biomejs.dev/schemas/2.4.7/schema.json",
   "extends": "//",
   "files": {
-    "includes": ["src/**", "test/**/*.test.*"]
+    "includes": ["src/**", "test/**/*.test.*", "test/fixtures/**/*.ts"]
   }
 }
