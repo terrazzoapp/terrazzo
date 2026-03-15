@@ -29,7 +29,7 @@ describe('fixtures', () => {
     ['string (legacy modes)', { dir: 'mode-type-string', output: ['index.css'] }],
     ['boolean (legacy modes)', { dir: 'mode-type-boolean', output: ['index.css'] }],
     ['permutations with include', { dir: 'permutations-include', output: ['index.css'] }],
-    ['yaml', { dir: 'yaml', output: ['tokens/index.css'] }],
+    ['yaml', { dir: 'yaml', output: ['index.css'] }],
     ['option: outDir', { dir: 'option-out-dir', output: ['styles/out/custom.css'] }],
     ['option: legacyHex', { dir: 'option-legacy-hex', output: ['index.css'] }],
     ['option: modeSelectors (legacy)', { dir: 'option-mode-selectors-chained-selector', output: ['index.css'] }],
