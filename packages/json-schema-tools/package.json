@@ -31,9 +31,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "build": "tsgo -p tsconfig.build.json && attw --profile esm-only --pack .",
     "bench": "vitest bench",
-    "dev": "rolldown --watch -c",
+    "dev": "tsgo -p tsconfig.build.json --watch",
     "format": "biome check --fix --unsafe .",
     "lint": "pnpm --filter @terrazzo/json-schema-tools run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
@@ -52,6 +52,8 @@
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^11.9.3",
     "@humanwhocodes/momoa": "catalog:",
+    "@terrazzo/tsconfig": "workspace:^",
+    "@typescript/native-preview": "catalog:",
     "yaml-to-momoa": "catalog:"
   }
 }

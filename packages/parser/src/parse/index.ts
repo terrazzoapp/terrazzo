@@ -1,4 +1,3 @@
-import type fsType from 'node:fs/promises';
 import type { InputSource, InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';

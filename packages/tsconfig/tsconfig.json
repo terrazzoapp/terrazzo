@@ -4,7 +4,7 @@
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "jsx": "react-jsx",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
@@ -18,6 +18,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "ESNext",
+    "types": [],
     "verbatimModuleSyntax": true
   },
   "exclude": ["**/dist/*", "**/node_modules/*"]

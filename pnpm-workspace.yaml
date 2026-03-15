@@ -7,6 +7,7 @@ catalog:
   '@humanwhocodes/momoa': ^3.3.10
   '@types/react': ^19.2.14
   '@types/react-dom': ^19.2.3
+  '@typescript/native-preview': 7.0.0-dev.20260314.1
   '@vitejs/plugin-react': ^5.2.0
   '@vitest/browser': ^4.1.0
   '@vitest/browser-playwright': ^4.1.0

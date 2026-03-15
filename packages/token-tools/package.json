@@ -32,20 +32,24 @@
     ".": "./dist/index.js",
     "./css": "./dist/css.js",
     "./js": "./dist/js.js",
+    "./*": "./dist/*",
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "build": "tsgo -p tsconfig.build.json && attw --profile esm-only --pack .",
     "dev": "rolldown -w -c",
     "format": "biome check --fix --unsafe .",
     "lint": "pnpm --filter @terrazzo/token-tools run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
-    "lint:ts": "tsc --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
     "@humanwhocodes/momoa": "catalog:",
+    "@typescript/native-preview": "catalog:",
     "colorjs.io": "catalog:",
     "wildcard-match": "^5.1.4"
+  },
+  "devDependencies": {
+    "@terrazzo/tsconfig": "workspace:^"
   }
 }
