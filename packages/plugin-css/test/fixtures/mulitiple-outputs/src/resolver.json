@@ -1,0 +1,35 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "multi-brand",
+  "version": "2025.10",
+  "description": "Brands: [brand1, brand2].",
+  "sets": {
+    "shared": {
+      "description": "Shared primitives across all brands",
+      "sources": [{ "$ref": "./shared.json" }]
+    }
+  },
+  "modifiers": {
+    "brand": {
+      "description": "Brand primitives (colours)",
+      "contexts": {
+        "brand1": [{ "$ref": "./brand-1.json" }],
+        "brand2": [{ "$ref": "./brand-2.json" }]
+      },
+      "default": "brand1"
+    },
+    "breakpoint": {
+      "description": "Breakpoint definitions",
+      "contexts": {
+        "breakpoints": [{ "$ref": "./breakpoints.json" }],
+        "breakpoints2": [{ "$ref": "./breakpoints2.json" }]
+      },
+      "default": "breakpoints"
+    }
+  },
+  "resolutionOrder": [
+    { "$ref": "#/sets/shared" },
+    { "$ref": "#/modifiers/brand" },
+    { "$ref": "#/modifiers/breakpoint" }
+  ]
+}

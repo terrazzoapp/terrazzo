@@ -23,8 +23,6 @@ const REC2020_MQ = '@media (color-gamut: rec2020)';
  * Preserves the descriptions and alias descriptions.
  */
 function getDescription(token: any): string | undefined {
-  console.error('token.meta?.["plugin-css"]?.description:', token.meta?.['plugin-css']?.description);
-  console.error('token.token.$description:', token.token.$description);
   return token.meta?.['plugin-css']?.description ?? token.token.$description;
 }
 
