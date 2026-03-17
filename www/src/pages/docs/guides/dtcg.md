@@ -31,21 +31,21 @@ By storing tokens in a universal format like JSON, you can centrally manage them
 
 Currently, the DTCG format defines the following types:
 
-| Type | Description |
-|:-----|:------------|
-| [Color](/docs/reference/tokens#color) | A flat color. |
-| [Dimension](/docs/reference/tokens#dimension) | A unit for sizing, spacing, etc. |
-| [Font Family](/docs/reference/tokens#font-family) | A font family, with fallbacks. |
-| [Font Weight](/docs/reference/tokens#font-weight) | A font weight, such as normal or bold. |
-| [Duration](/docs/reference/tokens#duration) | A unit for time. |
-| [Cubic Bézier](/docs/reference/tokens#cubic-bezier) | A Cubic Bézier for animations. |
-| [Number](/docs/reference/tokens#number) | A number without units. |
-| [Stroke Style](/docs/reference/tokens#stroke) | A stroke. |
-| [Border](/docs/reference/tokens#border) | An element border style. |
-| [Transition](/docs/reference/tokens#transition) | A pairing of timing, duration, and a Cubic Bézier to form an animation. |
-| [Shadow](/docs/reference/tokens#shadow) | A drop shadow or inner shadow. |
-| [Gradient](/docs/reference/tokens#gradient) | A gradient of colors. |
-| [Typography](/docs/reference/tokens#typography) | A complete typographic style, including family, weight, line height, and more. |
+| Type                                                | Description                                                                    |
+| :-------------------------------------------------- | :----------------------------------------------------------------------------- |
+| [Color](/docs/reference/tokens#color)               | A flat color.                                                                  |
+| [Dimension](/docs/reference/tokens#dimension)       | A unit for sizing, spacing, etc.                                               |
+| [Font Family](/docs/reference/tokens#font-family)   | A font family, with fallbacks.                                                 |
+| [Font Weight](/docs/reference/tokens#font-weight)   | A font weight, such as normal or bold.                                         |
+| [Duration](/docs/reference/tokens#duration)         | A unit for time.                                                               |
+| [Cubic Bézier](/docs/reference/tokens#cubic-bezier) | A Cubic Bézier for animations.                                                 |
+| [Number](/docs/reference/tokens#number)             | A number without units.                                                        |
+| [Stroke Style](/docs/reference/tokens#stroke)       | A stroke.                                                                      |
+| [Border](/docs/reference/tokens#border)             | An element border style.                                                       |
+| [Transition](/docs/reference/tokens#transition)     | A pairing of timing, duration, and a Cubic Bézier to form an animation.        |
+| [Shadow](/docs/reference/tokens#shadow)             | A drop shadow or inner shadow.                                                 |
+| [Gradient](/docs/reference/tokens#gradient)         | A gradient of colors.                                                          |
+| [Typography](/docs/reference/tokens#typography)     | A complete typographic style, including family, weight, line height, and more. |
 
 In addition, Terrazzo also allows 3 additional custom types: [Link](/docs/reference/tokens), [Boolean](/docs/reference/tokens), and [String](/docs/reference/tokens). But it may require writing your own to take full advantage of these types.
 
@@ -60,10 +60,12 @@ DTCG token files are infinitely-nestable to create your token structure. For exa
   "color": {
     "base": {
       "blue": {
-        "500": { /* … */ }
-      }
-    }
-  }
+        "500": {
+          /* … */
+        },
+      },
+    },
+  },
 }
 ```
 
@@ -75,10 +77,18 @@ By allowing your JSON structure to nest, you avoid errors by **avoiding duplicat
 
 ```jsonc [my-ds.tokens.json]
 {
-  "color.base.blue.100": { /* … */ },
-  "color.base.blue.200": { /* … */ },
-  "color.base.bleu.300": { /* … */ },
-  "color.base.blue.400": { /* … */ },
+  "color.base.blue.100": {
+    /* … */
+  },
+  "color.base.blue.200": {
+    /* … */
+  },
+  "color.base.bleu.300": {
+    /* … */
+  },
+  "color.base.blue.400": {
+    /* … */
+  },
 }
 ```
 

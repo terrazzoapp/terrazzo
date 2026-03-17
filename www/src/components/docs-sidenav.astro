@@ -1,12 +1,12 @@
 ---
-import { DOCS_NAV, DOCS_NAV_V2 } from '../config/pages.js';
+import { DOCS_NAV, DOCS_NAV_0 } from '../config/pages.js';
 import { getAriaCurrent } from '../lib/navigation.js';
 ---
 
 <div class="sidenav">
   <nav class="nav" aria-label="Table of Contents">
     {
-      (Astro.url.pathname.includes('/docs/2.0') ? DOCS_NAV_V2 : DOCS_NAV).map((section) => section.url ? (
+      (Astro.url.pathname.includes('/docs/0.x') ? DOCS_NAV_0 : DOCS_NAV).map((section) => section.url ? (
         <li class="nav-item">
           <a
             class="nav-link"

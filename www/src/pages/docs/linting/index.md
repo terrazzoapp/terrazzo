@@ -7,18 +7,35 @@ layout: ../../../layouts/docs.astro
 
 The idea of token linting is similar to any kind of code linting—you can run checks on your tokens to raise errors and warnings based on a number of criteria:
 
-| Rule                                                                       | Description                                                                 |
-| :------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
-| [core/colorspace](#corecolorspace)                                         | Enforce that all colors are declared in a specific color space (e.g. sRGB). |
-| [core/consistent-naming](#coreconsistent-naming)                           | Enforce a consistent naming style (e.g. camelCase).                         |
-| [core/duplicate-values](#coreduplicate-values)                             | Enforce tokens can’t redeclare the same value (excludes aliases).           |
-| [core/descriptions](#coredescriptions)                                     | Enforce tokens have descriptions.                                           |
-| [core/max-gamut](#coremax-gamut)                                           | Enforce colors are within the specified gamut (e.g. display-p3).            |
-| [core/required-children](#corerequired-children)                           | Enforce token groups have specific children, whether tokens and/or groups.  |
-| [core/required-modes](#corerequired-modes)                                 | Enforce certain tokens have specific modes.                                 |
-| [core/required-typography-properties](#corerequired-typography-properties) | Enforce typography tokens have required properties (e.g. `lineHeight`).     |
-| [a11y/min-contrast](#a11ymin-contrast)                                     | Ensure minimum WCAG 2.2 contrast given token pairs.                         |
-| [a11y/min-font-size](#a11ymin-font-size)                                   | Ensure minimum font size.                                                   |
+| Rule                                                                       | Description                                                                               |
+| :------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| [core/valid-color](#corevalid-color)                                       | Require [color tokens](/docs/reference/tokens/#color) to follow the format.               |
+| [core/valid-dimension](#corevalid-dimension)                               | Require [dimension tokens](/docs/reference/tokens/#dimension) to follow the format.       |
+| [core/valid-font-family](#corevalid-font-family)                           | Require [fontFamily tokens](/docs/reference/tokens/#font-family) to follow the format.    |
+| [core/valid-font-weight](#corevalid-font-weight)                           | Require [fontWeight tokens](/docs/reference/tokens/#font-weight) to follow the format.    |
+| [core/valid-duration](#corevalid-duration)                                 | Require [duration tokens](/docs/reference/tokens/#duration) to follow the format.         |
+| [core/valid-cubic-bezier](#corevalid-cubic-bezier)                         | Require [cubicBezier tokens](/docs/reference/tokens/#cubic-bezier) to follow the format.  |
+| [core/valid-number](#corevalid-number)                                     | Require [number tokens](/docs/reference/tokens/#number) to follow the Terrazzo extension. |
+| [core/valid-link](#corevalid-link)                                         | Require [link tokens](/docs/reference/tokens/#link) to follow the Terrazzo extension.     |
+| [core/valid-boolean](#corevalid-boolean)                                   | Require [boolean tokens](/docs/reference/tokens/#boolean) to follow Terrazzo extension.   |
+| [core/valid-string](#corevalid-string)                                     | Require [string tokens](/docs/reference/tokens/#string) to follow the Terrazzo extension. |
+| [core/valid-stroke-style](#corevalid-stroke-style)                         | Require [stroke-style tokens](/docs/reference/tokens/#stroke-style) to follow the format. |
+| [core/valid-border](#corevalid-border)                                     | Require [border tokens](/docs/reference/tokens/#border) to follow the format.             |
+| [core/valid-transition](#corevalid-transition)                             | Require [transition tokens](/docs/reference/tokens/#transition) to follow the format.     |
+| [core/valid-shadow](#corevalid-shadow)                                     | Require [shadow tokens](/docs/reference/tokens/#shadow) to follow the format.             |
+| [core/valid-gradient](#corevalid-gradient)                                 | Require [gradient tokens](/docs/reference/tokens/#gradient) to follow the format.         |
+| [core/valid-typography](#corevalid-typography)                             | Require [typography tokens](/docs/reference/tokens/#typography) to follow the format.     |
+| [core/colorspace](#corecolorspace)                                         | Enforce that all colors are declared in a specific colorspace (e.g. sRGB).                |
+| [core/consistent-naming](#coreconsistent-naming)                           | Enforce a consistent naming style (e.g. camelCase).                                       |
+| [core/descriptions](#coredescriptions)                                     | Enforce tokens have descriptions.                                                         |
+| [core/duplicate-values](#coreduplicate-values)                             | Enforce tokens can’t redeclare the same value (excludes aliases).                         |
+| [core/max-gamut](#coremax-gamut)                                           | Enforce colors are within the specified gamut (e.g. display-p3).                          |
+| [core/required-children](#corerequired-children)                           | Enforce token groups have specific children, whether tokens and/or groups.                |
+| [core/required-modes](#corerequired-modes)                                 | Enforce certain tokens have specific modes.                                               |
+| [core/required-type](#corerequired-type)                                   | Enforce all tokens and aliases have `$type`.                                              |
+| [core/required-typography-properties](#corerequired-typography-properties) | Enforce typography tokens have required properties (e.g. `lineHeight`).                   |
+| [a11y/min-contrast](#a11ymin-contrast)                                     | Ensure minimum WCAG 2.2 contrast given token pairs.                                       |
+| [a11y/min-font-size](#a11ymin-font-size)                                   | Ensure minimum font size.                                                                 |
 
 ## Config
 
@@ -34,7 +51,7 @@ Lastly, many rules accept additional options. If passing options, use the `[seve
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -52,13 +69,367 @@ export default defineConfig({
 
 ## Rules
 
-### core/colorspace
+### core/valid-color
 
-Enforce that all colors are declared in a specific colorspace (e.g. sRGB).
+Require all color tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-color": [
+        "error",
+        { legacyFormat: false, ignoreRanges: false },
+      ],
+    },
+  },
+});
+```
+
+:::
+
+| Option           | Description                                                                 |
+| :--------------- | :-------------------------------------------------------------------------- |
+| **legacyFormat** | Allow declaration of legacy sRGB hex codes for `$value` (default: `false`). |
+| **ignoreRanges** | Allow colors to exceed CSS Color Module 4 ranges (default: `false`).        |
+
+### core/valid-dimension
+
+Require all dimension tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-dimension": [
+        "error",
+        {
+          legacyFormat: false,
+          allowedUnits: ["px", "rem"],
+        },
+      ],
+    },
+  },
+});
+```
+
+:::
+
+| Option           | Description                                               |
+| :--------------- | :-------------------------------------------------------- |
+| **legacyFormat** | Allow legacy string values (`"12px"`) (default: `false`). |
+| **unknownUnits** | Allow usage of any `unit` values (default: `false`).      |
+
+### core/valid-font-family
+
+Require all fontFamily tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-font-family": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-font-weight
+
+Require all fontWeight tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-font-weight": "error",
+    },
+  },
+});
+```
+
+| Option    | Description                                                 |
+| :-------- | :---------------------------------------------------------- |
+| **style** | Enforce all weights are `"numbers"` or `"names"` (strings). |
+
+:::
+
+### core/valid-duration
+
+Require all duration tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-duration": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-cubic-bezier
+
+Require all cubicBezier tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-cubic-bezier": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-number
+
+Require all number tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-number": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-link
+
+Require all link tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-link": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-boolean
+
+Require all boolean tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-boolean": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-string
+
+Require all string tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-string": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-stroke-style
+
+Require all strokeStyle tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-stroke-style": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-border
+
+Require all border tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-border": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-transition
+
+Require all transition tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-transition": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-shadow
+
+Require all shadow tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-shadow": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-gradient
+
+Require all gradient tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-gradient": "error",
+    },
+  },
+});
+```
+
+:::
+
+### core/valid-typography
+
+Require all typography tokens to follow the format.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/valid-typography": [
+        "error",
+        {
+          requiredProperties: [
+            "fontFamily",
+            "fontSize",
+            "fontWeight",
+            "lineHeight",
+            "letterSpacing",
+          ],
+        },
+      ],
+    },
+  },
+});
+```
+
+:::
+
+### core/colorspace
+
+Enforce that all colors are declared in a specific color space (e.g. sRGB).
+
+:::code-group
+
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -83,7 +454,7 @@ Enforce a consistent naming style (e.g. camelCase).
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -108,7 +479,7 @@ Enforce tokens can’t redeclare the same value (excludes aliases).
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -132,7 +503,7 @@ Enforce tokens have descriptions. Having a description on a group doesn’t coun
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -156,7 +527,7 @@ Enforce colors are within the specified gamut.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -184,7 +555,7 @@ A Match consists of a `match` glob to match against, along with either `required
 :::code-group
 
 <!-- prettier-ignore -->
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -228,7 +599,7 @@ Enforce certain tokens have specific modes.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -258,13 +629,39 @@ export default defineConfig({
 | matches[n].**match** | Array of token globs to include, e.g. `["size.*", "typography.*"]`            |
 | matches[n].**modes** | Array of strings to match against mode names, e.g. `["mobile", "desktop", …]` |
 
+### core/required-type
+
+Enforce tokens and aliases have `$type`.
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/required-type": "error",
+    },,
+  },
+});
+```
+
+:::
+
 ### core/required-typography-properites
+
+:::warn
+
+This rule is deprecated in favor of `core/valid-typography`.
+
+:::
 
 Enforce typography tokens have required properties.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -303,7 +700,7 @@ Each pair consists of a `foreground` and `background` color to test (note that w
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -350,7 +747,7 @@ Enforce font sizes are no smaller than the given value.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({

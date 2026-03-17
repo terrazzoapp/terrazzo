@@ -1,7 +1,7 @@
 ---
-import { DOCS_NAV, DOCS_NAV_V2 } from '../config/pages.js';
+import { DOCS_NAV, DOCS_NAV_0 } from '../config/pages.js';
 
-const nav = (Astro.url.pathname.includes('/docs/2.0') ? DOCS_NAV_V2 : DOCS_NAV).flatMap((section) =>
+const nav = (Astro.url.pathname.includes('/docs/0.x') ? DOCS_NAV_0 : DOCS_NAV).flatMap((section) =>
   section.url ? section : (section.items ?? []),
 );
 

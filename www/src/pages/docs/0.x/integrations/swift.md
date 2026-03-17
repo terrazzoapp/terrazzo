@@ -7,6 +7,12 @@ layout: ../../../../layouts/docs.astro
 
 Generate Swift asset catalogs from DTCG tokens.
 
+:::warning
+
+This plugin is still **experimental**. If you have suggestions, or would like to contribute, please open an issue or say “hi” in Discord!
+
+:::
+
 ## Setup
 
 Requires [Node.js](https://nodejs.org). With that installed, and a `package.json`, run:

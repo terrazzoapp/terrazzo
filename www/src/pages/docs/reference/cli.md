@@ -32,7 +32,7 @@ Generate code from `tokens.json` based on [plugins](/docs/integrations). Require
 npx tz build
 ```
 
-### Build flags
+### Build Flags
 
 | Name              | Description                                      |
 | :---------------- | :----------------------------------------------- |
@@ -41,48 +41,41 @@ npx tz build
 
 ## Check
 
-Validate all DTCG tokens for syntax errors, and run any [linters](/docs/linting/) you’ve enabled. Can optionally specify a `[path]` tokens are located at (by default, will look for the tokens defined in your config file).
+Validate all DTCG tokens for syntax errors, and run any [linters](/docs/linting) you’ve enabled. Can optionally specify a `[path]` tokens are located at (by default, will look for the tokens defined in your config file).
 
 ```sh
 npx tz check [filename]
 ```
 
-## Import
-
-Terrazzo allows importing from Figma files with the `import` command. Automatically import Figma Styles and Variables (note that Variables require an Enterprise plan; Styles work for any plan).
-
-```sh
-npx tz import https://www.figma.com/design/xxxxxxxxxxxxxxxxxvxxx/Design-System-Variables --output my-tokens.tokens.json
-```
-
-[See full guide](/docs/2.0/guides/import-from-figma)
-
-### Import flags
-
-| Name                           | Description                                                                                                                                                     |
-| :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--output [file]`, `-o [file]` | `.tokens.json` file to write to.                                                                                                                                |
-| `--unpublished`                | By default, this will grab the **published library** in the file. If you’d like to just simply grab what the file has, unpublished or not, add `--unpublished`. |
-
-## Normalize
+## Format
 
 Format tokens into the current DTCG standard. Note that a separate output is required. If you wish to overwrite your files dangerously, just specify the same file after `-o`.
 
 ```sh
-tz normalize <input.json> -o normalized.json
+tz format <input.json> -o normalized.json
 ```
 
 | Name            | Description            |
 | :-------------- | :--------------------- |
 | `--out` \| `-o` | Tokens file to output. |
 
-## Global flags
+## Import
+
+Export Figma Variables and Styles to a resolver JSON. Requires a Figma account and auth token.
+
+```sh
+tz import https://figma.com/[file] -o my-ds.resolver.json
+```
+
+[See full guide](/docs/2.0/guides/import-from-figma)
+
+## Global Flags
 
 Flags available for any command
 
 | Name               | Description                                     |
 | :----------------- | :---------------------------------------------- |
-| `--config` \| `-c` | Path to config (default: `terrazzo.config.js`). |
+| `--config` \| `-c` | Path to config (default: `terrazzo.config.ts`). |
 | `--silent`         | Suppress warnings.                              |
 | `--help`           | Show help message and exit.                     |
 | `--version`        | Show version and exit.                          |

@@ -165,7 +165,7 @@ To see more examples of how resolvers can work, [**play around with Resolvers in
 
 Legacy modes are still supported, if you were using Cobalt 1.0 or Terrazzo beta. In your tokens, you can keep `$extensions.mode`. But just map each context to a special `tzMode` namespace. In this way, you can use both old and new syntax together, without conflicts!
 
-Here’s an example how the options would change for the [CSS plugin](/docs/integrations/css) (⚠️ currently only available in `@terrazzo/cli@alpha` & `@terrazzo/plugin-css@alpha`):
+Here’s an example how the options would change for the CSS plugin:
 
 :::code-group
 

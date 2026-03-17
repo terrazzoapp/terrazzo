@@ -42,7 +42,7 @@ for (const { filename, contents } of buildResult) {
 }
 ```
 
-It’s worth noting the JS API is a little more manual work than the [CLI](/docs/):
+It’s worth noting the JS API is a little more manual work than the [CLI](/docs):
 
 - `parse()` and `build()` are distinct steps that each do some of the work.
 - `defineConfig()` needs a <abbr title="Current Working Directory">cwd</abbr> so it can resolve files (this can even be a remote URL, so long as it’s a URL())
@@ -114,7 +114,6 @@ const { tokens, sources } = await parse(yaml, { config, yamlToMomoa });
 Sometimes the token source you’re reading from isn’t in a perfect state, and you want to transform the values before being parsed. You can do so by specifying a `transform` object in the options with AST visitors:
 
 ```ts
-import * as momoa from "@humanwhocodes/momoa";
 import { parse } from "@terrazzo/parser";
 import { ColorSpace, parseColor, serialize, sRGB } from "colorjs.io/fn";
 import fs from "node:fs/promises";
@@ -129,13 +128,12 @@ const { sources } = await parse(
     config,
     transform: {
       // Dynamically inject some colors
-      group(node, path) {
-        if (path.join(".").startsWith("color.base.slate")) {
-          node.members.push(
-            momoa.parse({
-              "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
-            }).body.members[0],
-          );
+      group(json, path, ast) {
+        if (path.startsWith("color.base.slate")) {
+          return {
+            ...json,
+            "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
+          };
         }
       },
 
@@ -143,14 +141,15 @@ const { sources } = await parse(
       color(json, path, ast) {
         const color = parseColor(json.$value);
         const space = ColorSpace.get(color.spaceId);
-        return (node.members.find(
-          (m) => m.name.type === "String" && m.name.value === "$value",
-        ).value = momoa.parse({
-          colorSpace: space.cssId,
-          components: color.coords,
-          alpha: color.alpha,
-          hex: serialize(color, { format: "hex" }),
-        }));
+        return {
+          ...json,
+          $value: {
+            colorSpace: space.cssId,
+            components: color.coords,
+            alpha: color.alpha,
+            hex: serialize(color, { format: "hex" }),
+          },
+        };
       },
     },
   },
@@ -163,12 +162,11 @@ Return **undefined** to leave the JSON as-is, or return **any JSON-serializable 
 
 Every visitor has the following parameters:
 
-| Name                 | Type                   | Description                                                                                                                                                                              |
-| :------------------- | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **node**             | `AnyNode`              | A [Momoa](https://www.npmjs.com/package/@humanwhocodes/momoa) AST node as-parsed. This contains lots of metadata like file location, line number, etc. not found in the raw JSON itself. |
-| **options.path**     | `string[]`             | The path in the document to this node.                                                                                                                                                   |
-| **options.filename** | `URL`                  | The URL to this document.                                                                                                                                                                |
-| **options.parent**   | `AnyNode \| undefined` | The parent Momoa AST node, unless this is the document node.                                                                                                                             |
+| Name     | Type      | Description                                                                                                                                                                              |
+| :------- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **json** | `any`     | The raw JSON as it was authored. Note that tokens may not have `$type: [type]` declared if they inherit from their parent.                                                               |
+| **path** | `string`  | The path to a group or token node (e.g. `color.neutral.default.100`).                                                                                                                    |
+| **ast**  | `AnyNode` | A [Momoa](https://www.npmjs.com/package/@humanwhocodes/momoa) AST node as-parsed. This contains lots of metadata like file location, line number, etc. not found in the raw JSON itself. |
 
 ### Visitor types
 
@@ -223,72 +221,3 @@ The **root** visitor always fires first, no matter what.
 If you need a more advanced usecase than what the Transform API can deliver, you can always process tokens in multiple passes! For example, you could always simply use `parse()` to generate a clean, easy-to-work-with tokens object in memory, you could operate on that, and you could re-run it through `parse()` again.
 
 :::
-
-## Resolvers
-
-The v2025.10 version of the DTCG spec introduced [resolvers](https://www.designtokens.org/tr/2025.10/resolver/), meta-documents that describe how multiple sets of tokens relate to one another to form one tokens manifest or even apply contextual values such as themes or modes.
-
-Because DTCG tokens can be used with or without a resolver file, this is a separate API.
-
-### Basic usage
-
-```ts
-import { createResolver, parse } from "@terrazzo/parser";
-
-const sources = [
-  {
-    filename: new URL("file:///my-resolver.resolver.json"),
-    src: {
-      /* contents */
-    },
-  },
-];
-
-const { resolver } = await parse(sources, { config });
-const r = createResolver(resolver);
-
-r.apply(); // get base set ⚠️ only possible if resolver declared 0 modifiers
-r.apply({ theme: "light", size: "desktop" }); // tokens for theme: light; size: desktop
-r.apply({ theme: "dark", size: "mobile" }); // tokens for theme: dark; size: mobile
-```
-
-The parser will only return a `resolver` if it was handed one. This will be `undefined` otherwise.
-
-It must be passed to `createResolver()`
-
-:::tip
-
-The resolver should always be passed to `parse()` first because resolvers can contain inline tokens and `$ref`s. Providing your own resolver to `createResolver()` is technically doable, but very tricky.
-
-:::
-
-### Working with permutations
-
-```ts
-import { createResolver, parse } from "@terrazzo/parser";
-
-const { resolver } = await parse(sources, { config });
-const r = createResolver(resolver);
-
-for (const input of r.inputPermutations) {
-  r.apply(input); // tokens for this input
-}
-```
-
-It’s up to you to specify all the permutations desired. `.getAllInputPermutations()` will return an array of all possible inputs for the specified modifiers.
-
-If the resolver specified zero modifiers, the array will be `[{}]` so you can still produce at least 1 valid tokens set. Thus, it will never be an empty array.
-
-### API
-
-#### createResolver
-
-`createResolver(resolver)` returns a resolver with the following methods:
-
-| Name                  | Type                                                               | Description                                                                                                                                           |
-| :-------------------- | :----------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **apply**             | `(input: Record<string, string>) => TokensMap`                     | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                                                             |
-| **inputPermutations** | `Record<string, string>[]`                                         | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).                                                |
-| **isValidInput**      | `(input: Record<string, string>, throwError?: boolean) => boolean` | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |
-| **getPermutationID**  | `(input: Record<string, string>) => string`                        | Returns a stable, deterministic ID from an input. This can also be parsed by JSON back into a normalized input.                                       |
-| **source**            | Resolver                                                           | Original resolver, in case you want to manually verify something or implement new logic.                                                              |

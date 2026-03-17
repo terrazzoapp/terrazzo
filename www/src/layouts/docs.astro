@@ -7,8 +7,8 @@ import '../styles/app.css';
 import '../styles/docs.css';
 
 const { frontmatter } = Astro.props;
-const isBeta = Astro.url.pathname.includes('/docs/2.0');
-const nonBetaVersion = Astro.url.pathname.replace(/\/docs\/2\.0\/?/, '/docs/');
+const isBeta = Astro.url.pathname.includes('/docs/0.x');
+const nonBetaVersion = Astro.url.pathname.replace(/\/docs\/0\.x\/?/, '/docs/');
 ---
 
 <html lang="en">
@@ -51,7 +51,7 @@ const nonBetaVersion = Astro.url.pathname.replace(/\/docs\/2\.0\/?/, '/docs/');
         @media (width >= 750px) {
           padding: 0;
           position: fixed;
-          height: calc(0.5 * var(--grid-size));
+          height: calc(0.75 * var(--grid-size));
           left: var(--sidebar-width);
           top: var(--grid-size);
           width: calc(100% - var(--sidebar-width));
@@ -114,7 +114,7 @@ const nonBetaVersion = Astro.url.pathname.replace(/\/docs\/2\.0\/?/, '/docs/');
           isBeta && (
             <div class="banner" role="status">
               <div>
-                You are viewing the 2.0 beta version of the docs.
+                You are viewing the outdated v0 version of the docs.
                 <a href={nonBetaVersion}>Return to latest</a>
               </div>
             </div>

@@ -1,6 +1,6 @@
 ---
 title:: Import from Figma
-layout: ../../../../layouts/docs.astro
+layout: ../../../layouts/docs.astro
 ---
 
 # Import from Figma

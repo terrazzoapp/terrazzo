@@ -1,7 +1,7 @@
 import { Select, SelectItem } from '@terrazzo/tiles';
 
 export default function VersionSwitcher() {
-  const value = globalThis.location?.pathname.includes('/2.0/') ? '2' : '0';
+  const value = globalThis.location?.pathname.includes('/0.x/') ? '0' : '2';
 
   return (
     <Select
@@ -11,15 +11,15 @@ export default function VersionSwitcher() {
           return;
         }
         if (newValue === '2') {
-          globalThis.location.href = globalThis.location.href.replace(/\/docs\/?/, '/docs/2.0/');
+          globalThis.location.href = globalThis.location.href.replace(/\/docs\/0\.x\/?/, '/docs/');
         } else {
-          globalThis.location.href = globalThis.location.href.replace(/\/docs\/[\d.]+\/?/, '/docs/');
+          globalThis.location.href = globalThis.location.href.replace(/\/docs\/?/, '/docs/0.x/');
         }
       }}
       aria-label='Version'
     >
-      <SelectItem value='0'>Latest</SelectItem>
-      <SelectItem value='2'>2.0 beta</SelectItem>
+      <SelectItem value='2'>Latest</SelectItem>
+      <SelectItem value='0'>0.x beta</SelectItem>
     </Select>
   );
 }
