@@ -79,4 +79,8 @@ it('getPermutationID', () => {
   expect(getPermutationID({ a: 'A', c: 'C', b: 'B' })).toBe('{"a":"A","b":"B","c":"C"}');
   expect(getPermutationID({ 0: '0', 11: '11', 2: '2' })).toBe('{"0":"0","2":"2","11":"11"}');
   expect(getPermutationID({})).toBe('{}');
+
+  expect(getPermutationID({ a: 'A', b: 'B' }, { sets: ['d', 'c'], modifiers: ['y', 'x'] })).toBe(
+    '{"input":{"a":"A","b":"B"},"sets":["c","d"],"modifiers":["x","y"]}',
+  );
 });
