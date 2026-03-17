@@ -48,7 +48,6 @@ export default function transformCSS({
     // also duplicate the token in the global space. This plays nicer with
     // plugins that haven’t upgraded to resolvers yet.
     // If there is no “default” permutation, then take the first one
-    // let defaultPermutationI = permutations.findIndex((p) => !Object.keys(p).length);
     let defaultPermutationI = permutations.findIndex((p) => !Object.keys(p.input ?? {}).length);
     if (defaultPermutationI === -1) {
       defaultPermutationI = 0;
@@ -57,7 +56,9 @@ export default function transformCSS({
     for (let i = 0; i < permutations.length; i++) {
       const p = permutations[i]!;
       const inputRaw = p.input;
-      const input = !Object.keys(inputRaw ?? {}).length ? (JSON.parse(resolver.getPermutationID(inputRaw ?? {})) as Record<string, string>) : inputRaw;
+      const input = !Object.keys(inputRaw ?? {}).length
+        ? (JSON.parse(resolver.getPermutationID(inputRaw ?? {})) as Record<string, string>)
+        : inputRaw;
 
       const pInclude = p.include ? cachedMatcher.tokenIDMatch(p.include) : () => true;
       const pExclude = p.exclude ? cachedMatcher.tokenIDMatch(p.exclude) : () => false;
@@ -89,11 +90,11 @@ export default function transformCSS({
               localID,
               input,
               // Store description in metadata for plugin-css to access later
-              meta: { 
-                'plugin-css': { 
-                  description: token.$description 
+              meta: {
+                'plugin-css': {
+                  description: token.$description,
                 },
-                'token-listing': { name: localID }
+                'token-listing': { name: localID },
               },
             });
 
@@ -106,11 +107,11 @@ export default function transformCSS({
                 localID,
                 mode: '.',
                 // Store description in metadata for plugin-css to access later
-                meta: { 
-                  'plugin-css': { 
-                    description: token.$description 
+                meta: {
+                  'plugin-css': {
+                    description: token.$description,
                   },
-                  'token-listing': { name: localID }
+                  'token-listing': { name: localID },
                 },
               });
             }
@@ -152,11 +153,11 @@ export default function transformCSS({
           value,
           mode,
           // TODO: plugin-css shouldn’t set metadata for plugin-token-listing; move this there
-          meta: { 
-            'plugin-css': { 
-              description: token.$description 
+          meta: {
+            'plugin-css': {
+              description: token.$description,
             },
-            'token-listing': { name: localID }
+            'token-listing': { name: localID },
           },
         });
       }
