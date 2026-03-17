@@ -12,7 +12,7 @@ Terrazzo was in version 0.x until the [stable release of DTCG](https://www.desig
 Updating your config to 2.x:
 
 1. Rename `terrazzo.config.js` → `terrazzo.config.ts` because 2.0 supports TypeScript configs!
-2. Update your `lint` config to the [new rules](/linting/), as many rules have changed.
+2. Update your `lint` config to the [new rules](/docs/linting/), as many rules have changed.
 
 ## Plugin API
 
