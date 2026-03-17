@@ -123,21 +123,23 @@ export function tokenFromNode(
   const $extensions = getObjMember(node, '$extensions');
   if ($extensions) {
     const modeNode = getObjMember($extensions as momoa.ObjectNode, 'mode') as momoa.ObjectNode;
-    for (const mode of Object.keys((token.$extensions as any).mode ?? {})) {
-      const modeValue = (token.$extensions as any).mode[mode];
-      token.mode[mode] = {
-        $value: modeValue,
-        aliasOf: undefined,
-        aliasChain: undefined,
-        partialAliasOf: undefined,
-        aliasedBy: undefined,
-        originalValue: undefined,
-        dependencies: undefined,
-        source: {
-          ...nodeSource,
-          node: getObjMember(modeNode, mode) as any,
-        },
-      };
+    if (modeNode && modeNode.type === 'Object') {
+      const modes = (token.$extensions!.mode ?? {}) as Record<string, any>;
+      for (const [mode, modeValue] of Object.entries(modes)) {
+        token.mode[mode] = {
+          $value: modeValue,
+          aliasOf: undefined,
+          aliasChain: undefined,
+          partialAliasOf: undefined,
+          aliasedBy: undefined,
+          originalValue: undefined,
+          dependencies: undefined,
+          source: {
+            ...nodeSource,
+            node: getObjMember(modeNode, mode) as any,
+          },
+        };
+      }
     }
   }
   return token;
@@ -174,7 +176,7 @@ export function tokenRawValuesFromNode(
   const $extensions = getObjMember(node, '$extensions');
   if ($extensions) {
     const modes = getObjMember($extensions as momoa.ObjectNode, 'mode');
-    if (modes) {
+    if (modes && modes.type === 'Object') {
       for (const modeMember of (modes as momoa.ObjectNode).members) {
         const mode = (modeMember.name as momoa.StringNode).value;
         rawValues.mode[mode] = {

@@ -487,6 +487,54 @@ describe('Additional cases', () => {
     });
   });
 
+  describe('$extensions', () => {
+    it('no mode', async () => {
+      const config = defineConfig({}, { cwd });
+      const { tokens } = await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              color: {
+                red: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [1, 0, 0] },
+                  $extensions: { 'figma.com': 'NODE.ID12345' },
+                },
+              },
+            },
+          },
+        ],
+        { config },
+      );
+      // assert this parsed correctly without throwing an error
+      expect(tokens['color.red']?.$value).toEqual({ alpha: 1, colorSpace: 'srgb', components: [1, 0, 0] });
+    });
+
+    it('mode is unexpected shape', async () => {
+      const config = defineConfig({}, { cwd });
+      const { tokens } = await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              color: {
+                red: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [1, 0, 0] },
+                  $extensions: { mode: 'mymode' },
+                },
+              },
+            },
+          },
+        ],
+        { config },
+      );
+      // assert this parsed correctly without throwing an error
+      expect(tokens['color.red']?.$value).toEqual({ alpha: 1, colorSpace: 'srgb', components: [1, 0, 0] });
+    });
+  });
+
   describe('modes', () => {
     const tests: [string, { given: any; want: any }][] = [
       [
