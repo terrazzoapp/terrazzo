@@ -176,7 +176,7 @@ export function tokenRawValuesFromNode(
   const $extensions = getObjMember(node, '$extensions');
   if ($extensions) {
     const modes = getObjMember($extensions as momoa.ObjectNode, 'mode');
-    if (modes) {
+    if (modes && modes.type === 'Object') {
       for (const modeMember of (modes as momoa.ObjectNode).members) {
         const mode = (modeMember.name as momoa.StringNode).value;
         rawValues.mode[mode] = {
