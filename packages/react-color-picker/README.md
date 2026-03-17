@@ -16,7 +16,11 @@ import { useState } from "react";
 
 const [color, setColor] = useState("color(display-p3 0 0.3 1)");
 
-<ColorPicker value={color} onChange={setColor} />;
+<ColorPicker
+  color={color}
+  setColor={setColor}
+  colorSpaces={["srgb", "oklch", "oklab"]}
+/>;
 ```
 
 ### Styling
