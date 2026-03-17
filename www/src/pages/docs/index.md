@@ -9,7 +9,7 @@ Terrazzo takes DTCG design token JSON and generates code for any platform (e.g. 
 
 :::tip
 
-Migrating from Cobalt? Check out the [Migration Guide](/docs/guides/migrating-cobalt)
+Migrating from 0.x? Check out the [Migration Guide](/docs/guides/migrating-v2).
 
 :::
 
