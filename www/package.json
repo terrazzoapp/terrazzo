@@ -20,10 +20,10 @@
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
     "algoliasearch": "^5.49.2",
-    "nanoid": "^5.1.6",
+    "nanoid": "^5.1.7",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-instantsearch": "^7.27.0",
+    "react-instantsearch": "^7.28.0",
     "shiki": "^1.29.2"
   },
   "devDependencies": {

@@ -1,11 +1,17 @@
 ---
 title: Token Listing
-layout: ../../../../layouts/docs.astro
+layout: ../../../layouts/docs.astro
 ---
 
-# Token Listing (preview)
+# Token Listing
 
 Produce a Token Listing Format file for your design token build. The Token Listing Format is used by design token tool makers to understand the relationship between your source design tokens and your style files built in Terrazzo.
+
+:::warning
+
+This plugin is still **experimental.** Use at your own discretion!
+
+:::
 
 ## Foreword
 

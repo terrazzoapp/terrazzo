@@ -13,7 +13,7 @@ Migrating from Cobalt? Check out the [Migration Guide](/docs/guides/migrating-co
 
 :::
 
-## Quickstart
+## Setup
 
 First, install the package using your package manager of choice:
 
@@ -33,7 +33,7 @@ npx tz init
 
 ![tz init screenshot](/assets/cli-init.png)
 
-This will create a `terrazzo.config.js` starter config file, and even start your token system from a popular open source design system.
+This will create a `terrazzo.config.ts` starter config file, and even start your token system from a popular open source design system.
 
 ## Comparison
 
@@ -41,14 +41,15 @@ This will create a `terrazzo.config.js` starter config file, and even start your
 
 ## API
 
-| Command                 | Description                                                                                 |
-| :---------------------- | :------------------------------------------------------------------------------------------ |
-| `init`                  | Scaffold out a new project from an existing design system.                                  |
-| `build`                 | Build tokens [with your plugins](/docs/integrations) and also run [linting](/docs/linting). |
-| `lint`                  | Only run [token linting](/docs/linting) (not build).                                        |
-| `check [file]`          | Validate a given tokens JSON meets the DTCG specification.                                  |
-| `--help`                | Display help message.                                                                       |
-| `--silent` \| `--quiet` | Suppress warnings and logs.                                                                 |
+| Command                         | Description                                                                                                                   |
+| :------------------------------ | :---------------------------------------------------------------------------------------------------------------------------- |
+| `init`                          | Scaffold out a new project from an existing design system.                                                                    |
+| `build`                         | Build tokens [with your plugins](/docs/integrations) and also run [linting](/docs/linting).                                   |
+| `lint`                          | Only run [token linting](/docs/linting) (not build).                                                                          |
+| `check [file]`                  | Validate a given tokens JSON meets the DTCG specification.                                                                    |
+| `bundle [file] --output [file]` | Bundle a [resolver](https://www.designtokens.org/tr/2025.10/resolver) that references multiple files into a single JSON file. |
+| `--help`                        | Display help message.                                                                                                         |
+| `--silent` \| `--quiet`         | Suppress warnings and logs.                                                                                                   |
 
 ### Debugging
 
@@ -57,12 +58,3 @@ With any command, set the `DEBUG` env var to a glob scope (accepts [wildcard-mat
 - `DEBUG=* tz build`: debug all scopes
 - `DEBUG=parser:* tz build`: debug @terrazzo/parser (core)
 - `DEBUG=plugin:* tz build`: debug plugins
-
-## Next Steps
-
-- See all [config options](/docs/reference/config)
-- Browse plugins:
-  - [CSS](/docs/integrations/css)
-  - [JS/TS/JSON](/docs/integrations/js)
-  - [Sass](/docs/integrations/sass)
-  - [Tailwind](/docs/integrations/tailwind)

@@ -1,0 +1,88 @@
+---
+title: CLI
+layout: ../../../../layouts/docs.astro
+---
+
+## Init
+
+Initialize config and `tokens.json` starting with an Open Source design system.
+
+```sh
+npx tz init
+```
+
+Supported design systems:
+
+- Adobe Spectrum
+- Apple Human Interface Guidelines
+- GitHub Primer
+- IBM Carbon
+- Figma Simple Design System
+- Salesforce Lightning
+- Shopify Polaris
+- Radix
+
+_Have another one to add? [Suggest it!](https://github.com/terrazzoapp/terrazzo/issues/new)_
+
+## Build
+
+Generate code from `tokens.json` based on [plugins](/docs/integrations). Requires a [config file](/docs/reference/config).
+
+```sh
+npx tz build
+```
+
+### Build flags
+
+| Name              | Description                                      |
+| :---------------- | :----------------------------------------------- |
+| `--watch` \| `-w` | Rebuild whenever any token changes are detected. |
+| `--no-lint`       | Ignore any [lint errors](#check) while building. |
+
+## Check
+
+Validate all DTCG tokens for syntax errors, and run any [linters](/docs/linting/) you’ve enabled. Can optionally specify a `[path]` tokens are located at (by default, will look for the tokens defined in your config file).
+
+```sh
+npx tz check [filename]
+```
+
+## Import
+
+Terrazzo allows importing from Figma files with the `import` command. Automatically import Figma Styles and Variables (note that Variables require an Enterprise plan; Styles work for any plan).
+
+```sh
+npx tz import https://www.figma.com/design/xxxxxxxxxxxxxxxxxvxxx/Design-System-Variables --output my-tokens.tokens.json
+```
+
+[See full guide](/docs/2.0/guides/import-from-figma)
+
+### Import flags
+
+| Name                           | Description                                                                                                                                                     |
+| :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--output [file]`, `-o [file]` | `.tokens.json` file to write to.                                                                                                                                |
+| `--unpublished`                | By default, this will grab the **published library** in the file. If you’d like to just simply grab what the file has, unpublished or not, add `--unpublished`. |
+
+## Normalize
+
+Format tokens into the current DTCG standard. Note that a separate output is required. If you wish to overwrite your files dangerously, just specify the same file after `-o`.
+
+```sh
+tz normalize <input.json> -o normalized.json
+```
+
+| Name            | Description            |
+| :-------------- | :--------------------- |
+| `--out` \| `-o` | Tokens file to output. |
+
+## Global flags
+
+Flags available for any command
+
+| Name               | Description                                     |
+| :----------------- | :---------------------------------------------- |
+| `--config` \| `-c` | Path to config (default: `terrazzo.config.js`). |
+| `--silent`         | Suppress warnings.                              |
+| `--help`           | Show help message and exit.                     |
+| `--version`        | Show version and exit.                          |

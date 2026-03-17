@@ -53,7 +53,7 @@ Color is a frequently-used base token that can be aliased within the following c
 
 ### Tips & recommendations
 
-- [Color.js](https://colorjs.io/docs/procedural) is the preferred library for working with color. It’s great both as an accurate, complete color science library that can parse & generate any format. But is also easy-to-use for simple color operations and is fast and [lightweight](https://colorjs.io/docs/procedural) (even on the client)
+- [Color.js](https://colorjs.io/docs/procedural) is the preferred library for working with color. It’s great both as an accurate, complete color science library that can parse & generate any format. But is also easy-to-use for simple color operations and is fast and [lightweight](https://colorjs.io/docs/procedural) (even on the client).
 - Prefer the [OKLCH](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl) format for declaring colors ([why?](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl)). It’s not only a [futureproof standard](https://www.w3.org/TR/css-color-4/#ok-lab); it also allows for better color manipulation than sRGB/hex and is more perceptually-even.
 
 ## Dimension
@@ -338,7 +338,7 @@ Refer to each plugin’s documentation to learn what special features are availa
 ```json
 {
   "myCustomValue": {
-    "$type": "string",
+    "$type": "boolean",
     "$value": ""
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: 2.0 Migration
-layout: ../../../../layouts/docs.astro
+layout: ../../../layouts/docs.astro
 ---
 
 # Migrating to 2.x

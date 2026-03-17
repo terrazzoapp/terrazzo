@@ -1,17 +1,17 @@
 ---
-title: JS (and TS)
+title: JS
 layout: ../../../layouts/docs.astro
 ---
 
-# JavaScript / TypeScript
+# JavaScript
 
-:::warning
+Terrazzo’s JS plugin generates a resolver API for Node.js clients from your token system. It produces code that is **fast but heavy**, so it is better-suited for server-side rendering. For client applications, prefer the [css-in-js plugin](./css-in-js/) instead.
 
-There will be some upcoming breaking changes (TBD) to the JS plugin in Terrazzo 2.0 stable to support the [DTCG Resolver module](https://www.designtokens.org/TR/2025.10/resolver/).
+:::note
+
+Heads up! The 2.0 plugin has changed quite a lot from Terrazzo 0.x alpha. Read the [migrating guide](#migrating-from-0x) for changes.
 
 :::
-
-Terrazzo’s JS plugin generates JavaScript, TypeScript, and JSON output from your tokens.
 
 ## Setup
 
@@ -25,16 +25,19 @@ npm i -D @terrazzo/plugin-js
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import js from "@terrazzo/plugin-js";
 
 export default defineConfig({
   plugins: [
     js({
-      js: "index.js",
-      ts: "index.d.ts",
-      json: false, // set to a filename to generate JSON
+      filename: "my-ds.js",
+      // optional: only generate outputs for the following modifier contexts
+      contexts: {
+        theme: ["light", "dark"],
+        size: ["sm", "md", "lg"],
+      },
     }),
   ],
 });
@@ -45,18 +48,28 @@ export default defineConfig({
 ## Usage
 
 ```ts
-import token from "./tokens/index.js";
+import { resolver } from "./tokens/my-ds.js";
 
-token("color.blue.500");
+const lightMd = resolver.apply({ theme: "light", size: "sm" });
+lightMd["color.bg"].$type; // "color"
+lightMd["color.bg"].$value; // { "colorSpace": "srgb", "components": [1, 1, 1] }
+
+resolver.apply({ foo: "bar" }); // ❌ Invalid input { "foo": "bar" }
 ```
+
+:::tip
+
+Need to work with color? Use [color.js’ procedural API](https://colorjs.io/docs/procedural) for modern, efficient color tools.
+
+:::
 
 ## Config
 
-Configure options in [terrazzo.config.js](/docs/reference/config):
+Configure options in [terrazzo.config.ts](/docs/reference/config):
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import js from "@terrazzo/plugin-js";
 
@@ -73,8 +86,91 @@ export default defineConfig({
 
 ### Options
 
-| Name   | Type                | Description                                                                                                          |
-| :----- | :------------------ | :------------------------------------------------------------------------------------------------------------------- |
-| `js`   | `string \| boolean` | Set to a filename, or `false` to disable (default: `index.js`).                                                      |
-| `ts`   | `string \| boolean` | Set to a filename, or `false` to disable (default: `index.d.ts`) _Note: this can’t be enabled if `js` is disabled_). |
-| `json` | `string \| boolean` | Set to a filename, or `false` to disable (default: `false`).                                                         |
+| Name         | Type                        | Description                                                                                              |
+| :----------- | :-------------------------- | :------------------------------------------------------------------------------------------------------- |
+| `filename`   | `string`                    | Set to a filename (default: `tokens.js`).                                                                |
+| `contexts`   | `Record<string, string[]>`  | Set this to “tree-shake” modifiers. By default, all permutations will be built.                          |
+| `properties` | `(keyof TokenNormalized)[]` | Only include the specified properties on all tokens. Use to reduce generated filesize and memory impact. |
+
+#### properties
+
+Here are all valid properties, from the `TokenNormalized` type:
+
+- `$type`
+- `$description`
+- `$value`
+- `$extensions`
+- `$deprecated`
+- `id` (excluded by default)
+- `jsonID` (excluded by default)
+- `originalValue` (excluded by default)
+- `source` (excluded by default)
+- `aliasOf` (excluded by default)
+- `aliasChain` (excluded by default)
+- `aliasedBy` (excluded by default)
+- `dependencies` (excluded by default)
+- `group` (excluded by default)
+
+## When to use plugin-js
+
+### vs Node.js API
+
+**Node.js API is better for the initial build; plugin-js is better for runtime.**
+
+- plugin-js has better type safety meant for JS applications
+- plugin-js frontloads the heavy work of resolution, meant for high-scale **on-demand** use (i.e. server generation)
+  - Example: GitHub Primer, on a 2024 MacBook Air, takes about ~4s to build a single permutation; plugin-js takes 20ms (it’s simply returning the prebuilt tokens)
+
+### vs plugin-css-in-js
+
+**[plugin-css-in-js](/docs/integrations/css-in-js/) should be used when pairing with [plugin-css](/docs/integrations/css/)**.
+
+- plugin-js doesn’t have access to which CSS variables were generated
+- plugin-js _does_ have access to granular token data and design system information, so plugin-js is better for generating anything non-CSS.
+
+## Migrating from 0.x
+
+This plugin got several breaking changes from 0.x.
+
+First, this plugin now always generates `.d.ts` files alongside `.js` files without configuration. Use `filename` instead of `js`:
+
+:::code-group
+
+```diff [terrazzo.config.ts]
+import js from "@terrazzo/plugin-js";
+
+export default defineConfig({
+  plugins: [
+    js({
+-     js: "tokens.js",
++     filename: "tokens.js",
+-     ts: "tokens.d.ts",
+-     json: false, // set to a filename to generate JSON
+    }),
+  ],
+});
+```
+
+:::
+
+Next, if you’re still using legacy `$extensions.mode`, you’ll want to use `tzMode` as the context name, e.g.:
+
+:::code-group
+
+```diff [terrazzo.config.ts]
+import js from "@terrazzo/plugin-js";
+
+export default defineConfig({
+  plugins: [
+    js({
++     contexts: {
++       'tzMode': ['light', 'dark'],
++     }
+    }),
+  ],
+});
+```
+
+:::
+
+The usage is also different; refer to the [appropriate sections](#usage) for guides on what your new code should look like.
