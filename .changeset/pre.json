@@ -22,5 +22,8 @@
     "@terrazzo/tokens": "0.1.0",
     "@terrazzo/use-color": "0.1.4",
     "@terrazzo/plugin-css-in-js": "2.0.0-rc.0"
-  }
+  },
+  "changesets": [
+    "floppy-sides-drop"
+  ]
 }
