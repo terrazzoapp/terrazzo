@@ -16,3 +16,13 @@ export const Overview = {
     return <ColorPicker {...args} color={color} setColor={setColor} />;
   },
 };
+
+export const RestrictedColorSpaces = {
+  args: {
+    colorSpaces: ['srgb', 'oklch', 'oklab'],
+  },
+  render(args) {
+    const [color, setColor] = useColor('oklch(0.7 0.18 280)');
+    return <ColorPicker {...args} color={color} setColor={setColor} />;
+  },
+};
