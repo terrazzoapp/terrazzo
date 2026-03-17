@@ -34,6 +34,8 @@
 
 - Correctness: don’t cache transforms from a previous plugin-css run, which could yield correct or unexpected output.
 
+- [#691](https://github.com/terrazzoapp/terrazzo/pull/691) [`58fa6a7`](https://github.com/terrazzoapp/terrazzo/commit/58fa6a785e734a088dc0178232867e24b249bb78) Thanks [@jackholden](https://github.com/jackholden)! - correct stale descriptions when multiple CSS plugins are used
+
 ## 0.10.4
 
 ### Patch Changes
