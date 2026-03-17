@@ -1,3 +1,4 @@
+import type { ResolverApplicationOptions } from '../types.js';
 import { alphaComparator } from './array.js';
 
 /**
@@ -28,13 +29,20 @@ export function filterResolverPaths(path: string[]): string[] {
 }
 
 /** Make a deterministic string from an object */
-export function getPermutationID(input: Record<string, string | undefined>): string {
-  const keys = Object.keys(input).sort(alphaComparator);
-  const sortedInput = {} as typeof input;
-  for (const k of keys) {
-    sortedInput[k] = input[k];
-  }
-  return JSON.stringify(sortedInput);
+export function getPermutationID(
+  input: Record<string, string | undefined>,
+  options?: ResolverApplicationOptions | undefined,
+): string {
+  const stableInput = Object.fromEntries(Object.entries(input).sort(([a], [b]) => alphaComparator(a, b)));
+  return JSON.stringify(
+    options
+      ? {
+          input: stableInput,
+          sets: options?.sets?.sort(alphaComparator),
+          modifiers: options?.modifiers?.sort(alphaComparator),
+        }
+      : stableInput,
+  );
 }
 
 /**

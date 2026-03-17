@@ -339,6 +339,11 @@ export interface ReferenceObject {
 
 export type ResolverInput = Record<string, string>;
 
+export type ResolverApplicationOptions = {
+  sets?: string[];
+  modifiers?: string[];
+};
+
 export interface Resolver<
   Inputs extends Record<string, string[]> = Record<string, string[]>,
   Input = Record<keyof Inputs, Inputs[keyof Inputs][number]>,
@@ -349,7 +354,7 @@ export interface Resolver<
    * results (it ignores object key order, and takes defaults into account for
    * better caching).
    */
-  apply: (input: Partial<Input>, options?: {sets?: string[], modifiers?: string[]}) => TokenNormalizedSet;
+  apply: (input: Partial<Input>, options?: ResolverApplicationOptions) => TokenNormalizedSet;
   /**
    * List all possible valid input combinations. Ignores default values, as they
    * would duplicate some other permutations. This also caches results, so it’s
