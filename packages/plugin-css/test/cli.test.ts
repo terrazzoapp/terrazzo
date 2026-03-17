@@ -47,15 +47,19 @@ describe('fixtures', () => {
     ['multiple outputs', { dir: 'mulitiple-outputs', output: ['tokens-default.css', 'tokens-brand2.css'] }],
   ];
 
-  it.each(tests)('%s', async (_, { dir, config, output }) => {
-    const cwd = new URL(dir.replace(/\/?$/, '/'), FIXTURE_ROOT);
-    await execaNode({ cwd })`${cmd} build${config ? ` -c ${config}` : ''}`;
-    for (const file of output) {
-      await expect(await fs.readFile(new URL(file, cwd), 'utf8')).toMatchFileSnapshot(
-        fileURLToPath(new URL(file.replace(/\.css$/, '.want.css'), cwd)),
-      );
-    }
-  });
+  it.each(tests)(
+    '%s',
+    async (_, { dir, config, output }) => {
+      const cwd = new URL(dir.replace(/\/?$/, '/'), FIXTURE_ROOT);
+      await execaNode({ cwd })`${cmd} build${config ? ` -c ${config}` : ''}`;
+      for (const file of output) {
+        await expect(await fs.readFile(new URL(file, cwd), 'utf8')).toMatchFileSnapshot(
+          fileURLToPath(new URL(file.replace(/\.css$/, '.want.css'), cwd)),
+        );
+      }
+    },
+    60_000, // The DS tests need more time on Windows in CI
+  );
 });
 
 describe('CLI', () => {
