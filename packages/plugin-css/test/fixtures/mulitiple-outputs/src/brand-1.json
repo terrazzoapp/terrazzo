@@ -1,0 +1,27 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "primary": {
+      "$type": "color",
+      "$value": { "colorSpace": "srgb", "components": [0, 0, 1] },
+      "$description": "Brand1 primary (blue)"
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": { "colorSpace": "srgb", "components": [1, 0, 1] },
+      "$description": "Brand1 secondary (pink)"
+    }
+  },
+  "input-amount": {
+    "$extends": "{input}",
+    "field": {
+      "width": {
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        },
+        "$description": "A description with Simon..."
+      }
+    }
+  }
+}

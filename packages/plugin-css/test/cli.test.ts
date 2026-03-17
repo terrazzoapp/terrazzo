@@ -44,6 +44,7 @@ describe('fixtures', () => {
     ['DS: Figma SDS', { dir: 'ds-figma-sds', output: ['sds.css'] }],
     ['DS: GitHub Primer', { dir: 'ds-github-primer', output: ['primer.css'] }],
     ['DS: Microsoft Fluent', { dir: 'ds-microsoft-fluent', output: ['fluent.css'] }],
+    ['multiple outputs', { dir: 'mulitiple-outputs', output: ['tokens-default.css', 'tokens-brand2.css'] }],
   ];
 
   it.each(tests)('%s', async (_, { dir, config, output }) => {

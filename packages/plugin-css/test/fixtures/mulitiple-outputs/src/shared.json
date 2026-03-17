@@ -1,0 +1,29 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "font": {
+    "size": {
+      "base": {
+        "$type": "dimension",
+        "$value": { "value": 16, "unit": "px" },
+        "$description": "Base font size (shared across all brands)"
+      }
+    }
+  },
+  "input": {
+    "field": {
+      "width": {
+        "$description": "A description...",
+        "$type": "dimension",
+        "$value": { "value": 12, "unit": "rem" }
+      },
+      "background": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [1, 1, 1],
+          "hex": "#ffffff"
+        }
+      }
+    }
+  }
+}
