@@ -29,7 +29,7 @@ export interface BuildHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
-  getTransforms(params: TransformParams): TokenTransformed[];
+  getTransforms(this: void, params: TransformParams): TokenTransformed[];
   /** Momoa documents */
   sources: InputSourceWithDocument[];
   /** Resolver */
@@ -52,7 +52,7 @@ export interface BuildEndHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
-  getTransforms(params: TransformParams): TokenTransformed[];
+  getTransforms(this: void, params: TransformParams): TokenTransformed[];
   /** Momoa documents */
   sources: InputSourceWithDocument[];
   /** Final files to be written */
@@ -479,9 +479,10 @@ export interface TransformHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
-  getTransforms(params: TransformParams): TokenTransformed[];
+  getTransforms(this: void, params: TransformParams): TokenTransformed[];
   /** Update transformed values */
   setTransform(
+    this: void,
     id: string,
     params:
       | {
