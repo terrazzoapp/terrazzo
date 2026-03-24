@@ -328,9 +328,9 @@ export interface Plugin {
   enforce?: 'pre' | 'post';
   /** Throw lint errors/warnings */
   lint?(): Record<string, LintRule<any, any, any>>;
-  transform?(options: TransformHookOptions): Promise<void>;
-  build?(options: BuildHookOptions): Promise<void>;
-  buildEnd?(options: BuildEndHookOptions): Promise<void>;
+  transform?(options: TransformHookOptions): void | Promise<void>;
+  build?(options: BuildHookOptions): void | Promise<void>;
+  buildEnd?(options: BuildEndHookOptions): void | Promise<void>;
 }
 
 export interface ReferenceObject {
