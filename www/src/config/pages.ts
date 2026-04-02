@@ -50,8 +50,6 @@ export const DOCS_NAV_0 = [
     items: [
       { url: '/docs/0.x/guides/dtcg/', title: 'DTCG Tokens' },
       { url: '/docs/0.x/guides/modes/', title: 'Modes + Theming' },
-      { url: '/docs/0.x/guides/resolvers/', title: 'Resolvers' },
-      { url: '/docs/0.x/guides/resolver-contexts/', title: 'Resolver Contexts' },
       { url: '/docs/0.x/guides/styleguide/', title: 'DS Styleguide' },
       { url: '/docs/0.x/guides/migrating-cobalt/', title: 'Migrating from Cobalt' },
     ],
