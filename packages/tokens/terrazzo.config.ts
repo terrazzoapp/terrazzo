@@ -13,6 +13,10 @@ export default defineConfig({
         {
           prepare: (contents) => `:root {
   ${contents}
+}
+
+:root[data-color-mode="light"] {
+  ${contents}
 }`,
           input: { theme: 'light' },
         },
@@ -23,7 +27,7 @@ export default defineConfig({
   }
 }
 
-[data-color-mode="dark"] {
+:root[data-color-mode="dark"] {
   ${contents}
 }`,
           input: { theme: 'dark' },

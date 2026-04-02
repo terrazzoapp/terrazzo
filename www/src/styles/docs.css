@@ -648,3 +648,34 @@
     width: 100%;
   }
 }
+
+.color-swatch {
+  border: var(--tz-border-1);
+  border-bottom-width: 2px;
+  border-radius: var(--tz-radius-200);
+  display: inline-block;
+  font-size: 0.875em;
+  line-height: 1;
+  margin-inline: 0.125em;
+  padding-right: 0.25em;
+  vertical-align: middle;
+}
+
+.color-swatch-preview {
+  border-bottom-left-radius: var(--tz-radius-100);
+  border-top-left-radius: var(--tz-radius-100);
+  display: inline-block;
+  height: 1.5em;
+  margin-right: var(--tz-space-100);
+  vertical-align: middle;
+  width: 1.5em;
+}
+
+.color-swatch-code {
+  font-family: var(--tz-font-mono);
+  font-size: var(--tz-font-label-small-font-size);
+  font-style: var(--tz-font-label-small-font-style);
+  font-variant-ligatures: none;
+  line-height: var(--tz-font-label-small-line-height);
+  text-decoration: var(--tz-font-label-small-text-decoration);
+}
