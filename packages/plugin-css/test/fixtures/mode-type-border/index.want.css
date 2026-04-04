@@ -31,44 +31,36 @@
 @media (color-gamut: p3) {
   :root {
     --ds-color-red: oklch(64% 0.2889 16.57);
-    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
     --ds-color-red: oklch(63.87% 0.3367 16.29);
-    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --ds-color-border: var(--ds-color-base-gray-20);
-    --ds-border-thick: 2.5px solid var(--ds-color-border);
     --ds-color-red: oklch(63.47% 0.254 16.44);
-    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 [data-color-theme="light"] {
   --ds-color-border: var(--ds-color-base-gray-20);
-  --ds-border-thick: 2.5px solid var(--ds-color-border);
   --ds-color-red: oklch(63.47% 0.254 16.44);
-  --ds-border-red: 1px solid var(--ds-color-red);
 }
 
 @media (color-gamut: p3) {
   @media (prefers-color-scheme: light) {
     :root {
       --ds-color-red: oklch(64% 0.2889 16.57);
-      --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
 
   [data-color-theme="light"] {
     --ds-color-red: oklch(64% 0.2889 16.57);
-    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
@@ -76,43 +68,35 @@
   @media (prefers-color-scheme: light) {
     :root {
       --ds-color-red: oklch(63.87% 0.3367 16.29);
-      --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
 
   [data-color-theme="light"] {
     --ds-color-red: oklch(63.87% 0.3367 16.29);
-    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --ds-color-border: var(--ds-color-base-gray-80);
-    --ds-border-thick: 2.5px solid var(--ds-color-border);
     --ds-color-red: oklch(35.3% 0.1414 18.14);
-    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 [data-color-theme="dark"] {
   --ds-color-border: var(--ds-color-base-gray-80);
-  --ds-border-thick: 2.5px solid var(--ds-color-border);
   --ds-color-red: oklch(35.3% 0.1414 18.14);
-  --ds-border-red: 1px solid var(--ds-color-red);
 }
 
 @media (color-gamut: p3) {
   @media (prefers-color-scheme: dark) {
     :root {
       --ds-color-red: oklch(35.18% 0.159 17.96);
-      --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
 
   [data-color-theme="dark"] {
     --ds-color-red: oklch(35.18% 0.159 17.96);
-    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
@@ -120,12 +104,10 @@
   @media (prefers-color-scheme: dark) {
     :root {
       --ds-color-red: oklch(35.05% 0.1849 17.45);
-      --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
 
   [data-color-theme="dark"] {
     --ds-color-red: oklch(35.05% 0.1849 17.45);
-    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }

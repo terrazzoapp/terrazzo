@@ -39,6 +39,52 @@ describe('Plugin API', () => {
       }
     });
 
+    it('can setTransform for token missing in default input', async () => {
+      const config = defineConfig(
+        {
+          plugins: [
+            {
+              name: 'my-plugin',
+              async transform({ setTransform }) {
+                setTransform('token', { format: 'my-format', value: '1', input: { test: 'present' } });
+              },
+              async build({ getTransforms, outputFile }) {
+                outputFile(
+                  'file.txt',
+                  String(getTransforms({ id: 'token', format: 'my-format', input: { test: 'present' } })?.[0]?.value),
+                );
+              },
+            },
+          ],
+        },
+        { cwd: new URL('file:///') },
+      );
+      const { sources, tokens, resolver } = await parse(
+        [
+          {
+            src: JSON.stringify({
+              name: 'Resolver',
+              version: '2025.10',
+              resolutionOrder: [{ $ref: '#/modifiers/test' }],
+              modifiers: {
+                test: {
+                  default: 'empty',
+                  contexts: { empty: [{}], present: [{ token: { $type: 'number', $value: 1 } }] },
+                },
+              },
+            }),
+            filename: new URL('file:///'),
+          },
+        ],
+        { config },
+      );
+
+      const { outputFiles } = await build(tokens, { config, resolver, sources });
+      expect(outputFiles[0]).toEqual(
+        expect.objectContaining({ filename: 'file.txt', contents: '1', plugin: 'my-plugin' }),
+      );
+    });
+
     it('simple transform', async () => {
       const config = defineConfig(
         {
