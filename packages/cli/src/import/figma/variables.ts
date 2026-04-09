@@ -3,15 +3,17 @@ import type { Logger } from '@terrazzo/parser';
 import { formatName, getFileLocalVariables, getFilePublishedVariables } from './lib.js';
 
 function getAliasID(value: unknown): string | undefined {
-  return (
-    (typeof value === 'object' &&
-      value &&
-      'type' in value &&
-      value.type === 'VARIABLE_ALIAS' &&
-      'id' in value &&
-      value.id) ||
-    undefined
-  );
+  if (
+    typeof value === 'object' &&
+    value &&
+    'type' in value &&
+    value.type === 'VARIABLE_ALIAS' &&
+    'id' in value &&
+    typeof value.id === 'string'
+  ) {
+    return value.id;
+  }
+  return undefined;
 }
 
 /** /v1/files/:file_key/variables/published | /v1/files/:file_key/variables/local */
