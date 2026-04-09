@@ -122,6 +122,7 @@ export default async function build(
             });
             return;
           }
+          const tokens = resolver.apply(params.input ?? {});
           const token = tokens[id]!;
           if (!token) {
             logger.error({ group: 'plugin', label: plugin.name, message: `No token "${id}"` });
