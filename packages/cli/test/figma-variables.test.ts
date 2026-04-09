@@ -7,6 +7,7 @@ const originalFetch = globalThis.fetch;
 const FILE_KEY = 'AaAaAaAaAaAaAaAaAa';
 const COLLECTION_ID = 'VariableCollectionId:test/1:1';
 const MODE_ID = '1:1';
+const HIDDEN_LEAF_ID = 'VariableID:hidden-leaf';
 const HIDDEN_ALIAS_TARGET_ID = 'VariableID:hidden-target';
 const PUBLISHED_ALIAS_ID = 'VariableID:published-alias';
 const UNPUBLISHED_VISIBLE_ID = 'VariableID:unpublished-visible';
@@ -26,6 +27,18 @@ const localVariablesResponse = {
       },
     },
     variables: {
+      [HIDDEN_LEAF_ID]: {
+        id: HIDDEN_LEAF_ID,
+        name: 'foundation/leaf',
+        variableCollectionId: COLLECTION_ID,
+        resolvedType: 'COLOR',
+        hiddenFromPublishing: true,
+        valuesByMode: {
+          [MODE_ID]: { r: 0.1, g: 0.2, b: 0.3, a: 1 },
+        },
+        description: '',
+        codeSyntax: {},
+      },
       [HIDDEN_ALIAS_TARGET_ID]: {
         id: HIDDEN_ALIAS_TARGET_ID,
         name: 'foundation/hidden',
@@ -33,7 +46,7 @@ const localVariablesResponse = {
         resolvedType: 'COLOR',
         hiddenFromPublishing: true,
         valuesByMode: {
-          [MODE_ID]: { r: 0.1, g: 0.2, b: 0.3, a: 1 },
+          [MODE_ID]: { type: 'VARIABLE_ALIAS', id: HIDDEN_LEAF_ID },
         },
         description: '',
         codeSyntax: {},
@@ -97,7 +110,7 @@ describe('getVariables', () => {
     globalThis.fetch = originalFetch;
   });
 
-  it('resolves aliases to hidden local variables in published mode without emitting hidden tokens', async () => {
+  it('emits the hidden local alias dependency closure in published mode', async () => {
     const result = await getVariables(FILE_KEY, {
       logger: { error() {}, warn() {}, info() {}, success() {} } as never,
       matchers: {
@@ -107,19 +120,30 @@ describe('getVariables', () => {
       },
     });
 
-    expect(result.count).toBe(1);
+    expect(result.count).toBe(3);
     expect(result.remoteCount).toBe(0);
     expect(result.code.sets.base.sources[0]).toEqual({
+      foundation: {
+        hidden: expect.objectContaining({
+          $value: '{foundation.leaf}',
+        }),
+        leaf: expect.objectContaining({
+          $value: {
+            colorSpace: 'srgb',
+            components: [0.1, 0.2, 0.3],
+            alpha: 1,
+          },
+        }),
+      },
       semantic: {
         published: expect.objectContaining({
           $value: '{foundation.hidden}',
         }),
       },
     });
-    expect(result.code.sets.base.sources[0].foundation).toBeUndefined();
   });
 
-  it('resolves aliases to hidden local variables in unpublished mode while still skipping hidden tokens', async () => {
+  it('emits the hidden local alias dependency closure in unpublished mode', async () => {
     const result = await getVariables(FILE_KEY, {
       logger: { error() {}, warn() {}, info() {}, success() {} } as never,
       unpublished: true,
@@ -130,9 +154,21 @@ describe('getVariables', () => {
       },
     });
 
-    expect(result.count).toBe(2);
+    expect(result.count).toBe(4);
     expect(result.remoteCount).toBe(0);
     expect(result.code.sets.base.sources[0]).toEqual({
+      foundation: {
+        hidden: expect.objectContaining({
+          $value: '{foundation.leaf}',
+        }),
+        leaf: expect.objectContaining({
+          $value: {
+            colorSpace: 'srgb',
+            components: [0.1, 0.2, 0.3],
+            alpha: 1,
+          },
+        }),
+      },
       semantic: {
         published: expect.objectContaining({
           $value: '{foundation.hidden}',
@@ -142,6 +178,5 @@ describe('getVariables', () => {
         }),
       },
     });
-    expect(result.code.sets.base.sources[0].foundation).toBeUndefined();
   });
 });

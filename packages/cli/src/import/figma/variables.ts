@@ -2,6 +2,18 @@ import type { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-a
 import type { Logger } from '@terrazzo/parser';
 import { formatName, getFileLocalVariables, getFilePublishedVariables } from './lib.js';
 
+function getAliasID(value: unknown): string | undefined {
+  return (
+    (typeof value === 'object' &&
+      value &&
+      'type' in value &&
+      value.type === 'VARIABLE_ALIAS' &&
+      'id' in value &&
+      value.id) ||
+    undefined
+  );
+}
+
 /** /v1/files/:file_key/variables/published | /v1/files/:file_key/variables/local */
 export async function getVariables(
   fileKey: string,
@@ -50,6 +62,22 @@ export async function getVariables(
     const published = await getFilePublishedVariables(fileKey, { logger });
     for (const id of Object.keys(published.meta.variables)) {
       finalVariables[id] = allVariables[id]!;
+    }
+  }
+
+  const pendingIDs = Object.keys(finalVariables);
+  for (let i = 0; i < pendingIDs.length; i++) {
+    const variable = finalVariables[pendingIDs[i]!];
+    if (!variable) {
+      continue;
+    }
+    for (const value of Object.values(variable.valuesByMode)) {
+      const aliasID = getAliasID(value);
+      if (!aliasID || !allVariables[aliasID] || aliasID in finalVariables) {
+        continue;
+      }
+      finalVariables[aliasID] = allVariables[aliasID]!;
+      pendingIDs.push(aliasID);
     }
   }
 
@@ -107,8 +135,7 @@ export async function getVariables(
       };
 
       // If this token is an alias of another, keep this as a value override
-      const isAliasOfID =
-        (typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS' && value.id) || undefined;
+      const isAliasOfID = getAliasID(value);
       if (isAliasOfID) {
         if (allVariables[isAliasOfID]) {
           tokenBase.$type =
