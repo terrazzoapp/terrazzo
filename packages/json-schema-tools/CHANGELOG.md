@@ -1,5 +1,11 @@
 # @terrazzo/json-schema-tools
 
+## 0.2.1
+
+### Patch Changes
+
+- Refresh to fix “Issues with peer dependencies found” with yaml-to-momoa
+
 ## 0.2.0
 
 ### Minor Changes
