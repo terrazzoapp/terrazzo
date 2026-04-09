@@ -32,9 +32,6 @@ export async function getVariables(
   // We must always fetch local variables, no matter what, to get the data we need
   const local = await getFileLocalVariables(fileKey, { logger });
   for (const id of Object.keys(local.meta.variables)) {
-    if (local.meta.variables[id]!.hiddenFromPublishing) {
-      continue;
-    }
     allVariables[id] = local.meta.variables[id]!;
   }
   for (const id of Object.keys(local.meta.variableCollections)) {
@@ -46,7 +43,9 @@ export async function getVariables(
 
   // If --unpublished is set, we’re ready to transform; otherwise, filter set from latest publish
   if (unpublished) {
-    finalVariables = allVariables;
+    finalVariables = Object.fromEntries(
+      Object.entries(allVariables).filter(([, variable]) => !variable.hiddenFromPublishing),
+    );
   } else {
     const published = await getFilePublishedVariables(fileKey, { logger });
     for (const id of Object.keys(published.meta.variables)) {
