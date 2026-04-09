@@ -85,7 +85,8 @@ describe('getVariables', () => {
         new Response(
           {
             [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]: JSON.stringify(localVariablesResponse),
-            [`https://api.figma.com/v1/files/${FILE_KEY}/variables/published`]: JSON.stringify(publishedVariablesResponse),
+            [`https://api.figma.com/v1/files/${FILE_KEY}/variables/published`]:
+              JSON.stringify(publishedVariablesResponse),
           }[url],
         ),
       );
