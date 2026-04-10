@@ -159,7 +159,7 @@ Inputs will differ by plugin, because the code will differ! How you map contexts
 
 ### Playground
 
-To see more examples of how resolvers can work, [**play around with Resolvers in the Playground**](https://dtcg-resolver-playground.pages.dev)!
+To see more examples of how resolvers can work, [**play around with Resolvers in the Playground**](https://www.designtokens.org/playground/)!
 
 ## Modes (legacy)
 
@@ -190,3 +190,87 @@ Here’s an example how the options would change for the CSS plugin:
 :::
 
 Note that even if we’re not using the new resolver syntax, Terrazzo will simply pretend like we had a secret modifier called `tzMode`.
+
+## Examples
+
+### Multi-brand
+
+When working on a multi-brand system, where you want to have 1 resolver that goes beyond simple light and dark modes, to declaring different themes, and possibly even accessibility enhancements like colorblind and high contrast themes. But still want to use the same tokens.
+
+Naively, you may start out with this initially:
+
+```jsonc
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/modifiers/color-mode" },
+    { "$ref": "#/modifiers/brand" },
+  ],
+  "modifiers": {
+    "color-mode": {
+      "contexts": {
+        "light": [{ "$ref": "color-mode/light.json" }],
+        "dark": [{ "$ref": "color-mode/dark.json" }],
+      },
+    },
+    "brand": {
+      "contexts": {
+        "a": [{ "$ref": "brand/a.json" }],
+        "b": [{ "$ref": "brand/b.json" }],
+        "c": [{ "$ref": "brand/c.json" }],
+      },
+    },
+  },
+}
+```
+
+But putting this into practice, let’s take a single color, say, `color.error`. Let’s say in `#/modifiers/color-mode`, it’s [[oklch 0.7 0.15 30]] in `light`, and [[oklch 0.5 0.15 30]] in `dark`. In `#/modifiers/brand`, let’s say brand `b` adjusts the error color ever-so-slightly to [[oklch 0.68 0.18 35]]. But wait—is that for `light` or `dark` mode? Uh-oh! It looks like you need `b-light` and `b-dark` as different contexts—one modifier is now leaking into the other because they’re both managing the same colors.
+
+You can see how this only gets harder with more modifiers, and more tokens—eventually you want _some_ value for `color.error` to materialize, AND have it respect `color-mode` and `brand`.
+
+✅ The simplest solution is to smush all the color modifiers together:
+
+```jsonc
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [{ "$ref": "#/modifiers/theme" }],
+  "modifiers": {
+    "theme": {
+      "contexts": {
+        "a-light": [
+          { "$ref": "color-mode/light.json" },
+          { "$ref": "brand/a.json" },
+        ],
+        "a-dark": [
+          { "$ref": "color-mode/dark.json" },
+          { "$ref": "brand/a.json" },
+        ],
+        "b-light": [
+          { "$ref": "color-mode/light.json" },
+          { "$ref": "brand/b.json" },
+        ],
+        "b-dark": [
+          { "$ref": "color-mode/dark.json" },
+          { "$ref": "brand/b.json" },
+        ],
+        "c-light": [
+          { "$ref": "color-mode/light.json" },
+          { "$ref": "brand/c.json" },
+        ],
+        "c-dark": [
+          { "$ref": "color-mode/dark.json" },
+          { "$ref": "brand/c.json" },
+        ],
+      },
+    },
+  },
+}
+```
+
+The hard truth is this is _really_ what you’re dealing with underneath—you’re dealing with the same overlaps in the end. But now they are more explicit. Note that we didn’t even have to reorder any files! And we’re **still deduplicating** because we’re referring to the same token files over and over again (referring to the same files—rather than _tokens_—is deduplication!).
+
+Some may be keen to notice that we _may not_ have resolved our original issue just by combining modifiers. We may still have missing colors in some of these contexts. But the important difference is **we now have a mechanism to surgically fix the issue.** If our issue was in `b-dark`, we can modify that one, and only that one. But in the bad example, changing either `#/modifiers/color-mode` or `#/modifiers/brand` may have cascading issues that may have affected other tokens unintentionally.
+
+That’s the power in combining modifiers—making token fixes more surgical, and limiting the blast radius from a single change cascading to the entire system breaking.

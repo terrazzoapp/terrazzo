@@ -83,3 +83,76 @@ Whether `100` is “lightest” or “darkest” doesn’t matter (or whatever n
 TL;DR — always ramping your colors in a universal direction for both light and dark mode saves unnecessary headaches.
 
 :::
+
+## Resolvers
+
+These pertain to organizing tokens [in resolvers](/guides/resolvers).
+
+### Defaults on modifiers
+
+All modifiers have a default:
+
+```jsonc
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "resolutionOrder": [{ "$ref": "#/modifiers/theme" }],
+  "modifiers": {
+    "theme": {
+      // …
+      "default": "brand-b-dark",
+    },
+  },
+}
+```
+
+### Every type in 1 modifier
+
+Though it’s not a specification requirement, it’s cleaner and easier to have every token type in 1 and only 1 modifier (modifiers may contain _multiple_ types, but each of those types should exist in that modifier and that modifier only).
+
+```jsonc
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "resolutionOrder": [{ "$ref": "#/modifiers/theme" }],
+  "modifiers": {
+    // color, gradient, border
+    "theme": {
+      "contexts": {
+        "brandALight": [],
+        "brandBDark": [],
+        "brandBLight": [],
+        "brandBDark": [],
+        "brandCLight": [],
+        "brandCDark": [],
+      },
+    },
+    // duration, cubic-bezier, transition
+    "motion": {
+      "contexts": {
+        "default": [],
+        "prefersReducedMotion": [],
+      },
+    },
+    // fontFamily, fontWeight, typography
+    "typography": {
+      "contexts": {
+        "default": [],
+        "smallScreens": [],
+        "largeScreens": [],
+        "xLargeScreens": [],
+      },
+    },
+    // dimension
+    "spacing": {
+      "contexts": {
+        "default": [],
+        "compact": [],
+        "loose": [],
+      },
+    },
+  },
+}
+```
+
+Of course, `sets` are different, and don’t have to abide by this rule. Sets are more for your personal organization, and may contain all types intermixed together in any way desired.
+
+For more explanation, see [the multi-brand example](/docs/guides/resolver-contexts#multi-brand).
