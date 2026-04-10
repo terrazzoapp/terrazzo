@@ -260,9 +260,19 @@ export default function buildCSS({
     };
     for (const token of selectorTokens) {
       const localID = token.localID ?? token.token.id;
-      const aliasTokens = token.token.aliasedBy?.length
-        ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy })
+      const aliasedBy = token.token.mode[selector.mode]?.aliasedBy?.length
+        ? token.token.mode[selector.mode]!.aliasedBy
+        : token.token.aliasedBy;
+      let aliasTokens = aliasedBy?.length
+        ? getTransforms({ format: FORMAT_ID, id: aliasedBy, mode: [selector.mode, '.'] })
         : [];
+      // Note: this will grab aliases from alternate and default modes. If we have duplicates, discard the default modes
+      const uniqueAliasIDs = new Set(aliasTokens.map((t) => t.id));
+      if (uniqueAliasIDs.size !== aliasTokens.length && selector.mode !== '.') {
+        aliasTokens = aliasTokens.filter(
+          (t, i) => !aliasTokens.some((t2, i2) => t.id === t2.id && i !== i2 && t.mode === '.'),
+        );
+      }
 
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
