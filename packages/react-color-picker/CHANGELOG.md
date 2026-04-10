@@ -1,5 +1,11 @@
 # @terrazzo/react-color-picker
 
+## 0.3.0
+
+### Minor Changes
+
+- [#702](https://github.com/terrazzoapp/terrazzo/pull/702) [`587dbff`](https://github.com/terrazzoapp/terrazzo/commit/587dbffac40ac0735cf1cb70a2554d918b91807c) Thanks [@asevich](https://github.com/asevich)! - [react-color-picker]: restrict color space dropdown via `colorSpaces` prop to ColorPicker component
+
 ## 0.2.2
 
 ### Patch Changes
