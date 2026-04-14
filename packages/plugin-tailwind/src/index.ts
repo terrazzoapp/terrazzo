@@ -1,5 +1,7 @@
 import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
@@ -101,7 +103,11 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         generatedTemplate = `${generatedTemplate.slice(0, start)}${tokens.map((t) => `${t.localID}: ${t.value};`).join(`\n${indent}`)}${generatedTemplate.slice(end)}`;
       }
       // Note: don’t append the header till the end, otherwise start/end will all be wrong
-      outputFile(filename, `${buildFileHeader(options.template)}\n\n${generatedTemplate}`);
+      const templateRel = path
+        .relative(fileURLToPath(cwd), fileURLToPath(new URL(options.template, cwd)))
+        .split(path.sep)
+        .join('/');
+      outputFile(filename, `${buildFileHeader(templateRel)}\n\n${generatedTemplate}`);
     },
   };
 }
