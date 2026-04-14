@@ -264,7 +264,7 @@ export default function buildCSS({
         ? token.token.mode[selector.mode]!.aliasedBy
         : token.token.aliasedBy;
       let aliasTokens = aliasedBy?.length
-        ? getTransforms({ format: FORMAT_ID, id: aliasedBy, mode: [selector.mode, '.'] })
+        ? getTransforms({ format: FORMAT_ID, id: aliasedBy, mode: selector.mode })
         : [];
       // Note: this will grab aliases from alternate and default modes. If we have duplicates, discard the default modes
       const uniqueAliasIDs = new Set(aliasTokens.map((t) => t.id));
