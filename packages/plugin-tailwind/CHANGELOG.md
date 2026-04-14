@@ -1,5 +1,19 @@
 # @terrazzo/plugin-tailwind
 
+## 2.0.3
+
+### Patch Changes
+
+- [#726](https://github.com/terrazzoapp/terrazzo/pull/726) [`b326bd6`](https://github.com/terrazzoapp/terrazzo/commit/b326bd63b2f701707d0501675bde6d9b091de8fa) Thanks [@drwpow](https://github.com/drwpow)! - Improve token aliases where the primitive or primary has token, but aliases do not. This leads to dropped tokens in all plugins.
+
+- [#723](https://github.com/terrazzoapp/terrazzo/pull/723) [`8cfc844`](https://github.com/terrazzoapp/terrazzo/commit/8cfc844b4cdaddb8f6ec50b396917628c7701de8) Thanks [@nagayama](https://github.com/nagayama)! - plugin-tailwind: write the template path in the generated file header relative to cwd so builds stay deterministic across machines (previously an absolute path like `/Users/alice/...` could leak into committed output)
+
+- Updated dependencies [[`b326bd6`](https://github.com/terrazzoapp/terrazzo/commit/b326bd63b2f701707d0501675bde6d9b091de8fa)]:
+  - @terrazzo/plugin-css@2.0.3
+  - @terrazzo/parser@2.0.3
+  - @terrazzo/cli@2.0.3
+  - @terrazzo/token-tools@2.0.3
+
 ## 2.0.2
 
 ### Patch Changes
