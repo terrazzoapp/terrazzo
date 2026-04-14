@@ -402,6 +402,18 @@ describe('transformColor', () => {
       },
     ],
     [
+      'oklch (out of gamut, but rounds to same)',
+      {
+        given: [
+          { $value: { colorSpace: 'oklch', components: [0.6011, 0.1427, 157.18], alpha: 1 } },
+          { tokensSet: {}, color: { depth: 30 }, permutation: {} },
+        ],
+        want: {
+          success: 'oklch(60.11% 0.1427 157.2)',
+        },
+      },
+    ],
+    [
       'okhsv',
       {
         given: [

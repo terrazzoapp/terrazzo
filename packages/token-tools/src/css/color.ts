@@ -51,7 +51,11 @@ export type Depth = keyof typeof DEPTH_ROUNDING | 'unlimited';
 /**
  * Downsample color to srgb, display-p3, and rec2020 color spaces.
  */
-function downsample($value: ColorTokenNormalized['$value'], color: ColorConstructor, depth: Depth = 30) {
+function downsample(
+  $value: ColorTokenNormalized['$value'],
+  color: ColorConstructor,
+  depth: Depth = 30,
+): TokenTransformed['value'] {
   const srgb = convert(color, $value.colorSpace, { inGamut: { space: 'srgb' } });
   const p3 = convert(color, $value.colorSpace, { inGamut: { space: 'p3' } });
   const rec2020 = convert(color, $value.colorSpace, { inGamut: { space: 'rec2020' } });
@@ -59,10 +63,14 @@ function downsample($value: ColorTokenNormalized['$value'], color: ColorConstruc
     throw new Error(`Invalid bit depth: ${depth}. Supported values: ${Object.keys(DEPTH_ROUNDING).join(', ')}`);
   }
   const precision = DEPTH_ROUNDING[depth as keyof typeof DEPTH_ROUNDING] || undefined;
-  return {
+  const result: WideGamutColorValue = {
     '.': serialize(color, { precision }),
     srgb: serialize(srgb, { precision }),
     p3: serialize(p3, { precision }),
     rec2020: serialize(rec2020, { precision }),
   };
+  if (result['.'] === result.srgb && result['.'] === result.p3 && result['.'] === result.rec2020) {
+    return result['.'];
+  }
+  return result;
 }
