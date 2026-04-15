@@ -64,10 +64,16 @@ export interface CSSPluginOptions {
    */
   legacyHex?: boolean;
   /**
-   * Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).
+   * Skip generating any `.css` files (useful if you are consuming values in your own plugin and don't need any `.css` files written to disk).
    * @default false
    */
   skipBuild?: boolean;
+  /**
+   * Generate CSS @property definitions for type-safe CSS Custom Properties.
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/@property
+   * @default true
+   */
+  propertyDefinitions?: boolean;
 }
 
 export interface Permutation<T extends Record<string, string> = Record<string, string>> {

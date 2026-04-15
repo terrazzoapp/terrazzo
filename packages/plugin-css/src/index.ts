@@ -22,7 +22,7 @@ export * from './transform.js';
 export * from './utility-css.js';
 
 export default function cssPlugin(options?: CSSPluginOptions): Plugin {
-  const { utility, skipBuild, baseScheme } = options ?? {};
+  const { utility, skipBuild, baseScheme, propertyDefinitions } = options ?? {};
 
   const filename = options?.filename ?? (options as any)?.fileName ?? 'index.css';
   const baseSelector = options?.baseSelector ?? ':root';
@@ -56,6 +56,7 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
         utility,
         baseSelector,
         baseScheme,
+        propertyDefinitions: propertyDefinitions ?? true,
         logger: context.logger,
       });
       outputFile(filename, contents.replace(/\n*$/, '\n'));

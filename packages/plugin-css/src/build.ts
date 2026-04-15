@@ -36,6 +36,106 @@ export interface BuildFormatOptions {
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
   baseScheme: CSSPluginOptions['baseScheme'];
+  propertyDefinitions: boolean;
+}
+
+const TOKEN_TYPE_SYNTAX: Record<string, string> = {
+  color: '<color>',
+  dimension: '<length>',
+  duration: '<time>',
+  fontWeight: '<integer>',
+  number: '<number>',
+  boolean: '<integer>',
+  fontFamily: '*',
+  string: '*',
+  cubicBezier: '*',
+  border: '*',
+  shadow: '*',
+  gradient: '*',
+  typography: '*',
+  transition: '*',
+  strokeStyle: '*',
+  link: '<url>',
+};
+
+function isAliasValue(value: string): boolean {
+  return value.startsWith('var(');
+}
+
+function generatePropertyDefinitions(
+  tokens: BuildHookOptions['getTransforms'] extends (params: infer P) => infer R ? (params: P) => R : never,
+  options: { include: (id: string) => boolean; exclude: (id: string) => boolean },
+): string {
+  const rootTokens = tokens({ format: FORMAT_ID, mode: '.' });
+  const properties: string[] = [];
+  const seen = new Set<string>();
+
+  for (const token of rootTokens) {
+    if (!options.include(token.token.id) || options.exclude(token.token.id)) {
+      continue;
+    }
+
+    const localID = makeCSSVar(token.localID ?? token.token.id);
+    const cssSyntax = TOKEN_TYPE_SYNTAX[token.token.$type] ?? '*';
+
+    if (token.type === 'SINGLE_VALUE') {
+      const value = token.value as string;
+      if (!seen.has(localID)) {
+        seen.add(localID);
+        if (!isAliasValue(value) && cssSyntax !== '*') {
+          properties.push(
+            `@property ${localID} {\n  syntax: '${cssSyntax}';\n  inherits: true;\n  initial-value: ${value};\n}`,
+          );
+        } else {
+          properties.push(`@property ${localID} {\n  syntax: '*';\n  inherits: true;\n}`);
+        }
+      }
+    } else if (token.type === 'MULTI_VALUE') {
+      for (const [name, subValue] of Object.entries(token.value as Record<string, string>)) {
+        const subID = name === '.' ? localID : `${localID}-${name}`;
+        if (!seen.has(subID)) {
+          seen.add(subID);
+          const subSyntax = inferSubPropertySyntax(token.token.$type, name);
+          if (!isAliasValue(subValue) && subSyntax !== '*') {
+            properties.push(
+              `@property ${subID} {\n  syntax: '${subSyntax}';\n  inherits: true;\n  initial-value: ${subValue};\n}`,
+            );
+          } else {
+            properties.push(`@property ${subID} {\n  syntax: '*';\n  inherits: true;\n}`);
+          }
+        }
+      }
+      const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
+      if (shorthand && !seen.has(localID)) {
+        seen.add(localID);
+        properties.push(`@property ${localID} {\n  syntax: '*';\n  inherits: true;\n}`);
+      }
+    }
+  }
+
+  return properties.length ? properties.join('\n\n') : '';
+}
+
+function inferSubPropertySyntax(tokenType: string, subPropertyName: string): string {
+  const SUB_PROPERTY_SYNTAX: Record<string, Record<string, string>> = {
+    border: { color: '<color>', width: '<length>', style: '*' },
+    shadow: { color: '<color>', 'offset-x': '<length>', 'offset-y': '<length>', blur: '<length>', spread: '<length>' },
+    transition: { duration: '<time>', delay: '<time>', 'timing-function': '*' },
+    typography: {
+      'font-family': '*',
+      'font-size': '<length>',
+      'font-weight': '<integer>',
+      'line-height': '*',
+      'letter-spacing': '<length>',
+      'font-style': '*',
+      'font-variant': '*',
+      'font-variation-settings': '*',
+      'text-decoration': '*',
+      'text-transform': '*',
+    },
+    strokeStyle: { 'dash-array': '*', 'line-cap': '*' },
+  };
+  return SUB_PROPERTY_SYNTAX[tokenType]?.[subPropertyName] ?? '*';
 }
 
 export default function buildCSS({
@@ -48,9 +148,14 @@ export default function buildCSS({
   modeSelectors,
   baseSelector,
   baseScheme,
+  propertyDefinitions = true,
 }: BuildFormatOptions): string {
   const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
   const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
+  let propertyDefs = '';
+  if (propertyDefinitions) {
+    propertyDefs = generatePropertyDefinitions(getTransforms, { include, exclude });
+  }
   if (permutations?.length) {
     let output = '';
 
@@ -163,6 +268,10 @@ export default function buildCSS({
           logger,
         }),
       );
+    }
+
+    if (propertyDefs && output) {
+      output = `${propertyDefs}\n\n${output}`;
     }
 
     return output;
@@ -333,6 +442,10 @@ export default function buildCSS({
       output += '\n\n';
     }
     output += printRules(generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, mode: '.' }), { logger }));
+  }
+
+  if (propertyDefs && output) {
+    output = `${propertyDefs}\n\n${output}`;
   }
 
   return output;
