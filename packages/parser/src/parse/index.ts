@@ -65,7 +65,7 @@ export default async function parse(
 
   // 1. Load tokens
   const initStart = performance.now();
-  const resolverResult = await loadResolver(inputs, { config, logger, req, yamlToMomoa });
+  const resolverResult = await loadResolver(inputs, { config, logger, req, yamlToMomoa, transform });
   // 1a. Resolver
   if (resolverResult.resolver) {
     tokens = resolverResult.tokens;
