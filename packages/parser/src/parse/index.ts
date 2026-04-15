@@ -46,6 +46,19 @@ export default async function parse(
     ) {
       logger.error({ group: 'parser', label: 'init', message: `Input ${i}: expected { src: any; filename: URL }` });
     }
+    const src = inputs[i]?.src;
+    if (src && typeof src === 'object' && typeof src !== 'string') {
+      if (
+        Object.keys(src).length === 0 ||
+        (ArrayBuffer.isView(src) && !(src instanceof DataView))
+      ) {
+        logger.error({
+          group: 'parser',
+          label: 'init',
+          message: `Input ${i}: src is a binary object (e.g. Buffer). Convert to a string first, e.g. \`src: await fs.readFile(filename, 'utf-8')\``,
+        });
+      }
+    }
   }
 
   const totalStart = performance.now();

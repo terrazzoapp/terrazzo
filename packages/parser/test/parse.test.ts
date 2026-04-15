@@ -14,23 +14,44 @@ describe('Additional cases', () => {
     );
   });
 
-  it.skip('Buffer', async () => {
+  it('Buffer', async () => {
     const config = defineConfig({}, { cwd });
-    expect(
-      (
-        await parse(
-          [
-            {
-              filename: DEFAULT_FILENAME,
-              src: Buffer.from('{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}', 'utf8'),
-            },
-          ],
-          { config },
-        )
-      ).tokens,
-    ).toEqual({
-      'size.large': expect.objectContaining({ $value: { value: 1, unit: 'rem' } }),
-    });
+    try {
+      await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: Buffer.from('{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}', 'utf8'),
+          },
+        ],
+        { config },
+      );
+      expect.unreachable('Expected parse to throw for Buffer input');
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(
+        `"parser:init: Input 0: src is a binary object (e.g. Buffer). Convert to a string first, e.g. \`src: await fs.readFile(filename, 'utf-8')\`"`,
+      );
+    }
+  });
+
+  it('Uint8Array', async () => {
+    const config = defineConfig({}, { cwd });
+    try {
+      await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: new Uint8Array(Buffer.from('{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}', 'utf8')),
+          },
+        ],
+        { config },
+      );
+      expect.unreachable('Expected parse to throw for Uint8Array input');
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(
+        `"parser:init: Input 0: src is a binary object (e.g. Buffer). Convert to a string first, e.g. \`src: await fs.readFile(filename, 'utf-8')\`"`,
+      );
+    }
   });
 
   it('YAML: plugin not installed', async () => {

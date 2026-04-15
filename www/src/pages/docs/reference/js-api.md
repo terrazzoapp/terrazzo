@@ -32,7 +32,7 @@ const config = defineConfig(
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
 const { tokens, sources } = await parse(
-  [{ filename, src: await fs.readFile(filename) }],
+  [{ filename, src: await fs.readFile(filename, 'utf-8') }],
   { config },
 );
 const buildResult = await build(tokens, { sources, config });
@@ -124,7 +124,7 @@ ColorSpace.register(sRGB);
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
 const config = defineConfig({}, { cwd: new URL(import.meta.url) });
 const { sources } = await parse(
-  [{ filename, src: await fs.readFile(filename) }],
+  [{ filename, src: await fs.readFile(filename, 'utf-8') }],
   {
     config,
     transform: {
