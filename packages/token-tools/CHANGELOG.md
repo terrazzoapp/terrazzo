@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 2.0.4
+
+### Patch Changes
+
+- [#724](https://github.com/terrazzoapp/terrazzo/pull/724) [`fefd4b1`](https://github.com/terrazzoapp/terrazzo/commit/fefd4b149d03ca2199eaddc7b197e4e081169e7f) Thanks [@avasis-ai](https://github.com/avasis-ai)! - fix: avoid duplicate WideGamutColorValue when downsampled gamuts are identical
+
 ## 2.0.3
 
 ### Patch Changes
