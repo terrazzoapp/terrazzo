@@ -16,6 +16,10 @@ export const DOCS_NAV = [
     items: [{ url: '/docs/linting/', title: 'Getting Started' }],
   },
   {
+    title: 'Components',
+    items: [{ url: '/docs/components/color-picker/', title: 'Color Picker' }],
+  },
+  {
     title: 'Integrations',
     items: [
       { url: '/docs/integrations/css/', title: 'CSS' },
