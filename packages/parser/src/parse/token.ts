@@ -274,7 +274,11 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
 
     // Top alias
     const isTopLevelAlias = jsonID.endsWith('/$value') || tokens[jsonID];
-    if (isTopLevelAlias) {
+    const isSameModeAlias =
+      mode !== '.' &&
+      jsonID.endsWith(`/$extensions/mode/${mode}`) &&
+      refChain.at(-1)?.endsWith(`/$extensions/mode/${mode}`);
+    if (isTopLevelAlias || isSameModeAlias) {
       modeValue.aliasOf = refToTokenID(refChain.at(-1)!);
       const aliasChain = refChain.map(refToTokenID) as string[];
       modeValue.aliasChain = [...aliasChain];
@@ -283,6 +287,7 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
     // Partial alias
     const partial = jsonID
       .replace(/.*\/\$value\/?/, '')
+      .replace(/.*\/\$extensions\/mode\/[^/]+/, '')
       .split('/')
       .filter(Boolean);
     if (partial.length && modeValue.$value && typeof modeValue.$value === 'object') {
@@ -537,13 +542,55 @@ export function resolveAliases(
 
         refMap[path.join('/')] = { filename: token.source.filename!, refChain };
 
+        // handle legacy $extensions.modes on upstream alias, that may/may not exist on downstream token
+        const anyUpstreamHasModes = refChain.some((ref) => {
+          const jsonID = ref.replace(/\/(\$value|\$extensions\/mode\/).*/, '');
+          return Object.keys(tokens[jsonID]?.mode ?? {}).length > 1;
+        });
+        const currentHasModes = Object.keys(token.mode).length > 1;
+        if (mode === '.' && !currentHasModes && anyUpstreamHasModes) {
+          for (const altMode of Object.keys(tokens[resolvedID]!.mode)) {
+            if (altMode === '.') {
+              continue;
+            }
+            const altModePath = _injectMode(path.join('/'), altMode);
+            const partialProperty = altModePath.match(/\$extensions\/mode\/[^/]+\/(.*)/)?.[1];
+            // append, never overwrite
+            if (!refMap[altModePath]) {
+              refMap[altModePath] = {
+                filename: token.source.filename!,
+                refChain: refChain.map((id) => _injectMode(id, altMode)),
+              };
+              if (!token.mode[altMode]) {
+                token.mode[altMode] = {
+                  ...token.mode['.'],
+                  aliasOf: undefined,
+                  partialAliasOf: undefined,
+                  aliasedBy: undefined,
+                };
+              }
+              if (partialProperty) {
+                if (
+                  typeof token.mode[altMode].$value === 'object' &&
+                  (tokens[resolvedID]?.mode[altMode]?.$value as any)[partialProperty]
+                ) {
+                  (token.mode[altMode].$value as any)[partialProperty] = (
+                    tokens[resolvedID]?.mode[altMode]?.$value as any
+                  )[partialProperty];
+                }
+              } else {
+                token.mode[altMode].$value = tokens[resolvedID]!.mode[altMode]!.$value;
+              }
+            }
+          }
+        }
+
         return {
           $type: tokens[resolvedID]!.$type,
           $value: tokens[resolvedID]!.mode[mode]?.$value || tokens[resolvedID]!.$value,
         };
       }
 
-      // resolve DTCG aliases without
       const pathBase = mode === '.' ? token.jsonID : `${token.jsonID}/$extensions/mode/${mode}`;
       const { $type, $value } = traverseAndResolve(token.mode[mode]!.$value, {
         node: aliasEntry.node!,
@@ -558,4 +605,9 @@ export function resolveAliases(
       }
     }
   }
+}
+
+/** ⚠️ Don’t use outside this context. This is for edge cases with legacy modes where we need to hoist modes to downstream aliases. */
+function _injectMode(ref: string, mode: string) {
+  return ref.replace(/\/\$value$/, `/$extensions/mode/${mode}`).replace(/\/\$value\//, `/$extensions/mode/${mode}/`);
 }

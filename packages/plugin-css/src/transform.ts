@@ -142,7 +142,7 @@ export default function transformCSS({
         tokensSet: baseTokens,
         transformAlias,
         color: { legacyHex },
-        permutation: { tzMode: '.' },
+        permutation: { tzMode: '*' },
       };
       const value = customTransform?.(tokenArgs, options) ?? transformCSSValue(tokenArgs, options);
       if (value) {

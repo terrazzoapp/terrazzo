@@ -44,18 +44,26 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --ds-color-border: var(--ds-color-base-gray-20);
-    --ds-border-thick: 2.5px solid var(--ds-color-border);
-    --ds-color-red: oklch(63.47% 0.254 16.44);
+    --ds-border-color: rgb(65.098% 69.02% 70.98%);
+    --ds-border-dashed: 1.5px dashed var(--ds-border-color);
+    --ds-border-ridge: 1px ridge var(--ds-border-color);
+    --ds-border-solid: 1px solid var(--ds-border-color);
+    --ds-border-default: var(--ds-border-solid);
     --ds-border-red: 1px solid var(--ds-color-red);
+    --ds-color-border: var(--ds-color-base-gray-20);
+    --ds-color-red: oklch(63.47% 0.254 16.44);
   }
 }
 
 [data-color-theme="light"] {
-  --ds-color-border: var(--ds-color-base-gray-20);
-  --ds-border-thick: 2.5px solid var(--ds-color-border);
-  --ds-color-red: oklch(63.47% 0.254 16.44);
+  --ds-border-color: rgb(65.098% 69.02% 70.98%);
+  --ds-border-dashed: 1.5px dashed var(--ds-border-color);
+  --ds-border-ridge: 1px ridge var(--ds-border-color);
+  --ds-border-solid: 1px solid var(--ds-border-color);
+  --ds-border-default: var(--ds-border-solid);
   --ds-border-red: 1px solid var(--ds-color-red);
+  --ds-color-border: var(--ds-color-base-gray-20);
+  --ds-color-red: oklch(63.47% 0.254 16.44);
 }
 
 @media (color-gamut: p3) {
@@ -88,18 +96,26 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ds-color-border: var(--ds-color-base-gray-80);
-    --ds-border-thick: 2.5px solid var(--ds-color-border);
-    --ds-color-red: oklch(35.3% 0.1414 18.14);
+    --ds-border-color: rgb(7.8431% 9.0196% 10.588%);
+    --ds-border-dashed: 1.5px dashed var(--ds-border-color);
+    --ds-border-ridge: 1px ridge var(--ds-border-color);
+    --ds-border-solid: 1px solid var(--ds-border-color);
+    --ds-border-default: var(--ds-border-solid);
     --ds-border-red: 1px solid var(--ds-color-red);
+    --ds-color-border: var(--ds-color-base-gray-80);
+    --ds-color-red: oklch(35.3% 0.1414 18.14);
   }
 }
 
 [data-color-theme="dark"] {
-  --ds-color-border: var(--ds-color-base-gray-80);
-  --ds-border-thick: 2.5px solid var(--ds-color-border);
-  --ds-color-red: oklch(35.3% 0.1414 18.14);
+  --ds-border-color: rgb(7.8431% 9.0196% 10.588%);
+  --ds-border-dashed: 1.5px dashed var(--ds-border-color);
+  --ds-border-ridge: 1px ridge var(--ds-border-color);
+  --ds-border-solid: 1px solid var(--ds-border-color);
+  --ds-border-default: var(--ds-border-solid);
   --ds-border-red: 1px solid var(--ds-color-red);
+  --ds-color-border: var(--ds-color-base-gray-80);
+  --ds-color-red: oklch(35.3% 0.1414 18.14);
 }
 
 @media (color-gamut: p3) {

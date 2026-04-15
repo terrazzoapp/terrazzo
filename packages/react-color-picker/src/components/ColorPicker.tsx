@@ -21,18 +21,34 @@ export const COLOR_PICKER_SPACES = {
   'xyz-d65': 'XYZ (D65)',
 };
 
+export type ColorPickerSpace = keyof typeof COLOR_PICKER_SPACES;
+
 export interface ColorPickerProps extends Omit<ComponentProps<'div'>, 'color'> {
   /** value from useColor() */
   color: ReturnType<typeof useColor>[0];
+  colorSpaces?: ColorPickerSpace[];
   setColor: ReturnType<typeof useColor>[1];
 }
 
-export default function ColorPicker({ className, color, setColor, ...rest }: ColorPickerProps) {
+export default function ColorPicker({ className, color, colorSpaces, setColor, ...rest }: ColorPickerProps) {
   const [codeColor, setCodeColor] = useState(color.css);
   const [maxGamut] = useState<Gamut>('srgb');
   const normalizedColorMode = useMemo(
     () => (['p3', 'rec2020', 'srgb-linear'].includes(color.original.space.id) ? 'srgb' : color.original.space.id),
     [color],
+  );
+  const selectableColorSpaces = useMemo(() => {
+    if (!colorSpaces) {
+      return Object.entries(COLOR_PICKER_SPACES);
+    }
+    return Object.entries(COLOR_PICKER_SPACES).filter(([id]) => colorSpaces.includes(id as ColorPickerSpace));
+  }, [colorSpaces]);
+  const selectedColorMode = useMemo(
+    () =>
+      selectableColorSpaces.some(([id]) => id === normalizedColorMode)
+        ? normalizedColorMode
+        : selectableColorSpaces[0]?.[0],
+    [normalizedColorMode, selectableColorSpaces],
   );
   useEffect(() => {
     setCodeColor(color.css);
@@ -51,13 +67,13 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
       </div>
       <div className='tz-color-picker-colorspace'>
         <Select
-          value={normalizedColorMode}
+          value={selectedColorMode}
           trigger={color.original.space.id}
           onValueChange={(colorSpace) => {
             setColor(convert(color.original, colorSpace, { inGamut: { space: maxGamut } }) as any);
           }}
         >
-          {Object.entries(COLOR_PICKER_SPACES).map(([id, label]) => (
+          {selectableColorSpaces.map(([id, label]) => (
             <SelectItem key={id} value={id} icon={<ColorFilterOutline />}>
               {label}
             </SelectItem>
