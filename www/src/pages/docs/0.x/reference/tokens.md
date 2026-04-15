@@ -485,7 +485,7 @@ A composite type combining [dimension](#dimension) with a [color](#color) to for
 
 ### Tips & recommendations
 
-- For smoother shadows, try [layering multiple](https://shadows.brumm.af/).
+- For smoother shadows, try [layering multiple](https://www.joshwcomeau.com/css/designing-shadows/).
 
 ## Gradient
 
