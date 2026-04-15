@@ -54,6 +54,14 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
         minute: '2-digit',
       });
 
+      let building = false;
+      let pending:
+        | {
+            messageBefore?: string;
+            messageAfter?: string;
+          }
+        | undefined;
+
       async function rebuild({ messageBefore, messageAfter }: { messageBefore?: string; messageAfter?: string } = {}) {
         try {
           if (messageBefore) {
@@ -77,19 +85,37 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
         } catch (err) {
           // biome-ignore lint/suspicious/noConsole: this is its job
           console.error(pc.red(`✗  ${(err as Error).message || (err as string)}`));
-          // don’t exit! we’re watching, so continue as long as possible
+          // don't exit! we're watching, so continue as long as possible
+        }
+      }
+
+      async function queueRebuild(options: { messageBefore?: string; messageAfter?: string } = {}) {
+        if (building) {
+          pending = options;
+          return;
+        }
+        building = true;
+        try {
+          await rebuild(options);
+        } finally {
+          building = false;
+          if (pending) {
+            const next = pending;
+            pending = undefined;
+            await queueRebuild(next);
+          }
         }
       }
 
       const tokenWatcher = chokidar.watch(config.tokens.map((filename) => fileURLToPath(filename)));
       tokenWatcher.on('change', async (filename) => {
-        await rebuild({
-          messageBefore: `${pc.dim(dt.format(new Date()))} ${pc.green('tz')}} ${pc.yellow(filename)} updated ${GREEN_CHECK}`,
+        await queueRebuild({
+          messageBefore: `${pc.dim(dt.format(new Date()))} ${pc.green('tz')} ${pc.yellow(filename)} updated ${GREEN_CHECK}`,
         });
       });
       const configWatcher = chokidar.watch(resolveConfig(configPath)!);
       configWatcher.on('change', async () => {
-        await rebuild({
+        await queueRebuild({
           messageBefore: `${pc.dim(dt.format(new Date()))} ${pc.green('tz')} ${pc.yellow('Config updated. Reloading…')}`,
         });
       });
