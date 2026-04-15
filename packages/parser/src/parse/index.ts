@@ -48,10 +48,7 @@ export default async function parse(
     }
     const src = inputs[i]?.src;
     if (src && typeof src === 'object' && typeof src !== 'string') {
-      if (
-        Object.keys(src).length === 0 ||
-        (ArrayBuffer.isView(src) && !(src instanceof DataView))
-      ) {
+      if (Object.keys(src).length === 0 || (ArrayBuffer.isView(src) && !(src instanceof DataView))) {
         logger.error({
           group: 'parser',
           label: 'init',

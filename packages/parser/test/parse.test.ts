@@ -41,7 +41,9 @@ describe('Additional cases', () => {
         [
           {
             filename: DEFAULT_FILENAME,
-            src: new Uint8Array(Buffer.from('{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}', 'utf8')),
+            src: new Uint8Array(
+              Buffer.from('{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}', 'utf8'),
+            ),
           },
         ],
         { config },
