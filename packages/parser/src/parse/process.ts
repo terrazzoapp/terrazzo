@@ -256,7 +256,15 @@ export function processTokens(
   // 6. alphabetize & filter
   // This can’t happen until the last step, where we’re 100% sure we’ve resolved everything.
   if (config.alphabetize === false) {
-    return tokens;
+    // Normalize token IDs to dot-notation for consistency with alphabetize=true
+    const tokensNormalized: TokenNormalizedSet = {};
+    for (const path of tokenIDs) {
+      const id = refToTokenID(path)!;
+      if (id) {
+        tokensNormalized[id] = tokens[path]!;
+      }
+    }
+    return tokensNormalized;
   }
 
   const sortStart = performance.now();
