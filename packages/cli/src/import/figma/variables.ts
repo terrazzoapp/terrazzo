@@ -2,6 +2,20 @@ import type { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-a
 import type { Logger } from '@terrazzo/parser';
 import { formatName, getFileLocalVariables, getFilePublishedVariables } from './lib.js';
 
+function getAliasID(value: unknown): string | undefined {
+  if (
+    typeof value === 'object' &&
+    value &&
+    'type' in value &&
+    value.type === 'VARIABLE_ALIAS' &&
+    'id' in value &&
+    typeof value.id === 'string'
+  ) {
+    return value.id;
+  }
+  return undefined;
+}
+
 /** /v1/files/:file_key/variables/published | /v1/files/:file_key/variables/local */
 export async function getVariables(
   fileKey: string,
@@ -32,9 +46,6 @@ export async function getVariables(
   // We must always fetch local variables, no matter what, to get the data we need
   const local = await getFileLocalVariables(fileKey, { logger });
   for (const id of Object.keys(local.meta.variables)) {
-    if (local.meta.variables[id]!.hiddenFromPublishing) {
-      continue;
-    }
     allVariables[id] = local.meta.variables[id]!;
   }
   for (const id of Object.keys(local.meta.variableCollections)) {
@@ -46,11 +57,29 @@ export async function getVariables(
 
   // If --unpublished is set, we’re ready to transform; otherwise, filter set from latest publish
   if (unpublished) {
-    finalVariables = allVariables;
+    finalVariables = Object.fromEntries(
+      Object.entries(allVariables).filter(([, variable]) => !variable.hiddenFromPublishing),
+    );
   } else {
     const published = await getFilePublishedVariables(fileKey, { logger });
     for (const id of Object.keys(published.meta.variables)) {
       finalVariables[id] = allVariables[id]!;
+    }
+  }
+
+  const pendingIDs = Object.keys(finalVariables);
+  for (let i = 0; i < pendingIDs.length; i++) {
+    const variable = finalVariables[pendingIDs[i]!];
+    if (!variable) {
+      continue;
+    }
+    for (const value of Object.values(variable.valuesByMode)) {
+      const aliasID = getAliasID(value);
+      if (!aliasID || !allVariables[aliasID] || aliasID in finalVariables) {
+        continue;
+      }
+      finalVariables[aliasID] = allVariables[aliasID]!;
+      pendingIDs.push(aliasID);
     }
   }
 
@@ -108,8 +137,7 @@ export async function getVariables(
       };
 
       // If this token is an alias of another, keep this as a value override
-      const isAliasOfID =
-        (typeof value === 'object' && 'type' in value && value.type === 'VARIABLE_ALIAS' && value.id) || undefined;
+      const isAliasOfID = getAliasID(value);
       if (isAliasOfID) {
         if (allVariables[isAliasOfID]) {
           tokenBase.$type =
