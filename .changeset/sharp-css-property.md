@@ -2,4 +2,4 @@
 "@terrazzo/plugin-css": minor
 ---
 
-feat: add @property definitions to CSS plugin output
+feat: add opt-in `propertyDefinitions` option to CSS plugin to generate CSS @property definitions

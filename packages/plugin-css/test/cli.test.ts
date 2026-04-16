@@ -40,7 +40,7 @@ describe('fixtures', () => {
     ['option: utility (legacy modes)', { dir: 'option-utility-modes', output: ['utility.css'] }],
     ['option: baseSelector (deprecated)', { dir: 'option-base-selector', output: ['index.css'] }],
     ['option: colorScheme (deprecated)', { dir: 'option-color-scheme', output: ['index.css'] }],
-    ['option: propertyDefinitions disabled', { dir: 'option-no-property-defs', output: ['index.css'] }],
+    ['option: propertyDefinitions', { dir: 'option-property-defs', output: ['index.css'] }],
     ['DS: Adobe Spectrum', { dir: 'ds-adobe-spectrum', output: ['spectrum.css'] }],
     ['DS: Figma SDS', { dir: 'ds-figma-sds', output: ['sds.css'] }],
     ['DS: GitHub Primer', { dir: 'ds-github-primer', output: ['primer.css'] }],

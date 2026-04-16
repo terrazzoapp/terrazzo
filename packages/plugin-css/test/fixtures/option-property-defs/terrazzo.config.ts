@@ -7,7 +7,7 @@ export default defineConfig({
   outDir: '.',
   plugins: [
     css({
-      propertyDefinitions: false,
+      propertyDefinitions: true,
       filename: 'index.css',
     }),
   ],

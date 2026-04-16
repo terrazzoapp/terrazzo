@@ -71,7 +71,7 @@ export interface CSSPluginOptions {
   /**
    * Generate CSS @property definitions for type-safe CSS Custom Properties.
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/@property
-   * @default true
+   * @default false
    */
   propertyDefinitions?: boolean;
 }
@@ -170,7 +170,7 @@ export function printNode(
   // legacy behavior: mediaQueryWithDecls should be removed in 3.0. This
   // was originally introduced in modeSelectors, but it generates unexpected CSS.
   const mediaQueryWithDecls = node.children.some((s) => s.type === 'Declaration')
-    ? node.prelude.find((s) => s.startsWith('@'))
+    ? node.prelude.find((s) => s.startsWith('@media'))
     : undefined;
   if (mediaQueryWithDecls) {
     const nonMedia = node.prelude.filter((s) => s !== mediaQueryWithDecls);

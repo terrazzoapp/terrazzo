@@ -56,7 +56,7 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
         utility,
         baseSelector,
         baseScheme,
-        propertyDefinitions: propertyDefinitions ?? true,
+        propertyDefinitions: propertyDefinitions ?? false,
         logger: context.logger,
       });
       outputFile(filename, contents.replace(/\n*$/, '\n'));
