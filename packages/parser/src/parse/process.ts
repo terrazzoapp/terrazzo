@@ -253,24 +253,24 @@ export function processTokens(
   }
   logger.debug({ ...entry, message: 'Normalized values', timing: performance.now() - normalizeStart });
 
-  // 6. alphabetize & filter
+  // 6. normalize IDs & optionally alphabetize
   // This can’t happen until the last step, where we’re 100% sure we’ve resolved everything.
-  if (config.alphabetize === false) {
-    return tokens;
-  }
-
   const sortStart = performance.now();
-  const tokensSorted: TokenNormalizedSet = {};
-  tokenIDs.sort(alphaComparator);
+  if (config.alphabetize !== false) {
+    tokenIDs.sort(alphaComparator);
+  }
+  const tokensNormalized: TokenNormalizedSet = {};
   for (const path of tokenIDs) {
     const id = refToTokenID(path)!;
-    tokensSorted[id] = tokens[path]!;
+    tokensNormalized[id] = tokens[path]!;
   }
-  // Sort group IDs once, too
-  for (const group of Object.values(groups)) {
-    group.tokens.sort(alphaComparator);
+  if (config.alphabetize !== false) {
+    // Sort group IDs once, too
+    for (const group of Object.values(groups)) {
+      group.tokens.sort(alphaComparator);
+    }
   }
   logger.debug({ ...entry, message: 'Sorted tokens', timing: performance.now() - sortStart });
 
-  return tokensSorted;
+  return tokensNormalized;
 }
