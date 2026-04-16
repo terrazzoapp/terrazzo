@@ -74,11 +74,45 @@ And you’ll see a `tokens/tailwind-theme.css` file generated in your project.
 
 ## Options
 
-| Name       | Type                  | Description                                             |
-| :--------- | :-------------------- | :------------------------------------------------------ |
-| `template` | `string`              | The [template](#template) to use.                       |
-| `filename` | `string`              | Filename to generate (default: `"tailwind-theme.css"`). |
-| `theme`    | `Record<string, any>` | Tailwind theme ([docs](#theme))                         |
+| Name           | Type                                                           | Description                                                    |
+| :------------- | :------------------------------------------------------------- | :------------------------------------------------------------- |
+| `template`     | `string`                                                       | The [template](#template) to use.                              |
+| `filename`     | `string`                                                       | Filename to generate (default: `"tailwind-theme.css"`).        |
+| `theme`        | `Record<string, any>`                                          | Tailwind theme ([docs](#theme))                                |
+| `variableName` | `(defaultName: string, context: VariableNameContext) => string` | Function that receives the default CSS variable name and returns a new one. Use this if you want to preserve underscores, double-dashes, or rename variables in any way ([docs](#variablename)). |
+
+### variableName
+
+By default, CSS variable names are generated using `makeCSSVar()`, which normalizes names to kebab-case. This collapses double-dashes, which prevents generating Tailwind v4's [paired property convention](https://tailwindcss.com/docs/font-size#setting-the-line-height) (e.g. `--text-xs--line-height`).
+
+`variableName` lets you override the generated name. It receives the default name and a context object with `token`, `path`, and `relName`:
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+import tailwind from "@terrazzo/plugin-tailwind";
+
+export default defineConfig({
+  plugins: [
+    css(),
+    tailwind({
+      template: "tailwind.template.css",
+      theme: {
+        text: ["typography.body.**"],
+      },
+      variableName: (defaultName, { path, relName }) => {
+        // Preserve double-dashes for Tailwind v4 paired properties
+        // e.g. --text-xs--line-height instead of --text-xs-line-height
+        return `--${path.join("-")}-${relName.replace(/\./g, "-")}`;
+      },
+    }),
+  ],
+});
+```
+
+:::
 
 ## Theme
 
