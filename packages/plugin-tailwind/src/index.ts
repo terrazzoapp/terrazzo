@@ -82,7 +82,9 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
               relName = token.id.replace(match, '');
             }
             const defaultName = makeCSSVar(`${path.join('-')}-${relName.replace(/\./g, '-')}`);
-            const localID = options?.variableName ? options.variableName(defaultName, { token, path, relName }) : defaultName;
+            const localID = options?.variableName
+              ? options.variableName(defaultName, { token, path, relName })
+              : defaultName;
             setTransform(token.id, {
               ...query,
               format: FORMAT_TAILWIND,

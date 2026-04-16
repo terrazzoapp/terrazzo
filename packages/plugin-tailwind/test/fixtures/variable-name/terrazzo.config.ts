@@ -14,8 +14,11 @@ export default defineConfig({
     tailwind({
       template: 'tailwind.template.css',
       filename: 'actual.css',
-      variableName: (defaultName, { path, relName }) => {
-        return `--${path.join('-')}-${relName.replace(/\./g, '-')}`;
+      variableName: (defaultName, { token, path, relName }) => {
+        if (token.id.includes('_') || token.id.includes('--')) {
+          return `--${path.join('-')}-${relName.replace(/\./g, '-')}`;
+        }
+        return defaultName;
       },
       theme: {
         color: ['color.**'],
