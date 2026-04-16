@@ -36,6 +36,7 @@ export interface BuildFormatOptions {
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
   baseScheme: CSSPluginOptions['baseScheme'];
+  omitTypographyShorthand: CSSPluginOptions['omitTypographyShorthand'];
 }
 
 export default function buildCSS({
@@ -48,6 +49,7 @@ export default function buildCSS({
   modeSelectors,
   baseSelector,
   baseScheme,
+  omitTypographyShorthand,
 }: BuildFormatOptions): string {
   const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
   const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
@@ -117,7 +119,11 @@ export default function buildCSS({
             addDeclUnique(root, decl(subValueID, subValue, getDescription(token)));
           }
           // Note: always generate shorthand AFTER other declarations
-          const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
+          const shorthand = generateShorthand({
+            token: { ...token.token, $value: token.value as any },
+            localID,
+            omitTypographyShorthand,
+          });
           if (shorthand) {
             addDeclUnique(root, decl(localID, shorthand, getDescription(token)));
           }
@@ -228,7 +234,11 @@ export default function buildCSS({
           addDeclUnique(rootRule.children, decl(property, value, getDescription(token)));
         }
         // Note: always place shorthand after other values
-        const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
+        const shorthand = generateShorthand({
+          token: { ...token.token, $value: token.value as any },
+          localID,
+          omitTypographyShorthand,
+        });
         if (shorthand) {
           addDeclUnique(rootRule.children, decl(token.localID ?? token.token.id, shorthand, getDescription(token)));
         }
@@ -303,7 +313,11 @@ export default function buildCSS({
           addDeclUnique(modeRule.children, decl(`${localID}-${name}`, subValue, getDescription(token)));
         }
         // Note: always generate shorthand after other declarations
-        const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
+        const shorthand = generateShorthand({
+          token: { ...token.token, $value: token.value as any },
+          localID,
+          omitTypographyShorthand,
+        });
         if (shorthand) {
           addDeclUnique(modeRule.children, decl(localID, shorthand, getDescription(token)));
         }

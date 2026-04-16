@@ -11,7 +11,15 @@ export function defaultAliasTransform(token: TokenNormalized) {
 }
 
 /** Generate shorthand CSS for select token types */
-export function generateShorthand({ token, localID }: { token: TokenNormalized; localID: string }): string | undefined {
+export function generateShorthand({
+  token,
+  localID,
+  omitTypographyShorthand,
+}: {
+  token: TokenNormalized;
+  localID: string;
+  omitTypographyShorthand?: boolean;
+}): string | undefined {
   switch (token.$type) {
     case 'transition': {
       return ['duration', 'delay', 'timing-function']
@@ -19,6 +27,9 @@ export function generateShorthand({ token, localID }: { token: TokenNormalized; 
         .join(' ');
     }
     case 'typography': {
+      if (omitTypographyShorthand) {
+        return undefined;
+      }
       const typeVar = (name: string) => makeCSSVar(`${localID}-${name}`, { wrapVar: true });
       // Note: typography tokens should have both of these properties, but this is just being defensive
       if ('font-size' in token.$value && 'font-family' in token.$value) {
