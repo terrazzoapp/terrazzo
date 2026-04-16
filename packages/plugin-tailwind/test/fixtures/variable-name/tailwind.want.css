@@ -12,6 +12,7 @@
     --default-mono-font-family: var(--font-mono);
     --color-bg-primary_active: rgb(10% 30% 70%);
     --color-bg-primary_hover: rgb(20% 40% 80%);
+    --text-font-small: 14px;
   }
 }
 @layer base {
@@ -170,4 +171,7 @@
 .test-double-dash {
   font-size: var(--text-xs);
   line-height: var(--text-xs--line-height);
+}
+.test-default-name {
+  font-size: var(--text-font-small);
 }

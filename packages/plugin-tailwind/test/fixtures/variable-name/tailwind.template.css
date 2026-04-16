@@ -13,3 +13,7 @@
   font-size: var(--text-xs);
   line-height: var(--text-xs--line-height);
 }
+
+.test-default-name {
+  font-size: var(--text-font-small);
+}
