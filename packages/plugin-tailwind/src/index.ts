@@ -52,7 +52,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
     },
     async transform({ getTransforms, setTransform, context: { logger } }) {
       // First, validate template, and parse the locations of all @tz at-rules.
-      template = await fs.readFile(options.template, 'utf8');
+      template = await fs.readFile(new URL(options.template, cwd), 'utf8');
       if (!template.includes('@tz')) {
         logger.error({
           ...msg,
