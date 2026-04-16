@@ -34,6 +34,7 @@ describe('fixtures', () => {
     ['option: legacyHex', { dir: 'option-legacy-hex', output: ['index.css'] }],
     ['option: modeSelectors (legacy)', { dir: 'option-mode-selectors-chained-selector', output: ['index.css'] }],
     ['option: omitTypographyShorthand', { dir: 'option-omit-typography-shorthand', output: ['index.css'] }],
+    ['option: subValueVariableName', { dir: 'option-sub-value-variable-name', output: ['index.css'] }],
     ['option: transform (manual hex)', { dir: 'option-transform-hex', output: ['index.css'] }],
     ['option: transform (exclude tokens)', { dir: 'option-transform-exclude', output: ['index.css'] }],
     ['option: transform (per permutation)', { dir: 'option-transform-per-permutation', output: ['index.css'] }],
