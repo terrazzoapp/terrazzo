@@ -8,4 +8,16 @@
 @theme {
   --color-bg-primary_active: rgb(10% 30% 70%);
   --color-bg-primary_hover: rgb(20% 40% 80%);
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+}
+
+.test-underscore {
+  color: var(--color-bg-primary_hover);
+  color: var(--color-bg-primary_active);
+}
+
+.test-double-dash {
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
 }

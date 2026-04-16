@@ -3,3 +3,13 @@
 @theme {
   @tz(tzMode: ".");
 }
+
+.test-underscore {
+  color: var(--color-bg-primary_hover);
+  color: var(--color-bg-primary_active);
+}
+
+.test-double-dash {
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
+}

@@ -15,11 +15,11 @@ export default defineConfig({
       template: 'tailwind.template.css',
       filename: 'actual.css',
       variableName: (defaultName, { path, relName }) => {
-        // Preserve underscores: build the name without makeCSSVar's normalization
         return `--${path.join('-')}-${relName.replace(/\./g, '-')}`;
       },
       theme: {
         color: ['color.**'],
+        text: ['typography.**'],
       },
     }),
   ],
