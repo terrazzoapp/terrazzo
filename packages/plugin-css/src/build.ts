@@ -36,6 +36,106 @@ export interface BuildFormatOptions {
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
   baseScheme: CSSPluginOptions['baseScheme'];
+  propertyDefinitions: boolean;
+}
+
+const TOKEN_TYPE_SYNTAX: Record<string, string> = {
+  color: '<color>',
+  dimension: '<length>',
+  duration: '<time>',
+  fontWeight: '<integer>',
+  number: '<number>',
+  boolean: '<integer>',
+  fontFamily: '*',
+  string: '*',
+  cubicBezier: '*',
+  border: '*',
+  shadow: '*',
+  gradient: '*',
+  typography: '*',
+  transition: '*',
+  strokeStyle: '*',
+  link: '<url>',
+};
+
+const SUB_PROPERTY_SYNTAX: Record<string, Record<string, string>> = {
+  border: { color: '<color>', width: '<length>', style: '*' },
+  shadow: { color: '<color>', 'offset-x': '<length>', 'offset-y': '<length>', blur: '<length>', spread: '<length>' },
+  transition: { duration: '<time>', delay: '<time>', 'timing-function': '*' },
+  typography: {
+    'font-family': '*',
+    'font-size': '<length>',
+    'font-weight': '<integer>',
+    'line-height': '*',
+    'letter-spacing': '<length>',
+    'font-style': '*',
+    'font-variant': '*',
+    'font-variation-settings': '*',
+    'text-decoration': '*',
+    'text-transform': '*',
+  },
+  strokeStyle: { 'dash-array': '*', 'line-cap': '*' },
+};
+
+function generatePropertyDefinition(localID: string, syntax: string, initialValue?: string): CSSRule {
+  const children: CSSDeclaration[] = [decl('syntax', `'${syntax}'`), decl('inherits', 'true')];
+  if (initialValue) {
+    children.push(decl('initial-value', initialValue));
+  }
+  return rule([`@property ${localID}`], children);
+}
+
+function generatePropertyDefinitions(
+  getTransforms: BuildHookOptions['getTransforms'],
+  options: { include: (id: string) => boolean; exclude: (id: string) => boolean },
+): CSSRule[] {
+  const tokens = getTransforms({ format: FORMAT_ID });
+  const properties: CSSRule[] = [];
+  const seen = new Set<string>();
+
+  for (const token of tokens) {
+    const localID = token.localID;
+    if (!localID) {
+      continue;
+    }
+    if (!options.include(token.token.id) || options.exclude(token.token.id)) {
+      continue;
+    }
+
+    const cssSyntax = TOKEN_TYPE_SYNTAX[token.token.$type] ?? '*';
+
+    if (token.type === 'SINGLE_VALUE') {
+      if (seen.has(localID)) {
+        continue;
+      }
+      seen.add(localID);
+      if (!token.token.aliasOf && cssSyntax !== '*') {
+        properties.push(generatePropertyDefinition(localID, cssSyntax, token.value));
+      } else {
+        properties.push(generatePropertyDefinition(localID, '*'));
+      }
+    } else if (token.type === 'MULTI_VALUE') {
+      for (const [name, subValue] of Object.entries(token.value)) {
+        const subID = name === '.' ? localID : `${localID}-${name}`;
+        if (seen.has(subID)) {
+          continue;
+        }
+        seen.add(subID);
+        const subSyntax = SUB_PROPERTY_SYNTAX[token.token.$type]?.[name] ?? '*';
+        if (!token.token.aliasOf && subSyntax !== '*') {
+          properties.push(generatePropertyDefinition(subID, subSyntax, subValue));
+        } else {
+          properties.push(generatePropertyDefinition(subID, '*'));
+        }
+      }
+      if (!seen.has(localID)) {
+        seen.add(localID);
+        properties.push(generatePropertyDefinition(localID, '*'));
+      }
+    }
+  }
+
+  return properties;
 }
 
 export default function buildCSS({
@@ -48,9 +148,14 @@ export default function buildCSS({
   modeSelectors,
   baseSelector,
   baseScheme,
+  propertyDefinitions = false,
 }: BuildFormatOptions): string {
   const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
   const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
+  let propertyDefsNodes: CSSRule[] = [];
+  if (propertyDefinitions) {
+    propertyDefsNodes = generatePropertyDefinitions(getTransforms, { include, exclude });
+  }
   if (permutations?.length) {
     let output = '';
 
@@ -163,6 +268,10 @@ export default function buildCSS({
           logger,
         }),
       );
+    }
+
+    if (propertyDefsNodes.length && output) {
+      output = `${printRules(propertyDefsNodes)}\n\n${output}`;
     }
 
     return output;
@@ -333,6 +442,10 @@ export default function buildCSS({
       output += '\n\n';
     }
     output += printRules(generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, mode: '.' }), { logger }));
+  }
+
+  if (propertyDefsNodes.length && output) {
+    output = `${printRules(propertyDefsNodes)}\n\n${output}`;
   }
 
   return output;
