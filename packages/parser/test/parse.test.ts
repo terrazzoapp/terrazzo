@@ -1190,4 +1190,20 @@ describe('Transform', () => {
       hex: '#0088ff',
     });
   });
+
+
+  it('alphabetize=false produces dot-notation token IDs (same as alphabetize=true)', async () => {
+    const src = {
+      color: {
+        red: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 0, 0], alpha: 1 } },
+        blue: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0, 1], alpha: 1 } },
+      },
+    };
+    const config = defineConfig({ alphabetize: false }, { cwd });
+    const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
+    // Token IDs should be in dot-notation, NOT JSON Pointer format
+    expect(Object.keys(tokens)).toEqual(['color.red', 'color.blue']);
+    expect(tokens['color.red']?.$value).toEqual({ colorSpace: 'srgb', components: [1, 0, 0], alpha: 1 });
+    expect(tokens['color.blue']?.$value).toEqual({ colorSpace: 'srgb', components: [0, 0, 1], alpha: 1 });
+  });
 });
