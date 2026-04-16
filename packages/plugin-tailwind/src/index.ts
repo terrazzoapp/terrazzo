@@ -81,10 +81,12 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
               const match = subgroup.replace(/\*.*/, '');
               relName = token.id.replace(match, '');
             }
+            const defaultName = makeCSSVar(`${path.join('-')}-${relName.replace(/\./g, '-')}`);
+            const localID = options?.variableName ? options.variableName(defaultName, { token, path, relName }) : defaultName;
             setTransform(token.id, {
               ...query,
               format: FORMAT_TAILWIND,
-              localID: makeCSSVar(`${path.join('-')}-${relName.replace(/\./g, '-')}`),
+              localID,
               value: typeof token.value === 'object' ? token.value['.']! : token.value,
             });
           }

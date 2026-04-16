@@ -1,7 +1,15 @@
+import type { TokenTransformed } from '@terrazzo/token-tools';
+
 export const FORMAT_ID = 'tailwind';
 export const PLUGIN_NAME = '@terrazzo/plugin-tailwind';
 
 export type ResolverInput = Record<string, string>;
+
+export interface VariableNameContext {
+  token: TokenTransformed;
+  path: string[];
+  relName: string;
+}
 
 export interface TailwindPluginOptions {
   /**
@@ -73,6 +81,8 @@ export interface TailwindPluginOptions {
       input: ResolverInput;
     };
   };
+  /** Control the final CSS variable name */
+  variableName?: (defaultName: string, context: VariableNameContext) => string;
 }
 
 /** Flatten an arbitrarily-nested object */
