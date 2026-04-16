@@ -57,6 +57,8 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
         baseSelector,
         baseScheme,
         logger: context.logger,
+        omitTypographyShorthand: options?.omitTypographyShorthand,
+        subValueVariableName: options?.subValueVariableName,
       });
       outputFile(filename, contents.replace(/\n*$/, '\n'));
     },

@@ -1,4 +1,4 @@
-import type { BuildHookOptions, Logger } from '@terrazzo/parser';
+import type { BuildHookOptions, Logger, TokenTransformed } from '@terrazzo/parser';
 import { generateShorthand, makeCSSVar } from '@terrazzo/token-tools/css';
 import {
   addDeclUnique,
@@ -36,6 +36,8 @@ export interface BuildFormatOptions {
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
   baseScheme: CSSPluginOptions['baseScheme'];
+  omitTypographyShorthand: CSSPluginOptions['omitTypographyShorthand'];
+  subValueVariableName: CSSPluginOptions['subValueVariableName'];
 }
 
 export default function buildCSS({
@@ -48,7 +50,24 @@ export default function buildCSS({
   modeSelectors,
   baseSelector,
   baseScheme,
+  omitTypographyShorthand,
+  subValueVariableName,
 }: BuildFormatOptions): string {
+  function makeSubValueId(variableName: string, subValueName: string, token: TokenTransformed) {
+    const customName = subValueVariableName?.(variableName, subValueName, token);
+    if (customName !== undefined) {
+      if (typeof customName !== 'string') {
+        logger.error({
+          group: 'plugin',
+          label: PLUGIN_NAME,
+          message: `subValueVariableName() must return a string; received ${customName}`,
+        });
+      }
+      return customName;
+    }
+    return `${variableName}-${subValueName}`;
+  }
+
   const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
   const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
   if (permutations?.length) {
@@ -113,11 +132,15 @@ export default function buildCSS({
         // multi-value token
         else {
           for (const [name, subValue] of Object.entries(token.value)) {
-            const subValueID = `${localID}-${name}`;
+            const subValueID = makeSubValueId(localID, name, token);
             addDeclUnique(root, decl(subValueID, subValue, getDescription(token)));
           }
           // Note: always generate shorthand AFTER other declarations
-          const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
+          const shorthand = generateShorthand({
+            token: { ...token.token, $value: token.value as any },
+            localID,
+            omitTypographyShorthand,
+          });
           if (shorthand) {
             addDeclUnique(root, decl(localID, shorthand, getDescription(token)));
           }
@@ -224,11 +247,15 @@ export default function buildCSS({
       // multi-value token
       else if (token.type === 'MULTI_VALUE') {
         for (const [name, value] of Object.entries(token.value)) {
-          const property = name === '.' ? localID : [localID, name].join('-');
+          const property = name === '.' ? localID : makeSubValueId(localID, name, token);
           addDeclUnique(rootRule.children, decl(property, value, getDescription(token)));
         }
         // Note: always place shorthand after other values
-        const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
+        const shorthand = generateShorthand({
+          token: { ...token.token, $value: token.value as any },
+          localID,
+          omitTypographyShorthand,
+        });
         if (shorthand) {
           addDeclUnique(rootRule.children, decl(token.localID ?? token.token.id, shorthand, getDescription(token)));
         }
@@ -300,10 +327,15 @@ export default function buildCSS({
       // multi-value token
       else {
         for (const [name, subValue] of Object.entries(token.value)) {
-          addDeclUnique(modeRule.children, decl(`${localID}-${name}`, subValue, getDescription(token)));
+          const subValueID = makeSubValueId(localID, name, token);
+          addDeclUnique(modeRule.children, decl(subValueID, subValue, getDescription(token)));
         }
         // Note: always generate shorthand after other declarations
-        const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
+        const shorthand = generateShorthand({
+          token: { ...token.token, $value: token.value as any },
+          localID,
+          omitTypographyShorthand,
+        });
         if (shorthand) {
           addDeclUnique(modeRule.children, decl(localID, shorthand, getDescription(token)));
         }
