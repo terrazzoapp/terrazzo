@@ -127,7 +127,7 @@ export interface CSSRule {
  * 2. we are only generating PARTIALS, not full CSS (the user controls the
  *    wrapper). So with a proper AST, we’d be hacking it a little anyway because
  *    we never really have a true, valid, finalized document.
- * 3. we want @terrazzo/plugin-css to run in the browser AND be lean (i.e. don't
+ * 3. we want @terrazzo/plugin-css to run in the browser AND be lean (i.e. don’t
  *    load Prettier or 25MB of wasm).
  * 4. we only have to deal with a small subset of CSS—this doesn’t have to be robust
  *    by any means (even future additions won’t push the limits of the spec).
@@ -199,7 +199,7 @@ export function printNode(
 /** Infer indentation preferences from a user-defined wrapping method. */
 export function getIndentFromPrepare(prepare: Permutation['prepare']): { indentChar: string; indentLv: number } {
   const str = '//css//'; // this is a string that’s invalid CSS that wouldn’t be in the fn itself
-  const output = prepare(str).replace(/\/\*.*\*\//g, ''); // strip comments because we don't need them
+  const output = prepare(str).replace(/\/\*.*\*\//g, ''); // strip comments because we don’t need them
   let indentChar = '  ';
   let indentLv = 0;
   let lineStartChar = 0;
