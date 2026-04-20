@@ -74,7 +74,12 @@ export async function loadResolver(
       src: inputs[0]!.src,
       yamlToMomoa,
     });
-    resolver = createResolver(normalized, { config, logger, sources: [{ ...inputs[0]!, document: resolverDoc }], transform });
+    resolver = createResolver(normalized, {
+      config,
+      logger,
+      sources: [{ ...inputs[0]!, document: resolverDoc }],
+      transform,
+    });
 
     // If a resolver is present, load a single permutation to get a base token set.
     const firstInput: ResolverInput = {};
