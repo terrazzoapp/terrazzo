@@ -26,11 +26,11 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
   }
 
   if (isFigmaPath(url!)) {
-    const { FIGMA_ACCESS_TOKEN } = process.env;
-    if (!FIGMA_ACCESS_TOKEN) {
+    const { FIGMA_ACCESS_TOKEN, FIGMA_OAUTH_TOKEN } = process.env;
+    if (!FIGMA_ACCESS_TOKEN && !FIGMA_OAUTH_TOKEN) {
       logger.error({
         group: 'import',
-        message: `FIGMA_ACCESS_TOKEN not set! See https://terrazzo.app/docs/guides/import-from-figma`,
+        message: `Figma auth not configured! Set FIGMA_OAUTH_TOKEN (OAuth access token) or FIGMA_ACCESS_TOKEN (Personal Access Token). See https://terrazzo.app/docs/guides/import-from-figma`,
       });
     }
 

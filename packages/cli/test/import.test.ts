@@ -1,12 +1,8 @@
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { Logger } from '@terrazzo/parser';
-import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { importCmd } from '../src/index.js';
-
-vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
-
-const originalFetch = globalThis.fetch;
 
 describe('import', () => {
   describe('figma', async () => {
@@ -19,7 +15,10 @@ describe('import', () => {
     const FIGMA_GET_STYLES = await fs.readFile(new URL('get-styles.json', cwd), 'utf8');
 
     beforeEach(() => {
-      globalThis.fetch = vi.fn().mockImplementation((url: string) => {
+      vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
+      vi.stubEnv('FIGMA_OAUTH_TOKEN', '');
+
+      vi.spyOn(globalThis, 'fetch').mockImplementation((url) => {
         return Promise.resolve(
           new Response(
             {
@@ -27,14 +26,15 @@ describe('import', () => {
               [`https://api.figma.com/v1/files/${FILE_KEY}/styles`]: FIGMA_GET_STYLES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]: FIGMA_GET_LOCAL_VARIABLES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/variables/published`]: FIGMA_GET_PUBLISHED_VARIABLES,
-            }[url.replace(/\?.*$/, '')],
+            }[url.toString().replace(/\?.*$/, '')],
           ),
         );
       });
     });
 
-    afterAll(() => {
-      globalThis.fetch = originalFetch;
+    afterEach(() => {
+      vi.unstubAllEnvs();
+      vi.restoreAllMocks();
     });
 
     it('default', async () => {
@@ -100,6 +100,41 @@ describe('import', () => {
       await expect(await fs.readFile(new URL('import-name-matchers.actual.json', cwd), 'utf8')).toMatchFileSnapshot(
         fileURLToPath(new URL('import-name-matchers.want.json', cwd)),
       );
+    });
+
+    describe('auth headers', () => {
+      const positionals = ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`];
+      const flags = { output: 'test/fixtures/import-figma/import-default.actual.json' };
+
+      it('PAT: sends X-Figma-Token', async () => {
+        vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
+        vi.stubEnv('FIGMA_OAUTH_TOKEN', '');
+        await importCmd({ logger: new Logger(), positionals, flags });
+        expect(globalThis.fetch).toHaveBeenCalledWith(expect.any(String), {
+          method: 'GET',
+          headers: { 'X-Figma-Token': 'fig_fake_token' },
+        });
+      });
+
+      it('OAuth: sends Authorization: Bearer', async () => {
+        vi.stubEnv('FIGMA_ACCESS_TOKEN', '');
+        vi.stubEnv('FIGMA_OAUTH_TOKEN', 'fig_fake_oauth_token');
+        await importCmd({ logger: new Logger(), positionals, flags });
+        expect(globalThis.fetch).toHaveBeenCalledWith(expect.any(String), {
+          method: 'GET',
+          headers: { Authorization: 'Bearer fig_fake_oauth_token' },
+        });
+      });
+
+      it('precedence: OAuth wins when both tokens are set', async () => {
+        vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_pat_token');
+        vi.stubEnv('FIGMA_OAUTH_TOKEN', 'fig_oauth_token');
+        await importCmd({ logger: new Logger(), positionals, flags });
+        expect(globalThis.fetch).toHaveBeenCalledWith(expect.any(String), {
+          method: 'GET',
+          headers: { Authorization: 'Bearer fig_oauth_token' },
+        });
+      });
     });
   });
 });

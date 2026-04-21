@@ -11,14 +11,14 @@ Figma Variables and Styles translate well to DTCG tokens! This guide will show y
 
 To import from Figma, you’ll need:
 
-1. A [personal access token](https://developers.figma.com/docs/rest-api/authentication/#access-tokens) with access to the file(s) you want to load Variables & Styles from
+1. A [personal access token](https://developers.figma.com/docs/rest-api/authentication/#access-tokens) or [OAuth token](https://developers.figma.com/docs/rest-api/authentication/#oauth-apps) with access to the file(s) you want to load Variables & Styles from
    - For **Styles**, it needs 3 [scopes](https://developers.figma.com/docs/rest-api/scopes/): `file_content:read`, `team_library_content:read`, and `library_content:read`.
    - For **Variables**, it needs 1 [scope](https://developers.figma.com/docs/rest-api/scopes/): `file_variables:read`.
 2. An Enterprise plan to access Variables (with free accounts, only Styles are importable)
 
-### Personal Access Token
+### Access Tokens
 
-Create your [personal access token](https://developers.figma.com/docs/rest-api/authentication/#access-tokens) from Settings inside Figma, and expose it as a `FIGMA_ACCESS_TOKEN` environment variable. You can do this in multiple ways:
+Expose your token as an environment variable: either `FIGMA_ACCESS_TOKEN` for a [personal access token](https://developers.figma.com/docs/rest-api/authentication/#access-tokens), or `FIGMA_OAUTH_TOKEN` for an [OAuth access token](https://developers.figma.com/docs/rest-api/authentication/#oauth-apps). If both are set, `FIGMA_OAUTH_TOKEN` takes precedence. You can set the variable in multiple ways:
 
 - Locally: run `echo 'export FIGMA_ACCESS_TOKEN="(your token value)"' >> ~/.zshrc` (this is great for testing!)
 - [GitHub Actions](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets): add to secrets
