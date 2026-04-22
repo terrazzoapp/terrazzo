@@ -4,7 +4,7 @@ import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
 
 describe('plugin-css-in-js', () => {
-  const tests = ['typography'];
+  const tests = ['typography', 'dashed-paths'];
 
   it.each(tests)('%s', async (dir) => {
     const cwd = new URL(`./fixtures/${dir}/`, import.meta.url);
