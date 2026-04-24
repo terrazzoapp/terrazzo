@@ -1,15 +1,10 @@
 # @terrazzo/plugin-tailwind
 
-## 3.0.0
+## 2.1.0
 
 ### Patch Changes
 
 - [#709](https://github.com/terrazzoapp/terrazzo/pull/709) [`afbc08b`](https://github.com/terrazzoapp/terrazzo/commit/afbc08b5502e8f0cc7f4443303ec27a3533858f4) Thanks [@nagayama](https://github.com/nagayama)! - fix(plugin-tailwind): resolve template path relative to outDir in readFile
-
-- Updated dependencies [[`fefd4b1`](https://github.com/terrazzoapp/terrazzo/commit/fefd4b149d03ca2199eaddc7b197e4e081169e7f), [`2845b02`](https://github.com/terrazzoapp/terrazzo/commit/2845b02718db1ddbf5e17efdc53ff16109b63d28), [`de25711`](https://github.com/terrazzoapp/terrazzo/commit/de25711f65c10c58776f7b71c5621f6228387f79), [`07be482`](https://github.com/terrazzoapp/terrazzo/commit/07be4826763bcaeac2ecae156c00f547b5564122), [`6261145`](https://github.com/terrazzoapp/terrazzo/commit/62611450071c4c1e09a1ffd78998cbfdc36605ba)]:
-  - @terrazzo/token-tools@2.0.4
-  - @terrazzo/cli@2.1.0
-  - @terrazzo/plugin-css@3.0.0
 
 ## 2.0.3
 

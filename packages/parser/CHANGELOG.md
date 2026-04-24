@@ -1,13 +1,12 @@
 # @terrazzo/parser
 
-## 2.0.3
+## 2.1.0
 
 ### Patch Changes
 
 - [#726](https://github.com/terrazzoapp/terrazzo/pull/726) [`b326bd6`](https://github.com/terrazzoapp/terrazzo/commit/b326bd63b2f701707d0501675bde6d9b091de8fa) Thanks [@drwpow](https://github.com/drwpow)! - Improve token aliases where the primitive or primary has token, but aliases do not. This leads to dropped tokens in all plugins.
 
-- Updated dependencies [[`b326bd6`](https://github.com/terrazzoapp/terrazzo/commit/b326bd63b2f701707d0501675bde6d9b091de8fa)]:
-  - @terrazzo/token-tools@2.0.3
+- [#735](https://github.com/terrazzoapp/terrazzo/pull/735) [`827c43d`](https://github.com/terrazzoapp/terrazzo/commit/827c43d2e3a2c72de3ed4c512621fe2e2b8a00a9) Thanks [@impsislegobatman](https://github.com/impsislegobatman)! - normalize token IDs regardless of alphabetize setting
 
 ## 2.0.2
 

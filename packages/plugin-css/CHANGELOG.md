@@ -1,16 +1,10 @@
 # @terrazzo/plugin-css
 
-## 3.0.0
+## 2.1.0
 
 ### Minor Changes
 
 - [#732](https://github.com/terrazzoapp/terrazzo/pull/732) [`07be482`](https://github.com/terrazzoapp/terrazzo/commit/07be4826763bcaeac2ecae156c00f547b5564122) Thanks [@avasis-ai](https://github.com/avasis-ai)! - feat: add opt-in `propertyDefinitions` option to CSS plugin to generate CSS @property definitions
-
-### Patch Changes
-
-- Updated dependencies [[`fefd4b1`](https://github.com/terrazzoapp/terrazzo/commit/fefd4b149d03ca2199eaddc7b197e4e081169e7f), [`2845b02`](https://github.com/terrazzoapp/terrazzo/commit/2845b02718db1ddbf5e17efdc53ff16109b63d28), [`de25711`](https://github.com/terrazzoapp/terrazzo/commit/de25711f65c10c58776f7b71c5621f6228387f79), [`6261145`](https://github.com/terrazzoapp/terrazzo/commit/62611450071c4c1e09a1ffd78998cbfdc36605ba)]:
-  - @terrazzo/token-tools@2.0.4
-  - @terrazzo/cli@2.1.0
 
 ## 2.0.3
 
