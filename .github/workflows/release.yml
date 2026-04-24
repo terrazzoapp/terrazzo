@@ -25,7 +25,7 @@ jobs:
       - uses: changesets/action@v1
         with:
           version: pnpm run version
-          publish: pnpm exec changeset publish --dry-run
+          publish: pnpm exec changeset publish
           commit: "[ci] release"
           title: "[ci] release"
         env:
