@@ -1,5 +1,20 @@
 # @terrazzo/cli
 
+## 2.1.0
+
+### Minor Changes
+
+- [#740](https://github.com/terrazzoapp/terrazzo/pull/740) [`2845b02`](https://github.com/terrazzoapp/terrazzo/commit/2845b02718db1ddbf5e17efdc53ff16109b63d28) Thanks [@badams](https://github.com/badams)! - Add OAuth bearer token support for Figma import. Set `FIGMA_OAUTH_TOKEN` to use an OAuth access token instead of a Personal Access Token (`FIGMA_ACCESS_TOKEN`). OAuth takes precedence if both are set.
+
+### Patch Changes
+
+- [#742](https://github.com/terrazzoapp/terrazzo/pull/742) [`de25711`](https://github.com/terrazzoapp/terrazzo/commit/de25711f65c10c58776f7b71c5621f6228387f79) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Respect --no-lint options in build command
+
+- [#715](https://github.com/terrazzoapp/terrazzo/pull/715) [`6261145`](https://github.com/terrazzoapp/terrazzo/commit/62611450071c4c1e09a1ffd78998cbfdc36605ba) Thanks [@heddendorp](https://github.com/heddendorp)! - Fix Figma alias resolution for hidden local variables
+
+- Updated dependencies [[`fefd4b1`](https://github.com/terrazzoapp/terrazzo/commit/fefd4b149d03ca2199eaddc7b197e4e081169e7f)]:
+  - @terrazzo/token-tools@2.0.4
+
 ## 2.0.3
 
 ### Patch Changes
