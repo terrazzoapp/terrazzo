@@ -1,7 +1,6 @@
 // @ts-check
 import { type ColorValue, type ColorValueNormalized, tokenToColor } from '@terrazzo/token-tools';
 import {
-  type ColorConstructor,
   ColorSpace,
   type ColorTypes,
   to as convert,

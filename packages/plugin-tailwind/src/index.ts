@@ -36,7 +36,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         });
       }
 
-      if (!options || !options.theme) {
+      if (!options?.theme) {
         logger.error({ ...msg, message: 'Missing Tailwind `theme` option.' });
       }
 

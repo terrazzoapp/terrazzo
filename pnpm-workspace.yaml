@@ -7,17 +7,18 @@ catalog:
   '@humanwhocodes/momoa': ^3.3.10
   '@types/react': ^19.2.14
   '@types/react-dom': ^19.2.3
+  '@types/node': ^25.6.0
   '@vitejs/plugin-react': ^5.2.0
-  '@vitest/browser': ^4.1.0
-  '@vitest/browser-playwright': ^4.1.0
-  '@vitest/coverage-v8': ^4.1.0
+  '@vitest/browser': ^4.1.5
+  '@vitest/browser-playwright': ^4.1.5
+  '@vitest/coverage-v8': ^4.1.5
   colorjs.io: ^0.6.1
   dtcg-examples: ^1.0.3
-  playwright: ^1.58.2
-  react: ^19.2.4
-  react-dom: ^19.2.4
-  vite: 8.0.0-beta.16
-  vitest: ^4.1.0
+  playwright: ^1.59.1
+  react: ^19.2.5
+  react-dom: ^19.2.5
+  vite: ^8.0.10
+  vitest: ^4.1.5
   yaml-to-momoa: 0.0.9
 
 onlyBuiltDependencies:

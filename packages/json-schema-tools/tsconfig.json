@@ -1,9 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "lib": ["DOM", "ESNext"],
     "noEmit": true,
-    "outDir": "./dist/"
+    "outDir": "dist",
+    "rootDir": "src"
   },
   "include": ["src"]
 }
