@@ -456,6 +456,112 @@ describe('Resolver module', () => {
       expect(resolver?.isValidInput({ theme: 'foobar' }), 'isValidInput({theme: foobar})').toBe(false);
     });
   });
+
+  describe('transform', () => {
+    it('applies transform visitors to tokens loaded via resolver', async () => {
+      const visits: { name: string; path: string[] }[] = [];
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const { tokens } = await parse(
+        [
+          {
+            filename: new URL('file:///'),
+            src: JSON.stringify(
+              {
+                version: '2025.10',
+                resolutionOrder: [{ $ref: '#/sets/foundation' }],
+                sets: {
+                  foundation: {
+                    sources: [
+                      {
+                        color: {
+                          $type: 'color',
+                          blue: {
+                            500: { $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } },
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+              undefined,
+              2,
+            ),
+          },
+        ],
+        {
+          config,
+          transform: {
+            group(node, { path }) {
+              visits.push({ name: 'group', path });
+            },
+            color(node, { path }) {
+              visits.push({ name: 'color', path });
+            },
+          },
+        },
+      );
+
+      expect(visits.length, 'transform visitors should have been called').toBeGreaterThan(0);
+      expect(visits).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ name: 'group', path: ['color'] }),
+          expect.objectContaining({ name: 'color', path: ['color', 'blue', '500'] }),
+        ]),
+      );
+      expect(tokens['color.blue.500']).toBeDefined();
+    });
+
+    it('transform can modify tokens loaded via resolver', async () => {
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const { tokens } = await parse(
+        [
+          {
+            filename: new URL('file:///'),
+            src: JSON.stringify(
+              {
+                version: '2025.10',
+                resolutionOrder: [{ $ref: '#/sets/foundation' }],
+                sets: {
+                  foundation: {
+                    sources: [
+                      {
+                        color: {
+                          $type: 'color',
+                          blue: {
+                            300: { $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } },
+                            500: { $value: { colorSpace: 'srgb', components: [0, 0.4, 1] } },
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+              undefined,
+              2,
+            ),
+          },
+        ],
+        {
+          config,
+          transform: {
+            group(node, { path }) {
+              if (path.join('.') === 'color.blue') {
+                (node as momoa.ObjectNode).members = (node as momoa.ObjectNode).members.filter(
+                  (m) => m.name.type === 'String' && m.name.value !== '300',
+                );
+                return node;
+              }
+            },
+          },
+        },
+      );
+
+      expect(tokens['color.blue.300']).toBeUndefined();
+      expect(tokens['color.blue.500']).toBeDefined();
+    });
+  });
 });
 
 describe('calculatePermutations', () => {

@@ -5,8 +5,9 @@ import type yamlToMomoa from 'yaml-to-momoa';
 import { toMomoa } from '../lib/momoa.js';
 import { destructiveMerge, getPermutationID } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
+import { applyTransformVisitors } from '../parse/load.js';
 import { processTokens } from '../parse/process.js';
-import type { ConfigInit, Resolver, ResolverInput, ResolverSourceNormalized } from '../types.js';
+import type { ConfigInit, Resolver, ResolverInput, ResolverSourceNormalized, TransformVisitors } from '../types.js';
 import { normalizeResolver } from './normalize.js';
 import { isLikelyResolver, validateResolver } from './validate.js';
 
@@ -15,12 +16,13 @@ export interface LoadResolverOptions {
   logger: Logger;
   req: (url: URL, origin: URL) => Promise<string>;
   yamlToMomoa?: typeof yamlToMomoa;
+  transform?: TransformVisitors;
 }
 
 /** Quick-parse input sources and find a resolver */
 export async function loadResolver(
   inputs: InputSource[],
-  { config, logger, req, yamlToMomoa }: LoadResolverOptions,
+  { config, logger, req, yamlToMomoa, transform }: LoadResolverOptions,
 ): Promise<{ resolver: Resolver | undefined; tokens: TokenNormalizedSet; sources: InputSourceWithDocument[] }> {
   let resolverDoc: momoa.DocumentNode | undefined;
   let tokens: TokenNormalizedSet = {};
@@ -72,7 +74,12 @@ export async function loadResolver(
       src: inputs[0]!.src,
       yamlToMomoa,
     });
-    resolver = createResolver(normalized, { config, logger, sources: [{ ...inputs[0]!, document: resolverDoc }] });
+    resolver = createResolver(normalized, {
+      config,
+      logger,
+      sources: [{ ...inputs[0]!, document: resolverDoc }],
+      transform,
+    });
 
     // If a resolver is present, load a single permutation to get a base token set.
     const firstInput: ResolverInput = {};
@@ -96,12 +103,13 @@ export interface CreateResolverOptions {
   config: ConfigInit;
   logger: Logger;
   sources: InputSourceWithDocument[];
+  transform?: TransformVisitors;
 }
 
 /** Create an interface to resolve permutations */
 export function createResolver(
   resolverSource: ResolverSourceNormalized,
-  { config, logger, sources }: CreateResolverOptions,
+  { config, logger, sources, transform }: CreateResolverOptions,
 ): Resolver {
   const inputDefaults: ResolverInput = {};
   const validContexts: Record<string, string[]> = {};
@@ -162,7 +170,11 @@ export function createResolver(
       }
 
       const src = JSON.stringify(tokensRaw, undefined, 2);
-      const rootSource = { filename: resolverSource._source.filename!, document: toMomoa(src), src };
+      const document = toMomoa(src);
+      if (transform) {
+        applyTransformVisitors(document, transform, resolverSource._source.filename!);
+      }
+      const rootSource = { filename: resolverSource._source.filename!, document, src };
       const tokens = processTokens(rootSource, {
         config,
         logger,

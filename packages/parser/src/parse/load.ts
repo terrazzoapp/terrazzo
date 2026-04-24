@@ -91,54 +91,61 @@ export async function loadSources(
   };
 }
 
+export function applyTransformVisitors(
+  document: momoa.DocumentNode,
+  transform: TransformVisitors,
+  filename: URL,
+): void {
+  let lastPath = '#/';
+  let last$type: string | undefined;
+
+  if (transform.root) {
+    const result = transform.root(document, { filename, parent: undefined, path: [] });
+    if (result) {
+      document = result as momoa.DocumentNode;
+    }
+  }
+
+  const isResolver = isLikelyResolver(document);
+  traverse(document, {
+    enter(node, parent, rawPath) {
+      const path = isResolver ? filterResolverPaths(rawPath) : rawPath;
+      if (node.type !== 'Object' || !path.length) {
+        return;
+      }
+      const ctx = { filename, parent, path };
+      const next$type = getObjMember(node, '$type');
+      if (next$type?.type === 'String') {
+        const jsonPath = encodeFragment(path);
+        if (jsonPath.startsWith(lastPath)) {
+          last$type = next$type.value;
+        }
+        lastPath = jsonPath;
+      }
+      if (getObjMember(node, '$value')) {
+        let result: any = transform.token?.(structuredClone(node), ctx);
+        if (result) {
+          replaceNode(node, result);
+          result = undefined;
+        }
+        result = transform[last$type as keyof typeof transform]?.(structuredClone(node as any), ctx);
+        if (result) {
+          replaceNode(node, result);
+        }
+      } else if (!path.includes('$value')) {
+        const result = transform.group?.(structuredClone(node), ctx);
+        if (result) {
+          replaceNode(node, result);
+        }
+      }
+    },
+  });
+}
+
 function transformer(transform: TransformVisitors): BundleOptions['parse'] {
   return async (src, filename) => {
     let document = toMomoa(src);
-    let lastPath = '#/';
-    let last$type: string | undefined;
-
-    if (transform.root) {
-      const result = transform.root(document, { filename, parent: undefined, path: [] });
-      if (result) {
-        document = result as momoa.DocumentNode;
-      }
-    }
-
-    const isResolver = isLikelyResolver(document);
-    traverse(document, {
-      enter(node, parent, rawPath) {
-        const path = isResolver ? filterResolverPaths(rawPath) : rawPath;
-        if (node.type !== 'Object' || !path.length) {
-          return;
-        }
-        const ctx = { filename, parent, path };
-        const next$type = getObjMember(node, '$type');
-        if (next$type?.type === 'String') {
-          const jsonPath = encodeFragment(path);
-          if (jsonPath.startsWith(lastPath)) {
-            last$type = next$type.value;
-          }
-          lastPath = jsonPath;
-        }
-        if (getObjMember(node, '$value')) {
-          let result: any = transform.token?.(structuredClone(node), ctx);
-          if (result) {
-            replaceNode(node, result);
-            result = undefined;
-          }
-          result = transform[last$type as keyof typeof transform]?.(structuredClone(node as any), ctx);
-          if (result) {
-            replaceNode(node, result);
-          }
-        } else if (!path.includes('$value')) {
-          const result = transform.group?.(structuredClone(node), ctx);
-          if (result) {
-            replaceNode(node, result);
-          }
-        }
-      },
-    });
-
+    applyTransformVisitors(document, transform, filename);
     return document;
   };
 }
