@@ -1,5 +1,11 @@
 # @terrazzo/plugin-tailwind
 
+## 2.2.0
+
+### Minor Changes
+
+- [#736](https://github.com/terrazzoapp/terrazzo/pull/736) [`f760956`](https://github.com/terrazzoapp/terrazzo/commit/f7609563b66c648aaaede798e56f196d17633aa1) Thanks [@burkeshartsis](https://github.com/burkeshartsis)! - Add `variableName` option to control the final CSS variable name. This lets users preserve underscores (e.g. `--color-bg-primary_hover`) and double-dashes (e.g. `--text-xs--line-height`) that `makeCSSVar()` would otherwise normalize, enabling compatibility with design systems that use underscores as variant separators and Tailwind v4's paired property convention.
+
 ## 2.1.0
 
 ### Patch Changes
