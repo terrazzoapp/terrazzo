@@ -43,7 +43,8 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
       });
       return;
     }
-    let { tokens, resolver, sources } = await parse(rawSchemas, { config, logger, yamlToMomoa });
+    const skipLint = !config.lint.build.enabled;
+    let { tokens, resolver, sources } = await parse(rawSchemas, { config, logger, skipLint, yamlToMomoa });
     let result = await build(tokens, { resolver, sources, config, logger });
     writeFiles(result, { config, logger });
 
@@ -65,7 +66,7 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
               `Error loading ${path.relative(fileURLToPath(cwd), fileURLToPath(config.tokens[0] || DEFAULT_TOKENS_PATH))}`,
             );
           }
-          const parseResult = await parse(rawSchemas, { config, logger, yamlToMomoa });
+          const parseResult = await parse(rawSchemas, { config, logger, skipLint, yamlToMomoa });
           tokens = parseResult.tokens;
           sources = parseResult.sources;
           resolver = parseResult.resolver;

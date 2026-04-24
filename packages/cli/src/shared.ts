@@ -23,6 +23,8 @@ export interface Flags {
   out?: string;
   /** --help */
   help?: boolean;
+  /** --no-lint */
+  'no-lint'?: boolean;
   /** --watch, -w */
   watch?: boolean;
   /** --version */
@@ -94,6 +96,9 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
           );
         }
         config = defineConfig(mod.default, { cwd, logger });
+        if (flags['no-lint']) {
+          config.lint.build.enabled = false;
+        }
       } catch (err) {
         logger.error({ group: 'config', message: (err as Error).message || (err as string) });
       }

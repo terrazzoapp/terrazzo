@@ -65,6 +65,7 @@ const { values: flags, positionals } = parseArgs({
     watch: { type: 'boolean', short: 'w' },
     version: { type: 'boolean' },
     unpublished: { type: 'boolean' },
+    'no-lint': { type: 'boolean' },
     'skip-styles': { type: 'boolean' },
     'skip-variables': { type: 'boolean' },
     'font-family-names': { type: 'string' },
