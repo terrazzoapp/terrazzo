@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "NodeNext",
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "rootDir": "src"
   },
   "exclude": ["**/__test__/**", "**/*.test.*"]
 }

@@ -1,8 +1,9 @@
 {
   "extends": "../../tsconfig.react.json",
   "compilerOptions": {
-    "baseUrl": "src",
-    "outDir": "dist"
+    "noUncheckedSideEffectImports": false,
+    "outDir": "dist",
+    "rootDir": "src",
   },
-  "include": ["./src/"]
+  "include": ["src"]
 }

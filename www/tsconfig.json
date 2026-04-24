@@ -2,7 +2,6 @@
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": "/Users/drew/Sites/terrazzoapp/terrazzo/www",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -14,6 +13,7 @@
     "noEmit": true,
     "noEmitOnError": false,
     "resolveJsonModule": true,
+    "rootDir": "src",
     "types": ["vite/client"]
   },
   "include": ["./src./"]

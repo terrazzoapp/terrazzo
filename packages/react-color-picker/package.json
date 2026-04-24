@@ -49,20 +49,20 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.3.0",
-    "@size-limit/preset-small-lib": "^12.0.1",
+    "@size-limit/preset-small-lib": "^12.1.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@vanilla-extract/css": "^1.19.0",
-    "@vanilla-extract/rollup-plugin": "^1.5.2",
+    "@vanilla-extract/css": "^1.20.1",
+    "@vanilla-extract/rollup-plugin": "^1.5.3",
     "@vitejs/plugin-react": "catalog:",
     "chokidar-cli": "^3.0.0",
     "colorjs.io": "catalog:",
     "jsdom": "^28.1.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "size-limit": "^12.0.1",
+    "size-limit": "^12.1.0",
     "vitest-axe": "^0.1.0"
   }
 }

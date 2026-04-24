@@ -1,9 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "src",
-    "noEmit": true
+    "outDir": "dist",
+    "noEmit": true,
+    "types": ["node"]
   },
-  "include": ["./src/", "./test/"],
+  "include": ["src", "test"],
   "exclude": ["node_modules"]
 }
