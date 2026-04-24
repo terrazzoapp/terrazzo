@@ -1,5 +1,12 @@
 # @terrazzo/plugin-js
 
+## 2.1.0
+
+### Patch Changes
+
+- Updated dependencies [[`2845b02`](https://github.com/terrazzoapp/terrazzo/commit/2845b02718db1ddbf5e17efdc53ff16109b63d28), [`de25711`](https://github.com/terrazzoapp/terrazzo/commit/de25711f65c10c58776f7b71c5621f6228387f79), [`6261145`](https://github.com/terrazzoapp/terrazzo/commit/62611450071c4c1e09a1ffd78998cbfdc36605ba)]:
+  - @terrazzo/cli@2.1.0
+
 ## 2.0.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @terrazzo/plugin-css-in-js
 
+## 2.1.0
+
+### Patch Changes
+
+- [#745](https://github.com/terrazzoapp/terrazzo/pull/745) [`caa4038`](https://github.com/terrazzoapp/terrazzo/commit/caa4038c715d5fbf8fabbfafba39bed06e413ed1) Thanks [@unpunnyfuns](https://github.com/unpunnyfuns)! - fix: allow for dashes in token paths
+
 ## 2.0.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @terrazzo/plugin-css
 
+## 2.1.0
+
+### Minor Changes
+
+- [#732](https://github.com/terrazzoapp/terrazzo/pull/732) [`07be482`](https://github.com/terrazzoapp/terrazzo/commit/07be4826763bcaeac2ecae156c00f547b5564122) Thanks [@avasis-ai](https://github.com/avasis-ai)! - feat: add opt-in `propertyDefinitions` option to CSS plugin to generate CSS @property definitions
+
 ## 2.0.3
 
 ### Patch Changes

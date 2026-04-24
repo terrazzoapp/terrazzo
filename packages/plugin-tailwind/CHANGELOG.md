@@ -1,5 +1,11 @@
 # @terrazzo/plugin-tailwind
 
+## 2.1.0
+
+### Patch Changes
+
+- [#709](https://github.com/terrazzoapp/terrazzo/pull/709) [`afbc08b`](https://github.com/terrazzoapp/terrazzo/commit/afbc08b5502e8f0cc7f4443303ec27a3533858f4) Thanks [@nagayama](https://github.com/nagayama)! - fix(plugin-tailwind): resolve template path relative to outDir in readFile
+
 ## 2.0.3
 
 ### Patch Changes
