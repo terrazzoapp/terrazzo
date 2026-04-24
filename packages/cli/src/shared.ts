@@ -6,6 +6,7 @@ import pc from 'picocolors';
 import { createServer, type ViteDevServer } from 'vite';
 import { ViteNodeRunner } from 'vite-node/client';
 import { ViteNodeServer } from 'vite-node/server';
+import { getFigmaAuthHeaders } from './import/figma/lib.js';
 
 export const cwd = new URL(`${pathToFileURL(process.cwd())}/`); // trailing slash needed to interpret as directory
 export const DEFAULT_CONFIG_PATH = new URL('./terrazzo.config.ts', cwd);
@@ -167,12 +168,8 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
             const headers = new Headers({
               Accept: '*/*',
               'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0',
+              ...getFigmaAuthHeaders(logger),
             });
-            if (process.env.FIGMA_ACCESS_TOKEN) {
-              headers.set('X-FIGMA-TOKEN', process.env.FIGMA_ACCESS_TOKEN);
-            } else {
-              logger.warn({ group: 'config', message: 'FIGMA_ACCESS_TOKEN not set' });
-            }
             const res = await fetch(`https://api.figma.com/v1/files/${fileKey}/variables/local`, {
               method: 'GET',
               headers,
