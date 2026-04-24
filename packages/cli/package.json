@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@clack/prompts": "^1.2.0",
-    "@hono/node-server": "^1.19.14",
+    "@hono/node-server": "^2.0.0",
     "@humanwhocodes/momoa": "catalog:",
     "@terrazzo/json-schema-tools": "workspace:^",
     "@terrazzo/parser": "workspace:^",
