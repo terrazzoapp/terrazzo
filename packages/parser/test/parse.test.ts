@@ -76,6 +76,60 @@ describe('Additional cases', () => {
     }
   });
 
+  describe('alphabetize', () => {
+    it('token IDs use dot notation when alphabetize is false', async () => {
+      const config = defineConfig({ alphabetize: false }, { cwd });
+      const result = await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              size: {
+                $type: 'dimension',
+                sm: { $value: { value: 4, unit: 'px' } },
+                md: { $value: { value: 8, unit: 'px' } },
+                base: { $value: '{size.sm}' },
+              },
+            },
+          },
+        ],
+        { config },
+      );
+      // Token IDs should use dot notation regardless of alphabetize setting
+      expect(result.tokens['size.sm']).toBeDefined();
+      expect(result.tokens['size.md']).toBeDefined();
+      expect(result.tokens['size.base']).toBeDefined();
+      // Should NOT have JSON Pointer format keys
+      expect(result.tokens['#/size/sm']).toBeUndefined();
+      expect(result.tokens['#/size/md']).toBeUndefined();
+      expect(result.tokens['#/size/base']).toBeUndefined();
+    });
+
+    it('token IDs use dot notation when alphabetize is true', async () => {
+      const config = defineConfig({ alphabetize: true }, { cwd });
+      const result = await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              size: {
+                $type: 'dimension',
+                sm: { $value: { value: 4, unit: 'px' } },
+                md: { $value: { value: 8, unit: 'px' } },
+              },
+            },
+          },
+        ],
+        { config },
+      );
+      expect(result.tokens['size.sm']).toBeDefined();
+      expect(result.tokens['size.md']).toBeDefined();
+      // Should also be sorted
+      const ids = Object.keys(result.tokens);
+      expect(ids).toEqual([...ids].sort());
+    });
+  });
+
   describe('$type', () => {
     it('aliases get updated', async () => {
       const config = defineConfig({}, { cwd });
