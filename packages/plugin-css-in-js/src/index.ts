@@ -33,10 +33,11 @@ export default function cssInJs({ filename = 'vars.js' }: CssInJsOptions = {}): 
         const parts = token.id.split('.');
         const last = parts.pop()!;
         for (const next of parts) {
-          if (!(next in node)) {
-            node[camelCase(next)] = {};
+          const key = camelCase(next);
+          if (!(key in node)) {
+            node[key] = {};
           }
-          node = node[next];
+          node = node[key];
         }
 
         let tokenValue: any = `var(${token.localID})`;
