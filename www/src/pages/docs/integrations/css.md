@@ -505,6 +505,7 @@ export default defineConfig({
 | `skipBuild`               | `boolean`                                                                                         | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
 | `colorDepth`              | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                                                             | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
 | `omitTypographyShorthand` | `boolean`                                                                                         | Do not generate CSS shorthand declarations for typography tokens.                                                                                               |
+| `subValueVariableName`    | `(variableName: string, subValueName: string, token: TokenTransformed) => string`                 | Control how sub value names are appended to the CSS variable name.                                                                                              |
 
 ### transform()
 

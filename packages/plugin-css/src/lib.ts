@@ -81,6 +81,13 @@ export interface CSSPluginOptions {
    * @default false
    */
   omitTypographyShorthand?: boolean;
+  /**
+   * Control how sub value names are appended to the CSS variable name.
+   *
+   * By default, sub vaue names are appended in kebab case. E.g. given CSS variable name `--my-token` and
+   * sub value name `fontSize`, the resulting variable name would be `--my-token-font-size`.
+   */
+  subValueVariableName?: (variableName: string, subValueName: string, token: TokenTransformed) => string;
 }
 
 export interface Permutation<T extends Record<string, string> = Record<string, string>> {
