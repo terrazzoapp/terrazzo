@@ -74,6 +74,13 @@ export interface CSSPluginOptions {
    * @default false
    */
   propertyDefinitions?: boolean;
+  /**
+   * Do not generate CSS shorthand declarations for typography tokens.
+   *
+   * Note that individual, per-subvalue declarations will still be generated for these tokens.
+   * @default false
+   */
+  omitTypographyShorthand?: boolean;
 }
 
 export interface Permutation<T extends Record<string, string> = Record<string, string>> {
