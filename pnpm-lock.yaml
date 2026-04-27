@@ -133,7 +133,7 @@ importers:
         version: 1.2.0
       '@hono/node-server':
         specifier: ^2.0.0
-        version: 2.0.0(hono@4.7.4)
+        version: 2.0.0(hono@4.12.15)
       '@humanwhocodes/momoa':
         specifier: 'catalog:'
         version: 3.3.10
@@ -158,6 +158,9 @@ importers:
       escodegen:
         specifier: ^2.1.0
         version: 2.1.0
+      hono:
+        specifier: ^4.12.15
+        version: 4.12.15
       merge-anything:
         specifier: ^5.1.7
         version: 5.1.7
@@ -4530,8 +4533,8 @@ packages:
     resolution: {integrity: sha512-RqGs4wavGYJWE07t35JQccByczmNUXQT0E12ZYV1VKYu5UiAU9lsos/yBAcf840+zrUQQxgVduCR5/B8nNtibg==}
     hasBin: true
 
-  hono@4.7.4:
-    resolution: {integrity: sha512-Pst8FuGqz3L7tFF+u9Pu70eI0xa5S3LPUmrNd5Jm8nTHze9FxLTK9Kaj5g/k4UcwuJSXTP65SyHOPLrffpcAJg==}
+  hono@4.12.15:
+    resolution: {integrity: sha512-qM0jDhFEaCBb4TxoW7f53Qrpv9RBiayUHo0S52JudprkhvpjIrGoU1mnnr29Fvd1U335ZFPZQY1wlkqgfGXyLg==}
     engines: {node: '>=16.9.0'}
 
   hookified@1.15.1:
@@ -8094,9 +8097,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
-  '@hono/node-server@2.0.0(hono@4.7.4)':
+  '@hono/node-server@2.0.0(hono@4.12.15)':
     dependencies:
-      hono: 4.7.4
+      hono: 4.12.15
 
   '@humanwhocodes/momoa@3.3.10': {}
 
@@ -10768,7 +10771,7 @@ snapshots:
       mkdirp: 0.3.0
       nopt: 1.0.10
 
-  hono@4.7.4: {}
+  hono@4.12.15: {}
 
   hookified@1.15.1: {}
 
