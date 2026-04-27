@@ -55,6 +55,7 @@
     "detect-package-manager": "^3.0.2",
     "dtcg-examples": "catalog:",
     "escodegen": "^2.1.0",
+    "hono": "^4.12.15",
     "merge-anything": "^5.1.7",
     "meriyah": "^7.1.0",
     "mime": "^4.1.0",
