@@ -359,8 +359,10 @@ export interface Resolver<
    * List all possible valid input combinations. Ignores default values, as they
    * would duplicate some other permutations. This also caches results, so it’s
    * only computed once on the first call.
+   *
+   * If the resolver is deemed to complex, this API is not provided.
    */
-  listPermutations: () => Input[];
+  listPermutations?: () => Input[];
   /* Generate a stable ID from any input */
   getPermutationID: (input: Input) => string;
   /** The original resolver document, simplified */
