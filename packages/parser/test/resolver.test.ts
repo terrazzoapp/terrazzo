@@ -450,7 +450,7 @@ describe('Resolver module', () => {
         }),
       });
 
-      expect(resolver?.listPermutations(), 'listPermutations()').toEqual([{ theme: 'light' }, { theme: 'dark' }]);
+      expect(resolver?.listPermutations?.(), 'listPermutations()').toEqual([{ theme: 'light' }, { theme: 'dark' }]);
       expect(resolver?.isValidInput({ theme: 'dark' }), 'isValidInput({theme: dark})').toBe(true);
       expect(resolver?.isValidInput({}), 'isValidInput({})').toBe(false);
       expect(resolver?.isValidInput({ theme: 'foobar' }), 'isValidInput({theme: foobar})').toBe(false);
