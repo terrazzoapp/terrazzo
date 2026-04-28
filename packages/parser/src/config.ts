@@ -26,6 +26,7 @@ export default function defineConfig(
   normalizePlugins({ config, logger });
   normalizeLint({ config, logger });
   normalizeIgnore({ config, logger });
+  normalizePermutationLimit({ config, logger });
 
   // 2. Start build by calling config()
   for (const plugin of config.plugins) {
@@ -281,6 +282,31 @@ function normalizeIgnore({ config, logger }: { config: ConfigInit; logger: Logge
       group: 'config',
       message: `ignore.deprecated: Expected boolean, received ${JSON.stringify(config.ignore.deprecated)}`,
     });
+  }
+}
+
+function normalizePermutationLimit({ config, logger }: { config: ConfigInit; logger: Logger }) {
+  if (config.permutationLimit === undefined) {
+    config.permutationLimit = 1000;
+  } else {
+    if (typeof config.permutationLimit !== 'number') {
+      logger.error({
+        group: 'config',
+        message: `permutationLimit: Expected number, received ${JSON.stringify(config.ignore.deprecated)}`,
+      });
+    }
+    if (config.permutationLimit < 0) {
+      logger.error({
+        group: 'config',
+        message: `permutationLimit: Permutation limit must be greater than or equal to zero, received ${config.permutationLimit}`,
+      });
+    }
+    if (config.permutationLimit === Number.POSITIVE_INFINITY) {
+      logger.warn({
+        group: 'config',
+        message: `permutationLimit: Permutation limit set to infinity; use listPermutations with caution.`,
+      });
+    }
   }
 }
 

@@ -55,6 +55,7 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
       },
       alphabetize: false,
       ignore: { tokens: [], deprecated: false },
+      permutationLimit: 1000,
     };
     let configPath: string | undefined;
 
