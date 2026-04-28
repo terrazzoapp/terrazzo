@@ -177,7 +177,7 @@ export function createResolver(
     },
     source: resolverSource,
     listPermutations:
-      permutationCount < 1000
+      permutationCount <= config.permutationLimit
         ? () => {
             // only do work on first call, then cache subsequent work. this could be thousands of possible values!
             if (!allPermutations.length) {

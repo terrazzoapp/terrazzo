@@ -95,6 +95,14 @@ export interface Config {
     /** Ignore deprecated tokens */
     deprecated?: boolean;
   };
+  /**
+   * Set the maximum number of permutations before the listPermutations API is disabled.
+   *
+   * This is a safety feature to prevent denial of service issues on complex resolvers.
+   *
+   * @default 1000
+   */
+  permutationLimit?: number;
 }
 
 export interface VisitorContext {
@@ -145,6 +153,7 @@ export interface ConfigInit {
     tokens: NonNullable<NonNullable<Config['ignore']>['tokens']>;
     deprecated: NonNullable<NonNullable<Config['ignore']>['deprecated']>;
   };
+  permutationLimit: number;
 }
 
 export interface ConfigOptions {
