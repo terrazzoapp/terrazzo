@@ -458,6 +458,41 @@ describe('Resolver module', () => {
   });
 });
 
+describe('permutation limit', () => {
+  it('allows listPermutations for small resolvers', async () => {
+    const cwd = new URL('./fixtures/resolver/', import.meta.url);
+    const filename = new URL('example.resolver.json', cwd);
+    const config = defineConfig({}, { cwd });
+    const { resolver } = await parse(
+      [
+        {
+          filename,
+          src: await fs.readFile(filename, 'utf8'),
+        },
+      ],
+      { config },
+    );
+    expect(resolver.listPermutations).not.toBeUndefined();
+    expect(resolver.listPermutations!().length).toBe(2);
+  });
+
+  it('disables listPermutations for complex resolvers', async () => {
+    const cwd = new URL('./fixtures/resolver/', import.meta.url);
+    const filename = new URL('example.resolver.json', cwd);
+    const config = defineConfig({ permutationLimit: 1 }, { cwd });
+    const { resolver } = await parse(
+      [
+        {
+          filename,
+          src: await fs.readFile(filename, 'utf8'),
+        },
+      ],
+      { config },
+    );
+    expect(resolver.listPermutations).toBeUndefined();
+  });
+});
+
 describe('calculatePermutations', () => {
   it('zero modifiers', () => {
     expect(calculatePermutations([])).toEqual([{}]);
