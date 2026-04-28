@@ -30,15 +30,16 @@ export function buildJS({
   output += '\n';
 
   // 1. Permutations
-  const permutations = (contexts ? calculatePermutations(Object.entries(contexts)) : resolver.listPermutations()).map(
-    (value) => ({
-      value,
-      // Note: id MUST have modifiers sorted alphabetically, so we can index them shallowly
-      id: JSON.stringify(
-        Object.fromEntries(Object.entries(value).sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }))),
-      ),
-    }),
-  );
+  // todo: replace internal usage of listPermutations
+  const permutations = (
+    contexts ? calculatePermutations(Object.entries(contexts)) : (resolver.listPermutations?.() ?? [])
+  ).map((value) => ({
+    value,
+    // Note: id MUST have modifiers sorted alphabetically, so we can index them shallowly
+    id: JSON.stringify(
+      Object.fromEntries(Object.entries(value).sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }))),
+    ),
+  }));
   output += 'export const PERMUTATIONS = {\n';
   let permutationI = 1;
   for (const { value, id } of permutations) {

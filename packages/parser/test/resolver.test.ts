@@ -450,11 +450,46 @@ describe('Resolver module', () => {
         }),
       });
 
-      expect(resolver?.listPermutations(), 'listPermutations()').toEqual([{ theme: 'light' }, { theme: 'dark' }]);
+      expect(resolver?.listPermutations?.(), 'listPermutations()').toEqual([{ theme: 'light' }, { theme: 'dark' }]);
       expect(resolver?.isValidInput({ theme: 'dark' }), 'isValidInput({theme: dark})').toBe(true);
       expect(resolver?.isValidInput({}), 'isValidInput({})').toBe(false);
       expect(resolver?.isValidInput({ theme: 'foobar' }), 'isValidInput({theme: foobar})').toBe(false);
     });
+  });
+});
+
+describe('permutation limit', () => {
+  it('allows listPermutations for small resolvers', async () => {
+    const cwd = new URL('./fixtures/resolver/', import.meta.url);
+    const filename = new URL('example.resolver.json', cwd);
+    const config = defineConfig({}, { cwd });
+    const { resolver } = await parse(
+      [
+        {
+          filename,
+          src: await fs.readFile(filename, 'utf8'),
+        },
+      ],
+      { config },
+    );
+    expect(resolver.listPermutations).not.toBeUndefined();
+    expect(resolver.listPermutations!().length).toBe(2);
+  });
+
+  it('disables listPermutations for complex resolvers', async () => {
+    const cwd = new URL('./fixtures/resolver/', import.meta.url);
+    const filename = new URL('example.resolver.json', cwd);
+    const config = defineConfig({ permutationLimit: 1 }, { cwd });
+    const { resolver } = await parse(
+      [
+        {
+          filename,
+          src: await fs.readFile(filename, 'utf8'),
+        },
+      ],
+      { config },
+    );
+    expect(resolver.listPermutations).toBeUndefined();
   });
 });
 
