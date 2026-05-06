@@ -600,6 +600,60 @@ describe('transformGradient', () => {
         },
       },
     ],
+    [
+      'rounds IEEE-754 noise from naked `100 * position`',
+      {
+        given: [
+          {
+            $value: [
+              {
+                color: { colorSpace: 'srgb', components: [1, 0, 0], alpha: 1 },
+                position: 0,
+              },
+              {
+                color: { colorSpace: 'srgb', components: [0, 1, 0], alpha: 1 },
+                position: 0.55,
+              },
+              {
+                color: { colorSpace: 'srgb', components: [0, 0, 1], alpha: 1 },
+                position: 1,
+              },
+            ],
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: 'rgb(100% 0% 0%) 0%, rgb(0% 100% 0%) 55%, rgb(0% 0% 100%) 100%',
+        },
+      },
+    ],
+    [
+      'preserves authored 3-decimal precision',
+      {
+        given: [
+          {
+            $value: [
+              {
+                color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 1 },
+                position: 0,
+              },
+              {
+                color: { colorSpace: 'srgb', components: [0.5, 0.5, 0.5], alpha: 1 },
+                position: 1 / 3,
+              },
+              {
+                color: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 1 },
+                position: 1,
+              },
+            ],
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: 'rgb(0% 0% 0%) 0%, rgb(50% 50% 50%) 33.333%, rgb(100% 100% 100%) 100%',
+        },
+      },
+    ],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
