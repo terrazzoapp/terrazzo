@@ -7,27 +7,11 @@ layout: ../../../layouts/docs.astro
 
 Produce a Token Listing Format file for your design token build. The Token Listing Format is used by design token tool makers to understand the relationship between your source design tokens and your style files built in Terrazzo.
 
-:::warning
-
-This plugin is still **experimental.** Use at your own discretion!
-
-:::
-
-## Foreword
-
-This implementation is a proof of concept for the Token Listing Format, which is near v1.0. There still are pending issues.
-
 :::note
-References in the `source` property may evolve after DTCG releases the Resolver Spec and the JSON `$refs` updates.
+The Token Listing format is final at v1.0. The reference plugin is in alpha while config ergonomics are confirmed under real use; expect non-breaking config surface changes before `1.0.0` final.
 :::
 
-:::note
-The `originalValue` prop may be removed in favor of an `aliasChain` prop.
-:::
-
-:::note
-The `names` prop in listed tokens may evolve into a `platforms` object with the following optional keys: `name`, `value`, `deprecated`.
-:::
+For a conceptual overview of the format, see the [Token Listing guide](/docs/guides/token-listing). For field-level details, see the format specification: <!-- TODO(format-website): link to format website -->.
 
 ## Setup
 
@@ -53,27 +37,18 @@ import listing from "@terrazzo/plugin-token-listing";
 export default defineConfig({
   outDir: "./tokens/",
   plugins: [
-    // Include at least one plugin to build tokens
+    // Include at least one plugin to build tokens.
     css({
       filename: "tokens.css",
     }),
 
-    // Configure the token listing
+    // Configure the token listing.
     listing({
       filename: "tokens.listing.json",
-      // Pass mode information so documentation tools can generate mode selectors
-      modes: [
-        {
-          name: "color-scheme",
-          values: ["light", "dark"],
-          description: "Color theme matching user device preferences",
-        },
-      ],
-      // Define platforms included in the Terrazzo build
+      // Define the platforms covered by this listing.
       platforms: {
         css: {
           description: "Tokens built as CSS variables for the developers",
-          filter: "@terrazzo/plugin-css",
           name: "@terrazzo/plugin-css",
         },
       },
@@ -90,13 +65,11 @@ Lastly, run:
 npx tz build
 ```
 
-And you’ll see a `./tokens/tokens.listing.json` file generated in your project.
+You'll see a `./tokens/tokens.listing.json` file generated in your project.
 
 ## Usage
 
-This plugin creates a Token Listing file, which consolidates information about your source tokens and tokens built from other plugins. Token Listing is a community proposal that lists design tokens in a predictable, known format, to improve interoperability among design token tools. This format includes information about source tokens, modes, platforms where the tokens are built, and a mapping of token names between each platform.
-
-Without Token Listings, maintainers of design token tools must develop their own input format, and users of these tools must format their tokens for each individual tool they want to use. With Token Listings, tool makers have a predictable data input that's natively supported by Terrazzo and that can be shared across tools.
+This plugin creates a Token Listing file, which consolidates information about your source tokens and tokens built from other plugins. Token Listing is a community proposal that lists design tokens in a predictable, known format, to improve interoperability among design token tools.
 
 Tools targeted by the Token Listing format include:
 
@@ -109,7 +82,7 @@ Tools targeted by the Token Listing format include:
 - code migration tools
 - search indexes for design tokens
 
-Below is an example of Token Listing content:
+Below is an example of v1.0 listing content:
 
 :::code-group
 
@@ -120,58 +93,52 @@ Below is an example of Token Listing content:
     "authoringTool": "Terrazzo",
     "modes": [
       {
-        "name": "color-scheme",
+        "name": "theme",
         "values": ["light", "dark"],
-        "description": "Color theme matching user device preferences",
-      },
+        "default": "light",
+        "description": "Color theme matching user device preferences"
+      }
     ],
     "platforms": {
       "figma": {
-        "description": "Figma variables (color, spacing) and local styles (typography)",
+        "description": "Figma variables curated by the design system team"
       },
       "css": {
-        "description": "Tokens built as CSS variables for the developers",
-      },
+        "description": "Tokens built as CSS variables for the developers"
+      }
     },
-    "sourceOfTruth": "figma",
+    "groups": {
+      "color": { "description": "All color tokens" },
+      "color.brand": { "description": "Brand-defined palette" }
+    },
+    "sourceOfTruth": "figma"
   },
   "data": [
     {
-      "$name": "color.black.100",
+      "$name": "color.brand.500",
       "$type": "color",
-      "description": "Darkest grayscale color, use sparingly.",
-      "$value": "rgba(12, 12, 13, 0.05)",
+      "$description": "Brand primary",
+      "$value": { "colorSpace": "srgb", "components": [0.66, 0.20, 0.20], "alpha": 1 },
       "$extensions": {
-        "app.terrazzo.listing": {
-          "names": {
-            "figma": "color/black/100",
-            "css": "--color-black-100",
+        "listing": {
+          "platforms": {
+            "figma": { "name": "color/brand/500" },
+            "css": { "name": "--color-brand-500", "value": "#aabbcc" }
           },
-          "originalValue": {
-            "colorSpace": "srgb",
-            "components": [
-              0.047058823529411764, 0.047058823529411764, 0.050980392156862744,
-            ],
-            "alpha": 0.050980392156862744,
-            "hex": "#0c0c0d",
-          },
-          "previewValue": "#0c0c0d0d",
+          "previewValue": "#a83232",
+          "aliasChain": ["color.semantic.fg", "color.brand.500"],
           "source": {
-            "resource": "file:///path/to/tokens.json",
+            "$ref": "base/colors.json#/color/brand/500",
+            "via": "#/sets/brand",
             "loc": {
-              "start": {
-                /* ... */
-              },
-              "end": {
-                /* ... */
-              },
-            },
-          },
-        },
-      },
-    },
-    // Etc.
-  ],
+              "start": { "line": 21, "column": 14, "offset": 556 },
+              "end": { "line": 28, "column": 8, "offset": 770 }
+            }
+          }
+        }
+      }
+    }
+  ]
 }
 ```
 
@@ -179,31 +146,29 @@ Below is an example of Token Listing content:
 
 ## Features
 
-### Mapping of token names between platforms
+### Per-platform mapping
 
-The primary purpose of Token Listings is to map the names of design tokens on different platforms. For instance, `color/bg/primary` on Figma would be called `--color-bg-primary` in CSS or `bg-primary` in Tailwind.
+The primary purpose of Token Listings is to map design tokens across platforms. The plugin emits a per-token `platforms` map under `$extensions.listing`. Each entry contains:
 
-#### Naming
+- `name`: the token's identifier on that platform (CSS variable name, Figma path, etc.). **Required when the platform entry exists.**
+- `value`: the built/serialised value on that platform (e.g. resolved CSS string, Figma hex). Optional.
+- `deprecated`: per-platform deprecation marker (boolean or string). May diverge from the token-level `$deprecated`. Optional.
 
-This plugin lets you declare all platforms your design tokens exist on, and lets you provide names for each token on each platform. Platforms can have a description, which can be reused in documentation tools and can help LLMs contextualize platforms.
+**Presence of an entry signals the token exists on that platform; absence means it does not.**
 
-You can map a specific platform to a compatible Terrazzo plugin (such as [plugin-css](./css) or [plugin-sass](./sass)), which will automatically compute a Token Listing name for that platform. You can also provide a custom `name` function for unsupported platforms, or to account for postprocessing you do on your built design tokens.
+You can map a specific platform to a compatible Terrazzo plugin (such as [plugin-css](./css) or [plugin-sass](./sass)). The plugin reads `name`, `value`, and `deprecated` from the format's transformed-token meta path. You can also supply custom functions for any field.
 
 :::note
-Terrazzo plugins transform tokens for a specific format. For example, `@terrazzo/plugin-css` registers transformed tokens in the `css` format. When a string is passed to the `name` property of a platform, it matches a format name, rather than a Terrazzo plugin name. Check the plugins you're using for the name of the format they transform tokens to, and use that format name to automate token name mapping.
+Terrazzo plugins transform tokens for a specific format. For example, `@terrazzo/plugin-css` registers transformed tokens in the `css` format. When a string is passed to `name`, `value`, or `deprecated`, it matches a format name, rather than a Terrazzo plugin name.
 :::
 
 #### Filtering
 
-When a Terrazzo plugin is used for a platform, names will only be included based on what that plugin exports. For instance, the CSS plugin does not export multi-valued tokens that do not have a CSS shorthand. Such tokens will not have a listed `css` name, so they can never be included in a platform that uses the `css` name.
+When a Terrazzo plugin is used for a platform, names will only be included based on what that plugin exports. For instance, the CSS plugin does not export multi-valued tokens that do not have a CSS shorthand. Such tokens will not have a CSS platform entry.
 
-You can pass a custom `filter` function to further filter the listed design tokens. For instance, you may want to hide internal-use tokens from your documentation or AI agents.
-
-Even if you use a custom `name` function, you can also pass a plugin's format name to `filter` (e.g. `css`), so that only tokens available on that format will be named in your token listing.
+You can pass a custom `filter` function to further filter the listed design tokens. Pass a plugin's format name to delegate filtering, or a function returning `true` for tokens to include.
 
 #### Example
-
-See the example below that defines three platforms: `css`, `sass` and `figma`. The `sass` platform uses a custom filter to remove tokens computed within a mode from the listing, possibly because the team consuming SASS files does not use modes in its product. The `figma` platform does not have a Terrazzo plugin, so a custom naming function emulating Figma Variable naming is provided in the config.
 
 :::code-group
 
@@ -221,20 +186,20 @@ export default defineConfig({
         figma: {
           description: 'Figma Variables curated by the design system team',
           name: ({ token }) => token.id.replace(/\./g, '/'),
+          deprecated: ({ token }) =>
+            token.id.startsWith('legacy.') ? 'use the modern token instead' : undefined,
         },
       },
     }),
   ],
-};
+});
 ```
+
+:::
 
 ### Source of truth declaration
 
-The Token Listing format lets you declare which platform acts as a source of truth for your design tokens. This plugin has a `sourceOfTruth` config key to which you can pass a platform name (or an arbitrary string).
-
-The plugin also lets you pass a custom function if your design tokens have multiple sources of truth (e.g. if you're in a middle of a token authoring tool migration).
-
-See the example below where some design tokens are created and handled by developers (e.g. focus outline offset tokens). The default source of truth avoids repetition in the JSON output. Only tokens with a custom source of truth will have the field filled out.
+The format lets you declare which platform acts as a source of truth for your design tokens. Pass a platform name (or arbitrary string) to `sourceOfTruth`, or an object with a default and a custom per-token resolver:
 
 :::code-group
 
@@ -251,47 +216,31 @@ export default defineConfig({
         default: 'figma',
         // added only to relevant tokens
         custom: ({ token }) => token.id.startsWith('dev') ? 'css' : undefined,
-      }
+      },
     }),
   ],
-};
+});
 ```
 
 :::
 
 ### Source file mapping
 
-This plugin keeps track of where each design token comes from. Each listed token has a `source` property pointing to the resource where the source token is found, and the location of the token within the resource.
+Each listed token has a `source` object with:
 
-:::note
-Once the Resolver Spec is accepted into the DTCG spec, resources should match the names defined in your design tokens' `resolver.json` file. Expect potential changes to the format or config used in Terrazzo as a result of the Resolver Spec release.
-:::
+- `$ref`: an [RFC 6901](https://datatracker.ietf.org/doc/html/rfc6901) JSON Pointer to the token's location, in [Resolver Spec](https://www.designtokens.org/tr/2025.10/resolver/) syntax. Path component is relative to the resolver document if provided, else the build cwd.
+- `via`: a same-document JSON Pointer into the resolver, identifying the resolver entry that brought this token in. Examples: `#/sets/color`, `#/modifiers/theme/contexts/dark`. Omitted when no `resolver.json` is provided.
+- `loc`: byte/line/column range of the token's authoring location inside the file at `$ref`. Optional in the format spec; emitted by default by this plugin.
 
-This information can be used to create links between documentation tools and token editors. No configuration is needed to produce `source` information. Source information typically looks like this:
-
-:::code-group
-
-```jsonc [tokens.listing.json]
-{
-  "resource": "file://<root>/tokens.json",
-  "loc": {
-    "start": { "line": 21, "column": 14, "offset": 556 },
-    "end": { "line": 28, "column": 8, "offset": 770 },
-  },
-}
-```
-
-:::
+This information lets documentation tools link to source files, and lets editor/IDE plugins jump to specific lines.
 
 ### Mode identification
 
-The Token Listing format keeps track of which modes are available in your token system, and of which token is available in which mode. Listing metadata provides a list of modes with a description of each mode, their possible values and their default value. Each token has a mode field informing in which mode the token is available. This helps documentation tools build mode selection UI components, and filter the list of tokens based on the selected mode.
+The format keeps track of which modes are available in your token system. **When a `resolver.json` is provided**, modes are derived from the resolver's modifiers automatically: each modifier becomes a mode entry, with `name`, `values` (the modifier's context names), `default`, and `description`.
 
-:::note
-Once the Resolver Spec is accepted into the DTCG spec, we plan to make this plugin read modes directly from `resolver.json`.
-:::
+The plugin's `modes` config can only enrich the resolver-derived modes with descriptions. Any mismatched name, values, or default fails the build with an error — the resolver is the single source of truth for mode identity.
 
-In the below example, two modes are defined: one affects color tokens and has a default value, whereas the other affects dimension tokens and is not considered to have a default.
+When no resolver is provided, modes come entirely from the plugin's `modes` config.
 
 :::code-group
 
@@ -303,29 +252,26 @@ export default defineConfig({
         {
           name: 'theme',
           values: ['light', 'dark'],
-          description: 'Color theme matching user device preferences',
           default: 'light',
-        },
-        {
-          name: 'device',
-          values: ['mobile', 'tablet', 'desktop'],
-          description: 'Tokens that depend on device size',
+          description: 'Color theme matching user device preferences',
         },
       ],
     }),
   ],
-};
+});
 ```
 
 :::
 
+### Group descriptions
+
+When source DTCG token files attach `$description` or `$deprecated` to groups, this plugin emits them under `meta.groups`, keyed by group ID. Tools can render group headers, mark deprecated sections, or surface explanatory descriptions in documentation UIs without having to walk the original token tree.
+
 ### Design token subtyping
 
-Some design token tools benefit from a more fine-grained typing of tokens than provided by the DTCG; documentation sites in particular can provide more realistic previews for a design token by analyzing the type of color or dimension the token represents. Because this information is often tightly coupled with token naming choices made by teams, this plugin expects a custom function to be passed to the `subtype` config property. That function is responsible for mapping design tokens to subtypes.
+Some design token tools benefit from a more fine-grained typing of tokens than provided by the DTCG. Pass a custom function to the `subtype` config property to map tokens to one of the v1.0 subtypes (see [Subtype enum](#subtype-enum) below).
 
-The available subtypes in the Token Listing format are based on an audit of design token documentation sites from leading design system teams. More subtypes may be added in future revisions of the format.
-
-The below example includes all the supported subtypes in version 1 of the Token Listing format:
+The available subtypes are based on an audit of design token documentation sites from leading design system teams. They are frozen for v1.0; new values would require a format version bump.
 
 :::code-group
 
@@ -351,18 +297,16 @@ export default defineConfig({
       },
     }),
   ],
-};
+});
 ```
 
 :::
 
 ### Preview values
 
-The Token Listing format allows for preview values for each design token, which are expected to be valid CSS syntax. This plugin reuses the CSS plugin's transformation logic to compute preview values for each token. It also produces a `font` CSS shorthand for typography tokens.
+The format allows for preview values for each design token, which must be valid CSS. This plugin reuses the CSS plugin's transformation logic to compute preview values automatically. It also produces a `font` CSS shorthand for typography tokens.
 
-Preview values are not intended for human consumption, so there is little need to customize them. Still, a function can be passed as `previewValue` in this plugin's config to change token preview values. When the custom function returns `undefined`, the computed CSS value is used instead.
-
-Below is an example of a custom `previewValue` function that forces the use of sRGB for preview values:
+You can pass a custom `previewValue` function. Returning a number coerces to string; returning `undefined` falls back to the computed value.
 
 :::code-group
 
@@ -375,41 +319,17 @@ export default defineConfig({
           const color = new Color({ space: token.$value.colorSpace, coords: token.$value.components, alpha: token.$value.alpha });
           return color.to("srgb").toString();
         }
+      },
     }),
   ],
-};
+});
 ```
 
 :::
 
-Below is an example of CSS preview value computed by this plugin:
+### Alias chains
 
-:::code-group
-
-```jsonc [tokens.listing.json]
-{
-  "$name": "typography.code.medium",
-  "$type": "typography",
-  "$value": {
-    "fontFamily": ["roboto mono", "monospace"],
-    "fontSize": { "value": 1, "unit": "rem" },
-    "fontWeight": 400,
-  },
-  "$extensions": {
-    "app.terrazzo.listing": {
-      // ...
-      "previewValue": "400 1rem \"roboto mono\", monospace",
-      // ...
-    },
-  },
-}
-```
-
-:::
-
-### Original values
-
-In some design token workflows (particularly QA and documentation), it can be important to know where the underlying value of a design token comes from. The Token Listing format contains the original value of each token so that tools can navigate token alias chains and create links between different tiers of design tokens. Original values are computed automatically. No configuration is needed.
+In some design token workflows (particularly QA and documentation), it's important to know how a token resolves through aliases. The format includes an `aliasChain` field with the ordered list of token IDs along the resolution path, source → leaf. Computed automatically; no configuration needed. Omitted for non-aliased tokens.
 
 ## Sample Config
 
@@ -419,8 +339,7 @@ Configure options in [terrazzo.config.ts](/docs/reference/config):
 
 ```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
-import listing from "@terrazzo/plugin-listing";
-import { kebabCase } from "scule";
+import listing from "@terrazzo/plugin-token-listing";
 
 export default defineConfig({
   plugins: [
@@ -430,43 +349,34 @@ export default defineConfig({
       // Modes included in this build
       modes: [
         {
-          // Identity of the mode
           name: 'color-scheme',
-          // Human-readable explanation of what the mode does
           description: 'Color theme matching user device preferences',
-          // Possible values for this mode (matches resolver.json modifier context)
           values: ['light', 'dark'],
-          // Default value if applicable
-          defaultValue: 'light'
+          default: 'light',
         },
       ],
-      // Platforms covered by the Terrazzo build and other platforms where the token exist
+      // Platforms covered by the Terrazzo build and other platforms where the token exists
       platforms: {
         figma: {
-          // Human-readable descriptiong of what the platform contains and who consumes it
           description: 'Figma Variables curated by the design system team',
           // Custom function that computes the names of tokens on that platform
           name: ({ token }) => token.id.replace(/\./g, '/'),
           // Optional custom filter function to filter out specific tokens
-          filter: ({ token }) => token.id.startsWith('devOnly'),
+          filter: ({ token }) => !token.id.startsWith('devOnly'),
         },
         sass: {
           description: 'Design tokens as SASS variables (modes are not supported)',
-          // A plugin name can be passed to reuse the naming logic of the plugin, if it supports token listing
-          name: '@terrazzo/plugin-sass',
-          // Token filtering can be based on modes, or on reasoning about the whole token set; not just tokens
+          // A plugin format name can be passed to reuse the naming logic of the plugin
+          name: 'sass',
+          // Token filtering can be based on modes, or on reasoning about the whole token set
           filter: ({ mode }) => mode === '.',
         },
-        // A plugin name can be passed to the whole platform as a shorthand
-        css: '@terrazzo/plugin-css',
+        // A plugin format name can be passed to the whole platform as a shorthand
+        css: 'css',
       },
-      // Root folder where the source design tokens consumed by Terrazzo are stored
-      resourceRoot: '~/Work/design-tokens/src/'
       // Platform where the design tokens are authored and maintained
       sourceOfTruth: {
-        // goes in the listing metadata
         default: 'figma',
-        // added only to relevant tokens
         custom: ({ token }) => token.id.startsWith('dev') ? 'css' : undefined,
       },
       subtype: ({ token }) => {
@@ -492,15 +402,14 @@ export default defineConfig({
 
 :::
 
-| Name            | Type                                       | Description                                                       |
-| :-------------- | :----------------------------------------- | :---------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------ |
-| `filename`      | `string`                                   | Filename to generate (default: `"tokens.listing.json"`).          |
-| `modes`         | `ModeOption[]`                             | Modes to include in this token listing.                           |
-| `platforms`     | `Record<string, PlatformOption>`           | Platforms for which token names are included.                     |
-| `resourceRoot`  | `string`                                   | Root folder containing the source design tokens used by Terrazzo. |
-| `sourceOfTruth` | `SourceOfTruthOption`                      | Source of truth for the design tokens.                            |
-| `previewValue`  | `(params: CustomFunctionParams) => string  | number                                                            | undefined`                                                            | Custom function to compute preview values. |
-| `subtype`       | `(params: CustomFunctionParams) => Subtype | undefined`                                                        | Custom function to provide more fine-grained types for design tokens. |
+| Name            | Type                                                              | Description                                                           |
+| :-------------- | :---------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| `filename`      | `string`                                                          | Filename to generate (default: `"tokens.listing.json"`).              |
+| `modes`         | `ModeOption[]`                                                    | Modes to include in this token listing.                               |
+| `platforms`     | `Record<string, PlatformOption>`                                  | Platforms for which token info is included.                           |
+| `sourceOfTruth` | `SourceOfTruthOption`                                             | Source of truth for the design tokens.                                |
+| `previewValue`  | `(params: CustomFunctionParams) => string \| number \| undefined` | Custom function to compute preview values.                            |
+| `subtype`       | `(params: CustomFunctionParams) => Subtype \| undefined`          | Custom function to provide more fine-grained types for design tokens. |
 
 All properties in config are optional.
 
@@ -522,28 +431,32 @@ The `ModeOption` object contains the following properties:
 - `description`: an optional human-readable description of the mode
 - `default`: an optional default value
 
+When a `resolver.json` is provided, mode entries are derived from the resolver. The `description` from this option will override or extend the resolver's description; any other field that diverges from the resolver causes a build error.
+
 ### PlatformOption
 
-To reuse an existing Terrazzo plugin that's compatible with the Token Listing plugin, pass the name of the plugin. Check your token listing output for token names to verify compatibility.
+To reuse an existing Terrazzo plugin that's compatible with the Token Listing plugin, pass the format name of the plugin as a string. Check your token listing output for token names to verify compatibility.
 
-Otherwise, pass the following object:
+Otherwise, pass an object:
 
 - `description`: an optional human-readable description of what the platform contains and who it is addressed to
-- `filter`: an optional function receiving `CustomFunctionParams` and returning `true` for tokens for which a name should be provided, or the name of a Terrazzo plugin to delegate this logic to
-- `name`: a mandatory function receiving `CustomFunctionParams` and returning the name of a token in the platform, or the name of a Terrazzo plugin to delegate this logic to
+- `filter`: an optional function or plugin format name; returns `true` for tokens to include
+- `name`: a function or plugin format name returning each token's name on this platform
+- `value`: a function or plugin format name returning each token's serialised value on this platform
+- `deprecated`: a function or plugin format name returning a per-platform deprecation marker (boolean or string)
 
 ### SourceOfTruthOption
 
-If there is a single source of truth, pass a string. The string should match a platform name.
+If there is a single source of truth, pass a string (typically a platform name).
 
-If there are multiple sources of truth, pass the following object:
+If there are multiple sources of truth, pass an object:
 
-- `default`: the name of the platform acting as the default source of truth for most tokens
-- `custom`: A function receiving `CustomFunctionParams` and returning a string only for tokens with a non-default source of truth (and `undefined` otherwise)
+- `default`: the platform name acting as the default source of truth
+- `custom`: a function returning a string only for tokens with a non-default source of truth (and `undefined` otherwise)
 
-### Subtype
+### Subtype enum
 
-Any of the following values:
+The frozen v1.0 subtype values:
 
 - `bgColor`
 - `fgColor`
@@ -554,3 +467,5 @@ Any of the following values:
 - `size`
 - `borderWidth`
 - `borderRadius`
+
+Tools encountering an unrecognised value SHOULD fall back to the token's `$type`.

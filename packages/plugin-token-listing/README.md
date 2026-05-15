@@ -20,27 +20,18 @@ import listing from "@terrazzo/plugin-token-listing";
 export default defineConfig({
   outDir: "./tokens/",
   plugins: [
-    // Include at least one plugin to build tokens
+    // Include at least one plugin to build tokens.
     css({
       filename: "tokens.css",
     }),
 
-    // Configure the token listing
+    // Configure the token listing.
     listing({
-      filename: "terrazzo.listing.json",
-      // Pass mode information so documentation tools can generate mode selectors
-      modes: [
-        {
-          name: "color-scheme",
-          values: ["light", "dark"],
-          description: "Color theme matching user device preferences",
-        },
-      ],
-      // Define platforms included in the Terrazzo build
+      filename: "tokens.listing.json",
+      // Define platforms covered by the listing.
       platforms: {
         css: {
           description: "Tokens built as CSS variables for the developers",
-          filter: "@terrazzo/plugin-css",
           name: "@terrazzo/plugin-css",
         },
       },
@@ -55,6 +46,6 @@ Lastly, run:
 npx tz build
 ```
 
-And you’ll see a `./tokens/tokens.listing.json` file generated in your project.
+You'll see a `./tokens/tokens.listing.json` file generated in your project.
 
 [Full Documentation](https://terrazzo.app/docs/integrations/token-listing)

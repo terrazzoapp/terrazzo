@@ -1,5 +1,6 @@
 import type { Logger, TokenNormalized } from '@terrazzo/parser';
 import { transformCSSValue } from '@terrazzo/token-tools/css';
+import { warn } from './logger.js';
 
 function isCompositeTypography(computed: ReturnType<typeof transformCSSValue>): computed is {
   'font-family'?: string;
@@ -41,20 +42,19 @@ export function computePreviewValue({
         tokensSet,
         transformAlias: recursiveNoAliasTransform,
         color: { legacyHex: true },
-        permutation: {
-          tzMode: modeToTransformWith,
-        },
-      },
+        // Compatible with both legacy `permutation` shape and current `mode` shape of TransformCSSValueOptions.
+        mode: modeToTransformWith,
+        permutation: { tzMode: modeToTransformWith },
+      } as any,
     );
 
     if (typeof computed === 'object') {
       if (token.$type === 'typography' && isCompositeTypography(computed)) {
         if (!computed['font-family'] || !computed['font-size']) {
-          logger.warn({
-            group: 'plugin',
-            label: `@terrazzo/plugin-token-listing > build > ${token.id}`,
-            message: `Composite typography token '${token.id}' is missing a font-family or font-size, so a preview value cannot be computed`,
-          });
+          warn(
+            logger,
+            `Composite typography token '${token.id}' is missing a font-family or font-size, so a preview value cannot be computed`,
+          );
           return '';
         }
 
@@ -79,11 +79,10 @@ export function computePreviewValue({
         return computed.srgb;
       }
 
-      logger.warn({
-        group: 'plugin',
-        label: `@terrazzo/plugin-token-listing > build > ${token.id}`,
-        message: `Preview value computation is not supported yet for: ${JSON.stringify(computed)}`,
-      });
+      warn(
+        logger,
+        `Preview value computation is not supported yet for: ${JSON.stringify(computed)}`
+      );
       return '';
     }
 

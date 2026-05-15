@@ -13,14 +13,8 @@ describe('tz build', () => {
 
     // expect generated file exists & isn’t empty
     expect(fs.readFileSync(testFile, 'utf8')).toEqual(
-      expect.stringContaining(`{
-  "meta": {
-    "version": 1,
-    "authoringTool": "Terrazzo",
-    "platforms": {}
-  },
-  "data": [
-`),
+      expect.stringContaining(`"version": 1,
+    "authoringTool": "Terrazzo"`),
     );
   });
 
@@ -59,13 +53,8 @@ describe('tz build', () => {
 
     // expect file isn’t empty
     expect(fs.readFileSync(testFile, 'utf8')).toEqual(
-      expect.stringContaining(`{
-  "meta": {
-    "version": 1,
-    "authoringTool": "Terrazzo",
-    "platforms": {}
-  },
-  "data": [`),
+      expect.stringContaining(`"version": 1,
+    "authoringTool": "Terrazzo"`),
     );
   });
 

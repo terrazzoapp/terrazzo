@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-token-listing",
-  "version": "0.1.0-alpha.1",
+  "version": "1.0.0-alpha.0",
   "description": "Produce a token listing file for built DTCG tokens, containing attributes you've computed during your build.",
   "license": "MIT",
   "type": "module",
@@ -20,7 +20,7 @@
     ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
-  "homepage": "TBC",
+  "homepage": "https://terrazzo.app/docs/integrations/token-listing",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",

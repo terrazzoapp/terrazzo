@@ -1,8 +1,7 @@
 {
   "meta": {
     "version": 1,
-    "authoringTool": "Terrazzo",
-    "platforms": {}
+    "authoringTool": "Terrazzo"
   },
   "data": [
     {
@@ -18,20 +17,11 @@
         "alpha": 1
       },
       "$extensions": {
-        "app.terrazzo.listing": {
-          "names": {},
-          "originalValue": {
-            "colorSpace": "lab",
-            "components": [
-              0.1,
-              0,
-              0
-            ],
-            "alpha": 1
-          },
+        "listing": {
+          "platforms": {},
           "previewValue": "#000",
           "source": {
-            "resource": "file://<root>/styles/tokens.json",
+            "$ref": "styles/tokens.json#/color/base/gray/10",
             "loc": {
               "start": {
                 "line": 0,

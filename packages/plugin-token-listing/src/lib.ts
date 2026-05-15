@@ -1,26 +1,7 @@
-import type {
-  AliasValue,
-  BooleanValue,
-  BorderValue,
-  ColorValue,
-  CubicBezierValue,
-  DimensionValue,
-  DurationValue,
-  FontFamilyValue,
-  FontWeightValue,
-  GradientValue,
-  LinkValue,
-  Logger,
-  NumberValue,
-  ShadowValue,
-  StringValue,
-  StrokeStyleValue,
-  TokenNormalized,
-  TransitionValue,
-  TypographyValue,
-} from '@terrazzo/parser';
+import type { Logger, Resolver, ResolverModifierNormalized, TokenNormalized, TokenTransformed, TransformParams } from '@terrazzo/parser';
 
-export const FORMAT_ID = 'token-listing';
+/** ID of this plugin's per-token extension key, and of the format produced by this plugin. */
+export const FORMAT_ID = 'listing';
 
 export interface CustomFunctionParams {
   logger: Logger;
@@ -29,52 +10,58 @@ export interface CustomFunctionParams {
   tokensSet: Record<string, TokenNormalized>;
 }
 
+/** Per-platform information about a token. */
+export interface ListedTokenPlatform {
+  /** Identifier of the token on this platform (e.g. CSS variable name, Figma path). */
+  name: string;
+  /** Built/serialised value of the token on this platform, when available. */
+  value?: string;
+  /** Deprecation marker on this platform. May diverge from the token-level $deprecated. */
+  deprecated?: string | boolean;
+}
+
 /** Content of the DTCG $extension property computed by this plugin. */
 export interface TokenListingExtension {
-  /** Dictionary of names for the current design token, in all platforms where it exists. */
-  names: Record<string, string>;
+  /**
+   * Per-platform information about this token. Presence of an entry indicates the token exists on
+   * that platform; absence means it does not.
+   */
+  platforms: Record<string, ListedTokenPlatform>;
 
-  /** Name of the mode used to compute this token. */
+  /** Name of the mode used to compute this token. Omitted when the mode is the default `.`. */
   mode?: string;
 
   /** Hint for tools to specialise how this token is visually presented. */
-  subtype?: string;
+  subtype?: Subtype;
 
-  /** In multi-source-of-truth systems, name of the platform acting as a source of truth for this token, when different from the listing's default source of truth. */
+  /** In multi-source-of-truth systems, name of the platform acting as a source of truth for this token. */
   sourceOfTruth?: string;
 
-  /** Resource where the source for this token is located, and location in the resource. */
+  /**
+   * Ordered chain of token IDs along the alias resolution path, from source to leaf. Omitted for
+   * non-aliased tokens.
+   */
+  aliasChain?: string[];
+
+  /** Valid CSS expression that can be used to preview this token. */
+  previewValue?: string;
+
+  /** Origin of the token in the source documents. */
   source?: {
-    resource: string;
+    /** RFC 6901 JSON Pointer to the token's location. */
+    $ref: string;
+    /**
+     * Same-document JSON Pointer into the resolver document, identifying the resolver entry that
+     * brought this token in (e.g. `#/sets/color` or `#/modifiers/theme/contexts/dark`). Omitted
+     * when no `resolver.json` was provided.
+     */
+    via?: string;
+    /** Byte/line/column range of the token's authoring location. */
     loc?: {
       start: { line: number; column: number; offset: number };
       end: { line: number; column: number; offset: number };
     };
   };
-
-  /** Value that can be used to preview this token in a CSS engine. */
-  previewValue?: string | number;
-
-  /** Original value of the token, with aliases preserved. */
-  originalValue?:
-    | AliasValue
-    | BooleanValue
-    | BorderValue
-    | ColorValue
-    | CubicBezierValue
-    | DimensionValue
-    | DurationValue
-    | FontFamilyValue
-    | FontWeightValue
-    | GradientValue
-    | LinkValue
-    | NumberValue
-    | ShadowValue
-    | ShadowValue[]
-    | StringValue
-    | StrokeStyleValue
-    | TransitionValue
-    | TypographyValue;
 }
 
 export interface ListedToken {
@@ -84,7 +71,7 @@ export interface ListedToken {
   $value: string | number | boolean | Record<string, unknown>;
   $deprecated?: string | boolean;
   $extensions: {
-    'app.terrazzo.listing': TokenListingExtension;
+    [FORMAT_ID]: TokenListingExtension;
   };
 }
 
@@ -93,27 +80,26 @@ export interface TokenListing {
     version: 1;
     authoringTool: string;
     modes?: ModeOption[];
-    platforms: Record<string, { description?: string }>;
+    platforms?: Record<string, { description?: string }>;
+    /** Group-level descriptions and deprecation, keyed by group ID. */
+    groups?: Record<string, { description?: string; deprecated?: string | boolean }>;
     /** Identity of the platform acting as a source of truth for this listing's tokens. */
     sourceOfTruth?: string;
   };
   data: ListedToken[];
 }
 
-export type ModeOption = {
-  name: string;
-  values: string[];
-  description?: string;
-  default?: string;
-};
+export type ModeOption = Omit<ResolverModifierNormalized, 'type' | '$extensions' | '$defs'>;
 
 export type PlatformOption =
+  | string
   | {
       description?: string;
       filter?: string | ((params: CustomFunctionParams) => boolean);
-      name: string | ((params: CustomFunctionParams) => string);
-    }
-  | string;
+      name?: string | ((params: CustomFunctionParams) => string | undefined);
+      value?: string | ((params: CustomFunctionParams) => string | undefined);
+      deprecated?: string | ((params: CustomFunctionParams) => string | boolean | undefined);
+    };
 
 export type SourceOfTruthOption =
   | string
@@ -142,11 +128,17 @@ export interface TokenListingPluginOptions {
 
   /**
    * List of modes included in the listing.
+   *
+   * When a `resolver.json` is provided, modes are derived from the resolver's modifiers. Entries
+   * in this list may only enrich the resolver-derived modes with descriptions; entries that
+   * introduce new mode names, mismatched values, or mismatched defaults cause a build error.
+   *
+   * When no resolver is provided, modes come from this list verbatim.
    */
   modes?: ModeOption[];
 
   /**
-   * Platforms included in this listing. Used to produce the `names` metadata and to compute
+   * Platforms included in this listing. Used to produce the per-token `platforms` map and to compute
    * names of design tokens in individual platforms. Also used to filter tokens that aren't
    * included in a specific platform.
    *
@@ -155,14 +147,10 @@ export interface TokenListingPluginOptions {
    * - `description`: description of the platform
    * - `filter`: either a plugin name or a custom function returning `true` for tokens to include
    * - `name`: either a plugin name or a custom function returning each token's name
+   * - `value`: either a plugin name or a custom function returning the per-platform built value
+   * - `deprecated`: either a plugin name or a custom function returning a per-platform deprecation marker
    */
   platforms?: Record<string, PlatformOption>;
-
-  /**
-   * Root URL or path where design token files are located. Helps compute the `source` property
-   * in listed tokens.
-   */
-  resourceRoot?: string;
 
   /**
    * Identity of the platform acting as a source of truth for this listing's tokens. In
@@ -173,7 +161,7 @@ export interface TokenListingPluginOptions {
 
   /**
    * Hook to customise the preview value of a token. Otherwise, preview values are computed
-   * automatically as CSS properties.
+   * automatically as CSS properties. Numeric returns are coerced to strings.
    * @param token The token for which to compute a preview value.
    * @returns The computed preview value, or `undefined` to use the automatically computed one.
    */
@@ -187,3 +175,15 @@ export interface TokenListingPluginOptions {
    */
   subtype?: (params: CustomFunctionParams) => Subtype | undefined;
 }
+
+export interface BuildListingExtensionOptions {
+    /** Tz utility to retrieve transformed values from other Tz plugins. */
+    getTransforms: (params: TransformParams) => TokenTransformed[];
+    /** Tz logger instance. */
+    logger: Logger;
+    mode: string;
+    resolver: Resolver | undefined;
+    resolverRootDir: string;
+    token: TokenNormalized;
+    tokensSet: Record<string, TokenNormalized>;
+  }

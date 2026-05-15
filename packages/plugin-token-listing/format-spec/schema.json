@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://terrazzo.app/schemas/token-listing/v1/schema.json",
+  "title": "Token Listing Format v1",
+  "description": "JSON Schema for the Token Listing Format, version 1. See the format specification for normative semantics.",
+  "type": "object",
+  "required": ["meta", "data"],
+  "properties": {
+    "meta": { "$ref": "#/$defs/Meta" },
+    "data": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ListedToken" }
+    }
+  },
+  "additionalProperties": true,
+
+  "$defs": {
+    "Meta": {
+      "type": "object",
+      "required": ["version", "authoringTool"],
+      "properties": {
+        "version": { "type": "integer", "const": 1 },
+        "authoringTool": { "type": "string" },
+        "modes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ModeOption" }
+        },
+        "platforms": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" }
+            },
+            "additionalProperties": true
+          }
+        },
+        "groups": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/GroupMeta" }
+        },
+        "sourceOfTruth": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+
+    "ModeOption": {
+      "type": "object",
+      "required": ["name", "values"],
+      "properties": {
+        "name": { "type": "string" },
+        "values": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "description": { "type": "string" },
+        "default": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "GroupMeta": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "deprecated": {
+          "anyOf": [{ "type": "string" }, { "type": "boolean" }]
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "ListedToken": {
+      "type": "object",
+      "required": ["$name", "$type", "$value", "$extensions"],
+      "properties": {
+        "$name": { "type": "string" },
+        "$type": { "type": "string" },
+        "$description": { "type": "string" },
+        "$value": {},
+        "$deprecated": {
+          "anyOf": [{ "type": "string" }, { "type": "boolean" }]
+        },
+        "$extensions": {
+          "type": "object",
+          "required": ["listing"],
+          "properties": {
+            "listing": { "$ref": "#/$defs/ListingExtension" }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+
+    "ListingExtension": {
+      "type": "object",
+      "required": ["platforms"],
+      "properties": {
+        "platforms": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/ListedTokenPlatform" }
+        },
+        "mode": { "type": "string" },
+        "subtype": { "$ref": "#/$defs/Subtype" },
+        "sourceOfTruth": { "type": "string" },
+        "aliasChain": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "previewValue": { "type": "string" },
+        "source": { "$ref": "#/$defs/Source" }
+      },
+      "additionalProperties": true
+    },
+
+    "ListedTokenPlatform": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "value": { "type": "string" },
+        "deprecated": {
+          "anyOf": [{ "type": "string" }, { "type": "boolean" }]
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Subtype": {
+      "type": "string",
+      "enum": ["bgColor", "fgColor", "borderColor", "padding", "margin", "gap", "size", "borderWidth", "borderRadius"]
+    },
+
+    "Source": {
+      "type": "object",
+      "required": ["$ref"],
+      "properties": {
+        "$ref": { "type": "string" },
+        "via": { "type": "string" },
+        "loc": { "$ref": "#/$defs/SourceLoc" }
+      },
+      "additionalProperties": false
+    },
+
+    "SourceLoc": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "$ref": "#/$defs/SourcePosition" },
+        "end": { "$ref": "#/$defs/SourcePosition" }
+      },
+      "additionalProperties": false
+    },
+
+    "SourcePosition": {
+      "type": "object",
+      "required": ["line", "column", "offset"],
+      "properties": {
+        "line": { "type": "integer", "minimum": 0 },
+        "column": { "type": "integer", "minimum": 0 },
+        "offset": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  }
+}
