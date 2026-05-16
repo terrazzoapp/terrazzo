@@ -51,7 +51,7 @@
     "chokidar-cli": "^3.0.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "rollup": "^4.60.2",
+    "rollup": "^4.60.4",
     "rollup-plugin-import-css": "^4.2.1",
     "size-limit": "^12.1.0",
     "vitest-axe": "^0.1.0"

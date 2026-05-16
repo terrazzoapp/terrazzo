@@ -37,7 +37,9 @@ describe('CLI', () => {
     // parallelized (it just may show an error on the next run after the goldens
     // have been updated).
     await execa({ cwd })`pnpm exec tailwindcss -i ${want} -o ${fileURLToPath(tailwindActual)}`;
-    await expect(fs.readFileSync(tailwindActual, 'utf8')).toMatchFileSnapshot(fileURLToPath(tailwindWant));
+    await expect(
+      fs.readFileSync(tailwindActual, 'utf8').replace(/tailwindcss v4\.\d+\.\d+/, 'tailwindcss v4.x.x'),
+    ).toMatchFileSnapshot(fileURLToPath(tailwindWant));
   });
 
   describe('errors', () => {
