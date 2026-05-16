@@ -14,8 +14,8 @@ export interface LabBuildOptions {
 }
 
 function serve(
-  options: any,
-  ready: (details: Record<string, string>) => void,
+  _options: any,
+  _ready: (details: Record<string, string>) => void,
 ): { on: (status: string, callback: () => void) => void } {
   throw new Error(`tz lab not available yet.`);
 }
