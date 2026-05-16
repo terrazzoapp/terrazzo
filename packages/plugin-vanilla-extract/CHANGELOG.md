@@ -1,5 +1,12 @@
 # @terrazzo/plugin-vanilla-extract
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`5f2700e`](https://github.com/terrazzoapp/terrazzo/commit/5f2700e0bbe76cb19674feef8a3868653f273b11), [`5f2700e`](https://github.com/terrazzoapp/terrazzo/commit/5f2700e0bbe76cb19674feef8a3868653f273b11)]:
+  - @terrazzo/plugin-css@2.2.0
+
 ## 2.1.0
 
 ### Patch Changes

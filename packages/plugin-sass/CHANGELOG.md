@@ -1,5 +1,13 @@
 # @terrazzo/plugin-sass
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`5f2700e`](https://github.com/terrazzoapp/terrazzo/commit/5f2700e0bbe76cb19674feef8a3868653f273b11), [`5f2700e`](https://github.com/terrazzoapp/terrazzo/commit/5f2700e0bbe76cb19674feef8a3868653f273b11), [`108aad0`](https://github.com/terrazzoapp/terrazzo/commit/108aad068486ced7c6791683d30ce393cc4426ae), [`5f2700e`](https://github.com/terrazzoapp/terrazzo/commit/5f2700e0bbe76cb19674feef8a3868653f273b11)]:
+  - @terrazzo/plugin-css@2.2.0
+  - @terrazzo/token-tools@2.2.0
+
 ## 2.1.0
 
 ### Patch Changes
