@@ -1,0 +1,25 @@
+{
+  "typography": {
+    "page-title": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "IBM Plex Sans",
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 48,
+          "unit": "px"
+        },
+        "fontWeight": 600,
+        "lineHeight": 1.25,
+        "fontVariationSettings": "\"wght\" 140, \"opsz\" 100, \"wdth\" 50",
+        "letterSpacing": {
+          "value": 0.125,
+          "unit": "em"
+        }
+      }
+    }
+  }
+}

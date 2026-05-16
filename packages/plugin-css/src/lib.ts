@@ -74,6 +74,20 @@ export interface CSSPluginOptions {
    * @default false
    */
   propertyDefinitions?: boolean;
+  /**
+   * Do not generate CSS shorthand declarations for typography tokens.
+   *
+   * Note that individual, per-subvalue declarations will still be generated for these tokens.
+   * @default false
+   */
+  omitTypographyShorthand?: boolean;
+  /**
+   * Control how sub value names are appended to the CSS variable name.
+   *
+   * By default, sub value names are appended as is with a hyphen. E.g. given CSS variable name `--my-token` and
+   * sub value name `font-size`, the resulting variable name would be `--my-token-font-size`.
+   */
+  subValueVariableName?: (variableName: string, subValueName: string, token: TokenTransformed) => string;
 }
 
 export interface Permutation<T extends Record<string, string> = Record<string, string>> {
