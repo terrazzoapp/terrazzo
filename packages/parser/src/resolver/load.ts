@@ -120,6 +120,8 @@ export function createResolver(
     }
   }
 
+  const permutationCount = Object.values(validContexts).reduce((acc, context) => acc * context.length, 1);
+
   return {
     apply(inputRaw, options) {
       const tokensRaw: TokenNormalizedSet = {};
@@ -174,13 +176,16 @@ export function createResolver(
       return tokens;
     },
     source: resolverSource,
-    listPermutations() {
-      // only do work on first call, then cache subsequent work. this could be thousands of possible values!
-      if (!allPermutations.length) {
-        allPermutations.push(...calculatePermutations(Object.entries(validContexts)));
-      }
-      return allPermutations;
-    },
+    listPermutations:
+      permutationCount <= config.permutationLimit
+        ? () => {
+            // only do work on first call, then cache subsequent work. this could be thousands of possible values!
+            if (!allPermutations.length) {
+              allPermutations.push(...calculatePermutations(Object.entries(validContexts)));
+            }
+            return allPermutations;
+          }
+        : undefined,
     isValidInput(input, throwError = false) {
       if (!input || typeof input !== 'object') {
         logger.error({ group: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });

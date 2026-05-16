@@ -95,6 +95,14 @@ export interface Config {
     /** Ignore deprecated tokens */
     deprecated?: boolean;
   };
+  /**
+   * Set the maximum number of permutations before the listPermutations API is disabled.
+   *
+   * This is a safety feature to prevent denial of service issues on complex resolvers.
+   *
+   * @default 1000
+   */
+  permutationLimit?: number;
 }
 
 export interface VisitorContext {
@@ -145,6 +153,7 @@ export interface ConfigInit {
     tokens: NonNullable<NonNullable<Config['ignore']>['tokens']>;
     deprecated: NonNullable<NonNullable<Config['ignore']>['deprecated']>;
   };
+  permutationLimit: number;
 }
 
 export interface ConfigOptions {
@@ -359,8 +368,10 @@ export interface Resolver<
    * List all possible valid input combinations. Ignores default values, as they
    * would duplicate some other permutations. This also caches results, so it’s
    * only computed once on the first call.
+   *
+   * If the resolver is deemed to complex, this API is not provided.
    */
-  listPermutations: () => Input[];
+  listPermutations?: () => Input[];
   /* Generate a stable ID from any input */
   getPermutationID: (input: Input) => string;
   /** The original resolver document, simplified */
