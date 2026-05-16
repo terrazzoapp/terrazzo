@@ -2,7 +2,6 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import { Readable, Writable } from 'node:stream';
 import { fileURLToPath } from 'node:url';
-import { serve } from '@hono/node-server';
 import type { ConfigInit, Logger } from '@terrazzo/parser';
 import mime from 'mime';
 import type { Flags } from './shared.js';
@@ -12,6 +11,13 @@ export interface LabBuildOptions {
   config: ConfigInit;
   configPath: string;
   logger: Logger;
+}
+
+function serve(
+  options: any,
+  ready: (details: Record<string, string>) => void,
+): { on: (status: string, callback: () => void) => void } {
+  throw new Error(`tz lab not available yet.`);
 }
 
 export async function labCmd({ config, logger }: LabBuildOptions) {
@@ -35,7 +41,7 @@ export async function labCmd({ config, logger }: LabBuildOptions) {
     {
       port: 9000,
       overrideGlobalObjects: false,
-      async fetch(request) {
+      async fetch(request: Request) {
         const url = new URL(request.url);
         const pathname = url.pathname;
         if (pathname === '/') {
