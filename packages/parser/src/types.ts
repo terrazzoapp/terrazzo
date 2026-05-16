@@ -29,7 +29,7 @@ export interface BuildHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
-  getTransforms(params: TransformParams): TokenTransformed[];
+  getTransforms(this: void, params: TransformParams): TokenTransformed[];
   /** Momoa documents */
   sources: InputSourceWithDocument[];
   /** Resolver */
@@ -52,7 +52,7 @@ export interface BuildEndHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
-  getTransforms(params: TransformParams): TokenTransformed[];
+  getTransforms(this: void, params: TransformParams): TokenTransformed[];
   /** Momoa documents */
   sources: InputSourceWithDocument[];
   /** Final files to be written */
@@ -328,9 +328,9 @@ export interface Plugin {
   enforce?: 'pre' | 'post';
   /** Throw lint errors/warnings */
   lint?(): Record<string, LintRule<any, any, any>>;
-  transform?(options: TransformHookOptions): Promise<void>;
-  build?(options: BuildHookOptions): Promise<void>;
-  buildEnd?(options: BuildEndHookOptions): Promise<void>;
+  transform?(options: TransformHookOptions): void | Promise<void>;
+  build?(options: BuildHookOptions): void | Promise<void>;
+  buildEnd?(options: BuildEndHookOptions): void | Promise<void>;
 }
 
 export interface ReferenceObject {
@@ -479,9 +479,10 @@ export interface TransformHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
-  getTransforms(params: TransformParams): TokenTransformed[];
+  getTransforms(this: void, params: TransformParams): TokenTransformed[];
   /** Update transformed values */
   setTransform(
+    this: void,
     id: string,
     params:
       | {
