@@ -22,6 +22,7 @@ export const DOCS_NAV = [
       { url: '/docs/integrations/css-in-js/', title: 'CSS-in-JS' },
       { url: '/docs/integrations/sass/', title: 'Sass' },
       { url: '/docs/integrations/js/', title: 'JS/TS' },
+      { url: '/docs/integrations/storybook/', title: 'Storybook' },
       { url: '/docs/integrations/swift/', title: 'Swift' },
       { url: '/docs/integrations/tailwind/', title: 'Tailwind' },
       { url: '/docs/integrations/vanilla-extract/', title: 'Vanilla Extract' },
