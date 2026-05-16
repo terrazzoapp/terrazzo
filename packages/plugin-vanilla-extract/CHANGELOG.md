@@ -1,6 +1,6 @@
 # @terrazzo/plugin-vanilla-extract
 
-## 3.0.0
+## 2.2.0
 
 ### Patch Changes
 
