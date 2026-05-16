@@ -1,5 +1,18 @@
 # @terrazzo/plugin-css
 
+## 2.2.0
+
+### Minor Changes
+
+- [#738](https://github.com/terrazzoapp/terrazzo/pull/738) [`5f2700e`](https://github.com/terrazzoapp/terrazzo/commit/5f2700e0bbe76cb19674feef8a3868653f273b11) Thanks [@james-nash](https://github.com/james-nash)! - Added `subValueVariableName` option.
+
+- [#738](https://github.com/terrazzoapp/terrazzo/pull/738) [`5f2700e`](https://github.com/terrazzoapp/terrazzo/commit/5f2700e0bbe76cb19674feef8a3868653f273b11) Thanks [@james-nash](https://github.com/james-nash)! - Added `omitTypographyShorthand` option.
+
+### Patch Changes
+
+- Updated dependencies [[`108aad0`](https://github.com/terrazzoapp/terrazzo/commit/108aad068486ced7c6791683d30ce393cc4426ae), [`5f2700e`](https://github.com/terrazzoapp/terrazzo/commit/5f2700e0bbe76cb19674feef8a3868653f273b11)]:
+  - @terrazzo/token-tools@2.2.0
+
 ## 2.1.0
 
 ### Minor Changes

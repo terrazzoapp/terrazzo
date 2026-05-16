@@ -1,5 +1,11 @@
 # @terrazzo/cli
 
+## 2.2.0
+
+### Patch Changes
+
+- [#754](https://github.com/terrazzoapp/terrazzo/pull/754) [`dcbf8d5b`](https://github.com/terrazzoapp/terrazzo/commit/dcbf8d5b4632858c3fcf80e21d78eb78ed0dd51f) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Do not provide listPermutations API for complex resolvers
+
 ## 2.1.0
 
 ### Minor Changes
