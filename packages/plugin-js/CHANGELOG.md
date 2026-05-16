@@ -1,5 +1,13 @@
 # @terrazzo/plugin-js
 
+## 2.1.1
+
+### Patch Changes
+
+- [#705](https://github.com/terrazzoapp/terrazzo/pull/705) [`8979deb`](https://github.com/terrazzoapp/terrazzo/commit/8979deb7eba13db9999a9d30fa04fc55f3c12fe1) Thanks [@suikkee](https://github.com/suikkee)! - Fixed an issue where TokenNormalizedSet was missing from the generated type imports.
+
+  Previously, the build logic only included individual token types in the .d.ts imports. This change ensures that TokenNormalizedSet, a structural type required for permutations, is always included in the generated imports.
+
 ## 2.1.0
 
 ### Patch Changes
