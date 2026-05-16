@@ -30,7 +30,7 @@ export function transformGradient(
     positions.push(
       token.partialAliasOf?.[i]?.position
         ? transformAlias(tokensSet[token.partialAliasOf[i]!.position!]!)
-        : `${100 * position}%`,
+        : `${+(100 * position).toFixed(3)}%`,
     );
   }
 
