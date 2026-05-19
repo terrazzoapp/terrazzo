@@ -351,6 +351,7 @@ export type ResolverInput = Record<string, string>;
 export type ResolverApplicationOptions = {
   sets?: string[];
   modifiers?: string[];
+  resolveAliases?: boolean;
 };
 
 export interface Resolver<

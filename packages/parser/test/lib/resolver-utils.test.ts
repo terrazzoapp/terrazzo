@@ -81,6 +81,10 @@ it('getPermutationID', () => {
   expect(getPermutationID({})).toBe('{}');
 
   expect(getPermutationID({ a: 'A', b: 'B' }, { sets: ['d', 'c'], modifiers: ['y', 'x'] })).toBe(
-    '{"input":{"a":"A","b":"B"},"sets":["c","d"],"modifiers":["x","y"]}',
+    '{"input":{"a":"A","b":"B"},"sets":["c","d"],"modifiers":["x","y"],"resolveAliases":true}',
+  );
+
+  expect(getPermutationID({ a: 'A', b: 'B' }, { resolveAliases: false })).toBe(
+    '{"input":{"a":"A","b":"B"},"resolveAliases":false}',
   );
 });
