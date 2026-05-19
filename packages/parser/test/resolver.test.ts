@@ -1,8 +1,9 @@
 import fs from 'node:fs/promises';
 import * as momoa from '@humanwhocodes/momoa';
 import stripAnsi from 'strip-ansi';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import defineConfig from '../src/config.js';
+import type { Resolver } from '../src/index.js';
 import Logger from '../src/logger.js';
 import parse from '../src/parse/index.js';
 import { calculatePermutations, validateResolver } from '../src/resolver/index.js';
@@ -455,6 +456,41 @@ describe('Resolver module', () => {
       expect(resolver?.isValidInput({}), 'isValidInput({})').toBe(false);
       expect(resolver?.isValidInput({ theme: 'foobar' }), 'isValidInput({theme: foobar})').toBe(false);
     });
+  });
+});
+
+describe('partial application', () => {
+  let resolver: Resolver;
+
+  beforeEach(async () => {
+    const cwd = new URL('./fixtures/complex-resolver/', import.meta.url);
+    const filename = new URL('resolver.json', cwd);
+    const config = defineConfig({}, { cwd });
+    const result = await parse(
+      [
+        {
+          filename,
+          src: await fs.readFile(filename, 'utf8'),
+        },
+      ],
+      { config },
+    );
+    resolver = result.resolver;
+  });
+
+  it('returns only tokens from a set', async () => {
+    const tokens = resolver.apply({}, { modifiers: [], sets: ['primitives'] });
+    expect(new Set(Object.keys(tokens))).toEqual(new Set(['dark-blue', 'dark-orange', 'light-blue', 'light-orange']));
+  });
+
+  it('returns only tokens from a modifier', async () => {
+    // first try without disabling alias resolution - it should fail
+    expect(() => resolver.apply({}, { modifiers: ['mode'], sets: [] })).toThrow('Could not resolve alias');
+    // now with alias resolution disabled
+    const modeTokens = resolver.apply({}, { modifiers: ['mode'], sets: [], resolveAliases: false });
+    expect(new Set(Object.keys(modeTokens))).toEqual(new Set(['blue', 'orange']));
+    const themeTokens = resolver.apply({}, { modifiers: ['theme'], sets: [], resolveAliases: false });
+    expect(new Set(Object.keys(themeTokens))).toEqual(new Set(['color']));
   });
 });
 
