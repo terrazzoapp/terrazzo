@@ -371,6 +371,35 @@ describe('computePreviewValue', () => {
     });
   });
 
+  describe('alias to a mode-less token', () => {
+    it('does not throw when the alias target lacks a mode map (typography aliasing typography)', async () => {
+      const { transformCSSValue } = await import('@terrazzo/token-tools/css');
+      // token-tools resolves a typography-to-typography alias by handing
+      // `transformAlias` a synthetic stub that has no `mode` map. The recursive
+      // transform must not evaluate `mode in rToken.mode` on that stub.
+      vi.mocked(transformCSSValue).mockImplementation((tok: any, opts: any) => {
+        if (tok.mode) {
+          // top-level call: recurse into the mode-less alias-target stub
+          return opts.transformAlias({ id: 'typography.base', $type: 'typography' });
+        }
+        // the stub resolves to a composite typography value
+        return { 'font-family': 'Inter', 'font-size': '16px' };
+      });
+
+      const token = createMockToken('typography.heading', 'typography');
+      let result: string | undefined;
+      expect(() => {
+        result = computePreviewValue({
+          tokensSet: mockTokensSet,
+          token,
+          mode: 'dark',
+          logger: mockLogger,
+        });
+      }).not.toThrow();
+      expect(result).toBe('16px Inter');
+    });
+  });
+
   describe('WideGamutColorValue', () => {
     it('formats WideGamutColorValue correctly for preview', async () => {
       const { transformCSSValue } = await import('@terrazzo/token-tools/css');
