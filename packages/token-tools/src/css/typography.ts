@@ -30,8 +30,21 @@ export function transformTypography(
     if (aliasedID) {
       const resolvedToken = tokensSet[aliasedID] as TypographyTokenNormalized;
       transformedValue = transformAlias(
-        // if resolving against a typography token, inject the property as well
-        resolvedToken.$type === 'typography' ? ({ id: `${aliasedID}-${property}` } as TokenNormalized) : resolvedToken,
+        // When aliasing a typography token we reference a single sub-property,
+        // so hand `transformAlias` a complete token for that sub-value rather
+        // than a bare `{ id }` stub. The default id-generator reads only `id`
+        // (CSS var output is unchanged), while consumers that recursively
+        // transform the alias — e.g. preview-value computation — get a real
+        // `$type` / `$value` / `mode` instead of dereferencing an undefined
+        // `mode`.
+        resolvedToken.$type === 'typography'
+          ? ({
+              id: `${aliasedID}-${property}`,
+              $type: typographySubValueType(property, subvalue),
+              $value: subvalue,
+              mode: { '.': { $value: subvalue } },
+            } as TokenNormalized)
+          : resolvedToken,
       );
     } else {
       switch (property) {
@@ -73,4 +86,28 @@ export function transformTypography(
     output[kebabCase(property)] = transformedValue;
   }
   return output;
+}
+
+/** Map a typography sub-property to the `$type` its value transforms as. Mirrors the per-property switch above. */
+function typographySubValueType(property: string, subvalue: unknown): string {
+  switch (property) {
+    case 'fontFamily':
+      return 'fontFamily';
+    case 'fontWeight':
+      return 'fontWeight';
+    case 'fontSize':
+    case 'letterSpacing':
+      return 'dimension';
+    case 'lineHeight':
+      return typeof subvalue === 'number' ? 'number' : 'dimension';
+    default: {
+      if (subvalue && typeof subvalue === 'object' && 'value' in subvalue) {
+        return 'dimension';
+      }
+      if (typeof subvalue === 'number') {
+        return 'number';
+      }
+      return 'string';
+    }
+  }
 }

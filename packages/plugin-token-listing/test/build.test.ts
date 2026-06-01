@@ -380,6 +380,36 @@ describe('token-listing plugin - Node.js API', () => {
       );
     });
 
+    it('resolves a preview for a typography token that aliases another typography token', async () => {
+      const options = { filename: 'actual.listing.json' };
+      const inputSrc = {
+        type: {
+          $type: 'typography',
+          base: {
+            $value: {
+              fontFamily: ['Inter', 'sans-serif'],
+              fontSize: { value: 16, unit: 'px' },
+              fontWeight: 400,
+              lineHeight: 1.5,
+            },
+          },
+          heading: { $value: '{type.base}' },
+        },
+      };
+      const output = await setupTest('./fixtures/build-default/', options, [], inputSrc);
+
+      const base = output.data.find((d: any) => d.$name === 'type.base');
+      const heading = output.data.find((d: any) => d.$name === 'type.heading');
+      const basePreview = base.$extensions['app.terrazzo.listing'].previewValue;
+      const headingPreview = heading.$extensions['app.terrazzo.listing'].previewValue;
+
+      // The aliasing token must resolve to the same preview as its target —
+      // not crash the build, and not collapse to an empty preview.
+      expect(basePreview).toBeTruthy();
+      expect(basePreview).toContain('16px');
+      expect(headingPreview).toBe(basePreview);
+    });
+
     it('calls a custom previewValue function when passed', async () => {
       const previewValue = vi.fn().mockImplementation(() => 'custom');
       const options = {
