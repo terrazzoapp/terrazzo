@@ -18,7 +18,7 @@ function isCompositeTypography(computed: ReturnType<typeof transformCSSValue>): 
   );
 }
 
-export function computePreviewValue({
+export function computeCssPreviewValue({
   tokensSet,
   token,
   mode,

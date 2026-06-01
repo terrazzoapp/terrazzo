@@ -1,7 +1,7 @@
 import type { Logger, ModeMap, Plugin, TokenNormalized, TransformParams } from '@terrazzo/parser';
 import type { TokenTransformed } from '@terrazzo/token-tools';
 import type { PlatformOption, TokenListing, TokenListingExtension, TokenListingPluginOptions } from './lib.js';
-import { computePreviewValue } from './utils/previewValue.js';
+import { computeCssPreviewValue } from './utils/preview.js';
 import mapValues from './utils/utils.js';
 
 export * from './lib.js';
@@ -130,11 +130,12 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
       originalValue,
     };
 
-    const previewValue =
-      options.previewValue?.({ logger, mode, tokensSet, token }) ??
-      computePreviewValue({ logger, mode, tokensSet, token });
-    if (previewValue !== '') {
-      output.previewValue = previewValue;
+    const preview: TokenListingExtension['preview'] = options.preview?.({ logger, mode, tokensSet, token }) ?? {
+      css: computeCssPreviewValue({ logger, mode, tokensSet, token }),
+    };
+
+    if (preview && Object.values(preview).some((previewValue) => !!previewValue)) {
+      output.preview = preview;
     }
 
     const subtype = options.subtype?.({ logger, mode, tokensSet, token });

@@ -1,7 +1,8 @@
 import type { Logger, TokenNormalized } from '@terrazzo/parser';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { computePreviewValue } from '../src/utils/previewValue.js';
+import { computeCssPreviewValue } from '../src/utils/preview.js';
 import { mapValues } from '../src/utils/utils.js';
+import { createMockToken } from './utils.js';
 
 describe('mapValues', () => {
   it('maps values and preserves keys', () => {
@@ -27,7 +28,7 @@ vi.mock('@terrazzo/token-tools/css', () => ({
   transformCSSValue: vi.fn(),
 }));
 
-describe('computePreviewValue', () => {
+describe('computeCssPreviewValue', () => {
   const mockLogger: Logger = {
     warn: vi.fn(),
     error: vi.fn(),
@@ -42,20 +43,6 @@ describe('computePreviewValue', () => {
     setLevel: vi.fn(),
     stats: vi.fn(),
   };
-
-  const createMockToken = (
-    id: string,
-    $type: any = 'color',
-    mode: any = { '.': { $value: 'test-value' } },
-  ): TokenNormalized =>
-    ({
-      id,
-      $type,
-      mode,
-      $description: undefined,
-      $extensions: undefined,
-      aliasOf: undefined,
-    }) as TokenNormalized;
 
   const mockTokensSet: Record<string, TokenNormalized> = {
     'color.primary': createMockToken('color.primary', 'color'),
@@ -72,7 +59,7 @@ describe('computePreviewValue', () => {
       vi.mocked(transformCSSValue).mockReturnValue('#ff0000');
 
       const token = createMockToken('color.red', 'color');
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -86,7 +73,7 @@ describe('computePreviewValue', () => {
       vi.mocked(transformCSSValue).mockReturnValue('');
 
       const token = createMockToken('test.token', 'color');
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -108,7 +95,7 @@ describe('computePreviewValue', () => {
       });
 
       const token = createMockToken('typography.heading', 'typography');
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -125,7 +112,7 @@ describe('computePreviewValue', () => {
       });
 
       const token = createMockToken('typography.minimal', 'typography');
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -142,7 +129,7 @@ describe('computePreviewValue', () => {
       });
 
       const token = createMockToken('typography.weight-only', 'typography');
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -165,7 +152,7 @@ describe('computePreviewValue', () => {
       });
 
       const token = createMockToken('typography.weight-only', 'typography');
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -194,7 +181,7 @@ describe('computePreviewValue', () => {
         dark: { $value: '#dark-color' },
       });
 
-      computePreviewValue({
+      computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         mode: 'dark',
@@ -213,7 +200,7 @@ describe('computePreviewValue', () => {
 
       const token = createMockToken('color.no-dark-mode', 'color');
 
-      computePreviewValue({
+      computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         mode: 'dark',
@@ -232,7 +219,7 @@ describe('computePreviewValue', () => {
 
       const token = createMockToken('color.default', 'color');
 
-      computePreviewValue({
+      computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -249,7 +236,7 @@ describe('computePreviewValue', () => {
       vi.mocked(transformCSSValue).mockReturnValue(unsupportedObject);
 
       const token = createMockToken('custom.token', 'custom');
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -269,7 +256,7 @@ describe('computePreviewValue', () => {
       vi.mocked(transformCSSValue).mockReturnValue(shadowObject);
 
       const token = createMockToken('shadow.subtle', 'shadow');
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -291,7 +278,7 @@ describe('computePreviewValue', () => {
 
       const token = createMockToken('color.alias', 'color');
 
-      computePreviewValue({
+      computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         logger: mockLogger,
@@ -320,7 +307,7 @@ describe('computePreviewValue', () => {
         dark: { $value: '#fff' },
       });
 
-      computePreviewValue({
+      computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         mode: 'light',
@@ -342,7 +329,7 @@ describe('computePreviewValue', () => {
       vi.mocked(transformCSSValue).mockReturnValue('#color');
 
       const token = createMockToken('isolated.token', 'color');
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: {},
         token,
         logger: mockLogger,
@@ -360,7 +347,7 @@ describe('computePreviewValue', () => {
 
       const token = createMockToken('token.empty-mode', 'color', {});
 
-      computePreviewValue({
+      computeCssPreviewValue({
         tokensSet: mockTokensSet,
         token,
         mode: 'nonexistent',
@@ -390,7 +377,7 @@ describe('computePreviewValue', () => {
         aliasOf: undefined,
       } as any;
 
-      const result = computePreviewValue({
+      const result = computeCssPreviewValue({
         tokensSet: {},
         token,
         logger: mockLogger,

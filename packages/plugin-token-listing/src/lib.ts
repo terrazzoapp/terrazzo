@@ -52,8 +52,8 @@ export interface TokenListingExtension {
     };
   };
 
-  /** Value that can be used to preview this token in a CSS engine. */
-  previewValue?: string | number;
+  /** Values that can be used to preview this token in arbitrary display engines (like css, jetpack compose, swift, figma, etc.) */
+  preview?: CustomPreviewValue;
 
   /** Original value of the token, with aliases preserved. */
   originalValue?:
@@ -133,6 +133,8 @@ export type Subtype =
   | 'borderWidth'
   | 'borderRadius';
 
+export type CustomPreviewValue = Record<string, string | undefined | Record<string, string | undefined>>;
+
 export interface TokenListingPluginOptions {
   /**
    * Where to output the listing files
@@ -177,7 +179,7 @@ export interface TokenListingPluginOptions {
    * @param token The token for which to compute a preview value.
    * @returns The computed preview value, or `undefined` to use the automatically computed one.
    */
-  previewValue?: (params: CustomFunctionParams) => string | number | undefined;
+  preview?: (params: CustomFunctionParams) => CustomPreviewValue;
 
   /**
    * Hook to compute subtypes for design tokens, e.g. to hint which colors are backgrounds, borders,

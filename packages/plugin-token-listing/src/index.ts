@@ -3,6 +3,7 @@ import getBuild from './build.js';
 import type { TokenListingPluginOptions } from './lib.js';
 
 export * from './lib.js';
+export { computeCssPreviewValue } from './utils/preview.js';
 
 export default function tokenListingPlugin(options: TokenListingPluginOptions): Plugin {
   return {

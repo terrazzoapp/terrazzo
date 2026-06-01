@@ -3,7 +3,13 @@ import { fileURLToPath } from 'node:url';
 import { build, defineConfig, type Logger, type Plugin, parse } from '@terrazzo/parser';
 import css from '@terrazzo/plugin-css';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import listing, { type CustomFunctionParams, type ListedToken, type TokenListingPluginOptions } from '../src/index.js';
+import listing, {
+  type CustomFunctionParams,
+  computeCssPreviewValue,
+  type ListedToken,
+  type TokenListingPluginOptions,
+} from '../src/index.js';
+import { createMockToken } from './utils.js';
 
 describe('token-listing plugin - Node.js API', () => {
   const mockLogger: Logger = {
@@ -326,13 +332,13 @@ describe('token-listing plugin - Node.js API', () => {
     });
   });
 
-  describe('previewValue', () => {
+  describe('preview', () => {
     it('outputs preview values for color tokens', async () => {
       const options = { filename: 'actual.listing.json' };
       const output = await setupTest('./fixtures/build-default/', options);
 
       const listed = output.data.find((d: any) => d.$name === 'base.color.black');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('#1f2328');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.css).toBe('#1f2328');
     });
 
     it('outputs preview values for dimension tokens', async () => {
@@ -340,7 +346,7 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options);
 
       const listed = output.data.find((d: any) => d.$name === 'base.size.32');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('32px');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.css).toBe('32px');
     });
 
     it('outputs preview values for font-weight tokens', async () => {
@@ -349,7 +355,7 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options, [], src);
 
       const listed = output.data.find((d: any) => d.$name === 'typography.weight.extralight');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('200');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.css).toBe('200');
     });
 
     it('outputs preview values for font-size tokens', async () => {
@@ -358,7 +364,7 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options, [], src);
 
       const listed = output.data.find((d: any) => d.$name === 'typography.scale.04');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('1.25rem');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.css).toBe('1.25rem');
     });
 
     it('outputs preview values for font-family tokens', async () => {
@@ -367,7 +373,7 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options, [], src);
 
       const listed = output.data.find((d: any) => d.$name === 'typography.family.serif');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('"noto serif", serif');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.css).toBe('"noto serif", serif');
     });
 
     it('outputs preview values for composite typography tokens', async () => {
@@ -375,21 +381,54 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options);
 
       const listed = output.data.find((d: any) => d.$name === 'text.subtitle.shorthand');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe(
+      expect(listed.$extensions['app.terrazzo.listing'].preview.css).toBe(
         '400 20px/1.6 -apple-system, "BlinkMacSystemFont", "Segoe UI", "Noto Sans", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
       );
     });
 
-    it('calls a custom previewValue function when passed', async () => {
-      const previewValue = vi.fn().mockImplementation(() => 'custom');
+    it('calls a custom preview function when passed', async () => {
+      const preview = vi.fn().mockImplementation(() => ({
+        css: 'custom',
+        swift: 'custom swift',
+        typescript: { fontSize: 'custom font size', fontWeight: 'custom font weight' },
+      }));
       const options = {
         filename: 'actual.listing.json',
-        previewValue,
+        preview,
       };
       const output = await setupTest('./fixtures/build-default/', options);
       const listed = output.data.find((d: any) => d.$name === 'base.color.black');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('custom');
-      expect(previewValue).toHaveBeenCalledTimes(1294);
+      expect(listed.$extensions['app.terrazzo.listing'].preview.css).toBe('custom');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.swift).toBe('custom swift');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.typescript.fontSize).toBe('custom font size');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.typescript.fontWeight).toBe('custom font weight');
+      expect(preview).toHaveBeenCalledTimes(1294);
+    });
+
+    it('calls a custom preview function with the plugin CSS transform', async () => {
+      const mockValue = { colorSpace: 'srgb', components: [1, 0, 0], alpha: 1 };
+      const token = createMockToken(
+        'test.token',
+        'color',
+        {
+          '.': { $value: mockValue },
+        },
+        mockValue,
+      );
+
+      const preview = vi.fn().mockImplementation(() => ({
+        css: computeCssPreviewValue({ logger: mockLogger, mode: '.', tokensSet: { 'test.token': token }, token }),
+        swift: 'custom swift',
+      }));
+
+      const options = {
+        filename: 'actual.listing.json',
+        preview,
+      };
+      const output = await setupTest('./fixtures/build-default/', options);
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.css).toBe('#f00');
+      expect(listed.$extensions['app.terrazzo.listing'].preview.swift).toBe('custom swift');
     });
   });
 
