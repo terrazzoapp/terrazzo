@@ -6,7 +6,7 @@ import type {
   TokenNormalizedSet,
   TokenTransformed,
   TokenTransformedBase,
-} from '@terrazzo/token-tools';
+} from '@terrazzo/token-types';
 import type ytm from 'yaml-to-momoa';
 import type Logger from './logger.js';
 
@@ -17,7 +17,7 @@ export type {
   TokenNormalizedSet,
   TokenTransformed,
   TokenTransformedBase,
-} from '@terrazzo/token-tools';
+} from '@terrazzo/token-types';
 
 export interface PluginHookContext {
   logger: Logger;

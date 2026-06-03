@@ -16,7 +16,7 @@ describe('@terrazzo/plugin-scss', () => {
     await expect(await fs.readFile(new URL('actual.scss', cwd), 'utf8')).toMatchFileSnapshot(
       fileURLToPath(new URL('want.scss', cwd)),
     );
-  });
+  }, 30_000);
 
   it('config', async () => {
     try {

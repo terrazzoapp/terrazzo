@@ -1,3 +1,4 @@
+export type { CustomTransformOptions } from '@terrazzo/token-tools';
 export type {
   AliasToken,
   AliasValue,
@@ -16,7 +17,6 @@ export type {
   CubicBezierToken,
   CubicBezierTokenNormalized,
   CubicBezierValue,
-  CustomTransformOptions,
   DimensionToken,
   DimensionTokenNormalized,
   DimensionValue,
@@ -73,7 +73,7 @@ export type {
   TypographyTokenNormalized,
   TypographyValue,
   TypographyValueNormalized,
-} from '@terrazzo/token-tools';
+} from '@terrazzo/token-types';
 
 export * from './build/index.js';
 export { default as build } from './build/index.js';

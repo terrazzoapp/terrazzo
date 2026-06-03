@@ -1,7 +1,7 @@
 {
-  "name": "@terrazzo/token-tools",
+  "name": "@terrazzo/token-types",
   "version": "2.2.0",
-  "description": "Various utilities for token types",
+  "description": "Shared dependency-free TypeScript types for DTCG design tokens.",
   "license": "MIT",
   "type": "module",
   "author": {
@@ -11,42 +11,29 @@
   "keywords": [
     "design tokens",
     "dtcg",
-    "cli",
     "w3c",
     "design system",
     "typescript",
-    "sass",
-    "css",
     "style tokens",
     "style system",
-    "linting",
-    "lint"
+    "types"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
-    "directory": "./packages/token-tools/"
+    "directory": "./packages/token-types/"
   },
   "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./css": "./dist/css.js",
-    "./js": "./dist/js.js",
     "./package.json": "./package.json"
   },
   "scripts": {
     "build": "rolldown -c && attw --profile esm-only --pack .",
     "dev": "rolldown -w -c",
     "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/token-tools run \"/^lint:(js|ts)/\"",
+    "lint": "pnpm --filter @terrazzo/token-types run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
-    "lint:ts": "tsc --noEmit",
-    "test": "vitest run"
-  },
-  "dependencies": {
-    "@humanwhocodes/momoa": "catalog:",
-    "@terrazzo/token-types": "workspace:^",
-    "colorjs.io": "catalog:",
-    "wildcard-match": "^5.1.4"
+    "lint:ts": "tsc --noEmit"
   }
 }

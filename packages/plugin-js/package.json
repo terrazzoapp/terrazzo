@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@terrazzo/parser": "workspace:^",
+    "@terrazzo/token-types": "workspace:^",
     "scule": "^1.3.0"
   },
   "devDependencies": {

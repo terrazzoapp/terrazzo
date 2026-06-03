@@ -7,7 +7,7 @@ import {
   type TokenNormalized,
 } from '@terrazzo/parser';
 import { pascalCase } from 'scule';
-import { BASE_IMPORT_TYPES, FILE_HEADER, TYPE_MAP } from './lib.js';
+import { FILE_HEADER, TYPE_MAP } from './lib.js';
 
 const RESOLVER_JSDOC_COMMENT = '/** Produce a token set from a given input. */';
 
@@ -111,15 +111,13 @@ export function buildDTS({
   let output = FILE_HEADER;
   output += '\n';
   output += 'import type {\n';
-  for (const $baseType of BASE_IMPORT_TYPES) {
-    output += `  ${$baseType},\n`;
-  }
+  output += '  TokenNormalizedSet,\n';
   for (const $type of unique$type) {
     if ($type in TYPE_MAP) {
       output += `  ${TYPE_MAP[$type]},\n`;
     }
   }
-  output += '} from "@terrazzo/parser";';
+  output += '} from "@terrazzo/token-types";';
   output += '\n\n';
   output += 'export const PERMUTATIONS: Record<string, TokenNormalizedSet>;\n\n';
   output += `type InputType = ${buildInputType(resolver, contexts)}\n\n`;

@@ -6,7 +6,7 @@ import type {
   ColorTokenNormalized,
   FontFamilyTokenNormalized,
   DimensionTokenNormalized,
-} from "@terrazzo/parser";
+} from "@terrazzo/token-types";
 
 export const PERMUTATIONS: Record<string, TokenNormalizedSet>;
 
