@@ -6,3 +6,4 @@ package-lock.json
 .pnpm-debug*
 .env
 .turbo
+.vitest-*

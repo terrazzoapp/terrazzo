@@ -1,4 +1,4 @@
-import type { BuildHookOptions, Logger, TokenTransformed } from '@terrazzo/parser';
+import type { BuildHookOptions, Config, Logger, TokenTransformed } from '@terrazzo/parser';
 import { generateShorthand, makeCSSVar } from '@terrazzo/token-tools/css';
 import {
   addDeclUnique,
@@ -32,6 +32,7 @@ export interface BuildFormatOptions {
   exclude: CSSPluginOptions['exclude'];
   getTransforms: BuildHookOptions['getTransforms'];
   modeSelectors: CSSPluginOptions['modeSelectors'];
+  alphabetize?: Config['alphabetize'];
   permutations: CSSPluginOptions['permutations'];
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
