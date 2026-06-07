@@ -2,7 +2,7 @@
   "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@11.1.2",
+  "packageManager": "pnpm@11.5.2",
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
