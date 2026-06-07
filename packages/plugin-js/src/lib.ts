@@ -1,5 +1,7 @@
 import type { Token, TokenNormalized, TokenNormalizedSet } from '@terrazzo/parser';
 
+export const FORMAT_ID = 'js';
+
 export const DEFAULT_PROPERTIES: Set<keyof TokenNormalized> = new Set([
   '$type',
   '$value',

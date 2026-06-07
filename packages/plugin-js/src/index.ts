@@ -1,6 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import { buildDTS, buildJS } from './build.js';
-import { DEFAULT_PROPERTIES, type JSPluginOptions } from './lib.js';
+import { DEFAULT_PROPERTIES, FORMAT_ID, type JSPluginOptions } from './lib.js';
 
 export * from './build.js';
 export * from './lib.js';
@@ -17,6 +17,23 @@ export default function pluginJS({
     config(_, context) {
       if (Array.isArray(userProperties) && !userProperties.length) {
         context.logger.error({ ...entry, message: 'properties option can’t be empty' });
+      }
+    },
+
+    // Register a JS-access-expression transform for each token so consumers
+    // (notably plugin-token-listing) can look up the identifier a token has
+    // in the generated JS module. plugin-js doesn't pre-transform values
+    // (see `build` below), so the `value` field mirrors the access expression
+    // rather than carrying a separately-resolved literal.
+    async transform({ tokens, setTransform }) {
+      for (const id of Object.keys(tokens)) {
+        const accessor = `tokens[${JSON.stringify(id)}]`;
+        setTransform(id, {
+          format: FORMAT_ID,
+          localID: id,
+          value: accessor,
+          meta: { 'token-listing': { name: accessor } },
+        });
       }
     },
 
