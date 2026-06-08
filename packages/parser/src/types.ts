@@ -376,6 +376,8 @@ export interface Resolver<
   getPermutationID: (input: Input) => string;
   /** The original resolver document, simplified */
   source: ResolverSourceNormalized;
+  /** Whether all resolver modifiers act on unique token IDs */
+  orthogonal: boolean;
   /** Helper function for permutations—see if a particular input is valid. Automatically applies default values. */
   isValidInput: (input: Input, throwError?: boolean) => boolean;
 }

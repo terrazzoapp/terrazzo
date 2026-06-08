@@ -1,12 +1,19 @@
 import type * as momoa from '@humanwhocodes/momoa';
-import { type InputSource, type InputSourceWithDocument, maybeRawJSON } from '@terrazzo/json-schema-tools';
+import { type InputSource, type InputSourceWithDocument, maybeRawJSON, parseRef } from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
 import { toMomoa } from '../lib/momoa.js';
 import { destructiveMerge, getPermutationID } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
 import { processTokens } from '../parse/process.js';
-import type { ConfigInit, Resolver, ResolverInput, ResolverSourceNormalized } from '../types.js';
+import { aliasToGroupRef } from '../parse/token.js';
+import type {
+  ConfigInit,
+  Resolver,
+  ResolverInput,
+  ResolverModifierNormalized,
+  ResolverSourceNormalized,
+} from '../types.js';
 import { normalizeResolver } from './normalize.js';
 import { isLikelyResolver, validateResolver } from './validate.js';
 
@@ -106,6 +113,7 @@ export function createResolver(
   const inputDefaults: ResolverInput = {};
   const validContexts: Record<string, string[]> = {};
   const allPermutations: ResolverInput[] = [];
+  const modifiers: ResolverModifierNormalized[] = [];
 
   const resolverCache: Record<string, any> = {};
 
@@ -117,12 +125,19 @@ export function createResolver(
         inputDefaults[m.name] = m.default!;
       }
       validContexts[m.name] = Object.keys(m.contexts);
+      modifiers.push(m);
     }
   }
 
   const permutationCount = Object.values(validContexts).reduce((acc, context) => acc * context.length, 1);
+  const defaultTokenSource = getDefaultTokenSource(resolverSource, inputDefaults);
+  const modifierTokenIDs = new Map(
+    modifiers.map((modifier) => [modifier.name, collectModifierTokenIDs(modifier, defaultTokenSource)]),
+  );
+  const orthogonal = areModifierTokenIDsOrthogonal(modifierTokenIDs);
 
   return {
+    orthogonal,
     apply(inputRaw, options) {
       const tokensRaw: TokenNormalizedSet = {};
       const input = { ...inputDefaults, ...inputRaw };
@@ -230,6 +245,110 @@ export function createResolver(
       return getPermutationID({ ...inputDefaults, ...input });
     },
   };
+}
+
+function getDefaultTokenSource(
+  resolverSource: ResolverSourceNormalized,
+  inputDefaults: ResolverInput,
+): Record<string, unknown> {
+  const tokensRaw: Record<string, unknown> = {};
+  for (const item of resolverSource.resolutionOrder) {
+    switch (item.type) {
+      case 'set': {
+        for (const source of item.sources) {
+          destructiveMerge(tokensRaw, source);
+        }
+        break;
+      }
+      case 'modifier': {
+        const context = inputDefaults[item.name] ?? Object.keys(item.contexts)[0]!;
+        for (const source of item.contexts[context] ?? []) {
+          destructiveMerge(tokensRaw, source);
+        }
+        break;
+      }
+    }
+  }
+  return tokensRaw;
+}
+
+function collectModifierTokenIDs(
+  modifier: ResolverModifierNormalized,
+  defaultTokenSource: Record<string, unknown>,
+): Set<string> {
+  const tokenIDs = new Set<string>();
+  for (const sources of Object.values(modifier.contexts)) {
+    const contextSource: Record<string, unknown> = {};
+    destructiveMerge(contextSource, defaultTokenSource);
+    for (const source of sources) {
+      destructiveMerge(contextSource, source);
+      collectTokenIDs(source, [], tokenIDs, contextSource);
+    }
+  }
+  return tokenIDs;
+}
+
+function collectTokenIDs(
+  source: unknown,
+  path: string[],
+  tokenIDs: Set<string>,
+  extendsSource: Record<string, unknown>,
+  extendsChain = new Set<string>(),
+): void {
+  if (!source || typeof source !== 'object' || Array.isArray(source)) {
+    return;
+  }
+  const sourceRecord = source as Record<string, unknown>;
+  if (typeof sourceRecord.$extends === 'string') {
+    const extended = resolveExtendedSource(sourceRecord.$extends, extendsSource);
+    if (extended && !extendsChain.has(sourceRecord.$extends)) {
+      extendsChain.add(sourceRecord.$extends);
+      collectTokenIDs(extended, path, tokenIDs, extendsSource, extendsChain);
+      extendsChain.delete(sourceRecord.$extends);
+    }
+  }
+  if (Object.hasOwn(source, '$value')) {
+    tokenIDs.add(path.join('.'));
+    return;
+  }
+  for (const [key, value] of Object.entries(source)) {
+    if (key.startsWith('$')) {
+      continue;
+    }
+    collectTokenIDs(value, [...path, key], tokenIDs, extendsSource, extendsChain);
+  }
+}
+
+function resolveExtendedSource($extends: string, source: Record<string, unknown>): unknown {
+  const ref = aliasToGroupRef($extends);
+  if (!ref) {
+    return;
+  }
+  return getPath(source, parseRef(ref.$ref).subpath ?? []);
+}
+
+function getPath(source: unknown, path: string[]): unknown {
+  let current = source;
+  for (const part of path) {
+    if (!current || typeof current !== 'object' || Array.isArray(current) || !Object.hasOwn(current, part)) {
+      return;
+    }
+    current = (current as Record<string, unknown>)[part];
+  }
+  return current;
+}
+
+function areModifierTokenIDsOrthogonal(modifierTokenIDs: Map<string, Set<string>>): boolean {
+  const seenTokenIDs = new Set<string>();
+  for (const tokenIDs of modifierTokenIDs.values()) {
+    for (const tokenID of tokenIDs) {
+      if (seenTokenIDs.has(tokenID)) {
+        return false;
+      }
+      seenTokenIDs.add(tokenID);
+    }
+  }
+  return true;
 }
 
 /** Calculate all permutations */

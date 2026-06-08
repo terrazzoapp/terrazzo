@@ -397,6 +397,177 @@ describe('Resolver module', () => {
         }),
       );
     });
+
+    it('marks resolvers orthogonal when modifiers touch unique token IDs', async () => {
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const { resolver } = await parse(
+        [
+          {
+            filename: new URL('file:///'),
+            src: JSON.stringify(
+              {
+                version: '2025.10',
+                resolutionOrder: [{ $ref: '#/modifiers/theme' }, { $ref: '#/modifiers/spacing' }],
+                modifiers: {
+                  theme: {
+                    contexts: {
+                      light: [
+                        {
+                          color: {
+                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
+                          },
+                        },
+                      ],
+                      dark: [
+                        {
+                          color: {
+                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0, 0] } },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  spacing: {
+                    contexts: {
+                      compact: [{ space: { gap: { $type: 'dimension', $value: { value: 8, unit: 'px' } } } }],
+                      roomy: [{ space: { gap: { $type: 'dimension', $value: { value: 16, unit: 'px' } } } }],
+                    },
+                  },
+                },
+              },
+              undefined,
+              2,
+            ),
+          },
+        ],
+        { config },
+      );
+
+      expect(resolver.orthogonal).toBe(true);
+    });
+
+    it('marks resolvers non-orthogonal when modifiers touch the same token ID', async () => {
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const { resolver } = await parse(
+        [
+          {
+            filename: new URL('file:///'),
+            src: JSON.stringify(
+              {
+                version: '2025.10',
+                resolutionOrder: [{ $ref: '#/modifiers/theme' }, { $ref: '#/modifiers/contrast' }],
+                modifiers: {
+                  theme: {
+                    contexts: {
+                      light: [
+                        {
+                          color: {
+                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
+                          },
+                        },
+                      ],
+                      dark: [
+                        {
+                          color: {
+                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0, 0] } },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  contrast: {
+                    contexts: {
+                      normal: [{}],
+                      high: [
+                        {
+                          color: {
+                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 0] } },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              },
+              undefined,
+              2,
+            ),
+          },
+        ],
+        { config },
+      );
+
+      expect(resolver.orthogonal).toBe(false);
+    });
+
+    it('counts extended tokens when checking modifier orthogonality', async () => {
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const { resolver } = await parse(
+        [
+          {
+            filename: new URL('file:///'),
+            src: JSON.stringify(
+              {
+                version: '2025.10',
+                sets: {
+                  base: {
+                    sources: [
+                      {
+                        component: {
+                          defaults: {
+                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
+                            fg: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0, 0] } },
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+                resolutionOrder: [
+                  { $ref: '#/sets/base' },
+                  { $ref: '#/modifiers/theme' },
+                  { $ref: '#/modifiers/density' },
+                ],
+                modifiers: {
+                  theme: {
+                    contexts: {
+                      light: [
+                        {
+                          component: {
+                            button: {
+                              $extends: '{component.defaults}',
+                              bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 0, 0] } },
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  density: {
+                    contexts: {
+                      compact: [
+                        {
+                          component: {
+                            button: {
+                              $extends: '{component.defaults}',
+                            },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              },
+              undefined,
+              2,
+            ),
+          },
+        ],
+        { config },
+      );
+
+      expect(resolver.orthogonal).toBe(false);
+    });
   });
 
   describe('additional cases', () => {
