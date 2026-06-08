@@ -96,6 +96,81 @@ describe('Plugin API', () => {
       );
     });
 
+    it('can setTransform for tokens only present in a resolver input', async () => {
+      const config = defineConfig(
+        {
+          plugins: [
+            {
+              name: 'my-plugin',
+              async transform({ setTransform }) {
+                setTransform('color.only.dark', { format: 'my-format', value: 'dark-value', input: { theme: 'dark' } });
+              },
+              async build({ getTransforms, outputFile }) {
+                const transform = getTransforms({
+                  id: 'color.only.dark',
+                  format: 'my-format',
+                  input: { theme: 'dark' },
+                })[0]!;
+                outputFile('file.txt', `${transform.value}:${transform.token.id}:${transform.token.$type}`);
+              },
+            },
+          ],
+        },
+        { cwd: new URL('file:///') },
+      );
+      const { sources, tokens, resolver } = await parse(
+        [
+          {
+            filename: new URL('file:///tokens.resolver.json'),
+            src: {
+              version: '2025.10',
+              modifiers: {
+                theme: {
+                  default: 'light',
+                  contexts: {
+                    light: [
+                      {
+                        color: {
+                          base: {
+                            $type: 'color',
+                            $value: { colorSpace: 'srgb', components: [1, 1, 1] },
+                          },
+                        },
+                      },
+                    ],
+                    dark: [
+                      {
+                        color: {
+                          base: {
+                            $type: 'color',
+                            $value: { colorSpace: 'srgb', components: [0, 0, 0] },
+                          },
+                          only: {
+                            dark: {
+                              $type: 'color',
+                              $value: { colorSpace: 'srgb', components: [0.2, 0.2, 0.2] },
+                            },
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+              resolutionOrder: [{ $ref: '#/modifiers/theme' }],
+            },
+          },
+        ],
+        { config },
+      );
+      expect(tokens['color.only.dark']).toBeUndefined();
+
+      const { outputFiles } = await build(tokens, { config, resolver, sources });
+      expect(outputFiles[0]).toEqual(
+        expect.objectContaining({ filename: 'file.txt', contents: 'dark-value:color.only.dark:color' }),
+      );
+    });
+
     it('default mode transform', async () => {
       const config = defineConfig(
         {

@@ -122,14 +122,15 @@ export default async function build(
             });
             return;
           }
-          const token = tokens[id]!;
-          if (!token) {
-            logger.error({ group: 'plugin', label: plugin.name, message: `No token "${id}"` });
-          }
           const isLegacyModes = params.input && Object.keys(params.input).length === 1 && 'tzMode' in params.input;
           const permutationID =
             params.input && !isLegacyModes ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
           const mode = params.mode || (isLegacyModes && params.input.tzMode) || undefined;
+          const tokenSource = params.input && !isLegacyModes ? resolver.apply(params.input) : tokens;
+          const token = tokenSource[id]!;
+          if (!token) {
+            logger.error({ group: 'plugin', label: plugin.name, message: `No token "${id}"` });
+          }
           const cleanValue: TokenTransformed['value'] =
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
           validateTransformParams({
