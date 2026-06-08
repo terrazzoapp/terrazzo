@@ -403,8 +403,6 @@ describe('token-listing plugin - Node.js API', () => {
       const basePreview = base.$extensions['app.terrazzo.listing'].previewValue;
       const headingPreview = heading.$extensions['app.terrazzo.listing'].previewValue;
 
-      // The aliasing token must resolve to the same preview as its target —
-      // not crash the build, and not collapse to an empty preview.
       expect(basePreview).toBeTruthy();
       expect(basePreview).toContain('16px');
       expect(headingPreview).toBe(basePreview);

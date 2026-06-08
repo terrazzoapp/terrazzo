@@ -31,13 +31,7 @@ export function transformTypography(
     if (aliasedID) {
       const resolvedToken = tokensSet[aliasedID] as TypographyTokenNormalized;
       transformedValue = transformAlias(
-        // When aliasing a typography token we reference a single sub-property,
-        // so hand `transformAlias` a complete token for that sub-value rather
-        // than a bare `{ id }` stub. The default id-generator reads only `id`
-        // (CSS var output is unchanged), while consumers that recursively
-        // transform the alias — e.g. preview-value computation — get a real
-        // `$type` / `$value` / `mode` instead of dereferencing an undefined
-        // `mode`.
+        // Pass a complete sub-token, not a bare `{ id }` stub, so recursive consumers can resolve it.
         resolvedToken.$type === 'typography'
           ? ({
               id: `${aliasedID}-${property}`,
@@ -89,7 +83,7 @@ export function transformTypography(
   return output;
 }
 
-/** Map a typography sub-property to the `$type` its value transforms as. Mirrors the per-property switch above. */
+/** The `$type` a typography sub-property's value transforms as. */
 function typographySubValueType(property: string, subvalue: unknown): Token['$type'] {
   switch (property) {
     case 'fontFamily':
