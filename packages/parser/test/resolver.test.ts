@@ -1,9 +1,8 @@
 import fs from 'node:fs/promises';
 import * as momoa from '@humanwhocodes/momoa';
 import stripAnsi from 'strip-ansi';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import defineConfig from '../src/config.js';
-import type { Resolver } from '../src/index.js';
 import Logger from '../src/logger.js';
 import parse from '../src/parse/index.js';
 import { calculatePermutations, validateResolver } from '../src/resolver/index.js';
@@ -460,9 +459,7 @@ describe('Resolver module', () => {
 });
 
 describe('partial application', () => {
-  let resolver: Resolver;
-
-  beforeEach(async () => {
+  async function loadResolver() {
     const cwd = new URL('./fixtures/complex-resolver/', import.meta.url);
     const filename = new URL('resolver.json', cwd);
     const config = defineConfig({}, { cwd });
@@ -475,15 +472,17 @@ describe('partial application', () => {
       ],
       { config },
     );
-    resolver = result.resolver;
-  });
+    return result.resolver;
+  }
 
   it('returns only tokens from a set', async () => {
+    const resolver = await loadResolver();
     const tokens = resolver.apply({}, { modifiers: [], sets: ['primitives'] });
     expect(new Set(Object.keys(tokens))).toEqual(new Set(['dark-blue', 'dark-orange', 'light-blue', 'light-orange']));
   });
 
   it('returns only tokens from a modifier', async () => {
+    const resolver = await loadResolver();
     // first try without disabling alias resolution - it should fail
     expect(() => resolver.apply({}, { modifiers: ['mode'], sets: [] })).toThrow('Could not resolve alias');
     // now with alias resolution disabled
