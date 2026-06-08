@@ -48,6 +48,8 @@ describe('descructiveMerge', () => {
     ],
     ['array: simple', { given: [{ a: [0] }, { a: [1, 2, 3] }], want: { a: [1, 2, 3] } }],
     ['array: nested object', { given: [{ a: [{ a: 1 }] }, { a: [{ b: 2 }] }], want: { a: [{ b: 2 }] } }],
+    ['object replaces primitive', { given: [{ a: 1 }, { a: { b: 2 } }], want: { a: { b: 2 } } }],
+    ['object replaces array', { given: [{ a: [1, 2] }, { a: { b: 2 } }], want: { a: { b: 2 } } }],
     ['null', { given: [{ a: { b: 1 } }, { a: { b: null } }], want: { a: { b: null } } }],
     [
       'nested array',
