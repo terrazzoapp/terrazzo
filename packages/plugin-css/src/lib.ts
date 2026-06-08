@@ -148,10 +148,24 @@ export interface CSSRule {
  */
 export function printRules(
   nodes: (CSSRule | CSSDeclaration)[],
-  { indentChar = '  ', indentLv = 0 }: { indentChar?: string; indentLv?: number } = {},
+  {
+    indentChar = '  ',
+    indentLv = 0,
+    alphabetize = true,
+  }: { indentChar?: string; indentLv?: number; alphabetize?: boolean } = {},
 ): string {
   let output = '';
-  for (const node of nodes) {
+  // only sort declarations, sorting rules will lead to broken CSS
+  const sortedNodes = [...nodes];
+  if (alphabetize) {
+    sortedNodes.sort((a, b) => {
+      if (a.type === 'Declaration' && b.type === 'Declaration') {
+        return a.property.localeCompare(b.property, 'en-us', { numeric: true });
+      }
+      return 0;
+    });
+  }
+  for (const node of sortedNodes) {
     if (output && node.type === 'Rule') {
       output += '\n';
     }

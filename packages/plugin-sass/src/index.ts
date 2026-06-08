@@ -36,7 +36,7 @@ Please install @terrazzo/plugin-css and follow setup to add to your config.`,
 
         setTransform(token.id, {
           format: FORMAT_ID,
-          localID: token.id,
+          localID: token.localID,
           value,
           meta: { 'token-listing': { name: listingName } },
         });
