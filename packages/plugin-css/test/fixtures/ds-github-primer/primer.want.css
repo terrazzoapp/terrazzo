@@ -5,7 +5,7 @@
 :root {
   --avatar-bg-color: var(--base-color-neutral-0);
   --avatar-border-color: var(--border-color-translucent);
-  --avatar-shadow: 0 0 0 2px var(--base-color-neutral-0);
+  --avatar-shadow: 0px 0px 0px 2px var(--base-color-neutral-0);
   --base-color-black: rgb(12.157% 13.725% 15.686%);
   --base-color-blue-0: rgb(86.667% 95.686% 100%);
   --base-color-blue-1: rgb(71.373% 89.02% 100%);
@@ -477,7 +477,7 @@
   --button-danger-fg-color-rest: var(--fg-color-danger);
   --button-danger-icon-color-hover: var(--base-color-neutral-0);
   --button-danger-icon-color-rest: var(--button-danger-fg-color-rest);
-  --button-danger-shadow-selected: inset 0 1px 0 0 var(--base-color-red-9);
+  --button-danger-shadow-selected: inset 0px 1px 0px 0px var(--base-color-red-9);
   --button-default-bg-color-active: var(--control-bg-color-active);
   --button-default-bg-color-disabled: var(--control-bg-color-disabled);
   --button-default-bg-color-hover: var(--control-bg-color-hover);
@@ -488,7 +488,7 @@
   --button-default-border-color-hover: var(--button-default-border-color-rest);
   --button-default-border-color-rest: var(--control-border-color-rest);
   --button-default-fg-color-rest: var(--control-fg-color-rest);
-  --button-default-shadow-resting: 0 1px 0 0 var(--base-color-neutral-13);
+  --button-default-shadow-resting: 0px 1px 0px 0px var(--base-color-neutral-13);
   --button-inactive-bg-color: var(--base-color-neutral-3);
   --button-inactive-fg-color: var(--base-color-neutral-9);
   --button-invisible-bg-color-active: var(--control-transparent-bg-color-active);
@@ -550,7 +550,7 @@
   --button-outline-fg-color-disabled: var(--fg-color-accent);
   --button-outline-fg-color-hover: var(--base-color-neutral-0);
   --button-outline-fg-color-rest: var(--fg-color-accent);
-  --button-outline-shadow-selected: inset 0 1px 0 0 var(--base-color-blue-9);
+  --button-outline-shadow-selected: inset 0px 1px 0px 0px var(--base-color-blue-9);
   --button-primary-bg-color-active: rgb(9.8039% 47.451% 20.784%);
   --button-primary-bg-color-disabled: rgb(58.431% 84.706% 65.098%);
   --button-primary-bg-color-hover: rgb(10.98% 50.588% 22.353%);
@@ -562,7 +562,7 @@
   --button-primary-fg-color-disabled: var(--base-color-neutral-0);
   --button-primary-fg-color-rest: var(--fg-color-white);
   --button-primary-icon-color-rest: var(--fg-color-white);
-  --button-primary-shadow-selected: inset 0 1px 0 0 var(--base-color-green-9);
+  --button-primary-shadow-selected: inset 0px 1px 0px 0px var(--base-color-green-9);
   --button-star-icon-color: var(--base-color-yellow-2);
   --card-bg-color: var(--bg-color-default);
   --code-mirror-activeline-bg-color: var(--bg-color-neutral-muted);
@@ -1291,15 +1291,15 @@
   --select-menu-bg-color-active: var(--base-color-blue-1);
   --select-menu-border-color: var(--base-color-transparent);
   --selection-bg-color: var(--bg-color-accent-emphasis);
-  --shadow-floating-large: 0 0 0 1px var(--overlay-border-color), 0 40px 80px 0 var(--base-color-neutral-12);
-  --shadow-floating-legacy: 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-medium: 0 0 0 1px var(--overlay-border-color), 0 8px 16px -4px var(--base-color-neutral-12), 0 4px 32px -4px var(--base-color-neutral-12), 0 24px 48px -12px var(--base-color-neutral-12), 0 48px 96px -24px var(--base-color-neutral-12);
-  --shadow-floating-small: 0 0 0 1px var(--overlay-border-color), 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-xlarge: 0 0 0 1px var(--overlay-border-color), 0 56px 112px 0 var(--base-color-neutral-12);
-  --shadow-inset: inset 0 1px 0 0 var(--base-color-neutral-13);
-  --shadow-resting-medium: 0 1px 1px 0 var(--base-color-neutral-12), 0 3px 6px 0 var(--base-color-neutral-12);
-  --shadow-resting-small: 0 1px 1px 0 var(--base-color-neutral-13), 0 1px 3px 0 var(--base-color-neutral-13);
-  --shadow-resting-xsmall: 0 1px 1px 0 var(--base-color-neutral-13);
+  --shadow-floating-large: 0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12);
+  --shadow-floating-legacy: 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-medium: 0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12);
+  --shadow-floating-small: 0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-xlarge: 0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12);
+  --shadow-inset: inset 0px 1px 0px 0px var(--base-color-neutral-13);
+  --shadow-resting-medium: 0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12);
+  --shadow-resting-small: 0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 3px 0px var(--base-color-neutral-13);
+  --shadow-resting-xsmall: 0px 1px 1px 0px var(--base-color-neutral-13);
   --side-nav-bg-color-selected: var(--base-color-neutral-0);
   --skeleton-loader-bg-color: var(--base-color-neutral-8);
   --spinner-size-large: var(--base-size-64);
@@ -1464,7 +1464,7 @@
 [data-theme="light"] {
   --avatar-bg-color: var(--base-color-neutral-0);
   --avatar-border-color: var(--border-color-translucent);
-  --avatar-shadow: 0 0 0 2px var(--base-color-neutral-0);
+  --avatar-shadow: 0px 0px 0px 2px var(--base-color-neutral-0);
   --base-color-black: rgb(12.157% 13.725% 15.686%);
   --base-color-blue-0: rgb(86.667% 95.686% 100%);
   --base-color-blue-1: rgb(71.373% 89.02% 100%);
@@ -1936,7 +1936,7 @@
   --button-danger-fg-color-rest: var(--fg-color-danger);
   --button-danger-icon-color-hover: var(--base-color-neutral-0);
   --button-danger-icon-color-rest: var(--button-danger-fg-color-rest);
-  --button-danger-shadow-selected: inset 0 1px 0 0 var(--base-color-red-9);
+  --button-danger-shadow-selected: inset 0px 1px 0px 0px var(--base-color-red-9);
   --button-default-bg-color-active: var(--control-bg-color-active);
   --button-default-bg-color-disabled: var(--control-bg-color-disabled);
   --button-default-bg-color-hover: var(--control-bg-color-hover);
@@ -1947,7 +1947,7 @@
   --button-default-border-color-hover: var(--button-default-border-color-rest);
   --button-default-border-color-rest: var(--control-border-color-rest);
   --button-default-fg-color-rest: var(--control-fg-color-rest);
-  --button-default-shadow-resting: 0 1px 0 0 var(--base-color-neutral-13);
+  --button-default-shadow-resting: 0px 1px 0px 0px var(--base-color-neutral-13);
   --button-inactive-bg-color: var(--base-color-neutral-3);
   --button-inactive-fg-color: var(--base-color-neutral-9);
   --button-invisible-bg-color-active: var(--control-transparent-bg-color-active);
@@ -2009,7 +2009,7 @@
   --button-outline-fg-color-disabled: var(--fg-color-accent);
   --button-outline-fg-color-hover: var(--base-color-neutral-0);
   --button-outline-fg-color-rest: var(--fg-color-accent);
-  --button-outline-shadow-selected: inset 0 1px 0 0 var(--base-color-blue-9);
+  --button-outline-shadow-selected: inset 0px 1px 0px 0px var(--base-color-blue-9);
   --button-primary-bg-color-active: rgb(9.8039% 47.451% 20.784%);
   --button-primary-bg-color-disabled: rgb(58.431% 84.706% 65.098%);
   --button-primary-bg-color-hover: rgb(10.98% 50.588% 22.353%);
@@ -2021,7 +2021,7 @@
   --button-primary-fg-color-disabled: var(--base-color-neutral-0);
   --button-primary-fg-color-rest: var(--fg-color-white);
   --button-primary-icon-color-rest: var(--fg-color-white);
-  --button-primary-shadow-selected: inset 0 1px 0 0 var(--base-color-green-9);
+  --button-primary-shadow-selected: inset 0px 1px 0px 0px var(--base-color-green-9);
   --button-star-icon-color: var(--base-color-yellow-2);
   --card-bg-color: var(--bg-color-default);
   --code-mirror-activeline-bg-color: var(--bg-color-neutral-muted);
@@ -2750,15 +2750,15 @@
   --select-menu-bg-color-active: var(--base-color-blue-1);
   --select-menu-border-color: var(--base-color-transparent);
   --selection-bg-color: var(--bg-color-accent-emphasis);
-  --shadow-floating-large: 0 0 0 1px var(--overlay-border-color), 0 40px 80px 0 var(--base-color-neutral-12);
-  --shadow-floating-legacy: 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-medium: 0 0 0 1px var(--overlay-border-color), 0 8px 16px -4px var(--base-color-neutral-12), 0 4px 32px -4px var(--base-color-neutral-12), 0 24px 48px -12px var(--base-color-neutral-12), 0 48px 96px -24px var(--base-color-neutral-12);
-  --shadow-floating-small: 0 0 0 1px var(--overlay-border-color), 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-xlarge: 0 0 0 1px var(--overlay-border-color), 0 56px 112px 0 var(--base-color-neutral-12);
-  --shadow-inset: inset 0 1px 0 0 var(--base-color-neutral-13);
-  --shadow-resting-medium: 0 1px 1px 0 var(--base-color-neutral-12), 0 3px 6px 0 var(--base-color-neutral-12);
-  --shadow-resting-small: 0 1px 1px 0 var(--base-color-neutral-13), 0 1px 3px 0 var(--base-color-neutral-13);
-  --shadow-resting-xsmall: 0 1px 1px 0 var(--base-color-neutral-13);
+  --shadow-floating-large: 0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12);
+  --shadow-floating-legacy: 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-medium: 0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12);
+  --shadow-floating-small: 0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-xlarge: 0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12);
+  --shadow-inset: inset 0px 1px 0px 0px var(--base-color-neutral-13);
+  --shadow-resting-medium: 0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12);
+  --shadow-resting-small: 0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 3px 0px var(--base-color-neutral-13);
+  --shadow-resting-xsmall: 0px 1px 1px 0px var(--base-color-neutral-13);
   --side-nav-bg-color-selected: var(--base-color-neutral-0);
   --skeleton-loader-bg-color: var(--base-color-neutral-8);
   --spinner-size-large: var(--base-size-64);
@@ -2923,7 +2923,7 @@
 [data-theme="light-hc"] {
   --avatar-bg-color: var(--base-color-neutral-0);
   --avatar-border-color: var(--border-color-translucent);
-  --avatar-shadow: 0 0 0 2px var(--base-color-neutral-0);
+  --avatar-shadow: 0px 0px 0px 2px var(--base-color-neutral-0);
   --base-color-black: rgb(0.39216% 1.5686% 3.5294%);
   --base-color-blue-0: rgb(87.451% 96.863% 100%);
   --base-color-blue-1: rgb(61.176% 84.314% 100%);
@@ -3395,7 +3395,7 @@
   --button-danger-fg-color-rest: var(--fg-color-danger);
   --button-danger-icon-color-hover: var(--base-color-neutral-0);
   --button-danger-icon-color-rest: var(--button-danger-fg-color-rest);
-  --button-danger-shadow-selected: inset 0 1px 0 0 var(--base-color-red-9);
+  --button-danger-shadow-selected: inset 0px 1px 0px 0px var(--base-color-red-9);
   --button-default-bg-color-active: var(--control-bg-color-active);
   --button-default-bg-color-disabled: var(--control-bg-color-disabled);
   --button-default-bg-color-hover: var(--control-bg-color-hover);
@@ -3406,7 +3406,7 @@
   --button-default-border-color-hover: var(--button-default-border-color-rest);
   --button-default-border-color-rest: var(--control-border-color-rest);
   --button-default-fg-color-rest: var(--control-fg-color-rest);
-  --button-default-shadow-resting: 0 1px 0 0 var(--base-color-neutral-13);
+  --button-default-shadow-resting: 0px 1px 0px 0px var(--base-color-neutral-13);
   --button-inactive-bg-color: var(--base-color-neutral-3);
   --button-inactive-fg-color: var(--base-color-neutral-9);
   --button-invisible-bg-color-active: var(--control-transparent-bg-color-active);
@@ -3468,7 +3468,7 @@
   --button-outline-fg-color-disabled: var(--fg-color-accent);
   --button-outline-fg-color-hover: var(--base-color-neutral-0);
   --button-outline-fg-color-rest: var(--fg-color-accent);
-  --button-outline-shadow-selected: inset 0 1px 0 0 var(--base-color-blue-9);
+  --button-outline-shadow-selected: inset 0px 1px 0px 0px var(--base-color-blue-9);
   --button-primary-bg-color-active: rgb(9.8039% 47.451% 20.784%);
   --button-primary-bg-color-disabled: rgb(58.431% 84.706% 65.098%);
   --button-primary-bg-color-hover: rgb(10.98% 50.588% 22.353%);
@@ -3480,7 +3480,7 @@
   --button-primary-fg-color-disabled: var(--base-color-neutral-0);
   --button-primary-fg-color-rest: var(--fg-color-white);
   --button-primary-icon-color-rest: var(--fg-color-white);
-  --button-primary-shadow-selected: inset 0 1px 0 0 var(--base-color-green-9);
+  --button-primary-shadow-selected: inset 0px 1px 0px 0px var(--base-color-green-9);
   --button-star-icon-color: var(--base-color-yellow-2);
   --card-bg-color: var(--bg-color-default);
   --code-mirror-activeline-bg-color: var(--bg-color-neutral-muted);
@@ -4209,15 +4209,15 @@
   --select-menu-bg-color-active: var(--base-color-blue-1);
   --select-menu-border-color: var(--base-color-transparent);
   --selection-bg-color: var(--bg-color-accent-emphasis);
-  --shadow-floating-large: 0 0 0 1px var(--overlay-border-color), 0 40px 80px 0 var(--base-color-neutral-12);
-  --shadow-floating-legacy: 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-medium: 0 0 0 1px var(--overlay-border-color), 0 8px 16px -4px var(--base-color-neutral-12), 0 4px 32px -4px var(--base-color-neutral-12), 0 24px 48px -12px var(--base-color-neutral-12), 0 48px 96px -24px var(--base-color-neutral-12);
-  --shadow-floating-small: 0 0 0 1px var(--overlay-border-color), 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-xlarge: 0 0 0 1px var(--overlay-border-color), 0 56px 112px 0 var(--base-color-neutral-12);
-  --shadow-inset: inset 0 1px 0 0 var(--base-color-neutral-13);
-  --shadow-resting-medium: 0 1px 1px 0 var(--base-color-neutral-12), 0 3px 6px 0 var(--base-color-neutral-12);
-  --shadow-resting-small: 0 1px 1px 0 var(--base-color-neutral-13), 0 1px 3px 0 var(--base-color-neutral-13);
-  --shadow-resting-xsmall: 0 1px 1px 0 var(--base-color-neutral-13);
+  --shadow-floating-large: 0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12);
+  --shadow-floating-legacy: 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-medium: 0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12);
+  --shadow-floating-small: 0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-xlarge: 0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12);
+  --shadow-inset: inset 0px 1px 0px 0px var(--base-color-neutral-13);
+  --shadow-resting-medium: 0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12);
+  --shadow-resting-small: 0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 3px 0px var(--base-color-neutral-13);
+  --shadow-resting-xsmall: 0px 1px 1px 0px var(--base-color-neutral-13);
   --side-nav-bg-color-selected: var(--base-color-neutral-0);
   --skeleton-loader-bg-color: var(--base-color-neutral-8);
   --spinner-size-large: var(--base-size-64);
@@ -4382,7 +4382,7 @@
 [data-theme="dark"] {
   --avatar-bg-color: var(--base-color-neutral-0);
   --avatar-border-color: var(--border-color-translucent);
-  --avatar-shadow: 0 0 0 2px var(--base-color-neutral-0);
+  --avatar-shadow: 0px 0px 0px 2px var(--base-color-neutral-0);
   --base-color-black: rgb(0.39216% 1.5686% 3.5294%);
   --base-color-blue-0: rgb(79.216% 90.98% 100%);
   --base-color-blue-1: rgb(64.706% 83.922% 100%);
@@ -4854,7 +4854,7 @@
   --button-danger-fg-color-rest: var(--fg-color-danger);
   --button-danger-icon-color-hover: var(--base-color-neutral-0);
   --button-danger-icon-color-rest: var(--button-danger-fg-color-rest);
-  --button-danger-shadow-selected: inset 0 1px 0 0 var(--base-color-red-9);
+  --button-danger-shadow-selected: inset 0px 1px 0px 0px var(--base-color-red-9);
   --button-default-bg-color-active: var(--control-bg-color-active);
   --button-default-bg-color-disabled: var(--control-bg-color-disabled);
   --button-default-bg-color-hover: var(--control-bg-color-hover);
@@ -4865,7 +4865,7 @@
   --button-default-border-color-hover: var(--button-default-border-color-rest);
   --button-default-border-color-rest: var(--control-border-color-rest);
   --button-default-fg-color-rest: var(--control-fg-color-rest);
-  --button-default-shadow-resting: 0 1px 0 0 var(--base-color-neutral-13);
+  --button-default-shadow-resting: 0px 1px 0px 0px var(--base-color-neutral-13);
   --button-inactive-bg-color: var(--base-color-neutral-3);
   --button-inactive-fg-color: var(--base-color-neutral-9);
   --button-invisible-bg-color-active: var(--control-transparent-bg-color-active);
@@ -4927,7 +4927,7 @@
   --button-outline-fg-color-disabled: var(--fg-color-accent);
   --button-outline-fg-color-hover: var(--base-color-neutral-0);
   --button-outline-fg-color-rest: var(--fg-color-accent);
-  --button-outline-shadow-selected: inset 0 1px 0 0 var(--base-color-blue-9);
+  --button-outline-shadow-selected: inset 0px 1px 0px 0px var(--base-color-blue-9);
   --button-primary-bg-color-active: rgb(9.8039% 47.451% 20.784%);
   --button-primary-bg-color-disabled: rgb(58.431% 84.706% 65.098%);
   --button-primary-bg-color-hover: rgb(10.98% 50.588% 22.353%);
@@ -4939,7 +4939,7 @@
   --button-primary-fg-color-disabled: var(--base-color-neutral-0);
   --button-primary-fg-color-rest: var(--fg-color-white);
   --button-primary-icon-color-rest: var(--fg-color-white);
-  --button-primary-shadow-selected: inset 0 1px 0 0 var(--base-color-green-9);
+  --button-primary-shadow-selected: inset 0px 1px 0px 0px var(--base-color-green-9);
   --button-star-icon-color: var(--base-color-yellow-2);
   --card-bg-color: var(--bg-color-default);
   --code-mirror-activeline-bg-color: var(--bg-color-neutral-muted);
@@ -5668,15 +5668,15 @@
   --select-menu-bg-color-active: var(--base-color-blue-1);
   --select-menu-border-color: var(--base-color-transparent);
   --selection-bg-color: var(--bg-color-accent-emphasis);
-  --shadow-floating-large: 0 0 0 1px var(--overlay-border-color), 0 40px 80px 0 var(--base-color-neutral-12);
-  --shadow-floating-legacy: 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-medium: 0 0 0 1px var(--overlay-border-color), 0 8px 16px -4px var(--base-color-neutral-12), 0 4px 32px -4px var(--base-color-neutral-12), 0 24px 48px -12px var(--base-color-neutral-12), 0 48px 96px -24px var(--base-color-neutral-12);
-  --shadow-floating-small: 0 0 0 1px var(--overlay-border-color), 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-xlarge: 0 0 0 1px var(--overlay-border-color), 0 56px 112px 0 var(--base-color-neutral-12);
-  --shadow-inset: inset 0 1px 0 0 var(--base-color-neutral-13);
-  --shadow-resting-medium: 0 1px 1px 0 var(--base-color-neutral-12), 0 3px 6px 0 var(--base-color-neutral-12);
-  --shadow-resting-small: 0 1px 1px 0 var(--base-color-neutral-13), 0 1px 3px 0 var(--base-color-neutral-13);
-  --shadow-resting-xsmall: 0 1px 1px 0 var(--base-color-neutral-13);
+  --shadow-floating-large: 0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12);
+  --shadow-floating-legacy: 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-medium: 0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12);
+  --shadow-floating-small: 0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-xlarge: 0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12);
+  --shadow-inset: inset 0px 1px 0px 0px var(--base-color-neutral-13);
+  --shadow-resting-medium: 0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12);
+  --shadow-resting-small: 0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 3px 0px var(--base-color-neutral-13);
+  --shadow-resting-xsmall: 0px 1px 1px 0px var(--base-color-neutral-13);
   --side-nav-bg-color-selected: var(--base-color-neutral-0);
   --skeleton-loader-bg-color: var(--base-color-neutral-8);
   --spinner-size-large: var(--base-size-64);
@@ -5841,7 +5841,7 @@
 [data-theme="dark-hc"] {
   --avatar-bg-color: var(--base-color-neutral-0);
   --avatar-border-color: var(--border-color-translucent);
-  --avatar-shadow: 0 0 0 2px var(--base-color-neutral-0);
+  --avatar-shadow: 0px 0px 0px 2px var(--base-color-neutral-0);
   --base-color-black: rgb(0.39216% 1.5686% 3.5294%);
   --base-color-blue-0: rgb(79.216% 91.765% 100%);
   --base-color-blue-1: rgb(67.843% 86.275% 100%);
@@ -6313,7 +6313,7 @@
   --button-danger-fg-color-rest: var(--fg-color-danger);
   --button-danger-icon-color-hover: var(--base-color-neutral-0);
   --button-danger-icon-color-rest: var(--button-danger-fg-color-rest);
-  --button-danger-shadow-selected: inset 0 1px 0 0 var(--base-color-red-9);
+  --button-danger-shadow-selected: inset 0px 1px 0px 0px var(--base-color-red-9);
   --button-default-bg-color-active: var(--control-bg-color-active);
   --button-default-bg-color-disabled: var(--control-bg-color-disabled);
   --button-default-bg-color-hover: var(--control-bg-color-hover);
@@ -6324,7 +6324,7 @@
   --button-default-border-color-hover: var(--button-default-border-color-rest);
   --button-default-border-color-rest: var(--control-border-color-rest);
   --button-default-fg-color-rest: var(--control-fg-color-rest);
-  --button-default-shadow-resting: 0 1px 0 0 var(--base-color-neutral-13);
+  --button-default-shadow-resting: 0px 1px 0px 0px var(--base-color-neutral-13);
   --button-inactive-bg-color: var(--base-color-neutral-3);
   --button-inactive-fg-color: var(--base-color-neutral-9);
   --button-invisible-bg-color-active: var(--control-transparent-bg-color-active);
@@ -6386,7 +6386,7 @@
   --button-outline-fg-color-disabled: var(--fg-color-accent);
   --button-outline-fg-color-hover: var(--base-color-neutral-0);
   --button-outline-fg-color-rest: var(--fg-color-accent);
-  --button-outline-shadow-selected: inset 0 1px 0 0 var(--base-color-blue-9);
+  --button-outline-shadow-selected: inset 0px 1px 0px 0px var(--base-color-blue-9);
   --button-primary-bg-color-active: rgb(9.8039% 47.451% 20.784%);
   --button-primary-bg-color-disabled: rgb(58.431% 84.706% 65.098%);
   --button-primary-bg-color-hover: rgb(10.98% 50.588% 22.353%);
@@ -6398,7 +6398,7 @@
   --button-primary-fg-color-disabled: var(--base-color-neutral-0);
   --button-primary-fg-color-rest: var(--fg-color-white);
   --button-primary-icon-color-rest: var(--fg-color-white);
-  --button-primary-shadow-selected: inset 0 1px 0 0 var(--base-color-green-9);
+  --button-primary-shadow-selected: inset 0px 1px 0px 0px var(--base-color-green-9);
   --button-star-icon-color: var(--base-color-yellow-2);
   --card-bg-color: var(--bg-color-default);
   --code-mirror-activeline-bg-color: var(--bg-color-neutral-muted);
@@ -7127,15 +7127,15 @@
   --select-menu-bg-color-active: var(--base-color-blue-1);
   --select-menu-border-color: var(--base-color-transparent);
   --selection-bg-color: var(--bg-color-accent-emphasis);
-  --shadow-floating-large: 0 0 0 1px var(--overlay-border-color), 0 40px 80px 0 var(--base-color-neutral-12);
-  --shadow-floating-legacy: 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-medium: 0 0 0 1px var(--overlay-border-color), 0 8px 16px -4px var(--base-color-neutral-12), 0 4px 32px -4px var(--base-color-neutral-12), 0 24px 48px -12px var(--base-color-neutral-12), 0 48px 96px -24px var(--base-color-neutral-12);
-  --shadow-floating-small: 0 0 0 1px var(--overlay-border-color), 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12);
-  --shadow-floating-xlarge: 0 0 0 1px var(--overlay-border-color), 0 56px 112px 0 var(--base-color-neutral-12);
-  --shadow-inset: inset 0 1px 0 0 var(--base-color-neutral-13);
-  --shadow-resting-medium: 0 1px 1px 0 var(--base-color-neutral-12), 0 3px 6px 0 var(--base-color-neutral-12);
-  --shadow-resting-small: 0 1px 1px 0 var(--base-color-neutral-13), 0 1px 3px 0 var(--base-color-neutral-13);
-  --shadow-resting-xsmall: 0 1px 1px 0 var(--base-color-neutral-13);
+  --shadow-floating-large: 0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12);
+  --shadow-floating-legacy: 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-medium: 0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12);
+  --shadow-floating-small: 0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12);
+  --shadow-floating-xlarge: 0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12);
+  --shadow-inset: inset 0px 1px 0px 0px var(--base-color-neutral-13);
+  --shadow-resting-medium: 0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12);
+  --shadow-resting-small: 0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 3px 0px var(--base-color-neutral-13);
+  --shadow-resting-xsmall: 0px 1px 1px 0px var(--base-color-neutral-13);
   --side-nav-bg-color-selected: var(--base-color-neutral-0);
   --skeleton-loader-bg-color: var(--base-color-neutral-8);
   --spinner-size-large: var(--base-size-64);

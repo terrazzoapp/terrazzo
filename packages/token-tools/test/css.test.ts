@@ -525,6 +525,20 @@ describe('transformDimension', () => {
       },
     ],
     [
+      '0px',
+      {
+        given: [{ $value: { value: 0, unit: 'px' } }, { tokensSet: {}, permutation: {} }],
+        want: { success: '0px' },
+      },
+    ],
+    [
+      '0rem',
+      {
+        given: [{ $value: { value: 0, unit: 'rem' } }, { tokensSet: {}, permutation: {} }],
+        want: { success: '0rem' },
+      },
+    ],
+    [
       '0.75em',
       {
         given: [{ $value: { value: 0.75, unit: 'em' } }, { tokensSet: {}, permutation: {} }],
@@ -734,7 +748,7 @@ describe('transformShadow', () => {
           },
           { tokensSet: {}, permutation: {} },
         ],
-        want: { success: '0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.1)' },
+        want: { success: '0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.1)' },
       },
     ],
     [
@@ -759,7 +773,7 @@ describe('transformShadow', () => {
           } as any,
           { tokensSet: {}, permutation: {} },
         ],
-        want: { success: 'inset 0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.1)' },
+        want: { success: 'inset 0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.1)' },
       },
     ],
     [
@@ -797,7 +811,7 @@ describe('transformShadow', () => {
           { tokensSet: {}, permutation: {} },
         ],
         want: {
-          success: '0 0.25rem 0.5rem 0 rgb(0% 0% 0% / 0.05), 0 0.5rem 1rem 0 rgb(0% 0% 0% / 0.05)',
+          success: '0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.05), 0px 0.5rem 1rem 0px rgb(0% 0% 0% / 0.05)',
         },
       },
     ],

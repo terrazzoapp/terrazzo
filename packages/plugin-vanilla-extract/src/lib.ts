@@ -218,10 +218,6 @@ export function serializeValue(value: string | number | boolean, tokens: TokenTr
     return `${IDENT_ESCAPE}${THEME_EXPORT}${jsIdent}${IDENT_ESCAPE}`;
   }
 
-  // special case: zero
-  if (/^0[A-Z]+/i.test(value)) {
-    return '0';
-  }
   // special case: px converts to numbers
   // if (/^\d+px/i.test(value)) {
   //   return Number.parseFloat(value);

@@ -87,7 +87,8 @@ describe('serializeValue', () => {
     ['#2c2c2c', ['#2c2c2c', '#2c2c2c']],
     ['1.5rem', ['1.5rem', '1.5rem']],
     ['8px', ['8px', '8px']],
-    ['0rem', ['0rem', '0']],
+    ['0rem', ['0rem', '0rem']],
+    ['0px', ['0px', '0px']],
     ['2.5px', ['2.5px', '2.5px']], // not a real value
     ['0.875em', ['0.875em', '0.875em']],
     ['15ms', ['15ms', '15ms']],

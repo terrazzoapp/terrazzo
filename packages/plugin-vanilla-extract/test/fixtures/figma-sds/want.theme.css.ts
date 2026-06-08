@@ -839,7 +839,7 @@ export const [lightClass, light] = createTheme(vars, {
       "100": "0.25rem"
     },
     "depth": {
-      "0": "0",
+      "0": "0rem",
       "100": "0.25rem",
       "200": "0.5rem",
       "400": "1rem",
@@ -865,7 +865,7 @@ export const [lightClass, light] = createTheme(vars, {
       "full": "624.9375rem"
     },
     "space": {
-      "0": "0",
+      "0": "0rem",
       "100": "0.25rem",
       "150": "0.375rem",
       "200": "0.5rem",
@@ -876,7 +876,7 @@ export const [lightClass, light] = createTheme(vars, {
       "1200": "3rem",
       "1600": "4rem",
       "2400": "6rem",
-      "4000": "0",
+      "4000": "0rem",
       "050": "0.125rem",
       "negative100": "-0.25rem",
       "negative200": "-0.5rem",
@@ -895,21 +895,21 @@ export const [lightClass, light] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "medium": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['03'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['02'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -918,21 +918,21 @@ export const [lightClass, light] = createTheme(vars, {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['04'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "medium": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['03'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['02'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -946,21 +946,21 @@ export const [lightClass, light] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
         "fontWeight": vars.typography.weight.semibold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['06'],
         "fontWeight": vars.typography.weight.semibold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
         "fontWeight": vars.typography.weight.semibold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -981,21 +981,21 @@ export const [lightClass, light] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['03'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -1004,21 +1004,21 @@ export const [lightClass, light] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['06'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['07'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -1026,7 +1026,7 @@ export const [lightClass, light] = createTheme(vars, {
       "fontFamily": vars.typography.family.sans,
       "fontSize": vars.typography.scale[10],
       "fontWeight": vars.typography.weight.bold,
-      "letterSpacing": "0",
+      "letterSpacing": "0em",
       "lineHeight": "1"
     },
     "titlePage": {
@@ -1034,21 +1034,21 @@ export const [lightClass, light] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['08'],
         "fontWeight": vars.typography.weight.bold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['09'],
         "fontWeight": vars.typography.weight.bold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['07'],
         "fontWeight": vars.typography.weight.bold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -1372,7 +1372,7 @@ export const [darkClass, dark] = createTheme(vars, {
       "100": "0.25rem"
     },
     "depth": {
-      "0": "0",
+      "0": "0rem",
       "100": "0.25rem",
       "200": "0.5rem",
       "400": "1rem",
@@ -1398,7 +1398,7 @@ export const [darkClass, dark] = createTheme(vars, {
       "full": "624.9375rem"
     },
     "space": {
-      "0": "0",
+      "0": "0rem",
       "100": "0.25rem",
       "150": "0.375rem",
       "200": "0.5rem",
@@ -1409,7 +1409,7 @@ export const [darkClass, dark] = createTheme(vars, {
       "1200": "3rem",
       "1600": "4rem",
       "2400": "6rem",
-      "4000": "0",
+      "4000": "0rem",
       "050": "0.125rem",
       "negative100": "-0.25rem",
       "negative200": "-0.5rem",
@@ -1428,21 +1428,21 @@ export const [darkClass, dark] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "medium": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['03'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['02'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -1451,21 +1451,21 @@ export const [darkClass, dark] = createTheme(vars, {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['04'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "medium": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['03'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['02'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -1479,21 +1479,21 @@ export const [darkClass, dark] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
         "fontWeight": vars.typography.weight.semibold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['06'],
         "fontWeight": vars.typography.weight.semibold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
         "fontWeight": vars.typography.weight.semibold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -1514,21 +1514,21 @@ export const [darkClass, dark] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['03'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -1537,21 +1537,21 @@ export const [darkClass, dark] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['06'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['07'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
         "fontWeight": vars.typography.weight.regular,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
@@ -1559,7 +1559,7 @@ export const [darkClass, dark] = createTheme(vars, {
       "fontFamily": vars.typography.family.sans,
       "fontSize": vars.typography.scale[10],
       "fontWeight": vars.typography.weight.bold,
-      "letterSpacing": "0",
+      "letterSpacing": "0em",
       "lineHeight": "1"
     },
     "titlePage": {
@@ -1567,21 +1567,21 @@ export const [darkClass, dark] = createTheme(vars, {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['08'],
         "fontWeight": vars.typography.weight.bold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['09'],
         "fontWeight": vars.typography.weight.bold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       },
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['07'],
         "fontWeight": vars.typography.weight.bold,
-        "letterSpacing": "0",
+        "letterSpacing": "0em",
         "lineHeight": "1"
       }
     },
