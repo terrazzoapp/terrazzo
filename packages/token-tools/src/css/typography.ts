@@ -5,6 +5,7 @@ import type {
   FontWeightTokenNormalized,
   NumberTokenNormalized,
   StringTokenNormalized,
+  Token,
   TokenNormalized,
   TokenTransformedMultiValue,
   TypographyTokenNormalized,
@@ -89,7 +90,7 @@ export function transformTypography(
 }
 
 /** Map a typography sub-property to the `$type` its value transforms as. Mirrors the per-property switch above. */
-function typographySubValueType(property: string, subvalue: unknown): string {
+function typographySubValueType(property: string, subvalue: unknown): Token['$type'] {
   switch (property) {
     case 'fontFamily':
       return 'fontFamily';
