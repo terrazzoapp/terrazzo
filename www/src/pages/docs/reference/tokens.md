@@ -5,11 +5,11 @@ layout: ../../../layouts/docs.astro
 
 # Types
 
-This is a complete reference for all token types supported by Terrazzo. This includes all of the [DTCG Format](https://design-tokens.github.io/community-group/format/), as well as Terrazzo extensions like link, boolean, string, etc.
+This is a complete reference for all token types supported by Terrazzo. This includes all of the [DTCG Format](https://www.designtokens.org/tr/2025.10/format/), as well as Terrazzo extensions like link, boolean, string, etc.
 
 ## Color
 
-Any [CSS Module 4](https://www.w3.org/TR/css-color-4/#predefined) color as defined in [DTCG 8.1](https://design-tokens.github.io/community-group/format/#color).
+Any [CSS Module 4](https://www.w3.org/TR/css-color-4/#predefined) color as defined in [DTCG 8.1](https://www.designtokens.org/tr/2025.10/format/#color).
 
 :::code-group
 
@@ -58,7 +58,7 @@ Color is a frequently-used base token that can be aliased within the following c
 
 ## Dimension
 
-A unit of distance as defined in [DTCG 8.2](https://design-tokens.github.io/community-group/format/#dimension).
+A unit of distance as defined in [DTCG 8.2](https://www.designtokens.org/tr/2025.10/format/#dimension).
 
 ```json
 {
@@ -105,7 +105,7 @@ Note that dimensions **must have units.** To specify a number without units, see
 
 ## Font Family
 
-A font name (and optional fallbacks) as defined in [DTCG 8.3](https://design-tokens.github.io/community-group/format/#font-family).
+A font name (and optional fallbacks) as defined in [DTCG 8.3](https://www.designtokens.org/tr/2025.10/format/#font-family).
 
 ```json
 {
@@ -144,7 +144,7 @@ A font name (and optional fallbacks) as defined in [DTCG 8.3](https://design-tok
 
 ## Font Weight
 
-A font weight as defined in [DTCG 8.4](https://design-tokens.github.io/community-group/format/#font-weight).
+A font weight as defined in [DTCG 8.4](https://www.designtokens.org/tr/2025.10/format/#font-weight).
 
 ```json
 {
@@ -192,7 +192,7 @@ A font weight can be a number from `1` (lightest) – `999` (heaviest), but the 
 
 ## Duration
 
-A length of time as defined in [DTCG 8.5](https://design-tokens.github.io/community-group/format/#duration).
+A length of time as defined in [DTCG 8.5](https://www.designtokens.org/tr/2025.10/format/#duration).
 
 ```json
 {
@@ -223,7 +223,7 @@ A length of time as defined in [DTCG 8.5](https://design-tokens.github.io/commun
 
 ## Cubic Bézier
 
-An easing curve as defined in DTCG [8.6](https://design-tokens.github.io/community-group/format/#cubic-bezier).
+An easing curve as defined in DTCG [8.6](https://www.designtokens.org/tr/2025.10/format/#cubic-bezier).
 
 ```json
 {
@@ -263,7 +263,7 @@ An easing curve as defined in DTCG [8.6](https://design-tokens.github.io/communi
 
 ## Number
 
-A number as defined in [DTCG 8.7](https://design-tokens.github.io/community-group/format/#number).
+A number as defined in [DTCG 8.7](https://www.designtokens.org/tr/2025.10/format/#number).
 
 ```json
 {
@@ -354,7 +354,7 @@ String types don’t have behavior in most plugins, and are only an escape hatch
 
 ## Stroke Style
 
-A type of stroke as defined in [DTCG 9.2](https://design-tokens.github.io/community-group/format/#stroke-style).
+A type of stroke as defined in [DTCG 9.3](https://www.designtokens.org/tr/2025.10/format/#stroke-style).
 
 ```json
 {
@@ -384,7 +384,7 @@ A Stroke Style token’s `$value` must be either of 2 possible types: `string` o
 
 #### String
 
-A string value as defined in [9.2.1](https://design-tokens.github.io/community-group/format/#string-value) must be one of the following keywords that correspond to the [equivalent CSS line styles](https://developer.mozilla.org/en-US/docs/Web/CSS/line-style#values):
+A string value as defined in [9.3.1](https://www.designtokens.org/tr/2025.10/format/#string-value) must be one of the following keywords that correspond to the [equivalent CSS line styles](https://developer.mozilla.org/en-US/docs/Web/CSS/line-style#values):
 
 - `solid`
 - `dashed`
@@ -397,7 +397,7 @@ A string value as defined in [9.2.1](https://design-tokens.github.io/community-g
 
 #### Object
 
-An object value as defined in [9.2.2](https://design-tokens.github.io/community-group/format/#object-value) is an object that must have the following 2 properties:
+An object value as defined in [9.3.2](https://www.designtokens.org/tr/2025.10/format/#object-value) is an object that must have the following 2 properties:
 
 | Property    | Type       | Description                                                                        |
 | :---------- | :--------- | :--------------------------------------------------------------------------------- |
@@ -406,7 +406,7 @@ An object value as defined in [9.2.2](https://design-tokens.github.io/community-
 
 ### Notes
 
-- Stroke Style is the only [composite token](https://design-tokens.github.io/community-group/format/#composite-types) type that can also be used in another composite type ([Border](#border))
+- Stroke Style is the only [composite token](https://www.designtokens.org/tr/2025.10/format/#composite-types) type that can also be used in another composite type ([Border](#border))
 
 ### See also
 
@@ -414,7 +414,7 @@ An object value as defined in [9.2.2](https://design-tokens.github.io/community-
 
 ## Border
 
-A composite type combining a [color](#color), [dimension](#dimension), and [stroke style](#stroke-style), as defined in [DTCG 9.3](https://design-tokens.github.io/community-group/format/#border).
+A composite type combining a [color](#color), [dimension](#dimension), and [stroke style](#stroke-style), as defined in [DTCG 9.4](https://www.designtokens.org/tr/2025.10/format/#border).
 
 ```json
 {
@@ -437,7 +437,7 @@ A composite type combining a [color](#color), [dimension](#dimension), and [stro
 
 ## Transition
 
-A composite type combining [duration](#duration) and [cubicBezier](#cubic-bezier) types to form a CSS transition, as defined in [DTCG 9.4](https://design-tokens.github.io/community-group/format/#transition).
+A composite type combining [duration](#duration) and [cubicBezier](#cubic-bezier) types to form a CSS transition, as defined in [DTCG 9.5](https://www.designtokens.org/tr/2025.10/format/#transition).
 
 ```json
 {
@@ -460,7 +460,7 @@ A composite type combining [duration](#duration) and [cubicBezier](#cubic-bezier
 
 ## Shadow
 
-A composite type combining [dimension](#dimension) with a [color](#color) to form a CSS `box-shadow`, as defined in [DTCG 9.5](https://design-tokens.github.io/community-group/format/#shadow).
+A composite type combining [dimension](#dimension) with a [color](#color) to form a CSS `box-shadow`, as defined in [DTCG 9.6](https://www.designtokens.org/tr/2025.10/format/#shadow).
 
 ```json
 {
@@ -489,7 +489,7 @@ A composite type combining [dimension](#dimension) with a [color](#color) to for
 
 ## Gradient
 
-A composite type combining [color](#color) and [number](#number)(normalized to `1`) to form the stops of a CSS gradient, as defined in [DTCG 9.6](https://design-tokens.github.io/community-group/format/#gradient).
+A composite type combining [color](#color) and [number](#number)(normalized to `1`) to form the stops of a CSS gradient, as defined in [DTCG 9.7](https://www.designtokens.org/tr/2025.10/format/#gradient).
 
 ```json
 {
@@ -525,7 +525,7 @@ A composite type combining [color](#color) and [number](#number)(normalized to `
 
 ## Typography
 
-A composite type combining [fontFamily](#font-family), [dimension](#dimension), and other properties to form a complete typographic style, as defined in [DTCG 9.7](https://design-tokens.github.io/community-group/format/#typography).
+A composite type combining [fontFamily](#font-family), [dimension](#dimension), and other properties to form a complete typographic style, as defined in [DTCG 9.8](https://www.designtokens.org/tr/2025.10/format/#typography).
 
 ```json
 {
