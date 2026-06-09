@@ -1,5 +1,18 @@
 # @terrazzo/plugin-css-in-js
 
+## 3.0.0
+
+### Minor Changes
+
+- [#769](https://github.com/terrazzoapp/terrazzo/pull/769) [`96972d4`](https://github.com/terrazzoapp/terrazzo/commit/96972d4d4aee14a7ca290864c275a48e8f9139ba) Thanks [@drwpow](https://github.com/drwpow)! - [plugin-css]: Minor breaking change: inherit `alphabetize` from options
+
+### Patch Changes
+
+- Updated dependencies [[`96972d4`](https://github.com/terrazzoapp/terrazzo/commit/96972d4d4aee14a7ca290864c275a48e8f9139ba), [`a9a6bdc`](https://github.com/terrazzoapp/terrazzo/commit/a9a6bdc6f42977d13069ce1d87f3ac26a513099f)]:
+  - @terrazzo/plugin-css@3.0.0
+  - @terrazzo/cli@2.3.0
+  - @terrazzo/parser@2.3.0
+
 ## 2.2.0
 
 ### Patch Changes

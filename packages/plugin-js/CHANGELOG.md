@@ -1,5 +1,21 @@
 # @terrazzo/plugin-js
 
+## 3.0.0
+
+### Minor Changes
+
+- [#769](https://github.com/terrazzoapp/terrazzo/pull/769) [`96972d4`](https://github.com/terrazzoapp/terrazzo/commit/96972d4d4aee14a7ca290864c275a48e8f9139ba) Thanks [@drwpow](https://github.com/drwpow)! - [plugin-css]: Minor breaking change: inherit `alphabetize` from options
+
+- [#763](https://github.com/terrazzoapp/terrazzo/pull/763) [`1d353be`](https://github.com/terrazzoapp/terrazzo/commit/1d353be6bc126c7cfb73a8ecc78680fbd42ca2f3) Thanks [@unpunnyfuns](https://github.com/unpunnyfuns)! - Register a `transform` hook on plugin-js so each token gets a transform entry under `format: "js"`. The transform's `localID` matches the token id; the `value` and `meta['token-listing'].name` carry a JS access expression like `tokens["color.brand.500"]`. This aligns plugin-js with the other format plugins (css/sass/swift/tailwind/vanilla-extract/css-in-js) which all register transforms, and lets plugin-token-listing populate the `js` row of its per-platform `names` map by name lookup the same way it does for the other plugins.
+
+  No build-output change; the existing `build` hook is unchanged. Consumers not using token-listing see no functional difference.
+
+### Patch Changes
+
+- Updated dependencies [[`96972d4`](https://github.com/terrazzoapp/terrazzo/commit/96972d4d4aee14a7ca290864c275a48e8f9139ba)]:
+  - @terrazzo/cli@2.3.0
+  - @terrazzo/parser@2.3.0
+
 ## 2.2.0
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # @terrazzo/token-tools
 
+## 2.3.0
+
+### Minor Changes
+
+- [#769](https://github.com/terrazzoapp/terrazzo/pull/769) [`96972d4`](https://github.com/terrazzoapp/terrazzo/commit/96972d4d4aee14a7ca290864c275a48e8f9139ba) Thanks [@drwpow](https://github.com/drwpow)! - [plugin-css]: Minor breaking change: inherit `alphabetize` from options
+
+### Patch Changes
+
+- [#764](https://github.com/terrazzoapp/terrazzo/pull/764) [`77fc2e9`](https://github.com/terrazzoapp/terrazzo/commit/77fc2e97b3b15c9b4dcb9a66d796438c9fc482a7) Thanks [@unpunnyfuns](https://github.com/unpunnyfuns)! - Fix CSS transformation of a typography token that aliases another typography token. The alias now resolves to a complete sub-token instead of a mode-less `{ id }` stub, so consumers that recursively transform it (e.g. plugin-token-listing's preview values) get a real value instead of crashing.
+
+- [#772](https://github.com/terrazzoapp/terrazzo/pull/772) [`a9a6bdc`](https://github.com/terrazzoapp/terrazzo/commit/a9a6bdc6f42977d13069ce1d87f3ac26a513099f) Thanks [@marko1olo](https://github.com/marko1olo)! - Preserve units on zero-valued dimension tokens instead of serializing them as bare `0`.
+
+  This keeps generated design-token values such as `0px` and `0rem` type-compatible when consumers compose them in CSS math functions like `calc()`.
+
 ## 2.2.0
 
 ### Minor Changes
