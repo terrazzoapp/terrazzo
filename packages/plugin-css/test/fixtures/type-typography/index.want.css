@@ -8,7 +8,7 @@
   --ds-typography-body-font-size: 16px;
   --ds-typography-body-font-variation-settings: "wght" 100, "opsz" 100, "wdth" 50;
   --ds-typography-body-font-weight: 400;
-  --ds-typography-body-letter-spacing: 0;
+  --ds-typography-body-letter-spacing: 0rem;
   --ds-typography-body-line-height: 1.5;
   --ds-typography-callout: var(--ds-typography-callout-font-style) var(--ds-typography-callout-font-weight) var(--ds-typography-callout-font-size)/var(--ds-typography-callout-line-height) var(--ds-typography-callout-font-family);
   --ds-typography-callout-font-family: var(--ds-typography-family-body);
@@ -16,7 +16,7 @@
   --ds-typography-callout-font-style: italic;
   --ds-typography-callout-font-variation-settings: "wght" 100, "opsz" 100, "wdth" 50;
   --ds-typography-callout-font-weight: 300;
-  --ds-typography-callout-letter-spacing: 0;
+  --ds-typography-callout-letter-spacing: 0rem;
   --ds-typography-callout-line-height: 1.5;
   --ds-typography-family-body: "IBM Plex Sans", system-ui, sans-serif;
   --ds-typography-family-footnote: var(--ds-typography-family-body);
@@ -52,7 +52,7 @@
     --ds-typography-body-font-size: 14px;
     --ds-typography-body-font-variation-settings: "wght" 100, "opsz" 100, "wdth" 50;
     --ds-typography-body-font-weight: 400;
-    --ds-typography-body-letter-spacing: 0;
+    --ds-typography-body-letter-spacing: 0rem;
     --ds-typography-body-line-height: 1.5;
     --ds-typography-callout: var(--ds-typography-callout-font-style) var(--ds-typography-callout-font-weight) var(--ds-typography-callout-font-size)/var(--ds-typography-callout-line-height) var(--ds-typography-callout-font-family);
     --ds-typography-callout-font-family: var(--ds-typography-family-body);
@@ -60,7 +60,7 @@
     --ds-typography-callout-font-style: italic;
     --ds-typography-callout-font-variation-settings: "wght" 100, "opsz" 100, "wdth" 50;
     --ds-typography-callout-font-weight: 300;
-    --ds-typography-callout-letter-spacing: 0;
+    --ds-typography-callout-letter-spacing: 0rem;
     --ds-typography-callout-line-height: 1.5;
     --ds-typography-family-body: "IBM Plex Sans", system-ui, sans-serif;
     --ds-typography-family-footnote: var(--ds-typography-family-body);

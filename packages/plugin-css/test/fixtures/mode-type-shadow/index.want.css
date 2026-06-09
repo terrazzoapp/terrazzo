@@ -4,20 +4,20 @@
 
 :root {
   --ds-shadow-base: var(--ds-shadow-simple);
-  --ds-shadow-inset: inset 0 4px 8px 0 rgb(0% 0% 0% / 0.15);
-  --ds-shadow-layered: 0 1px 1px 0 rgb(0% 0% 0% / 0.12), 0 2px 2px 0 rgb(0% 0% 0% / 0.12), 0 4px 4px 0 rgb(0% 0% 0% / 0.12), 0 8px 8px 0 rgb(0% 0% 0% / 0.12), 0 16px 16px 0 rgb(0% 0% 0% / 0.12);
-  --ds-shadow-neon: 0 0 0 0.5rem oklch(78.56% 0.25 144.6);
-  --ds-shadow-simple: 0 4px 8px 0 rgb(0% 0% 0% / 0.15);
+  --ds-shadow-inset: inset 0px 4px 8px 0px rgb(0% 0% 0% / 0.15);
+  --ds-shadow-layered: 0px 1px 1px 0px rgb(0% 0% 0% / 0.12), 0px 2px 2px 0px rgb(0% 0% 0% / 0.12), 0px 4px 4px 0px rgb(0% 0% 0% / 0.12), 0px 8px 8px 0px rgb(0% 0% 0% / 0.12), 0px 16px 16px 0px rgb(0% 0% 0% / 0.12);
+  --ds-shadow-neon: 0px 0px 0px 0.5rem oklch(78.56% 0.25 144.6);
+  --ds-shadow-simple: 0px 4px 8px 0px rgb(0% 0% 0% / 0.15);
 }
 
 @media (color-gamut: p3) {
   :root {
-    --ds-shadow-neon: 0 0 0 0.5rem oklch(78.32% 0.34 145.6);
+    --ds-shadow-neon: 0px 0px 0px 0.5rem oklch(78.32% 0.34 145.6);
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
-    --ds-shadow-neon: 0 0 0 0.5rem oklch(77.65% 0.353 147.2);
+    --ds-shadow-neon: 0px 0px 0px 0.5rem oklch(77.65% 0.353 147.2);
   }
 }
