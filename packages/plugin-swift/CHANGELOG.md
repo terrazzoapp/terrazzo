@@ -1,10 +1,6 @@
 # @terrazzo/plugin-swift
 
-## 1.0.0
-
-### Minor Changes
-
-- [#769](https://github.com/terrazzoapp/terrazzo/pull/769) [`96972d4`](https://github.com/terrazzoapp/terrazzo/commit/96972d4d4aee14a7ca290864c275a48e8f9139ba) Thanks [@drwpow](https://github.com/drwpow)! - [plugin-css]: Minor breaking change: inherit `alphabetize` from options
+## 0.3.2
 
 ### Patch Changes
 
