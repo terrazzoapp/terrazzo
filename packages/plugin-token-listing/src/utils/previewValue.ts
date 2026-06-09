@@ -34,7 +34,7 @@ export function computePreviewValue({
      * the same mode, so we revert to the default mode in that case, which will often, but not
      * always, yield the correct value. This algorithm prints wrong values when an aliased token
      * is affected by a different set of modes. */
-    const modeToTransformWith = mode && mode in rToken.mode ? mode : '.';
+    const modeToTransformWith = mode && rToken.mode && mode in rToken.mode ? mode : '.';
     const computed = transformCSSValue(
       { ...rToken, ...(modeToTransformWith === '.' ? undefined : (rToken.mode[modeToTransformWith] as any)) },
       {
