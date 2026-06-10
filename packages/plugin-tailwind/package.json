@@ -21,6 +21,10 @@
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "packages/plugin-tailwind"
   },
+  "bugs": {
+    "url": "https://github.com/terrazzoapp/terrazzo/issues"
+  },
+  "homepage": "https://github.com/terrazzoapp/terrazzo#readme",
   "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
