@@ -16,12 +16,12 @@
   --ds-color-blue-4: rgb(12.941% 54.51% 100%);
   --ds-color-blue-5: rgb(3.5294% 41.176% 85.49%);
   --ds-color-blue-6: rgb(1.9608% 31.373% 68.235%);
-  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-blue-7: rgb(1.1765% 23.922% 54.51%);
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: rgb(3.9216% 18.824% 41.176%);
   --ds-color-blue-9: rgb(0% 12.941% 33.333%);
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(63.34% 0.2011 253.9);
+  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
@@ -54,12 +54,12 @@
   --ds-color-blue-4: rgb(12.941% 54.51% 100%);
   --ds-color-blue-5: rgb(3.5294% 41.176% 85.49%);
   --ds-color-blue-6: rgb(1.9608% 31.373% 68.235%);
-  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-blue-7: rgb(1.1765% 23.922% 54.51%);
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: rgb(3.9216% 18.824% 41.176%);
   --ds-color-blue-9: rgb(0% 12.941% 33.333%);
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(63.34% 0.2011 253.9);
+  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
@@ -90,12 +90,12 @@
   --ds-color-blue-4: rgb(6.6667% 40.784% 89.02%);
   --ds-color-blue-5: rgb(1.1765% 28.627% 70.588%);
   --ds-color-blue-6: rgb(0.78431% 23.137% 58.431%);
-  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-blue-7: rgb(0.78431% 18.431% 47.843%);
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: rgb(1.1765% 14.51% 38.824%);
   --ds-color-blue-9: rgb(0.78431% 10.196% 29.02%);
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(54.35% 0.2531 262.1);
+  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
@@ -127,12 +127,12 @@
   --ds-color-blue-4: rgb(21.961% 54.51% 99.216%);
   --ds-color-blue-5: rgb(12.157% 43.529% 92.157%);
   --ds-color-blue-6: rgb(6.6667% 34.51% 78.039%);
-  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-blue-7: rgb(5.098% 25.49% 61.569%);
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: rgb(4.7059% 17.647% 41.961%);
   --ds-color-blue-9: rgb(1.9608% 11.373% 30.196%);
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(63.79% 0.1969 255.8);
+  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
@@ -166,12 +166,12 @@
   --ds-color-blue-4: rgb(25.49% 51.765% 89.412%);
   --ds-color-blue-5: rgb(19.216% 42.745% 79.216%);
   --ds-color-blue-6: rgb(14.51% 35.294% 69.804%);
-  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-blue-7: rgb(10.588% 29.412% 56.863%);
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: rgb(7.8431% 23.922% 47.451%);
   --ds-color-blue-9: rgb(5.8824% 17.647% 36.078%);
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(61.77% 0.161 257.75);
+  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
@@ -189,12 +189,12 @@
   --ds-color-blue-4: rgb(25.098% 61.961% 100%);
   --ds-color-blue-5: rgb(25.098% 61.961% 100%);
   --ds-color-blue-6: rgb(19.216% 54.51% 97.255%);
-  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-blue-7: rgb(14.902% 44.706% 95.294%);
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: rgb(11.765% 37.647% 83.529%);
   --ds-color-blue-9: rgb(9.8039% 30.98% 69.412%);
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(69.05% 0.1695 249.8);
+  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
@@ -228,12 +228,12 @@
   --ds-color-blue-4: rgb(21.961% 54.51% 99.216%);
   --ds-color-blue-5: rgb(12.157% 43.529% 92.157%);
   --ds-color-blue-6: rgb(6.6667% 34.51% 78.039%);
-  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-blue-7: rgb(5.098% 25.49% 61.569%);
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: rgb(4.7059% 17.647% 41.961%);
   --ds-color-blue-9: rgb(1.9608% 11.373% 30.196%);
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(63.79% 0.1969 255.8);
+  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 

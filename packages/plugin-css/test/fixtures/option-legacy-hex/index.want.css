@@ -11,16 +11,16 @@
   --ds-color-blue-4: #218bff;
   --ds-color-blue-5: #0969da;
   --ds-color-blue-6: #0550ae;
-  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-blue-7: #033d8b;
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(63.34% 0.2011 253.9);
+  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
-  --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
+  --ds-shadow: 0px 1px 1px 0px #0000001f, 0px 2px 2px 0px #0000001f, 0px 4px 4px 0px #0000001f, 0px 8px 8px 0px #0000001f, 0px 16px 16px 0px #0000001f;
 }
 
 @media (color-gamut: p3) {
@@ -48,16 +48,16 @@
   --ds-color-blue-4: #218bff;
   --ds-color-blue-5: #0969da;
   --ds-color-blue-6: #0550ae;
-  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-blue-7: #033d8b;
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(63.34% 0.2011 253.9);
+  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
-  --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
+  --ds-shadow: 0px 1px 1px 0px #0000001f, 0px 2px 2px 0px #0000001f, 0px 4px 4px 0px #0000001f, 0px 8px 8px 0px #0000001f, 0px 16px 16px 0px #0000001f;
 }
 
 @media (color-gamut: p3) {
@@ -86,16 +86,16 @@
     --ds-color-blue-4: #388bfd;
     --ds-color-blue-5: #1f6feb;
     --ds-color-blue-6: #1158c7;
-    --ds-color-text-action: var(--ds-color-blue-5);
     --ds-color-blue-7: #0d419d;
-    --ds-color-control-border-focus: var(--ds-color-blue-6);
     --ds-color-blue-8: #0c2d6b;
     --ds-color-blue-9: #051d4d;
+    --ds-color-control-border-focus: var(--ds-color-blue-6);
     --ds-color-hdr-blue: oklch(63.79% 0.1969 255.8);
+    --ds-color-text-action: var(--ds-color-blue-5);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
     --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
     --ds-gradient-default: var(--ds-gradient-blue-pink);
-    --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
+    --ds-shadow: 0px 1px 1px 0px #0000001f, 0px 2px 2px 0px #0000001f, 0px 4px 4px 0px #0000001f, 0px 8px 8px 0px #0000001f, 0px 16px 16px 0px #0000001f;
   }
 }
 
@@ -128,16 +128,16 @@
   --ds-color-blue-4: #388bfd;
   --ds-color-blue-5: #1f6feb;
   --ds-color-blue-6: #1158c7;
-  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-blue-7: #0d419d;
-  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-blue-8: #0c2d6b;
   --ds-color-blue-9: #051d4d;
+  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: oklch(63.79% 0.1969 255.8);
+  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
-  --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
+  --ds-shadow: 0px 1px 1px 0px #0000001f, 0px 2px 2px 0px #0000001f, 0px 4px 4px 0px #0000001f, 0px 8px 8px 0px #0000001f, 0px 16px 16px 0px #0000001f;
 }
 
 @media (color-gamut: p3) {
@@ -164,16 +164,16 @@
   --ds-color-blue-4: #218bff;
   --ds-color-blue-5: #0969da;
   --ds-color-blue-6: #0550ae;
-  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-blue-7: #033d8b;
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(63.34% 0.2011 253.9);
+  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
-  --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
+  --ds-shadow: 0px 1px 1px 0px #0000001f, 0px 2px 2px 0px #0000001f, 0px 4px 4px 0px #0000001f, 0px 8px 8px 0px #0000001f, 0px 16px 16px 0px #0000001f;
 }
 
 @media (color-gamut: p3) {
@@ -198,16 +198,16 @@
   --ds-color-blue-4: #1168e3;
   --ds-color-blue-5: #0349b4;
   --ds-color-blue-6: #023b95;
-  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-blue-7: #022f7a;
-  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-blue-8: #032563;
   --ds-color-blue-9: #021a4a;
+  --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: oklch(54.35% 0.2531 262.1);
+  --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
-  --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
+  --ds-shadow: 0px 1px 1px 0px #0000001f, 0px 2px 2px 0px #0000001f, 0px 4px 4px 0px #0000001f, 0px 8px 8px 0px #0000001f, 0px 16px 16px 0px #0000001f;
 }
 
 @media (color-gamut: p3) {
@@ -233,16 +233,16 @@
   --ds-color-blue-4: #4184e4;
   --ds-color-blue-5: #316dca;
   --ds-color-blue-6: #255ab2;
-  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-blue-7: #1b4b91;
-  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-blue-8: #143d79;
   --ds-color-blue-9: #0f2d5c;
+  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: #4184e4;
+  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
-  --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
+  --ds-shadow: 0px 1px 1px 0px #0000001f, 0px 2px 2px 0px #0000001f, 0px 4px 4px 0px #0000001f, 0px 8px 8px 0px #0000001f, 0px 16px 16px 0px #0000001f;
 }
 
 [data-color-theme="dark-high-contrast"] {
@@ -254,16 +254,16 @@
   --ds-color-blue-4: #409eff;
   --ds-color-blue-5: #409eff;
   --ds-color-blue-6: #318bf8;
-  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-blue-7: #2672f3;
-  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-blue-8: #1e60d5;
   --ds-color-blue-9: #194fb1;
+  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: oklch(69.05% 0.1695 249.8);
+  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
-  --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
+  --ds-shadow: 0px 1px 1px 0px #0000001f, 0px 2px 2px 0px #0000001f, 0px 4px 4px 0px #0000001f, 0px 8px 8px 0px #0000001f, 0px 16px 16px 0px #0000001f;
 }
 
 @media (color-gamut: p3) {
@@ -291,16 +291,16 @@
   --ds-color-blue-4: #388bfd;
   --ds-color-blue-5: #1f6feb;
   --ds-color-blue-6: #1158c7;
-  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-blue-7: #0d419d;
-  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-blue-8: #0c2d6b;
   --ds-color-blue-9: #051d4d;
+  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: oklch(63.79% 0.1969 255.8);
+  --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
-  --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
+  --ds-shadow: 0px 1px 1px 0px #0000001f, 0px 2px 2px 0px #0000001f, 0px 4px 4px 0px #0000001f, 0px 8px 8px 0px #0000001f, 0px 16px 16px 0px #0000001f;
 }
 
 @media (color-gamut: p3) {

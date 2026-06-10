@@ -12,5 +12,5 @@ export function transformDimension(
     return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
 
-  return token.$value.value === 0 ? '0' : `${token.$value.value}${token.$value.unit}`;
+  return `${token.$value.value}${token.$value.unit}`;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-js",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Use DTCG tokens in Node.js for server-rendered applications.",
   "license": "MIT",
   "type": "module",
