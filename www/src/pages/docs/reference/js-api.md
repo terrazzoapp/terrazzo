@@ -270,14 +270,43 @@ import { createResolver, parse } from "@terrazzo/parser";
 const { resolver } = await parse(sources, { config });
 const r = createResolver(resolver);
 
-for (const input of r.inputPermutations) {
+for (const input of r.listPermutations() ?? [{}]) {
   r.apply(input); // tokens for this input
 }
 ```
 
-It’s up to you to specify all the permutations desired. `.getAllInputPermutations()` will return an array of all possible inputs for the specified modifiers.
+It’s up to you to specify all the permutations desired.
 
-If the resolver specified zero modifiers, the array will be `[{}]` so you can still produce at least 1 valid tokens set. Thus, it will never be an empty array.
+The `listPermutations` API will return an array of all possible inputs for the specified modifiers, if
+that list of inputs is less than the configured maximum (`permutationLimit`). This guards against combinatorial explosions
+in complex resolvers.
+
+If the resolver specified zero modifiers, the `listPermutations` will return `[{}]` so you can still produce at least 1 valid tokens set. Thus, it will never be an empty array.
+
+
+### Partial resolver application
+
+```ts
+import { createResolver, parse } from "@terrazzo/parser";
+
+const { resolver } = await parse(sources, { config });
+const r = createResolver(resolver);
+
+r.apply({ theme: 'light' }, { modifiers: ['theme'], resolveAlises: false });
+```
+
+It may be useful to apply an input to only a specific subset of tokens within the resolver.
+
+The second argument to `apply` is an object that allows you to specify to which sets or modifiers you
+wish to apply the input. This may offer a great time saving on repeated applications across
+multiple inputs.
+
+By default, `apply` will resolve DTCG aliases. If a only a subset of tokens are processed, this is likely
+to cause reference errors. Setting `resolveAliases` to `false` will return unresolved aliases and enable
+partial application.
+
+Note that `$extends` directives that reference tokens outside of the subset will fail to resolve
+regardless of the `resolveAlaises` setting.
 
 ### API
 
@@ -285,10 +314,10 @@ If the resolver specified zero modifiers, the array will be `[{}]` so you can st
 
 `createResolver(resolver)` returns a resolver with the following methods:
 
-| Name                  | Type                                                               | Description                                                                                                                                           |
-| :-------------------- | :----------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **apply**             | `(input: Record<string, string>) => TokensMap`                     | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                                                             |
-| **inputPermutations** | `Record<string, string>[]`                                         | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).                                                |
-| **isValidInput**      | `(input: Record<string, string>, throwError?: boolean) => boolean` | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |
-| **getPermutationID**  | `(input: Record<string, string>) => string`                        | Returns a stable, deterministic ID from an input. This can also be parsed by JSON back into a normalized input.                                       |
-| **source**            | Resolver                                                           | Original resolver, in case you want to manually verify something or implement new logic.                                                              |
+| Name                 | Type                                                                                 | Description                                                                                                                                           |
+|:---------------------|:-------------------------------------------------------------------------------------| :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **apply**            | `(input: Record<string, string>, options?: ResolverApplicationOptions) => TokensMap` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                                                             |
+| **listPermutations** | `() => Record<string, string>[]`                                                     | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).                                                |
+| **isValidInput**     | `(input: Record<string, string>, throwError?: boolean) => boolean`                   | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |
+| **getPermutationID** | `(input: Record<string, string>) => string`                                          | Returns a stable, deterministic ID from an input. This can also be parsed by JSON back into a normalized input.                                       |
+| **source**           | Resolver                                                                             | Original resolver, in case you want to manually verify something or implement new logic.                                                              |
