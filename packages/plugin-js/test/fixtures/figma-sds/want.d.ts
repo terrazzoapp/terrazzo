@@ -8,7 +8,7 @@ import type {
   TypographyTokenNormalized,
   FontFamilyTokenNormalized,
   FontWeightTokenNormalized,
-} from "@terrazzo/parser";
+} from "@terrazzo/token-types";
 
 export const PERMUTATIONS: Record<string, TokenNormalizedSet>;
 
