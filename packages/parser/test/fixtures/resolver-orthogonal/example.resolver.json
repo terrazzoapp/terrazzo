@@ -1,0 +1,37 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/sets/a" },
+    { "$ref": "#/sets/b" },
+    { "$ref": "#/modifiers/theme" },
+    { "$ref": "#/modifiers/contrast" }
+  ],
+  "sets": {
+    "a": {
+      "sources": [
+        { "weight": { "normal": { "$type": "fontWeight", "$value": 400 } } },
+        { "color": { "text": { "$type": "color", "$value": { "colorSpace": "srgb", "components": [0.5, 0.5, 0.5] } } } }
+      ]
+    },
+    "b": {
+      "sources": [{ "weight": { "bold": { "$type": "fontWeight", "$value": 700 } } }]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "name": "a",
+      "contexts": {
+        "light": [{ "$ref": "./theme-light.json" }],
+        "dark": [{ "$ref": "./theme-dark.json" }]
+      }
+    },
+    "contrast": {
+      "name": "a",
+      "contexts": {
+        "default": [{ "$ref": "./contrast-default.json" }],
+        "slim": [{ "$ref": "./contrast-slim.json" }]
+      }
+    }
+  }
+}

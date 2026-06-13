@@ -236,6 +236,7 @@ describe('Resolver module', () => {
           },
           _source: expect.objectContaining({}), // ignore specifics here, as long as it exists
         });
+        expect(resolver.orthogonal).toBe(true);
       });
     });
 
@@ -401,7 +402,7 @@ describe('Resolver module', () => {
 
   describe('additional cases', () => {
     it('filesystem', async () => {
-      const cwd = new URL('./fixtures/resolver/', import.meta.url);
+      const cwd = new URL('./fixtures/resolver-simple/', import.meta.url);
 
       const filename = new URL('example.resolver.json', cwd);
       const config = defineConfig({}, { cwd });
@@ -450,6 +451,7 @@ describe('Resolver module', () => {
         }),
       });
 
+      expect(resolver?.orthogonal).toBe(true);
       expect(resolver?.listPermutations?.(), 'listPermutations()').toEqual([{ theme: 'light' }, { theme: 'dark' }]);
       expect(resolver?.isValidInput({ theme: 'dark' }), 'isValidInput({theme: dark})').toBe(true);
       expect(resolver?.isValidInput({}), 'isValidInput({})').toBe(false);
@@ -460,7 +462,7 @@ describe('Resolver module', () => {
 
 describe('permutation limit', () => {
   it('allows listPermutations for small resolvers', async () => {
-    const cwd = new URL('./fixtures/resolver/', import.meta.url);
+    const cwd = new URL('./fixtures/resolver-simple/', import.meta.url);
     const filename = new URL('example.resolver.json', cwd);
     const config = defineConfig({}, { cwd });
     const { resolver } = await parse(
@@ -472,12 +474,13 @@ describe('permutation limit', () => {
       ],
       { config },
     );
+    expect(resolver?.orthogonal).toBe(true);
     expect(resolver.listPermutations).not.toBeUndefined();
     expect(resolver.listPermutations!().length).toBe(2);
   });
 
   it('disables listPermutations for complex resolvers', async () => {
-    const cwd = new URL('./fixtures/resolver/', import.meta.url);
+    const cwd = new URL('./fixtures/resolver-simple/', import.meta.url);
     const filename = new URL('example.resolver.json', cwd);
     const config = defineConfig({ permutationLimit: 1 }, { cwd });
     const { resolver } = await parse(
@@ -489,7 +492,22 @@ describe('permutation limit', () => {
       ],
       { config },
     );
+    expect(resolver?.orthogonal).toBe(true);
     expect(resolver.listPermutations).toBeUndefined();
+  });
+});
+
+describe('orthogonality', () => {
+  it.each([
+    'orthogonal',
+    'non-orthogonal',
+    // 'non-orthogonal-extends' // TODO: fix this
+  ])('%s', async (dir) => {
+    const cwd = new URL(`./fixtures/resolver-${dir}/`, import.meta.url);
+    const filename = new URL('example.resolver.json', cwd);
+    const config = defineConfig({}, { cwd });
+    const { resolver } = await parse([{ filename, src: await fs.readFile(filename, 'utf8') }], { config });
+    expect(resolver.orthogonal).toBe(!dir.includes('non-'));
   });
 });
 

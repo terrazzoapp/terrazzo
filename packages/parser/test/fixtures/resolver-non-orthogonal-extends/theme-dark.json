@@ -1,0 +1,4 @@
+{
+  "$extends": { "$ref": "./contrast-slim.json" },
+  "color": { "text": { "$type": "color", "$value": { "colorSpace": "srgb", "components": [0.7, 0.7, 0.7] } } }
+}
