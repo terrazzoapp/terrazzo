@@ -378,6 +378,13 @@ export interface Resolver<
   source: ResolverSourceNormalized;
   /** Helper function for permutations—see if a particular input is valid. Automatically applies default values. */
   isValidInput: (input: Input, throwError?: boolean) => boolean;
+  /**
+   * Do all modifiers in this resolver operate on unique tokens?
+   *
+   * This is all-or-nothing, if even a single token is referenced in 2
+   * modifiers, the entire resolver is non-orthogonal.
+   */
+  orthogonal: boolean;
 }
 
 export interface ResolverSource {

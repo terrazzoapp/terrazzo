@@ -72,9 +72,15 @@ export async function loadResolver(
       src: inputs[0]!.src,
       yamlToMomoa,
     });
-    resolver = createResolver(normalized, { config, logger, sources: [{ ...inputs[0]!, document: resolverDoc }] });
 
-    // If a resolver is present, load a single permutation to get a base token set.
+    resolver = createResolver(normalized, {
+      config,
+      logger,
+      sources: [{ ...inputs[0]!, document: resolverDoc }],
+      orthogonal: false, // we’ll override this in the next step
+    });
+
+    // Load initial tokens
     const firstInput: ResolverInput = {};
     for (const m of resolver.source.resolutionOrder) {
       if (m.type !== 'modifier') {
@@ -83,6 +89,9 @@ export async function loadResolver(
       firstInput[m.name] = typeof m.default === 'string' ? m.default : Object.keys(m.contexts)[0]!;
     }
     tokens = resolver.apply(firstInput);
+
+    // Determine orthogonality
+    resolver.orthogonal = isResolverOrthogonal(normalized, logger);
   }
 
   return {
@@ -96,12 +105,13 @@ export interface CreateResolverOptions {
   config: ConfigInit;
   logger: Logger;
   sources: InputSourceWithDocument[];
+  orthogonal: boolean;
 }
 
 /** Create an interface to resolve permutations */
 export function createResolver(
   resolverSource: ResolverSourceNormalized,
-  { config, logger, sources }: CreateResolverOptions,
+  { config, logger, sources, orthogonal }: CreateResolverOptions,
 ): Resolver {
   const inputDefaults: ResolverInput = {};
   const validContexts: Record<string, string[]> = {};
@@ -175,6 +185,7 @@ export function createResolver(
       resolverCache[permutationID] = tokens;
       return tokens;
     },
+    orthogonal,
     source: resolverSource,
     listPermutations:
       permutationCount <= config.permutationLimit
@@ -248,4 +259,64 @@ export function calculatePermutations(options: [string, string[]][]) {
     permutations.push(input);
   }
   return permutations.length ? permutations : [{}];
+}
+
+/** Determine Resolver orthogonality using as little work as possible */
+function isResolverOrthogonal(resolver: ResolverSourceNormalized, logger: Logger): boolean {
+  // Keep a record of which tokens are in which modifier.
+  // Note that modifiers are allowed to have multiple appearances of the same
+  // token! So don’t simply return `false` on the reappearance of the same
+  // token, only return `false` for a token that appeared in another modifier.
+  const tokensByModifier: Record<string, string> = {};
+
+  // Note: this is a muuuuch lighter-weight walking utility than we need
+  // anywhere else. We want this to be as fast as possible, and do as little
+  // work as possible, and also have the unique property of stopping the walk
+  // under certain conditions.
+  function discoverTokens(node: any, onVisit: (id: string) => boolean | undefined, path: string[] = []): boolean {
+    if (!node || typeof node !== 'object') {
+      return true;
+    }
+    const keys = Object.keys(node);
+    for (const key of keys) {
+      if (key === '$extends') {
+        logger.warn({ group: 'parser', label: 'init', message: `Can’t determine orthogonality with $extends.` });
+      }
+      // "$value" marks a token
+      if (key === '$value') {
+        const shouldContinue = onVisit(path.join('.'));
+        if (shouldContinue === false) {
+          return false;
+        }
+      } else {
+        const shouldContinue = discoverTokens(node[key], onVisit, [...path, key]);
+        if (shouldContinue === false) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  for (const modifier of resolver.resolutionOrder) {
+    if (modifier.type !== 'modifier') {
+      continue;
+    }
+    for (const sources of Object.values(modifier.contexts)) {
+      for (const source of sources) {
+        const didComplete = discoverTokens(source, (id) => {
+          if (!tokensByModifier[id]) {
+            tokensByModifier[id] = modifier.name;
+            return true;
+          }
+          return tokensByModifier[id] === modifier.name;
+        });
+        if (!didComplete) {
+          return false;
+        }
+      }
+    }
+  }
+
+  return true;
 }

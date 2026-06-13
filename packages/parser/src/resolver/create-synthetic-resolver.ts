@@ -54,7 +54,7 @@ export async function createSyntheticResolver(
     req,
     src,
   });
-  return createResolver(normalized, { config, logger, sources });
+  return createResolver(normalized, { config, logger, sources, orthogonal: true });
 }
 
 /** Add a normalized token back into an arbitrary, hierarchial structure */
