@@ -1,6 +1,6 @@
 # @terrazzo/plugin-tailwind
 
-## 3.0.0
+## 2.4.0
 
 ### Minor Changes
 
@@ -13,7 +13,7 @@
 - Updated dependencies [[`bdca3be`](https://github.com/terrazzoapp/terrazzo/commit/bdca3be143f7d7a1f06e4ca50e652c85f1d12a24), [`84b1dba`](https://github.com/terrazzoapp/terrazzo/commit/84b1dbacc0fe1aa3331d90e61d308eb91f96f8d5)]:
   - @terrazzo/parser@2.4.0
   - @terrazzo/cli@2.4.0
-  - @terrazzo/plugin-css@3.0.0
+  - @terrazzo/plugin-css@2.4.0
   - @terrazzo/token-tools@2.4.0
 
 ## 2.3.0
