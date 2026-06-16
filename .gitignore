@@ -7,3 +7,4 @@ package-lock.json
 .env
 .turbo
 .vitest-*
+*.tsbuildinfo
