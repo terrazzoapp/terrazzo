@@ -27,13 +27,6 @@ export interface ColorData {
   };
 }
 
-function formatAssetCatalogComponent(value: number): string {
-  if (value === 0 || value === 1) {
-    return `${value}.0`;
-  }
-  return String(value);
-}
-
 export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptions = {}): Plugin {
   return {
     name: '@terrazzo/plugin-swift',
@@ -54,10 +47,10 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
                 format: FORMAT,
                 mode,
                 value: {
-                  red: formatAssetCatalogComponent(red),
-                  green: formatAssetCatalogComponent(green),
-                  blue: formatAssetCatalogComponent(blue),
-                  alpha: formatAssetCatalogComponent(alpha),
+                  red: toFloat(red),
+                  green: toFloat(green),
+                  blue: toFloat(blue),
+                  alpha: toFloat(alpha),
                 },
                 meta: { 'token-listing': { name: `Color("${token.id}")` } },
               });
@@ -96,4 +89,9 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
       }
     },
   };
+}
+
+/** Ensure all integers are represented as floats */
+function toFloat(v: unknown): string {
+  return typeof v === 'number' && v % 1 === 0 ? v.toFixed(1) : String(v);
 }
