@@ -460,6 +460,41 @@ describe('Resolver module', () => {
   });
 });
 
+describe('partial application', () => {
+  async function loadResolver() {
+    const cwd = new URL('./fixtures/complex-resolver/', import.meta.url);
+    const filename = new URL('resolver.json', cwd);
+    const config = defineConfig({}, { cwd });
+    const result = await parse(
+      [
+        {
+          filename,
+          src: await fs.readFile(filename, 'utf8'),
+        },
+      ],
+      { config },
+    );
+    return result.resolver;
+  }
+
+  it('returns only tokens from a set', async () => {
+    const resolver = await loadResolver();
+    const tokens = resolver.apply({}, { modifiers: [], sets: ['primitives'] });
+    expect(new Set(Object.keys(tokens))).toEqual(new Set(['dark-blue', 'dark-orange', 'light-blue', 'light-orange']));
+  });
+
+  it('returns only tokens from a modifier', async () => {
+    const resolver = await loadResolver();
+    // first try without disabling alias resolution - it should fail
+    expect(() => resolver.apply({}, { modifiers: ['mode'], sets: [] })).toThrow('Could not resolve alias');
+    // now with alias resolution disabled
+    const modeTokens = resolver.apply({}, { modifiers: ['mode'], sets: [], resolveAliases: false });
+    expect(new Set(Object.keys(modeTokens))).toEqual(new Set(['blue', 'orange']));
+    const themeTokens = resolver.apply({}, { modifiers: ['theme'], sets: [], resolveAliases: false });
+    expect(new Set(Object.keys(themeTokens))).toEqual(new Set(['color']));
+  });
+});
+
 describe('permutation limit', () => {
   it('allows listPermutations for small resolvers', async () => {
     const cwd = new URL('./fixtures/resolver-simple/', import.meta.url);

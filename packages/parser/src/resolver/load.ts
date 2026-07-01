@@ -180,6 +180,7 @@ export function createResolver(
         logger,
         sourceByFilename: { [resolverSource._source.filename!.href]: rootSource },
         isResolver: true,
+        resolveAliases: options?.resolveAliases ?? true,
         sources,
       });
       resolverCache[permutationID] = tokens;

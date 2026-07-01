@@ -40,6 +40,7 @@ export function getPermutationID(
           input: stableInput,
           sets: options?.sets?.sort(alphaComparator),
           modifiers: options?.modifiers?.sort(alphaComparator),
+          resolveAliases: options?.resolveAliases ?? true,
         }
       : stableInput,
   );

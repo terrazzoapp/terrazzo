@@ -349,7 +349,29 @@ export interface ReferenceObject {
 export type ResolverInput = Record<string, string>;
 
 export type ResolverApplicationOptions = {
+  /**
+   * Resolve DTCG aliases when applying the input.
+   *
+   * @default true
+   */
+  resolveAliases?: boolean;
+  /**
+   * Limit input application only to the listed sets.
+   *
+   * In combination with `modifiers`, this will limit output to only
+   * tokens declared within the options given. If tokens are referenced by alises
+   * outside these options, the application will fail unless `resolveAliases` is
+   * set to false.
+   */
   sets?: string[];
+  /**
+   * Limit input application only to the listed modifiers.
+   *
+   * In combination with `sets`, this will limit output to only
+   * tokens declared within the options given. If tokens are referenced by alises
+   * outside these options, the application will fail unless `resolveAliases` is
+   * set to false.
+   */
   modifiers?: string[];
 };
 
