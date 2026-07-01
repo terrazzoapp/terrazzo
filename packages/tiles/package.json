@@ -31,8 +31,8 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "@radix-ui/react-select": "^2.2.6",
-    "@radix-ui/react-tooltip": "^1.2.8",
+    "@radix-ui/react-select": "^2.3.1",
+    "@radix-ui/react-tooltip": "^1.2.10",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
@@ -51,7 +51,7 @@
     "chokidar-cli": "^3.0.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "rollup": "^4.60.4",
+    "rollup": "^4.62.2",
     "rollup-plugin-import-css": "^4.2.1",
     "size-limit": "^12.1.0",
     "vitest-axe": "^0.1.0"
