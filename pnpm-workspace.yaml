@@ -22,9 +22,12 @@ catalog:
   playwright: ^1.61.1
   react: ^19.2.7
   react-dom: ^19.2.7
-  vite: ^8.1.1
+  vite: ^8.1.2
   vitest: ^4.1.9
   yaml-to-momoa: 0.0.9
+
+minimumReleaseAgeExclude:
+  - vite@8.1.2
 
 onlyBuiltDependencies:
   - '@biomejs/biome'
