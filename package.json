@@ -36,7 +36,8 @@
     "stylelint-config-standard": "^40.0.0",
     "stylelint-order": "^8.1.1",
     "turbo": "^2.10.4",
-    "typescript": "^6.0.3",
+    "typescript": "npm:@typescript/typescript6@^6.0.0",
+    "typescript-7": "npm:typescript@^7.0.2",
     "vite": "catalog:",
     "vitest": "catalog:"
   },
