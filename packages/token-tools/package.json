@@ -30,13 +30,13 @@
   "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./css": "./dist/css.js",
-    "./js": "./dist/js.js",
+    "./css": "./dist/css/index.js",
+    "./js": "./dist/js/index.js",
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "rolldown -c && attw --profile esm-only --pack .",
-    "dev": "rolldown -w -c",
+    "build": "tsc -b tsconfig.build.json && attw --profile esm-only --pack .",
+    "dev": "tsc -b tsconfig.build.json -w",
     "format": "biome check --fix --unsafe .",
     "lint": "pnpm --filter @terrazzo/token-tools run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
