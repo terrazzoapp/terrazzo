@@ -36,17 +36,17 @@
   "scripts": {
     "build": "rolldown -c && attw --profile esm-only --pack .",
     "dev": "rolldown -w -c",
-    "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/parser run \"/^lint:(js|ts)/\"",
-    "lint:js": "biome check .",
-    "lint:ts": "tsc --noEmit",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "format": "oxfmt",
+    "lint": "oxlint --quiet && oxfmt --check",
     "test": "vitest run"
   },
   "dependencies": {
     "@humanwhocodes/momoa": "catalog:",
     "@terrazzo/json-schema-tools": "workspace:^",
-    "@terrazzo/token-types": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
+    "@terrazzo/token-types": "workspace:^",
     "@types/babel__code-frame": "^7.27.0",
     "colorjs.io": "catalog:",
     "fast-deep-equal": "^3.1.3",
@@ -63,6 +63,7 @@
     }
   },
   "devDependencies": {
+    "eslint-plugin-simple-import-sort": "^13.0.0",
     "yaml-to-momoa": "catalog:"
   }
 }

@@ -1,7 +1,8 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
 import { isAlias } from '@terrazzo/token-tools';
-import type { LintRule } from '../../../types.js';
+
+import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_NUMBER = 'core/valid-number';
@@ -20,44 +21,56 @@ const rule: LintRule<typeof ERROR_NAN> = {
   },
   defaultOptions: {},
   create({ tokens, report }) {
-    for (const t of Object.values(tokens)) {
-      if (t.aliasOf || !t.originalValue) {
+    for (const token of Object.values(tokens)) {
+      if (token.aliasOf || !token.originalValue) {
         continue;
       }
 
-      switch (t.$type) {
+      switch (token.$type) {
         case 'number': {
-          validateNumber(t.originalValue.$value, {
-            node: getObjMember(t.source.node, '$value') as momoa.NumberNode,
-            filename: t.source.filename,
+          validateNumber(token.originalValue.$value, {
+            filename: token.source.filename,
+            node: getObjMember(token.source.node, '$value') as momoa.NumberNode,
+            report,
           });
           break;
         }
         // Note: gradient not needed, validated in gradient
         case 'typography': {
-          const $valueNode = getObjMember(t.source.node, '$value') as momoa.ObjectNode;
-          if (typeof t.originalValue.$value === 'object') {
-            if (
-              t.originalValue.$value.lineHeight &&
-              !isAlias(t.originalValue.$value.lineHeight as string) &&
-              typeof t.originalValue.$value.lineHeight !== 'object'
-            ) {
-              validateNumber(t.originalValue.$value.lineHeight, {
-                node: getObjMember($valueNode, 'lineHeight') as momoa.NumberNode,
-                filename: t.source.filename,
-              });
-            }
+          const $valueNode = getObjMember(token.source.node, '$value') as momoa.ObjectNode;
+          if (
+            typeof token.originalValue.$value === 'object' &&
+            token.originalValue.$value.lineHeight &&
+            !isAlias(token.originalValue.$value.lineHeight as string) &&
+            typeof token.originalValue.$value.lineHeight !== 'object'
+          ) {
+            validateNumber(token.originalValue.$value.lineHeight, {
+              filename: token.source.filename,
+              node: getObjMember($valueNode, 'lineHeight') as momoa.NumberNode,
+              report,
+            });
           }
-        }
-      }
-
-      function validateNumber(value: unknown, { node, filename }: { node: momoa.NumberNode; filename?: string }) {
-        if (typeof value !== 'number' || Number.isNaN(value)) {
-          report({ messageId: ERROR_NAN, node, filename });
         }
       }
     }
   },
 };
+
+function validateNumber(
+  value: unknown,
+  {
+    node,
+    filename,
+    report,
+  }: {
+    node: momoa.NumberNode;
+    filename?: string;
+    report: LintRuleContext<typeof ERROR_NAN>['report'];
+  },
+) {
+  if (typeof value !== 'number' || Number.isNaN(value)) {
+    report({ filename, messageId: ERROR_NAN, node });
+  }
+}
 
 export default rule;

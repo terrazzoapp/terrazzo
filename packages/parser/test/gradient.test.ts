@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('9.6 Gradient', () => {
@@ -13,8 +14,24 @@ describe('9.6 Gradient', () => {
               gradient: {
                 $type: 'gradient',
                 $value: [
-                  { color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
-                  { color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
+                  {
+                    color: {
+                      alpha: 1,
+                      components: [0.4, 0.2, 0.6],
+                      colorSpace: 'srgb',
+                      hex: '#663399',
+                    },
+                    position: 0,
+                  },
+                  {
+                    color: {
+                      alpha: 1,
+                      components: [1, 0.6, 0],
+                      colorSpace: 'srgb',
+                      hex: '#ff9900',
+                    },
+                    position: 1,
+                  },
                 ],
               },
             },
@@ -24,8 +41,19 @@ describe('9.6 Gradient', () => {
           tokens: {
             gradient: {
               $value: [
-                { color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
-                { color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
+                {
+                  color: {
+                    alpha: 1,
+                    components: [0.4, 0.2, 0.6],
+                    colorSpace: 'srgb',
+                    hex: '#663399',
+                  },
+                  position: 0,
+                },
+                {
+                  color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' },
+                  position: 1,
+                },
               ],
             },
           },
@@ -43,7 +71,15 @@ describe('9.6 Gradient', () => {
                 $type: 'gradient',
                 $value: [
                   { color: { colorSpace: 'mud' }, position: 0 },
-                  { color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
+                  {
+                    color: {
+                      alpha: 1,
+                      components: [1, 0.6, 0],
+                      colorSpace: 'srgb',
+                      hex: '#ff9900',
+                    },
+                    position: 1,
+                  },
                 ],
               },
             },
@@ -74,9 +110,22 @@ lint:lint: 1 error`,
               gradient: {
                 $type: 'gradient',
                 $value: [
-                  { color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
                   {
-                    color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' },
+                    color: {
+                      alpha: 1,
+                      components: [0.4, 0.2, 0.6],
+                      colorSpace: 'srgb',
+                      hex: '#663399',
+                    },
+                    position: 0,
+                  },
+                  {
+                    color: {
+                      alpha: 1,
+                      components: [1, 0.6, 0],
+                      colorSpace: 'srgb',
+                      hex: '#ff9900',
+                    },
                     position: '12px',
                   },
                 ],
@@ -109,8 +158,23 @@ lint:lint: 1 error`,
               gradient: {
                 $type: 'gradient',
                 $value: [
-                  { color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
-                  { color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' } },
+                  {
+                    color: {
+                      alpha: 1,
+                      components: [0.4, 0.2, 0.6],
+                      colorSpace: 'srgb',
+                      hex: '#663399',
+                    },
+                    position: 0,
+                  },
+                  {
+                    color: {
+                      alpha: 1,
+                      components: [1, 0.6, 0],
+                      colorSpace: 'srgb',
+                      hex: '#ff9900',
+                    },
+                  },
                 ],
               },
             },
@@ -142,7 +206,12 @@ lint:lint: 1 error`,
                 $type: 'gradient',
                 $value: [
                   {
-                    color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' },
+                    color: {
+                      alpha: 1,
+                      components: [0.4, 0.2, 0.6],
+                      colorSpace: 'srgb',
+                      hex: '#663399',
+                    },
                     position: 0,
                     bad: true,
                   },

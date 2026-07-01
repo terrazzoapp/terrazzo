@@ -3,7 +3,7 @@ import type * as momoa from '@humanwhocodes/momoa';
 import type Logger from '../logger.js';
 import type { LogEntry } from '../logger.js';
 
-interface FatalLogEntry extends Omit<LogEntry, 'continueOnError'> {}
+type FatalLogEntry = Omit<LogEntry, 'continueOnError'>;
 
 export function assert(value: unknown, logger: Logger, entry: FatalLogEntry): asserts value {
   if (!value) {

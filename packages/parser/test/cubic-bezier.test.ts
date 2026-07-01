@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('8.6 Cubic Bézier', () => {
@@ -6,7 +7,12 @@ describe('8.6 Cubic Bézier', () => {
     [
       'valid',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1] } } }],
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1] } },
+          },
+        ],
         want: { tokens: { cubic: { $value: [0.33, 1, 0.68, 1] } } },
       },
     ],
@@ -17,7 +23,10 @@ describe('8.6 Cubic Bézier', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              cubic: { $type: 'cubicBezier', $value: ['{number.a}', '{number.b}', '{number.c}', '{number.d}'] },
+              cubic: {
+                $type: 'cubicBezier',
+                $value: ['{number.a}', '{number.b}', '{number.c}', '{number.d}'],
+              },
               number: {
                 $type: 'number',
                 a: { $value: 0.33 },
@@ -33,7 +42,12 @@ describe('8.6 Cubic Bézier', () => {
             cubic: {
               $value: [0.33, 1, 0.68, 1],
               partialAliasOf: ['number.a', 'number.b', 'number.c', 'number.d'],
-              dependencies: ['#/number/a/$value', '#/number/b/$value', '#/number/c/$value', '#/number/d/$value'],
+              dependencies: [
+                '#/number/a/$value',
+                '#/number/b/$value',
+                '#/number/c/$value',
+                '#/number/d/$value',
+              ],
             },
             'number.a': { $value: 0.33, aliasedBy: ['cubic'] },
             'number.b': { $value: 1, aliasedBy: ['cubic'] },
@@ -47,7 +61,10 @@ describe('8.6 Cubic Bézier', () => {
       'invalid: length',
       {
         given: [
-          { filename: DEFAULT_FILENAME, src: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1, 5] } } },
+          {
+            filename: DEFAULT_FILENAME,
+            src: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1, 5] } },
+          },
         ],
         want: {
           error: `lint:core/valid-cubic-bezier: Expected [number, number, number, number].

@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('8.4 Font Weight', () => {
@@ -6,7 +7,9 @@ describe('8.4 Font Weight', () => {
     [
       'valid: number',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { bold: { $type: 'fontWeight', $value: 700 } } }],
+        given: [
+          { filename: DEFAULT_FILENAME, src: { bold: { $type: 'fontWeight', $value: 700 } } },
+        ],
         want: { tokens: { bold: { $value: 700 } } },
       },
     ],
@@ -68,7 +71,12 @@ describe('8.4 Font Weight', () => {
     [
       'invalid: unknown string',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { thinnish: { $type: 'fontWeight', $value: 'thinnish' } } }],
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { thinnish: { $type: 'fontWeight', $value: 'thinnish' } },
+          },
+        ],
         want: {
           error: `lint:core/valid-font-weight: Must either be a valid number (0 - 999) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
 
@@ -86,7 +94,9 @@ lint:lint: 1 error`,
     [
       'invalid: number out of range',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { kakarot: { $type: 'fontWeight', $value: 9001 } } }],
+        given: [
+          { filename: DEFAULT_FILENAME, src: { kakarot: { $type: 'fontWeight', $value: 9001 } } },
+        ],
         want: {
           error: `lint:core/valid-font-weight: Must either be a valid number (0 - 999) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
 

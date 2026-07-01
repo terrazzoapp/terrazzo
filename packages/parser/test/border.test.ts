@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('9.3 Border', () => {
@@ -40,7 +41,12 @@ describe('9.3 Border', () => {
         given: [
           {
             filename: DEFAULT_FILENAME,
-            src: { border: { $type: 'border', $value: { style: 'solid', width: { value: 1, unit: 'px' } } } },
+            src: {
+              border: {
+                $type: 'border',
+                $value: { style: 'solid', width: { value: 1, unit: 'px' } },
+              },
+            },
           },
         ],
         want: {

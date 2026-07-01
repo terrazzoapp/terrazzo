@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('8.2 Dimension', () => {
@@ -7,7 +8,10 @@ describe('8.2 Dimension', () => {
       'valid: rem',
       {
         given: [
-          { filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: { value: 0.5, unit: 'rem' } } } },
+          {
+            filename: DEFAULT_FILENAME,
+            src: { xs: { $type: 'dimension', $value: { value: 0.5, unit: 'rem' } } },
+          },
         ],
         want: { tokens: { xs: { $value: { value: 0.5, unit: 'rem' } } } },
       },
@@ -15,7 +19,12 @@ describe('8.2 Dimension', () => {
     [
       'valid: px',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: { value: 12, unit: 'px' } } } }],
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { xs: { $type: 'dimension', $value: { value: 12, unit: 'px' } } },
+          },
+        ],
         want: { tokens: { xs: { $value: { value: 12, unit: 'px' } } } },
       },
     ],
@@ -35,7 +44,10 @@ describe('8.2 Dimension', () => {
       'valid: 0',
       {
         given: [
-          { filename: DEFAULT_FILENAME, src: { '00': { $type: 'dimension', $value: { value: 0, unit: 'px' } } } },
+          {
+            filename: DEFAULT_FILENAME,
+            src: { '00': { $type: 'dimension', $value: { value: 0, unit: 'px' } } },
+          },
         ],
         want: { tokens: { '00': { $value: { value: 0, unit: 'px' } } } },
       },
@@ -43,7 +55,9 @@ describe('8.2 Dimension', () => {
     [
       'invalid: legacy format',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '0.5rem' } } }],
+        given: [
+          { filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '0.5rem' } } },
+        ],
         want: {
           error: `lint:core/valid-dimension: Migrate to the new object format: { "value": 10, "unit": "px" }.
 
@@ -151,7 +165,12 @@ lint:lint: 1 error`,
     [
       'invalid: unsupported unit',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { md: { $type: 'dimension', $value: { value: 1, unit: 'vw' } } } }],
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { md: { $type: 'dimension', $value: { value: 1, unit: 'vw' } } },
+          },
+        ],
         want: {
           error: `lint:core/valid-dimension: Unit vw not allowed. Expected px, em, or rem.
 

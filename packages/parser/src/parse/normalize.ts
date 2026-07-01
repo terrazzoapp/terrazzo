@@ -1,6 +1,7 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
 import { FONT_WEIGHTS, isAlias, parseColor } from '@terrazzo/token-tools';
+
 import type Logger from '../logger.js';
 
 interface PreValidatedToken {
@@ -17,41 +18,19 @@ interface PreValidatedToken {
  * Normalize token value.
  * The reason for the “any” typing is this aligns various user-provided inputs to the type
  */
-export function normalize(token: PreValidatedToken, { logger, src }: { logger: Logger; src: string }) {
-  const entry = { group: 'parser' as const, label: 'init', src };
-
-  function normalizeFontFamily(value: unknown): string[] {
-    return typeof value === 'string' ? [value] : (value as string[]);
-  }
-
-  function normalizeFontWeight(value: unknown): number {
-    return (typeof value === 'string' && FONT_WEIGHTS[value as keyof typeof FONT_WEIGHTS]) || (value as number);
-  }
-
-  function normalizeColor(value: unknown, node: momoa.AnyNode | undefined) {
-    if (typeof value === 'string' && !isAlias(value)) {
-      logger.warn({
-        ...entry,
-        node,
-        message: `${token.id}: string colors will be deprecated in a future version. Please update to object notation.`,
-      });
-      try {
-        return parseColor(value);
-      } catch {
-        return { colorSpace: 'srgb', components: [0, 0, 0], alpha: 1 };
-      }
-    } else if (value && typeof value === 'object') {
-      if ((value as any).alpha === undefined) {
-        (value as any).alpha = 1;
-      }
-    }
-    return value;
-  }
-
+export function normalize(
+  token: PreValidatedToken,
+  { logger, src }: { logger: Logger; src: string },
+) {
   switch (token.$type) {
     case 'color': {
       for (const mode of Object.keys(token.mode)) {
-        token.mode[mode]!.$value = normalizeColor(token.mode[mode]!.$value, token.mode[mode]!.source.node);
+        token.mode[mode]!.$value = normalizeColor(token.mode[mode]!.$value, {
+          logger,
+          node: token.mode[mode]!.source.node,
+          src,
+          token,
+        });
       }
       break;
     }
@@ -125,7 +104,8 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
           if (!stop || typeof stop !== 'object') {
             continue;
           }
-          const stopNode = (token.mode[mode]!.source.node as momoa.ArrayNode)?.elements?.[i]?.value as momoa.ObjectNode;
+          const stopNode = (token.mode[mode]!.source.node as momoa.ArrayNode)?.elements?.[i]
+            ?.value as momoa.ObjectNode;
           if (stop.color) {
             stop.color = normalizeColor(stop.color, getObjMember(stopNode, 'color'));
           }
@@ -156,4 +136,43 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
       break;
     }
   }
+}
+
+function normalizeColor(
+  value: unknown,
+  {
+    logger,
+    node,
+    src,
+    token,
+  }: { logger: Logger; node: momoa.AnyNode | undefined; src: string; token: PreValidatedToken },
+) {
+  if (typeof value === 'string' && !isAlias(value)) {
+    logger.warn({
+      group: 'parser',
+      label: 'init',
+      message: `${token.id}: string colors will be deprecated in a future version. Please update to object notation.`,
+      node,
+      src,
+    });
+    try {
+      return parseColor(value);
+    } catch {
+      return { alpha: 1, colorSpace: 'srgb', components: [0, 0, 0] };
+    }
+  } else if (value && typeof value === 'object' && (value as any).alpha === undefined) {
+    (value as any).alpha = 1;
+  }
+  return value;
+}
+
+function normalizeFontFamily(value: unknown): string[] {
+  return typeof value === 'string' ? [value] : (value as string[]);
+}
+
+function normalizeFontWeight(value: unknown): number {
+  return (
+    (typeof value === 'string' && FONT_WEIGHTS[value as keyof typeof FONT_WEIGHTS]) ||
+    (value as number)
+  );
 }

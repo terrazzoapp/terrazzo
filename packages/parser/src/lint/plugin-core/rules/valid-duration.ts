@@ -1,7 +1,8 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
 import { isAlias } from '@terrazzo/token-tools';
-import type { LintRule } from '../../../types.js';
+
+import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_DURATION = 'core/valid-duration';
@@ -26,7 +27,11 @@ export interface RuleValidDimension {
 }
 
 const rule: LintRule<
-  typeof ERROR_FORMAT | typeof ERROR_LEGACY | typeof ERROR_UNIT | typeof ERROR_VALUE | typeof ERROR_INVALID_PROP,
+  | typeof ERROR_FORMAT
+  | typeof ERROR_LEGACY
+  | typeof ERROR_UNIT
+  | typeof ERROR_VALUE
+  | typeof ERROR_INVALID_PROP,
   RuleValidDimension
 > = {
   meta: {
@@ -57,6 +62,8 @@ const rule: LintRule<
           validateDuration(t.originalValue.$value, {
             node: getObjMember(t.source.node, '$value')!,
             filename: t.source.filename,
+            options,
+            report,
           });
           break;
         }
@@ -64,10 +71,15 @@ const rule: LintRule<
           if (typeof t.originalValue.$value === 'object') {
             const $valueNode = getObjMember(t.source.node, '$value');
             for (const property of ['duration', 'delay'] as const) {
-              if (t.originalValue.$value[property] && !isAlias(t.originalValue.$value[property] as string)) {
+              if (
+                t.originalValue.$value[property] &&
+                !isAlias(t.originalValue.$value[property] as string)
+              ) {
                 validateDuration(t.originalValue.$value[property], {
                   node: getObjMember($valueNode as momoa.ObjectNode, property)!,
                   filename: t.source.filename,
+                  options,
+                  report,
                 });
               }
             }
@@ -75,49 +87,71 @@ const rule: LintRule<
           break;
         }
       }
-
-      function validateDuration(value: unknown, { node, filename }: { node: momoa.AnyNode; filename?: string }) {
-        if (value && typeof value === 'object') {
-          for (const key of Object.keys(value)) {
-            if (!['value', 'unit'].includes(key)) {
-              report({
-                messageId: ERROR_INVALID_PROP,
-                data: { key: JSON.stringify(key) },
-                node: getObjMember(node as momoa.ObjectNode, key) ?? node,
-                filename,
-              });
-            }
-          }
-
-          const { unit, value: numValue } = value as Record<string, any>;
-          if (!('value' in value || 'unit' in value)) {
-            report({ messageId: ERROR_FORMAT, data: { value }, node, filename });
-            return;
-          }
-          if (!options.unknownUnits && !['ms', 's'].includes(unit)) {
-            report({
-              messageId: ERROR_UNIT,
-              data: { unit },
-              node: getObjMember(node as momoa.ObjectNode, 'unit') ?? node,
-              filename,
-            });
-          }
-          if (!Number.isFinite(numValue)) {
-            report({
-              messageId: ERROR_VALUE,
-              data: { value },
-              node: getObjMember(node as momoa.ObjectNode, 'value') ?? node,
-              filename,
-            });
-          }
-        } else if (typeof value === 'string' && !options.legacyFormat) {
-          report({ messageId: ERROR_FORMAT, node, filename });
-        } else {
-          report({ messageId: ERROR_FORMAT, data: { value }, node, filename });
-        }
-      }
     }
   },
 };
+
+type Context = LintRuleContext<
+  | typeof ERROR_FORMAT
+  | typeof ERROR_LEGACY
+  | typeof ERROR_UNIT
+  | typeof ERROR_VALUE
+  | typeof ERROR_INVALID_PROP,
+  RuleValidDimension
+>;
+
+function validateDuration(
+  value: unknown,
+  {
+    node,
+    filename,
+    options,
+    report,
+  }: {
+    node: momoa.AnyNode;
+    filename?: string;
+    options: Context['options'];
+    report: Context['report'];
+  },
+) {
+  if (value && typeof value === 'object') {
+    for (const key of Object.keys(value)) {
+      if (!['value', 'unit'].includes(key)) {
+        report({
+          data: { key: JSON.stringify(key) },
+          filename,
+          messageId: ERROR_INVALID_PROP,
+          node: getObjMember(node as momoa.ObjectNode, key) ?? node,
+        });
+      }
+    }
+
+    const { unit, value: numValue } = value as Record<string, any>;
+    if (!('value' in value || 'unit' in value)) {
+      report({ data: { value }, filename, messageId: ERROR_FORMAT, node });
+      return;
+    }
+    if (!options.unknownUnits && !['ms', 's'].includes(unit)) {
+      report({
+        data: { unit },
+        filename,
+        messageId: ERROR_UNIT,
+        node: getObjMember(node as momoa.ObjectNode, 'unit') ?? node,
+      });
+    }
+    if (!Number.isFinite(numValue)) {
+      report({
+        data: { value },
+        filename,
+        messageId: ERROR_VALUE,
+        node: getObjMember(node as momoa.ObjectNode, 'value') ?? node,
+      });
+    }
+  } else if (typeof value === 'string' && !options.legacyFormat) {
+    report({ filename, messageId: ERROR_FORMAT, node });
+  } else {
+    report({ data: { value }, filename, messageId: ERROR_FORMAT, node });
+  }
+}
 
 export default rule;

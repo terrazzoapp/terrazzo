@@ -1,7 +1,12 @@
 import type * as momoa from '@humanwhocodes/momoa';
-import { type InputSource, type InputSourceWithDocument, maybeRawJSON } from '@terrazzo/json-schema-tools';
+import {
+  type InputSource,
+  type InputSourceWithDocument,
+  maybeRawJSON,
+} from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
+
 import { toMomoa } from '../lib/momoa.js';
 import { destructiveMerge, getPermutationID } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
@@ -21,7 +26,11 @@ export interface LoadResolverOptions {
 export async function loadResolver(
   inputs: InputSource[],
   { config, logger, req, yamlToMomoa }: LoadResolverOptions,
-): Promise<{ resolver: Resolver | undefined; tokens: TokenNormalizedSet; sources: InputSourceWithDocument[] }> {
+): Promise<{
+  resolver: Resolver | undefined;
+  tokens: TokenNormalizedSet;
+  sources: InputSourceWithDocument[];
+}> {
   let resolverDoc: momoa.DocumentNode | undefined;
   let tokens: TokenNormalizedSet = {};
   const entry = {
@@ -50,13 +59,19 @@ export async function loadResolver(
     } else if (input.src && typeof input.src === 'object') {
       document = toMomoa(JSON.stringify(input.src, undefined, 2));
     } else {
-      logger.error({ ...entry, message: `Could not parse ${input.filename}. Is this valid JSON or YAML?` });
+      logger.error({
+        ...entry,
+        message: `Could not parse ${input.filename}. Is this valid JSON or YAML?`,
+      });
     }
     if (!document || !isLikelyResolver(document)) {
       continue;
     }
     if (inputs.length > 1) {
-      logger.error({ ...entry, message: `Resolver must be the only input, found ${inputs.length} sources.` });
+      logger.error({
+        ...entry,
+        message: `Resolver must be the only input, found ${inputs.length} sources.`,
+      });
     }
     resolverDoc = document;
     break;
@@ -130,7 +145,10 @@ export function createResolver(
     }
   }
 
-  const permutationCount = Object.values(validContexts).reduce((acc, context) => acc * context.length, 1);
+  const permutationCount = Object.values(validContexts).reduce(
+    (acc, context) => acc * context.length,
+    1,
+  );
 
   return {
     apply(inputRaw, options) {
@@ -158,14 +176,14 @@ export function createResolver(
               continue;
             }
             const context = input[item.name]!;
-            const sources = item.contexts[context];
-            if (!sources) {
+            const resolverSources = item.contexts[context];
+            if (!resolverSources) {
               logger.error({
                 group: 'resolver',
                 message: `Modifier ${item.name} has no context ${JSON.stringify(context)}.`,
               });
             }
-            for (const s of sources ?? []) {
+            for (const s of resolverSources ?? []) {
               destructiveMerge(tokensRaw, s);
             }
             break;
@@ -174,7 +192,11 @@ export function createResolver(
       }
 
       const src = JSON.stringify(tokensRaw, undefined, 2);
-      const rootSource = { filename: resolverSource._source.filename!, document: toMomoa(src), src };
+      const rootSource = {
+        filename: resolverSource._source.filename!,
+        document: toMomoa(src),
+        src,
+      };
       const tokens = processTokens(rootSource, {
         config,
         logger,
@@ -192,7 +214,7 @@ export function createResolver(
       permutationCount <= config.permutationLimit
         ? () => {
             // only do work on first call, then cache subsequent work. this could be thousands of possible values!
-            if (!allPermutations.length) {
+            if (allPermutations.length === 0) {
               allPermutations.push(...calculatePermutations(Object.entries(validContexts)));
             }
             return allPermutations;
@@ -259,7 +281,7 @@ export function calculatePermutations(options: [string, string[]][]) {
     }
     permutations.push(input);
   }
-  return permutations.length ? permutations : [{}];
+  return permutations.length > 0 ? permutations : [{}];
 }
 
 /** Determine Resolver orthogonality using as little work as possible */
@@ -274,17 +296,25 @@ function isResolverOrthogonal(resolver: ResolverSourceNormalized, logger: Logger
   // anywhere else. We want this to be as fast as possible, and do as little
   // work as possible, and also have the unique property of stopping the walk
   // under certain conditions.
-  function discoverTokens(node: any, onVisit: (id: string) => boolean | undefined, path: string[] = []): boolean {
+  function discoverTokens(
+    node: any,
+    onVisit: (id: string) => boolean | undefined,
+    path: string[] = [],
+  ): boolean {
     if (!node || typeof node !== 'object') {
       return true;
     }
     const keys = Object.keys(node);
     for (const key of keys) {
       if (key === '$extends') {
-        logger.warn({ group: 'parser', label: 'init', message: `Can’t determine orthogonality with $extends.` });
+        logger.warn({
+          group: 'parser',
+          label: 'init',
+          message: `Can’t determine orthogonality with $extends.`,
+        });
       }
       // "$value" marks a token
-      if (key === '$value') {
+      else if (key === '$value') {
         const shouldContinue = onVisit(path.join('.'));
         if (shouldContinue === false) {
           return false;

@@ -1,7 +1,9 @@
 import fs from 'node:fs/promises';
+
 import * as momoa from '@humanwhocodes/momoa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
+
 import defineConfig from '../src/config.js';
 import Logger from '../src/logger.js';
 import parse from '../src/parse/index.js';
@@ -35,8 +37,8 @@ describe('Resolver module', () => {
       if (want.error) {
         try {
           await parse(given, { config });
-        } catch (err) {
-          expect(stripAnsi((err as Error).message)).toBe(want.error);
+        } catch (error) {
+          expect(stripAnsi((error as Error).message)).toBe(want.error);
         }
         return;
       }
@@ -177,7 +179,7 @@ describe('Resolver module', () => {
         const { resolver } = await parse(
           [
             {
-              filename: new URL('example.resolver.json', cwd),
+              filename: new URL('./example.resolver.json', cwd),
               src,
             },
           ],
@@ -249,8 +251,8 @@ describe('Resolver module', () => {
         try {
           validateResolver(momoa.parse(src), { logger, src });
           expect(true).toBe(false);
-        } catch (err) {
-          expect(stripAnsi((err as Error).message)).toBe(want);
+        } catch (error) {
+          expect(stripAnsi((error as Error).message)).toBe(want);
         }
       }
     });
@@ -269,7 +271,9 @@ describe('Resolver module', () => {
                 resolutionOrder: [{ $ref: '#/sets/semantic' }, { $ref: '#/modifiers/theme' }],
                 sets: {
                   semantic: {
-                    sources: [{ color: { bg: { avatar: { $type: 'color', $value: '{color.bg}' } } } }],
+                    sources: [
+                      { color: { bg: { avatar: { $type: 'color', $value: '{color.bg}' } } } },
+                    ],
                   },
                 },
                 modifiers: {
@@ -278,14 +282,20 @@ describe('Resolver module', () => {
                       light: [
                         {
                           color: {
-                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
+                            bg: {
+                              $type: 'color',
+                              $value: { colorSpace: 'srgb', components: [1, 1, 1] },
+                            },
                           },
                         },
                       ],
                       dark: [
                         {
                           color: {
-                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.1, 0.1, 0.1] } },
+                            bg: {
+                              $type: 'color',
+                              $value: { colorSpace: 'srgb', components: [0.1, 0.1, 0.1] },
+                            },
                           },
                         },
                       ],
@@ -338,7 +348,11 @@ describe('Resolver module', () => {
                         border: {
                           1: {
                             $type: 'border',
-                            $value: { width: { value: 1, unit: 'px' }, style: 'solid', color: '{color.border.1}' },
+                            $value: {
+                              width: { value: 1, unit: 'px' },
+                              style: 'solid',
+                              color: '{color.border.1}',
+                            },
                           },
                         },
                         color: {
@@ -346,9 +360,15 @@ describe('Resolver module', () => {
                             gray: {
                               500: {
                                 $type: 'color',
-                                $value: { colorSpace: 'srgb', components: [0.3529, 0.3494, 0.3137] },
+                                $value: {
+                                  colorSpace: 'srgb',
+                                  components: [0.3529, 0.3494, 0.3137],
+                                },
                               },
-                              1000: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
+                              1000: {
+                                $type: 'color',
+                                $value: { colorSpace: 'srgb', components: [1, 1, 1] },
+                              },
                             },
                           },
                         },
@@ -359,8 +379,20 @@ describe('Resolver module', () => {
                 modifiers: {
                   theme: {
                     contexts: {
-                      light: [{ color: { border: { 1: { $type: 'color', $value: '{color.base.gray.500}' } } } }],
-                      dark: [{ color: { border: { 1: { $type: 'color', $value: '{color.base.gray.1000}' } } } }],
+                      light: [
+                        {
+                          color: {
+                            border: { 1: { $type: 'color', $value: '{color.base.gray.500}' } },
+                          },
+                        },
+                      ],
+                      dark: [
+                        {
+                          color: {
+                            border: { 1: { $type: 'color', $value: '{color.base.gray.1000}' } },
+                          },
+                        },
+                      ],
                     },
                   },
                 },
@@ -404,7 +436,7 @@ describe('Resolver module', () => {
     it('filesystem', async () => {
       const cwd = new URL('./fixtures/resolver-simple/', import.meta.url);
 
-      const filename = new URL('example.resolver.json', cwd);
+      const filename = new URL('./example.resolver.json', cwd);
       const config = defineConfig({}, { cwd });
       const { tokens, resolver } = await parse(
         [
@@ -452,18 +484,24 @@ describe('Resolver module', () => {
       });
 
       expect(resolver?.orthogonal).toBe(true);
-      expect(resolver?.listPermutations?.(), 'listPermutations()').toEqual([{ theme: 'light' }, { theme: 'dark' }]);
+      expect(resolver?.listPermutations?.(), 'listPermutations()').toEqual([
+        { theme: 'light' },
+        { theme: 'dark' },
+      ]);
       expect(resolver?.isValidInput({ theme: 'dark' }), 'isValidInput({theme: dark})').toBe(true);
       expect(resolver?.isValidInput({}), 'isValidInput({})').toBe(false);
-      expect(resolver?.isValidInput({ theme: 'foobar' }), 'isValidInput({theme: foobar})').toBe(false);
+      expect(resolver?.isValidInput({ theme: 'foobar' }), 'isValidInput({theme: foobar})').toBe(
+        false,
+      );
     });
   });
 });
 
 describe('partial application', () => {
+  // oxlint-disable-next-line consistent-function-scoping
   async function loadResolver() {
     const cwd = new URL('./fixtures/complex-resolver/', import.meta.url);
-    const filename = new URL('resolver.json', cwd);
+    const filename = new URL('./resolver.json', cwd);
     const config = defineConfig({}, { cwd });
     const result = await parse(
       [
@@ -480,17 +518,24 @@ describe('partial application', () => {
   it('returns only tokens from a set', async () => {
     const resolver = await loadResolver();
     const tokens = resolver.apply({}, { modifiers: [], sets: ['primitives'] });
-    expect(new Set(Object.keys(tokens))).toEqual(new Set(['dark-blue', 'dark-orange', 'light-blue', 'light-orange']));
+    expect(new Set(Object.keys(tokens))).toEqual(
+      new Set(['dark-blue', 'dark-orange', 'light-blue', 'light-orange']),
+    );
   });
 
   it('returns only tokens from a modifier', async () => {
     const resolver = await loadResolver();
     // first try without disabling alias resolution - it should fail
-    expect(() => resolver.apply({}, { modifiers: ['mode'], sets: [] })).toThrow('Could not resolve alias');
+    expect(() => resolver.apply({}, { modifiers: ['mode'], sets: [] })).toThrow(
+      'Could not resolve alias',
+    );
     // now with alias resolution disabled
     const modeTokens = resolver.apply({}, { modifiers: ['mode'], sets: [], resolveAliases: false });
     expect(new Set(Object.keys(modeTokens))).toEqual(new Set(['blue', 'orange']));
-    const themeTokens = resolver.apply({}, { modifiers: ['theme'], sets: [], resolveAliases: false });
+    const themeTokens = resolver.apply(
+      {},
+      { modifiers: ['theme'], sets: [], resolveAliases: false },
+    );
     expect(new Set(Object.keys(themeTokens))).toEqual(new Set(['color']));
   });
 });
@@ -498,7 +543,7 @@ describe('partial application', () => {
 describe('permutation limit', () => {
   it('allows listPermutations for small resolvers', async () => {
     const cwd = new URL('./fixtures/resolver-simple/', import.meta.url);
-    const filename = new URL('example.resolver.json', cwd);
+    const filename = new URL('./example.resolver.json', cwd);
     const config = defineConfig({}, { cwd });
     const { resolver } = await parse(
       [
@@ -516,7 +561,7 @@ describe('permutation limit', () => {
 
   it('disables listPermutations for complex resolvers', async () => {
     const cwd = new URL('./fixtures/resolver-simple/', import.meta.url);
-    const filename = new URL('example.resolver.json', cwd);
+    const filename = new URL('./example.resolver.json', cwd);
     const config = defineConfig({ permutationLimit: 1 }, { cwd });
     const { resolver } = await parse(
       [
@@ -538,10 +583,12 @@ describe('orthogonality', () => {
     'non-orthogonal',
     // 'non-orthogonal-extends' // TODO: fix this
   ])('%s', async (dir) => {
-    const cwd = new URL(`./fixtures/resolver-${dir}/`, import.meta.url);
-    const filename = new URL('example.resolver.json', cwd);
+    const cwd = new URL(`fixtures/resolver-${dir}/`, import.meta.url);
+    const filename = new URL('./example.resolver.json', cwd);
     const config = defineConfig({}, { cwd });
-    const { resolver } = await parse([{ filename, src: await fs.readFile(filename, 'utf8') }], { config });
+    const { resolver } = await parse([{ filename, src: await fs.readFile(filename, 'utf8') }], {
+      config,
+    });
     expect(resolver.orthogonal).toBe(!dir.includes('non-'));
   });
 });
@@ -552,7 +599,10 @@ describe('calculatePermutations', () => {
   });
 
   it('one modifier', () => {
-    expect(calculatePermutations([['theme', ['light', 'dark']]])).toEqual([{ theme: 'light' }, { theme: 'dark' }]);
+    expect(calculatePermutations([['theme', ['light', 'dark']]])).toEqual([
+      { theme: 'light' },
+      { theme: 'dark' },
+    ]);
   });
 
   it('three modifiers', () => {

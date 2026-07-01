@@ -1,13 +1,14 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
-import type { LintRule } from '../../../types.js';
+
+import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_LINK = 'core/valid-link';
 
 const ERROR = 'ERROR';
 
-const rule: LintRule<typeof ERROR, {}> = {
+const rule: LintRule<typeof ERROR, Record<string, never>> = {
   meta: {
     messages: {
       [ERROR]: 'Must be a string.',
@@ -27,15 +28,23 @@ const rule: LintRule<typeof ERROR, {}> = {
       validateLink(t.originalValue.$value, {
         node: getObjMember(t.source.node, '$value') as momoa.StringNode,
         filename: t.source.filename,
+        report,
       });
-
-      function validateLink(value: unknown, { node, filename }: { node: momoa.StringNode; filename?: string }) {
-        if (!value || typeof value !== 'string') {
-          report({ messageId: ERROR, node, filename });
-        }
-      }
     }
   },
 };
+
+function validateLink(
+  value: unknown,
+  {
+    node,
+    filename,
+    report,
+  }: { node: momoa.StringNode; filename?: string; report: LintRuleContext<typeof ERROR>['report'] },
+) {
+  if (!value || typeof value !== 'string') {
+    report({ filename, messageId: ERROR, node });
+  }
+}
 
 export default rule;

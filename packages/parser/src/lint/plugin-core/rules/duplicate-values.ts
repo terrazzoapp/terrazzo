@@ -1,4 +1,5 @@
 import { isAlias } from '@terrazzo/token-tools';
+
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 import { cachedLintMatcher } from '../lib/matchers.js';

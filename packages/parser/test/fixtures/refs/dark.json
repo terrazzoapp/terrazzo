@@ -2,7 +2,10 @@
   "base": {
     "color": {
       "$ref": "./base/colors-light.json#/base/color",
-      "black": { "$value": { "colorSpace": "srgb", "components": [0, 0.02, 0.04] }, "$type": "color" },
+      "black": {
+        "$value": { "colorSpace": "srgb", "components": [0, 0.02, 0.04] },
+        "$type": "color"
+      },
       "blue": {
         "0": {
           "$value": { "colorSpace": "srgb", "components": [0.78, 0.91, 1], "hex": "#cae8ff" },

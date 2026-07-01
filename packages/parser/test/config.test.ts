@@ -1,5 +1,6 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
+
 import defineConfig from '../src/config.js';
 import parse from '../src/parse/index.js';
 
@@ -85,15 +86,18 @@ describe('config', () => {
       try {
         const result = defineConfig(given, { cwd: new URL('file:///') });
         expect(result).toThrow();
-      } catch (err) {
-        expect(stripAnsi((err as Error).message)).toBe(want);
+      } catch (error) {
+        expect(stripAnsi((error as Error).message)).toBe(want);
       }
     });
   });
 
   describe('options', () => {
     it('outDir', () => {
-      const config = defineConfig({ outDir: './custom-output/' }, { cwd: new URL(import.meta.url) });
+      const config = defineConfig(
+        { outDir: './custom-output/' },
+        { cwd: new URL(import.meta.url) },
+      );
       expect(config.outDir.href).toMatch(/^file:\/\/\/.*\/parser\/test\/custom-output\/$/);
     });
 
@@ -112,16 +116,28 @@ describe('config', () => {
           {
             filename: new URL('file:///tokens.json'),
             src: {
-              color: { red: { $type: 'color', $value: { colorSpace: 'display-p3', components: [1, 0, 0] } } },
-              'color-legacy': { red: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 0, 0] } } },
-              deprecated: { $type: 'dimension', space: { $deprecated: true, $value: { value: 0.25, unit: 'rem' } } },
+              color: {
+                red: {
+                  $type: 'color',
+                  $value: { colorSpace: 'display-p3', components: [1, 0, 0] },
+                },
+              },
+              'color-legacy': {
+                red: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 0, 0] } },
+              },
+              deprecated: {
+                $type: 'dimension',
+                space: { $deprecated: true, $value: { value: 0.25, unit: 'rem' } },
+              },
             },
           },
         ],
         { config },
       );
       expect(result.tokens).toEqual({
-        'color.red': expect.objectContaining({ $value: { colorSpace: 'display-p3', components: [1, 0, 0], alpha: 1 } }),
+        'color.red': expect.objectContaining({
+          $value: { colorSpace: 'display-p3', components: [1, 0, 0], alpha: 1 },
+        }),
         // color-legacy omitted
       });
     });

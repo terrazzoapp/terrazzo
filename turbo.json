@@ -8,6 +8,9 @@
     "build:app": {
       "dependsOn": ["build"]
     },
+    "fmt": {
+      "dependsOn": ["^fmt"]
+    },
     "format": {
       "dependsOn": ["^format"]
     },

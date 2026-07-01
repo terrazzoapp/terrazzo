@@ -11,7 +11,14 @@
     "a": {
       "sources": [
         { "weight": { "normal": { "$type": "fontWeight", "$value": 400 } } },
-        { "color": { "text": { "$type": "color", "$value": { "colorSpace": "srgb", "components": [0.5, 0.5, 0.5] } } } }
+        {
+          "color": {
+            "text": {
+              "$type": "color",
+              "$value": { "colorSpace": "srgb", "components": [0.5, 0.5, 0.5] }
+            }
+          }
+        }
       ]
     },
     "b": {

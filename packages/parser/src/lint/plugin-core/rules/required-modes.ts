@@ -4,12 +4,12 @@ import { cachedLintMatcher } from '../lib/matchers.js';
 
 export const REQUIRED_MODES = 'core/required-modes';
 
-export type RequiredModesMatch = {
+export interface RequiredModesMatch {
   /** Glob of tokens/groups to match */
   match: string[];
   /** Required modes */
   modes: string[];
-};
+}
 
 export interface RuleRequiredModesOptions {
   matches: RequiredModesMatch[];
@@ -34,7 +34,7 @@ const rule: LintRule<never, RuleRequiredModesOptions> = {
       const { match, modes } = options.matches[matchI]!;
 
       // validate
-      if (!match.length) {
+      if (match.length === 0) {
         throw new Error(`Match ${matchI}: must declare \`match: […]\``);
       }
       if (!modes?.length) {

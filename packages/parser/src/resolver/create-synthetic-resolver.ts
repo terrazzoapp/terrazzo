@@ -1,5 +1,6 @@
 import * as momoa from '@humanwhocodes/momoa';
 import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
+
 import type Logger from '../logger.js';
 import type { ConfigInit, Group, Resolver, TokenNormalized, TokenNormalizedSet } from '../types.js';
 import { createResolver } from './load.js';

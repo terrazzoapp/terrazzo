@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import defineConfig from '../src/config.js';
 import { parse } from '../src/index.js';
 
@@ -123,6 +124,8 @@ describe('$root tokens', () => {
       }),
     );
 
-    expect(tokens['color.brand.800']).toEqual(expect.objectContaining({ aliasedBy: ['color.background.brand'] }));
+    expect(tokens['color.brand.800']).toEqual(
+      expect.objectContaining({ aliasedBy: ['color.background.brand'] }),
+    );
   });
 });

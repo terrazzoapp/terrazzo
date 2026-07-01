@@ -1,5 +1,6 @@
 import { tokenToColor } from '@terrazzo/token-tools';
 import { inGamut } from 'colorjs.io/fn';
+
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 import { cachedLintMatcher } from '../lib/matchers.js';
@@ -81,7 +82,11 @@ const rule: LintRule<
         }
         case 'gradient': {
           for (let stopI = 0; stopI < t.$value.length; stopI++) {
-            if (!t.partialAliasOf?.[stopI]?.color && !inGamut(tokenToColor(t.$value[stopI]!.color), options.gamut)) {
+            // oxlint-disable-next-line no-non-null-assertion
+            if (
+              !t.partialAliasOf?.[stopI]?.color &&
+              !inGamut(tokenToColor(t.$value[stopI]!.color), options.gamut)
+            ) {
               report({
                 messageId: ERROR_GRADIENT,
                 data: { id: t.id, gamut: options.gamut },
@@ -96,6 +101,7 @@ const rule: LintRule<
           for (let shadowI = 0; shadowI < t.$value.length; shadowI++) {
             if (
               !t.partialAliasOf?.[shadowI]?.color &&
+              // oxlint-disable-next-line no-non-null-assertion
               !inGamut(tokenToColor(t.$value[shadowI]!.color), options.gamut)
             ) {
               report({

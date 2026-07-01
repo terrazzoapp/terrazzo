@@ -10,6 +10,7 @@ import {
   traverse,
 } from '@terrazzo/json-schema-tools';
 import { type GroupNormalized, isAlias, type TokenNormalizedSet } from '@terrazzo/token-tools';
+
 import { alphaComparator } from '../lib/array.js';
 import { filterResolverPaths } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
@@ -37,7 +38,13 @@ export interface ProcessTokensOptions {
 
 export function processTokens(
   rootSource: InputSourceWithDocument,
-  { config, logger, sourceByFilename, resolveAliases: shouldResolveAliases = true, isResolver }: ProcessTokensOptions,
+  {
+    config,
+    logger,
+    sourceByFilename,
+    resolveAliases: shouldResolveAliases = true,
+    isResolver,
+  }: ProcessTokensOptions,
 ): TokenNormalizedSet {
   const entry = { group: 'parser' as const, label: 'init' };
 
@@ -106,7 +113,9 @@ export function processTokens(
 
   // 2. Resolve $extends to discover any more additional tokens
   function flatten$extends(node: momoa.ObjectNode, chain: string[]) {
-    const memberKeys = node.members.map((m) => m.name.type === 'String' && m.name.value).filter(Boolean) as string[];
+    const memberKeys = node.members
+      .map((m) => m.name.type === 'String' && m.name.value)
+      .filter(Boolean) as string[];
 
     if (memberKeys.includes('$extends')) {
       const $extends = getObjMember(node, '$extends');
@@ -118,7 +127,12 @@ export function processTokens(
       });
 
       if (memberKeys.includes('$value')) {
-        logger.error({ ...entry, message: '$extends can’t exist within a token', node: $extends, src: rootSource.src });
+        logger.error({
+          ...entry,
+          message: '$extends can’t exist within a token',
+          node: $extends,
+          src: rootSource.src,
+        });
       }
       const next = isAlias($extends.value) ? aliasToGroupRef($extends.value) : undefined;
 
@@ -134,7 +148,12 @@ export function processTokens(
         // Check that $extends is not importing from higher up (could go in either direction, which is why we check both ways)
         chain.some((value) => value.startsWith(next.$ref) || next.$ref.startsWith(value))
       ) {
-        logger.error({ ...entry, message: 'Circular $extends detected', node: $extends, src: rootSource.src });
+        logger.error({
+          ...entry,
+          message: 'Circular $extends detected',
+          node: $extends,
+          src: rootSource.src,
+        });
       }
 
       chain.push(next.$ref);
@@ -145,7 +164,11 @@ export function processTokens(
         node: $extends,
         src: rootSource.src,
       });
-      assertObjectNode(extended, logger, { ...entry, message: '$extends must resolve to a group of tokens', node });
+      assertObjectNode(extended, logger, {
+        ...entry,
+        message: '$extends must resolve to a group of tokens',
+        node,
+      });
 
       // To ensure this is resolvable, try and flatten this node first (will catch circular refs)
       flatten$extends(extended, chain);
@@ -153,7 +176,9 @@ export function processTokens(
       replaceNode(node, mergeObjects(extended, node));
 
       // Remove the $extends key
-      node.members = node.members.filter((n) => !(n.name.type === 'String' && n.name.value === '$extends'));
+      node.members = node.members.filter(
+        (n) => !(n.name.type === 'String' && n.name.value === '$extends'),
+      );
     }
 
     // Deeply-traverse for any interior $extends (even if it wasn’t at the top level)
@@ -177,7 +202,11 @@ export function processTokens(
   const extendsStart = performance.now();
   const extendsChain: string[] = [];
   flatten$extends(rootSource.document.body as momoa.ObjectNode, extendsChain);
-  logger.debug({ ...entry, message: 'Resolving $extends', timing: performance.now() - extendsStart });
+  logger.debug({
+    ...entry,
+    message: 'Resolving $extends',
+    timing: performance.now() - extendsStart,
+  });
 
   // 3. Parse discovered tokens
   const firstPass = performance.now();
@@ -219,13 +248,17 @@ export function processTokens(
           return;
         }
 
-        const tokenRawValues = tokenRawValuesFromNode(node, { filename: source.filename!.href, path });
+        const tokenRawValues = tokenRawValuesFromNode(node, {
+          filename: source.filename!.href,
+          path,
+        });
         if (tokenRawValues && tokens[tokenRawValues?.jsonID]) {
           tokens[tokenRawValues.jsonID]!.originalValue = tokenRawValues.originalValue;
           tokens[tokenRawValues.jsonID]!.mode['.'].originalValue = tokenRawValues.originalValue;
           tokens[tokenRawValues.jsonID]!.source = tokenRawValues.source;
           for (const mode of Object.keys(tokenRawValues.mode)) {
-            tokens[tokenRawValues.jsonID]!.mode[mode]!.originalValue = tokenRawValues.mode[mode]!.originalValue;
+            tokens[tokenRawValues.jsonID]!.mode[mode]!.originalValue =
+              tokenRawValues.mode[mode]!.originalValue;
             tokens[tokenRawValues.jsonID]!.mode[mode]!.source = tokenRawValues.mode[mode]!.source;
           }
         }
@@ -237,7 +270,11 @@ export function processTokens(
   // Unlike $refs which can be resolved as we go, these can’t happen until the final, flattened set
   if (shouldResolveAliases) {
     resolveAliases(tokens, { logger, sources: sourceByFilename, refMap });
-    logger.debug({ ...entry, message: 'Parsing: 2nd pass', timing: performance.now() - secondPass });
+    logger.debug({
+      ...entry,
+      message: 'Parsing: 2nd pass',
+      timing: performance.now() - secondPass,
+    });
   }
 
   // 4. Alias graph
@@ -253,7 +290,11 @@ export function processTokens(
     const token = tokens[id]!;
     normalize(token as any, { logger, src: sourceByFilename[token.source.filename!]?.src });
   }
-  logger.debug({ ...entry, message: 'Normalized values', timing: performance.now() - normalizeStart });
+  logger.debug({
+    ...entry,
+    message: 'Normalized values',
+    timing: performance.now() - normalizeStart,
+  });
 
   // 6. normalize IDs & optionally alphabetize
   // This can’t happen until the last step, where we’re 100% sure we’ve resolved everything.

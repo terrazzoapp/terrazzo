@@ -1,7 +1,8 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, isPure$ref } from '@terrazzo/json-schema-tools';
 import { isAlias } from '@terrazzo/token-tools';
-import type { LintRule } from '../../../types.js';
+
+import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_CUBIC_BEZIER = 'core/valid-cubic-bezier';
@@ -34,6 +35,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
           validateCubicBezier(t.originalValue.$value, {
             node: getObjMember(t.source.node, '$value') as momoa.ArrayNode,
             filename: t.source.filename,
+            report,
           });
           break;
         }
@@ -47,37 +49,49 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
             validateCubicBezier(t.originalValue.$value.timingFunction, {
               node: getObjMember($valueNode, 'timingFunction') as momoa.ArrayNode,
               filename: t.source.filename,
+              report,
             });
           }
-        }
-      }
-
-      function validateCubicBezier(value: unknown, { node, filename }: { node: momoa.ArrayNode; filename?: string }) {
-        if (Array.isArray(value) && value.length === 4) {
-          // validate x values
-          for (const pos of [0, 2]) {
-            if (isAlias(value[pos]) || isPure$ref(value[pos])) {
-              continue;
-            }
-            if (!(value[pos] >= 0 && value[pos] <= 1)) {
-              report({ messageId: ERROR_X, node: (node as momoa.ArrayNode).elements[pos], filename });
-            }
-          }
-          // validate y values
-          for (const pos of [1, 3]) {
-            if (isAlias(value[pos]) || isPure$ref(value[pos])) {
-              continue;
-            }
-            if (typeof value[pos] !== 'number') {
-              report({ messageId: ERROR_Y, node: (node as momoa.ArrayNode).elements[pos], filename });
-            }
-          }
-        } else {
-          report({ messageId: ERROR, node, filename });
         }
       }
     }
   },
 };
+
+function validateCubicBezier(
+  value: unknown,
+  {
+    node,
+    filename,
+    report,
+  }: {
+    node: momoa.ArrayNode;
+    filename?: string;
+    report: LintRuleContext<typeof ERROR | typeof ERROR_X | typeof ERROR_Y>['report'];
+  },
+) {
+  if (Array.isArray(value) && value.length === 4) {
+    // validate x values
+    for (const pos of [0, 2]) {
+      if (isAlias(value[pos]) || isPure$ref(value[pos])) {
+        continue;
+      }
+      if (!(value[pos] >= 0 && value[pos] <= 1)) {
+        report({ messageId: ERROR_X, node: (node as momoa.ArrayNode).elements[pos], filename });
+      }
+    }
+    // validate y values
+    for (const pos of [1, 3]) {
+      if (isAlias(value[pos]) || isPure$ref(value[pos])) {
+        continue;
+      }
+      if (typeof value[pos] !== 'number') {
+        report({ messageId: ERROR_Y, node: (node as momoa.ArrayNode).elements[pos], filename });
+      }
+    }
+  } else {
+    report({ messageId: ERROR, node, filename });
+  }
+}
 
 export default rule;

@@ -1,5 +1,10 @@
 import * as momoa from '@humanwhocodes/momoa';
-import { encodeFragment, getObjMember, type InputSourceWithDocument, parseRef } from '@terrazzo/json-schema-tools';
+import {
+  encodeFragment,
+  getObjMember,
+  type InputSourceWithDocument,
+  parseRef,
+} from '@terrazzo/json-schema-tools';
 import {
   CachedWildcardMatcher,
   type GroupNormalized,
@@ -8,6 +13,7 @@ import {
   type TokenNormalized,
   type TokenNormalizedSet,
 } from '@terrazzo/token-tools';
+
 import { alphaComparator } from '../lib/array.js';
 import type { default as Logger } from '../logger.js';
 import type { Config, ReferenceObject, RefMap } from '../types.js';
@@ -19,7 +25,7 @@ export function aliasToGroupRef(alias: string): ReferenceObject | undefined {
   if (id === alias) {
     return;
   }
-  return { $ref: `#/${id.replace(/~/g, '~0').replace(/\//g, '~1').replace(/\./g, '/')}` };
+  return { $ref: `#/${id.replaceAll('~', '~0').replaceAll('/', '~1').replaceAll('.', '/')}` };
 }
 
 /** Convert valid DTCG alias to $ref */
@@ -30,7 +36,7 @@ export function aliasToTokenRef(alias: string, mode?: string): ReferenceObject |
     return;
   }
   return {
-    $ref: `#/${id.replace(/~/g, '~0').replace(/\//g, '~1').replace(/\./g, '/')}${mode && mode !== '.' ? `/$extensions/mode/${mode}` : ''}/$value`,
+    $ref: `#/${id.replaceAll('~', '~0').replaceAll('/', '~1').replaceAll('.', '/')}${mode && mode !== '.' ? `/$extensions/mode/${mode}` : ''}/$value`,
   };
 }
 
@@ -48,7 +54,8 @@ export function tokenFromNode(
   node: momoa.AnyNode,
   { groups, path, source, ignore }: TokenFromNodeOptions,
 ): TokenNormalized | undefined {
-  const isToken = node.type === 'Object' && !!getObjMember(node, '$value') && !path.includes('$extensions');
+  const isToken =
+    node.type === 'Object' && !!getObjMember(node, '$value') && !path.includes('$extensions');
   if (!isToken) {
     return undefined;
   }
@@ -157,7 +164,8 @@ export function tokenRawValuesFromNode(
   node: momoa.AnyNode,
   { filename, path }: { filename: string; path: string[] },
 ): TokenRawValues | undefined {
-  const isToken = node.type === 'Object' && getObjMember(node, '$value') && !path.includes('$extensions');
+  const isToken =
+    node.type === 'Object' && getObjMember(node, '$value') && !path.includes('$extensions');
   if (!isToken) {
     return undefined;
   }
@@ -171,7 +179,10 @@ export function tokenRawValuesFromNode(
   };
   rawValues.mode['.'] = {
     originalValue: rawValues.originalValue.$value,
-    source: { ...rawValues.source, node: getObjMember(node as momoa.ObjectNode, '$value') as momoa.ObjectNode },
+    source: {
+      ...rawValues.source,
+      node: getObjMember(node as momoa.ObjectNode, '$value') as momoa.ObjectNode,
+    },
   };
   const $extensions = getObjMember(node, '$extensions');
   if ($extensions) {
@@ -250,16 +261,13 @@ export interface GraphAliasesOptions {
  * Link and reverse-link tokens in one pass.
  */
 export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphAliasesOptions) {
-  // mini-helper that probably shouldn’t be used outside this function
-  const getTokenRef = (ref: string) => ref.replace(/\/(\$value|\$extensions)\/?.*/, '');
-
   for (const [jsonID, { refChain }] of Object.entries(refMap)) {
-    if (!refChain.length) {
+    if (refChain.length === 0) {
       continue;
     }
 
     const mode = jsonID.match(/\/\$extensions\/mode\/([^/]+)/)?.[1] || '.';
-    const rootRef = getTokenRef(jsonID);
+    const rootRef = _getGraphAliasTokenRef(jsonID);
     const modeValue = tokens[rootRef]?.mode[mode];
     if (!modeValue) {
       continue;
@@ -290,16 +298,17 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
       .replace(/.*\/\$extensions\/mode\/[^/]+/, '')
       .split('/')
       .filter(Boolean);
-    if (partial.length && modeValue.$value && typeof modeValue.$value === 'object') {
+    if (partial.length > 0 && modeValue.$value && typeof modeValue.$value === 'object') {
       let node: any = modeValue.$value;
       let sourceNode = modeValue.source.node as momoa.AnyNode;
       if (!modeValue.partialAliasOf) {
-        modeValue.partialAliasOf = Array.isArray(modeValue.$value) || tokens[rootRef]?.$type === 'shadow' ? [] : {};
+        modeValue.partialAliasOf =
+          Array.isArray(modeValue.$value) || tokens[rootRef]?.$type === 'shadow' ? [] : {};
       }
       let partialAliasOf = modeValue.partialAliasOf as any;
       // special case: for shadows, normalize object to array
       if (tokens[rootRef]?.$type === 'shadow' && !Array.isArray(node)) {
-        if (Array.isArray(modeValue.partialAliasOf) && !modeValue.partialAliasOf.length) {
+        if (Array.isArray(modeValue.partialAliasOf) && modeValue.partialAliasOf.length === 0) {
           modeValue.partialAliasOf.push({} as any);
         }
         partialAliasOf = (modeValue.partialAliasOf as any)[0]!;
@@ -310,7 +319,7 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
         if (String(Number(key)) === key) {
           key = Number(key);
         }
-        if (key in node && typeof node[key] !== 'undefined') {
+        if (key in node && node[key] !== undefined) {
           node = node[key];
           if (sourceNode.type === 'Object') {
             sourceNode = getObjMember(sourceNode, key as string) ?? sourceNode;
@@ -323,7 +332,7 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
           // important: we want to get only the immediate alias [0], not the final one [.length - 1].
           // if we resolve this too far, we could get incorrect values especially in plugin-css if a
           // user is applying cascades to the intermediate aliases but not the final one
-          const aliasedID = getTokenRef(refChain[0]!);
+          const aliasedID = _getGraphAliasTokenRef(refChain[0]!);
           if (!(aliasedID in tokens)) {
             logger.error({
               group: 'parser',
@@ -345,20 +354,21 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
     }
 
     // aliasedBy (reversed)
-    const aliasedByRefs = [jsonID, ...refChain].reverse();
+    const aliasedByRefs = [jsonID, ...refChain].toReversed();
     for (let i = 0; i < aliasedByRefs.length; i++) {
-      const baseRef = getTokenRef(aliasedByRefs[i]!);
+      const baseRef = _getGraphAliasTokenRef(aliasedByRefs[i]!);
       const baseToken = tokens[baseRef]?.mode[mode] || tokens[baseRef]?.mode['.'];
       if (!baseToken) {
         continue;
       }
       const upstream = aliasedByRefs.slice(i + 1);
-      if (!upstream.length) {
+      if (upstream.length === 0) {
         break;
       }
       if (!baseToken.aliasedBy) {
         baseToken.aliasedBy = [];
       }
+      // oxlint-disable-next-line prefer-for-of
       for (let j = 0; j < upstream.length; j++) {
         const downstream = refToTokenID(upstream[j]!)!;
         if (!baseToken.aliasedBy.includes(downstream)) {
@@ -373,6 +383,7 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
 /** Convert valid DTCG alias to $ref Momoa Node */
 export function aliasToMomoa(
   alias: string,
+  // oxlint-disable-next-line no-object-as-default-parameter
   loc: momoa.ObjectNode['loc'] = {
     start: { line: -1, column: -1, offset: 0 },
     end: { line: -1, column: -1, offset: 0 },
@@ -411,7 +422,10 @@ export function refToTokenID($ref: ReferenceObject | string): string | undefined
   if (subpath?.[0] === '$defs') {
     subpath.splice(0, 2);
   }
-  return (subpath?.length && subpath.join('.').replace(/\.(\$root|\$value|\$extensions).*$/, '')) || undefined;
+  return (
+    (subpath?.length && subpath.join('.').replace(/\.(\$root|\$value|\$extensions).*$/, '')) ||
+    undefined
+  );
 }
 
 const EXPECTED_NESTED_ALIAS: Record<string, Record<string, string[]>> = {
@@ -458,7 +472,11 @@ const EXPECTED_NESTED_ALIAS: Record<string, Record<string, string[]>> = {
  */
 export function resolveAliases(
   tokens: TokenNormalizedSet,
-  { logger, refMap, sources }: { logger: Logger; refMap: RefMap; sources: Record<string, InputSourceWithDocument> },
+  {
+    logger,
+    refMap,
+    sources,
+  }: { logger: Logger; refMap: RefMap; sources: Record<string, InputSourceWithDocument> },
 ): void {
   for (const token of Object.values(tokens)) {
     const aliasEntry = {
@@ -469,10 +487,14 @@ export function resolveAliases(
     };
 
     for (const mode of Object.keys(token.mode)) {
+      // oxlint-disable-next-line no-inner-declarations
       function resolveInner(alias: string, refChain: string[]): string {
         const nextRef = aliasToTokenRef(alias, mode)?.$ref;
         if (!nextRef) {
-          logger.error({ ...aliasEntry, message: `Internal error resolving ${JSON.stringify(refChain)}` });
+          logger.error({
+            ...aliasEntry,
+            message: `Internal error resolving ${JSON.stringify(refChain)}`,
+          });
           throw new Error('Internal error');
         }
         if (refChain.includes(nextRef)) {
@@ -490,9 +512,14 @@ export function resolveAliases(
         return nextJSONID;
       }
 
+      // oxlint-disable-next-line no-inner-declarations
       function traverseAndResolve(
         value: any,
-        { node, expectedTypes, path }: { node: momoa.AnyNode; expectedTypes?: string[]; path: (string | number)[] },
+        {
+          node,
+          expectedTypes,
+          path,
+        }: { node: momoa.AnyNode; expectedTypes?: string[]; path: (string | number)[] },
       ): any {
         if (typeof value !== 'string') {
           if (Array.isArray(value)) {
@@ -501,7 +528,7 @@ export function resolveAliases(
                 continue;
               }
               value[i] = traverseAndResolve(value[i], {
-                // biome-ignore lint/suspicious/noNonNullAssertedOptionalChain: we checked for this earlier
+                // oxlint-disable-next-line no-non-null-asserted-optional-chain -- we checked for this earlier
                 node: (node as momoa.ArrayNode).elements?.[i]?.value!,
                 // special case: cubicBezier
                 expectedTypes: expectedTypes?.includes('cubicBezier') ? ['number'] : expectedTypes,
@@ -572,11 +599,12 @@ export function resolveAliases(
               if (partialProperty) {
                 if (
                   typeof token.mode[altMode].$value === 'object' &&
+                  // oxlint-disable-next-line no-unsafe-optional-chaining
                   (tokens[resolvedID]?.mode[altMode]?.$value as any)[partialProperty]
                 ) {
-                  (token.mode[altMode].$value as any)[partialProperty] = (
-                    tokens[resolvedID]?.mode[altMode]?.$value as any
-                  )[partialProperty];
+                  (token.mode[altMode].$value as any)[partialProperty] =
+                    // oxlint-disable-next-line no-unsafe-optional-chaining
+                    (tokens[resolvedID]?.mode[altMode]?.$value as any)[partialProperty];
                 }
               } else {
                 token.mode[altMode].$value = tokens[resolvedID]!.mode[altMode]!.$value;
@@ -607,7 +635,14 @@ export function resolveAliases(
   }
 }
 
+/** ⚠️ Don’t export. */
+function _getGraphAliasTokenRef(ref: string): string {
+  return ref.replace(/\/(\$value|\$extensions)\/?.*/, '');
+}
+
 /** ⚠️ Don’t use outside this context. This is for edge cases with legacy modes where we need to hoist modes to downstream aliases. */
 function _injectMode(ref: string, mode: string) {
-  return ref.replace(/\/\$value$/, `/$extensions/mode/${mode}`).replace(/\/\$value\//, `/$extensions/mode/${mode}/`);
+  return ref
+    .replace(/\/\$value$/, `/$extensions/mode/${mode}`)
+    .replace(/\/\$value\//, `/$extensions/mode/${mode}/`);
 }

@@ -2,6 +2,7 @@ import * as momoa from '@humanwhocodes/momoa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 import yamlToMomoa from 'yaml-to-momoa';
+
 import defineConfig from '../src/config.js';
 import parse from '../src/parse/index.js';
 import { cwd, DEFAULT_FILENAME } from './test-utils.js';
@@ -16,19 +17,19 @@ describe('Additional cases', () => {
 
   it.skip('Buffer', async () => {
     const config = defineConfig({}, { cwd });
-    expect(
-      (
-        await parse(
-          [
-            {
-              filename: DEFAULT_FILENAME,
-              src: Buffer.from('{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}', 'utf8'),
-            },
-          ],
-          { config },
-        )
-      ).tokens,
-    ).toEqual({
+    const { tokens } = await parse(
+      [
+        {
+          filename: DEFAULT_FILENAME,
+          src: Buffer.from(
+            '{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}',
+            'utf8',
+          ),
+        },
+      ],
+      { config },
+    );
+    expect(tokens).toEqual({
       'size.large': expect.objectContaining({ $value: { value: 1, unit: 'rem' } }),
     });
   });
@@ -36,10 +37,12 @@ describe('Additional cases', () => {
   it('YAML: plugin not installed', async () => {
     try {
       const config = defineConfig({}, { cwd });
-      const result = await parse([{ filename: new URL('file:///tokens.yaml'), src: 'foo: bar' }], { config });
-      expect(() => result).toThrow;
-    } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
+      const result = await parse([{ filename: new URL('file:///tokens.yaml'), src: 'foo: bar' }], {
+        config,
+      });
+      expect(() => result).toThrow();
+    } catch (error) {
+      expect(stripAnsi((error as Error).message)).toMatchInlineSnapshot(`
         "parser:init: Install yaml-to-momoa package to parse YAML, and pass in as option, e.g.:
 
           import { bundle } from '@terrazzo/json-schema-tools';
@@ -65,8 +68,8 @@ describe('Additional cases', () => {
         { config, yamlToMomoa },
       );
       expect(() => result).toThrow();
-    } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
+    } catch (error) {
+      expect(stripAnsi((error as Error).message)).toMatchInlineSnapshot(`
         "All mapping items must start at the same column at line 3, column 1:
 
   - foo: true
@@ -126,7 +129,7 @@ describe('Additional cases', () => {
       expect(result.tokens['size.md']).toBeDefined();
       // Should also be sorted
       const ids = Object.keys(result.tokens);
-      expect(ids).toEqual([...ids].sort());
+      expect(ids).toEqual(ids.toSorted());
     });
   });
 
@@ -139,7 +142,14 @@ describe('Additional cases', () => {
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                base: { blue: { 500: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } } } },
+                base: {
+                  blue: {
+                    500: {
+                      $type: 'color',
+                      $value: { colorSpace: 'srgb', components: [0, 0.2, 1] },
+                    },
+                  },
+                },
                 semantic: { $value: '{color.base.blue.500}' },
               },
             },
@@ -217,7 +227,11 @@ describe('Additional cases', () => {
               color: {
                 base: {
                   blue: {
-                    500: { $type: 'color', $deprecated: true, $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } },
+                    500: {
+                      $type: 'color',
+                      $deprecated: true,
+                      $value: { colorSpace: 'srgb', components: [0, 0.2, 1] },
+                    },
                   },
                 },
                 semantic: { $value: '{color.base.blue.500}' },
@@ -241,11 +255,16 @@ describe('Additional cases', () => {
               color: {
                 $type: 'color',
                 combava: {
-                  400: { $value: { colorSpace: 'srgb', components: [102 / 255, 148 / 255, 91 / 255] } },
+                  400: {
+                    $value: { colorSpace: 'srgb', components: [102 / 255, 148 / 255, 91 / 255] },
+                  },
                 },
                 lime: {
                   $deprecated: 'Use combava instead',
-                  200: { $deprecated: false, $value: { colorSpace: 'srgb', components: [243 / 255, 1, 224 / 255] } },
+                  200: {
+                    $deprecated: false,
+                    $value: { colorSpace: 'srgb', components: [243 / 255, 1, 224 / 255] },
+                  },
                   400: { $value: { colorSpace: 'srgb', components: [223 / 255, 1, 173 / 255] } },
                 },
               },
@@ -562,7 +581,11 @@ describe('Additional cases', () => {
         { config },
       );
       // assert this parsed correctly without throwing an error
-      expect(tokens['color.red']?.$value).toEqual({ alpha: 1, colorSpace: 'srgb', components: [1, 0, 0] });
+      expect(tokens['color.red']?.$value).toEqual({
+        alpha: 1,
+        colorSpace: 'srgb',
+        components: [1, 0, 0],
+      });
     });
 
     it('mode is unexpected shape', async () => {
@@ -585,7 +608,11 @@ describe('Additional cases', () => {
         { config },
       );
       // assert this parsed correctly without throwing an error
-      expect(tokens['color.red']?.$value).toEqual({ alpha: 1, colorSpace: 'srgb', components: [1, 0, 0] });
+      expect(tokens['color.red']?.$value).toEqual({
+        alpha: 1,
+        colorSpace: 'srgb',
+        components: [1, 0, 0],
+      });
     });
   });
 
@@ -916,7 +943,11 @@ describe('Additional cases', () => {
       };
       const config = defineConfig({}, { cwd });
       const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-      expect(tokens['color.blue']?.$value).toEqual({ alpha: 1, components: [0.2, 0.4, 0.8], colorSpace: 'srgb' });
+      expect(tokens['color.blue']?.$value).toEqual({
+        alpha: 1,
+        components: [0.2, 0.4, 0.8],
+        colorSpace: 'srgb',
+      });
     });
   });
 
@@ -933,15 +964,21 @@ describe('Additional cases', () => {
 }`;
     const config = defineConfig({}, { cwd });
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-    expect(tokens['color.blue.06']?.$value).toEqual({ alpha: 1, components: [0, 0, 1], colorSpace: 'srgb' });
+    expect(tokens['color.blue.06']?.$value).toEqual({
+      alpha: 1,
+      components: [0, 0, 1],
+      colorSpace: 'srgb',
+    });
   });
 
   it('empty sources', async () => {
     try {
       const result = await parse([], { config: defineConfig({}, { cwd: new URL('file:///') }) });
       expect(result).toThrow();
-    } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`"parser:init: Nothing to parse."`);
+    } catch (error) {
+      expect(stripAnsi((error as Error).message)).toMatchInlineSnapshot(
+        `"parser:init: Nothing to parse."`,
+      );
     }
   });
 
@@ -951,8 +988,8 @@ describe('Additional cases', () => {
         config: defineConfig({}, { cwd: new URL('file:///') }),
       });
       expect(result).toThrow();
-    } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(
+    } catch (error) {
+      expect(stripAnsi((error as Error).message)).toMatchInlineSnapshot(
         `"parser:init: Input 0: expected { src: any; filename: URL }"`,
       );
     }
@@ -1000,8 +1037,9 @@ describe('Transform', () => {
           visits.push({ name: 'color', node, path });
           if (path.join('.') === 'color.bg.neutral.hover') {
             (
-              (node as momoa.ObjectNode).members.find((m) => (m.name as momoa.StringNode).value === '$value')!
-                .value as momoa.StringNode
+              (node as momoa.ObjectNode).members.find(
+                (member) => (member.name as momoa.StringNode).value === '$value',
+              )!.value as momoa.StringNode
             ).value = '{color.slate.900}';
             return node;
           }
@@ -1067,8 +1105,9 @@ describe('Transform', () => {
           visits.push({ name: 'color', node, path });
           if (path.join('.') === 'color.bg.neutral.hover') {
             (
-              (node as momoa.ObjectNode).members.find((m) => (m.name as momoa.StringNode).value === '$value')!
-                .value as momoa.StringNode
+              (node as momoa.ObjectNode).members.find(
+                (member) => (member.name as momoa.StringNode).value === '$value',
+              )!.value as momoa.StringNode
             ).value = '{color.slate.900}';
             return node;
           }
@@ -1120,7 +1159,7 @@ describe('Transform', () => {
         group(node, { path }) {
           if (path.join('.') === 'color.slate') {
             (node as momoa.ObjectNode).members = (node as momoa.ObjectNode).members.filter(
-              (m) => m.name.type === 'String' && m.name.value !== '900',
+              (member) => member.name.type === 'String' && member.name.value !== '900',
             );
             return node;
           }
@@ -1221,14 +1260,16 @@ describe('Transform', () => {
       config,
       transform: {
         foobar(node) {
-          const members = (
-            momoa.parse(
-              JSON.stringify({
-                $type: 'color',
-                $value: { colorSpace: 'srgb', components: [0, 0.5333333333333333, 1], hex: '#0088ff' },
-              }),
-            ).body as momoa.ObjectNode
-          ).members;
+          const { members } = momoa.parse(
+            JSON.stringify({
+              $type: 'color',
+              $value: {
+                colorSpace: 'srgb',
+                components: [0, 0.5333333333333333, 1],
+                hex: '#0088ff',
+              },
+            }),
+          ).body as momoa.ObjectNode;
           (node as momoa.ObjectNode).members = members;
           return node;
         },

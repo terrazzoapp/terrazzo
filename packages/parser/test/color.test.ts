@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import yamlToMomoa from 'yaml-to-momoa';
+
 import defineConfig from '../src/config.js';
 import { parse } from '../src/index.js';
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
@@ -14,14 +15,19 @@ describe('8.1 Color', () => {
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 0.8 } },
+                cobalt: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 0.8 },
+                },
               },
             },
           },
         ],
         want: {
           tokens: {
-            'color.cobalt': { $value: { alpha: 0.8, components: [0.3, 0.6, 1], colorSpace: 'srgb' } },
+            'color.cobalt': {
+              $value: { alpha: 0.8, components: [0.3, 0.6, 1], colorSpace: 'srgb' },
+            },
           },
         },
       },
@@ -33,7 +39,11 @@ describe('8.1 Color', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              color: { blue: { 10: { $type: 'color', $value: { colorSpace: 'hsl', components: [218, 50, 67] } } } },
+              color: {
+                blue: {
+                  10: { $type: 'color', $value: { colorSpace: 'hsl', components: [218, 50, 67] } },
+                },
+              },
             },
           },
         ],
@@ -74,7 +84,11 @@ lint:lint: 1 error`,
         given: [
           {
             filename: DEFAULT_FILENAME,
-            src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1] } } } },
+            src: {
+              color: {
+                cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1] } },
+              },
+            },
           },
         ],
         want: {
@@ -199,7 +213,10 @@ lint:lint: 1 error`,
               src: [
                 {
                   color: {
-                    cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1, 0.2] } },
+                    cobalt: {
+                      $type: 'color',
+                      $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1, 0.2] },
+                    },
                   },
                 },
               ],
@@ -228,7 +245,12 @@ lint:lint: 1 error`,
           {
             filename: DEFAULT_FILENAME,
             src: {
-              color: { cobalt: { $type: 'color', $value: { colorSpace: 'mondrian', components: [0.3, 0.6, 1] } } },
+              color: {
+                cobalt: {
+                  $type: 'color',
+                  $value: { colorSpace: 'mondrian', components: [0.3, 0.6, 1] },
+                },
+              },
             },
           },
         ],
@@ -255,7 +277,10 @@ lint:lint: 1 error`,
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 'quack' } },
+                cobalt: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 'quack' },
+                },
               },
             },
           },
@@ -283,7 +308,10 @@ lint:lint: 1 error`,
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                cobalt: { $type: 'color', $value: { colorSpace: 'srgb', hex: '#abcde', components: [0.3, 0.6, 1] } },
+                cobalt: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', hex: '#abcde', components: [0.3, 0.6, 1] },
+                },
               },
             },
           },
@@ -311,7 +339,10 @@ lint:lint: 1 error`,
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], bad: true } },
+                cobalt: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], bad: true },
+                },
               },
             },
           },
@@ -356,7 +387,9 @@ lint:lint: 1 error`,
 
     const result = await parse(given, { config, yamlToMomoa });
     expect(result.tokens['color.cobalt']).toEqual(
-      expect.objectContaining({ $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 1 } }),
+      expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 1 },
+      }),
     );
   });
 });

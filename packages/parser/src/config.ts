@@ -1,4 +1,5 @@
 import { merge } from 'merge-anything';
+
 import coreLintPlugin, { RECOMMENDED_CONFIG } from './lint/plugin-core/index.js';
 import Logger from './logger.js';
 import type { Config, ConfigInit, ConfigOptions, LintRuleSeverity } from './types.js';
@@ -15,7 +16,11 @@ export default function defineConfig(
   const configStart = performance.now();
 
   if (!cwd) {
-    logger.error({ group: 'config', label: 'core', message: 'defineConfig() missing `cwd` for JS API' });
+    logger.error({
+      group: 'config',
+      label: 'core',
+      message: 'defineConfig() missing `cwd` for JS API',
+    });
   }
 
   const config = merge({}, rawConfig) as unknown as ConfigInit;
@@ -102,27 +107,35 @@ function normalizeTokens({
 }
 
 /** Normalize config.outDir */
-function normalizeOutDir({ config, cwd, logger }: { config: ConfigInit; logger: Logger; cwd: URL }) {
+function normalizeOutDir({
+  config,
+  cwd,
+  logger,
+}: {
+  config: ConfigInit;
+  logger: Logger;
+  cwd: URL;
+}) {
   if (config.outDir instanceof URL) {
     // noop
-  } else if (typeof config.outDir === 'undefined') {
+  } else if (config.outDir === undefined) {
     config.outDir = new URL('./tokens/', cwd);
-  } else if (typeof config.outDir !== 'string') {
-    logger.error({
-      group: 'config',
-      message: `outDir: Expected string, received ${JSON.stringify(config.outDir)}`,
-    });
-  } else {
+  } else if (typeof config.outDir === 'string') {
     config.outDir = new URL(config.outDir, cwd);
     // always add trailing slash so URL treats it as a directory.
     // do AFTER it has been normalized to POSIX paths with `href` (don’t use Node internals here! This may run in the browser)
     config.outDir = new URL(config.outDir.href.replace(TRAILING_SLASH_RE, '/'));
+  } else {
+    logger.error({
+      group: 'config',
+      message: `outDir: Expected string, received ${JSON.stringify(config.outDir)}`,
+    });
   }
 }
 
 /** Normalize config.plugins */
 function normalizePlugins({ config, logger }: { config: ConfigInit; logger: Logger }) {
-  if (typeof config.plugins === 'undefined') {
+  if (config.plugins === undefined) {
     config.plugins = [];
   }
   if (!Array.isArray(config.plugins)) {
@@ -155,28 +168,35 @@ function normalizePlugins({ config, logger }: { config: ConfigInit; logger: Logg
 }
 
 function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger }) {
-  if (config.lint !== undefined) {
+  if (config.lint === undefined) {
+    config.lint = {
+      build: { enabled: true },
+      rules: { ...RECOMMENDED_CONFIG },
+    };
+  } else {
     if (config.lint === null || typeof config.lint !== 'object' || Array.isArray(config.lint)) {
       logger.error({ group: 'config', label: 'lint', message: 'Must be an object' });
     }
     if (!config.lint.build) {
       config.lint.build = { enabled: true };
     }
-    if (config.lint.build.enabled !== undefined) {
-      if (typeof config.lint.build.enabled !== 'boolean') {
-        logger.error({
-          group: 'config',
-          message: `lint.build.enabled: Expected boolean, received ${JSON.stringify(config.lint.build)}`,
-        });
-      }
-    } else {
+    if (config.lint.build.enabled === undefined) {
       config.lint.build.enabled = true;
+    } else if (typeof config.lint.build.enabled !== 'boolean') {
+      logger.error({
+        group: 'config',
+        message: `lint.build.enabled: Expected boolean, received ${JSON.stringify(config.lint.build)}`,
+      });
     }
 
     if (config.lint.rules === undefined) {
       config.lint.rules = { ...RECOMMENDED_CONFIG };
     } else {
-      if (config.lint.rules === null || typeof config.lint.rules !== 'object' || Array.isArray(config.lint.rules)) {
+      if (
+        config.lint.rules === null ||
+        typeof config.lint.rules !== 'object' ||
+        Array.isArray(config.lint.rules)
+      ) {
         logger.error({
           group: 'config',
           message: `lint.rules: Expected object, received ${JSON.stringify(config.lint.rules)}`,
@@ -257,11 +277,6 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
         }
       }
     }
-  } else {
-    config.lint = {
-      build: { enabled: true },
-      rules: { ...RECOMMENDED_CONFIG },
-    };
   }
 }
 
@@ -271,7 +286,10 @@ function normalizeIgnore({ config, logger }: { config: ConfigInit; logger: Logge
   }
   config.ignore.tokens ??= [];
   config.ignore.deprecated ??= false;
-  if (!Array.isArray(config.ignore.tokens) || config.ignore.tokens.some((x) => typeof x !== 'string')) {
+  if (
+    !Array.isArray(config.ignore.tokens) ||
+    config.ignore.tokens.some((x) => typeof x !== 'string')
+  ) {
     logger.error({
       group: 'config',
       message: `ignore.tokens: Expected array of strings, received ${JSON.stringify(config.ignore.tokens)}`,

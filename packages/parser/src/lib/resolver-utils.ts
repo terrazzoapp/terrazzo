@@ -33,13 +33,15 @@ export function getPermutationID(
   input: Record<string, string | undefined>,
   options?: ResolverApplicationOptions | undefined,
 ): string {
-  const stableInput = Object.fromEntries(Object.entries(input).sort(([a], [b]) => alphaComparator(a, b)));
+  const stableInput = Object.fromEntries(
+    Object.entries(input).toSorted(([a], [b]) => alphaComparator(a, b)),
+  );
   return JSON.stringify(
     options
       ? {
           input: stableInput,
-          sets: options?.sets?.sort(alphaComparator),
-          modifiers: options?.modifiers?.sort(alphaComparator),
+          sets: options?.sets?.toSorted(alphaComparator),
+          modifiers: options?.modifiers?.toSorted(alphaComparator),
           resolveAliases: options?.resolveAliases ?? true,
         }
       : stableInput,
@@ -62,7 +64,7 @@ export function destructiveMerge(a: object, b: object): void {
       continue;
     }
     const b2 = (b as any)[k];
-    if (b2 != null && typeof b2 === 'object') {
+    if (b2 !== null && typeof b2 === 'object') {
       if (Array.isArray(b2)) {
         (a as any)[k] = []; // arrays are overwritten; always make an empty one
         destructiveMerge((a as any)[k], [...b2]); // shallow copy

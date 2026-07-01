@@ -1,7 +1,8 @@
 import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
-import type { LogEntry, default as Logger } from '../logger.js';
+
+import type { default as Logger, LogEntry } from '../logger.js';
 import type { ConfigInit } from '../types.js';
 import { cachedLintMatcher } from './plugin-core/lib/matchers.js';
 
@@ -37,6 +38,7 @@ export default async function lintRunner({
 
       const linter = plugin.lint();
 
+      // oxlint-disable-next-line no-await-in-loop
       await Promise.all(
         Object.entries(linter).map(async ([id, rule]) => {
           if (!(id in lint.rules) || lint.rules[id] === null) {
@@ -78,16 +80,20 @@ export default async function lintRunner({
                     message: `messageId "${descriptor.messageId}" does not exist`,
                   });
                 }
-                message = rule.meta?.messages?.[descriptor.messageId as keyof typeof rule.meta.messages] ?? '';
+                message =
+                  rule.meta?.messages?.[descriptor.messageId as keyof typeof rule.meta.messages] ??
+                  '';
               }
 
               // replace with descriptor.data (if any)
               if (descriptor.data && typeof descriptor.data === 'object') {
                 for (const [k, v] of Object.entries(descriptor.data)) {
                   // lazy formatting
-                  const formatted = ['string', 'number', 'boolean'].includes(typeof v) ? String(v) : JSON.stringify(v);
-                  message = message.replace(/{{[^}]+}}/g, (inner) => {
-                    const key = inner.substring(2, inner.length - 2).trim();
+                  const formatted = ['string', 'number', 'boolean'].includes(typeof v)
+                    ? String(v)
+                    : JSON.stringify(v);
+                  message = message.replaceAll(/{{[^}]+}}/g, (inner) => {
+                    const key = inner.slice(2, -2).trim();
                     return key === k ? formatted : inner;
                   });
                 }
@@ -125,8 +131,12 @@ export default async function lintRunner({
     }
   }
 
-  const errCount = errors.length ? `${errors.length} ${pluralize(errors.length, 'error', 'errors')}` : '';
-  const warnCount = warnings.length ? `${warnings.length} ${pluralize(warnings.length, 'warning', 'warnings')}` : '';
+  const errCount =
+    errors.length > 0 ? `${errors.length} ${pluralize(errors.length, 'error', 'errors')}` : '';
+  const warnCount =
+    warnings.length > 0
+      ? `${warnings.length} ${pluralize(warnings.length, 'warning', 'warnings')}`
+      : '';
   if (errors.length > 0) {
     logger.error(...errors, {
       group: 'lint',

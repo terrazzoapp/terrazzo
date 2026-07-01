@@ -1,4 +1,5 @@
 import { camelCase, kebabCase, pascalCase, snakeCase } from 'scule';
+
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 

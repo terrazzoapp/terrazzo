@@ -30,7 +30,7 @@ const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
       return;
     }
 
-    if (!options.properties.length) {
+    if (options.properties.length === 0) {
       throw new Error(`"properties" can’t be empty`);
     }
 

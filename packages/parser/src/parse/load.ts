@@ -1,7 +1,7 @@
 import * as momoa from '@humanwhocodes/momoa';
 import {
-  type BundleOptions,
   bundle,
+  type BundleOptions,
   encodeFragment,
   getObjMember,
   type InputSource,
@@ -10,6 +10,7 @@ import {
   traverse,
 } from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
+
 import { toMomoa } from '../lib/momoa.js';
 import { filterResolverPaths } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
@@ -17,8 +18,10 @@ import { isLikelyResolver } from '../resolver/validate.js';
 import type { ParseOptions, TransformVisitors } from '../types.js';
 import { processTokens } from './process.js';
 
-export interface LoadOptions
-  extends Pick<ParseOptions, 'config' | 'continueOnError' | 'yamlToMomoa' | 'resolveAliases' | 'transform'> {
+export interface LoadOptions extends Pick<
+  ParseOptions,
+  'config' | 'continueOnError' | 'yamlToMomoa' | 'resolveAliases' | 'transform'
+> {
   req: NonNullable<ParseOptions['req']>;
   logger: Logger;
 }
@@ -31,7 +34,15 @@ export interface LoadSourcesResult {
 /** Load from multiple entries, while resolving remote files */
 export async function loadSources(
   inputs: InputSource[],
-  { config, logger, req, continueOnError, yamlToMomoa, resolveAliases = true, transform }: LoadOptions,
+  {
+    config,
+    logger,
+    req,
+    continueOnError,
+    yamlToMomoa,
+    resolveAliases = true,
+    transform,
+  }: LoadOptions,
 ): Promise<LoadSourcesResult> {
   const entry = { group: 'parser' as const, label: 'init' };
 
@@ -64,16 +75,16 @@ export async function loadSources(
         sources[i]!.document = source.document;
       }
     }
-  } catch (err) {
-    let src = sources.find((s) => s.filename.href === (err as any).filename)?.src;
+  } catch (error) {
+    let src = sources.find((s) => s.filename.href === (error as any).filename)?.src;
     if (src && typeof src !== 'string') {
       src = JSON.stringify(src, undefined, 2);
     }
     logger.error({
       ...entry,
       continueOnError,
-      message: (err as Error).message,
-      node: (err as any).node,
+      message: (error as Error).message,
+      node: (error as any).node,
       src,
     });
   }
@@ -82,16 +93,23 @@ export async function loadSources(
   const rootSource = {
     filename: sources[0]!.filename!,
     document,
-    src: momoa.print(document, { indent: 2 }).replace(/\\\//g, '/'),
+    src: momoa.print(document, { indent: 2 }).replaceAll(String.raw`\/`, '/'),
   };
 
   return {
-    tokens: processTokens(rootSource, { config, logger, resolveAliases, sources, sourceByFilename }),
+    tokens: processTokens(rootSource, {
+      config,
+      logger,
+      resolveAliases,
+      sources,
+      sourceByFilename,
+    }),
     sources,
   };
 }
 
 function transformer(transform: TransformVisitors): BundleOptions['parse'] {
+  // oxlint-disable-next-line require-await
   return async (src, filename) => {
     let document = toMomoa(src);
     let lastPath = '#/';
@@ -108,7 +126,7 @@ function transformer(transform: TransformVisitors): BundleOptions['parse'] {
     traverse(document, {
       enter(node, parent, rawPath) {
         const path = isResolver ? filterResolverPaths(rawPath) : rawPath;
-        if (node.type !== 'Object' || !path.length) {
+        if (node.type !== 'Object' || path.length === 0) {
           return;
         }
         const ctx = { filename, parent, path };
@@ -126,7 +144,10 @@ function transformer(transform: TransformVisitors): BundleOptions['parse'] {
             replaceNode(node, result);
             result = undefined;
           }
-          result = transform[last$type as keyof typeof transform]?.(structuredClone(node as any), ctx);
+          result = transform[last$type as keyof typeof transform]?.(
+            structuredClone(node as any),
+            ctx,
+          );
           if (result) {
             replaceNode(node, result);
           }

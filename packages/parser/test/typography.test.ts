@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('9.7 Typography', () => {
@@ -22,7 +23,12 @@ describe('9.7 Typography', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              typography: { body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontFamily: 'Helvetica' } } },
+              typography: {
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, fontFamily: 'Helvetica' },
+                },
+              },
             },
           },
         ],
@@ -36,7 +42,9 @@ describe('9.7 Typography', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              typography: { body: { $type: 'typography', $value: { ...DEFAULT_VALID, lineHeight: 1.5 } } },
+              typography: {
+                body: { $type: 'typography', $value: { ...DEFAULT_VALID, lineHeight: 1.5 } },
+              },
             },
           },
         ],
@@ -53,7 +61,12 @@ describe('9.7 Typography', () => {
             filename: DEFAULT_FILENAME,
             src: {
               font: { family: { $type: 'fontFamily', $value: 'Helvetica' } },
-              typography: { body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontFamily: '{font.family}' } } },
+              typography: {
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, fontFamily: '{font.family}' },
+                },
+              },
             },
           },
         ],
@@ -78,7 +91,10 @@ describe('9.7 Typography', () => {
             src: {
               font: { size: { $type: 'dimension', $value: { value: 1.25, unit: 'rem' } } },
               typography: {
-                body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontSize: '{font.size}' } },
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, fontSize: '{font.size}' },
+                },
               },
             },
           },
@@ -104,7 +120,10 @@ describe('9.7 Typography', () => {
             src: {
               font: { weight: { $type: 'fontWeight', $value: 750 } },
               typography: {
-                body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontWeight: '{font.weight}' } },
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, fontWeight: '{font.weight}' },
+                },
               },
             },
           },
@@ -130,14 +149,20 @@ describe('9.7 Typography', () => {
             src: {
               font: { 'line-height': { $type: 'dimension', $value: { value: 1.25, unit: 'rem' } } },
               typography: {
-                body: { $type: 'typography', $value: { ...DEFAULT_VALID, lineHeight: '{font.line-height}' } },
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, lineHeight: '{font.line-height}' },
+                },
               },
             },
           },
         ],
         want: {
           tokens: {
-            'font.line-height': { $value: { value: 1.25, unit: 'rem' }, aliasedBy: ['typography.body'] },
+            'font.line-height': {
+              $value: { value: 1.25, unit: 'rem' },
+              aliasedBy: ['typography.body'],
+            },
             'typography.body': {
               $value: { ...DEFAULT_VALID, lineHeight: { value: 1.25, unit: 'rem' } },
               partialAliasOf: { lineHeight: 'font.line-height' },
@@ -156,7 +181,10 @@ describe('9.7 Typography', () => {
             src: {
               font: { 'line-height': { $type: 'number', $value: 1.6 } },
               typography: {
-                body: { $type: 'typography', $value: { ...DEFAULT_VALID, lineHeight: '{font.line-height}' } },
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, lineHeight: '{font.line-height}' },
+                },
               },
             },
           },
@@ -182,7 +210,10 @@ describe('9.7 Typography', () => {
             src: {
               font: { spacing: { $type: 'dimension', $value: { value: 0.01, unit: 'px' } } },
               typography: {
-                body: { $type: 'typography', $value: { ...DEFAULT_VALID, letterSpacing: '{font.spacing}' } },
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, letterSpacing: '{font.spacing}' },
+                },
               },
             },
           },
@@ -208,7 +239,10 @@ describe('9.7 Typography', () => {
             src: {
               font: { style: { $type: 'string', $value: 'normal' } },
               typography: {
-                body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontStyle: '{font.style}' } },
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, fontStyle: '{font.style}' },
+                },
               },
             },
           },
@@ -273,7 +307,10 @@ describe('9.7 Typography', () => {
         ],
         want: {
           tokens: {
-            'font.paragraphSpacing': { $value: { value: 14, unit: 'px' }, aliasedBy: ['typography.body'] },
+            'font.paragraphSpacing': {
+              $value: { value: 14, unit: 'px' },
+              aliasedBy: ['typography.body'],
+            },
             'typography.body': {
               $value: { ...DEFAULT_VALID, paragraphSpacing: { value: 14, unit: 'px' } },
               partialAliasOf: { paragraphSpacing: 'font.paragraphSpacing' },
@@ -292,7 +329,10 @@ describe('9.7 Typography', () => {
             src: {
               font: { weight: { $type: 'number', $value: 750 } },
               typography: {
-                body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontWeight: '{font.weight}' } },
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, fontWeight: '{font.weight}' },
+                },
               },
             },
           },

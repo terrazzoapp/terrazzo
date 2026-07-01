@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('7 Alias', () => {
@@ -182,13 +183,17 @@ font:
                 ramp: {
                   gray: {
                     200: { $value: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 } },
-                    700: { $value: { colorSpace: 'srgb', components: [0.7, 0.7, 0.7], alpha: 0.1 } },
+                    700: {
+                      $value: { colorSpace: 'srgb', components: [0.7, 0.7, 0.7], alpha: 0.1 },
+                    },
                   },
                 },
                 semantic: {
                   subdued: {
                     $value: '{color.ramp.gray.200}',
-                    $extensions: { mode: { light: '{color.ramp.gray.200}', dark: '{color.ramp.gray.700}' } },
+                    $extensions: {
+                      mode: { light: '{color.ramp.gray.200}', dark: '{color.ramp.gray.700}' },
+                    },
                   },
                 },
               },
@@ -224,7 +229,10 @@ font:
               $value: { alpha: 0.1, colorSpace: 'srgb', components: [0.7, 0.7, 0.7] },
               aliasedBy: ['color.semantic.subdued'],
             },
-            'border.size.default': { $value: { value: 1, unit: 'px' }, aliasedBy: ['button-border'] },
+            'border.size.default': {
+              $value: { value: 1, unit: 'px' },
+              aliasedBy: ['button-border'],
+            },
             'border.style.default': {
               $value: 'solid',
               aliasedBy: ['button-border'],
@@ -261,7 +269,9 @@ font:
               color: {
                 $type: 'color',
                 blue: { 500: { $value: { colorSpace: 'srgb', components: [0.01, 0.4, 0.86] } } },
-                purple: { 800: { $value: { colorSpace: 'srgb', components: [0.365, 0.075, 0.718] } } },
+                purple: {
+                  800: { $value: { colorSpace: 'srgb', components: [0.365, 0.075, 0.718] } },
+                },
               },
               perc: {
                 $type: 'number',
@@ -375,7 +385,13 @@ font:
                 },
               ],
               partialAliasOf: [
-                { blur: 'space.1', color: 'color.shadow.1', offsetX: 'space.1', offsetY: 'space.1', spread: 'space.0' },
+                {
+                  blur: 'space.1',
+                  color: 'color.shadow.1',
+                  offsetX: 'space.1',
+                  offsetY: 'space.1',
+                  spread: 'space.0',
+                },
               ],
               dependencies: ['#/color/shadow/1/$value', '#/space/0/$value', '#/space/1/$value'],
             },
@@ -455,10 +471,27 @@ font:
                 },
               ],
               partialAliasOf: [
-                { blur: 'space.1', color: 'color.shadow.1', offsetX: 'space.1', offsetY: 'space.1', spread: 'space.0' },
-                { blur: 'space.1', color: 'color.shadow.1', offsetX: 'space.2', offsetY: 'space.2', spread: 'space.0' },
+                {
+                  blur: 'space.1',
+                  color: 'color.shadow.1',
+                  offsetX: 'space.1',
+                  offsetY: 'space.1',
+                  spread: 'space.0',
+                },
+                {
+                  blur: 'space.1',
+                  color: 'color.shadow.1',
+                  offsetX: 'space.2',
+                  offsetY: 'space.2',
+                  spread: 'space.0',
+                },
               ],
-              dependencies: ['#/color/shadow/1/$value', '#/space/0/$value', '#/space/1/$value', '#/space/2/$value'],
+              dependencies: [
+                '#/color/shadow/1/$value',
+                '#/space/0/$value',
+                '#/space/1/$value',
+                '#/space/2/$value',
+              ],
             },
           },
         },
@@ -631,7 +664,12 @@ font:
               aliasChain: ['alias.c', 'alias.d', 'alias.e', 'alias.f'],
               aliasOf: 'alias.f',
               aliasedBy: ['alias.a'],
-              dependencies: ['#/alias/c/$value', '#/alias/d/$value', '#/alias/e/$value', '#/alias/f/$value'],
+              dependencies: [
+                '#/alias/c/$value',
+                '#/alias/d/$value',
+                '#/alias/e/$value',
+                '#/alias/f/$value',
+              ],
             },
             'alias.c': {
               $value: {
@@ -745,7 +783,12 @@ font:
               aliasOf: 'alias.a',
               aliasChain: ['alias.c', 'alias.e', 'alias.d', 'alias.a'],
               aliasedBy: ['alias.b'],
-              dependencies: ['#/alias/a/$value', '#/alias/c/$value', '#/alias/d/$value', '#/alias/e/$value'],
+              dependencies: [
+                '#/alias/a/$value',
+                '#/alias/c/$value',
+                '#/alias/d/$value',
+                '#/alias/e/$value',
+              ],
             },
           },
         },
@@ -759,7 +802,14 @@ font:
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                base: { blue: { 500: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } } } },
+                base: {
+                  blue: {
+                    500: {
+                      $type: 'color',
+                      $value: { colorSpace: 'srgb', components: [0, 0.2, 1] },
+                    },
+                  },
+                },
                 semantic: { $value: '{color.base.blue.600}' },
               },
             },
@@ -786,7 +836,14 @@ font:
             filename: new URL('file:///a.json'),
             src: {
               color: {
-                base: { blue: { 500: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } } } },
+                base: {
+                  blue: {
+                    500: {
+                      $type: 'color',
+                      $value: { colorSpace: 'srgb', components: [0, 0.2, 1] },
+                    },
+                  },
+                },
               },
             },
           },
@@ -1024,7 +1081,9 @@ font:
               number: { $type: 'number', 50: { $value: 50 } },
               'stroke-style': {
                 $type: 'strokeStyle',
-                dashed: { $value: { dashArray: ['{dimension.s}', '{number.50}'], lineCap: 'round' } },
+                dashed: {
+                  $value: { dashArray: ['{dimension.s}', '{number.50}'], lineCap: 'round' },
+                },
               },
             },
           },

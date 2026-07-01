@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('$extends', () => {
@@ -17,7 +18,11 @@ describe('$extends', () => {
               color: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 0, 0] } },
               border: {
                 $type: 'border',
-                $value: { width: { value: 1, unit: 'px' }, style: 'solid', color: '{extended.color}' },
+                $value: {
+                  width: { value: 1, unit: 'px' },
+                  style: 'solid',
+                  color: '{extended.color}',
+                },
               },
             },
           },
