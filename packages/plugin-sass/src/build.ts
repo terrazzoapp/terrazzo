@@ -1,6 +1,13 @@
 import { type BuildHookOptions, MULTI_VALUE } from '@terrazzo/parser';
+
 import { cachedMatcher, FORMAT_ID, type SassPluginOptions } from './lib.js';
-import { CssVarReferenceSassToken, RootSassToken, type SassMapKey, type SassMapValue, type SassToken } from './node.js';
+import {
+  CssVarReferenceSassToken,
+  RootSassToken,
+  type SassMapKey,
+  type SassMapValue,
+  type SassToken,
+} from './node.js';
 
 export interface BuildParams {
   getTransforms: BuildHookOptions['getTransforms'];
@@ -47,6 +54,8 @@ const SASS_LIB = `@function token($tokenName) {
   }
 }
 `;
+
+/* oxlint-disable require-await */
 
 export default async function build({ getTransforms, options }: BuildParams): Promise<string> {
   const root = new RootSassToken();
@@ -100,7 +109,10 @@ export default async function build({ getTransforms, options }: BuildParams): Pr
     fontMap.extend(
       Object.keys(values).map(
         (propertyName) =>
-          [propertyName, new CssVarReferenceSassToken(`${tokenName}-${propertyName}`)] as [SassMapKey, SassMapValue],
+          [propertyName, new CssVarReferenceSassToken(`${tokenName}-${propertyName}`)] as [
+            SassMapKey,
+            SassMapValue,
+          ],
       ),
     );
     tokenTypographyMixinsMap.set(token.id, fontMap);
