@@ -1,6 +1,7 @@
 import { TriangleRight } from '@terrazzo/icons';
 import clsx from 'clsx';
 import { type ComponentProps, createContext, type ReactNode, useContext, useEffect } from 'react';
+
 import { Context } from './Root.js';
 
 export interface GroupProps extends Omit<ComponentProps<'tr'>, 'name'> {
@@ -43,8 +44,11 @@ export default function Group({ children, className, id, name, actions, ...rest 
         data-treegrid-group
         hidden={!isParentExpanded || undefined}
       >
-        <th scope='row' tabIndex={0} className='tz-treegrid-group-name'>
-          <TriangleRight className='tz-treegrid-caret' data-expanded={isSelfExpanded || undefined} />
+        <th scope="row" tabIndex={0} className="tz-treegrid-group-name">
+          <TriangleRight
+            className="tz-treegrid-caret"
+            data-expanded={isSelfExpanded || undefined}
+          />
           {name}
         </th>
         <td>{actions}</td>

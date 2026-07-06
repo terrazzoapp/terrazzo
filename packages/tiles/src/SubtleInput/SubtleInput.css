@@ -42,14 +42,14 @@
   padding: 0;
   text-indent: var(--tz-space-200);
 
-  &[type="number"] {
+  &[type='number'] {
     text-align: right;
     text-indent: 0;
   }
 }
 
-.tz-subtle-input-field[type="number"]::-webkit-inner-spin-button,
-.tz-subtle-input-field[type="number"]::-webkit-outer-spin-button {
+.tz-subtle-input-field[type='number']::-webkit-inner-spin-button,
+.tz-subtle-input-field[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   appearance: none;
   display: none;

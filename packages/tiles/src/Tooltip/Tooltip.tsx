@@ -1,13 +1,19 @@
-import type {
-  TooltipProps as RadixTooltipProps,
-  TooltipArrowProps,
-  TooltipContentProps,
-  TooltipPortalProps,
-  TooltipTriggerProps,
-} from '@radix-ui/react-tooltip';
-import { Arrow, Content, Portal, Provider, Root, Trigger } from '@radix-ui/react-tooltip';
-import type { ReactNode } from 'react';
 import './Tooltip.css';
+
+import {
+  Arrow,
+  Content,
+  Portal,
+  Provider,
+  Root,
+  type TooltipArrowProps,
+  type TooltipContentProps,
+  type TooltipPortalProps,
+  type TooltipProps as RadixTooltipProps,
+  type TooltipTriggerProps,
+  Trigger,
+} from '@radix-ui/react-tooltip';
+import type { ReactNode } from 'react';
 
 export interface TooltipProps extends RadixTooltipProps {
   arrowProps?: TooltipArrowProps;
@@ -52,13 +58,13 @@ export default function Tooltip({
   return (
     <Provider delayDuration={0} {...providerProps}>
       <Root {...rest}>
-        <Trigger asChild {...triggerProps} className='tz-tooltip-trigger'>
+        <Trigger asChild {...triggerProps} className="tz-tooltip-trigger">
           {children}
         </Trigger>
         <Portal {...portalProps}>
-          <Content sideOffset={5} {...contentProps} className='tz-tooltip-content'>
+          <Content sideOffset={5} {...contentProps} className="tz-tooltip-content">
             {content}
-            <Arrow {...arrowProps} className='tz-tooltip-arrow' />
+            <Arrow {...arrowProps} className="tz-tooltip-arrow" />
           </Content>
         </Portal>
       </Root>

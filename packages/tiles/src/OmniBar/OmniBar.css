@@ -5,7 +5,7 @@
   width: min-content;
   z-index: var(--tz-layer-base);
 
-  &[data-expanded="true"] {
+  &[data-expanded='true'] {
     z-index: var(--tz-layer-menu);
   }
 }
@@ -102,7 +102,7 @@
   list-style: none;
   margin: 0;
 
-  &[aria-selected="true"],
+  &[aria-selected='true'],
   &:hover,
   &:focus-within {
     background-color: var(--tz-color-base-lime-600);

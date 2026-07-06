@@ -1,7 +1,9 @@
 import { type MutableRefObject, useEffect, useState } from 'react';
 
 /** Use performant Resize Observer */
-export default function useResizeObserver<T extends MutableRefObject<HTMLElement | null>>(el: T): DOMRect {
+export default function useResizeObserver<T extends MutableRefObject<HTMLElement | null>>(
+  el: T,
+): DOMRect {
   const [domRect, setDomRect] = useState<DOMRect>({
     width: 0,
     height: 0,

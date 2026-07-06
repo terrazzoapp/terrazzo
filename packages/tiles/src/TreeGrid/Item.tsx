@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { type ComponentProps, type ReactNode, useContext, useEffect } from 'react';
+
 import { NestedContext } from './Group.js';
 import { Context } from './Root.js';
 
@@ -31,10 +32,10 @@ export default function Item({ actions, children, className, hidden, id, ...rest
       data-treegrid-item
       hidden={!isParentExpanded || hidden || undefined}
     >
-      <th scope='row' className='tz-treegrid-item-name' tabIndex={0}>
+      <th scope="row" className="tz-treegrid-item-name" tabIndex={0}>
         {children}
       </th>
-      <td className='tz-treegrid-actions'>{actions}</td>
+      <td className="tz-treegrid-actions">{actions}</td>
     </tr>
   );
 }

@@ -1,6 +1,7 @@
+import '../Button/Button.css'; // note: a component should NEVER import another’s styles, but this is a special case
+
 import clsx from 'clsx';
 import type { ComponentProps } from 'react';
-import '../Button/Button.css'; // note: a component should NEVER import another’s styles, but this is a special case
 
 export interface ButtonLinkProps extends ComponentProps<'a'> {
   /** default: "m" */
@@ -18,7 +19,13 @@ export default function ButtonLink({
   ...rest
 }: ButtonLinkProps) {
   return (
-    <a className={clsx('tz-button', className)} ref={ref} data-size={size} data-variant={variant} {...rest}>
+    <a
+      className={clsx('tz-button', className)}
+      ref={ref}
+      data-size={size}
+      data-variant={variant}
+      {...rest}
+    >
       {children}
     </a>
   );

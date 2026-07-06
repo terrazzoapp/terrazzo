@@ -3,7 +3,5 @@ import 'react';
 declare module '*.css';
 
 declare module 'react' {
-  interface CSSProperties {
-    [key: `--${string}`]: string | number | undefined;
-  }
+  type CSSProperties = Record<`--${string}`, string | number | undefined>;
 }
