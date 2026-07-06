@@ -5,7 +5,8 @@ import type { ColorTokenNormalized, TokenTransformed } from '../types.js';
 import type { TransformCSSValueOptions } from './css-types.js';
 import { defaultAliasTransform } from './lib.js';
 
-export interface WideGamutColorValue {
+// oxlint-disable-next-line consistent-type-definitions
+export type WideGamutColorValue = {
   '.': string;
   srgb: string;
   p3: string;
@@ -75,5 +76,5 @@ function downsample(
   if (result['.'] === result.srgb && result['.'] === result.p3 && result['.'] === result.rec2020) {
     return result['.'];
   }
-  return result;
+  return result
 }
