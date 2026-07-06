@@ -16,7 +16,7 @@
   line-height: var(--tz-font-label-small-line-height);
   padding: var(--tz-space-100) var(--tz-space-200);
 
-  &[scope="row"] {
+  &[scope='row'] {
     text-align: left;
   }
 }

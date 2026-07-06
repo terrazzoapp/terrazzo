@@ -1,4 +1,5 @@
 import type { ReactElement } from 'react';
+
 import c from './StickerSheet.module.css';
 
 export interface StickerSheetProps {
@@ -26,11 +27,11 @@ export default function StickerSheet({ columns, rows, variants }: StickerSheetPr
           const rowVariants = variants.slice(start, start + columns.length);
           return (
             <tr key={row}>
-              <th className={c.th} scope='row'>
+              <th className={c.th} scope="row">
                 {row}
               </th>
-              {rowVariants.map((variant, i) => (
-                <td key={'title' in variant ? `${variant.title}-${i}` : i} className={c.td}>
+              {rowVariants.map((variant, j) => (
+                <td key={'title' in variant ? `${variant.title}-${j}` : j} className={c.td}>
                   {'component' in variant ? variant.component : variant}
                 </td>
               ))}
