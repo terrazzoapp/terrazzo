@@ -5,9 +5,9 @@
   "scripts": {
     "build:app": "astro build && cp -r ../packages/storybook/storybook dist",
     "dev": "astro dev",
-    "format": "biome check --fix --unsafe src",
-    "lint": "pnpm --filter @terrazzo/www run \"/^lint:(js|css)/\"",
-    "lint:js": "biome check src",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint --quiet && oxfmt --check && pnpm --filter @terrazzo/www run lint:css",
     "lint:css": "stylelint \"src/**/*.css\"",
     "preview": "astro preview"
   },

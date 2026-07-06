@@ -51,6 +51,8 @@ export default defineConfig({
     'max-depth': 'off',
     'max-lines': 'off',
     'max-lines-per-function': 'off',
+    'max-nested-callbacks': 'off',
+    'max-nested-calls': 'off',
     'max-statements': 'off',
     'method-signature-style': 'off',
     'no-console': 'error',
@@ -78,6 +80,7 @@ export default defineConfig({
     'no-var': 'error',
     'no-warning-comments': 'off', // I will die before I stop this
     'prefer-destructuring': 'off', // TODO: enable when "let" bug is fixed
+    'prefer-for-of': 'off',
     'prefer-named-capture-group': 'off',
     'prefer-set-has': 'off',
     'require-unicode-regexp': 'off',
@@ -85,7 +88,11 @@ export default defineConfig({
     'sort-imports': 'off', // handled by eslint-plugin-simple-import-sort
     'sort-keys': 'off', // nice idea, but impractical at this point
     'unicorn/relative-url-style': ['error', 'always'],
-    'unicorn/no-array-callback-reference': 'off',
+    'unicorn/no-array-callback-reference': 'off', // too opinionated
+    'unicorn/no-unreadable-array-destructuring': 'off', // too opinionated
     'unicorn/numeric-separators-style': 'off', // bugs: applies for object keys (not desirable), groupLength doesn’t work as expected
+    'unicorn/prefer-number-coercion': 'off', // this doesn’t make sense
+    'unicorn/prefer-query-selector': 'off', // overreaching
+    'unicorn/prefer-ternary': 'off', // too opinionated
   },
 })

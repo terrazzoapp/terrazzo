@@ -1,8 +1,14 @@
 import { fileURLToPath } from 'node:url';
+
 import { defineConfig } from '../../../dist/index.js';
 
-const MY_FORMAT = 'my-format'
-const permutations = [{theme:'light'},{theme:'dark'}, {theme:'light-hc'}, {theme:'dark-hc'}]
+const MY_FORMAT = 'my-format';
+const permutations = [
+  { theme: 'light' },
+  { theme: 'dark' },
+  { theme: 'light-hc' },
+  { theme: 'dark-hc' },
+];
 
 export default defineConfig({
   tokens: [fileURLToPath(new URL('resolver.json', import.meta.url))],
@@ -13,9 +19,9 @@ export default defineConfig({
       async transform({ resolver, setTransform }) {
         // set transforms for a local format
         for (const input of permutations) {
-          const tokens = resolver.apply(input)
+          const tokens = resolver.apply(input);
           for (const token of Object.values(tokens)) {
-            setTransform(token.id, { format: MY_FORMAT, value: token.$value.hex, input })
+            setTransform(token.id, { format: MY_FORMAT, value: token.$value.hex, input });
           }
         }
       },
@@ -29,7 +35,7 @@ export default defineConfig({
           }
         }
         outputFile('actual.json', JSON.stringify(output, undefined, 2));
-      }
-    }
-  ]
-})
+      },
+    },
+  ],
+});

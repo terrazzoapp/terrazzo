@@ -1,7 +1,8 @@
 import { fileURLToPath } from 'node:url';
+
 import { defineConfig } from '../../../dist/index.js';
 
-const MY_FORMAT = 'my-format'
+const MY_FORMAT = 'my-format';
 
 export default defineConfig({
   tokens: [fileURLToPath(new URL('tokens.json', import.meta.url))],
@@ -16,8 +17,8 @@ export default defineConfig({
             setTransform(token.id, {
               format: MY_FORMAT,
               mode,
-              value: modeValue.$value.hex
-            })
+              value: modeValue.$value.hex,
+            });
           }
         }
       },
@@ -29,7 +30,7 @@ export default defineConfig({
           output[token.id] = token.value;
         }
         outputFile('actual.json', JSON.stringify(output, undefined, 2));
-      }
-    }
-  ]
-})
+      },
+    },
+  ],
+});

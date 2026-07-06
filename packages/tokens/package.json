@@ -19,8 +19,7 @@
   },
   "scripts": {
     "build": "tz build",
-    "lint": "pnpm run lint:tokens",
-    "lint:tokens": "tz check",
+    "lint": "tz check",
     "dev": "tz build --watch"
   },
   "devDependencies": {

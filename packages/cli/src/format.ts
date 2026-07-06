@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
+
 import * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers, traverse } from '@terrazzo/json-schema-tools';
 import { defineConfig, type Logger, parse } from '@terrazzo/parser';
 import { isAlias } from '@terrazzo/token-tools';
 import yaml from 'yaml';
 import yamlToMomoa from 'yaml-to-momoa';
+
 import { cwd, printError } from './shared.js';
 
 export interface NormalizeOptions {
@@ -14,15 +16,16 @@ export interface NormalizeOptions {
 }
 
 function findMember(name: string) {
-  return function (member: momoa.MemberNode) {
-    return member.name.type === 'String' && member.name.value === name;
-  };
+  return (member: momoa.MemberNode) => member.name.type === 'String' && member.name.value === name;
 }
 
 export async function formatCmd(filename: string, { logger, output }: NormalizeOptions) {
   try {
     if (!filename) {
-      logger.error({ group: 'config', message: 'Expected input: `tz format <tokens.json> -o output.json`' });
+      logger.error({
+        group: 'config',
+        message: 'Expected input: `tz format <tokens.json> -o output.json`',
+      });
       return;
     }
     const sourceLoc = new URL(filename, cwd);
@@ -34,7 +37,8 @@ export async function formatCmd(filename: string, { logger, output }: NormalizeO
     }
 
     const sourceData = fs.readFileSync(sourceLoc, 'utf8');
-    const isYaml = filename.endsWith('.yml') || filename.endsWith('.yaml') || !sourceData.startsWith('{');
+    const isYaml =
+      filename.endsWith('.yml') || filename.endsWith('.yaml') || !sourceData.startsWith('{');
     const document = isYaml ? yamlToMomoa(sourceData) : momoa.parse(sourceData, { mode: 'jsonc' });
     const { tokens } = await parse([{ src: sourceData, filename: sourceLoc }], {
       config: defineConfig(
@@ -83,11 +87,11 @@ export async function formatCmd(filename: string, { logger, output }: NormalizeO
                 if (mode?.type === 'Object') {
                   for (let i = 0; i < mode.members.length; i++) {
                     const modeName = (mode.members[i]!.name as momoa.StringNode).value;
-                    const hex = (mode.members[i]!.value as momoa.StringNode).value;
+                    const modeValue = (mode.members[i]!.value as momoa.StringNode).value;
                     mode.members[i]!.value = momoa.parse(
                       JSON.stringify({
                         ...token.mode[modeName]!.$value,
-                        hex: hex.startsWith('#') ? hex.slice(0, 7) : undefined,
+                        hex: modeValue.startsWith('#') ? modeValue.slice(0, 7) : undefined,
                       }),
                     ).body;
                   }
@@ -102,13 +106,17 @@ export async function formatCmd(filename: string, { logger, output }: NormalizeO
               if (isAlias(node.value.members[$valueI]!.value.value)) {
                 return;
               }
-              node.value.members[$valueI]!.value = formatDurationDimension(node.value.members[$valueI]!.value);
+              node.value.members[$valueI]!.value = formatDurationDimension(
+                node.value.members[$valueI]!.value,
+              );
               const $extensions = getObjMember(node.value, '$extensions');
               if ($extensions?.type === 'Object') {
                 const mode = getObjMember($extensions, 'mode');
                 if (mode?.type === 'Object') {
                   for (let i = 0; i < mode.members.length; i++) {
-                    mode.members[i]!.value = formatDurationDimension(node.value.members[$valueI]!.value);
+                    mode.members[i]!.value = formatDurationDimension(
+                      node.value.members[$valueI]!.value,
+                    );
                   }
                 }
               }
@@ -125,7 +133,9 @@ export async function formatCmd(filename: string, { logger, output }: NormalizeO
               const mode = getObjMember($extensions, 'mode');
               if (mode?.type === 'Object') {
                 for (let i = 0; i < mode.members.length; i++) {
-                  mode.members[i]!.value = formatTypography(mode.members[i]!.value as momoa.ObjectNode);
+                  mode.members[i]!.value = formatTypography(
+                    mode.members[i]!.value as momoa.ObjectNode,
+                  );
                 }
               }
             }
@@ -135,11 +145,13 @@ export async function formatCmd(filename: string, { logger, output }: NormalizeO
     });
 
     const outputLoc = new URL(output, cwd);
-    const contents = isYaml ? yaml.stringify(JSON.parse(momoa.print(document))) : momoa.print(document, { indent: 2 });
+    const contents = isYaml
+      ? yaml.stringify(JSON.parse(momoa.print(document)))
+      : momoa.print(document, { indent: 2 });
     fs.mkdirSync(new URL('.', outputLoc), { recursive: true });
     fs.writeFileSync(outputLoc, contents);
-  } catch (err) {
-    printError((err as Error).message);
+  } catch (error) {
+    printError((error as Error).message);
     process.exit(1);
   }
 }
@@ -151,7 +163,8 @@ function formatDurationDimension(node: momoa.StringNode) {
   }
   (node as any).type = 'Object';
   (node as any).members = (
-    momoa.parse(JSON.stringify({ value, unit: node.value.replace(String(value), '') })).body as momoa.ObjectNode
+    momoa.parse(JSON.stringify({ value, unit: node.value.replace(String(value), '') }))
+      .body as momoa.ObjectNode
   ).members;
   delete (node as any).value;
   return node;
@@ -160,16 +173,23 @@ function formatDurationDimension(node: momoa.StringNode) {
 function formatTypography(node: momoa.ObjectNode) {
   const { fontFamily, fontSize, fontWeight, letterSpacing, lineHeight } = getObjMembers(node);
   if (!fontFamily) {
-    node.members.push((momoa.parse('{"fontFamily":["inherit"]}').body as momoa.ObjectNode).members[0]!);
+    node.members.push(
+      (momoa.parse('{"fontFamily":["inherit"]}').body as momoa.ObjectNode).members[0]!,
+    );
   }
   if (!fontSize) {
-    node.members.push((momoa.parse('{"fontSize":{"value":1,"unit":"rem"}}').body as momoa.ObjectNode).members[0]!);
+    node.members.push(
+      (momoa.parse('{"fontSize":{"value":1,"unit":"rem"}}').body as momoa.ObjectNode).members[0]!,
+    );
   }
   if (!fontWeight) {
     node.members.push((momoa.parse('{"fontWeight":400}').body as momoa.ObjectNode).members[0]!);
   }
   if (!letterSpacing) {
-    node.members.push((momoa.parse('{"letterSpacing":{"value":0,"unit":"rem"}}').body as momoa.ObjectNode).members[0]!);
+    node.members.push(
+      (momoa.parse('{"letterSpacing":{"value":0,"unit":"rem"}}').body as momoa.ObjectNode)
+        .members[0]!,
+    );
   }
   if (!lineHeight) {
     node.members.push((momoa.parse('{"lineHeight":1}').body as momoa.ObjectNode).members[0]!);

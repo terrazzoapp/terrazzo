@@ -1,4 +1,5 @@
 import os from 'node:os';
+
 import { execaNode } from 'execa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
@@ -31,12 +32,15 @@ describe('tz check', () => {
 
   it('TS', async () => {
     const cwd = new URL('../', import.meta.url);
-    const { stdout } = await execaNode({ cwd })`${cmd} --config test/fixtures/check-ts/terrazzo.config.ts check`;
+    const { stdout } = await execaNode({
+      cwd,
+    })`${cmd} --config test/fixtures/check-ts/terrazzo.config.ts check`;
     const output = stripAnsi(stdout);
     expect(output).toMatch('✔  No errors');
   });
 
   it('invalid', async () => {
+    // oxlint-disable-next-line func-style
     const command = async () => {
       const cwd = new URL('../', import.meta.url);
       await execaNode({
@@ -48,9 +52,8 @@ describe('tz check', () => {
       await expect(command).rejects.toThrow(); // don’t test error snapshot on Windows; it formats too differently
       return;
     }
-    await expect(
-      command,
-    ).rejects.toThrowError(`✗  lint:core/valid-color: Expected components to be array of numbers, received "[0, 0.2, 1]".
+    await expect(command).rejects
+      .toThrowError(`✗  lint:core/valid-color: Expected components to be array of numbers, received "[0, 0.2, 1]".
 
   4 |       "100": {
   5 |         "$type": "color",

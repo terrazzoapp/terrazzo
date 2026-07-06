@@ -81,13 +81,21 @@ pnpm run test -u
 > [!TIP]
 > Because many Terrazzo packages depend on each other, you won’t be able to run tests if any of its dependencies aren’t built. Make sure to run `pnpm run build` from the root to build all packages so tests work as-expected! There are also a few instances of packages needing to build themeselves, too, before testing, but this isn’t as common.
 
-#### Linting
+#### Linting & formatting
 
-Linting is handled via [Biome](https://biomejs.dev/). To lint all packages, run the following command from the project root:
+Linting is handled via [Oxlint](https://oxc.rs/docs/guide/usage/linter.html). To lint all packages, run the following command from the project root:
 
 ```sh
 pnpm run lint
 ```
+
+Note that `pnpm run lint` will also _check_ formatting, but not format files. To format the files, that can be done with its companion package, [Oxfmt](https://oxc.rs/docs/guide/usage/formatter.html). You can format all packages with:
+
+```sh
+pnpm run fmt
+```
+
+If using VS Code, it’s recommended to install the [Oxc VS Code Extension](https://marketplace.visualstudio.com/items?itemName=oxc.oxc-vscode) to get in-editor actions and feedback. Oxc also supports [other editors as well](https://oxc.rs/docs/guide/usage/linter/editors.html#supported-editors).
 
 #### Opening the PR
 

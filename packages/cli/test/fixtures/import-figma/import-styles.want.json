@@ -35,11 +35,7 @@
                   },
                   "color": {
                     "colorSpace": "srgb",
-                    "components": [
-                      0,
-                      0,
-                      0
-                    ],
+                    "components": [0, 0, 0],
                     "alpha": 0.25
                   }
                 }
@@ -60,9 +56,7 @@
                 "$type": "typography",
                 "$description": "Default body text style.",
                 "$value": {
-                  "fontFamily": [
-                    "SF Pro"
-                  ],
+                  "fontFamily": ["SF Pro"],
                   "fontWeight": 400,
                   "fontStyle": "Regular",
                   "fontSize": {
@@ -88,9 +82,7 @@
                 "$type": "typography",
                 "$description": "Large body text style.",
                 "$value": {
-                  "fontFamily": [
-                    "SF Pro"
-                  ],
+                  "fontFamily": ["SF Pro"],
                   "fontWeight": 400,
                   "fontStyle": "Regular",
                   "fontSize": {
@@ -120,11 +112,7 @@
                 "$type": "color",
                 "$value": {
                   "colorSpace": "srgb",
-                  "components": [
-                    0.2835651934146881,
-                    0.8572100400924683,
-                    0.369611918926239
-                  ],
+                  "components": [0.2835651934146881, 0.8572100400924683, 0.369611918926239],
                   "alpha": 1
                 },
                 "$extensions": {
@@ -145,11 +133,7 @@
                     "position": 0,
                     "color": {
                       "colorSpace": "srgb",
-                      "components": [
-                        0.9221681356430054,
-                        0.0945836678147316,
-                        0.0945836678147316
-                      ],
+                      "components": [0.9221681356430054, 0.0945836678147316, 0.0945836678147316],
                       "alpha": 1
                     }
                   },
@@ -157,11 +141,7 @@
                     "position": 0.33173078298568726,
                     "color": {
                       "colorSpace": "srgb",
-                      "components": [
-                        0.18287979066371918,
-                        0.2011471837759018,
-                        0.5482274889945984
-                      ],
+                      "components": [0.18287979066371918, 0.2011471837759018, 0.5482274889945984],
                       "alpha": 1
                     }
                   },
@@ -169,11 +149,7 @@
                     "position": 1,
                     "color": {
                       "colorSpace": "srgb",
-                      "components": [
-                        0.7361242175102234,
-                        0.18885448575019836,
-                        0.9351313710212708
-                      ],
+                      "components": [0.7361242175102234, 0.18885448575019836, 0.9351313710212708],
                       "alpha": 1
                     }
                   }

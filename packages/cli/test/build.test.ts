@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+
 import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
 
@@ -12,15 +13,15 @@ describe('tz build', () => {
     it('getTransforms / setTransform', async () => {
       const cwd = new URL('./fixtures/get-transforms-resolver/', import.meta.url);
       await execaNode({ cwd })`${cmd} build`;
-      const given = fs.readFileSync(new URL('actual.json', cwd), 'utf8');
-      await expect(given).toMatchFileSnapshot(fileURLToPath(new URL('want.json', cwd)));
+      const given = fs.readFileSync(new URL('./actual.json', cwd), 'utf8');
+      await expect(given).toMatchFileSnapshot(fileURLToPath(new URL('./want.json', cwd)));
     });
 
     it('getTransforms / setTransform (legacy modes)', async () => {
       const cwd = new URL('./fixtures/get-transforms-mode/', import.meta.url);
       await execaNode({ cwd })`${cmd} build`;
-      const given = fs.readFileSync(new URL('actual.json', cwd), 'utf8');
-      await expect(given).toMatchFileSnapshot(fileURLToPath(new URL('want.json', cwd)));
+      const given = fs.readFileSync(new URL('./actual.json', cwd), 'utf8');
+      await expect(given).toMatchFileSnapshot(fileURLToPath(new URL('./want.json', cwd)));
     });
   });
 
@@ -30,7 +31,8 @@ describe('tz build', () => {
     // actually see.
     it('no tokens', async () => {
       const cwd = new URL('./fixtures/error-no-tokens/', import.meta.url);
-      await expect(() => execaNode({ cwd })`${cmd} build`).rejects.toThrowErrorMatchingInlineSnapshot(`
+      await expect(() => execaNode({ cwd })`${cmd} build`).rejects
+        .toThrowErrorMatchingInlineSnapshot(`
         [ExecaError: Command failed with exit code 1: ../../../bin/cli.js build
 
         ✗  config: Could not locate tokens.json. To create one, run \`npx tz init\`.]
@@ -39,7 +41,8 @@ describe('tz build', () => {
 
     it('config: no default export', async () => {
       const cwd = new URL('./fixtures/error-no-default-export/', import.meta.url);
-      await expect(() => execaNode({ cwd })`${cmd} build`).rejects.toThrowErrorMatchingInlineSnapshot(`
+      await expect(() => execaNode({ cwd })`${cmd} build`).rejects
+        .toThrowErrorMatchingInlineSnapshot(`
         [ExecaError: Command failed with exit code 1: ../../../bin/cli.js build
 
         ✗  config: No default export found in terrazzo.config.js. See https://terrazzo.dev/docs for instructions.]

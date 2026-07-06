@@ -21,7 +21,7 @@ export const API = {
 
 /** Wrapper around camelCase to handle more cases */
 export function formatName(name: string): string {
-  return sculeCamelCase(name.replace(/\s+/g, '-'));
+  return sculeCamelCase(name.replaceAll(/\s+/g, '-'));
 }
 
 const nf = new Intl.NumberFormat('en-us');
@@ -50,7 +50,10 @@ export function getFigmaAuthHeaders(logger: Logger): Record<string, string> {
     return { 'X-Figma-Token': process.env.FIGMA_ACCESS_TOKEN };
   }
 
-  logger.warn({ group: 'config', message: 'Figma auth not configured! Set FIGMA_OAUTH_TOKEN or FIGMA_ACCESS_TOKEN' });
+  logger.warn({
+    group: 'config',
+    message: 'Figma auth not configured! Set FIGMA_OAUTH_TOKEN or FIGMA_ACCESS_TOKEN',
+  });
 
   return {};
 }
@@ -68,7 +71,10 @@ export async function getFile(fileKey: string, { logger }: { logger: Logger }) {
 }
 
 /** /v1/files/:file_key/nodes */
-export async function getFileNodes(fileKey: string, { ids, logger }: { logger: Logger; ids?: string[] }) {
+export async function getFileNodes(
+  fileKey: string,
+  { ids, logger }: { logger: Logger; ids?: string[] },
+) {
   let url = API.fileNodes.replace(FILE_KEY, fileKey);
   if (ids?.length) {
     url += `?ids=${ids.join(',')}`;

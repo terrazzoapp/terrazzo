@@ -1,7 +1,9 @@
 import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
+
 import type { Logger } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
+
 import { importFromFigma, isFigmaPath } from './figma/index.js';
 import { formatNumber } from './figma/lib.js';
 
@@ -48,13 +50,17 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
     const end = performance.now() - start;
 
     if (flags.output) {
-      const oldFile = fsSync.existsSync(flags.output) ? JSON.parse(await fs.readFile(flags.output, 'utf8')) : {};
+      const oldFile = fsSync.existsSync(flags.output)
+        ? JSON.parse(await fs.readFile(flags.output, 'utf8'))
+        : {};
       // merge with old file, if any
       const code = {
         $schema: result.code.$schema, // Reset $schema
         version: result.code.version, // Reset version
         // Note: it’s important to have resolutionOrder higher up, since sets and modifiers will be a mess
-        resolutionOrder: oldFile.resolutionOrder?.length ? oldFile.resolutionOrder : result.code.resolutionOrder, // Rely on old file, since the Figma file won’t understand resolutionOrder
+        resolutionOrder: oldFile.resolutionOrder?.length
+          ? oldFile.resolutionOrder
+          : result.code.resolutionOrder, // Rely on old file, since the Figma file won’t understand resolutionOrder
         sets: result.code.sets, // Overwrite old sets
         modifiers: result.code.modifiers, // Overwrite old modifiers
         $defs: oldFile.$defs, // Just in case
@@ -69,8 +75,6 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
     } else {
       process.stdout.write(JSON.stringify(result.code));
     }
-
-    return;
   }
 
   // Other imports here

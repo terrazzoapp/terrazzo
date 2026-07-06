@@ -29,10 +29,9 @@
   "scripts": {
     "build": "rolldown -c && attw --profile esm-only --pack .",
     "dev": "rolldown -w -c",
-    "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/plugin-sass run \"/^lint:(js|ts)/\"",
-    "lint:js": "biome check .",
-    "lint:ts": "tsc --noEmit",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint --quiet && oxfmt --check",
     "test": "vitest run"
   },
   "peerDependencies": {

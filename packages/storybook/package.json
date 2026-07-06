@@ -7,9 +7,9 @@
   "scripts": {
     "dev": "pnpm run sb",
     "build:app": "storybook build -o storybook",
-    "format": "biome check --fix --unsafe src",
-    "lint": "pnpm run lint:js && pnpm run lint:css",
-    "lint:js": "biome check src",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint --quiet && oxfmt --check && pnpm run lint:css",
     "lint:css": "stylelint \"src/**/*.css\"",
     "sb": "storybook dev -p 9009"
   },

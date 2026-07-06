@@ -1,5 +1,6 @@
 import type { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-api-spec';
 import type { Logger } from '@terrazzo/parser';
+
 import { formatName, getFileLocalVariables, getFilePublishedVariables } from './lib.js';
 
 function getAliasID(value: unknown): string | undefined {
@@ -97,10 +98,8 @@ export async function getVariables(
           default: modeIDToName[collection.defaultModeId],
         };
       }
-    } else {
-      if (!(collectionName in result.code.sets)) {
-        result.code.sets[collectionName] = { sources: [{}] };
-      }
+    } else if (!(collectionName in result.code.sets)) {
+      result.code.sets[collectionName] = { sources: [{}] };
     }
 
     const matches =
@@ -131,7 +130,8 @@ export async function getVariables(
             name: variable.name,
             id: variable.id,
             variableCollectionId: variable.variableCollectionId,
-            codeSyntax: Object.keys(variable.codeSyntax).length ? variable.codeSyntax : undefined,
+            codeSyntax:
+              Object.keys(variable.codeSyntax).length > 0 ? variable.codeSyntax : undefined,
           },
         },
       };
@@ -142,7 +142,9 @@ export async function getVariables(
         if (allVariables[isAliasOfID]) {
           tokenBase.$type =
             matches ||
-            { COLOR: 'color', BOOLEAN: 'boolean', STRING: 'string', FLOAT: 'dimension' }[variable.resolvedType];
+            { COLOR: 'color', BOOLEAN: 'boolean', STRING: 'string', FLOAT: 'dimension' }[
+              variable.resolvedType
+            ];
           tokenBase.$value = `{${allVariables[isAliasOfID].name.split('/').map(formatName).join('.')}}`;
         } else {
           remoteIDs.add(isAliasOfID);
@@ -156,7 +158,7 @@ export async function getVariables(
         tokenBase.$value = value;
       } else if (matches === 'number') {
         if (typeof value === 'object') {
-          throw new Error(`Can’t coerce ${variable.name} into number type.`);
+          throw new TypeError(`Can’t coerce ${variable.name} into number type.`);
         }
         tokenBase.$type = 'number';
         tokenBase.$value = Number(value); // fun fact: this coerces booleans correctly

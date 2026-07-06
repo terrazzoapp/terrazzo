@@ -11,8 +11,8 @@
     "fmt": {
       "dependsOn": ["^fmt"]
     },
-    "format": {
-      "dependsOn": ["^format"]
+    "fmt:check": {
+      "dependsOn": ["^fmt:check"]
     },
     "lint": {
       "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.css", "**/biome.json"],

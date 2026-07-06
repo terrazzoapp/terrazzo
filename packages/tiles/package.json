@@ -17,12 +17,10 @@
   "scripts": {
     "build": "rollup -c rollup.config.js && size-limit",
     "dev": "pnpm run build && chokidar \"src/**/*\" -c \"rollup -c rollup.config.js\"",
-    "format": "pnpm --filter @terrazzo/tiles run \"/^format:/\"",
-    "format:js": "biome check --fix --unsafe src",
-    "format:css": "stylelint --fix \"src/**/*.css\"",
-    "lint": "pnpm --filter @terrazzo/tiles run \"/^lint:(js|ts|css)/\"",
-    "lint:js": "biome check src",
-    "lint:ts": "tsc --noEmit",
+    "fmt": "oxfmt && pnpm --filter @terrazzo/tiles run fmt:css",
+    "fmt:check": "oxfmt --check",
+    "fmt:css": "stylelint --fix \"src/**/*.css\"",
+    "lint": "oxlint --quiet && oxfmt --check && pnpm --filter @terrazzo/tiles run lint:css",
     "lint:css": "stylelint \"src/**/*.css\"",
     "test": "vitest run"
   },

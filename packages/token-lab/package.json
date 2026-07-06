@@ -31,10 +31,9 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "format": "biome check --fix --unsafe src",
-    "lint": "pnpm run --filter @terrazzo/token-lab \"/^lint:(js|ts|css)/\"",
-    "lint:js": "biome check src",
-    "lint:ts": "tsc --noEmit",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint --quiet && oxfmt --check && pnpm run --filter @terrazzo/token-lab lint:css",
     "lint:css": "stylelint src"
   },
   "peerDependencies": {

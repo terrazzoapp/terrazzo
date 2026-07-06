@@ -28,7 +28,9 @@
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import { parseArgs } from 'node:util';
+
 import { Logger } from '@terrazzo/parser';
+
 import {
   buildCmd,
   checkCmd,
@@ -149,6 +151,7 @@ export default async function main() {
         require.resolve('@terrazzo/token-lab');
         await labCmd({ config, configPath, flags, logger });
       } catch {
+        // oxlint-disable-next-line no-console
         console.error('Install @terrazzo/token-lab and try again.');
         process.exit(1);
       }

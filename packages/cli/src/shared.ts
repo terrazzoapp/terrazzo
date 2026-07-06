@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+
 import { type ConfigInit, defineConfig, type Logger } from '@terrazzo/parser';
 import pc from 'picocolors';
 import { createServer, type ViteDevServer } from 'vite';
 import { ViteNodeRunner } from 'vite-node/client';
 import { ViteNodeServer } from 'vite-node/server';
+
 import { getFigmaAuthHeaders } from './import/figma/lib.js';
 
 export const cwd = new URL(`${pathToFileURL(process.cwd())}/`); // trailing slash needed to interpret as directory
@@ -100,11 +102,14 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
         if (flags['no-lint']) {
           config.lint.build.enabled = false;
         }
-      } catch (err) {
-        logger.error({ group: 'config', message: (err as Error).message || (err as string) });
+      } catch (error) {
+        logger.error({ group: 'config', message: (error as Error).message || (error as string) });
       }
     } else if (cmd !== 'init' && cmd !== 'check') {
-      logger.error({ group: 'config', message: 'No config file found. Create one with `npx terrazzo init`.' });
+      logger.error({
+        group: 'config',
+        message: 'No config file found. Create one with `npx terrazzo init`.',
+      });
     }
 
     // clean up
@@ -116,8 +121,8 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
       config,
       configPath: resolvedConfigPath,
     };
-  } catch (err) {
-    printError((err as Error).message);
+  } catch (error) {
+    printError((error as Error).message);
 
     // clean up
     if (viteServer) {
@@ -134,12 +139,16 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
     const allTokens = [];
 
     if (!Array.isArray(tokenPaths)) {
-      logger.error({ group: 'config', message: `loadTokens: Expected array, received ${typeof tokenPaths}` });
+      logger.error({
+        group: 'config',
+        message: `loadTokens: Expected array, received ${typeof tokenPaths}`,
+      });
     }
 
     // if this is the default value, also check for tokens.yaml
     if (tokenPaths.length === 1 && tokenPaths[0]!.href === DEFAULT_TOKENS_PATH.href) {
-      if (!fs.existsSync(tokenPaths[0]!)) {
+      const tokenPathExists = fs.existsSync(tokenPaths[0]!);
+      if (tokenPathExists) {
         const yamlPath = new URL('./tokens.yaml', cwd);
         if (fs.existsSync(yamlPath)) {
           tokenPaths[0] = yamlPath;
@@ -154,11 +163,16 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
     }
 
     // download/read
+    /* oxlint-disable no-await-in-loop */
     for (let i = 0; i < tokenPaths.length; i++) {
       const filename = tokenPaths[i];
 
       if (!(filename instanceof URL)) {
-        logger.error({ group: 'config', message: `Expected URL, received ${filename}`, label: `loadTokens[${i}]` });
+        logger.error({
+          group: 'config',
+          message: `Expected URL, received ${filename}`,
+          label: `loadTokens[${i}]`,
+        });
         return;
       } else if (filename.protocol === 'http:' || filename.protocol === 'https:') {
         try {
@@ -173,7 +187,8 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
             }
             const headers = new Headers({
               Accept: '*/*',
-              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0',
+              'User-Agent':
+                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0',
               ...getFigmaAuthHeaders(logger),
             });
             const res = await fetch(`https://api.figma.com/v1/files/${fileKey}/variables/local`, {
@@ -183,7 +198,8 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
             if (res.ok) {
               allTokens.push({ filename, src: await res.text() });
             }
-            const message = res.status !== 404 ? JSON.stringify(await res.json(), undefined, 2) : '';
+            const message =
+              res.status === 404 ? '' : JSON.stringify(await res.json(), undefined, 2);
             logger.error({
               group: 'config',
               message: `Figma responded with ${res.status}${message ? `:\n${message}` : ''}`,
@@ -197,8 +213,8 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
             headers: { Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0' },
           });
           allTokens.push({ filename, src: await res.text() });
-        } catch (err) {
-          logger.error({ group: 'config', message: `${filename.href}: ${err}` });
+        } catch (error) {
+          logger.error({ group: 'config', message: `${filename.href}: ${error}` });
           return;
         }
       } else {
@@ -213,23 +229,24 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
         }
       }
     }
+    /* oxlint-enable no-await-in-loop */
 
     return allTokens;
-  } catch (err) {
-    printError((err as Error).message);
+  } catch (error) {
+    printError((error as Error).message);
     process.exit(1);
   }
 }
 
 /** Print error */
 export function printError(message: string) {
-  // biome-ignore lint/suspicious/noConsole: this is its job
+  // oxlint-disable-next-line no-console
   console.error(pc.red(`✗  ${message}`));
 }
 
 /** Print success */
 export function printSuccess(message: string, startTime?: number) {
-  // biome-ignore lint/suspicious/noConsole: this is its job
+  // oxlint-disable-next-line no-console
   console.log(`${GREEN_CHECK}  ${message}${startTime ? ` ${time(startTime)}` : ''}`);
 }
 
@@ -253,7 +270,10 @@ export function resolveConfig(filename?: string): string | undefined {
 export function resolveTokenPath(filename: string, { logger }: { logger: Logger }) {
   const tokensPath = new URL(filename, cwd);
   if (!fs.existsSync(tokensPath)) {
-    logger.error({ group: 'config', message: `Could not locate ${filename}. Does the file exist?` });
+    logger.error({
+      group: 'config',
+      message: `Could not locate ${filename}. Does the file exist?`,
+    });
   } else if (!fs.statSync(tokensPath).isFile()) {
     logger.error({ group: 'config', message: `Expected JSON or YAML file, received ${filename}.` });
   }

@@ -37,10 +37,9 @@
   "scripts": {
     "build": "tsc -b tsconfig.build.json && attw --profile esm-only --pack .",
     "dev": "tsc -b tsconfig.build.json -w",
-    "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/token-tools run \"/^lint:(js|ts)/\"",
-    "lint:js": "biome check .",
-    "lint:ts": "tsc --noEmit",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint --quiet && oxfmt --check",
     "test": "vitest run"
   },
   "dependencies": {

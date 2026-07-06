@@ -1,6 +1,6 @@
 /** Show help */
 export function helpCmd() {
-  // biome-ignore lint/suspicious/noConsole: this is its job
+  // oxlint-disable-next-line no-console -- this is its job
   console.log(`tz
   [commands]
     build            Build token artifacts from tokens.json
