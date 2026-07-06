@@ -9,13 +9,13 @@ import {
   Lab,
   Lab_D65,
   LCH,
+  Okhsv,
   OKLab,
   OKLCH,
-  Okhsv,
   P3,
+  parse,
   type PlainColorObject,
   ProPhoto,
-  parse,
   REC_2020,
   serialize,
   sRGB,
@@ -23,6 +23,7 @@ import {
   XYZ_D50,
   XYZ_D65,
 } from 'colorjs.io/fn';
+
 import type { ColorSpace, ColorValueNormalized } from './types.js';
 
 /** Complete list of CSS Module 4 color spaces */
@@ -77,7 +78,7 @@ export function tokenToColor(value: ColorValueNormalized): ColorConstructor & Pl
   }
   return {
     spaceId: space.id,
-    space: space,
+    space,
     coords: value.components as Coords,
     alpha: value.alpha,
   };

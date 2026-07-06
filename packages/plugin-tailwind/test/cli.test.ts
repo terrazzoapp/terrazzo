@@ -58,8 +58,8 @@ describe('CLI', () => {
           { cwd },
         );
         expect(config).toThrowError();
-      } catch (err) {
-        expect(stripAnsi((err as Error).message)).toBe(
+      } catch (error) {
+        expect(stripAnsi((error as Error).message)).toBe(
           'plugin:@terrazzo/plugin-tailwind: Could not locate template "bad". Does the file exist?',
         );
       }

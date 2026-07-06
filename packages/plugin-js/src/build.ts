@@ -54,8 +54,8 @@ export function buildJS({
         }
       }
       output += '  },\n';
-    } catch (err) {
-      logger.error({ ...entry, message: (err as Error).message });
+    } catch (error) {
+      logger.error({ ...entry, message: (error as Error).message });
     }
     const timing = performance.now() - start;
     logger.info({

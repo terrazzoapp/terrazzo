@@ -24,5 +24,5 @@ export function transformJSValue<T extends TokenNormalized>(
   // keys quoted).
 
   // TODO: use @biomejs/js-api when it’s stable for pretty formatting
-  return JSON.stringify(token.$value, undefined, indent).replace(/\n/g, `\n${indentStart}`);
+  return JSON.stringify(token.$value, undefined, indent).replaceAll('\n', `\n${indentStart}`);
 }

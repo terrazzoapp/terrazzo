@@ -1,5 +1,9 @@
 /** Pad string lengths */
-export function padStr(input: string, length: number, alignment: 'left' | 'center' | 'right' = 'left'): string {
+export function padStr(
+  input: string,
+  length: number,
+  alignment: 'left' | 'center' | 'right' = 'left',
+): string {
   const d =
     Math.min(length || 0, 1000) - // guard against NaNs and Infinity
     input.length;

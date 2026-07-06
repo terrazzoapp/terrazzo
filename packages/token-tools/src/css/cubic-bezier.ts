@@ -12,6 +12,8 @@ export function transformCubicBezier(
     return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
   return `cubic-bezier(${token.$value
-    .map((v, i) => (token.partialAliasOf?.[i] ? transformAlias(tokensSet[token.partialAliasOf[i]]!) : v))
+    .map((v, i) =>
+      token.partialAliasOf?.[i] ? transformAlias(tokensSet[token.partialAliasOf[i]]!) : v,
+    )
     .join(', ')})`;
 }

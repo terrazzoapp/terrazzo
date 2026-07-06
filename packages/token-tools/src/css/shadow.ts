@@ -52,6 +52,7 @@ export function transformShadow(
   );
   const isHDR = colors.some((c) => typeof c === 'object');
 
+  // oxlint-disable-next-line func-style
   const formatShadow = (colorKey: string) =>
     token.$value
       .map((v, i) =>
@@ -68,12 +69,12 @@ export function transformShadow(
       )
       .join(', ');
 
-  return !isHDR
-    ? formatShadow('.')
-    : {
+  return isHDR
+    ? {
         '.': formatShadow('.'),
         srgb: formatShadow('srgb'),
         p3: formatShadow('p3'),
         rec2020: formatShadow('rec2020'),
-      };
+      }
+    : formatShadow('.');
 }

@@ -117,14 +117,14 @@ export default function transformCSS({
             }
           }
         }
-      } catch (err) {
+      } catch (error) {
         logger.error({
           group: 'plugin',
           label: PLUGIN_NAME,
           message: `There was an error trying to apply input ${resolver.getPermutationID(input)}.`,
           continueOnError: true, // throw below
         });
-        throw err; // note: this is most likely a nicely-formatted message from another logger instance; just pass it through
+        throw error; // note: this is most likely a nicely-formatted message from another logger instance; just pass it through
       }
     }
 

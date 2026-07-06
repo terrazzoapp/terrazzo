@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
+
 import {
   makeCSSVar,
-  type TransformCSSValueOptions,
   transformBoolean,
   transformColor,
   transformCSSValue,
+  type TransformCSSValueOptions,
   transformCubicBezier,
   transformDimension,
   transformDuration,
@@ -38,7 +39,7 @@ describe('makeCSSVar', () => {
         want: { success: '--typography-heading2' },
       },
     ],
-    ['emojis', { given: ['--🤡\\_'], want: { success: '--🤡' } }],
+    ['emojis', { given: [String.raw`--🤡\_`], want: { success: '--🤡' } }],
     [
       'ramp-pale_purple-500',
       {
@@ -65,8 +66,8 @@ describe('makeCSSVar', () => {
     let result: typeof want.success;
     try {
       result = makeCSSVar(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
@@ -81,7 +82,10 @@ describe('transformCSSValue', () => {
           {
             id: 'color.blue.6',
             $type: 'color',
-            originalValue: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0, 1] } },
+            originalValue: {
+              $type: 'color',
+              $value: { colorSpace: 'srgb', components: [0, 0, 1] },
+            },
             $value: { colorSpace: 'srgb', components: [0, 0, 1], alpha: 1 },
             mode: {
               '.': {
@@ -104,13 +108,19 @@ describe('transformCSSValue', () => {
           {
             id: 'color.blue.6',
             $type: 'color',
-            originalValue: { $type: 'color', $value: { colorSpace: 'lab', components: [80, -75, 100] } },
+            originalValue: {
+              $type: 'color',
+              $value: { colorSpace: 'lab', components: [80, -75, 100] },
+            },
             $value: { colorSpace: 'lab', components: [80, -75, 100], alpha: 1 },
             mode: {
               '.': {
                 id: 'color.blue.6',
                 $type: 'color',
-                originalValue: { $type: 'color', $value: { colorSpace: 'lab', components: [80, -75, 100] } },
+                originalValue: {
+                  $type: 'color',
+                  $value: { colorSpace: 'lab', components: [80, -75, 100] },
+                },
                 $value: { colorSpace: 'lab', components: [80, -75, 100], alpha: 1 },
               },
             },
@@ -204,8 +214,8 @@ describe('transformCSSValue', () => {
     let result: typeof want.success;
     try {
       result = transformCSSValue(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
@@ -232,15 +242,18 @@ describe('transformBoolean', () => {
     let result: typeof want.success;
     try {
       result = transformBoolean(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
 });
 
 describe('transformColor', () => {
-  const tests: Test<[any, TransformCSSValueOptions], string | RegExp | Record<string, string | RegExp>>[] = [
+  const tests: Test<
+    [any, TransformCSSValueOptions],
+    string | RegExp | Record<string, string | RegExp>
+  >[] = [
     [
       'string',
       {
@@ -251,14 +264,20 @@ describe('transformColor', () => {
     [
       'srgb',
       {
-        given: [{ $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6] } }, { tokensSet: {}, permutation: {} }],
+        given: [
+          { $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6] } },
+          { tokensSet: {}, permutation: {} },
+        ],
         want: { success: 'rgb(40% 20% 60%)' },
       },
     ],
     [
       'a98-rgb',
       {
-        given: [{ $value: { colorSpace: 'a98-rgb', components: [0.4, 0.2, 0.6] } }, { tokensSet: {}, permutation: {} }],
+        given: [
+          { $value: { colorSpace: 'a98-rgb', components: [0.4, 0.2, 0.6] } },
+          { tokensSet: {}, permutation: {} },
+        ],
         want: { success: 'color(a98-rgb 0.4 0.2 0.6)' },
       },
     ],
@@ -295,21 +314,30 @@ describe('transformColor', () => {
     [
       'rec2020',
       {
-        given: [{ $value: { colorSpace: 'rec2020', components: [0.4, 0.2, 0.6] } }, { tokensSet: {}, permutation: {} }],
+        given: [
+          { $value: { colorSpace: 'rec2020', components: [0.4, 0.2, 0.6] } },
+          { tokensSet: {}, permutation: {} },
+        ],
         want: { success: 'color(rec2020 0.4 0.2 0.6)' },
       },
     ],
     [
       'hsl',
       {
-        given: [{ $value: { colorSpace: 'hsl', components: [218, 50, 67] } }, { tokensSet: {}, permutation: {} }],
+        given: [
+          { $value: { colorSpace: 'hsl', components: [218, 50, 67] } },
+          { tokensSet: {}, permutation: {} },
+        ],
         want: { success: 'hsl(218 50% 67%)' },
       },
     ],
     [
       'hwb',
       {
-        given: [{ $value: { colorSpace: 'hwb', components: [45, 40, 80] } }, { tokensSet: {}, permutation: {} }],
+        given: [
+          { $value: { colorSpace: 'hwb', components: [45, 40, 80] } },
+          { tokensSet: {}, permutation: {} },
+        ],
         want: { success: 'hwb(45 40% 80%)' },
       },
     ],
@@ -465,7 +493,10 @@ describe('transformColor', () => {
     [
       'unknown colorSpace',
       {
-        given: [{ $value: { colorSpace: 'bad', components: [0.1, 0.1, 0.1] } }, { tokensSet: {}, permutation: {} }],
+        given: [
+          { $value: { colorSpace: 'bad', components: [0.1, 0.1, 0.1] } },
+          { tokensSet: {}, permutation: {} },
+        ],
         want: {
           error: 'Invalid color space "bad".',
         },
@@ -476,8 +507,8 @@ describe('transformColor', () => {
     let result: typeof want.success;
     try {
       result = transformColor(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     if (typeof result === 'string') {
       expect(result).toMatch(want.success as string);
@@ -501,8 +532,8 @@ describe('transformCubicBezier', () => {
     let result: typeof want.success;
     try {
       result = transformCubicBezier(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
@@ -550,8 +581,8 @@ describe('transformDimension', () => {
     let result: typeof want.success;
     try {
       result = transformDimension(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
@@ -578,8 +609,8 @@ describe('transformDuration', () => {
     let result: typeof want.success;
     try {
       result = transformDuration(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
@@ -673,8 +704,8 @@ describe('transformGradient', () => {
     let result: typeof want.success;
     try {
       result = transformGradient(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
@@ -695,8 +726,8 @@ describe('transformFontWeight', () => {
     let result: typeof want.success;
     try {
       result = transformFontWeight(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
@@ -717,8 +748,8 @@ describe('transformNumber', () => {
     let result: typeof want.success;
     try {
       result = transformNumber(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
@@ -811,7 +842,8 @@ describe('transformShadow', () => {
           { tokensSet: {}, permutation: {} },
         ],
         want: {
-          success: '0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.05), 0px 0.5rem 1rem 0px rgb(0% 0% 0% / 0.05)',
+          success:
+            '0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.05), 0px 0.5rem 1rem 0px rgb(0% 0% 0% / 0.05)',
         },
       },
     ],
@@ -821,8 +853,8 @@ describe('transformShadow', () => {
     let result: typeof want.success;
     try {
       result = transformShadow(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });
@@ -836,7 +868,13 @@ describe('transformTypography', () => {
         given: [
           {
             $value: {
-              fontFamily: ['Helvetica Neue', 'Helvetica', '-apple-system', 'system-ui', 'sans-serif'],
+              fontFamily: [
+                'Helvetica Neue',
+                'Helvetica',
+                '-apple-system',
+                'system-ui',
+                'sans-serif',
+              ],
               fontSize: { value: 16, unit: 'px' },
               fontStyle: 'italic',
               fontVariant: 'small-caps',
@@ -908,8 +946,8 @@ describe('transformTypography', () => {
     let result: typeof want.success;
     try {
       result = transformTypography(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
+    } catch (error) {
+      expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
   });

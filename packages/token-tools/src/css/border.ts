@@ -1,5 +1,6 @@
-import { inGamut, parse } from 'colorjs.io/fn';
 import '../color.js'; // load Color.js side-effects
+import { inGamut, parse } from 'colorjs.io/fn';
+
 import type {
   BorderTokenNormalized,
   ColorTokenNormalized,
@@ -33,8 +34,11 @@ export function transformBorder(
     ? transformAlias(tokensSet[token.partialAliasOf.style]!)
     : transformStrokeStyle({ $value: token.$value.style } as StrokeStyleTokenNormalized, options);
 
+  // oxlint-disable-next-line func-style
   const formatBorder = (colorKey: string) =>
-    [width, style, typeof color === 'string' ? color : color[colorKey as keyof typeof color]].join(' ');
+    [width, style, typeof color === 'string' ? color : color[colorKey as keyof typeof color]].join(
+      ' ',
+    );
 
   // Note: ../color.js has already loaded color spaces as side effects so we don’t need to load those again
   return typeof color === 'string' || inGamut(parse(color.p3!), 'display-p3')

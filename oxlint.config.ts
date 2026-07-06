@@ -64,7 +64,7 @@ export default defineConfig({
     'no-eq-null': 'error',
     'no-explicit-any': 'warn',
     'no-implicit-globals': 'error',
-    'no-implicit-coercion': ['error', { allow: ['!!'] }],
+    'no-implicit-coercion': ['error', { boolean: true, number: false }],
     'no-import-type-side-effects': 'error',
     'no-inline-comments': 'off',
     'no-invalid-void-type': 'off',
@@ -94,5 +94,6 @@ export default defineConfig({
     'unicorn/prefer-number-coercion': 'off', // this doesn’t make sense
     'unicorn/prefer-query-selector': 'off', // overreaching
     'unicorn/prefer-ternary': 'off', // too opinionated
+    'unicorn/prefer-spread': 'off',
   },
 })
