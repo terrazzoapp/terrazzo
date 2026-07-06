@@ -82,7 +82,6 @@ const rule: LintRule<
         }
         case 'gradient': {
           for (let stopI = 0; stopI < t.$value.length; stopI++) {
-            // oxlint-disable-next-line no-non-null-assertion
             if (
               !t.partialAliasOf?.[stopI]?.color &&
               !inGamut(tokenToColor(t.$value[stopI]!.color), options.gamut)

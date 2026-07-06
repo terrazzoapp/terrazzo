@@ -368,7 +368,6 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
       if (!baseToken.aliasedBy) {
         baseToken.aliasedBy = [];
       }
-      // oxlint-disable-next-line prefer-for-of
       for (let j = 0; j < upstream.length; j++) {
         const downstream = refToTokenID(upstream[j]!)!;
         if (!baseToken.aliasedBy.includes(downstream)) {

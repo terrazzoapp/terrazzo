@@ -66,7 +66,7 @@ export default defineConfig({
     'no-eq-null': 'error',
     'no-explicit-any': 'warn',
     'no-implicit-globals': 'error',
-    'no-implicit-coercion': ['error', { boolean: true, number: false }],
+    'no-implicit-coercion': 'off',
     'no-import-type-side-effects': 'error',
     'no-inline-comments': 'off',
     'no-invalid-void-type': 'off',

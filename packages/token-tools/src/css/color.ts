@@ -11,7 +11,7 @@ export type WideGamutColorValue = {
   srgb: string;
   p3: string;
   rec2020: string;
-}
+};
 
 /** Convert color value to CSS string */
 export function transformColor(
@@ -76,5 +76,5 @@ function downsample(
   if (result['.'] === result.srgb && result['.'] === result.p3 && result['.'] === result.rec2020) {
     return result['.'];
   }
-  return result
+  return result;
 }

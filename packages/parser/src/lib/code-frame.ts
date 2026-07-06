@@ -1,4 +1,4 @@
-/* oxlint-disable no-else-return, no-lonely-if, prefer-string-replace-all, prefer-ternary, prefer-type-error */
+/* oxlint-disable no-else-return, no-lonely-if, prefer-string-replace-all, prefer-type-error */
 // This is copied from @babel/code-frame package but without the heavyweight color highlighting
 // (note: Babel loads both chalk AND picocolors, and doesn’t treeshake well)
 // Babel is MIT-licensed and unaffiliated with this project.
