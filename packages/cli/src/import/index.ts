@@ -27,6 +27,7 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
     });
   }
 
+  // 1. Figma
   if (isFigmaPath(url!)) {
     const { FIGMA_ACCESS_TOKEN, FIGMA_OAUTH_TOKEN } = process.env;
     if (!FIGMA_ACCESS_TOKEN && !FIGMA_OAUTH_TOKEN) {
@@ -77,5 +78,5 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
     }
   }
 
-  // Other imports here
+  // 2. (Future imports)
 }

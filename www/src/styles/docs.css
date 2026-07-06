@@ -95,7 +95,7 @@
 
   strong,
   b {
-    font-variation-settings: 'wght' 600;
+    font-variation-settings: "wght" 600;
     font-weight: var(--tz-font-body-font-weight);
   }
 
@@ -179,7 +179,7 @@
       background-position: center center;
       background-repeat: no-repeat;
       background-size: 1rem 1rem;
-      content: '';
+      content: "";
       display: flex;
       height: 100%;
       position: absolute;
@@ -351,7 +351,7 @@
   display: flex;
   font-family: var(--tz-font-sans);
   font-size: var(--tz-font-body-strong-font-size);
-  font-variation-settings: 'wght' 600;
+  font-variation-settings: "wght" 600;
   font-weight: var(--tz-font-body-strong-font-weight);
   gap: var(--tz-space-200);
   letter-spacing: var(--tz-font-body-strong-letter-spacing);
@@ -400,7 +400,7 @@
   position: relative;
   z-index: var(--tz-layer-base);
 
-  &[aria-selected='true'] {
+  &[aria-selected="true"] {
     background-color: var(--code-bg);
     border-top-color: var(--tz-color-base-orange-600);
   }
@@ -422,8 +422,8 @@
 }
 
 .md-content > .code-block-wrapper {
-  &[data-language='sh'],
-  &[data-language='bash'] {
+  &[data-language="sh"],
+  &[data-language="bash"] {
     --chrome-border-color: var(--tz-color-border-2);
     --chrome-height: var(--tz-space-600);
 
@@ -435,7 +435,7 @@
       border-top-left-radius: var(--tz-radius-500);
       border-top-right-radius: var(--tz-radius-500);
       bottom: 100%;
-      content: '';
+      content: "";
       display: block;
       height: var(--tz-space-600);
       left: 0;
@@ -477,7 +477,7 @@
           transparent calc(0.5 * var(--chrome-button-size))
         );
       bottom: calc(100%);
-      content: '';
+      content: "";
       height: var(--chrome-button-size);
       left: var(--tz-space-400);
       position: absolute;

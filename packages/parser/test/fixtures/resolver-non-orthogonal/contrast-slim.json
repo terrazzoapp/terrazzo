@@ -1,6 +1,6 @@
-{
-  "weight": {
-    "normal": { "$type": "fontWeight", "$value": 300 },
-    "bold": { "$type": "fontWeight", "$value": 600 }
+  {
+    "weight": {
+      "normal": { "$type": "fontWeight", "$value": 300 },
+      "bold": { "$type": "fontWeight", "$value": 600 }
+    }
   }
-}

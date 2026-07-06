@@ -146,19 +146,20 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
     }
 
     // if this is the default value, also check for tokens.yaml
-    if (tokenPaths.length === 1 && tokenPaths[0]!.href === DEFAULT_TOKENS_PATH.href) {
-      const tokenPathExists = fs.existsSync(tokenPaths[0]!);
-      if (tokenPathExists) {
-        const yamlPath = new URL('./tokens.yaml', cwd);
-        if (fs.existsSync(yamlPath)) {
-          tokenPaths[0] = yamlPath;
-        } else {
-          logger.error({
-            group: 'config',
-            message: `Could not locate ${path.relative(cwd.href, tokenPaths[0]!.href)}. To create one, run \`npx tz init\`.`,
-          });
-          return;
-        }
+    if (
+      tokenPaths.length === 1 &&
+      tokenPaths[0]!.href === DEFAULT_TOKENS_PATH.href &&
+      !fs.existsSync(tokenPaths[0]!)
+    ) {
+      const yamlPath = new URL('./tokens.yaml', cwd);
+      if (fs.existsSync(yamlPath)) {
+        tokenPaths[0] = yamlPath;
+      } else {
+        logger.error({
+          group: 'config',
+          message: `Could not locate ${path.relative(cwd.href, tokenPaths[0]!.href)}. To create one, run \`npx tz init\`.`,
+        });
+        return;
       }
     }
 

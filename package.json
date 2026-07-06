@@ -10,7 +10,8 @@
     "dev": "pnpm run -r --parallel --if-present dev",
     "lint": "turbo run lint",
     "lint:spell": "cspell lint \"packages/**\" \"www/**\"",
-    "format": "turbo run format",
+    "fmt": "turbo run fmt",
+    "fmt:check": "turbo run fmt:check",
     "test": "turbo run test",
     "prepublishOnly": "pnpm run build",
     "version": "pnpm run build && changeset version"

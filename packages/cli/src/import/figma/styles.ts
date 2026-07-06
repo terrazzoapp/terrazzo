@@ -4,7 +4,6 @@ import type {
   Node,
   PublishedStyle,
   Style,
-  TypeStyle,
 } from '@figma/rest-api-spec';
 import type {
   ColorValue,
@@ -250,10 +249,10 @@ export function textStyle(node: Node): TypographyValue | undefined {
   }
 
   let lineHeight: string | number | DimensionValue = 1;
-  if (typeof (node.style as TypeStyle).lineHeightPercentFontSize === 'number') {
-    lineHeight = (node.style as TypeStyle).lineHeightPercentFontSize as number;
-  } else if (typeof (node.style as TypeStyle).lineHeightPx === 'number') {
-    lineHeight = { value: (node.style as TypeStyle).lineHeightPx as number, unit: 'px' };
+  if ('lineHeightPercentFontSize' in node.style) {
+    lineHeight = node.style.lineHeightPercentFontSize!;
+  } else if ('lineHeightPx' in node.style) {
+    lineHeight = { value: node.style.lineHeightPx!, unit: 'px' };
   }
 
   return {

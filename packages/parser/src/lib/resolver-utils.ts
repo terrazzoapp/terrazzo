@@ -64,7 +64,7 @@ export function destructiveMerge(a: object, b: object): void {
       continue;
     }
     const b2 = (b as any)[k];
-    if (b2 !== null && typeof b2 === 'object') {
+    if (b2 && typeof b2 === 'object') {
       if (Array.isArray(b2)) {
         (a as any)[k] = []; // arrays are overwritten; always make an empty one
         destructiveMerge((a as any)[k], [...b2]); // shallow copy

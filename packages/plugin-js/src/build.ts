@@ -67,7 +67,7 @@ export function buildJS({
     const timing = performance.now() - start;
     logger.info({
       ...entry,
-      message: `Permutation ${permutationI}/${permutations.length} done (${id})`,
+      message: `Permutation ${permutationI}/${permutations.length} done (${permutationID})`,
       timing,
     });
     permutationI++;

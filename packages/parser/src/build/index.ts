@@ -10,6 +10,8 @@ import type {
   TransformParams,
 } from '../types.js';
 
+/* oxlint-disable no-await-in-loop -- plugins require serial exec */
+
 export interface BuildRunnerOptions {
   sources: InputSourceWithDocument[];
   config: ConfigInit;
@@ -69,7 +71,7 @@ export default async function build(
   const formats: Record<string, Record<string, TokenTransformed[]>> = {};
   const result: BuildRunnerResult = { outputFiles: [] };
 
-  function getTransformsClosure(plugin: string) {
+  function createGetTransforms(plugin: string) {
     return function getTransforms(params: TransformParams) {
       if (!params?.format) {
         logger.warn({
@@ -124,12 +126,11 @@ export default async function build(
   for (const plugin of config.plugins) {
     if (typeof plugin.transform === 'function') {
       const pt = performance.now();
-      // oxlint-disable-next-line no-await-in-loop
       await plugin.transform({
         context: { logger },
         tokens,
         sources,
-        getTransforms: getTransformsClosure(plugin.name),
+        getTransforms: createGetTransforms(plugin.name),
         // oxlint-disable-next-line no-loop-func
         setTransform(id, params) {
           if (transformsLocked) {
@@ -232,7 +233,7 @@ export default async function build(
           context: { logger },
           tokens,
           sources,
-          getTransforms: getTransformsClosure(plugin.name),
+          getTransforms: createGetTransforms(plugin.name),
           resolver,
           outputFile(filename, contents) {
             const resolved = new URL(filename, config.outDir);
@@ -276,14 +277,15 @@ export default async function build(
   // buildEnd()
   const startBuildEnd = performance.now();
   await Promise.all(
-    config.plugins.map((plugin) =>
-      plugin.buildEnd?.({
-        context: { logger },
-        tokens,
-        getTransforms: getTransformsClosure(plugin.name),
-        sources,
-        outputFiles: structuredClone(result.outputFiles),
-      }),
+    config.plugins.map(
+      async (plugin) =>
+        await plugin.buildEnd?.({
+          context: { logger },
+          tokens,
+          getTransforms: createGetTransforms(plugin.name),
+          sources,
+          outputFiles: structuredClone(result.outputFiles),
+        }),
     ),
   );
   logger.debug({

@@ -87,6 +87,7 @@ export async function bundle(
             parse,
             req,
             sources,
+            startingIndex: i,
             visited: [],
           });
           const resolvedIsOriginalSource = sources
@@ -149,12 +150,14 @@ interface ResolveRefOptions {
   parse: (src: any, filename: URL) => Promise<momoa.DocumentNode>;
   req: BundleOptions['req'];
   sources: InputSource[];
+  /** only needed to display errors on the original node */
+  startingIndex: number;
   visited: string[];
 }
 
 async function resolveRef(
   value: string,
-  { cache, node, origin, parse, req, sources, visited = [] }: ResolveRefOptions,
+  { cache, node, origin, parse, req, sources, startingIndex, visited = [] }: ResolveRefOptions,
 ): Promise<{ url: URL; subpath?: string[] }> {
   const { url, subpath } = parseRef(value);
 
@@ -164,7 +167,7 @@ async function resolveRef(
       throw new JSONError(
         `$ref ${JSON.stringify(value)} can’t recursively embed its parent document`,
         node,
-        sources[i]!.src,
+        sources[startingIndex]!.src,
       );
     }
     return { url: origin, subpath };
@@ -176,7 +179,7 @@ async function resolveRef(
     throw new JSONError(
       `Can’t resolve circular $ref ${JSON.stringify(value)}`,
       node,
-      sources[i]!.src,
+      sources[startingIndex]!.src,
     );
   }
   visited.push(nextURL.href);
@@ -191,7 +194,11 @@ async function resolveRef(
 
   const next$ref = findNode(nextSource.document, subpath);
   if (!next$ref) {
-    throw new JSONError(`Can’t resolve $ref ${JSON.stringify(value)}`, node, sources[i]!.src);
+    throw new JSONError(
+      `Can’t resolve $ref ${JSON.stringify(value)}`,
+      node,
+      sources[startingIndex]!.src,
+    );
   }
 
   // if this is a nested $ref, keep tracing
@@ -203,6 +210,7 @@ async function resolveRef(
       parse,
       req,
       sources,
+      startingIndex,
       visited,
     });
   }

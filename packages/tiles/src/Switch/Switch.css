@@ -39,7 +39,7 @@
   &::before {
     background-color: var(--tz-color-base-gray-500);
     border-radius: var(--tz-switch-width);
-    content: '';
+    content: "";
     height: var(--tz-switch-height);
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -52,7 +52,7 @@
   &::after {
     background-color: var(--tz-color-base-gray-1000);
     border-radius: var(--tz-switch-width);
-    content: '';
+    content: "";
     height: var(--tz-switch-handle-size);
     left: 0;
     position: absolute;

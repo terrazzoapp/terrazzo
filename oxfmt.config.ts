@@ -1,11 +1,11 @@
-import { defineConfig } from 'oxfmt'
+import { defineConfig } from 'oxfmt';
 
 export default defineConfig({
   ignorePatterns: ['**/dist/**', '**/test/fixtures/**'],
 
   overrides: [
     {
-      files: ['*.md', '*.yml'],
+      files: ['*.css', '*.md', '*.yml'],
       options: {
         singleQuote: false,
       },
@@ -17,4 +17,4 @@ export default defineConfig({
   sortImports: false,
   sortPackageJson: false,
   tabWidth: 2,
-})
+});

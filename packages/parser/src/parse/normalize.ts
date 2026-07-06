@@ -56,10 +56,12 @@ export function normalize(
           continue;
         }
         if (border.color) {
-          border.color = normalizeColor(
-            border.color,
-            getObjMember(token.mode[mode]!.source.node as momoa.ObjectNode, 'color'),
-          );
+          border.color = normalizeColor(border.color, {
+            logger,
+            node: getObjMember(token.mode[mode]!.source.node as momoa.ObjectNode, 'color'),
+            src,
+            token,
+          });
         }
       }
       break;
@@ -83,7 +85,12 @@ export function normalize(
               : token.mode[mode]!.source.node
           ) as momoa.ObjectNode;
           if (shadow.color) {
-            shadow.color = normalizeColor(shadow.color, getObjMember(shadowNode, 'color'));
+            shadow.color = normalizeColor(shadow.color, {
+              logger,
+              node: getObjMember(shadowNode, 'color'),
+              src,
+              token,
+            });
           }
           if (!('inset' in shadow)) {
             shadow.inset = false;
@@ -107,7 +114,12 @@ export function normalize(
           const stopNode = (token.mode[mode]!.source.node as momoa.ArrayNode)?.elements?.[i]
             ?.value as momoa.ObjectNode;
           if (stop.color) {
-            stop.color = normalizeColor(stop.color, getObjMember(stopNode, 'color'));
+            stop.color = normalizeColor(stop.color, {
+              logger,
+              node: getObjMember(stopNode, 'color'),
+              src,
+              token,
+            });
           }
         }
       }

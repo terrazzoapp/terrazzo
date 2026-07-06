@@ -1,13 +1,13 @@
-import { fileURLToPath } from 'node:url';
-
 import type { Plugin } from '@terrazzo/parser';
-
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from '../../../dist/index.js';
 
 export default defineConfig({
   outDir: '.',
   tokens: [fileURLToPath(new URL('colors.tokens.json', import.meta.url))],
-  plugins: [myPlugin()],
+  plugins: [
+    myPlugin(),
+  ],
   lint: {
     build: { enabled: true },
     rules: {
@@ -28,12 +28,12 @@ export default defineConfig({
       'core/valid-gradient': 'error',
       'core/valid-typography': 'error',
       'core/consistent-naming': 'warn',
-    },
+    }
   },
-});
+})
 
 export function myPlugin(): Plugin {
   return {
     name: 'Test plugin',
-  };
+  }
 }

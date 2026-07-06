@@ -10,7 +10,7 @@ export abstract class SassToken {
   public readonly indentationLevel: number = 0;
 
   constructor(indentationLevel = 0) {
-    this.indentationLevel ??= indentationLevel;
+    this.indentationLevel = indentationLevel;
   }
 
   abstract format(): string;

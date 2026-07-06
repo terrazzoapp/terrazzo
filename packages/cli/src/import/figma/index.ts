@@ -57,18 +57,20 @@ export async function importFromFigma({
 
   try {
     const [styles, vars] = await Promise.all([
-      skipStyles ? null : getStyles(fileKey!, { logger }),
-      skipVariables
-        ? null
-        : getVariables(fileKey!, {
-            logger,
-            unpublished,
-            matchers: {
-              fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
-              fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
-              number: numberNames ? new RegExp(numberNames) : undefined,
-            },
-          }),
+      ...(skipStyles ? [] : [getStyles(fileKey!, { logger })]),
+      ...(skipVariables
+        ? []
+        : [
+            getVariables(fileKey!, {
+              logger,
+              unpublished,
+              matchers: {
+                fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
+                fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
+                number: numberNames ? new RegExp(numberNames) : undefined,
+              },
+            }),
+          ]),
     ]);
     if (styles) {
       result.styleCount += styles.count;
@@ -77,7 +79,7 @@ export async function importFromFigma({
     if (vars) {
       result.variableCount += vars.count;
       result.code = merge(result.code, vars.code);
-      if (vars.remoteCount) {
+      if ('remoteCount' in vars && vars.remoteCount) {
         logger.warn({
           group: 'import',
           message: `${formatNumber(vars.remoteCount)} ${pluralize(vars.remoteCount, 'Variable', 'Variables')} were remote and could not be accessed. Try importing from other files to grab them.`,
