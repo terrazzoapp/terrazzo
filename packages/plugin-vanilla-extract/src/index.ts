@@ -1,6 +1,7 @@
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
 import { camelCase } from 'scule';
+
 import {
   FORMAT_ID as FORMAT_VANILLA,
   generateTheme,
@@ -11,6 +12,8 @@ import {
 } from './lib.js';
 
 export * from './lib.js';
+
+/* oxlint-disable require-await */
 
 const PLUGIN_NAME = '@terrazzo/plugin-vanilla-extract';
 
@@ -34,7 +37,7 @@ export default function vanillaExtractPlugin(options: VanillaExtractPluginOption
       const allThemes = { ...options.themes, ...options.globalThemes };
       isResolver = Object.values(allThemes).every((t) => t.input);
 
-      if (!Object.keys(allThemes).length) {
+      if (Object.keys(allThemes).length === 0) {
         logger.error({
           group: 'plugin',
           label: PLUGIN_NAME,
@@ -111,7 +114,8 @@ export default function vanillaExtractPlugin(options: VanillaExtractPluginOption
       const output: string[] = [];
 
       // generate theme contract
-      const firstInput = Object.values(options.globalThemes ?? options.themes ?? {})[0]?.input ?? {};
+      const firstInput =
+        Object.values(options.globalThemes ?? options.themes ?? {})[0]?.input ?? {};
       output.push(
         generateThemeContract({
           tokens: getTransforms({
@@ -154,7 +158,11 @@ export default function vanillaExtractPlugin(options: VanillaExtractPluginOption
 
       outputFile(
         filename,
-        [`import { ${[...imports].sort().join(', ')} } from "@vanilla-extract/css";`, '', ...output].join('\n'),
+        [
+          `import { ${[...imports].toSorted().join(', ')} } from "@vanilla-extract/css";`,
+          '',
+          ...output,
+        ].join('\n'),
       );
     },
   };

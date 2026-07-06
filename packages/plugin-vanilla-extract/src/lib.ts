@@ -151,7 +151,7 @@ export function generateTheme({
   const tokensObj: any = {};
   for (const token of tokens) {
     const parts = token.localID!.split('.');
-    const name = parts.pop()!;
+    const localName = parts.pop()!;
 
     // rebuild nested object again from flattened tokens array
     let node = tokensObj;
@@ -163,18 +163,18 @@ export function generateTheme({
     }
     if (token.type === 'MULTI_VALUE') {
       if ('.' in token.value) {
-        node[name] = serializeValue(token.value['.'], tokens);
+        node[localName] = serializeValue(token.value['.'], tokens);
       } else {
-        node[name] = {};
+        node[localName] = {};
         for (const [k, v] of Object.entries(token.value)) {
           if (k === '__cssName') {
             continue;
           }
-          node[name][camelCase(k)] = serializeValue(v, tokens);
+          node[localName][camelCase(k)] = serializeValue(v, tokens);
         }
       }
     } else {
-      node[name] = serializeValue(token.value, tokens);
+      node[localName] = serializeValue(token.value, tokens);
     }
   }
 
@@ -189,7 +189,10 @@ export function generateTheme({
 const IDENT_ESCAPE = '__ident__';
 
 /** Encode an alias to a Vanilla Extract token inside a JSON array */
-export function serializeValue(value: string | number | boolean, tokens: TokenTransformed[]): string {
+export function serializeValue(
+  value: string | number | boolean,
+  tokens: TokenTransformed[],
+): string {
   // raw values: number / boolean
   if (typeof value === 'number' || typeof value === 'boolean') {
     return String(value);
@@ -200,19 +203,23 @@ export function serializeValue(value: string | number | boolean, tokens: TokenTr
   // However, reverse lookups from generated CSS vars is stable and safe. Subtle but important difference.
   const [_, varName] = value.match(/^var\(([^)]+)\)$/) ?? [];
   if (varName) {
-    const originalToken = tokens.find((t) => t.type === 'MULTI_VALUE' && t.value.__cssName === varName);
+    const originalToken = tokens.find(
+      (t) => t.type === 'MULTI_VALUE' && t.value.__cssName === varName,
+    );
     if (!originalToken) {
       throw new Error(`Can’t find token associated with ${value}`);
     }
     let jsIdent = '';
     const parts = originalToken.localID!.split('.');
     for (const part of parts) {
-      if (!isJSIdent(part)) {
+      if (isJSIdent(part)) {
+        jsIdent += `.${part}`;
+      } else {
         // Note: there are probably some token IDs with quotation marks in them that this
         // would break on, but also, how dare you, you monster
-        jsIdent += /^[1-9][0-9]*$/.test(part) ? `[${part}]` : `['${part.replace(/'/g, "\\'")}']`;
-      } else {
-        jsIdent += `.${part}`;
+        jsIdent += /^[1-9][0-9]*$/.test(part)
+          ? `[${part}]`
+          : `['${part.replaceAll("'", String.raw`\'`)}']`;
       }
     }
     return `${IDENT_ESCAPE}${THEME_EXPORT}${jsIdent}${IDENT_ESCAPE}`;
@@ -227,5 +234,5 @@ export function serializeValue(value: string | number | boolean, tokens: TokenTr
 
 /** Decode all aliases from a JSON string */
 export function deserializeAllValues(json: string): string {
-  return json.replace(/"__ident__(.*)__ident__"/g, '$1');
+  return json.replaceAll(/"__ident__(.*)__ident__"/g, '$1');
 }
