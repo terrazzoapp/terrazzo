@@ -1,4 +1,5 @@
 import type React from 'react';
+
 import { type Page, useRouter } from '../hooks/router.js';
 
 export interface LinkProps extends Omit<React.HTMLAttributes<HTMLAnchorElement>, 'href'> {

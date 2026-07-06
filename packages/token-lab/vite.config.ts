@@ -12,7 +12,13 @@ export default defineConfig({
       name: '@terrazzo/token-lab',
     },
     rolldownOptions: {
-      external: ['@base-ui/react', '@base-ui/react/button', '@terrazzo/icons', 'react', 'react/jsx-runtime'],
+      external: [
+        '@base-ui/react',
+        '@base-ui/react/button',
+        '@terrazzo/icons',
+        'react',
+        'react/jsx-runtime',
+      ],
     },
   },
 });
