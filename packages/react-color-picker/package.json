@@ -27,11 +27,9 @@
   "scripts": {
     "build": "rolldown -c && size-limit",
     "dev": "pnpm run build && chokidar \"./src/**/*\" -c \"rollup -c rollup.config.js\"",
-    "fmt": "oxfmt && pnpm --filter @terrazzo/react-color-picker run fmt:css",
+    "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "fmt:css": "stylelint --fix \"src/**/*.css\"",
-    "lint": "oxlint --quiet && oxfmt --check && pnpm --filter @terrazzo/react-color-picker run lint:css",
-    "lint:css": "stylelint \"src/**/*.css\""
+    "lint": "oxlint --quiet && oxfmt --check"
   },
   "peerDependencies": {
     "colorjs.io": "^0.6.0",

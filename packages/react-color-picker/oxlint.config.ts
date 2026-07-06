@@ -1,10 +1,10 @@
-import { defineConfig } from 'oxlint'
+import { defineConfig } from 'oxlint';
 
-import base from '../../oxlint.config.ts'
+import base from '../../oxlint.config.ts';
 
-export default defineConfig ({
+export default defineConfig({
   extends: [base],
   rules: {
     'unicorn/filename-case': 'off',
   },
-})
+});
