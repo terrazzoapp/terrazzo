@@ -1,5 +1,6 @@
 import Pointer from '@apidevtools/json-schema-ref-parser/lib/pointer.js';
 import { bench, describe } from 'vitest';
+
 import { parseRef } from '../src/index.js';
 
 const TEST_CASES = ['#/foo/bar', 'https://example.com/schema#/foo/bar', '#/foo~0/~1bar', ''];

@@ -1,5 +1,8 @@
 import * as momoa from '@humanwhocodes/momoa';
+
 import type { ValueNodeWithIndex } from './types.js';
+
+/* oxlint-disable no-await-in-loop */
 
 /** Find Momoa node by traversing paths */
 export function findNode(within: momoa.AnyNode, path?: string[]): momoa.AnyNode | undefined {
@@ -16,9 +19,11 @@ export function findNode(within: momoa.AnyNode, path?: string[]): momoa.AnyNode 
     }
     case 'Object': {
       const [memberRaw, ...rest] = path;
-      const memberName = memberRaw?.replace(/~/g, '~0').replace(/\//g, '~1');
-      nextNode = within.members.find((m) => m.name.type === 'String' && m.name.value === memberName)?.value;
-      if (nextNode && rest.length) {
+      const memberName = memberRaw?.replaceAll('~', '~0').replaceAll('/', '~1');
+      nextNode = within.members.find(
+        (m) => m.name.type === 'String' && m.name.value === memberName,
+      )?.value;
+      if (nextNode && rest.length > 0) {
         return findNode(nextNode, path.slice(1));
       }
       break;
@@ -27,7 +32,7 @@ export function findNode(within: momoa.AnyNode, path?: string[]): momoa.AnyNode 
       const [_index, ...rest] = path;
       const index = Number.parseInt(_index!, 10);
       nextNode = within.elements[index]?.value;
-      if (nextNode && rest.length) {
+      if (nextNode && rest.length > 0) {
         return findNode(nextNode, path.slice(1));
       }
       break;
@@ -38,7 +43,10 @@ export function findNode(within: momoa.AnyNode, path?: string[]): momoa.AnyNode 
 }
 
 /** Get single member by name. Better when you only need a single value. */
-export function getObjMember(node: momoa.ObjectNode | undefined, key: string): momoa.ValueNode | undefined {
+export function getObjMember(
+  node: momoa.ObjectNode | undefined,
+  key: string,
+): momoa.ValueNode | undefined {
   if (!node || node.type !== 'Object') {
     return;
   }
@@ -63,7 +71,7 @@ export function getObjMembers(node: momoa.ObjectNode): Record<string | number, V
 
 /** Merge multiple Momoa documents from different sources. Conflicts will be overridden  */
 export function mergeDocuments(documents: momoa.DocumentNode[]): momoa.DocumentNode {
-  if (!documents.length) {
+  if (documents.length === 0) {
     throw new Error(`Can’t merge 0 documents.`);
   }
   if (documents.length === 1) {
@@ -99,11 +107,16 @@ export function mergeObjects(a: momoa.ObjectNode, b: momoa.ObjectNode): momoa.Ob
     const i = obj.members.findIndex(
       (prev) => (prev.name as momoa.StringNode).value === (next.name as momoa.StringNode).value,
     );
-    if (i !== -1) {
+    if (i === -1) {
+      obj.members.push(next);
+    } else {
       switch (next.value.type) {
         // Only objects get deep merging
         case 'Object': {
-          obj.members[i]!.value = mergeObjects(obj.members[i]!.value as momoa.ObjectNode, next.value);
+          obj.members[i]!.value = mergeObjects(
+            obj.members[i]!.value as momoa.ObjectNode,
+            next.value,
+          );
           break;
         }
         // Everything else gets overwritten
@@ -120,8 +133,6 @@ export function mergeObjects(a: momoa.ObjectNode, b: momoa.ObjectNode): momoa.Ob
           throw new Error(`Unhandled: ${next.value.type}`);
         }
       }
-    } else {
-      obj.members.push(next);
     }
   }
   return obj;
@@ -194,7 +205,10 @@ export function traverse(root: momoa.AnyNode, visitor: JSONVisitor): void {
         let len = node.members.length;
         let prevMembers = node.members;
         while (i < len) {
-          visitNode(node.members[i]!, node, [...nextPath, (node.members[i]!.name as momoa.StringNode).value]);
+          visitNode(node.members[i]!, node, [
+            ...nextPath,
+            (node.members[i]!.name as momoa.StringNode).value,
+          ]);
           // if this node mutated, the current array in memory is invalidated and we must start over
           if (node.members !== prevMembers) {
             i = 0;
@@ -228,7 +242,11 @@ export async function traverseAsync(root: momoa.AnyNode, visitor: AsyncJSONVisit
    * @param {AnyNode} [parent] The parent of the node to visit.
    * @return {void}
    */
-  async function visitNode(node: momoa.AnyNode, parent: momoa.AnyNode | undefined, path: string[] = []) {
+  async function visitNode(
+    node: momoa.AnyNode,
+    parent: momoa.AnyNode | undefined,
+    path: string[] = [],
+  ) {
     const nextPath = [...path];
     await visitor.enter?.(node, parent, nextPath);
     switch (node.type) {
@@ -263,7 +281,10 @@ export async function traverseAsync(root: momoa.AnyNode, visitor: AsyncJSONVisit
         let len = node.members.length;
         let prevMembers = node.members;
         while (i < len) {
-          await visitNode(node.members[i]!, node, [...nextPath, (node.members[i]!.name as momoa.StringNode).value]);
+          await visitNode(node.members[i]!, node, [
+            ...nextPath,
+            (node.members[i]!.name as momoa.StringNode).value,
+          ]);
           // if this node mutated, the current array in memory is invalidated and we must start over
           if (node.members !== prevMembers) {
             i = 0;
@@ -287,6 +308,7 @@ export class JSONError extends Error {
 
   constructor(message: string, node: momoa.AnyNode, filename: string) {
     super(message);
+    this.name = 'JSONError';
     this.node = node;
     try {
       this.filename = filename;

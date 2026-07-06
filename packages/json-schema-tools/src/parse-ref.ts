@@ -57,6 +57,7 @@ export function subpathFragment(fragment: string) {
         continue;
       }
     } else if (char === '/') {
+      // oxlint-disable-next-line unicorn/no-lonely-if
       if (buff) {
         subpath.push(buff);
         buff = '';
@@ -68,19 +69,19 @@ export function subpathFragment(fragment: string) {
   if (buff) {
     subpath.push(buff);
   }
-  return subpath.length ? subpath : undefined;
+  return subpath.length > 0 ? subpath : undefined;
 }
 
 /**
  * Re-encode a subpath array back into a string
  */
 export function encodeFragment(path: (string | number | boolean)[]): string {
-  if (!path.length) {
+  if (path.length === 0) {
     return '#/';
   }
   let pointer = '#';
   for (const part of path) {
-    pointer += `/${typeof part === 'string' ? part.replace(/~/g, '~0').replace(/\//g, '~1') : part}`;
+    pointer += `/${typeof part === 'string' ? part.replaceAll('~', '~0').replaceAll('/', '~1') : part}`;
   }
   return pointer;
 }

@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises';
+
 import * as momoa from '@humanwhocodes/momoa';
 import { describe, expect, it } from 'vitest';
+
 import { bundle } from '../src/index.js';
 
 describe('bundle', () => {
@@ -12,7 +14,8 @@ describe('bundle', () => {
         return await fs.readFile(url, 'utf8');
       },
     });
-    expect(momoa.print(document, { indent: 2 }).replace(/\\\//g, '/')).toMatchInlineSnapshot(`
+    expect(momoa.print(document, { indent: 2 }).replaceAll(String.raw`\/`, '/'))
+      .toMatchInlineSnapshot(`
       "{
         "root": {
           "type": "object",
@@ -62,6 +65,7 @@ describe('bundle', () => {
       { filename: new URL('file:///c.json'), src: '{"c":"c"}' },
     ];
     const { document } = await bundle(sources, {
+      // oxlint-disable-next-line require-await
       async req() {
         return '';
       },
