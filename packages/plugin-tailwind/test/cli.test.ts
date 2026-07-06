@@ -1,10 +1,12 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+
 import { defineConfig } from '@terrazzo/parser';
 import css from '@terrazzo/plugin-css';
 import { execa, execaNode } from 'execa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, test } from 'vitest';
+
 import tailwind from '../src/index.js';
 
 const cmd = '../../../../cli/bin/cli.js';
@@ -16,7 +18,7 @@ describe('CLI', () => {
     const cwd = new URL(`./fixtures/${dir}/`, import.meta.url);
     await execaNode({ cwd })`${cmd} build`;
 
-    const actual = fs.readFileSync(new URL('./actual.css', cwd), 'utf8').replace(/\r\n/g, '\n');
+    const actual = fs.readFileSync(new URL('./actual.css', cwd), 'utf8').replaceAll('\r\n', '\n');
     const want = fileURLToPath(new URL('./want.css', cwd));
     await expect(actual).toMatchFileSnapshot(want);
   });
@@ -38,19 +40,23 @@ describe('CLI', () => {
     // have been updated).
     await execa({ cwd })`pnpm exec tailwindcss -i ${want} -o ${fileURLToPath(tailwindActual)}`;
     await expect(
-      fs.readFileSync(tailwindActual, 'utf8').replace(/tailwindcss v4\.\d+\.\d+/, 'tailwindcss v4.x.x'),
+      fs
+        .readFileSync(tailwindActual, 'utf8')
+        .replace(/tailwindcss v4\.\d+\.\d+/, 'tailwindcss v4.x.x'),
     ).toMatchFileSnapshot(fileURLToPath(tailwindWant));
   });
 
   describe('errors', () => {
-    test('plugin-css missing', async () => {
+    test('plugin-css missing', () => {
       const cwd = new URL('./fixtures/legacy-modes/', import.meta.url);
-      expect(() => defineConfig({ plugins: [tailwind({ template: '', theme: {} })] }, { cwd })).toThrowError(
+      expect(() =>
+        defineConfig({ plugins: [tailwind({ template: '', theme: {} })] }, { cwd }),
+      ).toThrowError(
         '@terrazzo/plugin-css missing! Please install and add to the plugins array to use the Tailwind plugin.',
       );
     });
 
-    test('bad template', async () => {
+    test('bad template', () => {
       const cwd = new URL('./fixtures/legacy-modes/', import.meta.url);
       try {
         const config = defineConfig(

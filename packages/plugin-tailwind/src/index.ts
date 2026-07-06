@@ -1,21 +1,25 @@
 import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
-import path from 'node:path';
+import { relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
+
 import {
   buildFileHeader,
-  FORMAT_ID as FORMAT_TAILWIND,
   flattenThemeObj,
-  PLUGIN_NAME,
+  FORMAT_ID as FORMAT_TAILWIND,
   parseTzAtRules,
+  PLUGIN_NAME,
   type TailwindPluginOptions,
   type TzAtRule,
 } from './lib.js';
 
 export * from './lib.js';
+
+/* oxlint-disable require-await */
 
 export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
   const filename = options?.filename ?? 'tailwind-theme.css';
@@ -41,13 +45,19 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       }
 
       if (options && 'modeVariants' in options) {
-        logger.error({ ...msg, message: 'Migrate "modeVariants" to "variants" in config (see docs)' });
+        logger.error({
+          ...msg,
+          message: 'Migrate "modeVariants" to "variants" in config (see docs)',
+        });
       }
 
       // store cwd for template resolution (parent of outDir)
       cwd = new URL('./', config.outDir);
       if (!fsSync.existsSync(new URL(options.template, cwd))) {
-        logger.error({ ...msg, message: `Could not locate template "${options.template}". Does the file exist?` });
+        logger.error({
+          ...msg,
+          message: `Could not locate template "${options.template}". Does the file exist?`,
+        });
       }
     },
     async transform({ getTransforms, setTransform, context: { logger } }) {
@@ -71,17 +81,18 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         for (const { path, value } of flatTheme) {
           const variantTokens = getTransforms({ ...query, format: FORMAT_CSS, id: value });
           // Warn the user if they are trying to generate an empty Tailwind variant
-          if (!variantTokens.length) {
+          if (variantTokens.length === 0) {
             logger.warn({ ...msg, message: `${value} matched 0 tokens` });
           }
 
           for (const token of variantTokens) {
             let relName = token.id.split('.').at(-1)!;
-            for (const subgroup of [...(Array.isArray(value) ? value : [value])]) {
+            const valueAsArray = Array.isArray(value) ? value : [value];
+            for (const subgroup of valueAsArray) {
               const match = subgroup.replace(/\*.*/, '');
               relName = token.id.replace(match, '');
             }
-            const defaultName = makeCSSVar(`${path.join('-')}-${relName.replace(/\./g, '-')}`);
+            const defaultName = makeCSSVar(`${path.join('-')}-${relName.replaceAll('.', '-')}`);
             const localID = options?.variableName
               ? options.variableName(defaultName, { token, path, relName })
               : defaultName;
@@ -99,7 +110,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       // Classic replacement hack: If we replace back-to-front, rather than
       // front-to-back, all our start/end locations will still be valid and we
       // won’t have to reparse the template every time.
-      const reversedAtRules = [...tzAtRules].reverse();
+      const reversedAtRules = tzAtRules.toReversed();
       let generatedTemplate = template;
       for (const { start, end, input } of reversedAtRules) {
         const tokens = getTransforms({ ...getTokenQuery(input), format: FORMAT_TAILWIND });
@@ -107,9 +118,11 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         generatedTemplate = `${generatedTemplate.slice(0, start)}${tokens.map((t) => `${t.localID}: ${t.value};`).join(`\n${indent}`)}${generatedTemplate.slice(end)}`;
       }
       // Note: don’t append the header till the end, otherwise start/end will all be wrong
-      const templateRel = path
-        .relative(fileURLToPath(cwd), fileURLToPath(new URL(options.template, cwd)))
-        .split(path.sep)
+      const templateRel = relative(
+        fileURLToPath(cwd),
+        fileURLToPath(new URL(options.template, cwd)),
+      )
+        .split(sep)
         .join('/');
       outputFile(filename, `${buildFileHeader(templateRel)}\n\n${generatedTemplate}`);
     },
