@@ -2,6 +2,8 @@ import type { Plugin } from '@terrazzo/parser';
 import { tokenToColor } from '@terrazzo/token-tools';
 import { to as convert } from 'colorjs.io/fn';
 
+/* oxlint-disable require-await */
+
 export const FORMAT = 'swift';
 
 export interface SwiftPluginOptions {
@@ -68,7 +70,10 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
         const colorData: ColorData = {
           colors: [
             {
-              color: { 'color-space': 'display-p3', components: token.value as Record<string, string> },
+              color: {
+                'color-space': 'display-p3',
+                components: token.value as Record<string, string>,
+              },
               idiom: 'universal',
             },
           ],
@@ -78,7 +83,10 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
         if (darkToken) {
           colorData.colors!.push({
             appearances: [{ appearance: 'luminosity', value: 'dark' }],
-            color: { 'color-space': 'display-p3', components: darkToken.value as Record<string, string> },
+            color: {
+              'color-space': 'display-p3',
+              components: darkToken.value as Record<string, string>,
+            },
             idiom: 'universal',
           });
         }
