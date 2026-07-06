@@ -29,6 +29,7 @@ export function computePreviewValue({
   mode?: string;
   logger: Logger;
 }): string {
+  // oxlint-disable-next-line func-style
   const recursiveNoAliasTransform = (rToken: TokenNormalized): string => {
     /* When a token aliases to another token, the aliased token often does not have values in
      * the same mode, so we revert to the default mode in that case, which will often, but not
@@ -36,7 +37,10 @@ export function computePreviewValue({
      * is affected by a different set of modes. */
     const modeToTransformWith = mode && rToken.mode && mode in rToken.mode ? mode : '.';
     const computed = transformCSSValue(
-      { ...rToken, ...(modeToTransformWith === '.' ? undefined : (rToken.mode[modeToTransformWith] as any)) },
+      {
+        ...rToken,
+        ...(modeToTransformWith === '.' ? undefined : (rToken.mode[modeToTransformWith] as any)),
+      },
       {
         tokensSet,
         transformAlias: recursiveNoAliasTransform,

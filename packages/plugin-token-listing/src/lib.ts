@@ -100,12 +100,12 @@ export interface TokenListing {
   data: ListedToken[];
 }
 
-export type ModeOption = {
+export interface ModeOption {
   name: string;
   values: string[];
   description?: string;
   default?: string;
-};
+}
 
 export type PlatformOption =
   | {
