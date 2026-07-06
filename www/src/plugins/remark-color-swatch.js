@@ -23,7 +23,7 @@ export default function remarkColorSwatch() {
           matches.push([next.index, next.index + next[0].length]);
         }
 
-        if (!matches.length) {
+        if (matches.length === 0) {
           continue;
         }
 
@@ -32,12 +32,18 @@ export default function remarkColorSwatch() {
         // push parts
         for (let j = 0; j < matches.length; j++) {
           const [start, end] = matches[j];
-          node.children.splice(i + 1, 0, { type: 'text', value: child.value.substring(end, matches[j - 1]?.[0]) });
-          node.children.splice(i + 1, 0, { type: 'html', value: transformSwatch(child.value.substring(start, end)) });
+          node.children.splice(i + 1, 0, {
+            type: 'text',
+            value: child.value.slice(end, matches[j - 1]?.[0]),
+          });
+          node.children.splice(i + 1, 0, {
+            type: 'html',
+            value: transformSwatch(child.value.slice(start, end)),
+          });
         }
 
         // modify original node
-        node.children[i].value = child.value.substring(0, matches.at(-1)[0]);
+        node.children[i].value = child.value.slice(0, matches.at(-1)[0]);
       }
     });
   };
@@ -50,6 +56,6 @@ function transformSwatch(input) {
     .split(' ')
     .filter(Boolean);
   const alpha = components.length > 3 ? components.pop() : 1;
-  const code = `${colorSpace}(${components.join(' ')}${alpha !== 1 ? ` / ${alpha}` : ''})`;
+  const code = `${colorSpace}(${components.join(' ')}${alpha === 1 ? '' : ` / ${alpha}`})`;
   return `<span class="color-swatch"><span class="color-swatch-preview" style="background:${code}"></span><span class="color-swatch-code">${code}</span></span>`;
 }

@@ -1,18 +1,19 @@
+import './SearchBox.css';
+
 import { Document, Heading, Pilcrow } from '@terrazzo/icons';
 import { OmniBar, OmniBarResult, type OmniBarResultProps } from '@terrazzo/tiles';
 import { liteClient } from 'algoliasearch/lite';
 import { useState } from 'react';
 import { Configure, InstantSearch, useHits } from 'react-instantsearch';
-import './SearchBox.css';
 
 const searchClient = liteClient('NV4WV1PJEZ', 'c5678f0920fbec3378a5ae3df0c1f4f5');
 
-type HighlightResult = {
+interface HighlightResult {
   fullyHighlighted?: boolean;
   matchLevel: 'full' | 'none';
   matchedWords?: string[];
   value: string;
-};
+}
 
 interface Hit {
   __position: number;
@@ -45,7 +46,7 @@ function DocsSearchHit({ hit, ...rest }: DocsSearchHitProps) {
 
   return (
     <OmniBarResult key={hit.objectID} {...rest}>
-      <a className='tz-searchbox-link' href={hit.url}>
+      <a className="tz-searchbox-link" href={hit.url}>
         {HitComponent ? <HitComponent hit={hit} /> : JSON.stringify(hit)}
       </a>
     </OmniBarResult>
@@ -54,11 +55,11 @@ function DocsSearchHit({ hit, ...rest }: DocsSearchHitProps) {
 
 function DocsSearchHitLvl1({ hit }: { hit: Hit }) {
   return (
-    <span className='tz-searchbox-result-pair'>
-      <Document className='tz-searchbox-result-icon' />
-      <span className='tz-searchbox-result-overflow'>
+    <span className="tz-searchbox-result-pair">
+      <Document className="tz-searchbox-result-icon" />
+      <span className="tz-searchbox-result-overflow">
         <span
-          className='tz-searchbox-result-title'
+          className="tz-searchbox-result-title"
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1.value ?? hit.hierarchy?.lvl1,
           }}
@@ -70,17 +71,17 @@ function DocsSearchHitLvl1({ hit }: { hit: Hit }) {
 
 function DocsSearchHitLvl2({ hit }: { hit: Hit }) {
   return (
-    <span className='tz-searchbox-result-pair'>
-      <Heading className='tz-searchbox-result-icon' />
-      <span className='tz-searchbox-result-overflow'>
+    <span className="tz-searchbox-result-pair">
+      <Heading className="tz-searchbox-result-icon" />
+      <span className="tz-searchbox-result-overflow">
         <span
-          className='tz-searchbox-result-title'
+          className="tz-searchbox-result-title"
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl2?.value ?? hit.hierarchy?.lvl2,
           }}
         />
         <span
-          className='tz-searchbox-result-desc'
+          className="tz-searchbox-result-desc"
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
           }}
@@ -92,17 +93,17 @@ function DocsSearchHitLvl2({ hit }: { hit: Hit }) {
 
 function DocsSearchHitLvl3({ hit }: { hit: Hit }) {
   return (
-    <span className='tz-searchbox-result-pair'>
-      <Heading className='tz-searchbox-result-icon' />
-      <span className='tz-searchbox-result-overflow'>
+    <span className="tz-searchbox-result-pair">
+      <Heading className="tz-searchbox-result-icon" />
+      <span className="tz-searchbox-result-overflow">
         <span
-          className='tz-searchbox-result-title'
+          className="tz-searchbox-result-title"
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl3?.value ?? hit.hierarchy?.lvl3,
           }}
         />
         <span
-          className='tz-searchbox-result-desc'
+          className="tz-searchbox-result-desc"
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
           }}
@@ -114,17 +115,17 @@ function DocsSearchHitLvl3({ hit }: { hit: Hit }) {
 
 function DocsSearchHitLvl4({ hit }: { hit: Hit }) {
   return (
-    <span className='tz-searchbox-result-pair'>
-      <Heading className='tz-searchbox-result-icon' />
-      <span className='tz-searchbox-result-overflow'>
+    <span className="tz-searchbox-result-pair">
+      <Heading className="tz-searchbox-result-icon" />
+      <span className="tz-searchbox-result-overflow">
         <span
-          className='tz-searchbox-result-title'
+          className="tz-searchbox-result-title"
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl4?.value ?? hit.hierarchy?.lvl4,
           }}
         />
         <span
-          className='tz-searchbox-result-desc'
+          className="tz-searchbox-result-desc"
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
           }}
@@ -136,17 +137,17 @@ function DocsSearchHitLvl4({ hit }: { hit: Hit }) {
 
 function DocsSearchContent({ hit }: { hit: Hit }) {
   return (
-    <span className='tz-searchbox-result-pair'>
-      <Pilcrow className='tz-searchbox-result-icon' />
-      <span className='tz-searchbox-result-overflow'>
+    <span className="tz-searchbox-result-pair">
+      <Pilcrow className="tz-searchbox-result-icon" />
+      <span className="tz-searchbox-result-overflow">
         <span
-          className='tz-searchbox-result-title'
+          className="tz-searchbox-result-title"
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.content?.value,
           }}
         />
         <span
-          className='tz-searchbox-result-desc'
+          className="tz-searchbox-result-desc"
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
           }}
@@ -159,17 +160,17 @@ function DocsSearchContent({ hit }: { hit: Hit }) {
 function DocsSearchResults() {
   const hits = useHits();
   const [query, setQuery] = useState('');
-  const isQuerying = !!query.length;
+  const isQuerying = query.length > 0;
 
   return (
     <OmniBar
-      aria-label='Search Docs'
-      placeholder='Find…'
-      keyCommand='/'
+      aria-label="Search Docs"
+      placeholder="Find…"
+      keyCommand="/"
       value={query}
       onChange={(evt) => setQuery(evt.currentTarget.value)}
       onEnter={(i) => {
-        window.location = hits.hits[i]?.url;
+        globalThis.location = hits.hits[i]?.url;
       }}
       resultDescription={
         isQuerying ? (
@@ -196,7 +197,7 @@ function DocsSearchResults() {
 
 export default function DocsSearch() {
   return (
-    <InstantSearch searchClient={searchClient} indexName='terrazzo'>
+    <InstantSearch searchClient={searchClient} indexName="terrazzo">
       <DocsSearchResults />
     </InstantSearch>
   );

@@ -10,15 +10,14 @@ function getCurrentTheme(): 'light' | 'dark' | 'auto' {
     const lsValue = localStorage.getItem(LS_THEME_KEY);
     if (lsValue === 'light' || lsValue === 'dark') {
       return lsValue;
-    } else {
-      localStorage.removeItem(LS_THEME_KEY); // broken LS key? repair
-      return 'auto';
     }
+    localStorage.removeItem(LS_THEME_KEY); // broken LS key? repair
+    return 'auto';
   }
-  if (typeof window !== 'undefined') {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  if (typeof globalThis !== 'undefined') {
+    if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
-    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    } else if (globalThis.matchMedia('(prefers-color-scheme: light)').matches) {
       return 'light';
     }
   }
@@ -44,14 +43,18 @@ export default function ThemeSwitcher() {
   }, [theme]);
 
   return (
-    <Select value={theme} onValueChange={(value) => setTheme(value as typeof theme)} aria-label='Theme'>
-      <SelectItem value='auto' icon={<Half2 />}>
+    <Select
+      value={theme}
+      onValueChange={(value) => setTheme(value as typeof theme)}
+      aria-label="Theme"
+    >
+      <SelectItem value="auto" icon={<Half2 />}>
         Auto
       </SelectItem>
-      <SelectItem value='light' icon={<Sun />}>
+      <SelectItem value="light" icon={<Sun />}>
         Light
       </SelectItem>
-      <SelectItem value='dark' icon={<Moon />}>
+      <SelectItem value="dark" icon={<Moon />}>
         Dark
       </SelectItem>
     </Select>

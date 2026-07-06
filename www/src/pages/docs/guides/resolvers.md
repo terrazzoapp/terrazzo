@@ -112,15 +112,9 @@ Each modifier has a `contexts` map that maps a condition to the tokens that get 
     "breakpoint": {
       "description": "Responsive size",
       "contexts": {
-        "sm": [
-          { "$ref": "./breakpoint/sm.json" },
-          { "$ref": "./typography/sm.json" },
-        ],
+        "sm": [{ "$ref": "./breakpoint/sm.json" }, { "$ref": "./typography/sm.json" }],
         "md": [],
-        "lg": [
-          { "$ref": "./breakpoint/lg.json" },
-          { "$ref": "./typography/lg.json" },
-        ],
+        "lg": [{ "$ref": "./breakpoint/lg.json" }, { "$ref": "./typography/lg.json" }],
       },
       "default": "md",
     },

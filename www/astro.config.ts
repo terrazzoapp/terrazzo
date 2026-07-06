@@ -5,6 +5,7 @@ import { defineConfig } from 'astro/config';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import remarkDirective from 'remark-directive';
+
 import rehypeAutoToc from './src/plugins/rehype-auto-toc.js';
 import remarkColorSwatch from './src/plugins/remark-color-swatch.js';
 import remarkVitepress from './src/plugins/remark-vitepress.js';

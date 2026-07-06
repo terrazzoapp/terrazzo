@@ -1,10 +1,11 @@
 ---
+import '../styles/app.css';
+import '../styles/docs.css';
+
 import DocsFooterNav from '../components/docs-footer-nav.astro';
 import DocsHeaderNav from '../components/docs-header-nav.astro';
 import DocsSidenav from '../components/docs-sidenav.astro';
 import HeadMeta from '../components/head-meta.astro';
-import '../styles/app.css';
-import '../styles/docs.css';
 
 const { frontmatter } = Astro.props;
 const isBeta = Astro.url.pathname.includes('/docs/0.x');
@@ -17,11 +18,11 @@ const nonBetaVersion = Astro.url.pathname.replace(/\/docs\/0\.x\/?/, '/docs/');
     <script is:inline>
       const LS_THEME_KEY = "tz-www-theme";
       const initialValue =
-        typeof localStorage !== "undefined"
-          ? localStorage.getItem(LS_THEME_KEY)
-          : undefined;
+        typeof localStorage === "undefined"
+          ? undefined
+          : localStorage.getItem(LS_THEME_KEY);
       if (initialValue === "light" || initialValue === "dark") {
-        document.documentElement.setAttribute("data-color-mode", initialValue);
+        document.documentElement.dataset.colorMode = initialValue;
       }
     </script>
     <style>

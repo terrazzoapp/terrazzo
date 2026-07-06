@@ -74,11 +74,11 @@ And you’ll see a `tokens/tailwind-theme.css` file generated in your project.
 
 ## Options
 
-| Name           | Type                                                           | Description                                                    |
-| :------------- | :------------------------------------------------------------- | :------------------------------------------------------------- |
-| `template`     | `string`                                                       | The [template](#template) to use.                              |
-| `filename`     | `string`                                                       | Filename to generate (default: `"tailwind-theme.css"`).        |
-| `theme`        | `Record<string, any>`                                          | Tailwind theme ([docs](#theme))                                |
+| Name           | Type                                                            | Description                                                                                                                                                                                      |
+| :------------- | :-------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `template`     | `string`                                                        | The [template](#template) to use.                                                                                                                                                                |
+| `filename`     | `string`                                                        | Filename to generate (default: `"tailwind-theme.css"`).                                                                                                                                          |
+| `theme`        | `Record<string, any>`                                           | Tailwind theme ([docs](#theme))                                                                                                                                                                  |
 | `variableName` | `(defaultName: string, context: VariableNameContext) => string` | Function that receives the default CSS variable name and returns a new one. Use this if you want to preserve underscores, double-dashes, or rename variables in any way ([docs](#variablename)). |
 
 ### variableName

@@ -94,6 +94,7 @@ export default defineConfig({
     'unicorn/no-array-callback-reference': 'off', // too opinionated
     'unicorn/no-unreadable-array-destructuring': 'off', // too opinionated
     'unicorn/numeric-separators-style': 'off', // bugs: applies for object keys (not desirable), groupLength doesn’t work as expected
+    'unicorn/prefer-array-find': 'off', // buggy
     'unicorn/prefer-number-coercion': 'off', // this doesn’t make sense
     'unicorn/prefer-query-selector': 'off', // overreaching
     'unicorn/prefer-ternary': 'off', // too opinionated

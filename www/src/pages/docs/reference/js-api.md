@@ -31,10 +31,9 @@ const config = defineConfig(
 );
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
-const { tokens, sources } = await parse(
-  [{ filename, src: await fs.readFile(filename) }],
-  { config },
-);
+const { tokens, sources } = await parse([{ filename, src: await fs.readFile(filename) }], {
+  config,
+});
 const buildResult = await build(tokens, { sources, config });
 
 for (const { filename, contents } of buildResult) {
@@ -123,38 +122,35 @@ ColorSpace.register(sRGB);
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
 const config = defineConfig({}, { cwd: new URL(import.meta.url) });
-const { sources } = await parse(
-  [{ filename, src: await fs.readFile(filename) }],
-  {
-    config,
-    transform: {
-      // Dynamically inject some colors
-      group(node, path) {
-        if (path.join(".").startsWith("color.base.slate")) {
-          node.members.push(
-            momoa.parse({
-              "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
-            }).body.members[0],
-          );
-        }
-      },
+const { sources } = await parse([{ filename, src: await fs.readFile(filename) }], {
+  config,
+  transform: {
+    // Dynamically inject some colors
+    group(node, path) {
+      if (path.join(".").startsWith("color.base.slate")) {
+        node.members.push(
+          momoa.parse({
+            "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
+          }).body.members[0],
+        );
+      }
+    },
 
-      // Transform color tokens, converting them from CSS strings into color objects
-      color(json, path, ast) {
-        const color = parseColor(json.$value);
-        const space = ColorSpace.get(color.spaceId);
-        return (node.members.find(
-          (m) => m.name.type === "String" && m.name.value === "$value",
-        ).value = momoa.parse({
-          colorSpace: space.cssId,
-          components: color.coords,
-          alpha: color.alpha,
-          hex: serialize(color, { format: "hex" }),
-        }));
-      },
+    // Transform color tokens, converting them from CSS strings into color objects
+    color(json, path, ast) {
+      const color = parseColor(json.$value);
+      const space = ColorSpace.get(color.spaceId);
+      return (node.members.find(
+        (m) => m.name.type === "String" && m.name.value === "$value",
+      ).value = momoa.parse({
+        colorSpace: space.cssId,
+        components: color.coords,
+        alpha: color.alpha,
+        hex: serialize(color, { format: "hex" }),
+      }));
     },
   },
-);
+});
 ```
 
 Return **undefined** to leave the JSON as-is, or return **any JSON-serializable value** to replace the JSON with a new one.
@@ -283,7 +279,6 @@ in complex resolvers.
 
 If the resolver specified zero modifiers, the `listPermutations` will return `[{}]` so you can still produce at least 1 valid tokens set. Thus, it will never be an empty array.
 
-
 ### Partial resolver application
 
 ```ts
@@ -292,7 +287,7 @@ import { createResolver, parse } from "@terrazzo/parser";
 const { resolver } = await parse(sources, { config });
 const r = createResolver(resolver);
 
-r.apply({ theme: 'light' }, { modifiers: ['theme'], resolveAlises: false });
+r.apply({ theme: "light" }, { modifiers: ["theme"], resolveAlises: false });
 ```
 
 It may be useful to apply an input to only a specific subset of tokens within the resolver.
@@ -315,7 +310,7 @@ regardless of the `resolveAlaises` setting.
 `createResolver(resolver)` returns a resolver with the following methods:
 
 | Name                 | Type                                                                                 | Description                                                                                                                                           |
-|:---------------------|:-------------------------------------------------------------------------------------| :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :------------------- | :----------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **apply**            | `(input: Record<string, string>, options?: ResolverApplicationOptions) => TokensMap` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                                                             |
 | **listPermutations** | `() => Record<string, string>[]`                                                     | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).                                                |
 | **isValidInput**     | `(input: Record<string, string>, throwError?: boolean) => boolean`                   | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |

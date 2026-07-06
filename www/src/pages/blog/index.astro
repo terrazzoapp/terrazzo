@@ -1,9 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
+
 import Default from '../../layouts/default.astro';
 import { formatDate } from '../../lib/date.js';
 
-const allBlogPosts = (await getCollection('blog')).sort((a, b) => b.pubDate - a.pubDate);
+// oxlint-disable-next-line no-await-expression-member
+const allBlogPosts = (await getCollection('blog')).toSorted((a, b) => b.pubDate - a.pubDate);
 ---
 
 <Default title="Blog">

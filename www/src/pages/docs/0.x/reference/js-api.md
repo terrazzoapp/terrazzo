@@ -31,10 +31,9 @@ const config = defineConfig(
 );
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
-const { tokens, sources } = await parse(
-  [{ filename, src: await fs.readFile(filename) }],
-  { config },
-);
+const { tokens, sources } = await parse([{ filename, src: await fs.readFile(filename) }], {
+  config,
+});
 const buildResult = await build(tokens, { sources, config });
 
 for (const { filename, contents } of buildResult) {
@@ -122,38 +121,35 @@ ColorSpace.register(sRGB);
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
 const config = defineConfig({}, { cwd: new URL(import.meta.url) });
-const { sources } = await parse(
-  [{ filename, src: await fs.readFile(filename) }],
-  {
-    config,
-    transform: {
-      // Dynamically inject some colors
-      group(json, path, ast) {
-        if (path.startsWith("color.base.slate")) {
-          return {
-            ...json,
-            "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
-          };
-        }
-      },
-
-      // Transform color tokens, converting them from CSS strings into color objects
-      color(json, path, ast) {
-        const color = parseColor(json.$value);
-        const space = ColorSpace.get(color.spaceId);
+const { sources } = await parse([{ filename, src: await fs.readFile(filename) }], {
+  config,
+  transform: {
+    // Dynamically inject some colors
+    group(json, path, ast) {
+      if (path.startsWith("color.base.slate")) {
         return {
           ...json,
-          $value: {
-            colorSpace: space.cssId,
-            components: color.coords,
-            alpha: color.alpha,
-            hex: serialize(color, { format: "hex" }),
-          },
+          "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
         };
-      },
+      }
+    },
+
+    // Transform color tokens, converting them from CSS strings into color objects
+    color(json, path, ast) {
+      const color = parseColor(json.$value);
+      const space = ColorSpace.get(color.spaceId);
+      return {
+        ...json,
+        $value: {
+          colorSpace: space.cssId,
+          components: color.coords,
+          alpha: color.alpha,
+          hex: serialize(color, { format: "hex" }),
+        },
+      };
     },
   },
-);
+});
 ```
 
 Return **undefined** to leave the JSON as-is, or return **any JSON-serializable value** to replace the JSON with a new one.

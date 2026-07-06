@@ -149,9 +149,7 @@ Below is an example of Token Listing content:
           },
           "originalValue": {
             "colorSpace": "srgb",
-            "components": [
-              0.047058823529411764, 0.047058823529411764, 0.050980392156862744,
-            ],
+            "components": [0.047058823529411764, 0.047058823529411764, 0.050980392156862744],
             "alpha": 0.050980392156862744,
             "hex": "#0c0c0d",
           },

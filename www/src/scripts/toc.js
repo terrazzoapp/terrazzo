@@ -5,6 +5,8 @@ const THRESHOLD_Y = 0.1; // % of window screen to accept the next heading (0.1 =
 let currentI = 0;
 let ys = [];
 
+/* oxlint-disable no-implicit-globals */
+
 function debounce(cb, timeout) {
   let t;
   return (...args) => {
