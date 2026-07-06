@@ -1,7 +1,7 @@
 import { defineConfig } from 'oxfmt'
 
 export default defineConfig({
-  ignorePatterns: ['dist/**', 'test/fixtures/**'],
+  ignorePatterns: ['**/dist/**', '**/test/fixtures/**'],
 
   overrides: [
     {

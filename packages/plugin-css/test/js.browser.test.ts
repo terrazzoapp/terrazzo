@@ -1,5 +1,6 @@
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
+
 import css from '../src/index.js';
 
 describe('Browser', () => {
@@ -15,7 +16,8 @@ describe('Browser', () => {
                 input: { theme: 'light' },
               },
               {
-                prepare: (contents) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}`,
+                prepare: (contents) =>
+                  `@media (prefers-color-scheme: dark) {\n  :root {\n    ${contents}\n  }\n}`,
                 input: { theme: 'dark' },
               },
               {
@@ -34,7 +36,9 @@ describe('Browser', () => {
       { config },
     );
     const result = await build(tokens, { resolver, sources, config });
-    await expect(result.outputFiles.find((f) => f.filename === 'index.css')?.contents).toMatchSnapshot();
+    await expect(
+      result.outputFiles.find((f) => f.filename === 'index.css')?.contents,
+    ).toMatchSnapshot();
   });
 });
 
@@ -331,7 +335,11 @@ const FIGMA_SDS = {
         green: {
           '100': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [0.9215686274509803, 1, 0.9333333333333333], hex: '#ebffee' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [0.9215686274509803, 1, 0.9333333333333333],
+              hex: '#ebffee',
+            },
           },
           '200': {
             $type: 'color',
@@ -367,11 +375,19 @@ const FIGMA_SDS = {
           },
           '600': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [0, 0.6, 0.3176470588235294], hex: '#009951' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [0, 0.6, 0.3176470588235294],
+              hex: '#009951',
+            },
           },
           '700': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [0, 0.5019607843137255, 0.2627450980392157], hex: '#008043' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [0, 0.5019607843137255, 0.2627450980392157],
+              hex: '#008043',
+            },
           },
           '800': {
             $type: 'color',
@@ -647,45 +663,99 @@ const FIGMA_SDS = {
         white: {
           '100': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.050980392156862744, hex: '#ffffff' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [1, 1, 1],
+              alpha: 0.050980392156862744,
+              hex: '#ffffff',
+            },
           },
           '200': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.10196078431372549, hex: '#ffffff' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [1, 1, 1],
+              alpha: 0.10196078431372549,
+              hex: '#ffffff',
+            },
           },
-          '300': { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.2, hex: '#ffffff' } },
-          '400': { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.4, hex: '#ffffff' } },
+          '300': {
+            $type: 'color',
+            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.2, hex: '#ffffff' },
+          },
+          '400': {
+            $type: 'color',
+            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.4, hex: '#ffffff' },
+          },
           '500': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.6980392156862745, hex: '#ffffff' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [1, 1, 1],
+              alpha: 0.6980392156862745,
+              hex: '#ffffff',
+            },
           },
-          '600': { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.8, hex: '#ffffff' } },
+          '600': {
+            $type: 'color',
+            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.8, hex: '#ffffff' },
+          },
           '700': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.8509803921568627, hex: '#ffffff' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [1, 1, 1],
+              alpha: 0.8509803921568627,
+              hex: '#ffffff',
+            },
           },
           '800': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.8980392156862745, hex: '#ffffff' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [1, 1, 1],
+              alpha: 0.8980392156862745,
+              hex: '#ffffff',
+            },
           },
           '900': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0.9490196078431372, hex: '#ffffff' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [1, 1, 1],
+              alpha: 0.9490196078431372,
+              hex: '#ffffff',
+            },
           },
-          '1000': { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1], hex: '#ffffff' } },
+          '1000': {
+            $type: 'color',
+            $value: { colorSpace: 'srgb', components: [1, 1, 1], hex: '#ffffff' },
+          },
         },
         yellow: {
           '100': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [1, 0.984313725490196, 0.9215686274509803], hex: '#fffbeb' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [1, 0.984313725490196, 0.9215686274509803],
+              hex: '#fffbeb',
+            },
           },
           '200': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [1, 0.9450980392156862, 0.7607843137254902], hex: '#fff1c2' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [1, 0.9450980392156862, 0.7607843137254902],
+              hex: '#fff1c2',
+            },
           },
           '300': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [1, 0.9098039215686274, 0.6392156862745098], hex: '#ffe8a3' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [1, 0.9098039215686274, 0.6392156862745098],
+              hex: '#ffe8a3',
+            },
           },
           '400': {
             $type: 'color',
@@ -697,7 +767,11 @@ const FIGMA_SDS = {
           },
           '500': {
             $type: 'color',
-            $value: { colorSpace: 'srgb', components: [0.8980392156862745, 0.6274509803921569, 0], hex: '#e5a000' },
+            $value: {
+              colorSpace: 'srgb',
+              components: [0.8980392156862745, 0.6274509803921569, 0],
+              hex: '#e5a000',
+            },
           },
           '600': {
             $type: 'color',

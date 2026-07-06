@@ -1,11 +1,12 @@
 import type { BuildHookOptions, Config, Logger, TokenTransformed } from '@terrazzo/parser';
 import { generateShorthand, makeCSSVar } from '@terrazzo/token-tools/css';
+
 import {
   addDeclUnique,
+  cachedMatcher,
   type CSSDeclaration,
   type CSSPluginOptions,
   type CSSRule,
-  cachedMatcher,
   decl,
   FORMAT_ID,
   getIndentFromPrepare,
@@ -63,7 +64,13 @@ const TOKEN_TYPE_SYNTAX: Record<string, string> = {
 
 const SUB_PROPERTY_SYNTAX: Record<string, Record<string, string>> = {
   border: { color: '<color>', width: '<length>', style: '*' },
-  shadow: { color: '<color>', 'offset-x': '<length>', 'offset-y': '<length>', blur: '<length>', spread: '<length>' },
+  shadow: {
+    color: '<color>',
+    'offset-x': '<length>',
+    'offset-y': '<length>',
+    blur: '<length>',
+    spread: '<length>',
+  },
   transition: { duration: '<time>', delay: '<time>', 'timing-function': '*' },
   typography: {
     'font-family': '*',
@@ -80,7 +87,11 @@ const SUB_PROPERTY_SYNTAX: Record<string, Record<string, string>> = {
   strokeStyle: { 'dash-array': '*', 'line-cap': '*' },
 };
 
-function generatePropertyDefinition(localID: string, syntax: string, initialValue?: string): CSSRule {
+function generatePropertyDefinition(
+  localID: string,
+  syntax: string,
+  initialValue?: string,
+): CSSRule {
   const children: CSSDeclaration[] = [decl('syntax', `'${syntax}'`), decl('inherits', 'true')];
   if (initialValue) {
     children.push(decl('initial-value', initialValue));
@@ -181,11 +192,15 @@ export default function buildCSS({
 
     for (const p of permutations) {
       if (typeof p.prepare !== 'function') {
-        logger.error({ group: 'plugin', label: PLUGIN_NAME, message: 'prepare(css) must be a function!' });
+        logger.error({
+          group: 'plugin',
+          label: PLUGIN_NAME,
+          message: 'prepare(css) must be a function!',
+        });
       }
 
       const tokens = getTransforms({ format: FORMAT_ID, input: p.input });
-      if (!tokens.length) {
+      if (tokens.length === 0) {
         continue;
       }
 
@@ -198,9 +213,9 @@ export default function buildCSS({
       const pInclude = p.include ? cachedMatcher.tokenIDMatch(p.include) : () => true;
       const pExclude = p.exclude ? cachedMatcher.tokenIDMatch(p.exclude) : () => false;
 
-      const includeToken = (tokenId: string): boolean => {
-        return include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
-      };
+      // oxlint-disable-next-line func-style
+      const includeToken = (tokenId: string): boolean =>
+        include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
 
       for (const token of tokens) {
         if (!includeToken(token.id)) {
@@ -222,7 +237,10 @@ export default function buildCSS({
 
           if (token.value.p3 !== token.value.srgb) {
             addDeclUnique(hdrColors.p3, decl(localID, token.value.p3!, getDescription(token)));
-            addDeclUnique(hdrColors.rec2020, decl(localID, token.value.rec2020!, getDescription(token)));
+            addDeclUnique(
+              hdrColors.rec2020,
+              decl(localID, token.value.rec2020!, getDescription(token)),
+            );
 
             // handle aliases within color gamut media queries
             for (const alias of aliasTokens) {
@@ -271,30 +289,34 @@ export default function buildCSS({
 
       // declare P3 and Rec2020 gamuts, if needed
       for (const gamut of ['p3', 'rec2020'] as const) {
-        if (hdrColors[gamut].length) {
+        if (hdrColors[gamut].length > 0) {
           output += `\n@media (color-gamut: ${gamut}) {\n`;
           output += indentRules.indentChar;
           output += p
             .prepare(printRules(hdrColors[gamut], indentRules))
-            .replace(/\n(?!\n)/g, `\n${indentRules.indentChar}`); // indent every line an extra level
+            .replaceAll(/\n(?!\n)/g, `\n${indentRules.indentChar}`); // indent every line an extra level
           output += '\n}\n';
         }
       }
     }
 
     // add utility CSS
-    if (utility && Object.keys(utility).length) {
+    if (utility && Object.keys(utility).length > 0) {
       if (output) {
         output += '\n';
       }
       output += printRules(
-        generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, input: permutations[0]?.input ?? {} }), {
-          logger,
-        }),
+        generateUtilityCSS(
+          utility,
+          getTransforms({ format: FORMAT_ID, input: permutations[0]?.input ?? {} }),
+          {
+            logger,
+          },
+        ),
       );
     }
 
-    if (propertyDefsNodes.length && output) {
+    if (propertyDefsNodes.length > 0 && output) {
       output = `${printRules(propertyDefsNodes)}\n\n${output}`;
     }
 
@@ -304,7 +326,7 @@ export default function buildCSS({
   // legacy plugin (will be deprecated in 3.0)
   let output = '';
   const rootTokens = getTransforms({ format: FORMAT_ID, mode: '.' });
-  if (rootTokens.length) {
+  if (rootTokens.length > 0) {
     const rules: CSSRule[] = [
       rule([baseSelector], []),
       rule([P3_MQ], [rule([baseSelector])]),
@@ -343,12 +365,21 @@ export default function buildCSS({
 
         if (token.value.p3 !== token.value.srgb) {
           addDeclUnique(p3Rule.children, decl(localID, token.value.p3!, getDescription(token)));
-          addDeclUnique(rec2020Rule.children, decl(localID, token.value.rec2020!, getDescription(token)));
+          addDeclUnique(
+            rec2020Rule.children,
+            decl(localID, token.value.rec2020!, getDescription(token)),
+          );
           // handle aliases within color gamut media queries
           for (const alias of aliasTokens) {
             if (alias.localID && typeof alias.value === 'string') {
-              addDeclUnique(p3Rule.children, decl(alias.localID, alias.value, getDescription(alias)));
-              addDeclUnique(rec2020Rule.children, decl(alias.localID, alias.value, getDescription(alias)));
+              addDeclUnique(
+                p3Rule.children,
+                decl(alias.localID, alias.value, getDescription(alias)),
+              );
+              addDeclUnique(
+                rec2020Rule.children,
+                decl(alias.localID, alias.value, getDescription(alias)),
+              );
             }
           }
         }
@@ -367,7 +398,10 @@ export default function buildCSS({
           omitTypographyShorthand,
         });
         if (shorthand) {
-          addDeclUnique(rootRule.children, decl(token.localID ?? token.token.id, shorthand, getDescription(token)));
+          addDeclUnique(
+            rootRule.children,
+            decl(token.localID ?? token.token.id, shorthand, getDescription(token)),
+          );
         }
       }
     }
@@ -379,8 +413,12 @@ export default function buildCSS({
   // Delete this behavior in 3.0.
   // This code is intentionally left-alone as a separate code path so it behaves as it did with 0.x.
   for (const selector of modeSelectors ?? []) {
-    const selectorTokens = getTransforms({ format: FORMAT_ID, id: selector.tokens, mode: selector.mode });
-    if (!selectorTokens.length) {
+    const selectorTokens = getTransforms({
+      format: FORMAT_ID,
+      id: selector.tokens,
+      mode: selector.mode,
+    });
+    if (selectorTokens.length === 0) {
       continue;
     }
 
@@ -421,13 +459,19 @@ export default function buildCSS({
         addDeclUnique(modeRule.children, decl(localID, token.value.srgb!, getDescription(token)));
         if (token.value.p3 !== token.value.srgb) {
           addDeclUnique(hdrColors.p3, decl(localID, token.value.p3!, getDescription(token)));
-          addDeclUnique(hdrColors.rec2020, decl(localID, token.value.rec2020!, getDescription(token)));
+          addDeclUnique(
+            hdrColors.rec2020,
+            decl(localID, token.value.rec2020!, getDescription(token)),
+          );
 
           // handle aliases within color gamut media queries
           for (const alias of aliasTokens) {
             if (alias.localID && typeof alias.value === 'string') {
               for (const gamut of ['p3', 'rec2020'] as const) {
-                addDeclUnique(hdrColors[gamut], decl(alias.localID, alias.value, getDescription(alias)));
+                addDeclUnique(
+                  hdrColors[gamut],
+                  decl(alias.localID, alias.value, getDescription(alias)),
+                );
               }
             }
           }
@@ -470,14 +514,16 @@ export default function buildCSS({
   }
 
   // add utility CSS
-  if (utility && Object.keys(utility).length) {
+  if (utility && Object.keys(utility).length > 0) {
     if (output) {
       output += '\n\n';
     }
-    output += printRules(generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, mode: '.' }), { logger }));
+    output += printRules(
+      generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, mode: '.' }), { logger }),
+    );
   }
 
-  if (propertyDefsNodes.length && output) {
+  if (propertyDefsNodes.length > 0 && output) {
     output = `${printRules(propertyDefsNodes)}\n\n${output}`;
   }
 

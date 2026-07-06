@@ -79,6 +79,7 @@ export default defineConfig({
     'no-shadow': 'error',
     'no-ternary': 'off',
     'no-underscore-dangle': 'off',
+    'no-unused-expressions': 'off', // side effects are real
     'no-var': 'error',
     'no-warning-comments': 'off', // I will die before I stop this
     'prefer-destructuring': 'off', // TODO: enable when "let" bug is fixed
@@ -97,5 +98,6 @@ export default defineConfig({
     'unicorn/prefer-query-selector': 'off', // overreaching
     'unicorn/prefer-ternary': 'off', // too opinionated
     'unicorn/prefer-spread': 'off',
+    'unicorn/no-useless-undefined': 'off', // overreaching
   },
 })
