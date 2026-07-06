@@ -42,7 +42,9 @@ export default defineConfig({
         fixStyle: 'inline-type-imports',
         prefer: 'type-imports',
       },
+
     ],
+    'consistent-generic-constructors': 'off', // mostly noise
     'default-param-last': 'off',
     'func-style': ['error', 'declaration'],
     'id-length': 'off',

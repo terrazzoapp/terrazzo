@@ -1,9 +1,12 @@
 import type { Plugin } from '@terrazzo/parser';
+
 import { buildDTS, buildJS } from './build.js';
 import { DEFAULT_PROPERTIES, FORMAT_ID, type JSPluginOptions } from './lib.js';
 
 export * from './build.js';
 export * from './lib.js';
+
+/* oxlint-disable require-await */
 
 export default function pluginJS({
   filename = 'index.js',
@@ -15,7 +18,7 @@ export default function pluginJS({
   return {
     name: '@terrazzo/plugin-js',
     config(_, context) {
-      if (Array.isArray(userProperties) && !userProperties.length) {
+      if (Array.isArray(userProperties) && userProperties.length === 0) {
         context.logger.error({ ...entry, message: 'properties option can’t be empty' });
       }
     },
@@ -50,7 +53,8 @@ export default function pluginJS({
       outputFile(filename, js);
 
       const dts = buildDTS({ resolver, contexts, properties, typeMap });
-      const dtsFilename = typeof filename === 'string' ? filename.replace(/\.(c|m)?js$/, '.d.$1ts') : 'index.d.ts';
+      const dtsFilename =
+        typeof filename === 'string' ? filename.replace(/\.(c|m)?js$/, '.d.$1ts') : 'index.d.ts';
       outputFile(dtsFilename, dts);
     },
   };

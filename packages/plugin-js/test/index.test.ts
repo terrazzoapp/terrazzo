@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
 
@@ -15,17 +16,23 @@ describe('@terrazzo/plugin-js', () => {
       'ibm-carbon',
       'microsoft-fluent',
       'shopify-polaris',
-    ])('%s', async (ds) => {
-      const cwd = new URL(`./fixtures/${ds}/`, import.meta.url);
-      await execaNode({ cwd })`../../../../cli/bin/cli.js build`;
+    ])(
+      '%s',
+      async (ds) => {
+        const cwd = new URL(`./fixtures/${ds}/`, import.meta.url);
+        await execaNode({ cwd })`../../../../cli/bin/cli.js build`;
 
-      await expect(await fs.readFile(new URL('actual.d.ts', cwd), 'utf8'), '.d.ts mismatch!').toMatchFileSnapshot(
-        fileURLToPath(new URL('want.d.ts', cwd)),
-      );
-      await expect(await fs.readFile(new URL('actual.js', cwd), 'utf8'), '.js mismatch!').toMatchFileSnapshot(
-        fileURLToPath(new URL('want.js', cwd)),
-      );
-    }, 120_000); // Note: GitHub has 12 permutations, which take ~5 seconds each  Allow more time for CI.
+        await expect(
+          await fs.readFile(new URL('./actual.d.ts', cwd), 'utf8'),
+          '.d.ts mismatch!',
+        ).toMatchFileSnapshot(fileURLToPath(new URL('./want.d.ts', cwd)));
+        await expect(
+          await fs.readFile(new URL('./actual.js', cwd), 'utf8'),
+          '.js mismatch!',
+        ).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
+      },
+      120_000,
+    ); // Note: GitHub has 12 permutations, which take ~5 seconds each  Allow more time for CI.
 
     it('generates declarations that type-check without @terrazzo/parser in a consumer project', async () => {
       const cwd = new URL('./fixtures/shopify-polaris/', import.meta.url);
@@ -37,8 +44,8 @@ describe('@terrazzo/plugin-js', () => {
         const tokenTypesDir = path.join(tmp, 'node_modules/@terrazzo/token-types');
         await fs.mkdir(tokenPackageDir, { recursive: true });
         await fs.mkdir(tokenTypesDir, { recursive: true });
-        await fs.copyFile(new URL('actual.js', cwd), path.join(tokenPackageDir, 'index.js'));
-        await fs.copyFile(new URL('actual.d.ts', cwd), path.join(tokenPackageDir, 'index.d.ts'));
+        await fs.copyFile(new URL('./actual.js', cwd), path.join(tokenPackageDir, 'index.js'));
+        await fs.copyFile(new URL('./actual.d.ts', cwd), path.join(tokenPackageDir, 'index.d.ts'));
         await fs.copyFile(
           new URL('../../token-types/dist/index.d.ts', import.meta.url),
           path.join(tokenTypesDir, 'index.d.ts'),
@@ -108,7 +115,9 @@ color.$value.components satisfies (number | null)[];
           }),
         );
 
-        const tsc = fileURLToPath(new URL('../../../node_modules/typescript/bin/tsc', import.meta.url));
+        const tsc = fileURLToPath(
+          new URL('../../../node_modules/typescript/bin/tsc', import.meta.url),
+        );
         await execaNode(tsc, ['-p', tmp]);
       } finally {
         await fs.rm(tmp, { recursive: true, force: true });
