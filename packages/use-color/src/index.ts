@@ -1,17 +1,18 @@
-// @ts-check
 import { type ColorValue, type ColorValueNormalized, tokenToColor } from '@terrazzo/token-tools';
 import {
   ColorSpace,
   type ColorTypes,
-  to as convert,
   getColor,
   HSV,
   Okhsl,
   Okhsv,
   type PlainColorObject,
   serialize,
+  to as convert,
 } from 'colorjs.io/fn';
 import { useCallback, useRef, useState } from 'react';
+
+/* oxlint-disable ban-ts-comment, no-accessor-recursion */
 
 ColorSpace.register(HSV);
 ColorSpace.register(Okhsl);
@@ -193,11 +194,17 @@ function isDifferent(a: ColorInput, b: ColorInput) {
   }
   if (typeof a === 'object' && typeof b === 'object') {
     if ('spaceId' in a && 'spaceId' in b) {
-      return a.spaceId === b.spaceId && a.coords.every((v, i) => b.coords[i] === v) && a.alpha === b.alpha;
+      return (
+        a.spaceId === b.spaceId &&
+        a.coords.every((v, i) => b.coords[i] === v) &&
+        a.alpha === b.alpha
+      );
     }
     if ('colorSpace' in a && 'colorSpace' in b) {
       return (
-        a.colorSpace === b.colorSpace && a.components.every((v, i) => b.components[i] === v) && a.alpha === b.alpha
+        a.colorSpace === b.colorSpace &&
+        a.components.every((v, i) => b.components[i] === v) &&
+        a.alpha === b.alpha
       );
     }
   }

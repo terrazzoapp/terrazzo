@@ -14,7 +14,7 @@ export default defineConfig({
 
   semi: true,
   singleQuote: true,
-  sortImports: true,
+  sortImports: false,
   sortPackageJson: false,
   tabWidth: 2,
 })
