@@ -1,11 +1,13 @@
+import './ColorPicker.css.js';
+
 import { ColorFilterOutline } from '@terrazzo/icons';
 import { Select, SelectItem } from '@terrazzo/tiles';
 import type useColor from '@terrazzo/use-color';
 import clsx from 'clsx';
-import { to as convert, serialize } from 'colorjs.io/fn';
+import { serialize,to as convert } from 'colorjs.io/fn';
 import { type ComponentProps, useEffect, useMemo, useState } from 'react';
+
 import ColorChannelSlider from './ColorChannelSlider.js';
-import './ColorPicker.css.js';
 
 /** sRGB → P3 → Rec2020 */
 export type Gamut = 'srgb' | 'p3' | 'rec2020';
@@ -81,9 +83,9 @@ export default function ColorPicker({ className, color, colorSpaces, setColor, .
         </Select>
       </div>
       <div className='tz-color-picker-sliders'>
-        {Object.keys(color.original.space.coords).map((channel) => {
-          return <ColorChannelSlider key={channel} channel={channel} color={color} setColor={setColor} />;
-        })}
+        {Object.keys(color.original.space.coords).map((channel) =>
+          <ColorChannelSlider key={channel} channel={channel} color={color} setColor={setColor} />
+        )}
       </div>
       <div className='tz-color-picker-code'>
         <input

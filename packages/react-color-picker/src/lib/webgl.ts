@@ -1,4 +1,5 @@
 import type { PlainColorObject } from 'colorjs.io/fn';
+
 import { OKLAB } from './oklab.js';
 import { LINEAR_RGB } from './rgb.js';
 

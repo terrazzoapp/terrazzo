@@ -37,7 +37,7 @@ class WebGL2RenderingContext {
   compressedTexSubImage3D = vi.fn();
   copyBufferSubData = vi.fn();
   copyTexSubImage3D = vi.fn();
-  createBuffer = vi.fn(() => new Buffer('', 'utf8'));
+  createBuffer = vi.fn(() => Buffer.from('', 'utf8'));
   createQuery = vi.fn();
   createProgram = vi.fn(() => ({}));
   createShader = vi.fn(() => 100);
@@ -114,7 +114,7 @@ class OffscreenCanvas {
   }
 }
 
-window.OffscreenCanvas = OffscreenCanvas;
+globalThis.OffscreenCanvas = OffscreenCanvas;
 
 // ResizeObserver
 class ResizeObserver {
@@ -123,4 +123,4 @@ class ResizeObserver {
   unobserve = vi.fn();
 }
 
-window.ResizeObserver = ResizeObserver;
+globalThis.ResizeObserver = ResizeObserver;
