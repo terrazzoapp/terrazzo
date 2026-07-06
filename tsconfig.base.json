@@ -20,5 +20,6 @@
     "target": "ESNext",
     "verbatimModuleSyntax": true
   },
+  "include": ["${configDir}/src", "${configDir}/test"],
   "exclude": ["**/dist/*", "**/node_modules/*"]
 }
