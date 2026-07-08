@@ -1,5 +1,15 @@
 # @terrazzo/plugin-swift
 
+## 1.0.0
+
+### Patch Changes
+
+- [#771](https://github.com/terrazzoapp/terrazzo/pull/771) [`ec166ad`](https://github.com/terrazzoapp/terrazzo/commit/ec166adabfeb465b06e861822731481ce0046772) Thanks [@marko1olo](https://github.com/marko1olo)! - Emit exact zero and one Swift asset-catalog color components as decimal strings (`"0.0"` and `"1.0"`) so Xcode treats them as normalized values instead of 8-bit integers.
+
+- Updated dependencies [[`055b580`](https://github.com/terrazzoapp/terrazzo/commit/055b580313c08dba8810e2690fea832f5d09a647), [`a05196b`](https://github.com/terrazzoapp/terrazzo/commit/a05196bb373c03528ca6cd6eabd6805ff27b009c)]:
+  - @terrazzo/cli@2.4.1
+  - @terrazzo/parser@2.5.0
+
 ## 0.3.2
 
 ### Patch Changes
