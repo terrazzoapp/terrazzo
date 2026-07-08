@@ -11,7 +11,8 @@ import {
   parseColor,
   type ShadowValue,
 } from '@terrazzo/token-tools';
-import type { LintRule } from '../../../types.js';
+
+import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_COLOR = 'core/valid-color';
@@ -105,14 +106,24 @@ const rule: LintRule<
           validateColor(t.originalValue.$value, {
             node: getObjMember(t.source.node, '$value'),
             filename: t.source.filename,
+            options,
+            report,
           });
           break;
         }
         case 'border': {
-          if ((t.originalValue.$value as any).color && !isAlias((t.originalValue.$value as any).color)) {
+          if (
+            (t.originalValue.$value as any).color &&
+            !isAlias((t.originalValue.$value as any).color)
+          ) {
             validateColor((t.originalValue.$value as BorderValue).color, {
-              node: getObjMember(getObjMember(t.source.node, '$value') as momoa.ObjectNode, 'color'),
+              node: getObjMember(
+                getObjMember(t.source.node, '$value') as momoa.ObjectNode,
+                'color',
+              ),
               filename: t.source.filename,
+              options,
+              report,
             });
           }
           break;
@@ -127,15 +138,21 @@ const rule: LintRule<
             validateColor(stop.color, {
               node: getObjMember($valueNode.elements[i]!.value as momoa.ObjectNode, 'color'),
               filename: t.source.filename,
+              options,
+              report,
             });
           }
           break;
         }
         case 'shadow': {
           const $value = (
-            Array.isArray(t.originalValue.$value) ? t.originalValue.$value : [t.originalValue.$value]
+            Array.isArray(t.originalValue.$value)
+              ? t.originalValue.$value
+              : [t.originalValue.$value]
           ) as ShadowValue[];
-          const $valueNode = getObjMember(t.source.node, '$value') as momoa.ObjectNode | momoa.ArrayNode;
+          const $valueNode = getObjMember(t.source.node, '$value') as
+            | momoa.ObjectNode
+            | momoa.ArrayNode;
           for (let i = 0; i < $value.length; i++) {
             const layer = $value[i]!;
             if (!layer.color || isAlias(layer.color as any)) {
@@ -147,142 +164,185 @@ const rule: LintRule<
                   ? getObjMember($valueNode, 'color')
                   : getObjMember($valueNode.elements[i]!.value as momoa.ObjectNode, 'color'),
               filename: t.source.filename,
+              options,
+              report,
             });
           }
           break;
         }
       }
+    }
+  },
+};
 
-      function validateColor(value: unknown, { node, filename }: { node?: momoa.AnyNode; filename?: string }) {
-        if (!value) {
-          report({ messageId: ERROR_INVALID_COLOR, data: { color: JSON.stringify(value) }, node, filename });
-        } else if (typeof value === 'object') {
-          for (const key of Object.keys(value)) {
-            if (!['colorSpace', 'components', 'channels' /* TODO: remove */, 'hex', 'alpha'].includes(key)) {
+type Context = LintRuleContext<
+  | typeof ERROR_ALPHA
+  | typeof ERROR_INVALID_COLOR
+  | typeof ERROR_INVALID_COLOR_SPACE
+  | typeof ERROR_INVALID_COMPONENT_LENGTH
+  | typeof ERROR_INVALID_HEX8
+  | typeof ERROR_INVALID_PROP
+  | typeof ERROR_MISSING_COMPONENTS
+  | typeof ERROR_OBJ_FORMAT
+  | typeof ERROR_OUT_OF_RANGE,
+  RuleValidColorOptions
+>;
+
+function validateColor(
+  value: unknown,
+  {
+    node,
+    filename,
+    options,
+    report,
+  }: {
+    node?: momoa.AnyNode;
+    filename?: string;
+    options: Context['options'];
+    report: Context['report'];
+  },
+) {
+  if (!value) {
+    report({
+      data: { color: JSON.stringify(value) },
+      filename,
+      messageId: ERROR_INVALID_COLOR,
+      node,
+    });
+  } else if (typeof value === 'object') {
+    for (const key of Object.keys(value)) {
+      if (
+        !['colorSpace', 'components', 'channels' /* TODO: remove */, 'hex', 'alpha'].includes(key)
+      ) {
+        report({
+          messageId: ERROR_INVALID_PROP,
+          data: { key: JSON.stringify(key) },
+          node: getObjMember(node as momoa.ObjectNode, key) ?? node,
+          filename,
+        });
+      }
+    }
+
+    // Color space
+    const colorSpace =
+      'colorSpace' in value && typeof value.colorSpace === 'string' ? value.colorSpace : undefined;
+    const csData = COLOR_SPACE[colorSpace as keyof typeof COLOR_SPACE] || undefined;
+    if (!('colorSpace' in value) || !csData) {
+      report({
+        messageId: ERROR_INVALID_COLOR_SPACE,
+        data: { colorSpace },
+        node: getObjMember(node as momoa.ObjectNode, 'colorSpace') ?? node,
+        filename,
+      });
+      return;
+    }
+
+    // Component ranges
+    const components = 'components' in value ? value.components : undefined;
+    if (Array.isArray(components)) {
+      const coords = Object.values(csData.coords);
+      if (components?.length === coords.length) {
+        for (let i = 0; i < components.length; i++) {
+          const range = coords[i]?.range ?? coords[i]?.refRange;
+          if (
+            !Number.isFinite(components[i]) ||
+            components[i]! < (range?.[0] ?? -Infinity) ||
+            components[i]! > (range?.[1] ?? Infinity)
+          ) {
+            // special case for any hue-based components: allow null
+            const isHslNull =
+              (colorSpace === 'hsl' || colorSpace === 'hwb') && components[0] === null;
+            const isLchNull =
+              (colorSpace === 'lch' || colorSpace === 'oklch') && components[2] === null;
+            if (!isHslNull && !isLchNull) {
               report({
-                messageId: ERROR_INVALID_PROP,
-                data: { key: JSON.stringify(key) },
-                node: getObjMember(node as momoa.ObjectNode, key) ?? node,
-                filename,
-              });
-            }
-          }
-
-          // Color space
-          const colorSpace =
-            'colorSpace' in value && typeof value.colorSpace === 'string' ? value.colorSpace : undefined;
-          const csData = COLOR_SPACE[colorSpace as keyof typeof COLOR_SPACE] || undefined;
-          if (!('colorSpace' in value) || !csData) {
-            report({
-              messageId: ERROR_INVALID_COLOR_SPACE,
-              data: { colorSpace },
-              node: getObjMember(node as momoa.ObjectNode, 'colorSpace') ?? node,
-              filename,
-            });
-            return;
-          }
-
-          // Component ranges
-          const components = 'components' in value ? value.components : undefined;
-          if (Array.isArray(components)) {
-            const coords = Object.values(csData.coords);
-            if (components?.length === coords.length) {
-              for (let i = 0; i < components.length; i++) {
-                const range = coords[i]?.range ?? coords[i]?.refRange;
-                if (
-                  !Number.isFinite(components[i]) ||
-                  components[i]! < (range?.[0] ?? -Infinity) ||
-                  components[i]! > (range?.[1] ?? Infinity)
-                ) {
-                  // special case for any hue-based components: allow null
-                  if (
-                    !(colorSpace === 'hsl' && components[0]! === null) &&
-                    !(colorSpace === 'hwb' && components[0]! === null) &&
-                    !(colorSpace === 'lch' && components[2]! === null) &&
-                    !(colorSpace === 'oklch' && components[2]! === null)
-                  ) {
-                    report({
-                      messageId: ERROR_OUT_OF_RANGE,
-                      data: { colorSpace, range: `[${range?.[0]}–${range?.[1]}]` },
-                      node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
-                      filename,
-                    });
-                  }
-                }
-              }
-            } else {
-              report({
-                messageId: ERROR_INVALID_COMPONENT_LENGTH,
-                data: { expected: coords.length ?? 0, got: components?.length },
+                messageId: ERROR_OUT_OF_RANGE,
+                data: { colorSpace, range: `[${range?.[0]}–${range?.[1]}]` },
                 node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
                 filename,
               });
             }
-          } else {
-            report({
-              messageId: ERROR_MISSING_COMPONENTS,
-              data: { got: JSON.stringify(components) },
-              node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
-              filename,
-            });
           }
-
-          // Alpha
-          const alpha = 'alpha' in value ? value.alpha : undefined;
-          if (alpha !== undefined && (typeof alpha !== 'number' || alpha < 0 || alpha > 1)) {
-            report({
-              messageId: ERROR_ALPHA,
-              data: { alpha },
-              node: getObjMember(node as momoa.ObjectNode, 'alpha') ?? node,
-              filename,
-            });
-          }
-
-          // Hex
-          const hex = 'hex' in value ? value.hex : undefined;
-          if (hex) {
-            let color: ColorValueNormalized;
-            try {
-              color = parseColor(hex as string);
-            } catch {
-              report({
-                messageId: ERROR_INVALID_COLOR,
-                data: { color: hex },
-                node: getObjMember(node as momoa.ObjectNode, 'hex') ?? node,
-                filename,
-              });
-              return;
-            }
-            // since we’re only parsing hex, this should always have alpha: 1
-            if (color.alpha !== 1) {
-              report({
-                messageId: ERROR_INVALID_HEX8,
-                data: { color: hex },
-                node: getObjMember(node as momoa.ObjectNode, 'hex') ?? node,
-                filename,
-              });
-            }
-          }
-        } else if (typeof value === 'string') {
-          if (isAlias(value)) {
-            return;
-          }
-          if (!options.legacyFormat) {
-            report({ messageId: ERROR_OBJ_FORMAT, data: { color: JSON.stringify(value) }, node, filename });
-          } else {
-            // Legacy format
-            try {
-              parseColor(value as string);
-            } catch {
-              report({ messageId: ERROR_INVALID_COLOR, data: { color: JSON.stringify(value) }, node, filename });
-            }
-          }
-        } else {
-          report({ messageId: ERROR_INVALID_COLOR, node, filename });
         }
+      } else {
+        report({
+          messageId: ERROR_INVALID_COMPONENT_LENGTH,
+          data: { expected: coords.length ?? 0, got: components?.length },
+          node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
+          filename,
+        });
+      }
+    } else {
+      report({
+        messageId: ERROR_MISSING_COMPONENTS,
+        data: { got: JSON.stringify(components) },
+        node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
+        filename,
+      });
+    }
+
+    // Alpha
+    const alpha = 'alpha' in value ? value.alpha : undefined;
+    if (alpha !== undefined && (typeof alpha !== 'number' || alpha < 0 || alpha > 1)) {
+      report({
+        messageId: ERROR_ALPHA,
+        data: { alpha },
+        node: getObjMember(node as momoa.ObjectNode, 'alpha') ?? node,
+        filename,
+      });
+    }
+
+    // Hex
+    const hex = 'hex' in value ? value.hex : undefined;
+    if (hex) {
+      let color: ColorValueNormalized;
+      try {
+        color = parseColor(hex as string);
+      } catch {
+        report({
+          messageId: ERROR_INVALID_COLOR,
+          data: { color: hex },
+          node: getObjMember(node as momoa.ObjectNode, 'hex') ?? node,
+          filename,
+        });
+        return;
+      }
+      // since we’re only parsing hex, this should always have alpha: 1
+      if (color.alpha !== 1) {
+        report({
+          messageId: ERROR_INVALID_HEX8,
+          data: { color: hex },
+          node: getObjMember(node as momoa.ObjectNode, 'hex') ?? node,
+          filename,
+        });
       }
     }
-  },
-};
+  } else if (typeof value === 'string') {
+    if (isAlias(value)) {
+      return;
+    }
+    if (options.legacyFormat) {
+      try {
+        parseColor(value as string);
+      } catch {
+        report({
+          messageId: ERROR_INVALID_COLOR,
+          data: { color: JSON.stringify(value) },
+          filename,
+          node,
+        });
+      }
+    } else {
+      report({
+        messageId: ERROR_OBJ_FORMAT,
+        data: { color: JSON.stringify(value) },
+        filename,
+        node,
+      });
+    }
+  } else {
+    report({ messageId: ERROR_INVALID_COLOR, filename, node });
+  }
+}
 
 export default rule;

@@ -9,5 +9,5 @@ npm i @terrazzo/tiles
 ```
 
 ```tsx
-import { Button, Select, SubtleInput, Switch, TokenType, TrueGradient } from '@terrazzo/tiles';
+import { Button, Select, SubtleInput, Switch, TokenType, TrueGradient } from "@terrazzo/tiles";
 ```

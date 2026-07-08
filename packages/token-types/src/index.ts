@@ -1,3 +1,4 @@
+// oxlint-disable-next-line ban-types, no-empty-object-type -- necessary for inference
 export interface TokenCore<E extends {} = Record<string, unknown>> {
   $description?: string | undefined;
   $deprecated?: string | boolean | undefined;
@@ -300,10 +301,10 @@ export type TokenMode<T extends TokenNormalized> = Pick<
   originalValue: NonNullable<T['originalValue']>['$value'] | undefined;
 };
 
-export type ModeMap<T extends TokenNormalized> = {
+export interface ModeMap<T extends TokenNormalized> {
   '.': TokenMode<T>;
   [mode: string]: TokenMode<T> | undefined;
-};
+}
 
 export interface GroupNormalized {
   $description: string | undefined;
@@ -437,7 +438,9 @@ export type ColorSpace =
 export interface CubicBezierTokenNormalized extends TokenNormalizedCore<'cubicBezier'> {
   $value: CubicBezierValue;
   /** Parts of this token rely on others */
-  partialAliasOf: [string | undefined, string | undefined, string | undefined, string | undefined] | undefined;
+  partialAliasOf:
+    | [string | undefined, string | undefined, string | undefined, string | undefined]
+    | undefined;
   /** @deprecated */
   mode: ModeMap<CubicBezierTokenNormalized>;
   originalValue: CubicBezierToken | AliasToken | undefined;

@@ -1,6 +1,7 @@
 import * as momoa from '@humanwhocodes/momoa';
 import { CachedWildcardMatcher } from '@terrazzo/token-tools';
 import pc from 'picocolors';
+
 import { codeFrameColumns } from './lib/code-frame.js';
 
 export const LOG_ORDER = ['error', 'warn', 'info', 'debug'] as const;
@@ -131,10 +132,12 @@ export default class Logger {
       }
     }
     if (entries.every((e) => e.continueOnError)) {
-      // biome-ignore lint/suspicious/noConsole: this is a logger
+      // oxlint-disable-next-line no-console -- this is a logger
       console.error(message.join('\n\n'));
     } else {
-      const e = firstNode ? new TokensJSONError(message.join('\n\n')) : new Error(message.join('\n\n'));
+      const e = firstNode
+        ? new TokensJSONError(message.join('\n\n'))
+        : new Error(message.join('\n\n'));
       throw e;
     }
   }
@@ -147,7 +150,7 @@ export default class Logger {
         return;
       }
       const message = formatMessage(entry, 'info');
-      // biome-ignore lint/suspicious/noConsole: this is a logger
+      // oxlint-disable-next-line no-console -- this is a logger
       console.log(message);
     }
   }
@@ -161,7 +164,7 @@ export default class Logger {
       }
       const message = formatMessage(entry, 'warn');
 
-      // biome-ignore lint/suspicious/noConsole: this is a logger
+      // oxlint-disable-next-line no-console -- this is a logger
       console.warn(message);
     }
   }
@@ -193,7 +196,7 @@ export default class Logger {
         message = `${message} ${formatTiming(entry.timing)}`;
       }
 
-      // biome-ignore lint/suspicious/noConsole: this is a logger
+      // oxlint-disable-next-line no-console -- this is a logger
       console.log(message);
     }
   }

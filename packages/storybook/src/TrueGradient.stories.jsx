@@ -21,7 +21,11 @@ export const Overview = {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         Good
-        <TrueGradient start={start.oklab} end={end.oklab} style={{ width: '16rem', height: '1.5rem' }} />
+        <TrueGradient
+          start={start.oklab}
+          end={end.oklab}
+          style={{ width: '16rem', height: '1.5rem' }}
+        />
         Bad
         <div
           style={{

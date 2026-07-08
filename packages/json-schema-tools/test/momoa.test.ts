@@ -1,5 +1,6 @@
 import * as momoa from '@humanwhocodes/momoa';
 import { describe, expect, it } from 'vitest';
+
 import { mergeDocuments } from '../src/index.js';
 
 describe('mergeDocuments', () => {

@@ -1,8 +1,9 @@
 ---
+import '../styles/app.css';
+
 import HeadMeta from '../components/head-meta.astro';
 import MainFooter from '../components/main-footer.astro';
 import MainNav from '../components/main-nav.astro';
-import '../styles/app.css';
 
 const { title, description, socialImage } = Astro.props;
 ---
@@ -17,11 +18,11 @@ const { title, description, socialImage } = Astro.props;
     <script is:inline>
       const LS_THEME_KEY = "tz-www-theme";
       const initialValue =
-        typeof localStorage !== "undefined"
-          ? localStorage.getItem(LS_THEME_KEY)
-          : undefined;
+        typeof localStorage === "undefined"
+          ? undefined
+          : localStorage.getItem(LS_THEME_KEY);
       if (initialValue === "light" || initialValue === "dark") {
-        document.documentElement.setAttribute("data-color-mode", initialValue);
+        document.documentElement.dataset.colorMode = initialValue;
       }
     </script>
   </head>

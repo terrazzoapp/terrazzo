@@ -1,6 +1,8 @@
+import './Demo.css';
+
 import { type ComponentProps, useEffect, useState } from 'react';
 import type { CodeOptionsSingleTheme, CodeToHastOptions } from 'shiki';
-import './Demo.css';
+
 import CopyButton from '../CopyButton/CopyButton.js';
 
 const shiki = import('shiki');
@@ -12,7 +14,13 @@ export interface DemoProps extends Omit<ComponentProps<'div'>, 'lang'> {
   theme?: CodeOptionsSingleTheme['theme'];
 }
 
-export default function Demo({ children, code, lang = 'tsx', theme = 'houston', ...rest }: DemoProps) {
+export default function Demo({
+  children,
+  code,
+  lang = 'tsx',
+  theme = 'houston',
+  ...rest
+}: DemoProps) {
   const [codeFormatted, setCodeFormatted] = useState<string>('');
 
   useEffect(() => {
@@ -23,14 +31,14 @@ export default function Demo({ children, code, lang = 'tsx', theme = 'houston', 
   }, [code, lang, theme]);
 
   return (
-    <div className='tz-demo' {...rest}>
-      <div className='tz-demo-canvas'>{children}</div>
-      <div className='tz-demo-code'>
-        <menu className='tz-demo-code-copy-wrapper'>
+    <div className="tz-demo" {...rest}>
+      <div className="tz-demo-canvas">{children}</div>
+      <div className="tz-demo-code">
+        <menu className="tz-demo-code-copy-wrapper">
           <CopyButton clipboardText={code} />
         </menu>
         <div
-          className='tz-demo-code-overflow'
+          className="tz-demo-code-overflow"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: This is necessary, and user-controlled
           dangerouslySetInnerHTML={{ __html: codeFormatted }}
         />

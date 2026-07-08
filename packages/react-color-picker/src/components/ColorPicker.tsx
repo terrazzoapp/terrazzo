@@ -1,11 +1,13 @@
+import './ColorPicker.css.js';
+
 import { ColorFilterOutline } from '@terrazzo/icons';
 import { Select, SelectItem } from '@terrazzo/tiles';
 import type useColor from '@terrazzo/use-color';
 import clsx from 'clsx';
-import { to as convert, serialize } from 'colorjs.io/fn';
+import { serialize, to as convert } from 'colorjs.io/fn';
 import { type ComponentProps, useEffect, useMemo, useState } from 'react';
+
 import ColorChannelSlider from './ColorChannelSlider.js';
-import './ColorPicker.css.js';
 
 /** sRGB → P3 → Rec2020 */
 export type Gamut = 'srgb' | 'p3' | 'rec2020';
@@ -30,18 +32,29 @@ export interface ColorPickerProps extends Omit<ComponentProps<'div'>, 'color'> {
   setColor: ReturnType<typeof useColor>[1];
 }
 
-export default function ColorPicker({ className, color, colorSpaces, setColor, ...rest }: ColorPickerProps) {
+export default function ColorPicker({
+  className,
+  color,
+  colorSpaces,
+  setColor,
+  ...rest
+}: ColorPickerProps) {
   const [codeColor, setCodeColor] = useState(color.css);
   const [maxGamut] = useState<Gamut>('srgb');
   const normalizedColorMode = useMemo(
-    () => (['p3', 'rec2020', 'srgb-linear'].includes(color.original.space.id) ? 'srgb' : color.original.space.id),
+    () =>
+      ['p3', 'rec2020', 'srgb-linear'].includes(color.original.space.id)
+        ? 'srgb'
+        : color.original.space.id,
     [color],
   );
   const selectableColorSpaces = useMemo(() => {
     if (!colorSpaces) {
       return Object.entries(COLOR_PICKER_SPACES);
     }
-    return Object.entries(COLOR_PICKER_SPACES).filter(([id]) => colorSpaces.includes(id as ColorPickerSpace));
+    return Object.entries(COLOR_PICKER_SPACES).filter(([id]) =>
+      colorSpaces.includes(id as ColorPickerSpace),
+    );
   }, [colorSpaces]);
   const selectedColorMode = useMemo(
     () =>
@@ -58,14 +71,16 @@ export default function ColorPicker({ className, color, colorSpaces, setColor, .
     <div
       className={clsx('tz-color-picker', className)}
       style={{
-        '--current-color': ['okhsl', 'okhsv'].includes(color.original.space.id) ? serialize(color.oklab)! : color.css,
+        '--current-color': ['okhsl', 'okhsv'].includes(color.original.space.id)
+          ? serialize(color.oklab)!
+          : color.css,
       }}
       {...rest}
     >
-      <div className='tz-color-picker-preview'>
-        <div className='tz-color-picker-swatch' />
+      <div className="tz-color-picker-preview">
+        <div className="tz-color-picker-swatch" />
       </div>
-      <div className='tz-color-picker-colorspace'>
+      <div className="tz-color-picker-colorspace">
         <Select
           value={selectedColorMode}
           trigger={color.original.space.id}
@@ -80,15 +95,15 @@ export default function ColorPicker({ className, color, colorSpaces, setColor, .
           ))}
         </Select>
       </div>
-      <div className='tz-color-picker-sliders'>
-        {Object.keys(color.original.space.coords).map((channel) => {
-          return <ColorChannelSlider key={channel} channel={channel} color={color} setColor={setColor} />;
-        })}
+      <div className="tz-color-picker-sliders">
+        {Object.keys(color.original.space.coords).map((channel) => (
+          <ColorChannelSlider key={channel} channel={channel} color={color} setColor={setColor} />
+        ))}
       </div>
-      <div className='tz-color-picker-code'>
+      <div className="tz-color-picker-code">
         <input
-          type='text'
-          className='tz-color-picker-code-input'
+          type="text"
+          className="tz-color-picker-code-input"
           value={codeColor}
           onChange={(evt) => setColor(evt.target.value)}
         />

@@ -1,5 +1,6 @@
 import { tokenToColor } from '@terrazzo/token-tools';
 import { contrastWCAG21 } from 'colorjs.io/fn';
+
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -41,7 +42,8 @@ export const ERROR_INSUFFICIENT_CONTRAST = 'INSUFFICIENT_CONTRAST';
 const rule: LintRule<typeof ERROR_INSUFFICIENT_CONTRAST, RuleA11yMinContrastOptions> = {
   meta: {
     messages: {
-      [ERROR_INSUFFICIENT_CONTRAST]: 'Pair {{ index }} failed; expected {{ expected }}, got {{ actual }} ({{ level }})',
+      [ERROR_INSUFFICIENT_CONTRAST]:
+        'Pair {{ index }} failed; expected {{ expected }}, got {{ actual }} ({{ level }})',
     },
     docs: {
       description: 'Enforce colors meet minimum contrast checks for WCAG 2.',

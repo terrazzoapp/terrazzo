@@ -1,6 +1,7 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
-import type { LintRule } from '../../../types.js';
+
+import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_FONT_FAMILY = 'core/valid-font-family';
@@ -29,6 +30,7 @@ const rule: LintRule<typeof ERROR> = {
           validateFontFamily(t.originalValue.$value, {
             node: getObjMember(t.source.node, '$value') as momoa.ArrayNode,
             filename: t.source.filename,
+            report,
           });
           break;
         }
@@ -42,27 +44,35 @@ const rule: LintRule<typeof ERROR> = {
             validateFontFamily(t.originalValue.$value.fontFamily, {
               node: properties.fontFamily as momoa.ArrayNode,
               filename: t.source.filename,
+              report,
             });
           }
           break;
         }
       }
-
-      function validateFontFamily(value: unknown, { node, filename }: { node: momoa.ArrayNode; filename?: string }) {
-        if (typeof value === 'string') {
-          if (!value) {
-            report({ messageId: ERROR, node, filename });
-          }
-        } else if (Array.isArray(value)) {
-          if (!value.every((v) => v && typeof v === 'string')) {
-            report({ messageId: ERROR, node, filename });
-          }
-        } else {
-          report({ messageId: ERROR, node, filename });
-        }
-      }
     }
   },
 };
+
+function validateFontFamily(
+  value: unknown,
+  {
+    node,
+    filename,
+    report,
+  }: { node: momoa.ArrayNode; filename?: string; report: LintRuleContext<typeof ERROR>['report'] },
+) {
+  if (typeof value === 'string') {
+    if (!value) {
+      report({ filename, messageId: ERROR, node });
+    }
+  } else if (Array.isArray(value)) {
+    if (!value.every((element) => element && typeof element === 'string')) {
+      report({ filename, messageId: ERROR, node });
+    }
+  } else {
+    report({ filename, messageId: ERROR, node });
+  }
+}
 
 export default rule;

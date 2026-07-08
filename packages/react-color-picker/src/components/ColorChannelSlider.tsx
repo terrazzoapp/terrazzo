@@ -1,10 +1,12 @@
+import './ColorChannelSlider.css.js';
+
 import { Slider } from '@terrazzo/tiles';
 import type { default as useColor } from '@terrazzo/use-color';
-import { type ColorSpace, to as convert, get, serialize, set } from 'colorjs.io/fn';
+import { type ColorSpace, get, serialize, set, to as convert } from 'colorjs.io/fn';
 import { type ReactElement, useMemo } from 'react';
+
 import HueWheel from './HueWheel.js';
 import TrueGradient from './TrueGradient.js';
-import './ColorChannelSlider.css.js';
 
 /** size, in px, to pad inner track */
 export const TRACK_PADDING = 4;
@@ -34,18 +36,21 @@ export interface ColorChannelBGProps {
 }
 
 function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: ColorChannelBGProps) {
-  if (['hsl', 'lch', 'okhsl', 'okhsv', 'oklch'].includes(color.original.space.id) && channel === 'h') {
+  if (
+    ['hsl', 'lch', 'okhsl', 'okhsv', 'oklch'].includes(color.original.space.id) &&
+    channel === 'h'
+  ) {
     return (
-      <div className='tz-color-channel-slider-bg-wrapper'>
-        <HueWheel className='tz-color-channel-slider-bg' />
+      <div className="tz-color-channel-slider-bg-wrapper">
+        <HueWheel className="tz-color-channel-slider-bg" />
       </div>
     );
   }
   if (channel === 'alpha') {
     return (
-      <div className='tz-color-channel-slider-bg-wrapper'>
+      <div className="tz-color-channel-slider-bg-wrapper">
         <div
-          className='tz-color-channel-slider-bg tz-color-channel-slider-bg__alpha'
+          className="tz-color-channel-slider-bg tz-color-channel-slider-bg__alpha"
           style={{
             // don’t use "transparent" to prevent the “fade to black” problem that could exist in some browsers in higher color spaces
             '--left-color': serialize({ ...color.oklab, alpha: 0 }),
@@ -75,17 +80,17 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
   }, [color, channel, displayMax, max]);
 
   return (
-    <div className='tz-color-channel-slider-bg-wrapper'>
-      <TrueGradient className='tz-color-channel-slider-bg' start={leftOklab} end={rightOklab} />
+    <div className="tz-color-channel-slider-bg-wrapper">
+      <TrueGradient className="tz-color-channel-slider-bg" start={leftOklab} end={rightOklab} />
       {typeof displayMin === 'number' && displayMin < min && (
         <div
-          className='tz-color-channel-slider-overlay tz-color-channel-slider-overlay__min'
+          className="tz-color-channel-slider-overlay tz-color-channel-slider-overlay__min"
           style={{ '--width': `${(100 * (min - displayMin)) / range}%` }}
         />
       )}
       {typeof displayMax === 'number' && displayMax > max && (
         <div
-          className='tz-color-channel-slider-overlay tz-color-channel-slider-overlay__max'
+          className="tz-color-channel-slider-overlay tz-color-channel-slider-overlay__max"
           style={{ '--width': `${(100 * (displayMax - max)) / range}%` }}
         />
       )}

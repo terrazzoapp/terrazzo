@@ -16,7 +16,7 @@ function DTCGTree({ path = [], data }) {
     if (!v || typeof v !== 'object') {
       return null;
     }
-    const id = path.length ? `token-${path.join('-')}-${k}` : `token-${k}`;
+    const id = path.length > 0 ? `token-${path.join('-')}-${k}` : `token-${k}`;
     if (v.$value) {
       return <TreeGrid.Item key={k} id={id} name={k} />;
     }

@@ -16,10 +16,10 @@ export default function VersionSwitcher() {
           globalThis.location.href = globalThis.location.href.replace(/\/docs\/?/, '/docs/0.x/');
         }
       }}
-      aria-label='Version'
+      aria-label="Version"
     >
-      <SelectItem value='2'>Latest</SelectItem>
-      <SelectItem value='0'>0.x beta</SelectItem>
+      <SelectItem value="2">Latest</SelectItem>
+      <SelectItem value="0">0.x beta</SelectItem>
     </Select>
   );
 }

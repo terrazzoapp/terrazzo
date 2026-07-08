@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { type CSSDeclaration, type CSSRule, getIndentFromPrepare, printRules } from '../src/lib.js';
 
 describe('printRules', () => {
@@ -15,7 +16,11 @@ describe('printRules', () => {
       },
       {
         type: 'Rule',
-        prelude: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]', '.color-mode-light'],
+        prelude: [
+          '@media (prefers-color-scheme: light)',
+          '[data-color-mode="light"]',
+          '.color-mode-light',
+        ],
         children: [
           { type: 'Declaration', property: '--color-blue-6', value: '#acd8fc' },
           { type: 'Declaration', property: '--color-blue-7', value: '#8ec8f6' },
@@ -24,7 +29,11 @@ describe('printRules', () => {
       },
       {
         type: 'Rule',
-        prelude: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]', '.color-mode-dark'],
+        prelude: [
+          '@media (prefers-color-scheme: dark)',
+          '[data-color-mode="dark"]',
+          '.color-mode-dark',
+        ],
         children: [
           { type: 'Declaration', property: '--color-blue-6', value: '#104d87' },
           { type: 'Declaration', property: '--color-blue-7', value: '#205d9e' },
@@ -35,10 +44,26 @@ describe('printRules', () => {
         type: 'Rule',
         prelude: ['.font-default'],
         children: [
-          { type: 'Declaration', property: 'font-family', value: 'var(--typography-default-font-family)' },
-          { type: 'Declaration', property: 'font-size', value: 'var(--typography-default-font-size)' },
-          { type: 'Declaration', property: 'font-weight', value: 'var(--typography-default-font-weight)' },
-          { type: 'Declaration', property: 'line-height', value: 'var(--typography-default-line-height)' },
+          {
+            type: 'Declaration',
+            property: 'font-family',
+            value: 'var(--typography-default-font-family)',
+          },
+          {
+            type: 'Declaration',
+            property: 'font-size',
+            value: 'var(--typography-default-font-size)',
+          },
+          {
+            type: 'Declaration',
+            property: 'font-weight',
+            value: 'var(--typography-default-font-weight)',
+          },
+          {
+            type: 'Declaration',
+            property: 'line-height',
+            value: 'var(--typography-default-line-height)',
+          },
         ],
       },
     ];
@@ -119,7 +144,11 @@ describe('printRules', () => {
                 property: '--color-blue-6',
                 value: 'color(display-p3 0.062745 0.301961 0.529412)',
               },
-              { type: 'Declaration', property: '--color-blue-7', value: 'color(display-p3 0.12549 0.364706 0.619608)' },
+              {
+                type: 'Declaration',
+                property: '--color-blue-7',
+                value: 'color(display-p3 0.12549 0.364706 0.619608)',
+              },
               {
                 type: 'Declaration',
                 property: '--color-blue-8',
@@ -294,11 +323,17 @@ describe('getIndentFromPrepare', () => {
   });
 
   it('0 spaces', () => {
-    expect(getIndentFromPrepare((css) => `.mySelector {${css}}`)).toEqual({ indentChar: '  ', indentLv: 1 });
+    expect(getIndentFromPrepare((css) => `.mySelector {${css}}`)).toEqual({
+      indentChar: '  ',
+      indentLv: 1,
+    });
   });
 
   it('tab', () => {
-    expect(getIndentFromPrepare((css) => `.mySelector {\n\t${css}\n}`)).toEqual({ indentChar: '\t', indentLv: 1 });
+    expect(getIndentFromPrepare((css) => `.mySelector {\n\t${css}\n}`)).toEqual({
+      indentChar: '\t',
+      indentLv: 1,
+    });
   });
 
   it('nested', () => {

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { padStr } from '../src/string.js';
 
 describe('padStr', () => {
@@ -6,7 +7,9 @@ describe('padStr', () => {
     expect(padStr('input', 10)).toMatchInlineSnapshot(`"input     "`);
     expect(padStr('input', 10, 'right')).toMatchInlineSnapshot(`"     input"`);
     expect(padStr('input', 10, 'center')).toMatchInlineSnapshot(`"  input   "`);
-    expect(padStr('reallyreallylongword', 5, 'center')).toMatchInlineSnapshot(`"reallyreallylongword"`);
+    expect(padStr('reallyreallylongword', 5, 'center')).toMatchInlineSnapshot(
+      `"reallyreallylongword"`,
+    );
   });
 
   it('chaotic', () => {

@@ -1,4 +1,5 @@
 import { makeCSSVar } from '@terrazzo/token-tools/css';
+
 import { getIndent } from './lib.js';
 
 export type SassMapKey = string | number;
@@ -6,7 +7,11 @@ export type SassMapValue = string | SassToken;
 export type SassMapValues = Record<SassMapKey, SassMapValue> | Iterable<[SassMapKey, SassMapValue]>;
 
 export abstract class SassToken {
-  constructor(public readonly indentationLevel: number = 0) {}
+  public readonly indentationLevel: number = 0;
+
+  constructor(indentationLevel = 0) {
+    this.indentationLevel = indentationLevel;
+  }
 
   abstract format(): string;
 
@@ -30,11 +35,11 @@ export abstract class ValueSassToken extends SassToken {
 }
 
 export class StringSassToken extends SassToken {
-  constructor(
-    public readonly value: string,
-    indentationLevel = 0,
-  ) {
+  public readonly value: string;
+
+  constructor(value: string, indentationLevel = 0) {
     super(indentationLevel);
+    this.value = value;
   }
 
   public format(): string {
@@ -100,7 +105,9 @@ export class SassMap extends ValueSassToken {
 
   constructor(indentationLevel: number, values?: SassMapValues) {
     super(indentationLevel);
-    this.values = new Map<SassMapKey, SassMapValue>(values ? this.sassMapValuesToIter(values) : undefined);
+    this.values = new Map<SassMapKey, SassMapValue>(
+      values ? this.sassMapValuesToIter(values) : undefined,
+    );
   }
 
   public set(key: SassMapKey, value: SassMapValue) {
@@ -125,14 +132,18 @@ export class SassMap extends ValueSassToken {
       Array.from(
         this.values
           .entries()
-          .map(([key, value]) => new StringSassToken(`"${key}": ${value}`, this.indentationLevel + 1)),
+          .map(
+            ([key, value]) => new StringSassToken(`"${key}": ${value}`, this.indentationLevel + 1),
+          ),
       ).join(this.MAP_VALUE_SEPARATOR),
       new StringSassToken(this.MAP_CLOSE, this.indentationLevel),
     ].join(this.SEPARATOR);
   }
 
   private sassMapValuesToIter(values: SassMapValues) {
-    return Symbol.iterator in values && typeof values[Symbol.iterator] === 'function' ? values : Object.entries(values);
+    return Symbol.iterator in values && typeof values[Symbol.iterator] === 'function'
+      ? values
+      : Object.entries(values);
   }
 }
 
@@ -145,12 +156,13 @@ export class UseSassToken extends StringSassToken {
 }
 
 export class VariableDefinitionSassToken extends SassToken {
-  constructor(
-    indentationLevel: number,
-    public readonly name: string,
-    public readonly value: SassToken,
-  ) {
+  public readonly name: string;
+  public readonly value: SassToken;
+
+  constructor(indentationLevel: number, name: string, value: SassToken) {
     super(indentationLevel);
+    this.name = name;
+    this.value = value;
   }
 
   public format(): string {

@@ -38,12 +38,12 @@ export function transformGradient(
     return `${typeof colors[i] === 'string' ? colors[i] : colors[i]![colorKey as keyof (typeof colors)[number]]} ${positions[i]}`;
   }
 
-  return !isHDR
-    ? token.$value.map((_, i) => formatStop(i, positions[i]!)).join(', ')
-    : {
+  return isHDR
+    ? {
         '.': token.$value.map((_, i) => formatStop(i, '.')).join(', '),
         srgb: token.$value.map((_, i) => formatStop(i, 'srgb')).join(', '),
         p3: token.$value.map((_, i) => formatStop(i, 'p3')).join(', '),
         rec2020: token.$value.map((_, i) => formatStop(i, 'rec2020')).join(', '),
-      };
+      }
+    : token.$value.map((_, i) => formatStop(i, positions[i]!)).join(', ');
 }

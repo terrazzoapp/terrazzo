@@ -1,6 +1,8 @@
 import type fsType from 'node:fs/promises';
+
 import type { InputSource, InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
+
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import { createSyntheticResolver } from '../resolver/create-synthetic-resolver.js';
@@ -44,7 +46,11 @@ export default async function parse(
       !inputs[i]?.src ||
       (inputs[i]?.filename && !(inputs[i]!.filename instanceof URL))
     ) {
-      logger.error({ group: 'parser', label: 'init', message: `Input ${i}: expected { src: any; filename: URL }` });
+      logger.error({
+        group: 'parser',
+        label: 'init',
+        message: `Input ${i}: expected { src: any; filename: URL }`,
+      });
     }
   }
 
@@ -91,7 +97,8 @@ export default async function parse(
   }
 
   const resolverTiming = performance.now();
-  const finalResolver = resolver || (await createSyntheticResolver(tokens, { config, logger, req, sources }));
+  const finalResolver =
+    resolver || (await createSyntheticResolver(tokens, { config, logger, req, sources }));
   logger.debug({
     message: 'Resolver finalized',
     group: 'parser',

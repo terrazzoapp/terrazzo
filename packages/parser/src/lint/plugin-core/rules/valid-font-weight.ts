@@ -1,7 +1,8 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
 import { FONT_WEIGHTS } from '@terrazzo/token-tools';
-import type { LintRule } from '../../../types.js';
+
+import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_FONT_WEIGHT = 'core/valid-font-weight';
@@ -43,6 +44,8 @@ const rule: LintRule<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions> =
           validateFontWeight(t.originalValue.$value, {
             node: getObjMember(t.source.node, '$value') as momoa.StringNode,
             filename: t.source.filename,
+            options,
+            report,
           });
           break;
         }
@@ -56,34 +59,48 @@ const rule: LintRule<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions> =
             validateFontWeight(t.originalValue.$value.fontWeight, {
               node: properties.fontWeight as momoa.StringNode,
               filename: t.source.filename,
+              options,
+              report,
             });
           }
           break;
         }
       }
-
-      function validateFontWeight(
-        value: unknown,
-        { node, filename }: { node: momoa.StringNode | momoa.NumberNode; filename?: string },
-      ) {
-        if (typeof value === 'string') {
-          if (options.style === 'numbers') {
-            report({ messageId: ERROR_STYLE, data: { style: 'numbers', value }, node, filename });
-          } else if (!(value in FONT_WEIGHTS)) {
-            report({ messageId: ERROR, node, filename });
-          }
-        } else if (typeof value === 'number') {
-          if (options.style === 'names') {
-            report({ messageId: ERROR_STYLE, data: { style: 'names', value }, node, filename });
-          } else if (!(value >= 0 && value < 1000)) {
-            report({ messageId: ERROR, node, filename });
-          }
-        } else {
-          report({ messageId: ERROR, node, filename });
-        }
-      }
     }
   },
 };
+
+type Context = LintRuleContext<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions>;
+
+function validateFontWeight(
+  value: unknown,
+  {
+    node,
+    filename,
+    options,
+    report,
+  }: {
+    node: momoa.StringNode | momoa.NumberNode;
+    filename?: string;
+    options: Context['options'];
+    report: Context['report'];
+  },
+) {
+  if (typeof value === 'string') {
+    if (options.style === 'numbers') {
+      report({ messageId: ERROR_STYLE, data: { style: 'numbers', value }, node, filename });
+    } else if (!(value in FONT_WEIGHTS)) {
+      report({ messageId: ERROR, node, filename });
+    }
+  } else if (typeof value === 'number') {
+    if (options.style === 'names') {
+      report({ messageId: ERROR_STYLE, data: { style: 'names', value }, node, filename });
+    } else if (!(value >= 0 && value < 1000)) {
+      report({ messageId: ERROR, node, filename });
+    }
+  } else {
+    report({ messageId: ERROR, node, filename });
+  }
+}
 
 export default rule;

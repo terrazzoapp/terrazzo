@@ -1,6 +1,7 @@
 import * as momoa from '@humanwhocodes/momoa';
 import { bundle, encodeFragment, parseRef, replaceNode } from '@terrazzo/json-schema-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
+
 import type Logger from '../logger.js';
 import type { Group, ReferenceObject, ResolverSourceNormalized } from '../types.js';
 
@@ -31,7 +32,9 @@ export async function normalizeResolver(
   // choose the “all-in-one“ method for closer support with DTCG aliases, but at
   // the expense of some edge cases of $refs behaving unexpectedly.
   const resolverBundle = await bundle([{ filename, src }], { req, yamlToMomoa });
-  const resolverSource = momoa.evaluate(resolverBundle.document) as unknown as ResolverSourceNormalized;
+  const resolverSource = momoa.evaluate(
+    resolverBundle.document,
+  ) as unknown as ResolverSourceNormalized;
 
   // Resolve $refs, but in a very different way than everywhere else These are
   // all _evaluated_, meaning initialized in JS memory. Unlike in the AST, when
@@ -93,7 +96,7 @@ function resolvePartials(
       if (k === '$ref') {
         const $ref = (source as any)[k] as string;
         const { url, subpath = [] } = parseRef($ref);
-        if (url !== '.' || !subpath.length) {
+        if (url !== '.' || subpath.length === 0) {
           logger.error({ ...entry, message: `Could not load $ref ${JSON.stringify($ref)}` });
         }
         const found = findObject(resolver, subpath ?? [], logger);
@@ -119,7 +122,7 @@ function resolvePartials(
 function findObject(dict: Record<string, any>, path: string[], logger: Logger): any {
   let node = dict;
   for (const idRaw of path) {
-    const id = idRaw.replace(/~/g, '~0').replace(/\//g, '~1');
+    const id = idRaw.replaceAll('~', '~0').replaceAll('/', '~1');
     if (!(id in node)) {
       logger.error({
         group: 'parser',

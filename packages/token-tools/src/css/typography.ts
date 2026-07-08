@@ -44,35 +44,59 @@ export function transformTypography(
     } else {
       switch (property) {
         case 'fontFamily': {
-          transformedValue = transformFontFamily({ $value: subvalue } as FontFamilyTokenNormalized, options);
+          transformedValue = transformFontFamily(
+            { $value: subvalue } as FontFamilyTokenNormalized,
+            options,
+          );
           break;
         }
         case 'fontSize':
         case 'letterSpacing': {
-          transformedValue = transformDimension({ $value: subvalue } as DimensionTokenNormalized, options);
+          transformedValue = transformDimension(
+            { $value: subvalue } as DimensionTokenNormalized,
+            options,
+          );
           break;
         }
         case 'fontWeight': {
-          transformedValue = transformFontWeight({ $value: subvalue } as FontWeightTokenNormalized, options);
+          transformedValue = transformFontWeight(
+            { $value: subvalue } as FontWeightTokenNormalized,
+            options,
+          );
           break;
         }
         case 'lineHeight': {
           if (typeof subvalue === 'number') {
-            transformedValue = transformNumber({ $value: subvalue } as NumberTokenNormalized, options);
+            transformedValue = transformNumber(
+              { $value: subvalue } as NumberTokenNormalized,
+              options,
+            );
           } else {
-            transformedValue = transformDimension({ $value: subvalue } as DimensionTokenNormalized, options);
+            transformedValue = transformDimension(
+              { $value: subvalue } as DimensionTokenNormalized,
+              options,
+            );
           }
           break;
         }
         default: {
           // For other typography properties, dimensions are the only other likely token type
           if (subvalue && typeof subvalue === 'object' && 'value' in subvalue) {
-            transformedValue = transformDimension({ $value: subvalue } as DimensionTokenNormalized, options);
+            transformedValue = transformDimension(
+              { $value: subvalue } as DimensionTokenNormalized,
+              options,
+            );
           } else if (typeof subvalue === 'number') {
             // number is technically allowed for things like `paragraph-spacing: 0`
-            transformedValue = transformNumber({ $value: subvalue } as NumberTokenNormalized, options);
+            transformedValue = transformNumber(
+              { $value: subvalue } as NumberTokenNormalized,
+              options,
+            );
           } else {
-            transformedValue = transformString({ $value: subvalue } as StringTokenNormalized, options);
+            transformedValue = transformString(
+              { $value: subvalue } as StringTokenNormalized,
+              options,
+            );
           }
           break;
         }
@@ -86,15 +110,19 @@ export function transformTypography(
 /** The `$type` a typography sub-property's value transforms as. */
 function typographySubValueType(property: string, subvalue: unknown): Token['$type'] {
   switch (property) {
-    case 'fontFamily':
+    case 'fontFamily': {
       return 'fontFamily';
-    case 'fontWeight':
+    }
+    case 'fontWeight': {
       return 'fontWeight';
+    }
     case 'fontSize':
-    case 'letterSpacing':
+    case 'letterSpacing': {
       return 'dimension';
-    case 'lineHeight':
+    }
+    case 'lineHeight': {
       return typeof subvalue === 'number' ? 'number' : 'dimension';
+    }
     default: {
       if (subvalue && typeof subvalue === 'object' && 'value' in subvalue) {
         return 'dimension';

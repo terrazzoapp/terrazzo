@@ -1,3 +1,5 @@
+import './TokenType.css';
+
 import {
   BorderToken,
   ColorToken,
@@ -16,7 +18,6 @@ import {
 } from '@terrazzo/icons';
 import clsx from 'clsx';
 import type { ComponentProps } from 'react';
-import './TokenType.css';
 
 export type TokenKind =
   | 'color'
@@ -74,11 +75,18 @@ export interface TokenTypeProps extends ComponentProps<'div'> {
   type: TokenKind;
 }
 
-export default function TokenType({ className, children, showIcon = true, type, ref, ...rest }: TokenTypeProps) {
+export default function TokenType({
+  className,
+  children,
+  showIcon = true,
+  type,
+  ref,
+  ...rest
+}: TokenTypeProps) {
   const Icon = TOKEN_TYPE_ICON[type];
   return (
     <div className={clsx('tz-tokentype', className)} ref={ref} {...rest}>
-      {showIcon && <Icon role='graphics-symbol' className='tz-tokentype-icon' aria-hidden='true' />}
+      {showIcon && <Icon role="graphics-symbol" className="tz-tokentype-icon" aria-hidden="true" />}
       {TOKEN_TYPE_DISPLAY_NAME[type]}
       {children}
     </div>

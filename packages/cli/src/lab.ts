@@ -2,8 +2,10 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import { Readable, Writable } from 'node:stream';
 import { fileURLToPath } from 'node:url';
+
 import type { ConfigInit, Logger } from '@terrazzo/parser';
 import mime from 'mime';
+
 import type { Flags } from './shared.js';
 
 export interface LabBuildOptions {
@@ -34,7 +36,9 @@ export async function labCmd({ config, logger }: LabBuildOptions) {
       continue;
     }
     const absolutePath = `${entry.parentPath.replaceAll('\\', '/')}/${entry.name}`;
-    staticFiles.add(absolutePath.replace(fileURLToPath(import.meta.resolve('./lab')).replaceAll('\\', '/'), ''));
+    staticFiles.add(
+      absolutePath.replace(fileURLToPath(import.meta.resolve('./lab')).replaceAll('\\', '/'), ''),
+    );
   }
 
   const server = serve(
@@ -59,7 +63,9 @@ export async function labCmd({ config, logger }: LabBuildOptions) {
         if (pathname === '/api/tokens') {
           if (request.method === 'GET') {
             return new Response(
-              Readable.toWeb(fsSync.createReadStream(tokenFileUrl as fsSync.PathLike)) as ReadableStream,
+              Readable.toWeb(
+                fsSync.createReadStream(tokenFileUrl as fsSync.PathLike),
+              ) as ReadableStream,
               {
                 headers: {
                   'Content-Type': 'application/json',
@@ -68,12 +74,17 @@ export async function labCmd({ config, logger }: LabBuildOptions) {
               },
             );
           } else if (request.method === 'POST' && request.body) {
-            await request.body.pipeTo(Writable.toWeb(fsSync.createWriteStream(tokenFileUrl as fsSync.PathLike)));
-            return new Response(JSON.stringify({ success: true }), {
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            });
+            await request.body.pipeTo(
+              Writable.toWeb(fsSync.createWriteStream(tokenFileUrl as fsSync.PathLike)),
+            );
+            return (
+              Response.json({ success: true }),
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              }
+            );
           }
         }
 

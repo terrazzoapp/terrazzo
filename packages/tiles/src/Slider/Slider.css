@@ -27,7 +27,9 @@
 
 .tz-slider-handle {
   --border-size: 1px;
-  --handle-offset: calc(var(--tz-slider-handle-size) - var(--tz-slider-track-size-block) - (2 * var(--border-size)));
+  --handle-offset: calc(
+    var(--tz-slider-handle-size) - var(--tz-slider-track-size-block) - (2 * var(--border-size))
+  );
 
   background: var(--tz-color-bg-1);
   border-color: var(--tz-color-border-2);

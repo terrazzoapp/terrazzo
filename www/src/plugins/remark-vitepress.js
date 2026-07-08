@@ -36,7 +36,10 @@ export default function remarkVitepress() {
           case 'tip':
           case 'warning': {
             node.type = 'paragraph';
-            node.data = { hName: 'div', hProperties: { className: ['callout', `callout--${node.name}`] } };
+            node.data = {
+              hName: 'div',
+              hProperties: { className: ['callout', `callout--${node.name}`] },
+            };
             node.children.unshift({
               type: 'html',
               value: `<div class="callout-indicator">${ICON[node.name] ?? ''}${
@@ -50,7 +53,10 @@ export default function remarkVitepress() {
           case 'details': {
             node.type = 'details';
             node.data = { hName: 'details' };
-            node.children.unshift({ type: 'html', value: `<summary>${node.attributes.title ?? ''}</summary>` });
+            node.children.unshift({
+              type: 'html',
+              value: `<summary>${node.attributes.title ?? ''}</summary>`,
+            });
             break;
           }
           // :::npm (codeblock but with npm/bun/pnpm) {
@@ -79,7 +85,7 @@ export default function remarkVitepress() {
                     id: `tab-${id}-${i}`,
                     className: ['code-group-tabpanel'],
                     role: 'tabpanel',
-                    hidden: i !== 0 ? 'hidden' : undefined,
+                    hidden: i === 0 ? undefined : 'hidden',
                   },
                 },
                 children: [
@@ -112,7 +118,7 @@ export default function remarkVitepress() {
                   )
                   .join('')}</div>`,
               },
-              ...codeBlocks.map((node, i) => ({
+              ...codeBlocks.map((child, i) => ({
                 type: 'paragraph',
                 data: {
                   hName: 'div',
@@ -120,10 +126,10 @@ export default function remarkVitepress() {
                     id: `tab-${id}-${i}`,
                     className: ['code-group-tabpanel'],
                     role: 'tabpanel',
-                    hidden: i !== 0 ? 'hidden' : undefined,
+                    hidden: i === 0 ? undefined : 'hidden',
                   },
                 },
-                children: [node],
+                children: [child],
               })),
             ];
           }
@@ -134,14 +140,17 @@ export default function remarkVitepress() {
       if (node.type === 'code' && !node.data?.processed) {
         const code = { ...node, data: { processed: true } };
         node.type = 'paragraph';
-        node.data = { hName: 'div', hProperties: { className: ['code-block-wrapper'], 'data-language': node.lang } };
+        node.data = {
+          hName: 'div',
+          hProperties: { className: ['code-block-wrapper'], 'data-language': node.lang },
+        };
         node.children = [
           code,
           {
             type: 'html',
             value: `<button class="code-block-copy-btn" type="button" aria-label="Copy to Clipboard" data-code="${code.value
-              .replace(/"/g, '&quot;')
-              .replace(/</g, '&lt;')}">${ICON.copy}</button>`,
+              .replaceAll('"', '&quot;')
+              .replaceAll('<', '&lt;')}">${ICON.copy}</button>`,
           },
         ];
       }

@@ -1,3 +1,5 @@
+/* oxlint-disable no-inner-declarations, no-implicit-globals */
+
 for (const tablist of document.querySelectorAll('[role="tablist"]')) {
   const tabs = tablist.querySelectorAll('[role="tab"]');
 
@@ -11,7 +13,9 @@ for (const tablist of document.querySelectorAll('[role="tablist"]')) {
       } else {
         tab.removeAttribute('aria-selected');
         tab.setAttribute('tabindex', '-1');
-        document.getElementById(tab.getAttribute('aria-controls'))?.setAttribute('hidden', 'hidden');
+        document
+          .getElementById(tab.getAttribute('aria-controls'))
+          ?.setAttribute('hidden', 'hidden');
       }
     });
   }

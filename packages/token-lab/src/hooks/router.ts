@@ -35,18 +35,21 @@ export function useRouter() {
   const page = useMemo(() => search.get('page'), [search]);
 
   const setPage = useCallback(
-    (page: Page) => {
-      validatePage(page);
-      updateSearch({ page });
+    (innerPage: Page) => {
+      validatePage(innerPage);
+      updateSearch({ page: innerPage });
     },
     [updateSearch],
   );
 
-  return useMemo(() => ({ page, search, setPage, setSearch: updateSearch }), [page, search, setPage, updateSearch]);
+  return useMemo(
+    () => ({ page, search, setPage, setSearch: updateSearch }),
+    [page, search, setPage, updateSearch],
+  );
 }
 
 function validatePage(page: string | undefined | null) {
   if (!page || !['index', 'tokens', 'linting', 'config'].includes(page)) {
-    throw Error(`Invalid page: ${page}`);
+    throw new Error(`Invalid page: ${page}`);
   }
 }

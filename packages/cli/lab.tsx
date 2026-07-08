@@ -1,15 +1,15 @@
 import TokenLab from '@terrazzo/token-lab';
 import { createRoot } from 'react-dom/client';
 
-const response = await fetch('/api/tokens');
-const tokenFile = await response.text();
+const tokenRes = await fetch('/api/tokens');
+const tokenFile = await tokenRes.text();
 const root = createRoot(document.getElementById('app'));
 
 root.render(
   <TokenLab
     tokensFile={tokenFile}
     onUpdate={async (updatedTokens) => {
-      const response = await fetch('/api/tokens', {
+      const res = await fetch('/api/tokens', {
         method: 'POST',
         headers: {
           'Content-Type': 'text/plain',
@@ -17,9 +17,9 @@ root.render(
         body: updatedTokens,
       });
 
-      if (!response.ok) {
-        // biome-ignore lint/suspicious/noConsole: this is its job
-        console.error(`Failed to save tokens: ${response.status}`);
+      if (!res.ok) {
+        // oxlint-disable-next-line no-console
+        console.error(`Failed to save tokens: ${res.status}`);
       }
     }}
   />,

@@ -88,10 +88,7 @@ Here’s what a [Resolver](/docs/2.0/guides/resolvers/) example for this system 
 {
   "name": "My Design System",
   "version": "2025.10",
-  "resolutionOrder": [
-    { "$ref": "#/sets/foundation" },
-    { "$ref": "#/modifiers/theme" },
-  ],
+  "resolutionOrder": [{ "$ref": "#/sets/foundation" }, { "$ref": "#/modifiers/theme" }],
   "sets": {
     "foundation": {
       "sources": [
@@ -203,10 +200,7 @@ Naively, you may start out with this initially:
 {
   "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
   "version": "2025.10",
-  "resolutionOrder": [
-    { "$ref": "#/modifiers/color-mode" },
-    { "$ref": "#/modifiers/brand" },
-  ],
+  "resolutionOrder": [{ "$ref": "#/modifiers/color-mode" }, { "$ref": "#/modifiers/brand" }],
   "modifiers": {
     "color-mode": {
       "contexts": {
@@ -239,30 +233,12 @@ You can see how this only gets harder with more modifiers, and more tokens—eve
   "modifiers": {
     "theme": {
       "contexts": {
-        "a-light": [
-          { "$ref": "color-mode/light.json" },
-          { "$ref": "brand/a.json" },
-        ],
-        "a-dark": [
-          { "$ref": "color-mode/dark.json" },
-          { "$ref": "brand/a.json" },
-        ],
-        "b-light": [
-          { "$ref": "color-mode/light.json" },
-          { "$ref": "brand/b.json" },
-        ],
-        "b-dark": [
-          { "$ref": "color-mode/dark.json" },
-          { "$ref": "brand/b.json" },
-        ],
-        "c-light": [
-          { "$ref": "color-mode/light.json" },
-          { "$ref": "brand/c.json" },
-        ],
-        "c-dark": [
-          { "$ref": "color-mode/dark.json" },
-          { "$ref": "brand/c.json" },
-        ],
+        "a-light": [{ "$ref": "color-mode/light.json" }, { "$ref": "brand/a.json" }],
+        "a-dark": [{ "$ref": "color-mode/dark.json" }, { "$ref": "brand/a.json" }],
+        "b-light": [{ "$ref": "color-mode/light.json" }, { "$ref": "brand/b.json" }],
+        "b-dark": [{ "$ref": "color-mode/dark.json" }, { "$ref": "brand/b.json" }],
+        "c-light": [{ "$ref": "color-mode/light.json" }, { "$ref": "brand/c.json" }],
+        "c-dark": [{ "$ref": "color-mode/dark.json" }, { "$ref": "brand/c.json" }],
       },
     },
   },

@@ -1,14 +1,17 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
+
 import { build, defineConfig, parse } from '../src/index.js';
 
 describe('Plugin API', () => {
-  it('name', async () => {
+  it('name', () => {
     try {
       const config = defineConfig({ plugins: [{} as any] }, { cwd: new URL('file:///') });
       expect(config).toThrow();
-    } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`"config:plugin[0]: Missing "name""`);
+    } catch (error) {
+      expect(stripAnsi((error as Error).message)).toMatchInlineSnapshot(
+        `"config:plugin[0]: Missing "name""`,
+      );
     }
   });
 
@@ -19,7 +22,7 @@ describe('Plugin API', () => {
           plugins: [
             {
               name: 'my-plugin',
-              async transform({ setTransform }) {
+              transform({ setTransform }) {
                 setTransform('my.toker', { format: 'my-format', value: 'foo' });
               },
             },
@@ -28,14 +31,19 @@ describe('Plugin API', () => {
         { cwd: new URL('file:///') },
       );
       const { sources, tokens, resolver } = await parse(
-        [{ src: { my: { token: { $type: 'number', $value: 10 } } }, filename: new URL('file:///') }],
+        [
+          {
+            src: { my: { token: { $type: 'number', $value: 10 } } },
+            filename: new URL('file:///'),
+          },
+        ],
         { config },
       );
       try {
         const result = await build(tokens, { config, resolver, sources });
         expect(result).toThrow();
-      } catch (err) {
-        expect(stripAnsi((err as Error).message)).toBe('plugin:my-plugin: No token "my.toker"');
+      } catch (error) {
+        expect(stripAnsi((error as Error).message)).toBe('plugin:my-plugin: No token "my.toker"');
       }
     });
 
@@ -45,11 +53,14 @@ describe('Plugin API', () => {
           plugins: [
             {
               name: 'my-plugin',
-              async transform({ setTransform }) {
+              transform({ setTransform }) {
                 setTransform('my.token', { format: 'my-format', value: 'foo' });
               },
-              async build({ getTransforms, outputFile }) {
-                outputFile(String(getTransforms({ id: 'my.token', format: 'my-format' })?.[0]?.value), 'file.txt');
+              build({ getTransforms, outputFile }) {
+                outputFile(
+                  String(getTransforms({ id: 'my.token', format: 'my-format' })?.[0]?.value),
+                  'file.txt',
+                );
               },
             },
           ],
@@ -57,7 +68,12 @@ describe('Plugin API', () => {
         { cwd: new URL('file:///') },
       );
       const { sources, tokens, resolver } = await parse(
-        [{ src: { my: { token: { $type: 'number', $value: 10 } } }, filename: new URL('file:///') }],
+        [
+          {
+            src: { my: { token: { $type: 'number', $value: 10 } } },
+            filename: new URL('file:///'),
+          },
+        ],
         { config },
       );
       const { outputFiles } = await build(tokens, { config, resolver, sources });
@@ -72,12 +88,16 @@ describe('Plugin API', () => {
           plugins: [
             {
               name: 'my-plugin',
-              async transform({ setTransform }) {
+              transform({ setTransform }) {
                 setTransform('my.token', { format: 'my-format', value: 'foo', input: {} });
               },
-              async build({ getTransforms, outputFile }) {
+              build({ getTransforms, outputFile }) {
                 outputFile(
-                  String(getTransforms({ id: 'my.token', format: 'my-format', input: {} }).map((t) => t.value)),
+                  String(
+                    getTransforms({ id: 'my.token', format: 'my-format', input: {} }).map(
+                      (t) => t.value,
+                    ),
+                  ),
                   'file.txt',
                 );
               },
@@ -87,7 +107,12 @@ describe('Plugin API', () => {
         { cwd: new URL('file:///') },
       );
       const { sources, tokens, resolver } = await parse(
-        [{ src: { my: { token: { $type: 'number', $value: 10 } } }, filename: new URL('file:///') }],
+        [
+          {
+            src: { my: { token: { $type: 'number', $value: 10 } } },
+            filename: new URL('file:///'),
+          },
+        ],
         { config },
       );
       const { outputFiles } = await build(tokens, { config, resolver, sources });
@@ -102,13 +127,17 @@ describe('Plugin API', () => {
           plugins: [
             {
               name: 'my-plugin',
-              async transform({ setTransform }) {
+              transform({ setTransform }) {
                 setTransform('my.token', { format: 'my-format', value: 'foo', mode: '.' });
               },
-              async build({ getTransforms, outputFile }) {
+              build({ getTransforms, outputFile }) {
                 outputFile(
                   'file.txt',
-                  String(getTransforms({ id: 'my.token', format: 'my-format', mode: '.' }).map((t) => t.value)),
+                  String(
+                    getTransforms({ id: 'my.token', format: 'my-format', mode: '.' }).map(
+                      (t) => t.value,
+                    ),
+                  ),
                 );
               },
             },
@@ -117,7 +146,12 @@ describe('Plugin API', () => {
         { cwd: new URL('file:///') },
       );
       const { sources, tokens, resolver } = await parse(
-        [{ src: { my: { token: { $type: 'number', $value: 10 } } }, filename: new URL('file:///') }],
+        [
+          {
+            src: { my: { token: { $type: 'number', $value: 10 } } },
+            filename: new URL('file:///'),
+          },
+        ],
         { config },
       );
       const { outputFiles } = await build(tokens, { config, resolver, sources });
@@ -132,27 +166,47 @@ describe('Plugin API', () => {
           plugins: [
             {
               name: 'my-plugin',
-              async transform({ setTransform }) {
+              transform({ setTransform }) {
                 setTransform('my.token', { format: 'my-format', value: 'foo', mode: '.' });
-                setTransform('my.token', { format: 'my-format', value: 'foo-light', mode: 'light' });
+                setTransform('my.token', {
+                  format: 'my-format',
+                  value: 'foo-light',
+                  mode: 'light',
+                });
                 setTransform('my.token', { format: 'my-format', value: 'foo-dark', mode: 'dark' });
               },
-              async build({ getTransforms, outputFile }) {
+              build({ getTransforms, outputFile }) {
                 outputFile(
                   'all.txt',
-                  String(getTransforms({ id: 'my.token', format: 'my-format', mode: '*' }).map((t) => t.value)),
+                  String(
+                    getTransforms({ id: 'my.token', format: 'my-format', mode: '*' }).map(
+                      (t) => t.value,
+                    ),
+                  ),
                 );
                 outputFile(
                   'default.txt',
-                  String(getTransforms({ id: 'my.token', format: 'my-format', mode: '.' }).map((t) => t.value)),
+                  String(
+                    getTransforms({ id: 'my.token', format: 'my-format', mode: '.' }).map(
+                      (t) => t.value,
+                    ),
+                  ),
                 );
                 outputFile(
                   'light.txt',
-                  String(getTransforms({ id: 'my.token', format: 'my-format', mode: 'light' }).map((t) => t.value)),
+                  String(
+                    getTransforms({ id: 'my.token', format: 'my-format', mode: 'light' }).map(
+                      (t) => t.value,
+                    ),
+                  ),
                 );
                 outputFile(
                   'dark.txt',
-                  String(getTransforms({ id: 'my.token', format: 'my-format', mode: 'dark' }).map((t) => t.value)),
+                  String(
+                    getTransforms({ id: 'my.token', format: 'my-format', mode: 'dark' }).map(
+                      (t) => t.value,
+                    ),
+                  ),
                 );
               },
             },
@@ -161,7 +215,12 @@ describe('Plugin API', () => {
         { cwd: new URL('file:///') },
       );
       const { sources, tokens, resolver } = await parse(
-        [{ src: { my: { token: { $type: 'number', $value: 10 } } }, filename: new URL('file:///') }],
+        [
+          {
+            src: { my: { token: { $type: 'number', $value: 10 } } },
+            filename: new URL('file:///'),
+          },
+        ],
         { config },
       );
       const { outputFiles } = await build(tokens, { config, resolver, sources });
@@ -185,32 +244,44 @@ describe('Plugin API', () => {
           plugins: [
             {
               name: 'my-plugin',
-              async transform({ setTransform }) {
+              transform({ setTransform }) {
                 setTransform('my.token', { format: 'my-format', value: 'foo', mode: '.' });
-                setTransform('my.token', { format: 'my-format', value: 'foo-light', mode: 'light' });
+                setTransform('my.token', {
+                  format: 'my-format',
+                  value: 'foo-light',
+                  mode: 'light',
+                });
                 setTransform('my.token', { format: 'my-format', value: 'foo-dark', mode: 'dark' });
               },
-              async build({ getTransforms, outputFile }) {
+              build({ getTransforms, outputFile }) {
                 outputFile(
                   'default.txt',
                   String(
-                    getTransforms({ id: 'my.token', format: 'my-format', input: { tzMode: '.' } }).map((t) => t.value),
+                    getTransforms({
+                      id: 'my.token',
+                      format: 'my-format',
+                      input: { tzMode: '.' },
+                    }).map((t) => t.value),
                   ),
                 );
                 outputFile(
                   'light.txt',
                   String(
-                    getTransforms({ id: 'my.token', format: 'my-format', input: { tzMode: 'light' } }).map(
-                      (t) => t.value,
-                    ),
+                    getTransforms({
+                      id: 'my.token',
+                      format: 'my-format',
+                      input: { tzMode: 'light' },
+                    }).map((t) => t.value),
                   ),
                 );
                 outputFile(
                   'dark.txt',
                   String(
-                    getTransforms({ id: 'my.token', format: 'my-format', input: { tzMode: 'dark' } }).map(
-                      (t) => t.value,
-                    ),
+                    getTransforms({
+                      id: 'my.token',
+                      format: 'my-format',
+                      input: { tzMode: 'dark' },
+                    }).map((t) => t.value),
                   ),
                 );
               },
@@ -220,7 +291,12 @@ describe('Plugin API', () => {
         { cwd: new URL('file:///') },
       );
       const { sources, tokens, resolver } = await parse(
-        [{ src: { my: { token: { $type: 'number', $value: 10 } } }, filename: new URL('file:///') }],
+        [
+          {
+            src: { my: { token: { $type: 'number', $value: 10 } } },
+            filename: new URL('file:///'),
+          },
+        ],
         { config },
       );
       const { outputFiles } = await build(tokens, { config, resolver, sources });

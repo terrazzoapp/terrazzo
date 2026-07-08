@@ -1,10 +1,18 @@
 import type { Logger, ModeMap, Plugin, TokenNormalized, TransformParams } from '@terrazzo/parser';
 import type { TokenTransformed } from '@terrazzo/token-tools';
-import type { PlatformOption, TokenListing, TokenListingExtension, TokenListingPluginOptions } from './lib.js';
-import { computePreviewValue } from './utils/previewValue.js';
+
+import type {
+  PlatformOption,
+  TokenListing,
+  TokenListingExtension,
+  TokenListingPluginOptions,
+} from './lib.js';
+import { computePreviewValue } from './utils/preview-value.js';
 import mapValues from './utils/utils.js';
 
 export * from './lib.js';
+
+/* oxlint-disable require-await */
 
 function getNameFromPlugin({
   getTransforms,
@@ -26,7 +34,11 @@ function getNameFromPlugin({
     return transformed[0].meta?.['token-listing']?.name;
   }
 
-  const fallback = getTransforms({ format: plugin.replace('@terrazzo/plugin-', ''), id: token.id, mode });
+  const fallback = getTransforms({
+    format: plugin.replace('@terrazzo/plugin-', ''),
+    id: token.id,
+    mode,
+  });
   if (fallback[0]) {
     return fallback[0].meta?.['token-listing']?.name;
   }
@@ -74,9 +86,16 @@ function getName({
     name = platform.name({ logger, mode, tokensSet, token });
   }
 
-  let filter: boolean = true;
+  let filter = true;
   if ('filter' in platform && typeof platform.filter === 'string') {
-    filter = !!getNameFromPlugin({ getTransforms, logger, mode, pid, plugin: platform.filter, token });
+    filter = !!getNameFromPlugin({
+      getTransforms,
+      logger,
+      mode,
+      pid,
+      plugin: platform.filter,
+      token,
+    });
   } else if ('filter' in platform && typeof platform.filter === 'function') {
     filter = platform.filter({ logger, mode, tokensSet, token });
   }
@@ -95,6 +114,7 @@ function getPlatformDescription(platform: PlatformOption): { description?: strin
 export default function getBuild(options: TokenListingPluginOptions): Plugin['build'] {
   const { platforms = {} } = options;
 
+  // oxlint-disable-next-line func-style
   const getListingMeta = ({
     getTransforms,
     logger,
@@ -157,7 +177,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
     if (token.source.filename) {
       const root = resourceRoot ?? process.cwd();
       // Convert both paths to file URLs for consistent cross-platform handling
-      const rootUrl = new URL(`file://${root.replace(/\\/g, '/')}`);
+      const rootUrl = new URL(`file://${root.replaceAll('\\', '/')}`);
       const fileUrl = new URL(token.source.filename);
 
       // Create relative URL from root to file
@@ -201,7 +221,9 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
         modes: options.modes,
         platforms: mapValues(options.platforms ?? {}, getPlatformDescription),
         sourceOfTruth:
-          typeof options.sourceOfTruth === 'string' ? options.sourceOfTruth : options.sourceOfTruth?.default,
+          typeof options.sourceOfTruth === 'string'
+            ? options.sourceOfTruth
+            : options.sourceOfTruth?.default,
       },
       data: listing,
     } satisfies TokenListing;

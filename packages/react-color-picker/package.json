@@ -27,13 +27,9 @@
   "scripts": {
     "build": "rolldown -c && size-limit",
     "dev": "pnpm run build && chokidar \"./src/**/*\" -c \"rollup -c rollup.config.js\"",
-    "format": "pnpm --filter @terrazzo/react-color-picker run \"/^format:.*/\"",
-    "format:js": "biome check --fix --unsafe src",
-    "format:css": "stylelint --fix \"src/**/*.css\"",
-    "lint": "pnpm --filter @terrazzo/react-color-picker run \"/^lint:(js|ts)/\"",
-    "lint:js": "biome check src",
-    "lint:ts": "tsc --noEmit",
-    "lint:css": "stylelint \"src/**/*.css\""
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit"
   },
   "peerDependencies": {
     "colorjs.io": "^0.6.0",

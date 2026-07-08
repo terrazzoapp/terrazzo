@@ -3,12 +3,14 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import { confirm, intro, multiselect, outro, select, spinner } from '@clack/prompts';
 import type { Logger } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
 import { detect } from 'detect-package-manager';
 import { generate } from 'escodegen';
 import { type ESTree, parseModule } from 'meriyah';
+
 import { cwd, loadConfig, printError } from './shared.js';
 
 const INSTALL_COMMAND = {
@@ -93,18 +95,21 @@ export async function initCmd({ logger }: InitOptions) {
     const packageManager = await detect({ cwd: fileURLToPath(cwd) });
 
     // TODO: pass in CLI flags?
-    const { config, configPath = 'terrazzo.config.ts' } = await loadConfig({ cmd: 'init', flags: {}, logger });
+    const { config, configPath = 'terrazzo.config.ts' } = await loadConfig({
+      cmd: 'init',
+      flags: {},
+      logger,
+    });
     const tokensPath = config.tokens[0]!;
     const hasExistingConfig = fsSync.existsSync(configPath);
     let startFromDS = !(tokensPath && fsSync.existsSync(tokensPath));
 
     // 1. tokens
     if (tokensPath && fsSync.existsSync(tokensPath)) {
-      if (
-        await confirm({
-          message: `Found tokens at ${path.relative(fileURLToPath(cwd), fileURLToPath(tokensPath))}. Overwrite with a new design system?`,
-        })
-      ) {
+      const overwrite = await confirm({
+        message: `Found tokens at ${path.relative(fileURLToPath(cwd), fileURLToPath(tokensPath))}. Overwrite with a new design system?`,
+      });
+      if (overwrite) {
         startFromDS = true;
       }
     }
@@ -128,7 +133,11 @@ export async function initCmd({ logger }: InitOptions) {
         s.start('Downloading');
         await new Promise((resolve, reject) => {
           // security: spawn() is much safer than exec()
-          const subprocess = spawn(packageManager, [INSTALL_COMMAND[packageManager], 'dtcg-examples'], { cwd });
+          const subprocess = spawn(
+            packageManager,
+            [INSTALL_COMMAND[packageManager], 'dtcg-examples'],
+            { cwd },
+          );
           subprocess.on('error', reject);
           subprocess.on('exit', resolve);
         });
@@ -163,17 +172,24 @@ export async function initCmd({ logger }: InitOptions) {
       required: false,
     });
     const newPlugins = Array.isArray(pluginSelection)
-      ? Array.from(new Set(pluginSelection.flat().filter((p) => !existingPlugins.includes(p))))
+      ? [...new Set(pluginSelection.flat().filter((p) => !existingPlugins.includes(p)))]
       : [];
     if (newPlugins?.length) {
-      const plugins: ImportSpec[] = newPlugins.map((p) => ({ specifier: p.replace('@terrazzo/plugin-', ''), path: p }));
+      const plugins: ImportSpec[] = newPlugins.map((p) => ({
+        specifier: p.replace('@terrazzo/plugin-', ''),
+        path: p,
+      }));
       const pluginCount = `${newPlugins.length} ${pluralize(newPlugins.length, 'plugin', 'plugins')}`;
       const s = spinner();
       s.start(`Installing ${pluginCount}`);
       // note: this is async to show the spinner
       await new Promise((resolve, reject) => {
         // security: spawn() is much safer than exec()
-        const subprocess = spawn(packageManager, [INSTALL_COMMAND[packageManager], newPlugins.join(' ')], { cwd });
+        const subprocess = spawn(
+          packageManager,
+          [INSTALL_COMMAND[packageManager], newPlugins.join(' ')],
+          { cwd },
+        );
         subprocess.on('error', reject);
         subprocess.on('exit', resolve);
       });
@@ -191,8 +207,8 @@ export async function initCmd({ logger }: InitOptions) {
     }
 
     outro('⛋ Done! 🎉');
-  } catch (err) {
-    printError((err as Error).message);
+  } catch (error) {
+    printError((error as Error).message);
     process.exit(1);
   }
 }
@@ -206,7 +222,7 @@ ${imports.map((p) => `import ${p.specifier} from '${p.path}';`).join('\n')}
 export default defineConfig({
   tokens: ['${tokens.join("', '")}'],
   plugins: [
-    ${imports.length ? imports.map((p) => `${p.specifier}(),`).join('\n    ') : '/** @see https://terrazzo.app/docs */'}
+    ${imports.length > 0 ? imports.map((p) => `${p.specifier}(),`).join('\n    ') : '/** @see https://terrazzo.app/docs */'}
   ],
   outDir: './dist/',
   lint: {
@@ -304,7 +320,9 @@ async function updateConfigPlugins(configPath: string, plugins: ImportSpec[]) {
         ({
           type: 'ImportDeclaration' as const,
           source: { type: 'Literal', value: p.path },
-          specifiers: [{ type: 'ImportDefaultSpecifier', local: { type: 'Identifier', name: p.specifier } }],
+          specifiers: [
+            { type: 'ImportDefaultSpecifier', local: { type: 'Identifier', name: p.specifier } },
+          ],
           attributes: [],
         }) as ESTree.ImportDeclaration,
     ),
@@ -315,7 +333,9 @@ async function updateConfigPlugins(configPath: string, plugins: ImportSpec[]) {
   const pluginsArray = (
     astConfig.properties.find(
       (property) =>
-        property.type === 'Property' && property.key.type === 'Identifier' && property.key.name === 'plugins', // ASTs are so fun 😑
+        property.type === 'Property' &&
+        property.key.type === 'Identifier' &&
+        property.key.name === 'plugins', // ASTs are so fun 😑
     ) as ESTree.Property
   )?.value as ESTree.ArrayExpression | undefined;
   const pluginsAst = plugins.map(
@@ -351,39 +371,84 @@ const EXAMPLE_TOKENS = {
     black: {
       '100': {
         $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.05, hex: '#0c0c0d' },
+        $value: {
+          colorSpace: 'srgb',
+          components: [0.047, 0.047, 0.047],
+          alpha: 0.05,
+          hex: '#0c0c0d',
+        },
       },
       '200': {
         $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.1, hex: '#0c0c0d' },
+        $value: {
+          colorSpace: 'srgb',
+          components: [0.047, 0.047, 0.047],
+          alpha: 0.1,
+          hex: '#0c0c0d',
+        },
       },
       '300': {
         $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.2, hex: '#0c0c0d' },
+        $value: {
+          colorSpace: 'srgb',
+          components: [0.047, 0.047, 0.047],
+          alpha: 0.2,
+          hex: '#0c0c0d',
+        },
       },
       '400': {
         $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.34, hex: '#0c0c04' },
+        $value: {
+          colorSpace: 'srgb',
+          components: [0.047, 0.047, 0.047],
+          alpha: 0.34,
+          hex: '#0c0c04',
+        },
       },
       '500': {
         $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.7, hex: '#0c0c0d' },
+        $value: {
+          colorSpace: 'srgb',
+          components: [0.047, 0.047, 0.047],
+          alpha: 0.7,
+          hex: '#0c0c0d',
+        },
       },
       '600': {
         $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.8, hex: '#0c0c0d' },
+        $value: {
+          colorSpace: 'srgb',
+          components: [0.047, 0.047, 0.047],
+          alpha: 0.8,
+          hex: '#0c0c0d',
+        },
       },
       '700': {
         $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.85, hex: '#0c0c0d' },
+        $value: {
+          colorSpace: 'srgb',
+          components: [0.047, 0.047, 0.047],
+          alpha: 0.85,
+          hex: '#0c0c0d',
+        },
       },
       '800': {
         $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.9, hex: '#0c0c0d' },
+        $value: {
+          colorSpace: 'srgb',
+          components: [0.047, 0.047, 0.047],
+          alpha: 0.9,
+          hex: '#0c0c0d',
+        },
       },
       '900': {
         $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.047, 0.047, 0.047], alpha: 0.95, hex: '#0c0c0d' },
+        $value: {
+          colorSpace: 'srgb',
+          components: [0.047, 0.047, 0.047],
+          alpha: 0.95,
+          hex: '#0c0c0d',
+        },
       },
       '1000': {
         $type: 'color',

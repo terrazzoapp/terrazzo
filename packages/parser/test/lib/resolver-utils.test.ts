@@ -1,13 +1,27 @@
 import { describe, expect, it } from 'vitest';
-import { destructiveMerge, filterResolverPaths, getPermutationID } from '../../src/lib/resolver-utils.js';
+
+import {
+  destructiveMerge,
+  filterResolverPaths,
+  getPermutationID,
+} from '../../src/lib/resolver-utils.js';
 
 describe('filterResolverPaths', () => {
   const tests: [
     string,
-    { given: Parameters<typeof filterResolverPaths>[0]; want: ReturnType<typeof filterResolverPaths> },
+    {
+      given: Parameters<typeof filterResolverPaths>[0];
+      want: ReturnType<typeof filterResolverPaths>;
+    },
   ][] = [
     ['basic', { given: ['color', 'blue', '600'], want: ['color', 'blue', '600'] }],
-    ['sets', { given: ['sets', 'base', 'sources', '0', 'color', 'blue', '600'], want: ['color', 'blue', '600'] }],
+    [
+      'sets',
+      {
+        given: ['sets', 'base', 'sources', '0', 'color', 'blue', '600'],
+        want: ['color', 'blue', '600'],
+      },
+    ],
     [
       'modifiers',
       {
@@ -47,7 +61,10 @@ describe('descructiveMerge', () => {
       },
     ],
     ['array: simple', { given: [{ a: [0] }, { a: [1, 2, 3] }], want: { a: [1, 2, 3] } }],
-    ['array: nested object', { given: [{ a: [{ a: 1 }] }, { a: [{ b: 2 }] }], want: { a: [{ b: 2 }] } }],
+    [
+      'array: nested object',
+      { given: [{ a: [{ a: 1 }] }, { a: [{ b: 2 }] }], want: { a: [{ b: 2 }] } },
+    ],
     ['null', { given: [{ a: { b: 1 } }, { a: { b: null } }], want: { a: { b: null } } }],
     [
       'nested array',

@@ -81,10 +81,7 @@ import { defineConfig } from "@terrazzo/cli";
 export default defineConfig({
   lint: {
     rules: {
-      "core/valid-color": [
-        "error",
-        { legacyFormat: false, ignoreRanges: false },
-      ],
+      "core/valid-color": ["error", { legacyFormat: false, ignoreRanges: false }],
     },
   },
 });

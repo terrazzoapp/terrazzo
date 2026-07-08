@@ -22,14 +22,18 @@ export const ERROR_MISSING_REQUIRED_TOKENS = 'MISSING_REQUIRED_TOKENS';
 export const ERROR_MISSING_REQUIRED_GROUP = 'MISSING_REQUIRED_GROUP';
 
 const rule: LintRule<
-  typeof ERROR_EMPTY_MATCH | typeof ERROR_MISSING_REQUIRED_TOKENS | typeof ERROR_MISSING_REQUIRED_GROUP,
+  | typeof ERROR_EMPTY_MATCH
+  | typeof ERROR_MISSING_REQUIRED_TOKENS
+  | typeof ERROR_MISSING_REQUIRED_GROUP,
   RuleRequiredChildrenOptions
 > = {
   meta: {
     messages: {
       [ERROR_EMPTY_MATCH]: 'No tokens matched {{ matcher }}',
-      [ERROR_MISSING_REQUIRED_TOKENS]: 'Match {{ index }}: some groups missing required token "{{ token }}"',
-      [ERROR_MISSING_REQUIRED_GROUP]: 'Match {{ index }}: some tokens missing required group "{{ group }}"',
+      [ERROR_MISSING_REQUIRED_TOKENS]:
+        'Match {{ index }}: some groups missing required token "{{ token }}"',
+      [ERROR_MISSING_REQUIRED_GROUP]:
+        'Match {{ index }}: some tokens missing required group "{{ group }}"',
     },
     docs: {
       description: 'Enforce token groups have specific children, whether tokens and/or groups.',
@@ -49,11 +53,13 @@ const rule: LintRule<
       const { match, requiredTokens, requiredGroups } = options.matches[matchI]!;
 
       // validate
-      if (!match.length) {
+      if (match.length === 0) {
         throw new Error(`Match ${matchI}: must declare \`match: […]\``);
       }
       if (!requiredTokens?.length && !requiredGroups?.length) {
-        throw new Error(`Match ${matchI}: must declare either \`requiredTokens: […]\` or \`requiredGroups: […]\``);
+        throw new Error(
+          `Match ${matchI}: must declare either \`requiredTokens: […]\` or \`requiredGroups: […]\``,
+        );
       }
 
       const matcher = cachedLintMatcher.tokenIDMatch(match);

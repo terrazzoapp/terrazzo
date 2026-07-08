@@ -41,7 +41,10 @@ interface TestOptions {
     | { rule: typeof REQUIRED_CHILDREN; options: RuleRequiredChildrenOptions }
     | { rule: typeof REQUIRED_MODES; options: RuleRequiredModesOptions }
     | { rule: typeof REQUIRED_TYPE; options?: never }
-    | { rule: typeof REQUIRED_TYPOGRAPHY_PROPERTIES; options: RuleRequiredTypographyPropertiesOptions }
+    | {
+        rule: typeof REQUIRED_TYPOGRAPHY_PROPERTIES;
+        options: RuleRequiredTypographyPropertiesOptions;
+      }
     | { rule: typeof A11Y_MIN_CONTRAST; options: RuleA11yMinContrastOptions }
     | { rule: typeof A11Y_MIN_FONT_SIZE; options: RuleA11yMinFontSizeOptions }
     | { rule: typeof VALID_TYPOGRAPHY; options: RuleValidTypographyOptions }
@@ -70,7 +73,10 @@ describe('rules', () => {
               blue: {
                 100: {
                   $type: 'color',
-                  $value: { colorSpace: 'srgb', components: [0.2255639098, 0.2255639098, 0.2518796992] },
+                  $value: {
+                    colorSpace: 'srgb',
+                    components: [0.2255639098, 0.2255639098, 0.2518796992],
+                  },
                 },
               },
             },
@@ -130,7 +136,10 @@ describe('rules', () => {
               blue: {
                 100: {
                   $type: 'color',
-                  $value: { colorSpace: 'srgb', components: [0.2255639098, 0.2255639098, 0.2518796992] },
+                  $value: {
+                    colorSpace: 'srgb',
+                    components: [0.2255639098, 0.2255639098, 0.2518796992],
+                  },
                 },
               },
             },
@@ -189,7 +198,9 @@ describe('rules', () => {
         given: {
           rule: DESCRIPTIONS,
           options: {},
-          tokens: { number: { 42: { $type: 'number', $description: 'The number 42.', $value: 42 } } },
+          tokens: {
+            number: { 42: { $type: 'number', $description: 'The number 42.', $value: 42 } },
+          },
         },
         want: { success: true },
       },
@@ -236,8 +247,14 @@ describe('rules', () => {
           tokens: {
             color: {
               blue: {
-                '100': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.235, 0.235, 0.263] } },
-                '200': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.957, 0.98, 1] } },
+                '100': {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.235, 0.235, 0.263] },
+                },
+                '200': {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.957, 0.98, 1] },
+                },
                 '300': { $type: 'color', $value: '{color.blue.100}' },
               },
             },
@@ -255,8 +272,14 @@ describe('rules', () => {
           tokens: {
             color: {
               blue: {
-                '100': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] } },
-                '200': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] } },
+                '100': {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] },
+                },
+                '200': {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] },
+                },
               },
             },
           },
@@ -273,8 +296,14 @@ describe('rules', () => {
           tokens: {
             color: {
               blue: {
-                '100': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] } },
-                '200': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] } },
+                '100': {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] },
+                },
+                '200': {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] },
+                },
               },
             },
           },
@@ -307,7 +336,12 @@ describe('rules', () => {
           rule: MAX_GAMUT,
           options: { gamut: 'srgb' },
           tokens: {
-            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.8794, 0.163, 96.35] } } },
+            color: {
+              yellow: {
+                $type: 'color',
+                $value: { colorSpace: 'oklch', components: [0.8794, 0.163, 96.35] },
+              },
+            },
           },
         },
         want: { success: true },
@@ -320,7 +354,12 @@ describe('rules', () => {
           rule: MAX_GAMUT,
           options: { gamut: 'srgb' },
           tokens: {
-            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.8912, 0.2, 96.35] } } },
+            color: {
+              yellow: {
+                $type: 'color',
+                $value: { colorSpace: 'oklch', components: [0.8912, 0.2, 96.35] },
+              },
+            },
           },
         },
         want: { errors: ['Color color.yellow is outside srgb gamut'] },
@@ -333,7 +372,12 @@ describe('rules', () => {
           rule: MAX_GAMUT,
           options: { gamut: 'p3' },
           tokens: {
-            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.8912, 0.2, 96.35] } } },
+            color: {
+              yellow: {
+                $type: 'color',
+                $value: { colorSpace: 'oklch', components: [0.8912, 0.2, 96.35] },
+              },
+            },
           },
         },
         want: { success: true },
@@ -346,7 +390,12 @@ describe('rules', () => {
           rule: MAX_GAMUT,
           options: { gamut: 'p3' },
           tokens: {
-            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.8882, 0.217, 96.35] } } },
+            color: {
+              yellow: {
+                $type: 'color',
+                $value: { colorSpace: 'oklch', components: [0.8882, 0.217, 96.35] },
+              },
+            },
           },
         },
         want: { errors: ['Color color.yellow is outside p3 gamut'] },
@@ -359,7 +408,12 @@ describe('rules', () => {
           rule: MAX_GAMUT,
           options: { gamut: 'rec2020' },
           tokens: {
-            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.9059, 0.215, 96.35] } } },
+            color: {
+              yellow: {
+                $type: 'color',
+                $value: { colorSpace: 'oklch', components: [0.9059, 0.215, 96.35] },
+              },
+            },
           },
         },
         want: { success: true },
@@ -372,7 +426,12 @@ describe('rules', () => {
           rule: MAX_GAMUT,
           options: { gamut: 'rec2020' },
           tokens: {
-            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.9118, 0.234, 96.35] } } },
+            color: {
+              yellow: {
+                $type: 'color',
+                $value: { colorSpace: 'oklch', components: [0.9118, 0.234, 96.35] },
+              },
+            },
           },
         },
         want: { errors: ['Color color.yellow is outside rec2020 gamut'] },
@@ -404,7 +463,12 @@ describe('rules', () => {
           options: { matches: [{ match: ['color.**'], requiredTokens: ['100', '200'] }] },
           tokens: {
             color: {
-              blue: { '100': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.235, 0.235, 0.263] } } },
+              blue: {
+                '100': {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.235, 0.235, 0.263] },
+                },
+              },
             },
           },
         },
@@ -421,12 +485,24 @@ describe('rules', () => {
             color: {
               semantic: {
                 action: {
-                  text: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.369, 0.694, 0.937] } },
-                  bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.984, 0.992, 1] } },
+                  text: {
+                    $type: 'color',
+                    $value: { colorSpace: 'srgb', components: [0.369, 0.694, 0.937] },
+                  },
+                  bg: {
+                    $type: 'color',
+                    $value: { colorSpace: 'srgb', components: [0.984, 0.992, 1] },
+                  },
                 },
                 error: {
-                  text: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.922, 0.557, 0.565] } },
-                  bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 0.969, 0.969] } },
+                  text: {
+                    $type: 'color',
+                    $value: { colorSpace: 'srgb', components: [0.922, 0.557, 0.565] },
+                  },
+                  bg: {
+                    $type: 'color',
+                    $value: { colorSpace: 'srgb', components: [1, 0.969, 0.969] },
+                  },
                 },
               },
             },
@@ -445,8 +521,14 @@ describe('rules', () => {
             color: {
               semantic: {
                 action: {
-                  text: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.369, 0.694, 0.937] } },
-                  bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.984, 0.992, 1] } },
+                  text: {
+                    $type: 'color',
+                    $value: { colorSpace: 'srgb', components: [0.369, 0.694, 0.937] },
+                  },
+                  bg: {
+                    $type: 'color',
+                    $value: { colorSpace: 'srgb', components: [0.984, 0.992, 1] },
+                  },
                 },
               },
             },
@@ -575,7 +657,10 @@ describe('rules', () => {
       {
         given: {
           rule: A11Y_MIN_CONTRAST,
-          options: { pairs: [{ foreground: 'color.fg', background: 'color.bg', largeText: true }], level: 'AA' },
+          options: {
+            pairs: [{ foreground: 'color.fg', background: 'color.bg', largeText: true }],
+            level: 'AA',
+          },
           tokens: {
             color: {
               $type: 'color',
@@ -676,7 +761,10 @@ describe('rules', () => {
         given: {
           rule: REQUIRED_TYPE,
           tokens: {
-            color: { $type: 'color', blue: { 100: { $value: { colorSpace: 'srgb', components: [0, 0, 0.2] } } } },
+            color: {
+              $type: 'color',
+              blue: { 100: { $value: { colorSpace: 'srgb', components: [0, 0, 0.2] } } },
+            },
           },
         },
         want: { errors: ['Token missing $type.'] },
@@ -688,7 +776,12 @@ describe('rules', () => {
         given: {
           rule: VALID_TYPOGRAPHY,
           options: { requiredProperties: [] },
-          tokens: { typography: { $type: 'typography', $value: { ...BASIC_TYPOGRAPHY, paragraphSpacing: '14px' } } },
+          tokens: {
+            typography: {
+              $type: 'typography',
+              $value: { ...BASIC_TYPOGRAPHY, paragraphSpacing: '14px' },
+            },
+          },
         },
         want: { success: true },
       },
@@ -712,7 +805,6 @@ describe('rules', () => {
   ];
 
   test.each(tests)('%s', async (_, { given, want }) => {
-    let result: Awaited<ReturnType<typeof parse>> | undefined;
     const errors: string[] = [];
     const config = defineConfig(
       {
@@ -724,7 +816,7 @@ describe('rules', () => {
       },
       { cwd },
     );
-    result = await parse([{ filename: DEFAULT_FILENAME, src: given.tokens }], {
+    const result = await parse([{ filename: DEFAULT_FILENAME, src: given.tokens }], {
       config,
       logger: {
         level: 'error',
@@ -748,7 +840,9 @@ describe('rules', () => {
     if (want.success) {
       expect(result).toBeTruthy();
     } else {
-      expect(errors.filter((error) => !error.includes('Lint failed with error'))).toEqual(want.errors);
+      expect(errors.filter((error) => !error.includes('Lint failed with error'))).toEqual(
+        want.errors,
+      );
     }
   });
 });

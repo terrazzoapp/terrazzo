@@ -27,7 +27,7 @@ export default function transform() {
       }
     }
 
-    if (!toc.length) {
+    if (toc.length === 0) {
       return;
     }
 
@@ -50,7 +50,7 @@ export default function transform() {
                 properties: { href: `#${item.properties?.id}` },
                 children: [{ type: 'text', value: item.title }],
               },
-              ...(item.children.length
+              ...(item.children.length > 0
                 ? [
                     {
                       type: 'element',

@@ -1,7 +1,8 @@
+import './CopyButton.css';
+
 import { Check, Copy } from '@terrazzo/icons';
 import clsx from 'clsx';
 import { type ComponentProps, useRef, useState } from 'react';
-import './CopyButton.css';
 
 export interface CopyButtonProps extends Omit<ComponentProps<'button'>, 'children' | 'onClick'> {
   /** The text to copy to the clipboard */
@@ -13,25 +14,30 @@ export interface CopyButtonProps extends Omit<ComponentProps<'button'>, 'childre
   timeoutMS?: number;
 }
 
-export default function CopyButton({ className, clipboardText, timeoutMS = 1000, ...rest }: CopyButtonProps) {
+export default function CopyButton({
+  className,
+  clipboardText,
+  timeoutMS = 1000,
+  ...rest
+}: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
   const copiedTO = useRef<number | undefined>(undefined);
 
   return (
     <button
-      type='button'
+      type="button"
       className={clsx('tz-copy-button', className)}
       onClick={async () => {
         await navigator.clipboard.writeText(clipboardText);
         clearTimeout(copiedTO.current);
         setCopied(true);
-        copiedTO.current = window.setTimeout(() => {
+        copiedTO.current = globalThis.setTimeout(() => {
           setCopied(false);
         }, timeoutMS);
       }}
       {...rest}
     >
-      {copied ? <Check /> : <Copy aria-label='Copy value' />}
+      {copied ? <Check /> : <Copy aria-label="Copy value" />}
     </button>
   );
 }

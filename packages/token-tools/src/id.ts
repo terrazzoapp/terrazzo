@@ -39,8 +39,16 @@ export class CachedWildcardMatcher {
 
   /** Garbage collect all caches, reset to initial state */
   reset() {
-    this.cachedMatchers = { '': _CATCHALL_MATCHER, '*': _CATCHALL_MATCHER, '**': _CATCHALL_MATCHER };
-    this.cachedTokenIDMatchers = { '': _CATCHALL_MATCHER, '*': _CATCHALL_MATCHER, '**': _CATCHALL_MATCHER };
+    this.cachedMatchers = {
+      '': _CATCHALL_MATCHER,
+      '*': _CATCHALL_MATCHER,
+      '**': _CATCHALL_MATCHER,
+    };
+    this.cachedTokenIDMatchers = {
+      '': _CATCHALL_MATCHER,
+      '*': _CATCHALL_MATCHER,
+      '**': _CATCHALL_MATCHER,
+    };
   }
 }
 
@@ -71,7 +79,7 @@ export function splitID(id: string): { local: string; group?: string } {
     return { local: id };
   }
   return {
-    local: id.substring(lastSeparatorI + 1),
-    group: id.substring(0, lastSeparatorI),
+    local: id.slice(lastSeparatorI + 1),
+    group: id.slice(0, lastSeparatorI),
   };
 }

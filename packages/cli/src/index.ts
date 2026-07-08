@@ -1,7 +1,9 @@
 import fsSync from 'node:fs';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
+
 import { type Config, type ConfigInit, defineConfig as defineConfigCore } from '@terrazzo/parser';
+
 import { cwd } from './shared.js';
 
 export * from './build.js';
@@ -32,9 +34,9 @@ export function defineConfig(config: Config): ConfigInit {
       }
       try {
         return pathToFileURL(require.resolve(tokenPath));
-      } catch (err) {
-        // biome-ignore lint/suspicious/noConsole: this is its job
-        console.error(err);
+      } catch (error) {
+        // oxlint-disable-next-line no-console
+        console.error(error);
         // this will throw an error if Node couldn’t automatically resolve it,
         // which will be true for many token paths. We don’t need to surface
         // that error; it’ll get its own error down the line if it’s a bad path.

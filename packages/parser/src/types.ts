@@ -8,6 +8,7 @@ import type {
   TokenTransformedBase,
 } from '@terrazzo/token-types';
 import type ytm from 'yaml-to-momoa';
+
 import type Logger from './logger.js';
 
 // Export some types as a convenience, because they originally came from this package
@@ -114,7 +115,6 @@ export interface VisitorContext {
 export type Visitor<T extends momoa.AnyNode = momoa.ObjectNode | momoa.DocumentNode> = (
   node: T,
   context: VisitorContext,
-  // biome-ignore lint/suspicious/noConfusingVoidType: TS requires void
 ) => T | void | null | undefined;
 
 export interface TransformVisitors {
@@ -221,7 +221,10 @@ export interface LintRule<
   defaultOptions: LintRuleOptions;
 }
 
-export interface LintRuleContext<MessageIds extends string, LintRuleOptions extends object | undefined = undefined> {
+export interface LintRuleContext<
+  MessageIds extends string,
+  LintRuleOptions extends object | undefined = undefined,
+> {
   /** The rule ID. */
   id: string;
   /**
@@ -326,7 +329,6 @@ export interface ParseOptions {
 export interface Plugin {
   name: string;
   /** Read config, and optionally modify */
-  // biome-ignore lint/suspicious/noConfusingVoidType format: this helps plugins be a little looser on their typing
   config?(config: ConfigInit, context: PluginHookContext): void | ConfigInit | undefined;
   /**
    * Declare:
@@ -348,7 +350,7 @@ export interface ReferenceObject {
 
 export type ResolverInput = Record<string, string>;
 
-export type ResolverApplicationOptions = {
+export interface ResolverApplicationOptions {
   /**
    * Resolve DTCG aliases when applying the input.
    *
@@ -373,7 +375,7 @@ export type ResolverApplicationOptions = {
    * set to false.
    */
   modifiers?: string[];
-};
+}
 
 export interface Resolver<
   Inputs extends Record<string, string[]> = Record<string, string[]>,

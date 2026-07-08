@@ -7,6 +7,7 @@ import {
   type TokenNormalized,
 } from '@terrazzo/parser';
 import { pascalCase } from 'scule';
+
 import { FILE_HEADER, TYPE_MAP } from './lib.js';
 
 const RESOLVER_JSDOC_COMMENT = '/** Produce a token set from a given input. */';
@@ -32,21 +33,27 @@ export function buildJS({
   // 1. Permutations
   // todo: replace internal usage of listPermutations
   const permutations = (
-    contexts ? calculatePermutations(Object.entries(contexts)) : (resolver.listPermutations?.() ?? [])
+    contexts
+      ? calculatePermutations(Object.entries(contexts))
+      : (resolver.listPermutations?.() ?? [])
   ).map((value) => ({
     value,
     // Note: id MUST have modifiers sorted alphabetically, so we can index them shallowly
     id: JSON.stringify(
-      Object.fromEntries(Object.entries(value).sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }))),
+      Object.fromEntries(
+        Object.entries(value).toSorted((a, b) =>
+          a[0].localeCompare(b[0], 'en-us', { numeric: true }),
+        ),
+      ),
     ),
   }));
   output += 'export const PERMUTATIONS = {\n';
   let permutationI = 1;
-  for (const { value, id } of permutations) {
+  for (const { value, id: permutationID } of permutations) {
     const start = performance.now();
     try {
       const tokens = resolver.apply(value);
-      output += `  ${JSON.stringify(id)}: {\n`;
+      output += `  ${JSON.stringify(permutationID)}: {\n`;
       for (const id of Object.keys(tokens)) {
         output += `    ${serializeToken(tokens[id]!, properties)},\n`;
         if (!(id in typeMap)) {
@@ -54,13 +61,13 @@ export function buildJS({
         }
       }
       output += '  },\n';
-    } catch (err) {
-      logger.error({ ...entry, message: (err as Error).message });
+    } catch (error) {
+      logger.error({ ...entry, message: (error as Error).message });
     }
     const timing = performance.now() - start;
     logger.info({
       ...entry,
-      message: `Permutation ${permutationI}/${permutations.length} done (${id})`,
+      message: `Permutation ${permutationI}/${permutations.length} done (${permutationID})`,
       timing,
     });
     permutationI++;
@@ -146,7 +153,7 @@ export function buildDTS({
 /** Generate TypeScript definition of valid inputs given a resolver */
 function buildInputType(resolver: Resolver, contexts?: Record<string, string[]>): string {
   const validContexts: Record<string, string[]> = contexts ?? {};
-  if (!Object.keys(validContexts).length) {
+  if (Object.keys(validContexts).length === 0) {
     for (const [name, m] of Object.entries(resolver.source.modifiers ?? {})) {
       validContexts[name] = Object.keys(m.contexts);
     }
@@ -160,7 +167,7 @@ function buildInputType(resolver: Resolver, contexts?: Record<string, string[]>)
 
   let output = '{';
   for (const [name, values] of Object.entries(validContexts)) {
-    output += `\n  ${JSON.stringify(name)}: ${values.length ? values.map((v) => JSON.stringify(v)).join(' | ') : 'never'};`;
+    output += `\n  ${JSON.stringify(name)}: ${values.length > 0 ? values.map((v) => JSON.stringify(v)).join(' | ') : 'never'};`;
   }
   output += '\n};';
   return output;
@@ -171,6 +178,9 @@ function localTypeName($type: Token['$type']): string {
 }
 
 /** Serialize normalized Tokens set into a string */
-function serializeToken(token: TokenNormalized, includeProperties: Set<keyof TokenNormalized>): string {
+function serializeToken(
+  token: TokenNormalized,
+  includeProperties: Set<keyof TokenNormalized>,
+): string {
   return `${JSON.stringify(token.id)}:${JSON.stringify(Object.fromEntries(Object.entries(token).filter(([k]) => includeProperties.has(k as keyof TokenNormalized))))}`;
 }

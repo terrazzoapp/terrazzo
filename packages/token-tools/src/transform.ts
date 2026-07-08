@@ -14,7 +14,7 @@ export function validateCustomTransform(value: unknown, { $type }: CustomTransfo
     switch ($type) {
       case 'typography': {
         if (typeof value !== 'object') {
-          throw new Error('transform(): typography tokens must be an object of keys');
+          throw new TypeError('transform(): typography tokens must be an object of keys');
         }
         break;
       }

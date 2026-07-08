@@ -1,4 +1,5 @@
 import type { ColorValueNormalized } from '@terrazzo/token-tools';
+
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 import { cachedLintMatcher } from '../lib/matchers.js';
@@ -76,7 +77,10 @@ const rule: LintRule<
         }
         case 'gradient': {
           for (let stopI = 0; stopI < t.$value.length; stopI++) {
-            if (!t.partialAliasOf?.[stopI]?.color && t.$value[stopI]!.color.colorSpace !== options.colorSpace) {
+            if (
+              !t.partialAliasOf?.[stopI]?.color &&
+              t.$value[stopI]!.color.colorSpace !== options.colorSpace
+            ) {
               report({
                 messageId: ERROR_GRADIENT,
                 data: { id: t.id, colorSpace: options.colorSpace },
@@ -89,7 +93,10 @@ const rule: LintRule<
         }
         case 'shadow': {
           for (let shadowI = 0; shadowI < t.$value.length; shadowI++) {
-            if (!t.partialAliasOf?.[shadowI]?.color && t.$value[shadowI]!.color.colorSpace !== options.colorSpace) {
+            if (
+              !t.partialAliasOf?.[shadowI]?.color &&
+              t.$value[shadowI]!.color.colorSpace !== options.colorSpace
+            ) {
               report({
                 messageId: ERROR_SHADOW,
                 data: { id: t.id, colorSpace: options.colorSpace },

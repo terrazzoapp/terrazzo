@@ -73,27 +73,33 @@ export interface TailwindPluginOptions {
    * Associate Tailwind custom variants with Resolver permutations
    * @see https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually
    */
-  customVariants?: {
-    [name: string]: {
+  customVariants?: Record<
+    string,
+    {
       /** The CSS selector to apply to this variant */
       selector: string;
       /** The resolver input to load for this custom variant */
       input: ResolverInput;
-    };
-  };
+    }
+  >;
   /** Control the final CSS variable name */
   variableName?: (defaultName: string, context: VariableNameContext) => string;
 }
 
 /** Flatten an arbitrarily-nested object */
-export function flattenThemeObj(themeObj: Record<string, unknown>): { path: string[]; value: string | string[] }[] {
+export function flattenThemeObj(
+  themeObj: Record<string, unknown>,
+): { path: string[]; value: string | string[] }[] {
   const result: { path: string[]; value: string | string[] }[] = [];
 
   function traverse(obj: Record<string, unknown>, path: string[]) {
     for (const [key, value] of Object.entries(obj)) {
       const newPath = [...path, key];
       if (typeof value === 'string' || Array.isArray(value)) {
-        if (Array.isArray(value) && (value.length === 0 || value.some((v) => typeof v !== 'string'))) {
+        if (
+          Array.isArray(value) &&
+          (value.length === 0 || value.some((v) => typeof v !== 'string'))
+        ) {
           throw new Error(
             `Invalid value at path "${newPath.join('.')}": expected a string or an array of strings, but got ${JSON.stringify(value)}`,
           );
@@ -177,7 +183,12 @@ export function parseTzAtRule(css: string): TzAtRule | undefined {
     }
 
     // We’ve found a match (not in a comment!) begin the search
-    if (char === '@' && css[i + 1] === 't' && css[i + 2] === 'z' && !/[A-Za-z0-9]/.test(css[i + 3] || '')) {
+    if (
+      char === '@' &&
+      css[i + 1] === 't' &&
+      css[i + 2] === 'z' &&
+      !/[A-Za-z0-9]/.test(css[i + 3] || '')
+    ) {
       start = i;
     }
 
@@ -208,10 +219,13 @@ export function parseTzAtRule(css: string): TzAtRule | undefined {
   // second pass: now that we know where the expression ends, parse the inner body (if any), and extract the inputs
   const bodyRaw = css
     .slice(start + '@tz'.length, end)
-    .replace(/\/\*.*\*\//g, '')
+    .replaceAll(/\/\*.*\*\//g, '')
     .trim();
   // because we ignored parens in parsing, make sure we don’t have mismatched pairs
-  if ((bodyRaw.includes('(') && !bodyRaw.includes(')')) || (!bodyRaw.includes('(') && bodyRaw.includes(')'))) {
+  if (
+    (bodyRaw.includes('(') && !bodyRaw.includes(')')) ||
+    (!bodyRaw.includes('(') && bodyRaw.includes(')'))
+  ) {
     throw syntaxErr;
   }
   const body = bodyRaw

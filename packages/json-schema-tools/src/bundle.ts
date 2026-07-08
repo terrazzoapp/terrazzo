@@ -1,9 +1,12 @@
 import * as momoa from '@humanwhocodes/momoa';
 import type yamlToMomoa from 'yaml-to-momoa';
+
 import { findNode, getObjMember, JSONError, mergeDocuments, traverseAsync } from './momoa.js';
 import { encodeFragment, parseRef } from './parse-ref.js';
 import type { InputSource, InputSourceWithDocument } from './types.js';
 import { relPath } from './utils.js';
+
+/* oxlint-disable no-await-in-loop, require-await */
 
 export interface BundleOptions {
   /**
@@ -30,6 +33,7 @@ export async function bundle(
   { req, parse: userParse, yamlToMomoa }: BundleOptions,
 ): Promise<{ document: momoa.DocumentNode; sources: Record<string, InputSourceWithDocument> }> {
   const cache: Record<string, InputSourceWithDocument> = {};
+  // oxlint-disable-next-line func-style
   const parse: NonNullable<BundleOptions['parse']> = async (src, filename) => {
     if (typeof src === 'string' && !maybeRawJSON(src)) {
       if (yamlToMomoa) {
@@ -76,57 +80,22 @@ export async function bundle(
       async enter(node, _parent) {
         const $refNode = node.type === 'Object' ? getObjMember(node, '$ref') : undefined;
         if ($refNode?.type === 'String') {
-          const visited: string[] = [];
-          async function resolveRef(value: string, origin: URL): Promise<{ url: URL; subpath?: string[] }> {
-            const { url, subpath } = parseRef(value);
-
-            // local $ref: ensure it’s not circular, otherwise stop here
-            if (url === '.') {
-              if (!subpath?.length) {
-                throw new JSONError(
-                  `$ref ${JSON.stringify(value)} can’t recursively embed its parent document`,
-                  node,
-                  sources[i]!.src,
-                );
-              }
-              return { url: origin, subpath };
-            }
-
-            // remote $ref: resolve, and replace final value
-            const nextURL = new URL(url, origin);
-            if (visited.includes(nextURL.href)) {
-              throw new JSONError(`Can’t resolve circular $ref ${JSON.stringify(value)}`, node, sources[i]!.src);
-            }
-            visited.push(nextURL.href);
-
-            let nextSource = cache[nextURL.href];
-            if (!nextSource) {
-              const src = await req(nextURL, origin);
-              nextSource = { filename: nextURL, src, document: await parse(src, nextURL) };
-              cache[nextURL.href] = nextSource;
-              sources.push(nextSource);
-            }
-
-            const next$ref = findNode(nextSource.document, subpath);
-            if (!next$ref) {
-              throw new JSONError(`Can’t resolve $ref ${JSON.stringify(value)}`, node, sources[i]!.src);
-            }
-
-            // if this is a nested $ref, keep tracing
-            if (next$ref.type === 'Object' && getObjMember(next$ref, '$ref')) {
-              return await resolveRef((getObjMember(next$ref, '$ref') as momoa.StringNode).value, nextURL);
-            }
-
-            return { url: nextURL, subpath };
-          }
-
-          const resolved = await resolveRef($refNode.value, sources[i]!.filename);
+          const innerResolved = await resolveRef($refNode.value, {
+            cache,
+            node,
+            origin: sources[i]!.filename,
+            parse,
+            req,
+            sources,
+            startingIndex: i,
+            visited: [],
+          });
           const resolvedIsOriginalSource = sources
             .slice(0, originalSourceLength)
-            .some((s) => s.filename.href === resolved.url.href);
+            .some((s) => s.filename.href === innerResolved.url.href);
           // if this is for a new, remote document, transform the ref
-          if (!resolvedIsOriginalSource && resolved.url.href !== sources[i]!.filename.href) {
-            $refNode.value = `#/$defs/${makeDefsKey(origin, resolved.url)}${resolved.subpath?.length ? encodeFragment(resolved.subpath!).replace(/^#/, '') : ''}`;
+          if (!resolvedIsOriginalSource && innerResolved.url.href !== sources[i]!.filename.href) {
+            $refNode.value = `#/$defs/${makeDefsKey(origin, innerResolved.url)}${innerResolved.subpath?.length ? encodeFragment(innerResolved.subpath!).replace(/^#/, '') : ''}`;
           }
         }
       },
@@ -140,7 +109,9 @@ export async function bundle(
       // For all other sources discovered dynamically via $refs, hoist into $defs
       // This is to allow for $refs pulling in document partials, and other un-mergeable structures.
       else {
-        let $defs = getObjMember(document.body as momoa.ObjectNode, '$defs') as momoa.ObjectNode | undefined;
+        let $defs = getObjMember(document.body as momoa.ObjectNode, '$defs') as
+          | momoa.ObjectNode
+          | undefined;
         if (!$defs) {
           const $defsMember = {
             type: 'Member',
@@ -172,7 +143,82 @@ export function maybeRawJSON(input: string): boolean {
   return typeof input === 'string' && /^\s*[{"[]/.test(input);
 }
 
+interface ResolveRefOptions {
+  cache: Record<string, InputSourceWithDocument>;
+  node: momoa.AnyNode;
+  origin: URL;
+  parse: (src: any, filename: URL) => Promise<momoa.DocumentNode>;
+  req: BundleOptions['req'];
+  sources: InputSource[];
+  /** only needed to display errors on the original node */
+  startingIndex: number;
+  visited: string[];
+}
+
+async function resolveRef(
+  value: string,
+  { cache, node, origin, parse, req, sources, startingIndex, visited = [] }: ResolveRefOptions,
+): Promise<{ url: URL; subpath?: string[] }> {
+  const { url, subpath } = parseRef(value);
+
+  // local $ref: ensure it’s not circular, otherwise stop here
+  if (url === '.') {
+    if (!subpath?.length) {
+      throw new JSONError(
+        `$ref ${JSON.stringify(value)} can’t recursively embed its parent document`,
+        node,
+        sources[startingIndex]!.src,
+      );
+    }
+    return { url: origin, subpath };
+  }
+
+  // remote $ref: resolve, and replace final value
+  const nextURL = new URL(url, origin);
+  if (visited.includes(nextURL.href)) {
+    throw new JSONError(
+      `Can’t resolve circular $ref ${JSON.stringify(value)}`,
+      node,
+      sources[startingIndex]!.src,
+    );
+  }
+  visited.push(nextURL.href);
+
+  let nextSource = cache[nextURL.href];
+  if (!nextSource) {
+    const src = await req(nextURL, origin);
+    nextSource = { filename: nextURL, src, document: await parse(src, nextURL) };
+    cache[nextURL.href] = nextSource;
+    sources.push(nextSource);
+  }
+
+  const next$ref = findNode(nextSource.document, subpath);
+  if (!next$ref) {
+    throw new JSONError(
+      `Can’t resolve $ref ${JSON.stringify(value)}`,
+      node,
+      sources[startingIndex]!.src,
+    );
+  }
+
+  // if this is a nested $ref, keep tracing
+  if (next$ref.type === 'Object' && getObjMember(next$ref, '$ref')) {
+    return await resolveRef((getObjMember(next$ref, '$ref') as momoa.StringNode).value, {
+      cache,
+      node,
+      origin: nextURL,
+      parse,
+      req,
+      sources,
+      startingIndex,
+      visited,
+    });
+  }
+
+  return { url: nextURL, subpath };
+}
+
 /** Make safe key for $defs */
 function makeDefsKey(origin: URL, resolved: URL): string {
-  return relPath(origin, resolved).replace(/~/g, '~0').replace(/\//g, '~1');
+  return relPath(origin, resolved).replaceAll('~', '~0').replaceAll('/', '~1');
 }

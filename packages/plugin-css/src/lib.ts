@@ -1,6 +1,5 @@
 import type { TokenNormalized, TokenTransformed } from '@terrazzo/parser';
 import { CachedWildcardMatcher } from '@terrazzo/token-tools';
-
 import type { TransformCSSValueOptions } from '@terrazzo/token-tools/css';
 
 export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'layout' | 'shadow' | 'text';
@@ -87,7 +86,11 @@ export interface CSSPluginOptions {
    * By default, sub value names are appended as is with a hyphen. E.g. given CSS variable name `--my-token` and
    * sub value name `font-size`, the resulting variable name would be `--my-token-font-size`.
    */
-  subValueVariableName?: (variableName: string, subValueName: string, token: TokenTransformed) => string;
+  subValueVariableName?: (
+    variableName: string,
+    subValueName: string,
+    token: TokenTransformed,
+  ) => string;
 }
 
 export interface Permutation<T extends Record<string, string> = Record<string, string>> {
@@ -191,7 +194,7 @@ export function printNode(
     return output;
   }
 
-  if (!node.prelude.length || !node.children.length) {
+  if (node.prelude.length === 0 || node.children.length === 0) {
     return output;
   }
 
@@ -225,9 +228,12 @@ export function printNode(
 }
 
 /** Infer indentation preferences from a user-defined wrapping method. */
-export function getIndentFromPrepare(prepare: Permutation['prepare']): { indentChar: string; indentLv: number } {
+export function getIndentFromPrepare(prepare: Permutation['prepare']): {
+  indentChar: string;
+  indentLv: number;
+} {
   const str = '//css//'; // this is a string that’s invalid CSS that wouldn’t be in the fn itself
-  const output = prepare(str).replace(/\/\*.*\*\//g, ''); // strip comments because we don’t need them
+  const output = prepare(str).replaceAll(/\/\*.*\*\//g, ''); // strip comments because we don’t need them
   let indentChar = '  ';
   let indentLv = 0;
   let lineStartChar = 0;
@@ -271,7 +277,10 @@ export function hasDecl(list: (CSSRule | CSSDeclaration)[], property: string): b
 }
 
 /** Add a declaration only if it’s unique (note: CSS, by design, allows duplication—it’s how fallbacks happen. Only use this if fallbacks aren’t needed. */
-export function addDeclUnique(list: (CSSRule | CSSDeclaration)[], declaration: CSSDeclaration): void {
+export function addDeclUnique(
+  list: (CSSRule | CSSDeclaration)[],
+  declaration: CSSDeclaration,
+): void {
   if (!hasDecl(list, declaration.property)) {
     list.push(declaration);
   }

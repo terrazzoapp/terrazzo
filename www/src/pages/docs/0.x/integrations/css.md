@@ -306,18 +306,12 @@ export default defineConfig({
       modeSelectors: [
         {
           mode: "light",
-          selectors: [
-            "@media (prefers-color-scheme: light)",
-            '[data-mode="light"]',
-          ],
+          selectors: ["@media (prefers-color-scheme: light)", '[data-mode="light"]'],
           scheme: "light", // Optional: set color-scheme for this mode
         },
         {
           mode: "dark",
-          selectors: [
-            "@media (prefers-color-scheme: dark)",
-            '[data-mode="dark"]',
-          ],
+          selectors: ["@media (prefers-color-scheme: dark)", '[data-mode="dark"]'],
           scheme: "dark", // Optional: set color-scheme for this mode
         },
         { mode: "mobile", selectors: ["@media (width < 600px)"] },
@@ -372,18 +366,12 @@ export default defineConfig({
       modeSelectors: [
         {
           mode: "light",
-          selectors: [
-            "@media (prefers-color-scheme: light)",
-            '[data-mode="light"]',
-          ],
+          selectors: ["@media (prefers-color-scheme: light)", '[data-mode="light"]'],
           scheme: "light", // Optional: set color-scheme for light mode
         },
         {
           mode: "dark",
-          selectors: [
-            "@media (prefers-color-scheme: dark)",
-            '[data-mode="dark"]',
-          ],
+          selectors: ["@media (prefers-color-scheme: dark)", '[data-mode="dark"]'],
           scheme: "dark", // Optional: set color-scheme for dark mode
         },
       ],
@@ -488,18 +476,12 @@ export default defineConfig({
       modeSelectors: [
         {
           mode: "light",
-          selectors: [
-            "@media (prefers-color-scheme: light)",
-            '[data-theme="light"]',
-          ],
+          selectors: ["@media (prefers-color-scheme: light)", '[data-theme="light"]'],
           scheme: "light", // Forces light color scheme
         },
         {
           mode: "dark",
-          selectors: [
-            "@media (prefers-color-scheme: dark)",
-            '[data-theme="dark"]',
-          ],
+          selectors: ["@media (prefers-color-scheme: dark)", '[data-theme="dark"]'],
           scheme: "dark", // Forces dark color scheme
         },
       ],

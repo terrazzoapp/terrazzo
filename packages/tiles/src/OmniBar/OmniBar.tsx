@@ -1,14 +1,25 @@
-import clsx from 'clsx';
-import { type ComponentProps, type ReactElement, useCallback, useEffect, useId, useRef, useState } from 'react';
-import Kbd from '../Kbd/Kbd.js';
 import './OmniBar.css';
 
+import clsx from 'clsx';
+import {
+  type ComponentProps,
+  type ReactElement,
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from 'react';
+
+import Kbd from '../Kbd/Kbd.js';
+
+// oxlint-disable-next-line no-empty-interface, no-empty-object-type
 export interface OmniBarResultProps extends ComponentProps<'li'> {}
 
 export function OmniBarResult({ className, children, ...rest }: OmniBarResultProps) {
   return (
     // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: ignore
-    <li className={clsx('tz-omnibar-result', className)} role='option' {...rest}>
+    <li className={clsx('tz-omnibar-result', className)} role="option" {...rest}>
       {children}
     </li>
   );
@@ -67,7 +78,12 @@ export function OmniBar({
     }
 
     function handleKeyDown(evt: KeyboardEvent) {
-      if ((evt.key === keyCommand || evt.key === keyCommand.toLowerCase()) && !evt.shiftKey && !evt.metaKey) {
+      if (
+        (evt.key === keyCommand || evt.key === keyCommand.toLowerCase()) &&
+        !evt.shiftKey &&
+        !evt.metaKey
+      ) {
+        // oxlint-disable-next-line unicorn/no-lonely-if
         if (document.activeElement?.nodeName !== 'INPUT') {
           wrapperEl.current?.querySelector('input')?.focus();
           evt.preventDefault();
@@ -146,12 +162,17 @@ export function OmniBar({
   }, []);
 
   return (
-    <form ref={wrapperEl} className={clsx('tz-omnibar', className)} noValidate data-expanded={expanded}>
-      <div className='tz-omnibar-inputwrap'>
+    <form
+      ref={wrapperEl}
+      className={clsx('tz-omnibar', className)}
+      noValidate
+      data-expanded={expanded}
+    >
+      <div className="tz-omnibar-inputwrap">
         <input
-          className='tz-omnibar-input'
-          type='search'
-          role='combobox'
+          className="tz-omnibar-input"
+          type="search"
+          role="combobox"
           aria-label={ariaLabel}
           aria-controls={listboxId}
           aria-expanded={expanded}
@@ -212,18 +233,18 @@ export function OmniBar({
         {keyCommand && <Kbd>{keyCommand}</Kbd>}
       </div>
       {expanded && (
-        <div className='tz-omnibar-listboxwrapper'>
+        <div className="tz-omnibar-listboxwrapper">
           {resultDescription && (
-            <div id={resultDescId} className='tz-omnibar-resultdesc'>
+            <div id={resultDescId} className="tz-omnibar-resultdesc">
               {resultDescription}
             </div>
           )}
           <ul
             ref={listboxEl}
             id={listboxId}
-            className='tz-omnibar-listbox'
+            className="tz-omnibar-listbox"
             // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: why tho?
-            role='listbox'
+            role="listbox"
             aria-describedby={resultDescription ? resultDescId : undefined}
           >
             {children}

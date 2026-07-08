@@ -1,3 +1,4 @@
+/* oxlint-disable no-else-return, no-lonely-if, prefer-string-replace-all, prefer-type-error */
 // This is copied from @babel/code-frame package but without the heavyweight color highlighting
 // (note: Babel loads both chalk AND picocolors, and doesn’t treeshake well)
 // Babel is MIT-licensed and unaffiliated with this project.
@@ -131,7 +132,11 @@ function getMarkerLines(loc: NodeLocation, source: string[], opts: Options = {} 
 
 const NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 
-export function codeFrameColumns(rawLines: string, loc: NodeLocation, opts: Options = {} as Options) {
+export function codeFrameColumns(
+  rawLines: string,
+  loc: NodeLocation,
+  opts: Options = {} as Options,
+) {
   if (typeof rawLines !== 'string') {
     throw new Error(`Expected string, got ${rawLines}`);
   }
@@ -156,7 +161,13 @@ export function codeFrameColumns(rawLines: string, loc: NodeLocation, opts: Opti
           const markerSpacing = line.slice(0, Math.max(hasMarker[0] - 1, 0)).replace(/[^\t]/g, ' ');
           const numberOfMarkers = hasMarker[1] || 1;
 
-          markerLine = ['\n ', gutter.replace(/\d/g, ' '), ' ', markerSpacing, '^'.repeat(numberOfMarkers)].join('');
+          markerLine = [
+            '\n ',
+            gutter.replace(/\d/g, ' '),
+            ' ',
+            markerSpacing,
+            '^'.repeat(numberOfMarkers),
+          ].join('');
 
           if (lastMarkerLine && opts.message) {
             markerLine += ` ${opts.message}`;

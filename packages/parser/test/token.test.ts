@@ -1,20 +1,26 @@
 import * as momoa from '@humanwhocodes/momoa';
 import type { TokenNormalized, TokenNormalizedSet } from '@terrazzo/token-tools';
 import { describe, expect, it } from 'vitest';
+
 import Logger from '../src/logger.js';
 import { aliasToTokenRef, graphAliases, refToTokenID } from '../src/parse/token.js';
 import type { RefMap } from '../src/types.js';
 
 describe('aliasToTokenRef', () => {
-  const tests: [string, { given: Parameters<typeof aliasToTokenRef>[0]; want: ReturnType<typeof aliasToTokenRef> }][] =
+  const tests: [
+    string,
+    { given: Parameters<typeof aliasToTokenRef>[0]; want: ReturnType<typeof aliasToTokenRef> },
+  ][] = [
+    ['valid: simple', { given: '{color.blue.500}', want: { $ref: '#/color/blue/500/$value' } }],
+    ['valid: single-level', { given: '{red}', want: { $ref: '#/red/$value' } }],
     [
-      ['valid: simple', { given: '{color.blue.500}', want: { $ref: '#/color/blue/500/$value' } }],
-      ['valid: single-level', { given: '{red}', want: { $ref: '#/red/$value' } }],
-      ['valid: / char', { given: '{transition/ease/fast}', want: { $ref: '#/transition~1ease~1fast/$value' } }],
-      ['valid: ~ char', { given: '{spacing.~.200}', want: { $ref: '#/spacing/~0/200/$value' } }],
-      ['valid: ~0', { given: '{my.~0token.200}', want: { $ref: '#/my/~00token/200/$value' } }],
-      ['invalid: bad alias', { given: '{color.text.bg', want: undefined }],
-    ];
+      'valid: / char',
+      { given: '{transition/ease/fast}', want: { $ref: '#/transition~1ease~1fast/$value' } },
+    ],
+    ['valid: ~ char', { given: '{spacing.~.200}', want: { $ref: '#/spacing/~0/200/$value' } }],
+    ['valid: ~0', { given: '{my.~0token.200}', want: { $ref: '#/my/~00token/200/$value' } }],
+    ['invalid: bad alias', { given: '{color.text.bg', want: undefined }],
+  ];
 
   it.each(tests)('%s', (_, { given, want }) => {
     expect(aliasToTokenRef(given)).toEqual(want);
@@ -57,7 +63,10 @@ describe('graphAliases', () => {
 
     // Chained alias
     '#/color/test-2-b/$value': { refChain: ['#/color/test-2-a/$value'], filename },
-    '#/color/test-2-c/$value': { refChain: ['#/color/test-2-b/$value', '#/color/test-2-a/$value'], filename },
+    '#/color/test-2-c/$value': {
+      refChain: ['#/color/test-2-b/$value', '#/color/test-2-a/$value'],
+      filename,
+    },
 
     // Partial alias (object)
     '#/border/test-3/$value/color': {
@@ -100,10 +109,16 @@ describe('graphAliases', () => {
     string,
     Record<
       string,
-      Pick<TokenNormalized, '$type' | 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf' | 'dependencies'> & {
+      Pick<
+        TokenNormalized,
+        '$type' | 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf' | 'dependencies'
+      > & {
         mode: Record<
           string,
-          Pick<TokenNormalized, 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf' | 'dependencies'>
+          Pick<
+            TokenNormalized,
+            'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf' | 'dependencies'
+          >
         >;
       }
     >,
@@ -563,7 +578,8 @@ describe('graphAliases', () => {
     const tokens = {} as TokenNormalizedSet;
     for (const [jsonID, token] of Object.entries(want)) {
       const source = {
-        node: momoa.parse(JSON.stringify((TOKEN_DATA as any)[token.$type])).body as momoa.ObjectNode,
+        node: momoa.parse(JSON.stringify((TOKEN_DATA as any)[token.$type]))
+          .body as momoa.ObjectNode,
         filename: 'file:///tokens.json',
       };
       tokens[jsonID] = {
@@ -608,10 +624,10 @@ describe('graphAliases', () => {
     graphAliases(refMap, { tokens, sources: {}, logger: new Logger() });
 
     for (const [jsonID, { mode: expectedMode, ...expected }] of Object.entries(want)) {
-      const { source, mode: actualMode, ...token } = tokens[jsonID]!;
+      const { source: _source, mode: actualMode, ...token } = tokens[jsonID]!;
       // removing AST nodes makes failures much easier to parse
       expect(token).toEqual(expect.objectContaining(expected));
-      for (const [key, { source, ...modeValue }] of Object.entries(actualMode)) {
+      for (const [key, { source: _source2, ...modeValue }] of Object.entries(actualMode)) {
         expect(modeValue, key).toEqual(expect.objectContaining(expectedMode[key]));
       }
     }

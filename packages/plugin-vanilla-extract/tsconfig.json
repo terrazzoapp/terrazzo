@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "lib": ["DOM"],
+    "lib": ["DOM", "ESNext"],
     "outDir": "dist",
     "types": ["node"]
   },

@@ -2,7 +2,6 @@
   "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@11.9.0",
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
@@ -11,14 +10,14 @@
     "dev": "pnpm run -r --parallel --if-present dev",
     "lint": "turbo run lint",
     "lint:spell": "cspell lint \"packages/**\" \"www/**\"",
-    "format": "turbo run format",
+    "fmt": "turbo run fmt",
+    "fmt:check": "turbo run fmt:check",
     "test": "turbo run test",
     "prepublishOnly": "pnpm run build",
     "version": "pnpm run build && changeset version"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.4",
-    "@biomejs/biome": "^2.5.1",
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.31.0",
     "@types/node": "catalog:",
@@ -27,8 +26,9 @@
     "cspell": "^9.8.0",
     "execa": "^9.6.1",
     "merge-anything": "^5.1.7",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
     "playwright": "catalog:",
-    "prettier": "^3.9.4",
     "rolldown": "1.0.1",
     "rolldown-plugin-dts": "^0.25.2",
     "strip-ansi": "^7.2.0",
@@ -39,5 +39,6 @@
     "typescript": "^6.0.3",
     "vite": "catalog:",
     "vitest": "catalog:"
-  }
+  },
+  "packageManager": "pnpm@11.9.0"
 }

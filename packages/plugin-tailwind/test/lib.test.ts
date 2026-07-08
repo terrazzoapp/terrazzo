@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { parseTzAtRule, parseTzAtRules } from '../src/lib.js';
 
 describe('parseTzAtRules', () => {
@@ -80,10 +81,18 @@ describe('parseTzAtRule', () => {
     ).toEqual({ start: 75, end: 81, input: {} });
   });
   it('single modifier', () => {
-    expect(parseTzAtRule('@tz(theme: "dark")')).toEqual({ start: 0, end: 18, input: { theme: 'dark' } });
+    expect(parseTzAtRule('@tz(theme: "dark")')).toEqual({
+      start: 0,
+      end: 18,
+      input: { theme: 'dark' },
+    });
   });
   it('single modifier with line breaks', () => {
-    expect(parseTzAtRule('@tz\n\n(theme:\n\n"dark"\n\n)\n\n')).toEqual({ start: 0, end: 25, input: { theme: 'dark' } });
+    expect(parseTzAtRule('@tz\n\n(theme:\n\n"dark"\n\n)\n\n')).toEqual({
+      start: 0,
+      end: 25,
+      input: { theme: 'dark' },
+    });
   });
   it('multiple modifiers', () => {
     expect(parseTzAtRule('@tz(theme: "dark", motion: "reduced", text-size: "small")')).toEqual({
@@ -100,7 +109,9 @@ describe('parseTzAtRule', () => {
     expect(parseTzAtRule('.foo { color: blue }')).toBeUndefined();
   });
   it('comment inside', () => {
-    expect(parseTzAtRule('@tz(theme: "dark", /* motion: "reduced" */, /* ) */ text-size: "small")')).toEqual({
+    expect(
+      parseTzAtRule('@tz(theme: "dark", /* motion: "reduced" */, /* ) */ text-size: "small")'),
+    ).toEqual({
       start: 0,
       end: 71,
       input: {

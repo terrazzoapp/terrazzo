@@ -2,10 +2,10 @@ import { cleanup, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import {
   HSL,
-  OKLab,
-  OKLCH,
   Okhsl,
   Okhsv,
+  OKLab,
+  OKLCH,
   P3,
   type PlainColorObject,
   sRGB,
@@ -15,6 +15,7 @@ import {
 } from 'colorjs.io/fn';
 import { useEffect } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
+
 import useColor, { type ColorInput, type ColorOutput, parse } from '../src/index.js';
 
 type ColorType = ReturnType<typeof useColor>[0];
@@ -49,12 +50,12 @@ function UseColorTester({
           );
         }}
       >
-        <label htmlFor='color-input'>Update color</label>
-        <input id='color-input' name='color' />
-        <button type='submit'>Save</button>
+        <label htmlFor="color-input">Update color</label>
+        <input id="color-input" name="color" />
+        <button type="submit">Save</button>
       </form>
 
-      <div data-testid='color-display'>
+      <div data-testid="color-display">
         {color[display]
           ? JSON.stringify({
               ...(color[display] as any),
@@ -173,7 +174,7 @@ describe('useColor', () => {
       render(
         <UseColorTester
           value={color}
-          display='srgb'
+          display="srgb"
           onChange={() => {}}
           onRerender={() => {
             renderCount++;
@@ -183,7 +184,9 @@ describe('useColor', () => {
 
       // assert color displays as-expected
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML);
-      expect(displayedColor).toEqual(expect.objectContaining({ space: { id: 'srgb' }, coords: [0, 0.3, 1], alpha: 1 }));
+      expect(displayedColor).toEqual(
+        expect.objectContaining({ space: { id: 'srgb' }, coords: [0, 0.3, 1], alpha: 1 }),
+      );
 
       // assert only 1 render happened
       expect(renderCount).toBe(1);
@@ -193,7 +196,12 @@ describe('useColor', () => {
       const color = 'color(srgb 0 0.3 1)';
 
       render(
-        <UseColorTester value={color} display={'foo' as keyof ColorOutput} onChange={() => {}} onRerender={() => {}} />,
+        <UseColorTester
+          value={color}
+          display={'foo' as keyof ColorOutput}
+          onChange={() => {}}
+          onRerender={() => {}}
+        />,
       );
 
       // assert "undefined" is visible (no error)
@@ -211,7 +219,7 @@ describe('useColor', () => {
       render(
         <UseColorTester
           value={color}
-          display='srgb'
+          display="srgb"
           onChange={(value) => {
             color = value.css;
             onChangeCount++;
@@ -256,9 +264,20 @@ describe('useColor', () => {
         },
       };
 
-      const { rerender } = render(<UseColorTester {...props} display='css' />);
+      const { rerender } = render(<UseColorTester {...props} display="css" />);
 
-      const colorSpaces = ['original', 'css', 'a98', 'srgb', 'rgb', 'oklab', 'oklch', 'xyz', 'xyz50', 'xyz65'] as const;
+      const colorSpaces = [
+        'original',
+        'css',
+        'a98',
+        'srgb',
+        'rgb',
+        'oklab',
+        'oklch',
+        'xyz',
+        'xyz50',
+        'xyz65',
+      ] as const;
       for (const c of colorSpaces) {
         rerender(<UseColorTester {...props} display={c as keyof ColorType} />);
       }

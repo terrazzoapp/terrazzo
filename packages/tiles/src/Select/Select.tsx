@@ -1,17 +1,19 @@
+import './Select.css';
+
 import {
   Content,
   Icon,
   Portal,
-  SelectItem as RadixSelectItem,
-  type SelectItemProps as RadixSelectItemProps,
-  SelectLabel as RadixSelectLabel,
-  type SelectProps as RadixSelectProps,
   Root,
   ScrollDownButton,
   ScrollUpButton,
+  SelectItem as RadixSelectItem,
   SelectItemIndicator,
+  type SelectItemProps as RadixSelectItemProps,
   SelectItemText,
+  SelectLabel as RadixSelectLabel,
   type SelectLabelProps,
+  type SelectProps as RadixSelectProps,
   Trigger,
   Value,
   Viewport,
@@ -19,7 +21,6 @@ import {
 import { CaretSort, Check, ChevronDown, ChevronUp } from '@terrazzo/icons';
 import clsx from 'clsx';
 import type { CSSProperties, ForwardedRef, ReactNode } from 'react';
-import './Select.css';
 
 export { Group as SelectGroup, Separator as SelectSeparator } from '@radix-ui/react-select';
 
@@ -32,13 +33,13 @@ export interface SelectItemProps extends RadixSelectItemProps {
 export function SelectItem({ className, children, icon, ref, ...rest }: SelectItemProps) {
   return (
     <RadixSelectItem ref={ref} className={clsx('tz-select-item', className)} {...rest}>
-      <SelectItemIndicator className='tz-select-item-indicator'>
+      <SelectItemIndicator className="tz-select-item-indicator">
         <Check />
       </SelectItemIndicator>
       <SelectItemText>
-        <span className='tz-select-item-inner'>
-          <span className='tz-select-item-icon'>{icon}</span>
-          <span className='tz-select-item-label'>{children}</span>
+        <span className="tz-select-item-inner">
+          <span className="tz-select-item-icon">{icon}</span>
+          <span className="tz-select-item-label">{children}</span>
         </span>
       </SelectItemText>
     </RadixSelectItem>
@@ -88,16 +89,16 @@ export default function Select({
       value={value}
     >
       <Trigger {...rest} className={clsx('tz-select-trigger', className)} style={style}>
-        <Value placeholder={<span className='tz-select-trigger-inner'>{trigger}</span>} />
-        <Icon className='tz-select-icon'>{triggerIcon ?? <CaretSort />}</Icon>
+        <Value placeholder={<span className="tz-select-trigger-inner">{trigger}</span>} />
+        <Icon className="tz-select-icon">{triggerIcon ?? <CaretSort />}</Icon>
       </Trigger>
       <Portal>
-        <Content className='tz-select-options'>
-          <ScrollUpButton className='tz-select-scroll-button tz-select-scroll-button__up'>
+        <Content className="tz-select-options">
+          <ScrollUpButton className="tz-select-scroll-button tz-select-scroll-button__up">
             {scrollUpIcon ?? <ChevronUp />}
           </ScrollUpButton>
-          <Viewport className='tz-select-viewport'>{children}</Viewport>
-          <ScrollDownButton className='tz-select-scroll-button tz-select-scroll-button__down'>
+          <Viewport className="tz-select-viewport">{children}</Viewport>
+          <ScrollDownButton className="tz-select-scroll-button tz-select-scroll-button__down">
             {scrollDownIcon ?? <ChevronDown />}
           </ScrollDownButton>
         </Content>

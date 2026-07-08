@@ -1,10 +1,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { type BuildRunnerResult, build, type ConfigInit, type Logger, parse } from '@terrazzo/parser';
+
+import {
+  build,
+  type BuildRunnerResult,
+  type ConfigInit,
+  type Logger,
+  parse,
+} from '@terrazzo/parser';
 import chokidar from 'chokidar';
 import pc from 'picocolors';
 import yamlToMomoa from 'yaml-to-momoa';
+
 import {
   cwd,
   DEFAULT_TOKENS_PATH,
@@ -27,7 +35,7 @@ export interface BuildOptions {
 export async function buildCmd({ config, configPath, flags, logger }: BuildOptions) {
   try {
     const startTime = performance.now();
-    if (!Array.isArray(config.plugins) || !config.plugins.length) {
+    if (!Array.isArray(config.plugins) || config.plugins.length === 0) {
       logger.error({
         group: 'config',
         message: `No plugins defined! Add some in ${configPath || 'terrazzo.config.ts'}`,
@@ -44,7 +52,12 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
       return;
     }
     const skipLint = !config.lint.build.enabled;
-    let { tokens, resolver, sources } = await parse(rawSchemas, { config, logger, skipLint, yamlToMomoa });
+    let { tokens, resolver, sources } = await parse(rawSchemas, {
+      config,
+      logger,
+      skipLint,
+      yamlToMomoa,
+    });
     let result = await build(tokens, { resolver, sources, config, logger });
     writeFiles(result, { config, logger });
 
@@ -55,7 +68,11 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
         minute: '2-digit',
       });
 
-      async function rebuild({ messageBefore, messageAfter }: { messageBefore?: string; messageAfter?: string } = {}) {
+      // oxlint-disable-next-line no-inner-declarations
+      async function rebuild({
+        messageBefore,
+        messageAfter,
+      }: { messageBefore?: string; messageAfter?: string } = {}) {
         try {
           if (messageBefore) {
             logger.info({ group: 'plugin', label: 'watch', message: messageBefore });
@@ -75,9 +92,9 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
             logger.info({ group: 'plugin', label: 'watch', message: messageAfter });
           }
           writeFiles(result, { config, logger });
-        } catch (err) {
-          // biome-ignore lint/suspicious/noConsole: this is its job
-          console.error(pc.red(`✗  ${(err as Error).message || (err as string)}`));
+        } catch (error) {
+          // oxlint-disable-next-line no-console
+          console.error(pc.red(`✗  ${(error as Error).message || (error as string)}`));
           // don’t exit! we’re watching, so continue as long as possible
         }
       }
@@ -96,25 +113,33 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
       });
 
       // keep process occupied
+      // oxlint-disable-next-line no-empty-function
       await new Promise(() => {});
     } else {
       printSuccess(
-        `${Object.keys(tokens).length} token${Object.keys(tokens).length !== 1 ? 's' : ''} built`,
+        `${Object.keys(tokens).length} token${Object.keys(tokens).length === 1 ? '' : 's'} built`,
         startTime,
       );
     }
-  } catch (err) {
-    printError((err as Error).message);
+  } catch (error) {
+    printError((error as Error).message);
     process.exit(1);
   }
 }
 
 /** Write files */
-export function writeFiles(result: BuildRunnerResult, { config, logger }: { config: ConfigInit; logger: Logger }) {
+export function writeFiles(
+  result: BuildRunnerResult,
+  { config, logger }: { config: ConfigInit; logger: Logger },
+) {
   for (const { filename, contents } of result.outputFiles) {
     const output = new URL(filename, config.outDir);
     fs.mkdirSync(new URL('.', output), { recursive: true });
     fs.writeFileSync(output, contents);
-    logger.debug({ group: 'parser', label: 'buildEnd', message: `Wrote file ${fileURLToPath(output)}` });
+    logger.debug({
+      group: 'parser',
+      label: 'buildEnd',
+      message: `Wrote file ${fileURLToPath(output)}`,
+    });
   }
 }

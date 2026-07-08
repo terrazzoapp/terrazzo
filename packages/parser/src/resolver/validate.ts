@@ -1,6 +1,7 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
-import type { LogEntry, default as Logger } from '../logger.js';
+
+import type { default as Logger, LogEntry } from '../logger.js';
 
 /**
  * Determine whether this is likely a resolver
@@ -39,11 +40,17 @@ export function isLikelyResolver(doc: momoa.DocumentNode): boolean {
           return true;
         }
         // 3. sets.sources is an array
-        if (member.name.value === 'sets' && getObjMember(member.value, 'sources')?.type === 'Array') {
+        if (
+          member.name.value === 'sets' &&
+          getObjMember(member.value, 'sources')?.type === 'Array'
+        ) {
           return true;
         } else if (member.name.value === 'modifiers') {
           const contexts = getObjMember(member.value, 'contexts');
-          if (contexts?.type === 'Object' && contexts.members.some((m) => m.value.type === 'Array')) {
+          if (
+            contexts?.type === 'Object' &&
+            contexts.members.some((m) => m.value.type === 'Array')
+          ) {
             // 4. contexts[key] is an array
             // (note: modifiers.contexts as an object is technically valid token format! We need to check for the array)
             return true;
@@ -79,7 +86,10 @@ const MESSAGE_EXPECTED = {
  * Validate a resolver document.
  * There’s a ton of boilerplate here, only to surface detailed code frames. Is there a better abstraction?
  */
-export function validateResolver(node: momoa.DocumentNode, { logger, src }: ValidateResolverOptions) {
+export function validateResolver(
+  node: momoa.DocumentNode,
+  { logger, src }: ValidateResolverOptions,
+) {
   const entry = { group: 'parser', label: 'resolver', src } as const;
   if (node.body.type !== 'Object') {
     logger.error({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node });
@@ -106,24 +116,28 @@ export function validateResolver(node: momoa.DocumentNode, { logger, src }: Vali
       case 'version': {
         hasVersion = true;
         if (member.value.type !== 'String' || member.value.value !== '2025.10') {
-          errors.push({ ...entry, message: `Expected "version" to be "2025.10".`, node: member.value });
+          errors.push({
+            ...entry,
+            message: `Expected "version" to be "2025.10".`,
+            node: member.value,
+          });
         }
         break;
       }
 
       case 'sets':
       case 'modifiers': {
-        if (member.value.type !== 'Object') {
-          errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: member.value });
-        } else {
+        if (member.value.type === 'Object') {
           for (const item of member.value.members) {
-            if (item.value.type !== 'Object') {
-              errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: item.value });
-            } else {
+            if (item.value.type === 'Object') {
               const validator = member.name.value === 'sets' ? validateSet : validateModifier;
               errors.push(...validator(item.value, false, { logger, src }));
+            } else {
+              errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: item.value });
             }
           }
+        } else {
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: member.value });
         }
         break;
       }
@@ -133,12 +147,14 @@ export function validateResolver(node: momoa.DocumentNode, { logger, src }: Vali
         if (member.value.type !== 'Array') {
           errors.push({ ...entry, message: MESSAGE_EXPECTED.ARRAY, node: member.value });
         } else if (member.value.elements.length === 0) {
-          errors.push({ ...entry, message: `"resolutionOrder" can’t be empty array.`, node: member.value });
+          errors.push({
+            ...entry,
+            message: `"resolutionOrder" can’t be empty array.`,
+            node: member.value,
+          });
         } else {
           for (const item of member.value.elements) {
-            if (item.value.type !== 'Object') {
-              errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: item.value });
-            } else {
+            if (item.value.type === 'Object') {
               const itemMembers = getObjMembers(item.value);
               if (itemMembers.$ref?.type === 'String') {
                 continue; // we can’t validate this just yet, assume it’s correct
@@ -162,20 +178,26 @@ export function validateResolver(node: momoa.DocumentNode, { logger, src }: Vali
                 validateSet(item.value, true, { logger, src });
               } else if (itemMembers.contexts?.type === 'Object') {
                 validateModifier(item.value, true, { logger, src });
-              } else if (itemMembers.name?.type === 'String' || itemMembers.description?.type === 'String') {
+              } else if (
+                itemMembers.name?.type === 'String' ||
+                itemMembers.description?.type === 'String'
+              ) {
                 validateSet(item.value, true, { logger, src }); // if this has a "name" or "description", guess set
               }
+            } else {
+              errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: item.value });
             }
           }
         }
         break;
       }
       case '$defs':
-      case '$extensions':
+      case '$extensions': {
         if (member.value.type !== 'Object') {
           errors.push({ ...entry, message: `Expected object`, node: member.value });
         }
         break;
+      }
       case '$schema':
       case '$ref': {
         if (member.value.type !== 'String') {
@@ -184,7 +206,12 @@ export function validateResolver(node: momoa.DocumentNode, { logger, src }: Vali
         break;
       }
       default: {
-        errors.push({ ...entry, message: `Unknown key ${JSON.stringify(member.name.value)}`, node: member.name, src });
+        errors.push({
+          ...entry,
+          message: `Unknown key ${JSON.stringify(member.name.value)}`,
+          node: member.name,
+          src,
+        });
         break;
       }
     }
@@ -198,12 +225,16 @@ export function validateResolver(node: momoa.DocumentNode, { logger, src }: Vali
     errors.push({ ...entry, message: `Missing "resolutionOrder".`, node, src });
   }
 
-  if (errors.length) {
+  if (errors.length > 0) {
     logger.error(...errors);
   }
 }
 
-export function validateSet(node: momoa.ObjectNode, isInline = false, { src }: ValidateResolverOptions): LogEntry[] {
+export function validateSet(
+  node: momoa.ObjectNode,
+  isInline = false,
+  { src }: ValidateResolverOptions,
+): LogEntry[] {
   const entry = { group: 'parser', label: 'resolver', src } as const;
   const errors: LogEntry[] = [];
   let hasName = !isInline;
@@ -252,11 +283,12 @@ export function validateSet(node: momoa.ObjectNode, isInline = false, { src }: V
         break;
       }
       case '$defs':
-      case '$extensions':
+      case '$extensions': {
         if (member.value.type !== 'Object') {
           errors.push({ ...entry, message: `Expected object`, node: member.value });
         }
         break;
+      }
       case '$ref': {
         if (member.value.type !== 'String') {
           errors.push({ ...entry, message: `Expected string`, node: member.value });
@@ -264,7 +296,11 @@ export function validateSet(node: momoa.ObjectNode, isInline = false, { src }: V
         break;
       }
       default: {
-        errors.push({ ...entry, message: `Unknown key ${JSON.stringify(member.name.value)}`, node: member.name });
+        errors.push({
+          ...entry,
+          message: `Unknown key ${JSON.stringify(member.name.value)}`,
+          node: member.name,
+        });
         break;
       }
     }
@@ -326,39 +362,44 @@ export function validateModifier(
         if (member.value.type !== 'Object') {
           errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: member.value });
         } else if (member.value.members.length === 0) {
-          errors.push({ ...entry, message: `"contexts" can’t be empty object.`, node: member.value });
+          errors.push({
+            ...entry,
+            message: `"contexts" can’t be empty object.`,
+            node: member.value,
+          });
         } else {
           for (const context of member.value.members) {
-            if (context.value.type !== 'Array') {
-              errors.push({ ...entry, message: MESSAGE_EXPECTED.ARRAY, node: context.value });
-            } else {
+            if (context.value.type === 'Array') {
               for (const source of context.value.elements) {
                 if (source.value.type !== 'Object') {
                   errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: source.value });
                 }
               }
+            } else {
+              errors.push({ ...entry, message: MESSAGE_EXPECTED.ARRAY, node: context.value });
             }
           }
         }
         break;
       }
       case 'default': {
-        if (member.value.type !== 'String') {
-          errors.push({ ...entry, message: `Expected string`, node: member.value });
-        } else {
+        if (member.value.type === 'String') {
           const contexts = getObjMember(node, 'contexts') as momoa.ObjectNode | undefined;
           if (!contexts || !getObjMember(contexts, member.value.value)) {
             errors.push({ ...entry, message: 'Invalid default context', node: member.value });
           }
+        } else {
+          errors.push({ ...entry, message: `Expected string`, node: member.value });
         }
         break;
       }
       case '$defs':
-      case '$extensions':
+      case '$extensions': {
         if (member.value.type !== 'Object') {
           errors.push({ ...entry, message: `Expected object`, node: member.value });
         }
         break;
+      }
       case '$ref': {
         if (member.value.type !== 'String') {
           errors.push({ ...entry, message: `Expected string`, node: member.value });
@@ -366,7 +407,11 @@ export function validateModifier(
         break;
       }
       default: {
-        errors.push({ ...entry, message: `Unknown key ${JSON.stringify(member.name.value)}`, node: member.name });
+        errors.push({
+          ...entry,
+          message: `Unknown key ${JSON.stringify(member.name.value)}`,
+          node: member.name,
+        });
         break;
       }
     }

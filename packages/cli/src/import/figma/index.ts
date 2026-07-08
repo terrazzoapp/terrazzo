@@ -1,6 +1,7 @@
 import type { Logger } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
+
 import { formatNumber, getFileID } from './lib.js';
 import { getStyles } from './styles.js';
 import { getVariables } from './variables.js';
@@ -56,18 +57,20 @@ export async function importFromFigma({
 
   try {
     const [styles, vars] = await Promise.all([
-      !skipStyles ? getStyles(fileKey!, { logger }) : null,
-      !skipVariables
-        ? getVariables(fileKey!, {
-            logger,
-            unpublished,
-            matchers: {
-              fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
-              fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
-              number: numberNames ? new RegExp(numberNames) : undefined,
-            },
-          })
-        : null,
+      ...(skipStyles ? [] : [getStyles(fileKey!, { logger })]),
+      ...(skipVariables
+        ? []
+        : [
+            getVariables(fileKey!, {
+              logger,
+              unpublished,
+              matchers: {
+                fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
+                fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
+                number: numberNames ? new RegExp(numberNames) : undefined,
+              },
+            }),
+          ]),
     ]);
     if (styles) {
       result.styleCount += styles.count;
@@ -76,15 +79,15 @@ export async function importFromFigma({
     if (vars) {
       result.variableCount += vars.count;
       result.code = merge(result.code, vars.code);
-      if (vars.remoteCount) {
+      if ('remoteCount' in vars && vars.remoteCount) {
         logger.warn({
           group: 'import',
           message: `${formatNumber(vars.remoteCount)} ${pluralize(vars.remoteCount, 'Variable', 'Variables')} were remote and could not be accessed. Try importing from other files to grab them.`,
         });
       }
     }
-  } catch (err) {
-    logger.error({ group: 'import', message: (err as Error).message });
+  } catch (error) {
+    logger.error({ group: 'import', message: (error as Error).message });
   }
 
   // Arbitrarily guess on resolutionOrder
@@ -100,6 +103,7 @@ export async function importFromFigma({
 /** Is this a valid URL, and one belonging to a Figma file? */
 export function isFigmaPath(url: string) {
   try {
+    // oxlint-disable-next-line no-new
     new URL(url);
     return /^https:\/\/(www\.)?figma\.com\/design\/[A-Za-z0-9]+/.test(url);
   } catch {

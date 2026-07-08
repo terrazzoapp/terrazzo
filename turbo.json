@@ -8,8 +8,11 @@
     "build:app": {
       "dependsOn": ["build"]
     },
-    "format": {
-      "dependsOn": ["^format"]
+    "fmt": {
+      "dependsOn": ["^fmt"]
+    },
+    "fmt:check": {
+      "dependsOn": ["^fmt:check"]
     },
     "lint": {
       "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.css", "**/biome.json"],

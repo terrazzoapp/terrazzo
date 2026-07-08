@@ -1,11 +1,14 @@
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as CSS_FORMAT_ID } from '@terrazzo/plugin-css';
+
 import build from './build.js';
 import { FORMAT_ID, type SassPluginOptions } from './lib.js';
 
 export * from './build.js';
 export * from './lib.js';
 export * from './node.js';
+
+/* oxlint-disable require-await */
 
 export default function pluginSass(options?: SassPluginOptions): Plugin {
   const filename = options?.filename ?? 'index.scss';

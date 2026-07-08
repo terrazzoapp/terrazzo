@@ -1,17 +1,28 @@
 import clsx from 'clsx';
-import { type ComponentProps, createContext, type KeyboardEvent, type MouseEvent, useRef, useState } from 'react';
+import {
+  type ComponentProps,
+  createContext,
+  type KeyboardEvent,
+  type MouseEvent,
+  useRef,
+  useState,
+} from 'react';
+
 import { addToSet, removeFromSet } from '../lib/set.js';
+
+/* oxlint-disable func-style */
 
 export const Context = createContext({
   expanded: new Set<string>(),
   selected: new Set<string>(),
   registerID: (
     // @ts-expect-error: just for types
-    // biome-ignore lint/correctness/noUnusedFunctionParameters: just for types
+    // oxlint-disable-next-line no-unused-vars
     parentID: string,
     // @ts-expect-error: just for types
-    // biome-ignore lint/correctness/noUnusedFunctionParameters: just for types
+    // oxlint-disable-next-line no-unused-vars
     id: string,
+    // oxlint-disable-next-line no-empty-function
   ) => {},
 });
 
@@ -89,6 +100,7 @@ export default function Root({
       }
       case 'ArrowRight': {
         if (group) {
+          // oxlint-disable-next-line unicorn/no-lonely-if
           if (!expanded.has(group.id)) {
             expand(group.id);
             ev.preventDefault();
@@ -98,6 +110,7 @@ export default function Root({
       }
       case 'ArrowLeft': {
         if (group) {
+          // oxlint-disable-next-line unicorn/no-lonely-if
           if (expanded.has(group.id)) {
             collapse(group.id);
             ev.preventDefault();
@@ -158,10 +171,10 @@ export default function Root({
       }
       case 'Enter': {
         if (group) {
-          if (!expanded.has(group.id)) {
-            expand(group.id);
-          } else {
+          if (expanded.has(group.id)) {
             collapse(group.id);
+          } else {
+            expand(group.id);
           }
         } else {
           selectOnly(item!.id);
@@ -194,10 +207,10 @@ export default function Root({
     }
 
     if (group) {
-      if (!expanded.has(group.id)) {
-        expand(group.id);
-      } else {
+      if (expanded.has(group.id)) {
         collapse(group.id);
+      } else {
+        expand(group.id);
       }
     }
 
@@ -219,13 +232,13 @@ export default function Root({
   return (
     // biome-ignore lint/a11y/useAriaPropsSupportedByRole: incorrect, this is supported
     <table
-      aria-multiselectable='true'
+      aria-multiselectable="true"
       {...rest}
       className={clsx('tz-treegrid-root', className)}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
-      <tbody ref={rowGroupEl} className='tz-treegrid-rowgroup'>
+      <tbody ref={rowGroupEl} className="tz-treegrid-rowgroup">
         <Context.Provider
           value={{
             expanded,

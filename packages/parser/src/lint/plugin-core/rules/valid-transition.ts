@@ -1,7 +1,8 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
 import { TRANSITION_REQUIRED_PROPERTIES } from '@terrazzo/token-tools';
-import type { LintRule } from '../../../types.js';
+
+import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_TRANSITION = 'core/valid-transition';
@@ -22,40 +23,56 @@ const rule: LintRule<typeof ERROR | typeof ERROR_INVALID_PROP> = {
   },
   defaultOptions: {},
   create({ tokens, report }) {
-    for (const t of Object.values(tokens)) {
-      if (t.aliasOf || !t.originalValue || t.$type !== 'transition') {
+    for (const token of Object.values(tokens)) {
+      if (token.aliasOf || !token.originalValue || token.$type !== 'transition') {
         continue;
       }
 
-      validateTransition(t.originalValue.$value, {
-        node: getObjMember(t.source.node, '$value') as momoa.ObjectNode,
-        filename: t.source.filename,
+      validateTransition(token.originalValue.$value, {
+        filename: token.source.filename,
+        node: getObjMember(token.source.node, '$value') as momoa.ObjectNode,
+        report,
       });
-    }
-
-    // Note: we validate sub-properties using other checks like valid-dimension, valid-font-family, etc.
-    // The only thing remaining is to check that all properties exist (since missing properties won’t appear as invalid)
-    function validateTransition(value: unknown, { node, filename }: { node: momoa.ObjectNode; filename?: string }) {
-      if (
-        !value ||
-        typeof value !== 'object' ||
-        !TRANSITION_REQUIRED_PROPERTIES.every((property) => property in value)
-      ) {
-        report({ messageId: ERROR, node, filename });
-      } else {
-        for (const key of Object.keys(value)) {
-          if (!TRANSITION_REQUIRED_PROPERTIES.includes(key as (typeof TRANSITION_REQUIRED_PROPERTIES)[number])) {
-            report({
-              messageId: ERROR_INVALID_PROP,
-              data: { key: JSON.stringify(key) },
-              node: getObjMember(node, key),
-              filename,
-            });
-          }
-        }
-      }
     }
   },
 };
+
+// Note: we validate sub-properties using other checks like valid-dimension, valid-font-family, etc.
+// The only thing remaining is to check that all properties exist (since missing properties won’t appear as invalid)
+function validateTransition(
+  value: unknown,
+  {
+    node,
+    filename,
+    report,
+  }: {
+    node: momoa.ObjectNode;
+    filename?: string;
+    report: LintRuleContext<typeof ERROR | typeof ERROR_INVALID_PROP>['report'];
+  },
+) {
+  if (
+    !value ||
+    typeof value !== 'object' ||
+    !TRANSITION_REQUIRED_PROPERTIES.every((property) => property in value)
+  ) {
+    report({ filename, messageId: ERROR, node });
+  } else {
+    for (const key of Object.keys(value)) {
+      if (
+        !TRANSITION_REQUIRED_PROPERTIES.includes(
+          key as (typeof TRANSITION_REQUIRED_PROPERTIES)[number],
+        )
+      ) {
+        report({
+          data: { key: JSON.stringify(key) },
+          filename,
+          messageId: ERROR_INVALID_PROP,
+          node: getObjMember(node, key),
+        });
+      }
+    }
+  }
+}
 
 export default rule;

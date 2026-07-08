@@ -1,13 +1,21 @@
-import type { DropShadowEffect, InnerShadowEffect, Node, PublishedStyle, Style } from '@figma/rest-api-spec';
+import type {
+  DropShadowEffect,
+  InnerShadowEffect,
+  Node,
+  PublishedStyle,
+  Style,
+} from '@figma/rest-api-spec';
 import type {
   ColorValue,
   DimensionToken,
+  DimensionValue,
   GradientValue,
   Logger,
   NumberToken,
   ShadowValue,
   TypographyValue,
 } from '@terrazzo/parser';
+
 import { formatName, getFile, getFileNodes, getFileStyles } from './lib.js';
 
 /** /v1/files/:file_key/styles */
@@ -75,7 +83,11 @@ export async function getStyles(
       case 'FILL': {
         const $value = fillStyle(styleNode.document);
         if (!$value) {
-          logger.error({ group: 'import', message: `Could not parse fill for ${s.name}`, continueOnError: true });
+          logger.error({
+            group: 'import',
+            message: `Could not parse fill for ${s.name}`,
+            continueOnError: true,
+          });
         }
         if (Array.isArray($value)) {
           tokenBase.$type = 'gradient';
@@ -88,7 +100,11 @@ export async function getStyles(
       case 'TEXT': {
         const $value = textStyle(styleNode.document);
         if (!$value) {
-          logger.error({ group: 'import', message: `Could not parse text for ${s.name}`, continueOnError: true });
+          logger.error({
+            group: 'import',
+            message: `Could not parse text for ${s.name}`,
+            continueOnError: true,
+          });
         }
         tokenBase.$type = 'typography';
         tokenBase.$value = $value;
@@ -97,7 +113,11 @@ export async function getStyles(
       case 'EFFECT': {
         const $value = effectStyle(styleNode.document);
         if (!$value) {
-          logger.error({ group: 'import', message: `Could not parse effect for ${s.name}`, continueOnError: true });
+          logger.error({
+            group: 'import',
+            message: `Could not parse effect for ${s.name}`,
+            continueOnError: true,
+          });
         }
         tokenBase.$type = 'shadow';
         tokenBase.$value = $value;
@@ -106,7 +126,11 @@ export async function getStyles(
       case 'GRID': {
         const layoutGrids = gridStyles(styleNode.document);
         if (!layoutGrids) {
-          logger.error({ group: 'import', message: `Could not parse grid for ${s.name}`, continueOnError: true });
+          logger.error({
+            group: 'import',
+            message: `Could not parse grid for ${s.name}`,
+            continueOnError: true,
+          });
         }
         // Note: Grids scaffold out multiple sub-components, so we need to “cheat” a little here
         let node = result.code.sets.styles.sources[0];
@@ -144,18 +168,21 @@ export async function getStyles(
 /** Return a shadow token from an effect */
 export function effectStyle(node: Node): ShadowValue[] | undefined {
   if ('effects' in node) {
-    const shadows = node.effects.filter((e) => e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW') as (
-      | DropShadowEffect
-      | InnerShadowEffect
-    )[];
-    if (shadows.length) {
+    const shadows = node.effects.filter(
+      (e) => e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW',
+    ) as (DropShadowEffect | InnerShadowEffect)[];
+    if (shadows.length > 0) {
       return shadows.map((s) => ({
         inset: s.type === 'INNER_SHADOW',
         offsetX: { value: s.offset.x, unit: 'px' },
         offsetY: { value: s.offset.y, unit: 'px' },
         blur: { value: s.radius, unit: 'px' },
         spread: { value: s.spread ?? 0, unit: 'px' },
-        color: { colorSpace: 'srgb', components: [s.color.r, s.color.g, s.color.b], alpha: s.color.a },
+        color: {
+          colorSpace: 'srgb',
+          components: [s.color.r, s.color.g, s.color.b],
+          alpha: s.color.a,
+        },
       }));
     }
   }
@@ -167,7 +194,11 @@ export function fillStyle(node: Node): ColorValue | GradientValue | undefined {
     for (const fill of node.fills) {
       switch (fill.type) {
         case 'SOLID': {
-          return { colorSpace: 'srgb', components: [fill.color.r, fill.color.g, fill.color.b], alpha: fill.color.a };
+          return {
+            colorSpace: 'srgb',
+            components: [fill.color.r, fill.color.g, fill.color.b],
+            alpha: fill.color.a,
+          };
         }
         case 'GRADIENT_LINEAR':
         case 'GRADIENT_RADIAL':
@@ -175,7 +206,11 @@ export function fillStyle(node: Node): ColorValue | GradientValue | undefined {
         case 'GRADIENT_DIAMOND': {
           return fill.gradientStops.map((stop) => ({
             position: stop.position,
-            color: { colorSpace: 'srgb', components: [stop.color.r, stop.color.g, stop.color.b], alpha: stop.color.a },
+            color: {
+              colorSpace: 'srgb',
+              components: [stop.color.r, stop.color.g, stop.color.b],
+              alpha: stop.color.a,
+            },
           }));
         }
       }
@@ -184,7 +219,9 @@ export function fillStyle(node: Node): ColorValue | GradientValue | undefined {
 }
 
 /** Return a dimension token from grid */
-export function gridStyles(node: Node): Record<string, Record<string, DimensionToken | NumberToken>> | undefined {
+export function gridStyles(
+  node: Node,
+): Record<string, Record<string, DimensionToken | NumberToken>> | undefined {
   if (!('layoutGrids' in node) || !node.layoutGrids?.length) {
     return;
   }
@@ -210,17 +247,22 @@ export function textStyle(node: Node): TypographyValue | undefined {
   if (!('style' in node)) {
     return;
   }
+
+  let lineHeight: string | number | DimensionValue = 1;
+  if ('lineHeightPercentFontSize' in node.style) {
+    lineHeight = node.style.lineHeightPercentFontSize!;
+  } else if ('lineHeightPx' in node.style) {
+    lineHeight = { value: node.style.lineHeightPx!, unit: 'px' };
+  }
+
   return {
     fontFamily: [node.style.fontFamily!],
     fontWeight: node.style.fontWeight,
     fontStyle: node.style.fontStyle,
-    fontSize: node.style.fontSize ? { value: node.style.fontSize, unit: 'px' } : { value: 1, unit: 'em' },
+    fontSize: node.style.fontSize
+      ? { value: node.style.fontSize, unit: 'px' }
+      : { value: 1, unit: 'em' },
     letterSpacing: { value: node.style.letterSpacing ?? 0, unit: 'px' },
-    lineHeight:
-      'lineHeightPercentFontSize' in node.style
-        ? node.style.lineHeightPercentFontSize!
-        : 'lineHeightPx' in node.style
-          ? { value: node.style.lineHeightPx!, unit: 'px' }
-          : 1,
+    lineHeight,
   };
 }

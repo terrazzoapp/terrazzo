@@ -1,9 +1,15 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { build, defineConfig, type Logger, type Plugin, parse } from '@terrazzo/parser';
+
+import { build, defineConfig, type Logger, parse, type Plugin } from '@terrazzo/parser';
 import css from '@terrazzo/plugin-css';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import listing, { type CustomFunctionParams, type ListedToken, type TokenListingPluginOptions } from '../src/index.js';
+
+import listing, {
+  type CustomFunctionParams,
+  type ListedToken,
+  type TokenListingPluginOptions,
+} from '../src/index.js';
 
 describe('token-listing plugin - Node.js API', () => {
   const mockLogger: Logger = {
@@ -25,6 +31,7 @@ describe('token-listing plugin - Node.js API', () => {
     vi.clearAllMocks();
   });
 
+  // oxlint-disable-next-line max-params
   async function setupTest(
     cwdPath: string,
     options: TokenListingPluginOptions,
@@ -185,7 +192,9 @@ describe('token-listing plugin - Node.js API', () => {
     });
 
     it('outputs names for a token by calling the passed custom naming function', async () => {
-      const mockNameFn = vi.fn().mockImplementation(({ token }) => `--custom-${token.id.replace(/\./g, '-')}`);
+      const mockNameFn = vi
+        .fn()
+        .mockImplementation(({ token }) => `--custom-${token.id.replaceAll('.', '-')}`);
       const options = {
         filename: 'actual.listing.json',
         platforms: {
@@ -199,7 +208,9 @@ describe('token-listing plugin - Node.js API', () => {
       expect(mockLogger.error).toHaveBeenCalledTimes(0);
 
       const listed = output.data.find((d: any) => d.$name === 'base.color.black');
-      expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--custom-base-color-black');
+      expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual(
+        '--custom-base-color-black',
+      );
       expect(mockNameFn).toHaveBeenCalledTimes(1294);
     });
 
@@ -213,7 +224,9 @@ describe('token-listing plugin - Node.js API', () => {
           },
         },
       };
-      const output = await setupTest('./fixtures/build-default/', options, [css({ filename: 'tokens.css' })]);
+      const output = await setupTest('./fixtures/build-default/', options, [
+        css({ filename: 'tokens.css' }),
+      ]);
       expect(mockLogger.error).toHaveBeenCalledTimes(0);
 
       const listed = output.data.find((d: any) => d.$name === 'base.color.black');
@@ -230,7 +243,9 @@ describe('token-listing plugin - Node.js API', () => {
           },
         },
       };
-      const output = await setupTest('./fixtures/build-default/', options, [css({ filename: 'tokens.css' })]);
+      const output = await setupTest('./fixtures/build-default/', options, [
+        css({ filename: 'tokens.css' }),
+      ]);
       expect(mockLogger.error).toHaveBeenCalledTimes(0);
 
       const listed = output.data.find((d: any) => d.$name === 'base.color.black');
@@ -484,7 +499,11 @@ describe('token-listing plugin - Node.js API', () => {
       expect(listed.$extensions['app.terrazzo.listing'].source).toEqual({
         resource: expect.any(String),
         loc: {
-          start: { line: expect.any(Number), column: expect.any(Number), offset: expect.any(Number) },
+          start: {
+            line: expect.any(Number),
+            column: expect.any(Number),
+            offset: expect.any(Number),
+          },
           end: { line: expect.any(Number), column: expect.any(Number), offset: expect.any(Number) },
         },
       });
@@ -500,7 +519,11 @@ describe('token-listing plugin - Node.js API', () => {
       expect(listed.$extensions['app.terrazzo.listing'].source).toEqual({
         resource: 'file://<root>/build-default/tokens.json',
         loc: {
-          start: { line: expect.any(Number), column: expect.any(Number), offset: expect.any(Number) },
+          start: {
+            line: expect.any(Number),
+            column: expect.any(Number),
+            offset: expect.any(Number),
+          },
           end: { line: expect.any(Number), column: expect.any(Number), offset: expect.any(Number) },
         },
       });
@@ -549,11 +572,15 @@ describe('token-listing plugin - Node.js API', () => {
       });
 
       const lightListed = output.data.find(
-        (d: any) => d.$name === 'color.semantic' && d.$extensions['app.terrazzo.listing'].mode === 'light',
+        (d: any) =>
+          d.$name === 'color.semantic' && d.$extensions['app.terrazzo.listing'].mode === 'light',
       );
-      expect(lightListed.$extensions['app.terrazzo.listing'].originalValue).toEqual('{color.white}');
+      expect(lightListed.$extensions['app.terrazzo.listing'].originalValue).toEqual(
+        '{color.white}',
+      );
       const darkListed = output.data.find(
-        (d: any) => d.$name === 'color.semantic' && d.$extensions['app.terrazzo.listing'].mode === 'dark',
+        (d: any) =>
+          d.$name === 'color.semantic' && d.$extensions['app.terrazzo.listing'].mode === 'dark',
       );
       expect(darkListed.$extensions['app.terrazzo.listing'].originalValue).toEqual('{color.black}');
     });
@@ -574,7 +601,10 @@ describe('token-listing plugin - Node.js API', () => {
           return 'other';
         }
       });
-      const options = { filename: 'actual.listing.json', sourceOfTruth: { default: 'figma', custom } };
+      const options = {
+        filename: 'actual.listing.json',
+        sourceOfTruth: { default: 'figma', custom },
+      };
       const output = await setupTest('./fixtures/build-default/', options, [], {
         tokenOne: {
           $type: 'color',

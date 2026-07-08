@@ -27,7 +27,10 @@ export function transformTransition(
     : transformDuration({ $value: token.$value.delay } as DurationTokenNormalized, options);
   const timingFunction = token.partialAliasOf?.timingFunction
     ? transformAlias(tokensSet[token.partialAliasOf.timingFunction]!)
-    : transformCubicBezier({ $value: token.$value.timingFunction } as CubicBezierTokenNormalized, options);
+    : transformCubicBezier(
+        { $value: token.$value.timingFunction } as CubicBezierTokenNormalized,
+        options,
+      );
 
   return `${duration} ${delay} ${timingFunction}`;
 }

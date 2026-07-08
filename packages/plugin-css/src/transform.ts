@@ -1,6 +1,11 @@
 import type { TokenNormalized, TransformHookOptions } from '@terrazzo/parser';
-import { makeCSSVar, type TransformCSSValueOptions, transformCSSValue } from '@terrazzo/token-tools/css';
-import { type CSSPluginOptions, cachedMatcher, FORMAT_ID, PLUGIN_NAME } from './lib.js';
+import {
+  makeCSSVar,
+  transformCSSValue,
+  type TransformCSSValueOptions,
+} from '@terrazzo/token-tools/css';
+
+import { cachedMatcher, type CSSPluginOptions, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 
 export interface TransformOptions {
   transform: TransformHookOptions;
@@ -37,6 +42,7 @@ export default function transformCSS({
     }
     return makeCSSVar(token.id);
   }
+  // oxlint-disable-next-line func-style
   const transformAlias = (token: TokenNormalized) => `var(${transformName(token)})`;
 
   const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
@@ -48,7 +54,9 @@ export default function transformCSS({
     // also duplicate the token in the global space. This plays nicer with
     // plugins that haven’t upgraded to resolvers yet.
     // If there is no “default” permutation, then take the first one
-    let defaultPermutationI = permutations.findIndex((p) => !Object.keys(p.input ?? {}).length);
+    let defaultPermutationI = permutations.findIndex(
+      (p) => Object.keys(p.input ?? {}).length === 0,
+    );
     if (defaultPermutationI === -1) {
       defaultPermutationI = 0;
     }
@@ -56,16 +64,17 @@ export default function transformCSS({
     for (let i = 0; i < permutations.length; i++) {
       const p = permutations[i]!;
       const inputRaw = p.input;
-      const input = !Object.keys(inputRaw ?? {}).length
-        ? (JSON.parse(resolver.getPermutationID(inputRaw ?? {})) as Record<string, string>)
-        : inputRaw;
+      const input =
+        Object.keys(inputRaw ?? {}).length === 0
+          ? (JSON.parse(resolver.getPermutationID(inputRaw ?? {})) as Record<string, string>)
+          : inputRaw;
 
       const pInclude = p.include ? cachedMatcher.tokenIDMatch(p.include) : () => true;
       const pExclude = p.exclude ? cachedMatcher.tokenIDMatch(p.exclude) : () => false;
 
-      const includeToken = (tokenId: string): boolean => {
-        return include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
-      };
+      // oxlint-disable-next-line func-style
+      const includeToken = (tokenId: string): boolean =>
+        include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
       // Note: if we throw an error here without specifying the input, a user may
       // find it impossible to debug the issue
       try {
@@ -81,7 +90,9 @@ export default function transformCSS({
             permutation: input,
           };
           const value =
-            p.transform?.(token, options) ?? customTransform?.(token, options) ?? transformCSSValue(token, options);
+            p.transform?.(token, options) ??
+            customTransform?.(token, options) ??
+            transformCSSValue(token, options);
           if (value) {
             const localID = transformName(token);
             setTransform(token.id, {
@@ -117,14 +128,14 @@ export default function transformCSS({
             }
           }
         }
-      } catch (err) {
+      } catch (error) {
         logger.error({
           group: 'plugin',
           label: PLUGIN_NAME,
           message: `There was an error trying to apply input ${resolver.getPermutationID(input)}.`,
           continueOnError: true, // throw below
         });
-        throw err; // note: this is most likely a nicely-formatted message from another logger instance; just pass it through
+        throw error; // note: this is most likely a nicely-formatted message from another logger instance; just pass it through
       }
     }
 

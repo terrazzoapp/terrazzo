@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('9.2 Stroke Style', () => {
@@ -6,7 +7,12 @@ describe('9.2 Stroke Style', () => {
     [
       'valid: string',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { 'border-style': { $type: 'strokeStyle', $value: 'double' } } }],
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { 'border-style': { $type: 'strokeStyle', $value: 'double' } },
+          },
+        ],
         want: { tokens: { 'border-style': { $value: 'double' } } },
       },
     ],
@@ -48,7 +54,12 @@ describe('9.2 Stroke Style', () => {
     [
       'invalid: unknown string',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { 'border-style': { $type: 'strokeStyle', $value: 'thicc' } } }],
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { 'border-style': { $type: 'strokeStyle', $value: 'thicc' } },
+          },
+        ],
         want: {
           error: `lint:core/valid-stroke-style: Value most be one of solid, dashed, dotted, double, groove, ridge, outset, or inset.
 

@@ -4,7 +4,7 @@ for (const btn of document.querySelectorAll('button[data-code]')) {
   let t;
 
   btn.addEventListener('click', async () => {
-    await navigator.clipboard.writeText(btn.getAttribute('data-code'));
+    await navigator.clipboard.writeText(btn.dataset.code);
     const contentBefore = btn.innerHTML;
     const labelBefore = btn.getAttribute('aria-label');
 

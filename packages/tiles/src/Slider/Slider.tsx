@@ -1,9 +1,19 @@
+import './Slider.css';
+
 import { useDrag } from '@use-gesture/react';
 import clsx from 'clsx';
-import { type ComponentProps, type ReactElement, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import {
+  type ComponentProps,
+  type ReactElement,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+
 import { clamp, snap } from '../lib/number.js';
 import SubtleInput from '../SubtleInput/SubtleInput.js';
-import './Slider.css';
 
 /** size, in px, to pad inner track */
 export const TRACK_PADDING = 4;
@@ -29,7 +39,7 @@ function SliderHandle({
   max,
   min,
   orientation,
-  step,
+  step: _step,
   value,
   onChange,
   ...rest
@@ -50,7 +60,8 @@ function SliderHandle({
       }
       const [movementX, movementY] = movement;
       const rawValue =
-        ((orientation === 'vertical' ? -movementY : movementX) * (shiftKey ? SHIFT_FACTOR : 1)) / containerSize;
+        ((orientation === 'vertical' ? -movementY : movementX) * (shiftKey ? SHIFT_FACTOR : 1)) /
+        containerSize;
       const nextValue = clamp(prevValue.current + rawValue * range, min, max);
       onChange(nextValue);
     },
@@ -66,15 +77,21 @@ function SliderHandle({
     <div
       {...rest}
       {...draggable()}
-      className='tz-slider-handle'
+      className="tz-slider-handle"
       data-orientation={orientation}
       data-variant={handleColor ? 'color' : undefined}
-      style={{ '--tz-slider-handle-position': `${position}px`, '--tz-slider-handle-color': handleColor }}
+      style={{
+        '--tz-slider-handle-position': `${position}px`,
+        '--tz-slider-handle-color': handleColor,
+      }}
     />
   );
 }
 
-export interface SliderProps extends Omit<ComponentProps<'input'>, 'max' | 'min' | 'onChange' | 'step'> {
+export interface SliderProps extends Omit<
+  ComponentProps<'input'>,
+  'max' | 'min' | 'onChange' | 'step'
+> {
   value: number;
   onChange: (newValue: number) => void;
   /** Accessible label for this slider */
@@ -104,7 +121,7 @@ export default function Slider({
   label,
   min = 0,
   max = 1,
-  ref,
+  ref: _ref,
   step = 0.01,
   onChange,
   orientation = 'horizontal',
@@ -116,9 +133,9 @@ export default function Slider({
   const id = useId();
   const trackEl = useRef<HTMLDivElement>(null);
   const [containerRect, setContainerRect] = useState<DOMRect>(
-    typeof DOMRect !== 'undefined'
-      ? new DOMRect(0, 0, 240, 10)
-      : ({ left: 0, top: 0, width: 240, height: 10 } as DOMRect),
+    typeof DOMRect === 'undefined'
+      ? ({ left: 0, top: 0, width: 240, height: 10 } as DOMRect)
+      : new DOMRect(0, 0, 240, 10),
   );
   const [intermediaryInputValue, setIntermediaryInputValue] = useState(value);
   const percModifier = percentage ? 100 / Math.max(max - min, 0.0001) : 1;
@@ -161,9 +178,9 @@ export default function Slider({
 
   return (
     <div className={clsx('tz-slider', className)} data-orientation={orientation}>
-      <div ref={trackEl} className='tz-slider-track-wrapper'>
-        <div className='tz-slider-track'>
-          <div className='tz-slider-track-bg' {...draggable()}>
+      <div ref={trackEl} className="tz-slider-track-wrapper">
+        <div className="tz-slider-track">
+          <div className="tz-slider-track-bg" {...draggable()}>
             {bg}
           </div>
           <SliderHandle
@@ -178,19 +195,21 @@ export default function Slider({
           />
         </div>
       </div>
-      <label className='tz-slider-label' htmlFor={id}>
+      <label className="tz-slider-label" htmlFor={id}>
         {label}
       </label>
       <SubtleInput
         id={id}
-        className='tz-slider-input'
+        className="tz-slider-input"
         // @ts-expect-error React was a mistake
-        type='number'
+        type="number"
         min={minNorm}
         max={maxNorm}
         step={step}
         value={Number(intermediaryInputValue).toPrecision(precision)}
-        onChange={(evt) => setIntermediaryInputValue(clamp(Number(evt.currentTarget.value), minNorm, maxNorm))}
+        onChange={(evt) =>
+          setIntermediaryInputValue(clamp(Number(evt.currentTarget.value), minNorm, maxNorm))
+        }
         onBlur={() => onChange(clamp(Number(intermediaryInputValue) / percModifier, min, max))}
         onKeyUp={(evt) => {
           if (['Enter', 'Tab', 'ArrowUp', 'ArrowDown'].includes(evt.key)) {

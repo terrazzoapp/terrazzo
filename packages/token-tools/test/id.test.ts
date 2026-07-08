@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { CachedWildcardMatcher, isAlias, makeAlias, parseAlias, splitID } from '../src/id.js';
 
 describe('isAlias', () => {
@@ -35,8 +36,12 @@ describe('CachedWildcardMatcher', () => {
     expect(new CachedWildcardMatcher().tokenIDMatch('color.*')('color.blue.60')).toBeFalsy();
     expect(new CachedWildcardMatcher().tokenIDMatch('color.**')('color.blue.60')).toBeTruthy();
     expect(new CachedWildcardMatcher().tokenIDMatch('color.*.60')('color.blue.60')).toBeTruthy();
-    expect(new CachedWildcardMatcher().tokenIDMatch('color.*.60')('color.blue.tint.60')).toBeFalsy();
-    expect(new CachedWildcardMatcher().tokenIDMatch('color.**.60')('color.blue.tint.60')).toBeTruthy();
+    expect(
+      new CachedWildcardMatcher().tokenIDMatch('color.*.60')('color.blue.tint.60'),
+    ).toBeFalsy();
+    expect(
+      new CachedWildcardMatcher().tokenIDMatch('color.**.60')('color.blue.tint.60'),
+    ).toBeTruthy();
   });
 });
 

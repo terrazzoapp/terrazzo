@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
+
 import swift from '../src/index.js';
 
 describe('@terrazzo/plugin-swift', () => {
@@ -27,8 +29,11 @@ describe('@terrazzo/plugin-swift', () => {
     );
     const result = await build(tokens, { config, resolver, sources });
     for (const { filename, contents } of result.outputFiles) {
+      // oxlint-disable-next-line no-await-in-loop
       await expect(contents).toMatchFileSnapshot(fileURLToPath(new URL(filename, cwd)));
-      const { colors } = JSON.parse(contents) as { colors?: { color?: { components?: Record<string, string> } }[] };
+      const { colors } = JSON.parse(contents) as {
+        colors?: { color?: { components?: Record<string, string> } }[];
+      };
       for (const color of colors ?? []) {
         expect(Object.values(color.color?.components ?? {})).not.toContain('0');
         expect(Object.values(color.color?.components ?? {})).not.toContain('1');

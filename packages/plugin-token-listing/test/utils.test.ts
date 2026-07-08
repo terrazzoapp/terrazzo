@@ -1,6 +1,7 @@
 import type { Logger, TokenNormalized } from '@terrazzo/parser';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { computePreviewValue } from '../src/utils/previewValue.js';
+
+import { computePreviewValue } from '../src/utils/preview-value.js';
 import { mapValues } from '../src/utils/utils.js';
 
 describe('mapValues', () => {
@@ -43,9 +44,11 @@ describe('computePreviewValue', () => {
     stats: vi.fn(),
   };
 
+  // oxlint-disable-next-line consistent-function-scoping, func-style
   const createMockToken = (
     id: string,
     $type: any = 'color',
+    // oxlint-disable-next-line no-object-as-default-parameter
     mode: any = { '.': { $value: 'test-value' } },
   ): TokenNormalized =>
     ({
@@ -201,7 +204,10 @@ describe('computePreviewValue', () => {
         logger: mockLogger,
       });
 
-      expect(transformCSSValue).toHaveBeenCalledWith(token, expect.objectContaining({ mode: 'dark' }));
+      expect(transformCSSValue).toHaveBeenCalledWith(
+        token,
+        expect.objectContaining({ mode: 'dark' }),
+      );
     });
 
     // Note: this test was disabled because this is testing APIs of token-tools from within plugin-token-listing.

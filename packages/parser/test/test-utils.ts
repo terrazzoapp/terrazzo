@@ -25,9 +25,9 @@ export async function parserTest({ given, want }: Test[1]) {
   let result: Awaited<ReturnType<typeof parse>> | undefined;
   try {
     result = await parse(given, { config, yamlToMomoa });
-  } catch (e) {
+  } catch (error) {
     // console.error(e);
-    const err = e as TokensJSONError;
+    const err = error as TokensJSONError;
     expect(stripAnsi(err.message)).toBe(want.error);
 
     // ensure TokenValidationError contains necessary properties

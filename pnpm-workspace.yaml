@@ -19,6 +19,8 @@ catalog:
   '@vitest/coverage-v8': ^4.1.9
   colorjs.io: ^0.6.1
   dtcg-examples: ^1.0.3
+  oxfmt: ^0.57.0
+  oxlint: ^1.72.0
   playwright: ^1.61.1
   react: ^19.2.7
   react-dom: ^19.2.7

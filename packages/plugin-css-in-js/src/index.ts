@@ -2,6 +2,8 @@ import type { Plugin, TokenTransformed } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
 import { camelCase } from 'scule';
 
+/* oxlint-disable require-await */
+
 export interface CssInJsOptions {
   /**
    * Name the output file.
@@ -48,18 +50,12 @@ export default function cssInJs({ filename = 'vars.js' }: CssInJsOptions = {}): 
           }
         }
 
-        node[camelCase(last)] = token.token.jsonID.endsWith('/$root') ? { $root: tokenValue } : tokenValue;
+        node[camelCase(last)] = token.token.jsonID.endsWith('/$root')
+          ? { $root: tokenValue }
+          : tokenValue;
       }
 
       // 2. for groups with $root, flatten the nesting
-      function walk(root: Record<string, any>, cb: (node: Record<string, any>) => void) {
-        if (root && typeof root === 'object' && !Array.isArray(root)) {
-          for (const child of Object.values(root)) {
-            cb(child);
-            walk(child, cb);
-          }
-        }
-      }
       // note: we’re doing this from 2 levels up to modify this object on the fly without breaking or interrupting our walker
       walk(tokens, (parent) => {
         if (parent && typeof parent === 'object') {
@@ -93,20 +89,31 @@ export default function cssInJs({ filename = 'vars.js' }: CssInJsOptions = {}): 
       let dts = '';
       for (const group of Object.keys(tokens)) {
         js += `export const ${jsIdent(group)} = ${JSON.stringify(tokens[group], undefined, 2)};\n`;
-        dts += `export const ${jsIdent(group)}: ${JSON.stringify(tokens[group], undefined, 2).replace(/"var\(--[^)]+\)"/g, 'string')};\n`;
+        dts += `export const ${jsIdent(group)}: ${JSON.stringify(tokens[group], undefined, 2).replaceAll(/"var\(--[^)]+\)"/g, 'string')};\n`;
       }
 
       outputFile(filename, js);
 
-      const dtsFilename = typeof filename === 'string' ? filename.replace(/\.(c|m)?js$/, '.d.$1ts') : 'vars.d.ts';
+      const dtsFilename =
+        typeof filename === 'string' ? filename.replace(/\.(c|m)?js$/, '.d.$1ts') : 'vars.d.ts';
       outputFile(dtsFilename, dts);
     },
   };
 }
 
+/** Simple walker */
+function walk(root: Record<string, any>, cb: (node: Record<string, any>) => void) {
+  if (root && typeof root === 'object' && !Array.isArray(root)) {
+    for (const child of Object.values(root)) {
+      cb(child);
+      walk(child, cb);
+    }
+  }
+}
+
 /** Make a name into a valid JS identifier by adding a preceding _ */
 function jsIdent(name: string): string {
-  return !/^[A-Za-z$_]/.test(name) ? `_${name}` : name;
+  return /^[A-Za-z$_]/.test(name) ? name : `_${name}`;
 }
 
 /** JS compiler-optimizable comparator */

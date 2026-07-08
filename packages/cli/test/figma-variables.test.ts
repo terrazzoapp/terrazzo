@@ -1,4 +1,5 @@
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { getVariables } from '../src/import/figma/variables.js';
 
 vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
@@ -93,17 +94,19 @@ const publishedVariablesResponse = {
 
 describe('getVariables', () => {
   beforeEach(() => {
-    globalThis.fetch = vi.fn().mockImplementation((url: string) => {
-      return Promise.resolve(
+    globalThis.fetch = vi.fn().mockImplementation((url: string) =>
+      Promise.resolve(
         new Response(
           {
-            [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]: JSON.stringify(localVariablesResponse),
-            [`https://api.figma.com/v1/files/${FILE_KEY}/variables/published`]:
-              JSON.stringify(publishedVariablesResponse),
+            [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]:
+              JSON.stringify(localVariablesResponse),
+            [`https://api.figma.com/v1/files/${FILE_KEY}/variables/published`]: JSON.stringify(
+              publishedVariablesResponse,
+            ),
           }[url],
         ),
-      );
-    });
+      ),
+    );
   });
 
   afterAll(() => {

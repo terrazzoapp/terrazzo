@@ -14,10 +14,9 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "rolldown -c",
-    "format": "biome check --fix --unsafe src",
-    "lint": "pnpm --filter @terrazzo/icons run \"/^lint:(js|ts)/\"",
-    "lint:js": "biome check .",
-    "lint:ts": "tsc --noEmit"
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit"
   },
   "peerDependencies": {
     "react": "^19.0.0",

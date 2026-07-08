@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('8.3 Font Family', () => {
@@ -6,7 +7,12 @@ describe('8.3 Font Family', () => {
     [
       'valid: string',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: ['Helvetica'] } } }],
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { base: { $type: 'fontFamily', $value: ['Helvetica'] } },
+          },
+        ],
         want: { tokens: { base: { $value: ['Helvetica'] } } },
       },
     ],
@@ -16,7 +22,9 @@ describe('8.3 Font Family', () => {
         given: [
           {
             filename: DEFAULT_FILENAME,
-            src: { base: { $type: 'fontFamily', $value: ['Helvetica', 'system-ui', 'sans-serif'] } },
+            src: {
+              base: { $type: 'fontFamily', $value: ['Helvetica', 'system-ui', 'sans-serif'] },
+            },
           },
         ],
         want: { tokens: { base: { $value: ['Helvetica', 'system-ui', 'sans-serif'] } } },
@@ -43,7 +51,9 @@ lint:lint: 1 error`,
     [
       'invalid: empty string in array',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: [''] } } }],
+        given: [
+          { filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: [''] } } },
+        ],
         want: {
           error: `lint:core/valid-font-family: Must be a string, or array of strings.
 
@@ -62,7 +72,9 @@ lint:lint: 1 error`,
     [
       'invalid: number',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: 200 } } }],
+        given: [
+          { filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: 200 } } },
+        ],
         want: {
           error: `lint:core/valid-font-family: Must be a string, or array of strings.
 

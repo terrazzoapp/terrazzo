@@ -1,4 +1,5 @@
 import { describe, it } from 'vitest';
+
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('8.7 Number', () => {
@@ -13,7 +14,9 @@ describe('8.7 Number', () => {
     [
       'invalid',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { number: { $type: 'number', $value: '100' } } }],
+        given: [
+          { filename: DEFAULT_FILENAME, src: { number: { $type: 'number', $value: '100' } } },
+        ],
         want: {
           error: `lint:core/valid-number: Must be a number.
 

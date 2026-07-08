@@ -8,7 +8,9 @@ export function transformBoolean(
   options: TransformCSSValueOptions,
 ): TokenTransformedSingleValue['value'] {
   if (token.aliasChain?.[0]) {
-    return (options.transformAlias ?? defaultAliasTransform)(options.tokensSet[token.aliasChain[0]]!);
+    return (options.transformAlias ?? defaultAliasTransform)(
+      options.tokensSet[token.aliasChain[0]]!,
+    );
   }
   return token.$value === true ? '1' : '0';
 }

@@ -12,5 +12,7 @@ export function transformFontFamily(
   if (token.aliasChain?.[0]) {
     return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  return token.$value.map((fontName) => (FONT_NAME_KEYWORD.test(fontName) ? fontName : `"${fontName}"`)).join(', ');
+  return token.$value
+    .map((fontName) => (FONT_NAME_KEYWORD.test(fontName) ? fontName : `"${fontName}"`))
+    .join(', ');
 }

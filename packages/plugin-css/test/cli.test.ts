@@ -1,6 +1,7 @@
 import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+
 import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
 
@@ -32,12 +33,27 @@ describe('fixtures', () => {
     ['yaml', { dir: 'yaml', output: ['index.css'] }],
     ['option: outDir', { dir: 'option-out-dir', output: ['styles/out/custom.css'] }],
     ['option: legacyHex', { dir: 'option-legacy-hex', output: ['index.css'] }],
-    ['option: modeSelectors (legacy)', { dir: 'option-mode-selectors-chained-selector', output: ['index.css'] }],
-    ['option: omitTypographyShorthand', { dir: 'option-omit-typography-shorthand', output: ['index.css'] }],
-    ['option: subValueVariableName', { dir: 'option-sub-value-variable-name', output: ['index.css'] }],
+    [
+      'option: modeSelectors (legacy)',
+      { dir: 'option-mode-selectors-chained-selector', output: ['index.css'] },
+    ],
+    [
+      'option: omitTypographyShorthand',
+      { dir: 'option-omit-typography-shorthand', output: ['index.css'] },
+    ],
+    [
+      'option: subValueVariableName',
+      { dir: 'option-sub-value-variable-name', output: ['index.css'] },
+    ],
     ['option: transform (manual hex)', { dir: 'option-transform-hex', output: ['index.css'] }],
-    ['option: transform (exclude tokens)', { dir: 'option-transform-exclude', output: ['index.css'] }],
-    ['option: transform (per permutation)', { dir: 'option-transform-per-permutation', output: ['index.css'] }],
+    [
+      'option: transform (exclude tokens)',
+      { dir: 'option-transform-exclude', output: ['index.css'] },
+    ],
+    [
+      'option: transform (per permutation)',
+      { dir: 'option-transform-per-permutation', output: ['index.css'] },
+    ],
     ['option: utility', { dir: 'option-utility', output: ['utility.css'] }],
     ['option: utility (legacy modes)', { dir: 'option-utility-modes', output: ['utility.css'] }],
     ['option: baseSelector (deprecated)', { dir: 'option-base-selector', output: ['index.css'] }],
@@ -47,7 +63,10 @@ describe('fixtures', () => {
     ['DS: Figma SDS', { dir: 'ds-figma-sds', output: ['sds.css'] }],
     ['DS: GitHub Primer', { dir: 'ds-github-primer', output: ['primer.css'] }],
     ['DS: Microsoft Fluent', { dir: 'ds-microsoft-fluent', output: ['fluent.css'] }],
-    ['multiple outputs', { dir: 'mulitiple-outputs', output: ['tokens-default.css', 'tokens-brand2.css'] }],
+    [
+      'multiple outputs',
+      { dir: 'mulitiple-outputs', output: ['tokens-default.css', 'tokens-brand2.css'] },
+    ],
   ];
 
   it.each(tests)(
@@ -56,6 +75,7 @@ describe('fixtures', () => {
       const cwd = new URL(dir.replace(/\/?$/, '/'), FIXTURE_ROOT);
       await execaNode({ cwd })`${cmd} build${config ? ` -c ${config}` : ''}`;
       for (const file of output) {
+        // oxlint-disable-next-line no-await-in-loop
         await expect(await fs.readFile(new URL(file, cwd), 'utf8')).toMatchFileSnapshot(
           fileURLToPath(new URL(file.replace(/\.css$/, '.want.css'), cwd)),
         );
@@ -114,7 +134,9 @@ describe('CLI', () => {
       await execaNode({ cwd })`${cmd} build`;
       const after = await fs.readdir(cwd);
       // assert absolutely no files or folders were created
-      expect(after.length, `${after.length - before.length} file/folder(s) generated`).toBe(before.length);
+      expect(after.length, `${after.length - before.length} file/folder(s) generated`).toBe(
+        before.length,
+      );
     }, 20_000);
   });
 });

@@ -30,6 +30,7 @@ export function generateShorthand({
       if (omitTypographyShorthand) {
         return undefined;
       }
+      // oxlint-disable-next-line func-style
       const typeVar = (name: string) => makeCSSVar(`${localID}-${name}`, { wrapVar: true });
       // Note: typography tokens should have both of these properties, but this is just being defensive
       if ('font-size' in token.$value && 'font-family' in token.$value) {
@@ -69,9 +70,12 @@ export interface MakeCSSVarOptions {
  * Generate a valid CSS variable from any string
  * Code by @dfrankland
  */
-export function makeCSSVar(name: string, { prefix, wrapVar = false }: MakeCSSVarOptions = {}): string {
+export function makeCSSVar(
+  name: string,
+  { prefix, wrapVar = false }: MakeCSSVarOptions = {},
+): string {
   if (typeof name !== 'string') {
-    throw new Error(`makeCSSVar() Expected string, received ${name}`);
+    throw new TypeError(`makeCSSVar() Expected string, received ${name}`);
   }
 
   let property = name.split(CSS_VAR_RE).filter(Boolean).join('-');

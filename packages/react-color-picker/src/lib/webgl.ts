@@ -1,11 +1,12 @@
 import type { PlainColorObject } from 'colorjs.io/fn';
+
 import { OKLAB } from './oklab.js';
 import { LINEAR_RGB } from './rgb.js';
 
-// biome-ignore format: this is formatted
+// oxfmt-ignore
 const TRIANGLES = new Float32Array([
-  -1, -1, 1, -1, -1,  1, // first triangle
-  -1,  1, 1, -1,  1,  1, // second triangle
+  -1, -1, 1, -1, -1, 1, // first triangle
+  -1, 1, 1, -1, 1, 1, // second triangle
 ]);
 
 /** create a WebGL2 rendering context and throw errors if needed */
@@ -129,7 +130,11 @@ export class GradientOklab {
     canvas,
     startColor,
     endColor,
-  }: { canvas: HTMLCanvasElement; startColor: PlainColorObject; endColor: PlainColorObject }) {
+  }: {
+    canvas: HTMLCanvasElement;
+    startColor: PlainColorObject;
+    endColor: PlainColorObject;
+  }) {
     this.gl = createRenderingContext(canvas);
     this.program = createProgram({
       gl: this.gl,
@@ -138,10 +143,22 @@ export class GradientOklab {
     });
 
     // get attribute locations
-    this.attr.a_position = this.gl.getAttribLocation(this.program, GRADIENT_RGB_SHADERS.attrs.a_position);
-    this.attr.a_resolution = this.gl.getAttribLocation(this.program, GRADIENT_RGB_SHADERS.attrs.a_resolution);
-    this.attr.a_start_color = this.gl.getAttribLocation(this.program, GRADIENT_RGB_SHADERS.attrs.a_start_color);
-    this.attr.a_end_color = this.gl.getAttribLocation(this.program, GRADIENT_RGB_SHADERS.attrs.a_end_color);
+    this.attr.a_position = this.gl.getAttribLocation(
+      this.program,
+      GRADIENT_RGB_SHADERS.attrs.a_position,
+    );
+    this.attr.a_resolution = this.gl.getAttribLocation(
+      this.program,
+      GRADIENT_RGB_SHADERS.attrs.a_resolution,
+    );
+    this.attr.a_start_color = this.gl.getAttribLocation(
+      this.program,
+      GRADIENT_RGB_SHADERS.attrs.a_start_color,
+    );
+    this.attr.a_end_color = this.gl.getAttribLocation(
+      this.program,
+      GRADIENT_RGB_SHADERS.attrs.a_end_color,
+    );
     this.gl.enableVertexAttribArray(this.attr.a_position);
 
     // keep canvas size up-to-date
@@ -264,11 +281,18 @@ export class HueWheel {
 
   constructor({ canvas, gamut = 'srgb' }: { canvas: HTMLCanvasElement; gamut?: 'srgb' | 'p3' }) {
     this.gl = createRenderingContext(canvas);
-    this.program = createProgram({ gl: this.gl, vShaderSrc: HUE_SHADERS.vShader, fShaderSrc: HUE_SHADERS.fShader });
+    this.program = createProgram({
+      gl: this.gl,
+      vShaderSrc: HUE_SHADERS.vShader,
+      fShaderSrc: HUE_SHADERS.fShader,
+    });
 
     // get attribute locations
     this.attr.a_position = this.gl.getAttribLocation(this.program, HUE_SHADERS.attrs.a_position);
-    this.attr.a_resolution = this.gl.getAttribLocation(this.program, HUE_SHADERS.attrs.a_resolution);
+    this.attr.a_resolution = this.gl.getAttribLocation(
+      this.program,
+      HUE_SHADERS.attrs.a_resolution,
+    );
     this.gl.enableVertexAttribArray(this.attr.a_position);
 
     // keep canvas size up-to-date

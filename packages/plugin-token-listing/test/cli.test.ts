@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+
 import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
 
@@ -76,10 +77,12 @@ describe('tz build', () => {
 
       const actual = fs.readFileSync(new URL('./styles/out/actual.listing.json', cwd), 'utf8');
       const comparable = actual
-        .replace(/"line": \d+/g, '"line": 0')
-        .replace(/"column": \d+/g, '"column": 0')
-        .replace(/"offset": \d+/g, '"offset": 0');
-      await expect(comparable).toMatchFileSnapshot(fileURLToPath(new URL('./styles/out/want.listing.json', cwd)));
+        .replaceAll(/"line": \d+/g, '"line": 0')
+        .replaceAll(/"column": \d+/g, '"column": 0')
+        .replaceAll(/"offset": \d+/g, '"offset": 0');
+      await expect(comparable).toMatchFileSnapshot(
+        fileURLToPath(new URL('./styles/out/want.listing.json', cwd)),
+      );
     });
   });
 });

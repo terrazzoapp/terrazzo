@@ -475,8 +475,7 @@ export default defineConfig({
           input: { theme: "dark" },
         },
         {
-          prepare: (contents) =>
-            `@media (width >= 600px) {\n  :root {\n    ${contents}\n  }\n}`,
+          prepare: (contents) => `@media (width >= 600px) {\n  :root {\n    ${contents}\n  }\n}`,
           input: { size: "desktop" },
         },
         {

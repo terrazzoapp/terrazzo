@@ -1,7 +1,15 @@
 import type { Logger, TokenTransformed } from '@terrazzo/parser';
 import { CachedWildcardMatcher, kebabCase } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
-import { type CSSRule, decl, PLUGIN_NAME, rule, type UtilityCSSGroup, type UtilityCSSPrefix } from './lib.js';
+
+import {
+  type CSSRule,
+  decl,
+  PLUGIN_NAME,
+  rule,
+  type UtilityCSSGroup,
+  type UtilityCSSPrefix,
+} from './lib.js';
 
 // micro-optimization: precompile all RegExs (which can be known) because dynamic compilation is a waste of resources
 const GROUP_REGEX: Record<UtilityCSSPrefix, RegExp> = {
@@ -16,8 +24,14 @@ const GROUP_REGEX: Record<UtilityCSSPrefix, RegExp> = {
 };
 
 /** Make CSS class name from transformed token */
-function makePrelude(token: TokenTransformed, prefix: UtilityCSSPrefix, subgroup?: string): CSSRule['prelude'] {
-  return [`.${prefix}${subgroup || ''}-${kebabCase(token.token.id).replace(GROUP_REGEX[prefix], '')}`];
+function makePrelude(
+  token: TokenTransformed,
+  prefix: UtilityCSSPrefix,
+  subgroup?: string,
+): CSSRule['prelude'] {
+  return [
+    `.${prefix}${subgroup || ''}-${kebabCase(token.token.id).replace(GROUP_REGEX[prefix], '')}`,
+  ];
 }
 
 function makeVarValue(token: TokenTransformed): string {
@@ -38,7 +52,7 @@ export default function generateUtilityCSS(
   for (const [group, selectors] of groupEntries) {
     const selectorMatcher = utilityMatcher.match(selectors);
     const matchingTokens = tokens.filter((token) => selectorMatcher(token.token.id));
-    if (!matchingTokens.length) {
+    if (matchingTokens.length === 0) {
       logger.warn({
         group: 'plugin',
         label: PLUGIN_NAME,
@@ -89,7 +103,11 @@ export default function generateUtilityCSS(
               strokeStyle: `border-${side}-style`,
             }[token.token.$type as string];
             if (property) {
-              root.push(rule(makePrelude(token, 'border', `-${side}`), [decl(property, makeVarValue(token))]));
+              root.push(
+                rule(makePrelude(token, 'border', `-${side}`), [
+                  decl(property, makeVarValue(token)),
+                ]),
+              );
             }
           }
         }
@@ -100,7 +118,10 @@ export default function generateUtilityCSS(
           const prelude = makePrelude(token, 'font');
           if (token.token.$type === 'typography' && token.type === 'MULTI_VALUE') {
             const value = Object.keys(token.value).map((property) =>
-              decl(property, makeCSSVar(`${token.localID ?? token.token.id}-${property}`, { wrapVar: true })),
+              decl(
+                property,
+                makeCSSVar(`${token.localID ?? token.token.id}-${property}`, { wrapVar: true }),
+              ),
             );
             root.push(rule(prelude, value));
           } else {
@@ -125,11 +146,15 @@ export default function generateUtilityCSS(
         }
         // specific properties
         for (const token of filteredTokens) {
-          root.push(rule(makePrelude(token, 'gap', '-col'), [decl('column-gap', makeVarValue(token))]));
+          root.push(
+            rule(makePrelude(token, 'gap', '-col'), [decl('column-gap', makeVarValue(token))]),
+          );
         }
         // specific properties
         for (const token of filteredTokens) {
-          root.push(rule(makePrelude(token, 'gap', '-row'), [decl('row-gap', makeVarValue(token))]));
+          root.push(
+            rule(makePrelude(token, 'gap', '-row'), [decl('row-gap', makeVarValue(token))]),
+          );
         }
 
         // margin/padding
@@ -157,7 +182,11 @@ export default function generateUtilityCSS(
           }
           for (const side of ['top', 'right', 'bottom', 'left']) {
             for (const token of filteredTokens) {
-              root.push(rule(makePrelude(token, prefix, side[0]), [decl(`${property}-${side}`, makeVarValue(token))]));
+              root.push(
+                rule(makePrelude(token, prefix, side[0]), [
+                  decl(`${property}-${side}`, makeVarValue(token)),
+                ]),
+              );
             }
           }
           for (const token of filteredTokens) {
@@ -175,7 +204,9 @@ export default function generateUtilityCSS(
       case 'shadow': {
         for (const token of matchingTokens) {
           if (token.token.$type === 'shadow') {
-            root.push(rule(makePrelude(token, 'shadow'), [decl('box-shadow', makeVarValue(token))]));
+            root.push(
+              rule(makePrelude(token, 'shadow'), [decl('box-shadow', makeVarValue(token))]),
+            );
           }
         }
         break;
@@ -204,7 +235,11 @@ export default function generateUtilityCSS(
         break;
       }
       default: {
-        logger.warn({ group: 'plugin', label: PLUGIN_NAME, message: `unknown utility CSS group "${group}", ignoring` });
+        logger.warn({
+          group: 'plugin',
+          label: PLUGIN_NAME,
+          message: `unknown utility CSS group "${group}", ignoring`,
+        });
         break;
       }
     }

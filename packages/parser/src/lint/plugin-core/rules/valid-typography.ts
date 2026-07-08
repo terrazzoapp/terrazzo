@@ -1,6 +1,7 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
-import type { LintRule } from '../../../types.js';
+
+import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 import { cachedLintMatcher } from '../lib/matchers.js';
 
@@ -40,28 +41,45 @@ const rule: LintRule<typeof ERROR | typeof ERROR_MISSING, RuleValidTypographyOpt
       validateTypography(t.originalValue.$value, {
         node: getObjMember(t.source.node, '$value') as momoa.ObjectNode,
         filename: t.source.filename,
+        options,
+        report,
       });
-
-      // Note: we validate sub-properties using other checks like valid-dimension, valid-font-family, etc.
-      // The only thing remaining is to check that all properties exist (since missing properties won’t appear as invalid)
-      function validateTypography(value: unknown, { node, filename }: { node: momoa.ObjectNode; filename?: string }) {
-        if (value && typeof value === 'object') {
-          for (const property of options.requiredProperties) {
-            if (!(property in value)) {
-              report({ messageId: ERROR_MISSING, data: { property }, node, filename });
-            }
-          }
-        } else {
-          report({
-            messageId: ERROR,
-            data: { value: JSON.stringify(value) },
-            node,
-            filename,
-          });
-        }
-      }
     }
   },
 };
+
+type Context = LintRuleContext<typeof ERROR | typeof ERROR_MISSING, RuleValidTypographyOptions>;
+
+// Note: we validate sub-properties using other checks like valid-dimension, valid-font-family, etc.
+// The only thing remaining is to check that all properties exist (since missing properties won’t appear as invalid)
+function validateTypography(
+  value: unknown,
+  {
+    node,
+    filename,
+    options,
+    report,
+  }: {
+    node: momoa.ObjectNode;
+    filename?: string;
+    options: Context['options'];
+    report: Context['report'];
+  },
+) {
+  if (value && typeof value === 'object') {
+    for (const property of options.requiredProperties) {
+      if (!(property in value)) {
+        report({ messageId: ERROR_MISSING, data: { property }, node, filename });
+      }
+    }
+  } else {
+    report({
+      messageId: ERROR,
+      data: { value: JSON.stringify(value) },
+      node,
+      filename,
+    });
+  }
+}
 
 export default rule;

@@ -32,5 +32,5 @@ export function relPath(a: URL, b: URL): string {
       break;
     }
   }
-  return `${diff > 0 ? `${('../').repeat(diff)}` : './'}${bParts.join('/')}`;
+  return `${diff > 0 ? `${'../'.repeat(diff)}` : './'}${bParts.join('/')}`;
 }

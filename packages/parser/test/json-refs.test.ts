@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises';
+
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
+
 import { defineConfig, parse } from '../src/index.js';
 import { cwd, DEFAULT_FILENAME } from './test-utils.js';
 
@@ -15,9 +17,17 @@ describe('JSON $refs', () => {
     };
     const config = defineConfig({}, { cwd });
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-    expect(tokens['color.gray.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
+    expect(tokens['color.gray.1']?.$value).toEqual({
+      colorSpace: 'srgb',
+      components: [0.2, 0.2, 0.2],
+      alpha: 1,
+    });
     expect(tokens['color.gray.1']?.aliasOf).toBeUndefined();
-    expect(tokens['color.grey.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
+    expect(tokens['color.grey.1']?.$value).toEqual({
+      colorSpace: 'srgb',
+      components: [0.2, 0.2, 0.2],
+      alpha: 1,
+    });
     expect(tokens['color.grey.1']?.aliasOf).toBe('color.gray.1');
     expect(tokens['color.grey.1']?.dependencies).toEqual(['#/color/gray/1']);
   });
@@ -32,8 +42,16 @@ describe('JSON $refs', () => {
     };
     const config = defineConfig({}, { cwd });
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-    expect(tokens['color.gray.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
-    expect(tokens['color.grey.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
+    expect(tokens['color.gray.1']?.$value).toEqual({
+      colorSpace: 'srgb',
+      components: [0.2, 0.2, 0.2],
+      alpha: 1,
+    });
+    expect(tokens['color.grey.1']?.$value).toEqual({
+      colorSpace: 'srgb',
+      components: [0.2, 0.2, 0.2],
+      alpha: 1,
+    });
   });
 
   it('array $refs', async () => {
@@ -61,7 +79,12 @@ describe('JSON $refs', () => {
     expect(tokens['perc.100']?.$value).toBe(1);
     expect(tokens['ease.linear']?.$value).toEqual([0, 0, 1, 1]);
     expect(tokens['ease.linear']?.aliasOf).toBeUndefined();
-    expect(tokens['ease.linear']?.partialAliasOf).toEqual(['perc.0', 'perc.0', 'perc.100', 'perc.100']);
+    expect(tokens['ease.linear']?.partialAliasOf).toEqual([
+      'perc.0',
+      'perc.0',
+      'perc.100',
+      'perc.100',
+    ]);
     expect(tokens['ease.linear']?.dependencies).toEqual(['#/perc/0/$value', '#/perc/100/$value']);
   });
 
@@ -70,16 +93,31 @@ describe('JSON $refs', () => {
       color: {
         $type: 'color',
         gray: { 1: { $value: { colorSpace: 'srgb', components: [0.2, 0.2, 0.2] } } },
-        grey: { $ref: '#/color/gray', 2: { $value: { colorSpace: 'srgb', components: [0.3, 0.3, 0.3] } } },
+        grey: {
+          $ref: '#/color/gray',
+          2: { $value: { colorSpace: 'srgb', components: [0.3, 0.3, 0.3] } },
+        },
       },
     };
     const config = defineConfig({}, { cwd });
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-    expect(tokens['color.gray.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
+    expect(tokens['color.gray.1']?.$value).toEqual({
+      colorSpace: 'srgb',
+      components: [0.2, 0.2, 0.2],
+      alpha: 1,
+    });
     expect(tokens['color.gray.2']).toBeUndefined(); // assert original node doesn’t get polluted
-    expect(tokens['color.grey.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
+    expect(tokens['color.grey.1']?.$value).toEqual({
+      colorSpace: 'srgb',
+      components: [0.2, 0.2, 0.2],
+      alpha: 1,
+    });
     expect(tokens['color.grey.1']?.aliasOf).toBeUndefined();
-    expect(tokens['color.grey.2']?.$value).toEqual({ colorSpace: 'srgb', components: [0.3, 0.3, 0.3], alpha: 1 });
+    expect(tokens['color.grey.2']?.$value).toEqual({
+      colorSpace: 'srgb',
+      components: [0.3, 0.3, 0.3],
+      alpha: 1,
+    });
     expect(tokens['color.grey.2']?.aliasOf).toBeUndefined();
   });
 
@@ -116,7 +154,11 @@ describe('JSON $refs', () => {
     };
     const config = defineConfig({}, { cwd });
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-    expect(tokens['color.red.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.4, 0.1, 0], alpha: 1 });
+    expect(tokens['color.red.1']?.$value).toEqual({
+      colorSpace: 'srgb',
+      components: [0.4, 0.1, 0],
+      alpha: 1,
+    });
   });
 
   it('flattens $refs correctly', async () => {
@@ -240,10 +282,9 @@ describe('JSON $refs', () => {
     try {
       await parse([{ filename: DEFAULT_FILENAME, src }], { config });
       expect(true).toBe(false);
-    } catch (err) {
-      expect(
-        stripAnsi((err as Error).message),
-      ).toMatch(`parser:init: $ref "#/" can’t recursively embed its parent document
+    } catch (error) {
+      expect(stripAnsi((error as Error).message))
+        .toMatch(`parser:init: $ref "#/" can’t recursively embed its parent document
 
   2 |   "$ref": "#\\/"
   3 | }`);
@@ -262,8 +303,9 @@ describe('JSON $refs', () => {
     try {
       await parse([{ filename: DEFAULT_FILENAME, src }], { config });
       expect(true).toBe(false);
-    } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatch(`parser:init: Circular $ref detected: "#/color/grey"
+    } catch (error) {
+      expect(stripAnsi((error as Error).message))
+        .toMatch(`parser:init: Circular $ref detected: "#/color/grey"
 
   3 |     "$type": "color",
   4 |     "gray": {
@@ -286,8 +328,9 @@ describe('JSON $refs', () => {
     try {
       await parse([{ filename: DEFAULT_FILENAME, src }], { config });
       expect(true).toBe(false);
-    } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatch(`parser:init: Invalid $ref. Expected string.
+    } catch (error) {
+      expect(stripAnsi((error as Error).message))
+        .toMatch(`parser:init: Invalid $ref. Expected string.
 
   4 |     "blue": {
   5 |       "100": {
