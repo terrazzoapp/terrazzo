@@ -1,5 +1,9 @@
 import 'react';
 
+/* oxlint-disable consistent-indexed-object-style */
+
 declare module 'react' {
-  type CSSProperties = Record<`--${string}`, string | number | undefined>;
+  interface CSSProperties {
+    [key: `--${string}`]: string | number | undefined;
+  }
 }

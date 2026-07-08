@@ -36,7 +36,7 @@
     "dev": "rolldown --watch -c",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "lint": "oxlint --quiet && oxfmt --check",
+    "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit",
     "test": "vitest run"
   },
   "peerDependencies": {

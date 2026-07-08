@@ -29,7 +29,7 @@
     "dev": "pnpm run build && chokidar \"./src/**/*\" -c \"rollup -c rollup.config.js\"",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "lint": "oxlint --quiet && oxfmt --check"
+    "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit"
   },
   "peerDependencies": {
     "colorjs.io": "^0.6.0",

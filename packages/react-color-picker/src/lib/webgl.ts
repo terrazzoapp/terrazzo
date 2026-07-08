@@ -3,20 +3,10 @@ import type { PlainColorObject } from 'colorjs.io/fn';
 import { OKLAB } from './oklab.js';
 import { LINEAR_RGB } from './rgb.js';
 
-// biome-ignore format: this is formatted
+// oxfmt-ignore
 const TRIANGLES = new Float32Array([
-  -1,
-  -1,
-  1,
-  -1,
-  -1,
-  1, // first triangle
-  -1,
-  1,
-  1,
-  -1,
-  1,
-  1, // second triangle
+  -1, -1, 1, -1, -1, 1, // first triangle
+  -1, 1, 1, -1, 1, 1, // second triangle
 ]);
 
 /** create a WebGL2 rendering context and throw errors if needed */

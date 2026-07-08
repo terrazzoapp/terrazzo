@@ -5,5 +5,5 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["./*.{js,ts}", "test/index.test.tsx"]
+  "include": ["src"]
 }
