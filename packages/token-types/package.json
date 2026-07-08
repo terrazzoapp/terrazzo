@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/token-types",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Shared dependency-free TypeScript types for DTCG design tokens.",
   "license": "MIT",
   "type": "module",

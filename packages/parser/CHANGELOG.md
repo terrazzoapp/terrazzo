@@ -1,5 +1,19 @@
 # @terrazzo/parser
 
+## 2.5.0
+
+### Minor Changes
+
+- [#762](https://github.com/terrazzoapp/terrazzo/pull/762) [`a05196b`](https://github.com/terrazzoapp/terrazzo/commit/a05196bb373c03528ca6cd6eabd6805ff27b009c) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Add `resolveAliases` option to `resolver.apply` API
+
+  Setting this option to `false` allows partial application of input to the resolver using the `sets` and
+  `modifiers` options in the same API.
+
+### Patch Changes
+
+- Updated dependencies [[`f694aa2`](https://github.com/terrazzoapp/terrazzo/commit/f694aa25ff2636e4d0c21c141d51b1756c47e767)]:
+  - @terrazzo/token-types@2.4.1
+
 ## 2.4.0
 
 ### Minor Changes
