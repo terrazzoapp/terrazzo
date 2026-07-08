@@ -29,8 +29,8 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "@radix-ui/react-select": "^2.3.1",
-    "@radix-ui/react-tooltip": "^1.2.10",
+    "@radix-ui/react-select": "^2.3.3",
+    "@radix-ui/react-tooltip": "^1.2.12",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/tokens": "workspace:^",

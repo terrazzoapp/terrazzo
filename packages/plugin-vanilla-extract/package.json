@@ -49,7 +49,7 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vanilla-extract/css": "^1.21.1",
-    "@vanilla-extract/vite-plugin": "^5.2.3",
+    "@vanilla-extract/vite-plugin": "^5.2.4",
     "dtcg-examples": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"

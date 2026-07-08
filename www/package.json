@@ -19,11 +19,11 @@
     "@terrazzo/token-lab": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
-    "algoliasearch": "^5.55.1",
+    "algoliasearch": "^5.55.2",
     "nanoid": "^5.1.16",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-instantsearch": "^7.38.0",
+    "react-instantsearch": "^7.39.0",
     "shiki": "^1.29.2"
   },
   "devDependencies": {
