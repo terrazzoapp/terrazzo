@@ -141,11 +141,6 @@ export default async function build(
             });
             return;
           }
-          const tokens = resolver.apply(params.input ?? {});
-          const token = tokens[id]!;
-          if (!token) {
-            logger.error({ group: 'plugin', label: plugin.name, message: `No token "${id}"` });
-          }
           const isLegacyModes =
             params.input && Object.keys(params.input).length === 1 && 'tzMode' in params.input;
           const permutationID =
@@ -162,6 +157,14 @@ export default async function build(
             params: { ...(params as any), value: cleanValue },
             pluginName: plugin.name,
           });
+
+          // If we are in legacy mode, use the provided tokens. If we are in resolver mode,
+          // use the current input to ensure we capture tokens that might not have been declared under
+          // the initial default input
+          const token =  (mode ? tokens : resolver.apply(params.input ?? {}))[id]!;
+          if (!token) {
+            logger.error({ group: 'plugin', label: plugin.name, message: `No token "${id}"` });
+          }
 
           // upsert
           if (!formats[params.format]) {
