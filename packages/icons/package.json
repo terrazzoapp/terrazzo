@@ -13,7 +13,8 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "build": "rolldown -c",
+    "build": "tsc -b tsconfig.build.json && attw --profile esm-only --pack .",
+    "dev": "tsc -b tsconfig.build.json -w",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit"
