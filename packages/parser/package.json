@@ -38,7 +38,6 @@
     "dev": "tsc -b tsconfig.build.json -w",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "format": "oxfmt",
     "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit",
     "test": "vitest run"
   },
