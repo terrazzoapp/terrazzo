@@ -10,7 +10,7 @@ import {
   serialize,
   to as convert,
 } from 'colorjs.io/fn';
-import { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 /* oxlint-disable ban-ts-comment, no-accessor-recursion */
 
@@ -214,7 +214,9 @@ function isDifferent(a: ColorInput, b: ColorInput) {
 /**
  * memoize Color.js colors and reduce unnecessary updates
  */
-export default function useColor(color: ColorInput): [ColorOutput, (color: ColorInput) => void] {
+export default function useColor(
+  color: ColorInput,
+): [ColorOutput, React.Dispatch<React.SetStateAction<ColorInput>>] {
   const lastColor = useRef(color);
   const [innerColor, setInnerColor] = useState(() => parse(color));
 
@@ -223,17 +225,16 @@ export default function useColor(color: ColorInput): [ColorOutput, (color: Color
     lastColor.current = color;
   }
 
-  const setColorOutput = useCallback((newColor: React.SetStateAction<ColorInput>) => {
-    if (typeof newColor === 'function') {
-      newColor((value) => {
-        const next = parse(value);
-        setInnerColor(next);
-        return next.original;
-      });
-    } else if (newColor) {
-      setInnerColor(parse(newColor));
-    }
-  }, []);
+  const setColorOutput = useCallback<React.Dispatch<React.SetStateAction<ColorInput>>>(
+    (newColor) => {
+      if (typeof newColor === 'function') {
+        setInnerColor((value) => parse(newColor(value.original)));
+      } else if (newColor) {
+        setInnerColor(parse(newColor));
+      }
+    },
+    [],
+  );
 
   return [innerColor, setColorOutput];
 }
