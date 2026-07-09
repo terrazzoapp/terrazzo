@@ -31,7 +31,7 @@ describe('@terrazzo/plugin-swift', () => {
     for (const { filename, contents } of result.outputFiles) {
       // oxlint-disable-next-line no-await-in-loop
       await expect(contents).toMatchFileSnapshot(fileURLToPath(new URL(filename, cwd)));
-      const { colors } = JSON.parse(contents) as {
+      const { colors } = JSON.parse(contents.toString()) as {
         colors?: { color?: { components?: Record<string, string> } }[];
       };
       for (const color of colors ?? []) {
