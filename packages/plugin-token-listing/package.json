@@ -27,8 +27,8 @@
     "directory": "./packages/plugin-token-listing/"
   },
   "scripts": {
-    "build": "rolldown -c && attw --profile esm-only --pack .",
-    "dev": "rolldown -w -c",
+    "build": "tsc -b tsconfig.build.json && attw --profile esm-only --pack .",
+    "dev": "tsc -b tsconfig.build.json -w",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit",

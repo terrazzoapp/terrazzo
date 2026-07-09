@@ -1,11 +1,4 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "lib": ["DOM", "ESNext"],
-    "outDir": "dist",
-    "types": ["node"]
-  },
-  "include": ["src", "test"],
-  "exclude": ["node_modules", "./test/fixtures/**"]
+  "exclude": ["./test/fixtures"]
 }

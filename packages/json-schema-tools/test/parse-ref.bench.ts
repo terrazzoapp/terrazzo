@@ -1,4 +1,4 @@
-import Pointer from '@apidevtools/json-schema-ref-parser/lib/pointer.js';
+import Pointer from '@apidevtools/json-schema-ref-parser/dist/lib/pointer.js';
 import { bench, describe } from 'vitest';
 
 import { parseRef } from '../src/index.js';
