@@ -65,11 +65,11 @@ A unit of distance as defined in [DTCG 8.2](https://design-tokens.github.io/comm
   "space": {
     "md": {
       "$type": "dimension",
-      "$value": "16px"
+      "$value": { "value": 16, "unit": "px" }
     },
     "lg": {
       "$type": "dimension",
-      "$value": "32px"
+      "$value": { "value": 32, "unit": "px" }
     }
   }
 }

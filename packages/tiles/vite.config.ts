@@ -16,7 +16,11 @@ export default defineConfig({
       fileName: 'index',
     },
     rolldownOptions: {
-      external: [...Object.keys(PKG_JSON.dependencies), ...Object.keys(PKG_JSON.devDependencies)],
+      external: [
+        'react/jsx-runtime',
+        ...Object.keys(PKG_JSON.dependencies),
+        ...Object.keys(PKG_JSON.devDependencies),
+      ],
     },
   },
   test: {
