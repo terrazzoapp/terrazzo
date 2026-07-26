@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { execaNode } from 'execa';
+import { execa, execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
 
 describe('@terrazzo/plugin-js', () => {
@@ -115,10 +115,7 @@ color.$value.components satisfies (number | null)[];
           }),
         );
 
-        const tsc = fileURLToPath(
-          new URL('../../../node_modules/typescript-7/bin/tsc', import.meta.url),
-        );
-        await execaNode(tsc, ['-p', tmp]);
+        await execa`pnpm exec tsc -p ${tmp}`;
       } finally {
         await fs.rm(tmp, { recursive: true, force: true });
       }

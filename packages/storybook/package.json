@@ -29,6 +29,7 @@
     "colorjs.io": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "storybook": "^10.5.4"
+    "storybook": "^10.5.4",
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
   }
 }

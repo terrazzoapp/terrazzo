@@ -14,9 +14,14 @@
     "directory": "./packages/tiles/"
   },
   "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./all-components.css": "./dist/index.css",
+    "./*": "./dist/*"
+  },
   "scripts": {
-    "build": "rollup -c rollup.config.js && size-limit",
-    "dev": "pnpm run build && chokidar \"src/**/*\" -c \"rollup -c rollup.config.js\"",
+    "build": "vite build && size-limit",
+    "dev": "pnpm run build && chokidar \"src/**/*\" -c \"vite build\"",
     "fmt": "oxfmt && pnpm --filter @terrazzo/tiles run fmt:css",
     "fmt:check": "oxfmt --check",
     "fmt:css": "stylelint --fix \"src/**/*.css\"",
@@ -41,17 +46,16 @@
     "shiki": "^3.23.0"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^12.3.0",
     "@size-limit/preset-small-lib": "^12.1.0",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@typescript/typescript6": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "chokidar-cli": "^3.0.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "rollup": "^4.62.2",
-    "rollup-plugin-import-css": "^4.2.1",
     "size-limit": "^12.1.0",
+    "vite-plugin-dts": "catalog:",
     "vitest-axe": "^0.1.0"
   }
 }
