@@ -2,6 +2,7 @@
   "json.schemaDownload.trustedDomains": {
     "https://www.designtokens.org": true,
     "https://turbo.build": true,
+    "https://unpkg.com": true
   },
   "[css]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
