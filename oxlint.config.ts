@@ -10,11 +10,9 @@ export default defineConfig({
     suspicious: 'error',
   },
 
-  ignorePatterns: ['dist/**', 'test/fixtures/**'],
+  ignorePatterns: ['**/dist/**', '**/test/fixtures/**'],
 
-  jsPlugins: [
-    { name: 'simple-import-sort', specifier: 'eslint-plugin-simple-import-sort' },
-  ],
+  jsPlugins: [{ name: 'simple-import-sort', specifier: 'eslint-plugin-simple-import-sort' }],
 
   overrides: [
     // test overrides
@@ -32,17 +30,17 @@ export default defineConfig({
   ],
 
   options: {
-    reportUnusedDisableDirectives: 'error'
+    reportUnusedDisableDirectives: 'error',
   },
 
   rules: {
     'capitalized-comments': 'off',
     'consistent-type-imports': [
-      'error', {
+      'error',
+      {
         fixStyle: 'inline-type-imports',
         prefer: 'type-imports',
       },
-
     ],
     'consistent-generic-constructors': 'off', // mostly noise
     'default-param-last': 'off',
@@ -101,4 +99,4 @@ export default defineConfig({
     'unicorn/prefer-spread': 'off',
     'unicorn/no-useless-undefined': 'off', // overreaching
   },
-})
+});
