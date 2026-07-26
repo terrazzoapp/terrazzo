@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/json-schema-tools",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Bundle JSON Schema documents and tools for resolving $refs.",
   "type": "module",
   "keywords": [

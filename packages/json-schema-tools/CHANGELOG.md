@@ -1,5 +1,11 @@
 # @terrazzo/json-schema-tools
 
+## 0.2.2
+
+### Patch Changes
+
+- [#791](https://github.com/terrazzoapp/terrazzo/pull/791) [`2a7bb89`](https://github.com/terrazzoapp/terrazzo/commit/2a7bb898033ffbf5d4d1c5a120aa60a78dfca7ed) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Upgrade to tsgo/TypeScript 7
+
 ## 0.2.1
 
 ### Patch Changes
