@@ -1,3 +1,4 @@
+import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
@@ -26,8 +27,10 @@ export default defineConfig({
     remarkRehype: {
       allowDangerousHtml: true,
     },
-    remarkPlugins: [remarkDirective, remarkVitepress, remarkColorSwatch],
-    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeAutoToc],
+    processor: unified({
+      remarkPlugins: [remarkDirective, remarkVitepress, remarkColorSwatch],
+      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeAutoToc],
+    }),
   },
 
   redirects: {
