@@ -269,13 +269,13 @@ Just as with colors, we run into the exact same problem—if we have 1 token _pe
   "typography": {
     "size": {
       "$type": "dimension",
-      "title1-xSmall": { "$value": "25px" },
-      "title1-Small": { "$value": "26px" },
-      "title1-Medium": { "$value": "27px" },
-      "title1-Large": { "$value": "28px" },
-      "title1-xLarge": { "$value": "30px" },
-      "title1-xxLarge": { "$value": "32px" },
-      "title1-xxxLarge": { "$value": "32px" }
+      "title1-xSmall": { "$value": { "value": 25, "unit": "px" } },
+      "title1-Small": { "$value": { "value": 26, "unit": "px" } },
+      "title1-Medium": { "$value": { "value": 27, "unit": "px" } },
+      "title1-Large": { "$value": { "value": 28, "unit": "px" } },
+      "title1-xLarge": { "$value": { "value": 30, "unit": "px" } },
+      "title1-xxLarge": { "$value": { "value": 32, "unit": "px" } },
+      "title1-xxxLarge": { "$value": { "value": 32, "unit": "px" } }
     }
   }
 }

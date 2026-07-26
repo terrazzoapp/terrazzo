@@ -173,15 +173,12 @@ The other packages beyond these (`token-lab`, `fonts`, `tiles`, etc.) are in var
 
 Releasing is done only by maintainers, but it’s handled by [changesets](https://github.com/changesets/changesets). Whenever any changelog is generated, an automated release PR is opened. If a maintainer approves and merges that PR, all the released versions will be published to npm.
 
-> [!WARNING]
-> Changesets has limitations in how it bumps nested packages like Terrazzo has. For this reason, the release PRs almost always have to be manually massaged to work correctly.
-
 ### Snapshot tests
 
 Snapshot tests aren’t perfect for everything. But in a project like this they really shine—they capture even the tiniest regressions in output even if you didn’t mean to test for it originally. The flipside is by capturing every minute detail, sometimes “failures” are intentional, and you’ll always get a snapshot diff when making any sort of change.
 
 > [!WARNING]
-> Be sure to inspect all changes carefully! Never blindly accept snapshot changes—they may introduce really tricky regressions that will be hard to fix later..
+> Be sure to inspect all changes carefully! Never blindly accept snapshot changes—they may introduce really tricky regressions that will be hard to fix later.
 
 ## Philosophy
 
@@ -195,6 +192,16 @@ Beyond the obvious usecase of existing to work with design tokens and generate c
 
 Any/all iterations to this library will always be pointing towards these goalposts and strengthening them. At this stage, deviating from any one of these goals would (in my opinion) constitute a different project and different North Star.
 
+### Plugin-first
+
+Plugin-first philosophy can be a different way to think, since few developers get the opportunity to work on a project with plugin architecture. But in general, following some simple rules of thumb will yield good results:
+
+- **Add to plugins first, not core.** The core should only exist to serve the plugins. NEVER add an option to the core that could be an option in a plugin.
+- **Just because all plugins need it, may not mean it needs to be in the core.** Consider a setting that all plugins need. Is it true for every language, not just the ones in this project? Will there be any need for a plugin to configure it differently than others? Has someone written a private custom plugin that may break your assumptions? If 20% of plugins don’t need a setting, or need to override it, it shouldn’t be in core.
+- **Plugins should never depend on each other directly** (outside of the global plugin API). Never import APIs or internal logic from one plugin into another. This is why [build stages](https://terrazzo.app/docs/reference/plugin-api/) exist. If one plugin imports another’s code, that’s a sign concerns haven’t been separated properly, and bumping either plugin will likely break the pipeline.
+
+In general, focusing on the plugins first, and the core as only the minimal-necessary work to execute them, will be the most maintainable setup for everyone. It’s exactly this philosophy, following in the footsteps of Rollup/Rolldown and Vite, that leads to more portable code between design systems.
+
 ### History
 
 Many of the project’s decisions can be explained as a simple timeline:
@@ -205,3 +212,13 @@ Many of the project’s decisions can be explained as a simple timeline:
 - 2023: Cobalt renames to Terrazzo (it’s the same project)
 
 So while it’s not necessarily accurate to call Terrazzo a “successor” to Style Dictionary (at least, not yet), these 3 parts—Style Dictionary, DTCG, and Terrazzo—are all reacting to one another in the design tokens tooling space. The [goal](#project-goals) of Terrazzo is to be easier to use, and more powerful, than what came before it. And that is subjective, and a work-in-progress, but the intent is to learn from mistakes and “stand on the shoulders of giants.”
+
+### Stance on AI (as of Jul 2026)
+
+This project does not have a hard stance against AI-generated code. This project, for the most part, contains absolutely zero AI-generated code (at least none of the core APIs, design, execution, or testing).
+
+Much of this project was created to solve problems that are not an official web standard, and are an active work-in-progress from the [W3C Design Token Community Group](https;//www.designtokens.org). It is the creator’s strong opinion that AI can not, nor should not ever be trusted to establish new patterns and standards that did not exist previously.
+
+That said, in the lifespan of this project, AI contributions have been accepted into this project, with the vast majority being real people using it as an assistant to mostly hand-authored code. Only a small number (< 5) of PRs have been accepted by full bots, who saw a well-scoped issue, fixed a bug, and added a test. But beyond a trivial bug fix did not add major functionality or otherwise change anything of significance.
+
+There’s a larger debate happening now on what authoring design systems means for agents, and whether the requirements should be the same. Terrazzo has no stance on that (yet), and this note only exists to clarify that the original project goals were made to create automated, deterministic, AI-free systems meant to be designed and consumed by humans. The project direction is open to changing as more of a consensus happens from the [W3C Design Tokens Group](https://www.designtokens.org).
