@@ -116,7 +116,7 @@ color.$value.components satisfies (number | null)[];
         );
 
         const tsc = fileURLToPath(
-          new URL('../../../node_modules/typescript/bin/tsc', import.meta.url),
+          new URL('../../../node_modules/typescript-7/bin/tsc', import.meta.url),
         );
         await execaNode(tsc, ['-p', tmp]);
       } finally {

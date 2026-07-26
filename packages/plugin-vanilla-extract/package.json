@@ -28,8 +28,8 @@
     "directory": "./packages/plugin-vanilla-extract/"
   },
   "scripts": {
-    "build": "rolldown -c && attw --profile esm-only --pack .",
-    "dev": "rolldown -w -c",
+    "build": "tsc -b tsconfig.build.json && attw --profile esm-only --pack .",
+    "dev": "tsc -b tsconfig.build.json -w",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit",
@@ -46,6 +46,7 @@
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
+    "@terrazzo/plugin-css": "workspace:^",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vanilla-extract/css": "^1.21.1",

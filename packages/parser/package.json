@@ -34,11 +34,10 @@
     "directory": "./packages/parser/"
   },
   "scripts": {
-    "build": "rolldown -c && attw --profile esm-only --pack .",
-    "dev": "rolldown -w -c",
+    "build": "tsc -b tsconfig.build.json && attw --profile esm-only --pack .",
+    "dev": "tsc -b tsconfig.build.json -w",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "format": "oxfmt",
     "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit",
     "test": "vitest run"
   },
