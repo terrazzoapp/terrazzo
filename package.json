@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",
-    "@changesets/changelog-github": "^1.0.0-next.8",
+    "@changesets/changelog-github": "1.0.0-next.8",
     "@changesets/cli": "3.0.0-next.10",
     "@types/node": "catalog:",
     "@vitest/browser": "catalog:",

@@ -15,17 +15,13 @@
   },
   "main": "./dist/index.js",
   "exports": {
-    ".": {
-      "module": "./dist/index.js",
-      "commonjs": "./dist/umd.cjs",
-      "default": "./dist/index.js"
-    },
+    ".": "./dist/index.js",
     "./all-components.css": "./dist/index.css",
-    "./*": "./*"
+    "./*": "./dist/*"
   },
   "scripts": {
     "build": "vite build && size-limit",
-    "dev": "pnpm run build && chokidar \"src/**/*\" -c \"rollup -c rollup.config.js\"",
+    "dev": "pnpm run build && chokidar \"src/**/*\" -c \"vite build\"",
     "fmt": "oxfmt && pnpm --filter @terrazzo/tiles run fmt:css",
     "fmt:check": "oxfmt --check",
     "fmt:css": "stylelint --fix \"src/**/*.css\"",
@@ -53,13 +49,13 @@
     "@size-limit/preset-small-lib": "^12.1.0",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@typescript/typescript6": "^6.0.2",
+    "@typescript/typescript6": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "chokidar-cli": "^3.0.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "size-limit": "^12.1.0",
-    "vite-plugin-dts": "^5.0.3",
+    "vite-plugin-dts": "catalog:",
     "vitest-axe": "^0.1.0"
   }
 }
