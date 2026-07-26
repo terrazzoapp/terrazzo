@@ -14,7 +14,7 @@ function getCurrentTheme(): 'light' | 'dark' | 'auto' {
     localStorage.removeItem(LS_THEME_KEY); // broken LS key? repair
     return 'auto';
   }
-  if (typeof globalThis !== 'undefined') {
+  if (typeof globalThis !== 'undefined' && 'matchMedia' in globalThis) {
     if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     } else if (globalThis.matchMedia('(prefers-color-scheme: light)').matches) {
