@@ -1,5 +1,14 @@
 # @terrazzo/cli
 
+## 2.4.1
+
+### Patch Changes
+
+- [#793](https://github.com/terrazzoapp/terrazzo/pull/793) [`055b580`](https://github.com/terrazzoapp/terrazzo/commit/055b580313c08dba8810e2690fea832f5d09a647) Thanks [@drwpow](https://github.com/drwpow)! - Bump vite-node to 6.x
+
+- Updated dependencies [[`a05196b`](https://github.com/terrazzoapp/terrazzo/commit/a05196bb373c03528ca6cd6eabd6805ff27b009c)]:
+  - @terrazzo/parser@2.5.0
+
 ## 2.4.0
 
 ### Minor Changes
