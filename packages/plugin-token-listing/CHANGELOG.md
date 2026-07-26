@@ -1,8 +1,10 @@
 # @terrazzo/plugin-token-listing
 
-## 1.0.0
+## 0.1.2
 
 ### Patch Changes
+
+- [#791](https://github.com/terrazzoapp/terrazzo/pull/791) [`2a7bb89`](https://github.com/terrazzoapp/terrazzo/commit/2a7bb898033ffbf5d4d1c5a120aa60a78dfca7ed) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Upgrade to tsgo/TypeScript 7
 
 - Updated dependencies [[`055b580`](https://github.com/terrazzoapp/terrazzo/commit/055b580313c08dba8810e2690fea832f5d09a647), [`a05196b`](https://github.com/terrazzoapp/terrazzo/commit/a05196bb373c03528ca6cd6eabd6805ff27b009c)]:
   - @terrazzo/cli@2.4.1

@@ -1,8 +1,10 @@
 # @terrazzo/token-types
 
-## 2.4.1
+## 2.5.0
 
 ### Patch Changes
+
+- [#791](https://github.com/terrazzoapp/terrazzo/pull/791) [`2a7bb89`](https://github.com/terrazzoapp/terrazzo/commit/2a7bb898033ffbf5d4d1c5a120aa60a78dfca7ed) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Upgrade to tsgo/TypeScript 7
 
 - [#782](https://github.com/terrazzoapp/terrazzo/pull/782) [`f694aa2`](https://github.com/terrazzoapp/terrazzo/commit/f694aa25ff2636e4d0c21c141d51b1756c47e767) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Don't ship src files for @terrazzo/token-types
 
