@@ -232,7 +232,10 @@ export function groupFromNode(
   const groupIDs = Object.keys(groups);
   groupIDs.sort(); // these may not be sorted; re-sort just in case (order determines final values)
   for (const groupID of groupIDs) {
-    const isParentGroup = jsonID.startsWith(groupID) && groupID !== jsonID;
+    // ⚠️ MUST compare with a trailing slash so the match ends at a path segment,
+    // otherwise sibling `size.font` looks like a parent of `size.font-scale`
+    const parentPrefix = groupID.endsWith('/') ? groupID : `${groupID}/`;
+    const isParentGroup = jsonID.startsWith(parentPrefix) && groupID !== jsonID;
     if (isParentGroup) {
       groups[jsonID].$deprecated = groups[groupID]?.$deprecated ?? groups[jsonID].$deprecated;
       groups[jsonID].$description = groups[groupID]?.$description ?? groups[jsonID].$description;

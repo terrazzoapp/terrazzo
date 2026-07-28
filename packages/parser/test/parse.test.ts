@@ -558,6 +558,42 @@ describe('Additional cases', () => {
         tokens: ['color.blue.6', 'color.blue.7', 'color.blue.8', 'color.blue.9'],
       });
     });
+
+    it('doesn’t cascade into a sibling group with a shared name prefix', async () => {
+      const config = defineConfig({}, { cwd });
+      const { tokens } = await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              $type: 'dimension',
+              size: {
+                font: {
+                  $type: 'fontFamily',
+                  $deprecated: 'Use typography.family instead',
+                  $description: 'Font stacks',
+                  base: { $value: 'Helvetica' },
+                },
+                'font-scale': {
+                  sm: { $value: { value: 0.75, unit: 'rem' } },
+                },
+              },
+            },
+          },
+        ],
+        { config },
+      );
+      expect(tokens['size.font-scale.sm']?.$type).toBe('dimension');
+      expect(tokens['size.font-scale.sm']?.$deprecated).toBe(undefined);
+      expect(tokens['size.font-scale.sm']?.group).toEqual({
+        id: 'size.font-scale',
+        $type: 'dimension',
+        $deprecated: undefined,
+        $description: undefined,
+        $extensions: undefined,
+        tokens: ['size.font-scale.sm'],
+      });
+    });
   });
 
   describe('$extensions', () => {
