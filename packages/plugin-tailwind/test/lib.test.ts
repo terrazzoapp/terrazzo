@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { parseTzAtRule, parseTzAtRules } from '../src/lib.js';
+import { formatDescriptionComment, parseTzAtRule, parseTzAtRules } from '../src/lib.js';
 
 describe('parseTzAtRules', () => {
   it('simple', () => {
@@ -52,6 +52,30 @@ describe('parseTzAtRules', () => {
       { start: 630, end: 664, input: { theme: 'dark-high-contrast' } },
       { start: 811, end: 835, input: { motion: 'reduced' } },
     ]);
+  });
+});
+
+describe('formatDescriptionComment', () => {
+  it('single line', () => {
+    expect(formatDescriptionComment('Primary brand color')).toBe('/* Primary brand color */');
+  });
+  it('multiple lines', () => {
+    expect(formatDescriptionComment('Line one\nLine two', '  ')).toBe(
+      `/*\n   * Line one\n   * Line two\n   */`,
+    );
+  });
+  it('normalizes CRLF and blank lines', () => {
+    expect(formatDescriptionComment('Line one\r\n\r\nLine two')).toBe(
+      `/*\n * Line one\n * Line two\n */`,
+    );
+  });
+  it('escapes comment terminators', () => {
+    expect(formatDescriptionComment('Danger only /* not warnings */')).toBe(
+      String.raw`/* Danger only /* not warnings *\/ */`,
+    );
+  });
+  it('empty description', () => {
+    expect(formatDescriptionComment('   ')).toBe('');
   });
 });
 
