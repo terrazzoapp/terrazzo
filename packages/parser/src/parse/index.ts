@@ -131,10 +131,14 @@ export default async function parse(
 }
 
 /**
- * Decode a byte source, e.g. `fs.readFile()` called without an encoding. Left alone it’d fall
- * through to the JSON-serializable-object path and be stringified to `{"type":"Buffer",…}`—valid
- * JSON, and a valid empty group, so 0 tokens would be found without an error. Note: this tests for
- * Uint8Array rather than Buffer because it may run in the browser.
+ * Decode a byte source, e.g. `fs.readFile()` called without an encoding, or
+ * `(await fetch(url)).arrayBuffer()`. Left alone it’d fall through to the
+ * JSON-serializable-object path and be stringified—`{"type":"Buffer",…}` for a Buffer and `{}` for
+ * an ArrayBuffer, both valid JSON and both valid empty groups, so 0 tokens would be found without
+ * an error.
+ *
+ * `ArrayBuffer.isView` rather than `instanceof Uint8Array` so a DataView is covered too, and
+ * neither test names Buffer, because this may run in the browser.
  *
  * `TextDecoder` is deliberate, and not interchangeable with `Buffer.prototype.toString()`: it
  * defaults to `ignoreBOM: false`, which strips a leading UTF-8 BOM. `toString()` preserves the BOM,
@@ -142,8 +146,9 @@ export default async function parse(
  * one bug for another on the BOM-prefixed files Windows editors like to write.
  */
 function decodeBytes(input: InputSource): InputSource {
-  return input?.src instanceof Uint8Array
-    ? { ...input, src: new TextDecoder().decode(input.src) }
+  const src = input?.src as unknown;
+  return src instanceof ArrayBuffer || ArrayBuffer.isView(src)
+    ? { ...input, src: new TextDecoder().decode(src) }
     : input;
 }
 
