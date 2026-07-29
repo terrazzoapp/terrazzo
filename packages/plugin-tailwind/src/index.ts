@@ -11,6 +11,7 @@ import {
   buildFileHeader,
   flattenThemeObj,
   FORMAT_ID as FORMAT_TAILWIND,
+  formatCompositeDeclarations,
   formatDescriptionComment,
   getTokenDescription,
   META_KEY,
@@ -104,7 +105,12 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
               ...query,
               format: FORMAT_TAILWIND,
               localID,
-              value: typeof token.value === 'object' ? token.value['.']! : token.value,
+              // Wide-gamut values (marked by a "." key) flatten to their default; composite
+              // tokens (e.g. typography) keep their sub-values for build() to expand.
+              value:
+                typeof token.value === 'object' && '.' in token.value
+                  ? token.value['.']!
+                  : token.value,
               // Carry the description over so build() can emit it as a comment
               ...(description ? { meta: { [META_KEY]: { description } } } : {}),
             });
@@ -124,9 +130,11 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         const declarations = tokens.map((t) => {
           const description = getTokenDescription(t);
           const comment = description ? formatDescriptionComment(description, indent) : '';
-          return comment
-            ? `${comment}\n${indent}${t.localID}: ${t.value};`
-            : `${t.localID}: ${t.value};`;
+          const decls =
+            typeof t.value === 'string'
+              ? [`${t.localID}: ${t.value};`]
+              : formatCompositeDeclarations(t.localID!, t.value, t.token.$type);
+          return [comment, ...decls].filter(Boolean).join(`\n${indent}`);
         });
         generatedTemplate = `${generatedTemplate.slice(0, start)}${declarations.join(`\n${indent}`)}${generatedTemplate.slice(end)}`;
       }

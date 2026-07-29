@@ -83,7 +83,7 @@ And you’ll see a `tokens/tailwind-theme.css` file generated in your project.
 
 ### variableName
 
-By default, CSS variable names are generated using `makeCSSVar()`, which normalizes names to kebab-case. This collapses double-dashes, which prevents generating Tailwind v4's [paired property convention](https://tailwindcss.com/docs/font-size#setting-the-line-height) (e.g. `--text-xs--line-height`).
+By default, CSS variable names are generated using `makeCSSVar()`, which normalizes names to kebab-case. This collapses double-dashes, which prevents generating Tailwind v4's [paired property convention](https://tailwindcss.com/docs/font-size#setting-the-line-height) (e.g. `--text-xs--line-height`) from individually-named tokens. Note that composite [typography tokens](#typography-tokens) generate paired properties automatically—`variableName` is only needed if your line heights etc. are separate tokens.
 
 `variableName` lets you override the generated name. It receives the default name and a context object with `token`, `path`, and `relName`:
 
@@ -203,6 +203,51 @@ tailwind({
 You’d wind up with `--color-0`, `--color-1`, etc. which would point to `color.red.*` since it came last in the array.
 
 All that said, keep in mind that **theme mapping is up to you!** So the theme will be built exactly as you’ve declared.
+
+### Typography tokens
+
+Composite [typography tokens](https://www.designtokens.org/TR/2025.10/format/#typography) (`$type: typography`) expand to Tailwind’s [composite utility convention](https://tailwindcss.com/docs/font-size#customizing-your-theme): the font-size becomes the base variable, and every other sub-value is emitted with a double-dash suffix. Given:
+
+```json
+{
+  "typography": {
+    "$type": "typography",
+    "tiny": {
+      "$value": {
+        "fontSize": { "value": 0.625, "unit": "rem" },
+        "lineHeight": { "value": 1.5, "unit": "rem" },
+        "letterSpacing": { "value": 0.125, "unit": "rem" },
+        "fontWeight": 500
+      }
+    }
+  }
+}
+```
+
+And a theme mapping of:
+
+```js
+tailwind({
+  theme: {
+    text: ["typography.**"],
+  },
+});
+```
+
+You’ll get:
+
+```css
+@theme {
+  --text-tiny: 0.625rem;
+  --text-tiny--line-height: 1.5rem;
+  --text-tiny--letter-spacing: 0.125rem;
+  --text-tiny--font-weight: 500;
+}
+```
+
+Which makes `class="text-tiny"` apply the complete type style—font size, line height, letter spacing, and font weight—in a single utility.
+
+Any other sub-values (e.g. `fontFamily`, `textTransform`) are emitted the same way (`--text-tiny--font-family`). Tailwind’s `text-*` utilities only consume line-height, letter-spacing, and font-weight, but the extra variables are still available to reference in custom CSS.
 
 ## Template
 

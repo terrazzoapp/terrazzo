@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  @tz(tzMode: ".");
+}
+
+.custom-class {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
