@@ -38,7 +38,10 @@ export default function transformCSS({
           message: `variableName() must return a string; received ${customName}`,
         });
       }
-      return customName;
+      // A custom property is only a custom property with the `--` prefix, and the
+      // rest of the plugin assumes localID already has it (see the makeCSSVar()
+      // calls in build.ts and generateShorthand())
+      return customName.startsWith('--') ? customName : `--${customName}`;
     }
     return makeCSSVar(token.id);
   }
