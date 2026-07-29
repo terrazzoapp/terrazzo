@@ -90,7 +90,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
           }
 
           for (const token of variantTokens) {
-            let relName = token.id.split('.').at(-1)!;
+            let relName = token.id.split('.').at(-1) ?? token.id;
             const valueAsArray = Array.isArray(value) ? value : [value];
             for (const subgroup of valueAsArray) {
               const match = subgroup.replace(/\*.*/, '');
@@ -108,8 +108,8 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
               // Wide-gamut values (marked by a "." key) flatten to their default; composite
               // tokens (e.g. typography) keep their sub-values for build() to expand.
               value:
-                typeof token.value === 'object' && '.' in token.value
-                  ? token.value['.']!
+                typeof token.value === 'object' && typeof token.value['.'] === 'string'
+                  ? token.value['.']
                   : token.value,
               // Carry the description over so build() can emit it as a comment
               ...(description ? { meta: { [META_KEY]: { description } } } : {}),
@@ -128,12 +128,13 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         const tokens = getTransforms({ ...getTokenQuery(input), format: FORMAT_TAILWIND });
         const indent = getIndentAtPos(template, start);
         const declarations = tokens.map((t) => {
+          const localID = t.localID ?? t.token.id;
           const description = getTokenDescription(t);
           const comment = description ? formatDescriptionComment(description, indent) : '';
           const decls =
             typeof t.value === 'string'
-              ? [`${t.localID}: ${t.value};`]
-              : formatCompositeDeclarations(t.localID!, t.value, t.token.$type);
+              ? [`${localID}: ${t.value};`]
+              : formatCompositeDeclarations(localID, t.value, t.token.$type);
           return [comment, ...decls].filter(Boolean).join(`\n${indent}`);
         });
         generatedTemplate = `${generatedTemplate.slice(0, start)}${declarations.join(`\n${indent}`)}${generatedTemplate.slice(end)}`;
