@@ -19,16 +19,16 @@ npm i -D @terrazzo/cli @terrazzo/plugin-tailwind
 
 :::
 
-And add it to `terrazzo.config.js` under `plugins`:
+And add it to `terrazzo.config.ts` under `plugins`:
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import tailwind from "@terrazzo/plugin-tailwind";
 
-const prepare = (css: string) => string;
+const prepare = (css: string) => css;
 
 export default defineConfig({
   outDir: "./tokens/",
