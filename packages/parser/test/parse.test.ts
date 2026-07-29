@@ -75,6 +75,45 @@ describe('Additional cases', () => {
     });
   });
 
+  it('ArrayBuffer', async () => {
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse(
+      [
+        {
+          filename: DEFAULT_FILENAME,
+          // what (await fetch(url)).arrayBuffer() hands back
+          src: new TextEncoder().encode(
+            '{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}',
+          ).buffer,
+        },
+      ],
+      { config },
+    );
+    expect(tokens).toEqual({
+      'size.large': expect.objectContaining({ $value: { value: 1, unit: 'rem' } }),
+    });
+  });
+
+  it('DataView', async () => {
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse(
+      [
+        {
+          filename: DEFAULT_FILENAME,
+          src: new DataView(
+            new TextEncoder().encode(
+              '{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}',
+            ).buffer,
+          ),
+        },
+      ],
+      { config },
+    );
+    expect(tokens).toEqual({
+      'size.large': expect.objectContaining({ $value: { value: 1, unit: 'rem' } }),
+    });
+  });
+
   it('YAML: plugin not installed', async () => {
     try {
       const config = defineConfig({}, { cwd });
