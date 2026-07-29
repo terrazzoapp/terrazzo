@@ -288,6 +288,38 @@ describe('rules', () => {
       },
     ],
     [
+      `[${DUPLICATE_VALUES}] duplicate durations (fail)`,
+      {
+        given: {
+          rule: DUPLICATE_VALUES,
+          options: {},
+          tokens: {
+            duration: {
+              fast: { $type: 'duration', $value: { value: 100, unit: 'ms' } },
+              quick: { $type: 'duration', $value: { value: 100, unit: 'ms' } },
+            },
+          },
+        },
+        want: { errors: ['duration.quick declared a duplicate value'] },
+      },
+    ],
+    [
+      `[${DUPLICATE_VALUES}] aliased duration (success)`,
+      {
+        given: {
+          rule: DUPLICATE_VALUES,
+          options: {},
+          tokens: {
+            duration: {
+              fast: { $type: 'duration', $value: { value: 100, unit: 'ms' } },
+              default: { $type: 'duration', $value: '{duration.fast}' },
+            },
+          },
+        },
+        want: { success: true },
+      },
+    ],
+    [
       `[${DUPLICATE_VALUES}] duplicates (success; ignored)`,
       {
         given: {
@@ -837,12 +869,14 @@ describe('rules', () => {
         setLevel() {},
       } as Logger,
     });
+    const reported = errors.filter((error) => !error.includes('Lint failed with error'));
     if (want.success) {
       expect(result).toBeTruthy();
+      // A truthy result on its own says nothing about what the rule reported, so a
+      // success fixture used to pass while the rule under test raised errors.
+      expect(reported).toEqual([]);
     } else {
-      expect(errors.filter((error) => !error.includes('Lint failed with error'))).toEqual(
-        want.errors,
-      );
+      expect(reported).toEqual(want.errors);
     }
   });
 });

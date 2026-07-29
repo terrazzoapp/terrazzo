@@ -1,5 +1,3 @@
-import { isAlias } from '@terrazzo/token-tools';
-
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 import { cachedLintMatcher } from '../lib/matchers.js';
@@ -39,20 +37,21 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
         values[t.$type] = new Set();
       }
 
+      // skip aliases (note: $value will be resolved). `aliasOf` already holds a plain token
+      // ID rather than a `{…}` reference, so it is enough on its own, and the check belongs
+      // out here: an aliased color reaches the deepEqual branch below, which never had one.
+      if (typeof t.aliasOf === 'string') {
+        continue;
+      }
+
       // primitives: direct comparison is easy
       if (
         t.$type === 'boolean' ||
-        t.$type === 'duration' ||
         t.$type === 'fontWeight' ||
         t.$type === 'link' ||
         t.$type === 'number' ||
         t.$type === 'string'
       ) {
-        // skip aliases (note: $value will be resolved)
-        if (typeof t.aliasOf === 'string' && isAlias(t.aliasOf)) {
-          continue;
-        }
-
         if (values[t.$type]?.has(t.$value)) {
           report({
             messageId: ERROR_DUPLICATE_VALUE,
