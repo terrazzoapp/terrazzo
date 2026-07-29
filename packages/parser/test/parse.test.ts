@@ -15,7 +15,7 @@ describe('Additional cases', () => {
     );
   });
 
-  it.skip('Buffer', async () => {
+  it('Buffer', async () => {
     const config = defineConfig({}, { cwd });
     const { tokens } = await parse(
       [
@@ -25,6 +25,47 @@ describe('Additional cases', () => {
             '{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}',
             'utf8',
           ),
+        },
+      ],
+      { config },
+    );
+    expect(tokens).toEqual({
+      'size.large': expect.objectContaining({ $value: { value: 1, unit: 'rem' } }),
+    });
+  });
+
+  it('Uint8Array', async () => {
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse(
+      [
+        {
+          filename: DEFAULT_FILENAME,
+          src: new TextEncoder().encode(
+            '{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}',
+          ),
+        },
+      ],
+      { config },
+    );
+    expect(tokens).toEqual({
+      'size.large': expect.objectContaining({ $value: { value: 1, unit: 'rem' } }),
+    });
+  });
+
+  it('Buffer: UTF-8 BOM', async () => {
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse(
+      [
+        {
+          filename: DEFAULT_FILENAME,
+          src: Buffer.concat([
+            // a BOM survives fs.readFile(), and the tokenizer rejects it if it isn’t stripped
+            Buffer.from([0xEF, 0xBB, 0xBF]),
+            Buffer.from(
+              '{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}',
+              'utf8',
+            ),
+          ]),
         },
       ],
       { config },
