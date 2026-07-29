@@ -30,7 +30,7 @@ export default async function parse(
     transform,
   }: ParseOptions = {} as ParseOptions,
 ): Promise<ParseResult> {
-  const inputs = Array.isArray(_input) ? _input : [_input];
+  const inputs = (Array.isArray(_input) ? _input : [_input]).map(decodeBytes);
   let tokens: TokenNormalizedSet = {};
   let resolver: Resolver | undefined;
   let sources: InputSourceWithDocument[] = [];
@@ -128,6 +128,23 @@ export default async function parse(
     sources,
     resolver: finalResolver,
   };
+}
+
+/**
+ * Decode a byte source, e.g. `fs.readFile()` called without an encoding. Left alone it’d fall
+ * through to the JSON-serializable-object path and be stringified to `{"type":"Buffer",…}`—valid
+ * JSON, and a valid empty group, so 0 tokens would be found without an error. Note: this tests for
+ * Uint8Array rather than Buffer because it may run in the browser.
+ *
+ * `TextDecoder` is deliberate, and not interchangeable with `Buffer.prototype.toString()`: it
+ * defaults to `ignoreBOM: false`, which strips a leading UTF-8 BOM. `toString()` preserves the BOM,
+ * and the tokenizer then rejects the document with `Unexpected character` at 1:1, which would trade
+ * one bug for another on the BOM-prefixed files Windows editors like to write.
+ */
+function decodeBytes(input: InputSource): InputSource {
+  return input?.src instanceof Uint8Array
+    ? { ...input, src: new TextDecoder().decode(input.src) }
+    : input;
 }
 
 let fs: typeof fsType | undefined;
