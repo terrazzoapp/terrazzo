@@ -1,5 +1,14 @@
 # @terrazzo/plugin-js
 
+## 2.6.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @terrazzo/parser@2.6.0
+  - @terrazzo/cli@2.6.0
+  - @terrazzo/token-types@2.6.0
+
 ## 2.5.0
 
 ### Patch Changes
