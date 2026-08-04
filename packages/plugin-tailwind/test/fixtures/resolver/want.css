@@ -89,6 +89,7 @@
   --spacing-lg: 16px;
   --spacing-xl: 32px;
   --radius-default: var(--border-radius-medium);
+  /* Use this border radius for pill shaped elements */
   --radius-full: 9999px;
   --radius-large: 12px;
   --radius-medium: 6px;
@@ -191,6 +192,7 @@
   --spacing-lg: 16px;
   --spacing-xl: 32px;
   --radius-default: var(--border-radius-medium);
+  /* Use this border radius for pill shaped elements */
   --radius-full: 9999px;
   --radius-large: 12px;
   --radius-medium: 6px;
@@ -295,6 +297,7 @@
   --spacing-lg: 16px;
   --spacing-xl: 32px;
   --radius-default: var(--border-radius-medium);
+  /* Use this border radius for pill shaped elements */
   --radius-full: 9999px;
   --radius-large: 12px;
   --radius-medium: 6px;
@@ -399,6 +402,7 @@
   --spacing-lg: 16px;
   --spacing-xl: 32px;
   --radius-default: var(--border-radius-medium);
+  /* Use this border radius for pill shaped elements */
   --radius-full: 9999px;
   --radius-large: 12px;
   --radius-medium: 6px;

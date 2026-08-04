@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  @tz(tzMode: ".");
+}
+
+@variant dark {
+  @tz(tzMode: "dark");
+}
+
+/* Custom styles */
+.custom-class {
+  color: var(--color-primary);
+}

@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import { parseTzAtRule, parseTzAtRules } from '../src/lib.js';
+import {
+  formatCompositeDeclarations,
+  formatDescriptionComment,
+  parseTzAtRule,
+  parseTzAtRules,
+} from '../src/lib.js';
 
 describe('parseTzAtRules', () => {
   it('simple', () => {
@@ -51,6 +56,64 @@ describe('parseTzAtRules', () => {
       { start: 441, end: 476, input: { theme: 'light-high-contrast' } },
       { start: 630, end: 664, input: { theme: 'dark-high-contrast' } },
       { start: 811, end: 835, input: { motion: 'reduced' } },
+    ]);
+  });
+});
+
+describe('formatDescriptionComment', () => {
+  it('single line', () => {
+    expect(formatDescriptionComment('Primary brand color')).toBe('/* Primary brand color */');
+  });
+  it('multiple lines', () => {
+    expect(formatDescriptionComment('Line one\nLine two', '  ')).toBe(
+      `/*\n   * Line one\n   * Line two\n   */`,
+    );
+  });
+  it('normalizes CRLF and blank lines', () => {
+    expect(formatDescriptionComment('Line one\r\n\r\nLine two')).toBe(
+      `/*\n * Line one\n * Line two\n */`,
+    );
+  });
+  it('escapes comment terminators', () => {
+    expect(formatDescriptionComment('Danger only /* not warnings */')).toBe(
+      String.raw`/* Danger only /* not warnings *\/ */`,
+    );
+  });
+  it('empty description', () => {
+    expect(formatDescriptionComment('   ')).toBe('');
+  });
+});
+
+describe('formatCompositeDeclarations', () => {
+  it('typography', () => {
+    expect(
+      formatCompositeDeclarations(
+        '--text-tiny',
+        {
+          'font-family': '"Inter", sans-serif',
+          'font-size': '0.625rem',
+          'line-height': '1.5rem',
+          'letter-spacing': '0.125rem',
+          'font-weight': '500',
+        },
+        'typography',
+      ),
+    ).toEqual([
+      '--text-tiny: 0.625rem;',
+      '--text-tiny--font-family: "Inter", sans-serif;',
+      '--text-tiny--line-height: 1.5rem;',
+      '--text-tiny--letter-spacing: 0.125rem;',
+      '--text-tiny--font-weight: 500;',
+    ]);
+  });
+  it('typography missing font-size', () => {
+    expect(
+      formatCompositeDeclarations('--text-tiny', { 'line-height': '1.5rem' }, 'typography'),
+    ).toEqual(['--text-tiny--line-height: 1.5rem;']);
+  });
+  it('unknown type has no base declaration', () => {
+    expect(formatCompositeDeclarations('--foo-bar', { baz: '1rem' }, 'string')).toEqual([
+      '--foo-bar--baz: 1rem;',
     ]);
   });
 });
