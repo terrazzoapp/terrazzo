@@ -1,5 +1,21 @@
 # @terrazzo/plugin-tailwind
 
+## 2.6.0
+
+### Minor Changes
+
+- [#808](https://github.com/terrazzoapp/terrazzo/pull/808) [`1bedd87`](https://github.com/terrazzoapp/terrazzo/commit/1bedd8700894354072c4f569fddcee7af5818976) Thanks [@kerwanp](https://github.com/kerwanp)! - Support composite typography tokens (`$type: typography`). Mapping a typography token in the Tailwind theme now generates Tailwind’s composite utility convention (e.g. `--text-tiny` from the font-size, plus `--text-tiny--line-height`, `--text-tiny--letter-spacing`, `--text-tiny--font-weight`, etc.) instead of broken output.
+
+- [#808](https://github.com/terrazzoapp/terrazzo/pull/808) [`1bedd87`](https://github.com/terrazzoapp/terrazzo/commit/1bedd8700894354072c4f569fddcee7af5818976) Thanks [@kerwanp](https://github.com/kerwanp)! - Feat: emit token `$description`s as CSS comments in the generated Tailwind theme
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @terrazzo/parser@2.6.0
+  - @terrazzo/cli@2.6.0
+  - @terrazzo/token-tools@2.6.0
+  - @terrazzo/plugin-css@2.6.0
+
 ## 2.5.0
 
 ### Patch Changes
