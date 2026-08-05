@@ -21,7 +21,7 @@ export default defineConfig({
   plugins: [
     css({
       filename: "tokens.css",
-      variableName: (id) => id.replace(/\./g, "-"),
+      variableName: (token) => token.id.replace(/\./g, "-"),
       baseSelector: ":root",
     }),
   ],
