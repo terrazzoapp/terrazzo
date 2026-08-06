@@ -188,7 +188,8 @@ export function printNode(
 
   if (node.type === 'Declaration') {
     if (node.comment) {
-      output += `${indent}/* ${node.comment} */\n`;
+      // break any `*/` in the comment, otherwise it closes the comment early and the rest is parsed as CSS
+      output += `${indent}/* ${node.comment.replaceAll('*/', String.raw`*\/`)} */\n`;
     }
     output += `${indent}${node.property}: ${node.value};\n`;
     return output;
