@@ -499,8 +499,13 @@ export function resolveAliases(
         if (refChain.includes(nextRef)) {
           logger.error({ ...aliasEntry, message: 'Circular alias detected.' });
         }
-        const nextJSONID = nextRef.replace(/\/(\$value|\$extensions).*/, '');
-        const nextToken = tokens[nextJSONID]?.mode[mode] || tokens[nextJSONID]?.mode['.'];
+        let nextJSONID = nextRef.replace(/\/(\$value|\$extensions).*/, '');
+        let nextToken = tokens[nextJSONID]?.mode[mode] || tokens[nextJSONID]?.mode['.'];
+        // before throwing an error, see if this is a /$root token
+        if (!nextToken) {
+          nextJSONID = `${nextJSONID}/$root`;
+          nextToken = tokens[nextJSONID]?.mode[mode] || tokens[nextJSONID]?.mode['.'];
+        }
         if (!nextToken) {
           logger.error({ ...aliasEntry, message: `Could not resolve alias ${alias}.` });
         }
