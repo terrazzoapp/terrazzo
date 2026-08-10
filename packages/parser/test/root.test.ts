@@ -128,4 +128,42 @@ describe('$root tokens', () => {
       expect.objectContaining({ aliasedBy: ['color.background.brand'] }),
     );
   });
+
+  it('can be nested', async () => {
+    const filename = new URL('file:///');
+    const src = {
+      color: {
+        text: {
+          brand: {
+            $root: {
+              $type: 'color',
+              $value: { colorSpace: 'srgb', components: [0.46, 0.76, 0.97] },
+            },
+            hover: {
+              $type: 'color',
+              $value: '{color.text.brand}',
+            },
+            secondary: {
+              $root: { $type: 'color', $value: '{color.text.brand}' },
+              hover: { $type: 'color', $value: '{color.text.brand.secondary}' },
+            },
+          },
+        },
+      },
+    };
+    const config = defineConfig({}, { cwd: new URL('file:///') });
+    const { tokens } = await parse([{ filename, src }], { config });
+
+    for (const t of [
+      'color.text.brand',
+      'color.text.brand.secondary',
+      'color.text.brand.secondary.hover',
+    ]) {
+      expect(tokens[t]).toEqual(
+        expect.objectContaining({
+          $value: { colorSpace: 'srgb', components: [0.46, 0.76, 0.97], alpha: 1 },
+        }),
+      );
+    }
+  });
 });
