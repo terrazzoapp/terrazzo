@@ -1,5 +1,13 @@
 # @terrazzo/cli
 
+## 2.6.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @terrazzo/parser@2.6.0
+  - @terrazzo/token-tools@2.6.0
+
 ## 2.5.0
 
 ### Patch Changes
