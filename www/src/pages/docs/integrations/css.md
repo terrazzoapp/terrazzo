@@ -253,9 +253,50 @@ You control the wrapper CSS, so check for mistakes! If using `@media` queries, r
 
 :::
 
+#### Partial permutations (advanced)
+
+If you have an [orthogonal resolver](/docs/guides/resolvers#orthogonality), you can add `partial: true` to your `permutations` objects to dedupe unnecessary output, e.g.:
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      permutations: [
+        // Default input needed, otherwise base tokens won’t be declared
+        {
+          input: {},
+          prepare: (contents) => `:root {\n  ${contents}}`,
+        },
+        {
+          input: { mode: "light" },
+          prepare: (contents) => `[data-theme="light"] {\n  color-scheme: light;\n  ${contents}}`,
+          partial: true,
+        },
+        {
+          input: { mode: "dark" },
+          prepare: (contents) => `[data-theme="dark"] {\n  color-scheme: dark;\n  ${contents}}`,
+          partial: true,
+        },
+      ],
+    }),
+  ],
+});
+```
+
+Now `{ mode: "light" }` and `{ mode: "dark" }` will ONLY output tokens declared from those modifier(s) and **ignore all other tokens.** This is helpful when you have made sure your resolver is orthogonal, and it is generating unnecessary duplication in your output.
+
+If your resolver is not orthogonal, `partial: true` will throw an error, because **it will generate broken token output**\*. You’ll either have to make your resolver orthogonal, or not use this feature.
+
+_\* “Broken token output” is referring to the fact that without an orthogonal resolver, you have a token setup where your `resolutionOrder` does not match 1:1 with your permutations. So trying to generate partial CSS for every selector means you’ll be subjected to the CSS cascade in complex and unpredictable ways. The order of `permutations` will start to be significant, otherwise your styles may be broken. You may get unexpected values if multiple `permutations` reference the same modifiers. In a nutshell, it puts an unreasonable burden on users to manually synchronize `terrazzo.config.ts` and `resolutionOrder` in a way that’s brittle and error-prone, and Terrazzo is trying to save you from, say, adding a new entry to `permutations` and having all your production styles break._
+
 #### Note on “duplication” (staleness)
 
 If you inspect the output CSS, you may find more variables than expected in the media queries. This is necessary the way CSS works: if a CSS variable is an alias of another, when the base value changes, all aliases must be redeclared otherwise they are referencing the old value in the parent scope. At first glance, this seems like a bug, with variables being redeclared with the same values, but in actuality it’s necessary so your mode selectors cascade correctly.
+
+Even if using [Partial permutations](#partial-permutations-advanced), you may still see more variables than expected if Terrazzo thinks they are necessary to produce the correct CSS cascade.
 
 ### Selective token output
 

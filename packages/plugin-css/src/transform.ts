@@ -72,13 +72,36 @@ export default function transformCSS({
       const pInclude = p.include ? cachedMatcher.tokenIDMatch(p.include) : () => true;
       const pExclude = p.exclude ? cachedMatcher.tokenIDMatch(p.exclude) : () => false;
 
+      // if partial: true passed, validate this is both an orthogonal resolver, AND input has keys
+      if (p.partial) {
+        if (!resolver.orthogonal) {
+          logger.error({
+            group: 'plugin',
+            label: PLUGIN_NAME,
+            message:
+              'partial: true can only apply to an orthogonal resolver (see docs for more info).',
+          });
+        }
+        if (Object.keys(p.input).length === 0) {
+          logger.error({
+            group: 'plugin',
+            label: PLUGIN_NAME,
+            message: 'partial: true requires specifying at least 1 modifier for input',
+          });
+        }
+      }
+
       // oxlint-disable-next-line func-style
       const includeToken = (tokenId: string): boolean =>
         include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
       // Note: if we throw an error here without specifying the input, a user may
       // find it impossible to debug the issue
       try {
-        const tokens = resolver.apply(input);
+        const tokens = resolver.apply(
+          input,
+          // if partial: true, only apply the modifiers listed
+          { modifiers: p.partial ? Object.keys(p.input) : undefined },
+        );
         for (const token of Object.values(tokens)) {
           if (!includeToken(token.id)) {
             continue;

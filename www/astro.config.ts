@@ -34,6 +34,7 @@ export default defineConfig({
   },
 
   redirects: {
+    '/docs/guides/resolver-contexts': '/docs/guides/resolvers',
     '/docs/cli/api/js/': '/docs/reference/js-api/',
     '/docs/cli/api/node/': '/docs/reference/js-api/',
     '/docs/cli/api/plugin-development/': '/docs/reference/plugin-api/',

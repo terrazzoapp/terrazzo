@@ -109,6 +109,12 @@ export interface Permutation<T extends Record<string, string> = Record<string, s
     token: TokenNormalized,
     options: TransformCSSValueOptions,
   ) => TokenTransformed['value'] | undefined | null;
+  /**
+   * (Advanced) ONLY output the tokens from this one and only one modifier.
+   *
+   * This should only be used when the resolver is orthogonal AND the input has at least one key. An error will be thrown if both conditions aren’t met.
+   */
+  partial?: boolean;
 }
 
 export interface ModeSelector {

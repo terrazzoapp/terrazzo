@@ -398,6 +398,7 @@
   outline: 2px solid transparent;
   padding: 0 var(--code-padding);
   position: relative;
+  white-space: nowrap;
   z-index: var(--tz-layer-base);
 
   &[aria-selected="true"] {
@@ -414,6 +415,8 @@
   background-color: color-mix(in oklab, var(--code-bg), white 5%);
   display: flex;
   margin: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .code-block-wrapper {
