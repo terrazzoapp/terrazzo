@@ -27,7 +27,7 @@
 
 ### Minor Changes
 
-- [#762](https://github.com/terrazzoapp/terrazzo/pull/762) [`a05196b`](https://github.com/terrazzoapp/terrazzo/commit/a05196bb373c03528ca6cd6eabd6805ff27b009c) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Add `resolveAliases` option to `resolver.apply` API
+- [#762](https://github.com/terrazzoapp/terrazzo/pull/762) [`a05196b`](https://github.com/terrazzoapp/terrazzo/commit/a05196bb373c03528ca6cd6eabd6805ff27b009c) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Allow partial application of input, add `resolveAliases` option to `resolver.apply` API
 
   Setting this option to `false` allows partial application of input to the resolver using the `sets` and
   `modifiers` options in the same API.
