@@ -1,5 +1,13 @@
 # @terrazzo/react-color-picker
 
+## 0.3.1
+
+### Patch Changes
+
+- [#815](https://github.com/terrazzoapp/terrazzo/pull/815) [`b1b78c6`](https://github.com/terrazzoapp/terrazzo/commit/b1b78c6d64890f01e64492633c643f5fb3496d69) Thanks [@drwpow](https://github.com/drwpow)! - Update colorjs.io to v0.7
+- Updated dependencies [[`b1b78c6`](https://github.com/terrazzoapp/terrazzo/commit/b1b78c6d64890f01e64492633c643f5fb3496d69)]:
+  - @terrazzo/use-color@0.2.2
+
 ## 0.3.0
 
 ### Minor Changes
