@@ -64,8 +64,8 @@ catalogs:
       specifier: ^4.1.10
       version: 4.1.10
     yaml-to-momoa:
-      specifier: 0.0.9
-      version: 0.0.9
+      specifier: 0.1.0
+      version: 0.1.0
 
 importers:
 
@@ -187,7 +187,7 @@ importers:
         version: 2.9.0
       yaml-to-momoa:
         specifier: 'catalog:'
-        version: 0.0.9
+        version: 0.1.0
     devDependencies:
       '@figma/rest-api-spec':
         specifier: ^0.36.0
@@ -232,7 +232,7 @@ importers:
         version: 3.3.10
       yaml-to-momoa:
         specifier: 'catalog:'
-        version: 0.0.9
+        version: 0.1.0
 
   packages/parser:
     dependencies:
@@ -269,7 +269,7 @@ importers:
         version: 13.0.0(eslint@10.6.0(jiti@2.7.0)(supports-color@10.2.2))
       yaml-to-momoa:
         specifier: 'catalog:'
-        version: 0.0.9
+        version: 0.1.0
 
   packages/plugin-css:
     dependencies:
@@ -7148,8 +7148,8 @@ packages:
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
-  yaml-to-momoa@0.0.9:
-    resolution: {integrity: sha512-HUsUaZv0yPTfwMQIYfGwuhNwqJXnT4vgdsuC1XJmP6PiGuzK3JXm1Mllz23bkca4h2Xq/i3hA5Hsmat1EAq9QQ==}
+  yaml-to-momoa@0.1.0:
+    resolution: {integrity: sha512-CzD5oP0EA6gCXtKYKWbDRynil9BgCp4uuUtwId2TwLIL1fbggakx6vswuxY7u+EsX1GBwwzZxuWz/0ymAKBCZQ==}
 
   yaml@2.9.0:
     resolution: {integrity: sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA==}
@@ -13866,7 +13866,7 @@ snapshots:
 
   yallist@3.1.1: {}
 
-  yaml-to-momoa@0.0.9:
+  yaml-to-momoa@0.1.0:
     dependencies:
       '@humanwhocodes/momoa': 3.3.10
       yaml: 2.9.0
