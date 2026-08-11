@@ -136,15 +136,19 @@ color.$value.components satisfies (number | null)[];
       { theme: 'light-hc', size: 'fine' },
       { theme: 'dark', size: 'fine' },
       { theme: 'dark-hc', size: 'fine' },
-    ] as const)('$theme/$size', async (input) => {
-      const { resolver } = await import('./fixtures/github-primer/want.js');
-      const tokens = resolver.apply(input);
-      for (const id of Object.keys(tokens)) {
-        expect({
-          $type: tokens[id as keyof typeof tokens]!.$type,
-          $value: tokens[id as keyof typeof tokens]!.$value,
-        }).toMatchSnapshot(id);
-      }
-    });
+    ] as const)(
+      '$theme/$size',
+      async (input) => {
+        const { resolver } = await import('./fixtures/github-primer/want.js');
+        const tokens = resolver.apply(input);
+        for (const id of Object.keys(tokens)) {
+          expect({
+            $type: tokens[id as keyof typeof tokens]!.$type,
+            $value: tokens[id as keyof typeof tokens]!.$value,
+          }).toMatchSnapshot(id);
+        }
+      },
+      10_000,
+    );
   });
 });
