@@ -28,7 +28,7 @@ catalog:
   vite: ^8.1.5
   vite-plugin-dts: ^5.0.3
   vitest: ^4.1.10
-  yaml-to-momoa: 0.0.9
+  yaml-to-momoa: 0.1.0
 
 minimumReleaseAgeExclude:
   - '@changesets/apply-release-plan@8.0.0'
@@ -48,6 +48,7 @@ minimumReleaseAgeExclude:
   - '@changesets/types@7.0.0'
   - '@changesets/write@1.0.0'
   - dtcg-examples@1.1.3
+  - yaml-to-momoa@0.1.0
 
 onlyBuiltDependencies:
   - '@biomejs/biome'
