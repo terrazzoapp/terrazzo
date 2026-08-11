@@ -85,6 +85,16 @@ describe('descructiveMerge', () => {
     ],
     ['undefined (one)', { given: [undefined, { b: 2 }], want: undefined }],
     ['undefined (both)', { given: [undefined, undefined], want: undefined }],
+    [
+      'string -> object',
+      {
+        given: [
+          { $type: 'color', $value: '{color.white.1000}' },
+          { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
+        ],
+        want: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
+      },
+    ],
   ];
   it.each(tests)('%s', (_, { given: [a, b], want }) => {
     destructiveMerge(a, b);

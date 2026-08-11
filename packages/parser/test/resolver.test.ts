@@ -430,6 +430,67 @@ describe('Resolver module', () => {
         }),
       );
     });
+
+    it('raw value overrides alias correctly', async () => {
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const { resolver } = await parse(
+        [
+          {
+            filename: new URL('file:///'),
+            src: JSON.stringify({
+              version: '2025.10',
+              resolutionOrder: [
+                { $ref: '#/sets/primitive' },
+                { $ref: '#/sets/semantic' },
+                { $ref: '#/modifiers/theme' },
+              ],
+              sets: {
+                primitive: {
+                  sources: [
+                    {
+                      ramp: {
+                        100: {
+                          $type: 'color',
+                          $value: { colorSpace: 'srgb', components: [0.95, 0.95, 0.95] },
+                        },
+                      },
+                    },
+                  ],
+                },
+                semantic: {
+                  sources: [{ color: { bg: { $type: 'color', $value: '{ramp.100}' } } }],
+                },
+              },
+              modifiers: {
+                theme: {
+                  contexts: {
+                    light: [],
+                    'light-ec': [
+                      {
+                        color: {
+                          bg: {
+                            $type: 'color',
+                            $value: { colorSpace: 'srgb', components: [1, 1, 1] },
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+            }),
+          },
+        ],
+        { config },
+      );
+
+      const lightEcTokens = resolver.apply({ theme: 'light-ec' });
+      expect(lightEcTokens['color.bg']).toEqual(
+        expect.objectContaining({
+          $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 1 },
+        }),
+      );
+    });
   });
 
   describe('additional cases', () => {

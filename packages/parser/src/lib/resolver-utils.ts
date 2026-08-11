@@ -69,7 +69,7 @@ export function destructiveMerge(a: object, b: object): void {
         (a as any)[k] = []; // arrays are overwritten; always make an empty one
         destructiveMerge((a as any)[k], [...b2]); // shallow copy
       } else {
-        if (!(k in a)) {
+        if (typeof (a as any)[k] !== 'object' || !(k in a)) {
           (a as any)[k] = {}; // objects are merged; create empty one if none exists
         }
         destructiveMerge((a as any)[k], { ...b2 }); // shallow copy
