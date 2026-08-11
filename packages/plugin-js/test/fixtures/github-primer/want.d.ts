@@ -8,11 +8,11 @@ import type {
   DurationTokenNormalized,
   CubicBezierTokenNormalized,
   DimensionTokenNormalized,
+  NumberTokenNormalized,
   FontWeightTokenNormalized,
   BorderTokenNormalized,
-  StringTokenNormalized,
   FontFamilyTokenNormalized,
-  NumberTokenNormalized,
+  TransitionTokenNormalized,
   TypographyTokenNormalized,
 } from "@terrazzo/token-types";
 
@@ -28,14 +28,31 @@ export type Shadow = Pick<ShadowTokenNormalized, "$type" | "$value" | "$descript
 export type Duration = Pick<DurationTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type CubicBezier = Pick<CubicBezierTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type Dimension = Pick<DimensionTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
+export type Number = Pick<NumberTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type FontWeight = Pick<FontWeightTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type Border = Pick<BorderTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
-export type String = Pick<StringTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type FontFamily = Pick<FontFamilyTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
-export type Number = Pick<NumberTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
+export type Transition = Pick<TransitionTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 export type Typography = Pick<TypographyTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 
 export interface Tokens {
+  "ansi.black": Color;
+  "ansi.blackBright": Color;
+  "ansi.blue": Color;
+  "ansi.blueBright": Color;
+  "ansi.cyan": Color;
+  "ansi.cyanBright": Color;
+  "ansi.gray": Color;
+  "ansi.green": Color;
+  "ansi.greenBright": Color;
+  "ansi.magenta": Color;
+  "ansi.magentaBright": Color;
+  "ansi.red": Color;
+  "ansi.redBright": Color;
+  "ansi.white": Color;
+  "ansi.whiteBright": Color;
+  "ansi.yellow": Color;
+  "ansi.yellowBright": Color;
   "avatar.bgColor": Color;
   "avatar.borderColor": Color;
   "avatar.shadow": Shadow;
@@ -341,6 +358,7 @@ export interface Tokens {
   "base.duration.800": Duration;
   "base.duration.900": Duration;
   "base.duration.1000": Duration;
+  "base.easing.ease": CubicBezier;
   "base.easing.easeIn": CubicBezier;
   "base.easing.easeInOut": CubicBezier;
   "base.easing.easeOut": CubicBezier;
@@ -364,10 +382,42 @@ export interface Tokens {
   "base.size.96": Dimension;
   "base.size.112": Dimension;
   "base.size.128": Dimension;
+  "base.size.negative-2": Dimension;
+  "base.size.negative-4": Dimension;
+  "base.size.negative-6": Dimension;
+  "base.size.negative-8": Dimension;
+  "base.size.negative-12": Dimension;
+  "base.size.negative-16": Dimension;
+  "base.size.negative-20": Dimension;
+  "base.size.negative-24": Dimension;
+  "base.size.negative-28": Dimension;
+  "base.size.negative-32": Dimension;
+  "base.size.negative-36": Dimension;
+  "base.size.negative-40": Dimension;
+  "base.size.negative-44": Dimension;
+  "base.size.negative-48": Dimension;
+  "base.text.lineHeight.loose": Number;
+  "base.text.lineHeight.normal": Number;
+  "base.text.lineHeight.relaxed": Number;
+  "base.text.lineHeight.snug": Number;
+  "base.text.lineHeight.tight": Number;
+  "base.text.size.2xl": Dimension;
+  "base.text.size.lg": Dimension;
+  "base.text.size.md": Dimension;
+  "base.text.size.sm": Dimension;
+  "base.text.size.xl": Dimension;
+  "base.text.size.xs": Dimension;
   "base.text.weight.light": FontWeight;
   "base.text.weight.medium": FontWeight;
   "base.text.weight.normal": FontWeight;
   "base.text.weight.semibold": FontWeight;
+  "base.zIndex.0": Number;
+  "base.zIndex.100": Number;
+  "base.zIndex.200": Number;
+  "base.zIndex.300": Number;
+  "base.zIndex.400": Number;
+  "base.zIndex.500": Number;
+  "base.zIndex.600": Number;
   "bgColor.accent.emphasis": Color;
   "bgColor.accent.muted": Color;
   "bgColor.attention.emphasis": Color;
@@ -413,6 +463,8 @@ export interface Tokens {
   "border.disabled": Border;
   "border.done.emphasis": Border;
   "border.done.muted": Border;
+  "border.draft.emphasis": Border;
+  "border.draft.muted": Border;
   "border.emphasis": Border;
   "border.muted": Border;
   "border.neutral.emphasis": Border;
@@ -425,6 +477,7 @@ export interface Tokens {
   "border.sponsors.muted": Border;
   "border.success.emphasis": Border;
   "border.success.muted": Border;
+  "border.translucent": Border;
   "border.transparent": Border;
   "border.upsell.emphasis": Border;
   "border.upsell.muted": Border;
@@ -467,9 +520,9 @@ export interface Tokens {
   "borderWidth.thick": Dimension;
   "borderWidth.thicker": Dimension;
   "borderWidth.thin": Dimension;
-  "boxShadow.thick": String;
-  "boxShadow.thicker": String;
-  "boxShadow.thin": String;
+  "boxShadow.thick": any;
+  "boxShadow.thicker": any;
+  "boxShadow.thin": any;
   "breakpoint.large": Dimension;
   "breakpoint.medium": Dimension;
   "breakpoint.small": Dimension;
@@ -487,6 +540,7 @@ export interface Tokens {
   "button.danger.fgColor.disabled": Color;
   "button.danger.fgColor.hover": Color;
   "button.danger.fgColor.rest": Color;
+  "button.danger.iconColor.disabled": Color;
   "button.danger.iconColor.hover": Color;
   "button.danger.iconColor.rest": Color;
   "button.danger.shadow.selected": Shadow;
@@ -499,6 +553,7 @@ export interface Tokens {
   "button.default.borderColor.disabled": Color;
   "button.default.borderColor.hover": Color;
   "button.default.borderColor.rest": Color;
+  "button.default.fgColor.disabled": Color;
   "button.default.fgColor.rest": Color;
   "button.default.shadow.resting": Shadow;
   "button.inactive.bgColor": Color;
@@ -538,6 +593,7 @@ export interface Tokens {
   "button.primary.borderColor.rest": Color;
   "button.primary.fgColor.disabled": Color;
   "button.primary.fgColor.rest": Color;
+  "button.primary.iconColor.disabled": Color;
   "button.primary.iconColor.rest": Color;
   "button.primary.shadow.selected": Shadow;
   "button.star.iconColor": Color;
@@ -707,13 +763,12 @@ export interface Tokens {
   "control.fgColor.rest": Color;
   "control.iconColor.rest": Color;
   "control.large.gap": Dimension;
-  "control.large.lineBoxHeight": Dimension;
   "control.large.paddingBlock": Dimension;
+  "control.large.paddingInline.condensed": Dimension;
   "control.large.paddingInline.normal": Dimension;
   "control.large.paddingInline.spacious": Dimension;
   "control.large.size": Dimension;
   "control.medium.gap": Dimension;
-  "control.medium.lineBoxHeight": Dimension;
   "control.medium.paddingBlock": Dimension;
   "control.medium.paddingInline.condensed": Dimension;
   "control.medium.paddingInline.normal": Dimension;
@@ -722,10 +777,10 @@ export interface Tokens {
   "control.minTarget.coarse": Dimension;
   "control.minTarget.fine": Dimension;
   "control.small.gap": Dimension;
-  "control.small.lineBoxHeight": Dimension;
   "control.small.paddingBlock": Dimension;
   "control.small.paddingInline.condensed": Dimension;
   "control.small.paddingInline.normal": Dimension;
+  "control.small.paddingInline.spacious": Dimension;
   "control.small.size": Dimension;
   "control.transparent.bgColor.active": Color;
   "control.transparent.bgColor.disabled": Color;
@@ -736,13 +791,12 @@ export interface Tokens {
   "control.transparent.borderColor.hover": Color;
   "control.transparent.borderColor.rest": Color;
   "control.xlarge.gap": Dimension;
-  "control.xlarge.lineBoxHeight": Dimension;
   "control.xlarge.paddingBlock": Dimension;
+  "control.xlarge.paddingInline.condensed": Dimension;
   "control.xlarge.paddingInline.normal": Dimension;
   "control.xlarge.paddingInline.spacious": Dimension;
   "control.xlarge.size": Dimension;
   "control.xsmall.gap": Dimension;
-  "control.xsmall.lineBoxHeight": Dimension;
   "control.xsmall.paddingBlock": Dimension;
   "control.xsmall.paddingInline.condensed": Dimension;
   "control.xsmall.paddingInline.normal": Dimension;
@@ -757,8 +811,10 @@ export interface Tokens {
   "controlStack.large.gap.auto": Dimension;
   "controlStack.large.gap.condensed": Dimension;
   "controlStack.large.gap.spacious": Dimension;
+  "controlStack.medium.gap.auto": Dimension;
   "controlStack.medium.gap.condensed": Dimension;
   "controlStack.medium.gap.spacious": Dimension;
+  "controlStack.small.gap.auto": Dimension;
   "controlStack.small.gap.condensed": Dimension;
   "controlStack.small.gap.spacious": Dimension;
   "controlTrack.bgColor.active": Color;
@@ -1134,6 +1190,9 @@ export interface Tokens {
   "fgColor.upsell": Color;
   "fgColor.white": Color;
   "focus.outline": Border;
+  "focus.outline-color": Color;
+  "focus.outline-offset": Dimension;
+  "focus.outline-width": Dimension;
   "focus.outlineColor": Color;
   "fontStack.monospace": FontFamily;
   "fontStack.sansSerif": FontFamily;
@@ -1280,6 +1339,19 @@ export interface Tokens {
   "label.yellow.fgColor.hover": Color;
   "label.yellow.fgColor.rest": Color;
   "menu.bgColor.active": Color;
+  "motion.duration.long": Duration;
+  "motion.duration.medium": Duration;
+  "motion.duration.micro": Duration;
+  "motion.duration.short": Duration;
+  "motion.easing.enter": CubicBezier;
+  "motion.easing.exit": CubicBezier;
+  "motion.easing.hover": CubicBezier;
+  "motion.easing.linear": CubicBezier;
+  "motion.easing.move": CubicBezier;
+  "motion.transition.enter": Transition;
+  "motion.transition.exit": Transition;
+  "motion.transition.hover": Transition;
+  "motion.transition.stateChange": Transition;
   "outline.focus.offset": Dimension;
   "outline.focus.width": Dimension;
   "overlay.backdrop.bgColor": Color;
@@ -1301,6 +1373,48 @@ export interface Tokens {
   "overlay.width.xlarge": Dimension;
   "overlay.width.xsmall": Dimension;
   "page.header.bgColor": Color;
+  "prettylights.syntax.brackethighlighter.angle": Color;
+  "prettylights.syntax.brackethighlighter.unmatched": Color;
+  "prettylights.syntax.bracketHighlighterAngle": Color;
+  "prettylights.syntax.bracketHighlighterUnmatched": Color;
+  "prettylights.syntax.carriage.return.bg": Color;
+  "prettylights.syntax.carriage.return.text": Color;
+  "prettylights.syntax.carriageReturn.bg": Color;
+  "prettylights.syntax.carriageReturn.text": Color;
+  "prettylights.syntax.comment": Color;
+  "prettylights.syntax.constant": Color;
+  "prettylights.syntax.constant-other-reference-link": Color;
+  "prettylights.syntax.constantOtherReferenceLink": Color;
+  "prettylights.syntax.entity": Color;
+  "prettylights.syntax.entity-tag": Color;
+  "prettylights.syntax.entityTag": Color;
+  "prettylights.syntax.invalid.illegal.bg": Color;
+  "prettylights.syntax.invalid.illegal.text": Color;
+  "prettylights.syntax.invalidIllegal.bg": Color;
+  "prettylights.syntax.invalidIllegal.text": Color;
+  "prettylights.syntax.keyword": Color;
+  "prettylights.syntax.markup.bold": Color;
+  "prettylights.syntax.markup.changed.bg": Color;
+  "prettylights.syntax.markup.changed.text": Color;
+  "prettylights.syntax.markup.deleted.bg": Color;
+  "prettylights.syntax.markup.deleted.text": Color;
+  "prettylights.syntax.markup.heading": Color;
+  "prettylights.syntax.markup.ignored.bg": Color;
+  "prettylights.syntax.markup.ignored.text": Color;
+  "prettylights.syntax.markup.inserted.bg": Color;
+  "prettylights.syntax.markup.inserted.text": Color;
+  "prettylights.syntax.markup.italic": Color;
+  "prettylights.syntax.markup.list": Color;
+  "prettylights.syntax.meta.diff.range": Color;
+  "prettylights.syntax.metaDiffRange": Color;
+  "prettylights.syntax.storage.modifier.import": Color;
+  "prettylights.syntax.storageModifierImport": Color;
+  "prettylights.syntax.string": Color;
+  "prettylights.syntax.string-regexp": Color;
+  "prettylights.syntax.stringRegexp": Color;
+  "prettylights.syntax.sublimelinter.gutter.mark": Color;
+  "prettylights.syntax.sublimeLinterGutterMark": Color;
+  "prettylights.syntax.variable": Color;
   "progressBar.bgColor.accent": Color;
   "progressBar.bgColor.attention": Color;
   "progressBar.bgColor.danger": Color;
@@ -1319,7 +1433,6 @@ export interface Tokens {
   "selectMenu.bgColor.active": Color;
   "selectMenu.borderColor": Color;
   "shadow.floating.large": Shadow;
-  "shadow.floating.legacy": Shadow;
   "shadow.floating.medium": Shadow;
   "shadow.floating.small": Shadow;
   "shadow.floating.xlarge": Shadow;
@@ -1360,7 +1473,6 @@ export interface Tokens {
   "text.codeInline.shorthand": Typography;
   "text.codeInline.size": Dimension;
   "text.codeInline.weight": FontWeight;
-  "text.display.lineBoxHeight": Number;
   "text.display.lineHeight": Number;
   "text.display.shorthand": Typography;
   "text.display.size": Dimension;
@@ -1389,9 +1501,15 @@ export interface Tokens {
   "underlineNav.borderColor.active": Color;
   "underlineNav.borderColor.hover": Color;
   "underlineNav.iconColor.rest": Color;
+  "zIndex.behind": Number;
+  "zIndex.default": Number;
+  "zIndex.dropdown": Number;
+  "zIndex.modal": Number;
+  "zIndex.overlay": Number;
+  "zIndex.popover": Number;
+  "zIndex.skipLink": Number;
+  "zIndex.sticky": Number;
   "control.minTarget.auto": Dimension;
-  "controlStack.medium.gap.auto": Dimension;
-  "controlStack.small.gap.auto": Dimension;
 }
 
 /** Produce a token set from a given input. */

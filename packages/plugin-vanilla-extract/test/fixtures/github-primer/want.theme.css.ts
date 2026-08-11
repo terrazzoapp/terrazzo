@@ -1,6 +1,25 @@
 import { createTheme, createThemeContract } from "@vanilla-extract/css";
 
 export const vars = createThemeContract({
+  "ansi": {
+    "black": null,
+    "blackBright": null,
+    "blue": null,
+    "blueBright": null,
+    "cyan": null,
+    "cyanBright": null,
+    "gray": null,
+    "green": null,
+    "greenBright": null,
+    "magenta": null,
+    "magentaBright": null,
+    "red": null,
+    "redBright": null,
+    "white": null,
+    "whiteBright": null,
+    "yellow": null,
+    "yellowBright": null
+  },
   "avatar": {
     "bgColor": null,
     "borderColor": null,
@@ -374,6 +393,7 @@ export const vars = createThemeContract({
       "1000": null
     },
     "easing": {
+      "ease": null,
       "easeIn": null,
       "easeInOut": null,
       "easeOut": null,
@@ -398,15 +418,53 @@ export const vars = createThemeContract({
       "80": null,
       "96": null,
       "112": null,
-      "128": null
+      "128": null,
+      "negative2": null,
+      "negative4": null,
+      "negative6": null,
+      "negative8": null,
+      "negative12": null,
+      "negative16": null,
+      "negative20": null,
+      "negative24": null,
+      "negative28": null,
+      "negative32": null,
+      "negative36": null,
+      "negative40": null,
+      "negative44": null,
+      "negative48": null
     },
     "text": {
+      "lineHeight": {
+        "loose": null,
+        "normal": null,
+        "relaxed": null,
+        "snug": null,
+        "tight": null
+      },
+      "size": {
+        "2xl": null,
+        "lg": null,
+        "md": null,
+        "sm": null,
+        "xl": null,
+        "xs": null
+      },
       "weight": {
         "light": null,
         "medium": null,
         "normal": null,
         "semibold": null
       }
+    },
+    "zIndex": {
+      "0": null,
+      "100": null,
+      "200": null,
+      "300": null,
+      "400": null,
+      "500": null,
+      "600": null
     }
   },
   "bgColor": {
@@ -491,6 +549,10 @@ export const vars = createThemeContract({
       "emphasis": null,
       "muted": null
     },
+    "draft": {
+      "emphasis": null,
+      "muted": null
+    },
     "emphasis": null,
     "muted": null,
     "neutral": {
@@ -513,6 +575,7 @@ export const vars = createThemeContract({
       "emphasis": null,
       "muted": null
     },
+    "translucent": null,
     "transparent": null,
     "upsell": {
       "emphasis": null,
@@ -588,11 +651,6 @@ export const vars = createThemeContract({
     "thicker": null,
     "thin": null
   },
-  "boxShadow": {
-    "thick": null,
-    "thicker": null,
-    "thin": null
-  },
   "breakpoint": {
     "large": null,
     "medium": null,
@@ -621,6 +679,7 @@ export const vars = createThemeContract({
         "rest": null
       },
       "iconColor": {
+        "disabled": null,
         "hover": null,
         "rest": null
       },
@@ -643,6 +702,7 @@ export const vars = createThemeContract({
         "rest": null
       },
       "fgColor": {
+        "disabled": null,
         "rest": null
       },
       "shadow": {
@@ -716,6 +776,7 @@ export const vars = createThemeContract({
         "rest": null
       },
       "iconColor": {
+        "disabled": null,
         "rest": null
       },
       "shadow": {
@@ -1060,9 +1121,9 @@ export const vars = createThemeContract({
     },
     "large": {
       "gap": null,
-      "lineBoxHeight": null,
       "paddingBlock": null,
       "paddingInline": {
+        "condensed": null,
         "normal": null,
         "spacious": null
       },
@@ -1070,7 +1131,6 @@ export const vars = createThemeContract({
     },
     "medium": {
       "gap": null,
-      "lineBoxHeight": null,
       "paddingBlock": null,
       "paddingInline": {
         "condensed": null,
@@ -1085,11 +1145,11 @@ export const vars = createThemeContract({
     },
     "small": {
       "gap": null,
-      "lineBoxHeight": null,
       "paddingBlock": null,
       "paddingInline": {
         "condensed": null,
-        "normal": null
+        "normal": null,
+        "spacious": null
       },
       "size": null
     },
@@ -1109,9 +1169,9 @@ export const vars = createThemeContract({
     },
     "xlarge": {
       "gap": null,
-      "lineBoxHeight": null,
       "paddingBlock": null,
       "paddingInline": {
+        "condensed": null,
         "normal": null,
         "spacious": null
       },
@@ -1119,7 +1179,6 @@ export const vars = createThemeContract({
     },
     "xsmall": {
       "gap": null,
-      "lineBoxHeight": null,
       "paddingBlock": null,
       "paddingInline": {
         "condensed": null,
@@ -1151,12 +1210,14 @@ export const vars = createThemeContract({
     },
     "medium": {
       "gap": {
+        "auto": null,
         "condensed": null,
         "spacious": null
       }
     },
     "small": {
       "gap": {
+        "auto": null,
         "condensed": null,
         "spacious": null
       }
@@ -1804,7 +1865,9 @@ export const vars = createThemeContract({
   },
   "focus": {
     "outline": null,
-    "outlineColor": null
+    "outlineColor": null,
+    "outlineOffset": null,
+    "outlineWidth": null
   },
   "fontStack": {
     "monospace": null,
@@ -2085,6 +2148,27 @@ export const vars = createThemeContract({
       "active": null
     }
   },
+  "motion": {
+    "duration": {
+      "long": null,
+      "medium": null,
+      "micro": null,
+      "short": null
+    },
+    "easing": {
+      "enter": null,
+      "exit": null,
+      "hover": null,
+      "linear": null,
+      "move": null
+    },
+    "transition": {
+      "enter": null,
+      "exit": null,
+      "hover": null,
+      "stateChange": null
+    }
+  },
   "outline": {
     "focus": {
       "offset": null,
@@ -2124,6 +2208,85 @@ export const vars = createThemeContract({
   "page": {
     "header": {
       "bgColor": null
+    }
+  },
+  "prettylights": {
+    "syntax": {
+      "brackethighlighter": {
+        "angle": null,
+        "unmatched": null
+      },
+      "bracketHighlighterAngle": null,
+      "bracketHighlighterUnmatched": null,
+      "carriage": {
+        "return": {
+          "bg": null,
+          "text": null
+        }
+      },
+      "carriageReturn": {
+        "bg": null,
+        "text": null
+      },
+      "comment": null,
+      "constant": null,
+      "constantOtherReferenceLink": null,
+      "entity": null,
+      "entityTag": null,
+      "invalid": {
+        "illegal": {
+          "bg": null,
+          "text": null
+        }
+      },
+      "invalidIllegal": {
+        "bg": null,
+        "text": null
+      },
+      "keyword": null,
+      "markup": {
+        "bold": null,
+        "changed": {
+          "bg": null,
+          "text": null
+        },
+        "deleted": {
+          "bg": null,
+          "text": null
+        },
+        "heading": null,
+        "ignored": {
+          "bg": null,
+          "text": null
+        },
+        "inserted": {
+          "bg": null,
+          "text": null
+        },
+        "italic": null,
+        "list": null
+      },
+      "meta": {
+        "diff": {
+          "range": null
+        }
+      },
+      "metaDiffRange": null,
+      "storage": {
+        "modifier": {
+          "import": null
+        }
+      },
+      "storageModifierImport": null,
+      "string": null,
+      "stringRegexp": null,
+      "sublimelinter": {
+        "gutter": {
+          "mark": null
+        }
+      },
+      "sublimeLinterGutterMark": null,
+      "variable": null
     }
   },
   "progressBar": {
@@ -2166,7 +2329,6 @@ export const vars = createThemeContract({
   "shadow": {
     "floating": {
       "large": null,
-      "legacy": null,
       "medium": null,
       "small": null,
       "xlarge": null
@@ -2274,7 +2436,6 @@ export const vars = createThemeContract({
       "weight": null
     },
     "display": {
-      "lineBoxHeight": null,
       "lineHeight": null,
       "shorthand": {
         "fontWeight": null,
@@ -2359,10 +2520,39 @@ export const vars = createThemeContract({
     "iconColor": {
       "rest": null
     }
+  },
+  "zIndex": {
+    "behind": null,
+    "default": null,
+    "dropdown": null,
+    "modal": null,
+    "overlay": null,
+    "popover": null,
+    "skipLink": null,
+    "sticky": null
   }
 });
 
 export const [lightClass, light] = createTheme(vars, {
+  "ansi": {
+    "black": vars.base.color.neutral[13],
+    "blackBright": vars.base.color.neutral[11],
+    "blue": vars.base.color.blue[5],
+    "blueBright": vars.base.color.blue[4],
+    "cyan": "hsl(184 65.8% 31%)",
+    "cyanBright": "hsl(191.9 55.3% 42.9%)",
+    "gray": vars.base.color.neutral[9],
+    "green": vars.base.color.green[6],
+    "greenBright": vars.base.color.green[5],
+    "magenta": vars.base.color.purple[5],
+    "magentaBright": vars.base.color.purple[4],
+    "red": vars.base.color.red[5],
+    "redBright": vars.base.color.red[6],
+    "white": vars.base.color.neutral[9],
+    "whiteBright": vars.base.color.neutral[8],
+    "yellow": vars.base.color.yellow[8],
+    "yellowBright": vars.base.color.yellow[7]
+  },
   "avatar": {
     "bgColor": vars.base.color.neutral['0'],
     "borderColor": vars.borderColor.translucent,
@@ -2370,354 +2560,354 @@ export const [lightClass, light] = createTheme(vars, {
   },
   "base": {
     "color": {
-      "black": "rgb(12.157% 13.725% 15.686%)",
+      "black": "hsl(213.3 12.7% 13.9%)",
       "blue": {
-        "0": "rgb(86.667% 95.686% 100%)",
-        "1": "rgb(71.373% 89.02% 100%)",
-        "2": "rgb(50.196% 80% 100%)",
-        "3": "rgb(32.941% 68.235% 100%)",
-        "4": "rgb(12.941% 54.51% 100%)",
-        "5": "rgb(3.5294% 41.176% 85.49%)",
-        "6": "rgb(1.9608% 31.373% 68.235%)",
-        "7": "rgb(1.1765% 23.922% 54.51%)",
-        "8": "rgb(3.9216% 18.824% 41.176%)",
-        "9": "rgb(0% 12.941% 33.333%)"
+        "0": "hsl(199.4 100% 93.3%)",
+        "1": "hsl(203 100% 85.7%)",
+        "2": "hsl(204.1 100% 75.1%)",
+        "3": "hsl(208.4 100% 66.5%)",
+        "4": "hsl(211.4 100% 56.5%)",
+        "5": "hsl(212.4 92.1% 44.5%)",
+        "6": "hsl(213.4 94.4% 35.1%)",
+        "7": "hsl(214.4 95.8% 27.8%)",
+        "8": "hsl(216 82.6% 22.5%)",
+        "9": "hsl(216.7 100% 16.7%)"
       },
       "coral": {
-        "0": "rgb(100% 94.118% 92.157%)",
-        "1": "rgb(100% 83.922% 80%)",
-        "2": "rgb(100% 70.588% 63.137%)",
-        "3": "rgb(99.216% 54.902% 45.098%)",
-        "4": "rgb(92.549% 39.608% 27.843%)",
-        "5": "rgb(76.863% 26.275% 16.863%)",
-        "6": "rgb(61.961% 18.431% 10.98%)",
-        "7": "rgb(50.196% 12.157% 5.8824%)",
-        "8": "rgb(41.176% 6.6667% 1.9608%)",
-        "9": "rgb(31.765% 3.5294% 0.39216%)"
+        "0": "hsl(15 100% 96.1%)",
+        "1": "hsl(11.8 100% 90%)",
+        "2": "hsl(12.1 100% 81.6%)",
+        "3": "hsl(10.9 97.2% 72.2%)",
+        "4": "hsl(10.9 81.3% 60.2%)",
+        "5": "hsl(9.4 64% 46.9%)",
+        "6": "hsl(8.8 69.9% 36.5%)",
+        "7": "hsl(8.5 79% 28%)",
+        "8": "hsl(7.2 90.9% 21.6%)",
+        "9": "hsl(6 97.6% 16.1%)"
       },
       "green": {
-        "0": "rgb(85.49% 98.431% 88.235%)",
-        "1": "rgb(67.451% 93.333% 73.333%)",
-        "2": "rgb(43.529% 86.667% 54.51%)",
-        "3": "rgb(29.02% 76.078% 41.961%)",
-        "4": "rgb(17.647% 64.314% 30.588%)",
-        "5": "rgb(10.196% 49.804% 21.569%)",
-        "6": "rgb(6.6667% 38.824% 16.078%)",
-        "7": "rgb(1.5686% 30.98% 11.765%)",
-        "8": "rgb(0% 23.922% 8.6275%)",
-        "9": "rgb(0% 17.647% 6.6667%)"
+        "0": "hsl(132.7 80.5% 92%)",
+        "1": "hsl(133.6 66% 80.4%)",
+        "2": "hsl(135.3 61.8% 65.1%)",
+        "3": "hsl(136.5 49.6% 52.5%)",
+        "4": "hsl(136.6 56.9% 41%)",
+        "5": "hsl(137.2 66% 30%)",
+        "6": "hsl(137.6 70.7% 22.7%)",
+        "7": "hsl(140.8 90.4% 16.3%)",
+        "8": "hsl(141.6 100% 12%)",
+        "9": "hsl(142.7 100% 8.8%)"
       },
       "inset": vars.base.color.neutral['0'],
       "neutral": {
         "0": vars.base.color.white,
-        "1": "rgb(96.471% 97.255% 98.039%)",
-        "2": "rgb(93.725% 94.902% 96.078%)",
-        "3": "rgb(90.196% 91.765% 93.725%)",
-        "4": "rgb(87.843% 90.196% 92.157%)",
-        "5": "rgb(85.49% 87.843% 90.588%)",
-        "6": "rgb(81.961% 85.098% 87.843%)",
-        "7": "rgb(78.431% 81.961% 85.49%)",
-        "8": "rgb(50.588% 54.51% 59.608%)",
-        "9": "rgb(34.902% 38.824% 43.137%)",
-        "10": "rgb(27.059% 29.804% 32.941%)",
-        "11": "rgb(22.353% 24.706% 27.451%)",
-        "12": "rgb(14.51% 16.078% 18.039%)",
+        "1": "hsl(210 28.6% 97.3%)",
+        "2": "hsl(210 23.1% 94.9%)",
+        "3": "hsl(213.3 22% 92%)",
+        "4": "hsl(207.3 21.6% 90%)",
+        "5": "hsl(212.3 21.3% 88%)",
+        "6": "hsl(208 19.5% 84.9%)",
+        "7": "hsl(210 19.6% 82%)",
+        "8": "hsl(213.9 10% 55.1%)",
+        "9": "hsl(211.4 10.6% 39%)",
+        "10": "hsl(212 9.8% 30%)",
+        "11": "hsl(212.3 10.2% 24.9%)",
+        "12": "hsl(213.3 10.8% 16.3%)",
         "13": vars.base.color.black
       },
       "orange": {
-        "0": "rgb(100% 94.51% 89.804%)",
-        "1": "rgb(100% 84.706% 70.98%)",
-        "2": "rgb(100% 71.765% 48.627%)",
-        "3": "rgb(98.431% 56.078% 26.667%)",
-        "4": "rgb(88.235% 43.529% 14.118%)",
-        "5": "rgb(73.725% 29.804% 0%)",
-        "6": "rgb(58.431% 21.961% 0%)",
-        "7": "rgb(46.275% 17.255% 0%)",
-        "8": "rgb(36.078% 13.333% 0%)",
-        "9": "rgb(27.843% 9.0196% 0%)"
+        "0": "hsl(27.7 100% 94.9%)",
+        "1": "hsl(28.4 100% 85.5%)",
+        "2": "hsl(27 100% 74.3%)",
+        "3": "hsl(24.6 95.8% 62.5%)",
+        "4": "hsl(23.8 75.9% 51.2%)",
+        "5": "hsl(24.3 100% 36.9%)",
+        "6": "hsl(22.6 100% 29.2%)",
+        "7": "hsl(22.4 100% 23.1%)",
+        "8": "hsl(22.2 100% 18%)",
+        "9": "hsl(19.4 100% 13.9%)"
       },
       "pink": {
-        "0": "rgb(100% 93.725% 96.863%)",
-        "1": "rgb(100% 82.745% 92.157%)",
-        "2": "rgb(100% 67.843% 85.49%)",
-        "3": "rgb(100% 50.196% 78.431%)",
-        "4": "rgb(90.98% 35.294% 67.843%)",
-        "5": "rgb(74.902% 22.353% 53.725%)",
-        "6": "rgb(60% 15.686% 43.137%)",
-        "7": "rgb(46.667% 12.549% 34.118%)",
-        "8": "rgb(38.039% 7.451% 27.843%)",
-        "9": "rgb(30.196% 1.1765% 21.176%)"
+        "0": "hsl(330 100% 96.9%)",
+        "1": "hsl(327.3 100% 91.4%)",
+        "2": "hsl(327.1 100% 83.9%)",
+        "3": "hsl(326 100% 75.1%)",
+        "4": "hsl(324.9 75.5% 63.1%)",
+        "5": "hsl(324.2 54% 48.6%)",
+        "6": "hsl(322.8 58.5% 37.8%)",
+        "7": "hsl(322.1 57.6% 29.6%)",
+        "8": "hsl(320 67.2% 22.7%)",
+        "9": "hsl(318.6 92.5% 15.7%)"
       },
       "purple": {
-        "0": "rgb(98.431% 93.725% 100%)",
-        "1": "rgb(92.549% 84.706% 100%)",
-        "2": "rgb(84.706% 72.549% 100%)",
-        "3": "rgb(76.078% 59.216% 100%)",
-        "4": "rgb(64.314% 45.882% 97.647%)",
-        "5": "rgb(50.98% 31.373% 87.451%)",
-        "6": "rgb(40% 22.353% 72.941%)",
-        "7": "rgb(31.765% 16.471% 59.216%)",
-        "8": "rgb(24.314% 12.157% 47.451%)",
-        "9": "rgb(18.039% 7.8431% 38.039%)"
+        "0": "hsl(285 100% 96.9%)",
+        "1": "hsl(270.8 100% 92.4%)",
+        "2": "hsl(266.6 100% 86.3%)",
+        "3": "hsl(264.8 100% 79.6%)",
+        "4": "hsl(261.4 91.7% 71.8%)",
+        "5": "hsl(261 69.1% 59.4%)",
+        "6": "hsl(260.9 53.1% 47.6%)",
+        "7": "hsl(261.5 56.5% 37.8%)",
+        "8": "hsl(260.7 59.2% 29.8%)",
+        "9": "hsl(260.3 65.8% 22.9%)"
       },
       "red": {
-        "0": "rgb(100% 92.157% 91.373%)",
-        "1": "rgb(100% 80.784% 79.608%)",
-        "2": "rgb(100% 67.059% 65.882%)",
-        "3": "rgb(100% 50.588% 50.98%)",
-        "4": "rgb(98.039% 27.059% 28.627%)",
-        "5": "rgb(81.176% 13.333% 18.039%)",
-        "6": "rgb(64.314% 5.4902% 14.902%)",
-        "7": "rgb(50.98% 2.7451% 11.765%)",
-        "8": "rgb(40% 0% 9.4118%)",
-        "9": "rgb(29.804% 0% 7.8431%)"
+        "0": "hsl(5.5 100% 95.7%)",
+        "1": "hsl(3.5 100% 89.8%)",
+        "2": "hsl(2.1 100% 82.9%)",
+        "3": "hsl(359.5 100% 75.3%)",
+        "4": "hsl(358.7 94.8% 62.5%)",
+        "5": "hsl(355.8 71.8% 47.3%)",
+        "6": "hsl(350.4 84.3% 34.9%)",
+        "7": "hsl(348.8 89.8% 26.9%)",
+        "8": "hsl(345.9 100% 20%)",
+        "9": "hsl(344.2 100% 14.9%)"
       },
-      "transparent": "rgb(100% 100% 100%)",
-      "white": "rgb(100% 100% 100%)",
+      "transparent": "hsl(0 0% 100%)",
+      "white": "hsl(0 0% 100%)",
       "yellow": {
-        "0": "rgb(100% 97.255% 77.255%)",
-        "1": "rgb(98.039% 88.235% 49.02%)",
-        "2": "rgb(91.765% 77.255% 30.98%)",
-        "3": "rgb(83.137% 65.49% 17.255%)",
-        "4": "rgb(74.902% 52.941% 0%)",
-        "5": "rgb(60.392% 40.392% 0%)",
-        "6": "rgb(49.02% 30.588% 0%)",
-        "7": "rgb(38.824% 23.529% 0.39216%)",
-        "8": "rgb(30.196% 17.647% 0%)",
-        "9": "rgb(23.137% 13.725% 0%)"
+        "0": "hsl(52.8 100% 88.6%)",
+        "1": "hsl(48 92.6% 73.5%)",
+        "2": "hsl(45.7 78.7% 61.4%)",
+        "3": "hsl(43.9 66.1% 50.2%)",
+        "4": "hsl(42.4 100% 37.5%)",
+        "5": "hsl(40.1 100% 30.2%)",
+        "6": "hsl(37.4 100% 24.5%)",
+        "7": "hsl(36.1 98% 19.6%)",
+        "8": "hsl(35.1 100% 15.1%)",
+        "9": "hsl(35.6 100% 11.6%)"
       }
     },
     "display": {
       "color": {
         "auburn": {
-          "0": "rgb(94.902% 91.373% 91.373%)",
-          "1": "rgb(90.196% 83.922% 83.529%)",
-          "2": "rgb(83.137% 71.765% 70.98%)",
-          "3": "rgb(77.255% 61.961% 60.784%)",
-          "4": "rgb(70.588% 50.98% 49.412%)",
-          "5": "rgb(61.569% 38.039% 36.078%)",
-          "6": "rgb(54.118% 33.333% 31.765%)",
-          "7": "rgb(45.49% 27.843% 26.667%)",
-          "8": "rgb(36.471% 22.353% 21.569%)",
-          "9": "rgb(26.275% 16.078% 15.686%)"
+          "0": "hsl(0 25.7% 93.1%)",
+          "1": "hsl(3.5 25.4% 86.9%)",
+          "2": "hsl(3.9 26.5% 77.1%)",
+          "3": "hsl(4.3 26.6% 69%)",
+          "4": "hsl(4.4 26.5% 60%)",
+          "5": "hsl(4.6 26.1% 48.8%)",
+          "6": "hsl(4.2 26% 42.9%)",
+          "7": "hsl(3.8 26.1% 36.1%)",
+          "8": "hsl(3.2 25.7% 29%)",
+          "9": "hsl(2.2 25.2% 21%)"
         },
-        "black": "rgb(5.098% 6.6667% 9.0196%)",
+        "black": "hsl(216 27.8% 7.1%)",
         "blue": {
-          "0": "rgb(81.961% 94.118% 100%)",
-          "1": "rgb(67.843% 88.235% 100%)",
-          "2": "rgb(45.882% 78.431% 100%)",
-          "3": "rgb(27.843% 68.627% 100%)",
-          "4": "rgb(5.8824% 56.078% 100%)",
-          "5": "rgb(0% 43.137% 85.882%)",
-          "6": "rgb(0% 37.255% 80%)",
-          "7": "rgb(0% 30.196% 70.196%)",
-          "8": "rgb(0% 23.922% 60%)",
-          "9": "rgb(0% 16.863% 45.882%)"
+          "0": "hsl(199.6 100% 91%)",
+          "1": "hsl(202 100% 83.9%)",
+          "2": "hsl(203.9 100% 72.9%)",
+          "3": "hsl(206.1 100% 63.9%)",
+          "4": "hsl(208 100% 52.9%)",
+          "5": "hsl(209.9 100% 42.9%)",
+          "6": "hsl(212.1 100% 40%)",
+          "7": "hsl(214.2 100% 35.1%)",
+          "8": "hsl(216.1 100% 30%)",
+          "9": "hsl(217.9 100% 22.9%)"
         },
         "brown": {
-          "0": "rgb(93.333% 91.765% 88.627%)",
-          "1": "rgb(87.451% 84.314% 78.431%)",
-          "2": "rgb(79.608% 74.118% 64.314%)",
-          "3": "rgb(72.157% 64.314% 51.765%)",
-          "4": "rgb(65.098% 54.51% 39.216%)",
-          "5": "rgb(52.157% 42.745% 29.804%)",
-          "6": "rgb(45.882% 37.255% 26.275%)",
-          "7": "rgb(39.216% 31.765% 22.745%)",
-          "8": "rgb(31.765% 25.49% 18.431%)",
-          "9": "rgb(22.745% 18.039% 13.333%)"
+          "0": "hsl(40 26.1% 91%)",
+          "1": "hsl(39.1 26.4% 82.9%)",
+          "2": "hsl(38.5 27.3% 72%)",
+          "3": "hsl(36.9 26.8% 62%)",
+          "4": "hsl(35.5 27% 52.2%)",
+          "5": "hsl(34.7 27.3% 41%)",
+          "6": "hsl(33.6 27.2% 36.1%)",
+          "7": "hsl(32.9 26.6% 31%)",
+          "8": "hsl(31.8 26.6% 25.1%)",
+          "9": "hsl(30 26.1% 18%)"
         },
         "coral": {
-          "0": "rgb(100% 89.804% 85.882%)",
-          "1": "rgb(99.608% 80.784% 74.51%)",
-          "2": "rgb(98.824% 67.059% 57.255%)",
-          "3": "rgb(97.255% 52.941% 40.784%)",
-          "4": "rgb(94.902% 37.255% 22.745%)",
-          "5": "rgb(83.137% 20.784% 6.6667%)",
-          "6": "rgb(72.941% 18.039% 7.0588%)",
-          "7": "rgb(60.784% 15.294% 7.0588%)",
-          "8": "rgb(49.412% 12.549% 6.6667%)",
-          "9": "rgb(36.471% 9.4118% 5.4902%)"
+          "0": "hsl(16.7 100% 92.9%)",
+          "1": "hsl(15 97% 87.1%)",
+          "2": "hsl(14.2 94.6% 78%)",
+          "3": "hsl(12.9 91.1% 69%)",
+          "4": "hsl(12.1 87.6% 58.8%)",
+          "5": "hsl(11.1 85.2% 44.9%)",
+          "6": "hsl(10 82.4% 40%)",
+          "7": "hsl(9.2 79.2% 33.9%)",
+          "8": "hsl(8.3 76.2% 28%)",
+          "9": "hsl(7.6 73.8% 21%)"
         },
         "cyan": {
-          "0": "rgb(74.118% 95.686% 100%)",
-          "1": "rgb(47.843% 91.373% 100%)",
-          "2": "rgb(0% 81.569% 98.039%)",
-          "3": "rgb(0% 71.765% 85.882%)",
-          "4": "rgb(0% 60% 72.157%)",
-          "5": "rgb(0% 48.235% 58.039%)",
-          "6": "rgb(0% 41.569% 50.196%)",
-          "7": "rgb(0% 34.902% 41.961%)",
-          "8": "rgb(0% 28.235% 34.118%)",
-          "9": "rgb(0% 21.569% 25.882%)"
+          "0": "hsl(190 100% 87.1%)",
+          "1": "hsl(189.9 100% 73.9%)",
+          "2": "hsl(190.1 100% 49%)",
+          "3": "hsl(189.9 100% 42.9%)",
+          "4": "hsl(190.1 100% 36.1%)",
+          "5": "hsl(190.1 100% 29%)",
+          "6": "hsl(190.3 100% 25.1%)",
+          "7": "hsl(190.1 100% 21%)",
+          "8": "hsl(190.3 100% 17.1%)",
+          "9": "hsl(190 100% 12.9%)"
         },
         "gray": {
-          "0": "rgb(90.98% 92.549% 94.902%)",
-          "1": "rgb(82.353% 85.49% 89.412%)",
-          "2": "rgb(70.588% 75.294% 81.176%)",
-          "3": "rgb(60.784% 66.275% 73.333%)",
-          "4": "rgb(50.196% 56.078% 63.922%)",
-          "5": "rgb(39.216% 44.314% 50.98%)",
-          "6": "rgb(36.078% 39.608% 43.922%)",
-          "7": "rgb(30.588% 32.549% 35.294%)",
-          "8": "rgb(25.882% 26.667% 28.235%)",
-          "9": "rgb(18.824% 18.824% 19.216%)"
+          "0": "hsl(216 27.8% 92.9%)",
+          "1": "hsl(213.3 25% 85.9%)",
+          "2": "hsl(213.3 22% 75.9%)",
+          "3": "hsl(213.8 19% 67.1%)",
+          "4": "hsl(214.3 16% 57.1%)",
+          "5": "hsl(214 13% 45.1%)",
+          "6": "hsl(213 9.8% 40%)",
+          "7": "hsl(215 7.1% 32.9%)",
+          "8": "hsl(220 4.3% 27.1%)",
+          "9": "hsl(240 1% 19%)"
         },
         "green": {
-          "0": "rgb(79.216% 96.863% 79.216%)",
-          "1": "rgb(61.176% 92.941% 62.745%)",
-          "2": "rgb(32.941% 85.098% 38.039%)",
-          "3": "rgb(19.216% 74.902% 27.451%)",
-          "4": "rgb(18.824% 63.137% 27.843%)",
-          "5": "rgb(17.255% 50.588% 25.49%)",
-          "6": "rgb(16.863% 43.137% 24.706%)",
-          "7": "rgb(15.686% 36.078% 23.137%)",
-          "8": "rgb(14.51% 29.412% 20.392%)",
-          "9": "rgb(11.373% 20.784% 15.686%)"
+          "0": "hsl(120 73.8% 88%)",
+          "1": "hsl(123 69.2% 77.1%)",
+          "2": "hsl(125.9 63.6% 59%)",
+          "3": "hsl(128.9 59.2% 47.1%)",
+          "4": "hsl(132.2 54.1% 41%)",
+          "5": "hsl(134.8 49.1% 33.9%)",
+          "6": "hsl(137.9 43.8% 30%)",
+          "7": "hsl(141.9 39.4% 25.9%)",
+          "8": "hsl(143.7 33.9% 22%)",
+          "9": "hsl(147.5 29.3% 16.1%)"
         },
         "indigo": {
-          "0": "rgb(89.804% 91.373% 100%)",
-          "1": "rgb(82.353% 84.314% 99.608%)",
-          "2": "rgb(69.412% 72.549% 98.431%)",
-          "3": "rgb(59.216% 62.353% 96.863%)",
-          "4": "rgb(47.843% 50.98% 94.118%)",
-          "5": "rgb(35.294% 38.039% 90.588%)",
-          "6": "rgb(28.627% 30.588% 87.451%)",
-          "7": "rgb(22.353% 23.529% 83.529%)",
-          "8": "rgb(17.647% 17.647% 70.588%)",
-          "9": "rgb(14.51% 14.118% 48.235%)"
+          "0": "hsl(230.8 100% 94.9%)",
+          "1": "hsl(233.2 95.7% 91%)",
+          "2": "hsl(233.5 90.2% 83.9%)",
+          "3": "hsl(235 85.7% 78%)",
+          "4": "hsl(235.9 79.7% 71%)",
+          "5": "hsl(237 74.6% 62.9%)",
+          "6": "hsl(238 70.1% 58%)",
+          "7": "hsl(238.8 65% 52.9%)",
+          "8": "hsl(240 60% 44.1%)",
+          "9": "hsl(240.7 54.7% 31.2%)"
         },
         "lemon": {
-          "0": "rgb(96.863% 93.333% 63.137%)",
-          "1": "rgb(94.118% 85.882% 23.922%)",
-          "2": "rgb(84.706% 74.118% 5.4902%)",
-          "3": "rgb(76.078% 65.098% 3.9216%)",
-          "4": "rgb(65.098% 54.902% 2.7451%)",
-          "5": "rgb(52.549% 43.137% 1.5686%)",
-          "6": "rgb(47.059% 37.647% 0.78431%)",
-          "7": "rgb(39.608% 30.98% 0.39216%)",
-          "8": "rgb(32.157% 24.706% 0%)",
-          "9": "rgb(23.922% 18.039% 0%)"
+          "0": "hsl(53.7 84.3% 80%)",
+          "1": "hsl(53 85.6% 59%)",
+          "2": "hsl(52 87.8% 45.1%)",
+          "3": "hsl(50.9 90.2% 40%)",
+          "4": "hsl(50.2 91.9% 33.9%)",
+          "5": "hsl(48.9 94.2% 27.1%)",
+          "6": "hsl(47.8 96.7% 23.9%)",
+          "7": "hsl(46.8 98% 20%)",
+          "8": "hsl(46.1 100% 16.1%)",
+          "9": "hsl(45.2 100% 12%)"
         },
         "lime": {
-          "0": "rgb(89.02% 94.902% 70.98%)",
-          "1": "rgb(78.039% 89.804% 50.196%)",
-          "2": "rgb(60.784% 81.569% 22.353%)",
-          "3": "rgb(50.196% 70.98% 18.824%)",
-          "4": "rgb(42.353% 61.569% 18.431%)",
-          "5": "rgb(32.157% 47.843% 16.078%)",
-          "6": "rgb(27.843% 42.353% 15.686%)",
-          "7": "rgb(22.745% 35.686% 14.51%)",
-          "8": "rgb(18.431% 29.02% 12.941%)",
-          "9": "rgb(12.941% 20% 9.8039%)"
+          "0": "hsl(74.8 70.1% 82.9%)",
+          "1": "hsl(77.8 66% 70%)",
+          "2": "hsl(81.1 61.6% 52%)",
+          "3": "hsl(83.9 58.1% 44.9%)",
+          "4": "hsl(86.7 53.9% 40%)",
+          "5": "hsl(89.6 49.7% 32%)",
+          "6": "hsl(92.6 45.9% 29%)",
+          "7": "hsl(96.7 42.2% 25.1%)",
+          "8": "hsl(99.5 38.3% 21%)",
+          "9": "hsl(101.5 34.2% 14.9%)"
         },
         "olive": {
-          "0": "rgb(94.118% 94.118% 67.843%)",
-          "1": "rgb(85.882% 88.235% 43.922%)",
-          "2": "rgb(72.549% 78.431% 19.608%)",
-          "3": "rgb(60.784% 68.235% 19.608%)",
-          "4": "rgb(50.588% 58.431% 19.608%)",
-          "5": "rgb(39.216% 46.275% 17.647%)",
-          "6": "rgb(33.725% 40.784% 17.255%)",
-          "7": "rgb(28.627% 35.294% 16.863%)",
-          "8": "rgb(23.137% 28.627% 15.294%)",
-          "9": "rgb(16.471% 20% 12.157%)"
+          "0": "hsl(60 69.1% 81%)",
+          "1": "hsl(63.2 65.3% 66.1%)",
+          "2": "hsl(66 60% 49%)",
+          "3": "hsl(69.2 55.4% 43.9%)",
+          "4": "hsl(72.1 49.7% 39%)",
+          "5": "hsl(74.8 44.8% 32%)",
+          "6": "hsl(78 40.5% 29%)",
+          "7": "hsl(81.7 35.3% 26.1%)",
+          "8": "hsl(84.7 30.4% 22%)",
+          "9": "hsl(87 24.4% 16.1%)"
         },
         "orange": {
-          "0": "rgb(100% 90.588% 81.961%)",
-          "1": "rgb(99.608% 81.176% 66.667%)",
-          "2": "rgb(98.431% 68.627% 45.49%)",
-          "3": "rgb(96.471% 54.902% 25.49%)",
-          "4": "rgb(92.157% 40.392% 5.8824%)",
-          "5": "rgb(72.157% 31.373% 5.8824%)",
-          "6": "rgb(63.529% 27.451% 6.2745%)",
-          "7": "rgb(55.294% 23.529% 6.6667%)",
-          "8": "rgb(43.922% 18.824% 5.8824%)",
-          "9": "rgb(32.941% 13.725% 5.098%)"
+          "0": "hsl(28.7 100% 91%)",
+          "1": "hsl(26.4 97.7% 83.1%)",
+          "2": "hsl(26.2 94.4% 72%)",
+          "3": "hsl(24.9 91% 61%)",
+          "4": "hsl(24 88% 49%)",
+          "5": "hsl(23.1 84.9% 39%)",
+          "6": "hsl(22.2 82% 34.9%)",
+          "7": "hsl(20.8 78.5% 31%)",
+          "8": "hsl(20.4 76.4% 24.9%)",
+          "9": "hsl(18.6 73.2% 19%)"
         },
         "pine": {
-          "0": "rgb(74.902% 97.255% 85.882%)",
-          "1": "rgb(50.196% 93.725% 72.549%)",
-          "2": "rgb(11.373% 84.314% 50.588%)",
-          "3": "rgb(11.373% 74.902% 46.275%)",
-          "4": "rgb(10.196% 63.529% 40.392%)",
-          "5": "rgb(8.6275% 49.412% 32.549%)",
-          "6": "rgb(8.2353% 43.529% 29.412%)",
-          "7": "rgb(7.451% 36.471% 25.49%)",
-          "8": "rgb(6.6667% 29.412% 21.176%)",
-          "9": "rgb(5.098% 21.176% 15.294%)"
+          "0": "hsl(149.5 80.3% 86.1%)",
+          "1": "hsl(150.8 77.6% 72%)",
+          "2": "hsl(152.3 76.2% 47.8%)",
+          "3": "hsl(153 73.6% 43.1%)",
+          "4": "hsl(154 72.3% 36.9%)",
+          "5": "hsl(155.2 70.3% 29%)",
+          "6": "hsl(156 68.2% 25.9%)",
+          "7": "hsl(157.3 66.1% 22%)",
+          "8": "hsl(158.3 63% 18%)",
+          "9": "hsl(158 61.2% 13.1%)"
         },
         "pink": {
-          "0": "rgb(100% 89.804% 94.51%)",
-          "1": "rgb(99.216% 78.824% 88.627%)",
-          "2": "rgb(97.255% 64.706% 81.176%)",
-          "3": "rgb(94.51% 51.765% 73.725%)",
-          "4": "rgb(89.804% 36.471% 64.706%)",
-          "5": "rgb(80.784% 17.255% 52.157%)",
-          "6": "rgb(69.412% 18.431% 47.451%)",
-          "7": "rgb(55.686% 18.039% 40%)",
-          "8": "rgb(43.137% 16.863% 32.549%)",
-          "9": "rgb(30.196% 13.725% 23.922%)"
+          "0": "hsl(332.3 100% 94.9%)",
+          "1": "hsl(331.2 92.9% 89%)",
+          "2": "hsl(329.6 85.6% 81%)",
+          "3": "hsl(329.2 79.6% 73.1%)",
+          "4": "hsl(328.2 72.3% 63.1%)",
+          "5": "hsl(327 64.8% 49%)",
+          "6": "hsl(325.8 58% 43.9%)",
+          "7": "hsl(325 51.1% 36.9%)",
+          "8": "hsl(324.2 43.8% 30%)",
+          "9": "hsl(322.9 37.5% 22%)"
         },
         "plum": {
-          "0": "rgb(97.255% 89.804% 100%)",
-          "1": "rgb(94.118% 80.392% 99.608%)",
-          "2": "rgb(88.627% 65.49% 98.431%)",
-          "3": "rgb(83.137% 52.941% 96.863%)",
-          "4": "rgb(76.078% 39.216% 94.902%)",
-          "5": "rgb(65.882% 18.824% 90.98%)",
-          "6": "rgb(58.824% 11.765% 86.275%)",
-          "7": "rgb(49.02% 11.765% 72.157%)",
-          "8": "rgb(39.608% 11.373% 58.824%)",
-          "9": "rgb(27.843% 9.0196% 41.176%)"
+          "0": "hsl(283.8 100% 94.9%)",
+          "1": "hsl(282.9 96.1% 90%)",
+          "2": "hsl(282.1 91.3% 82%)",
+          "3": "hsl(281.3 87.5% 74.9%)",
+          "4": "hsl(279.7 84.5% 67.1%)",
+          "5": "hsl(279.1 80% 54.9%)",
+          "6": "hsl(277.9 76% 49%)",
+          "7": "hsl(277 72% 42%)",
+          "8": "hsl(275.7 67.6% 35.1%)",
+          "9": "hsl(275.1 64.1% 25.1%)"
         },
         "purple": {
-          "0": "rgb(94.51% 89.804% 100%)",
-          "1": "rgb(90.196% 82.353% 99.608%)",
-          "2": "rgb(81.961% 69.412% 98.824%)",
-          "3": "rgb(73.725% 56.863% 97.255%)",
-          "4": "rgb(65.098% 44.706% 95.294%)",
-          "5": "rgb(53.725% 29.804% 92.157%)",
-          "6": "rgb(47.059% 22.745% 89.412%)",
-          "7": "rgb(38.431% 13.725% 84.314%)",
-          "8": "rgb(30.98% 12.941% 67.059%)",
-          "9": "rgb(22.353% 10.588% 47.451%)"
+          "0": "hsl(267.7 100% 94.9%)",
+          "1": "hsl(267.3 95.7% 91%)",
+          "2": "hsl(265.6 92.6% 84.1%)",
+          "3": "hsl(265 88% 77.1%)",
+          "4": "hsl(264.2 84.3% 70%)",
+          "5": "hsl(263 79.9% 61%)",
+          "6": "hsl(261.9 75.9% 56.1%)",
+          "7": "hsl(261 72% 49%)",
+          "8": "hsl(260 67.6% 40%)",
+          "9": "hsl(259.1 63.5% 29%)"
         },
         "red": {
-          "0": "rgb(100% 88.627% 87.843%)",
-          "1": "rgb(99.608% 80.392% 80.392%)",
-          "2": "rgb(99.216% 64.706% 65.49%)",
-          "3": "rgb(98.431% 51.373% 53.725%)",
-          "4": "rgb(97.255% 32.941% 38.039%)",
-          "5": "rgb(87.451% 4.7059% 14.118%)",
-          "6": "rgb(77.255% 5.098% 15.686%)",
-          "7": "rgb(65.098% 4.7059% 16.078%)",
-          "8": "rgb(53.333% 4.7059% 15.294%)",
-          "9": "rgb(38.039% 3.9216% 12.549%)"
+          "0": "hsl(3.9 100% 93.9%)",
+          "1": "hsl(0 96.1% 90%)",
+          "2": "hsl(358.6 95.7% 82%)",
+          "3": "hsl(357 93.7% 74.9%)",
+          "4": "hsl(355.2 92.1% 65.1%)",
+          "5": "hsl(353.2 89.8% 46.1%)",
+          "6": "hsl(351.2 87.6% 41.2%)",
+          "7": "hsl(348.7 86.5% 34.9%)",
+          "8": "hsl(346.9 83.8% 29%)",
+          "9": "hsl(344.8 81.3% 21%)"
         },
         "teal": {
-          "0": "rgb(78.039% 96.078% 93.725%)",
-          "1": "rgb(53.725% 92.157% 88.235%)",
-          "2": "rgb(13.333% 82.745% 78.039%)",
-          "3": "rgb(11.373% 72.549% 70.588%)",
-          "4": "rgb(9.0196% 60.784% 60.784%)",
-          "5": "rgb(7.0588% 49.412% 50.588%)",
-          "6": "rgb(6.2745% 43.137% 45.882%)",
-          "7": "rgb(5.098% 35.686% 38.824%)",
-          "8": "rgb(3.9216% 28.235% 32.157%)",
-          "9": "rgb(2.7451% 21.569% 25.098%)"
+          "0": "hsl(172.2 69.7% 87.1%)",
+          "1": "hsl(173.9 71% 72.9%)",
+          "2": "hsl(175.9 72.2% 48%)",
+          "3": "hsl(178.1 72.9% 42%)",
+          "4": "hsl(180 74.2% 34.9%)",
+          "5": "hsl(181.6 75.5% 28.8%)",
+          "6": "hsl(184.2 75.9% 26.1%)",
+          "7": "hsl(185.6 76.8% 22%)",
+          "8": "hsl(188.3 78.3% 18%)",
+          "9": "hsl(189.5 80.3% 13.9%)"
         },
-        "white": "rgb(100% 100% 100%)",
+        "white": "hsl(0 0% 100%)",
         "yellow": {
-          "0": "rgb(100% 92.549% 61.961%)",
-          "1": "rgb(100% 83.922% 25.882%)",
-          "2": "rgb(92.157% 70.588% 0%)",
-          "3": "rgb(81.961% 61.569% 0%)",
-          "4": "rgb(72.157% 52.941% 0%)",
-          "5": "rgb(58.039% 41.569% 0%)",
-          "6": "rgb(50.196% 34.902% 0%)",
-          "7": "rgb(43.922% 30.196% 0%)",
-          "8": "rgb(36.078% 23.922% 0%)",
-          "9": "rgb(25.882% 16.863% 0%)"
+          "0": "hsl(48.2 100% 81%)",
+          "1": "hsl(47 100% 62.9%)",
+          "2": "hsl(46 100% 46.1%)",
+          "3": "hsl(45.1 100% 41%)",
+          "4": "hsl(44 100% 36.1%)",
+          "5": "hsl(43 100% 29%)",
+          "6": "hsl(41.7 100% 25.1%)",
+          "7": "hsl(41.3 100% 22%)",
+          "8": "hsl(39.8 100% 18%)",
+          "9": "hsl(39.1 100% 12.9%)"
         }
       }
     },
@@ -2736,6 +2926,7 @@ export const [lightClass, light] = createTheme(vars, {
       "1000": "1000ms"
     },
     "easing": {
+      "ease": "cubic-bezier(0.25, 0.1, 0.25, 1)",
       "easeIn": "cubic-bezier(0.7, 0.1, 0.75, 0.9)",
       "easeInOut": "cubic-bezier(0.6, 0, 0.2, 1)",
       "easeOut": "cubic-bezier(0.3, 0.8, 0.6, 1)",
@@ -2760,15 +2951,53 @@ export const [lightClass, light] = createTheme(vars, {
       "80": "80px",
       "96": "96px",
       "112": "112px",
-      "128": "128px"
+      "128": "128px",
+      "negative2": "-2px",
+      "negative4": "-4px",
+      "negative6": "-6px",
+      "negative8": "-8px",
+      "negative12": "-12px",
+      "negative16": "-16px",
+      "negative20": "-20px",
+      "negative24": "-24px",
+      "negative28": "-28px",
+      "negative32": "-32px",
+      "negative36": "-36px",
+      "negative40": "-40px",
+      "negative44": "-44px",
+      "negative48": "-48px"
     },
     "text": {
+      "lineHeight": {
+        "loose": "1.75",
+        "normal": "1.5",
+        "relaxed": "1.625",
+        "snug": "1.375",
+        "tight": "1.25"
+      },
+      "size": {
+        "2xl": "2.5rem",
+        "lg": "1.25rem",
+        "md": "1rem",
+        "sm": "0.875rem",
+        "xl": "2rem",
+        "xs": "0.75rem"
+      },
       "weight": {
         "light": "300",
         "medium": "500",
         "normal": "400",
         "semibold": "600"
       }
+    },
+    "zIndex": {
+      "0": "0",
+      "100": "100",
+      "200": "200",
+      "300": "300",
+      "400": "400",
+      "500": "500",
+      "600": "600"
     }
   },
   "bgColor": {
@@ -2820,7 +3049,7 @@ export const [lightClass, light] = createTheme(vars, {
       "muted": vars.base.color.pink['0']
     },
     "success": {
-      "emphasis": "rgb(12.157% 53.333% 23.922%)",
+      "emphasis": "hsl(137.1 62.9% 32.7%)",
       "muted": vars.base.color.green['0']
     },
     "transparent": vars.base.color.transparent,
@@ -2853,6 +3082,10 @@ export const [lightClass, light] = createTheme(vars, {
       "emphasis": "var(--border-width-default) solid var(--border-color-done-emphasis)",
       "muted": "var(--border-width-default) solid var(--border-color-done-muted)"
     },
+    "draft": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-draft-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-draft-muted)"
+    },
     "emphasis": "var(--border-width-default) solid var(--border-color-emphasis)",
     "muted": "var(--border-width-default) solid var(--border-color-muted)",
     "neutral": {
@@ -2875,6 +3108,7 @@ export const [lightClass, light] = createTheme(vars, {
       "emphasis": "var(--border-width-default) solid var(--border-color-success-emphasis)",
       "muted": "var(--border-width-default) solid var(--border-color-success-muted)"
     },
+    "translucent": "var(--border-width-default) solid var(--border-color-translucent)",
     "transparent": "var(--border-width-default) solid var(--border-color-transparent)",
     "upsell": {
       "emphasis": "var(--border-width-default) solid var(--border-color-upsell-emphasis)",
@@ -2950,11 +3184,6 @@ export const [lightClass, light] = createTheme(vars, {
     "thicker": "4px",
     "thin": "1px"
   },
-  "boxShadow": {
-    "thick": "inset 0 0 0 {borderWidth.thick}",
-    "thicker": "inset 0 0 0 {borderWidth.thicker}",
-    "thin": "inset 0 0 0 {borderWidth.thin}"
-  },
   "breakpoint": {
     "large": "1012px",
     "medium": "768px",
@@ -2983,6 +3212,7 @@ export const [lightClass, light] = createTheme(vars, {
         "rest": vars.fgColor.danger
       },
       "iconColor": {
+        "disabled": vars.button.danger.fgColor.disabled,
         "hover": vars.base.color.neutral['0'],
         "rest": vars.button.danger.fgColor.rest
       },
@@ -3005,6 +3235,7 @@ export const [lightClass, light] = createTheme(vars, {
         "rest": vars.control.borderColor.rest
       },
       "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
         "rest": vars.control.fgColor.rest
       },
       "shadow": {
@@ -3041,7 +3272,7 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "outline": {
       "bgColor": {
-        "active": "rgb(2.7451% 34.118% 72.941%)",
+        "active": "hsl(213.2 92.7% 37.8%)",
         "disabled": vars.control.bgColor.disabled,
         "hover": vars.bgColor.accent.emphasis,
         "rest": vars.control.bgColor.rest
@@ -3062,9 +3293,9 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "primary": {
       "bgColor": {
-        "active": "rgb(9.8039% 47.451% 20.784%)",
-        "disabled": "rgb(58.431% 84.706% 65.098%)",
-        "hover": "rgb(10.98% 50.588% 22.353%)",
+        "active": "hsl(137.5 65.8% 28.6%)",
+        "disabled": "hsl(135.2 46.2% 71.6%)",
+        "hover": "hsl(137.2 64.3% 30.8%)",
         "rest": vars.bgColor.success.emphasis
       },
       "borderColor": {
@@ -3078,6 +3309,7 @@ export const [lightClass, light] = createTheme(vars, {
         "rest": vars.fgColor.white
       },
       "iconColor": {
+        "disabled": vars.button.primary.fgColor.disabled,
         "rest": vars.fgColor.white
       },
       "shadow": {
@@ -3098,7 +3330,7 @@ export const [lightClass, light] = createTheme(vars, {
       "fgColor": {
         "disabled": vars.fgColor.danger,
         "hover": vars.base.color.neutral['0'],
-        "rest": "rgb(76.078% 10.98% 17.255%)"
+        "rest": "hsl(354.2 74.8% 43.5%)"
       }
     },
     "default": {
@@ -3248,88 +3480,88 @@ export const [lightClass, light] = createTheme(vars, {
   },
   "color": {
     "ansi": {
-      "black": vars.base.color.neutral[13],
-      "blackBright": vars.base.color.neutral[11],
-      "blue": vars.base.color.blue[5],
-      "blueBright": vars.base.color.blue[4],
-      "cyan": "rgb(10.588% 48.627% 51.373%)",
-      "cyanBright": "rgb(19.216% 57.255% 66.667%)",
-      "gray": vars.base.color.neutral[9],
-      "green": vars.base.color.green[6],
-      "greenBright": vars.base.color.green[5],
-      "magenta": vars.base.color.purple[5],
-      "magentaBright": vars.base.color.purple[4],
-      "red": vars.base.color.red[5],
-      "redBright": vars.base.color.red[6],
-      "white": vars.base.color.neutral[9],
-      "whiteBright": vars.base.color.neutral[8],
-      "yellow": vars.base.color.yellow[8],
-      "yellowBright": vars.base.color.yellow[7]
+      "black": vars.ansi.black,
+      "blackBright": vars.ansi.blackBright,
+      "blue": vars.ansi.blue,
+      "blueBright": vars.ansi.blueBright,
+      "cyan": vars.ansi.cyan,
+      "cyanBright": vars.ansi.cyanBright,
+      "gray": vars.ansi.gray,
+      "green": vars.ansi.green,
+      "greenBright": vars.ansi.greenBright,
+      "magenta": vars.ansi.magenta,
+      "magentaBright": vars.ansi.magentaBright,
+      "red": vars.ansi.red,
+      "redBright": vars.ansi.redBright,
+      "white": vars.ansi.white,
+      "whiteBright": vars.ansi.whiteBright,
+      "yellow": vars.ansi.yellow,
+      "yellowBright": vars.ansi.yellowBright
     },
     "prettylights": {
       "syntax": {
         "brackethighlighter": {
-          "angle": vars.base.color.neutral[9],
-          "unmatched": vars.base.color.red[7]
+          "angle": vars.prettylights.syntax.bracketHighlighterAngle,
+          "unmatched": vars.prettylights.syntax.bracketHighlighterUnmatched
         },
         "carriage": {
           "return": {
-            "bg": vars.base.color.red[5],
-            "text": vars.base.color.neutral[1]
+            "bg": vars.prettylights.syntax.carriage.return.bg,
+            "text": vars.prettylights.syntax.carriage.return.text
           }
         },
-        "comment": vars.base.color.neutral[9],
-        "constant": vars.base.color.blue[6],
-        "constantOtherReferenceLink": vars.base.color.blue[8],
-        "entity": vars.base.color.purple[6],
-        "entityTag": vars.base.color.blue[6],
+        "comment": vars.prettylights.syntax.comment,
+        "constant": vars.prettylights.syntax.constant,
+        "constantOtherReferenceLink": vars.prettylights.syntax.constantOtherReferenceLink,
+        "entity": vars.prettylights.syntax.entity,
+        "entityTag": vars.prettylights.syntax.entityTag,
         "invalid": {
           "illegal": {
-            "bg": vars.bgColor.danger.muted,
-            "text": vars.fgColor.danger
+            "bg": vars.prettylights.syntax.invalid.illegal.bg,
+            "text": vars.prettylights.syntax.invalid.illegal.text
           }
         },
-        "keyword": vars.base.color.red[5],
+        "keyword": vars.prettylights.syntax.keyword,
         "markup": {
-          "bold": vars.base.color.neutral[13],
+          "bold": vars.prettylights.syntax.markup.bold,
           "changed": {
-            "bg": vars.base.color.orange[1],
-            "text": vars.base.color.orange[6]
+            "bg": vars.prettylights.syntax.markup.changed.bg,
+            "text": vars.prettylights.syntax.markup.changed.text
           },
           "deleted": {
-            "bg": vars.base.color.red['0'],
-            "text": vars.base.color.red[7]
+            "bg": vars.prettylights.syntax.markup.deleted.bg,
+            "text": vars.prettylights.syntax.markup.deleted.text
           },
-          "heading": vars.base.color.blue[6],
+          "heading": vars.prettylights.syntax.markup.heading,
           "ignored": {
-            "bg": vars.base.color.blue[6],
-            "text": vars.base.color.neutral[6]
+            "bg": vars.prettylights.syntax.markup.ignored.bg,
+            "text": vars.prettylights.syntax.markup.ignored.text
           },
           "inserted": {
-            "bg": vars.base.color.green['0'],
-            "text": vars.base.color.green[6]
+            "bg": vars.prettylights.syntax.markup.inserted.bg,
+            "text": vars.prettylights.syntax.markup.inserted.text
           },
-          "italic": vars.base.color.neutral[13],
-          "list": vars.base.color.yellow[9]
+          "italic": vars.prettylights.syntax.markup.italic,
+          "list": vars.prettylights.syntax.markup.list
         },
         "meta": {
           "diff": {
-            "range": vars.base.color.purple[5]
+            "range": vars.prettylights.syntax.meta.diff.range
           }
         },
         "storage": {
           "modifier": {
-            "import": vars.base.color.neutral[13]
+            "import": vars.prettylights.syntax.storage.modifier.import
           }
         },
-        "string": vars.base.color.blue[8],
-        "stringRegexp": vars.base.color.green[6],
+        "string": vars.prettylights.syntax.string,
+        "stringRegexp": vars.prettylights.syntax.stringRegexp,
         "sublimelinter": {
           "gutter": {
-            "mark": vars.base.color.neutral[8]
+            "mark": vars.prettylights.syntax.sublimeLinterGutterMark
           }
         },
-        "variable": vars.base.color.orange[6]
+        "variable": vars.prettylights.syntax.variable
       }
     }
   },
@@ -3386,9 +3618,9 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "checked": {
       "bgColor": {
-        "active": "rgb(2.7451% 34.118% 72.941%)",
+        "active": "hsl(213.2 92.7% 37.8%)",
         "disabled": vars.fgColor.disabled,
-        "hover": "rgb(3.1373% 37.647% 79.216%)",
+        "hover": "hsl(212.8 92.4% 41.2%)",
         "rest": vars.bgColor.accent.emphasis
       },
       "borderColor": {
@@ -3422,9 +3654,9 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "large": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "10px",
       "paddingInline": {
+        "condensed": vars.base.size[8],
         "normal": vars.base.size[12],
         "spacious": vars.base.size[16]
       },
@@ -3432,7 +3664,6 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "medium": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "6px",
       "paddingInline": {
         "condensed": vars.base.size[8],
@@ -3447,11 +3678,11 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "small": {
       "gap": vars.base.size[4],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": vars.base.size[4],
       "paddingInline": {
         "condensed": vars.base.size[8],
-        "normal": vars.base.size[12]
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
       },
       "size": vars.base.size[28]
     },
@@ -3471,9 +3702,9 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "xlarge": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "14px",
       "paddingInline": {
+        "condensed": vars.base.size[8],
         "normal": vars.base.size[12],
         "spacious": vars.base.size[16]
       },
@@ -3481,7 +3712,6 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "xsmall": {
       "gap": vars.base.size[4],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "2px",
       "paddingInline": {
         "condensed": vars.base.size[4],
@@ -3513,12 +3743,14 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "medium": {
       "gap": {
+        "auto": vars.base.size[8],
         "condensed": vars.base.size[8],
         "spacious": vars.base.size[12]
       }
     },
     "small": {
       "gap": {
+        "auto": vars.base.size[8],
         "condensed": vars.base.size[8],
         "spacious": vars.base.size[16]
       }
@@ -4147,7 +4379,7 @@ export const [lightClass, light] = createTheme(vars, {
     "attention": vars.base.color.yellow[5],
     "black": vars.base.color.neutral[13],
     "closed": vars.fgColor.danger,
-    "danger": "rgb(81.961% 14.118% 18.431%)",
+    "danger": "hsl(356.2 70.6% 48%)",
     "default": vars.base.color.neutral[13],
     "disabled": vars.base.color.neutral[8],
     "done": vars.base.color.purple[5],
@@ -4165,14 +4397,16 @@ export const [lightClass, light] = createTheme(vars, {
     "white": vars.base.color.neutral['0']
   },
   "focus": {
-    "outline": "2px solid var(--focus-outline-color)",
-    "outlineColor": vars.borderColor.accent.emphasis
+    "outline": "var(--focus-outline-width) solid var(--focus-outline-color)",
+    "outlineColor": vars.focus.outlineColor,
+    "outlineOffset": "-2px",
+    "outlineWidth": "2px"
   },
   "fontStack": {
     "monospace": "\"ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace\"",
-    "sansSerif": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
-    "sansSerifDisplay": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
-    "system": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
+    "sansSerif": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "sansSerifDisplay": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "system": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
   },
   "header": {
     "bgColor": vars.base.color.neutral[12],
@@ -4447,10 +4681,31 @@ export const [lightClass, light] = createTheme(vars, {
       "active": vars.base.color.transparent
     }
   },
+  "motion": {
+    "duration": {
+      "long": vars.base.duration[500],
+      "medium": vars.base.duration[300],
+      "micro": vars.base.duration[100],
+      "short": vars.base.duration[200]
+    },
+    "easing": {
+      "enter": vars.base.easing.easeOut,
+      "exit": vars.base.easing.easeIn,
+      "hover": vars.base.easing.ease,
+      "linear": vars.base.easing.linear,
+      "move": vars.base.easing.easeInOut
+    },
+    "transition": {
+      "enter": "var(--motion-duration-medium) 0ms var(--motion-easing-enter)",
+      "exit": "var(--motion-duration-short) 0ms var(--motion-easing-exit)",
+      "hover": "var(--motion-duration-micro) 0ms var(--motion-easing-hover)",
+      "stateChange": "var(--motion-duration-short) 0ms var(--motion-easing-move)"
+    }
+  },
   "outline": {
     "focus": {
-      "offset": "-2px",
-      "width": "2px"
+      "offset": vars.focus.outlineOffset,
+      "width": vars.focus.outlineWidth
     }
   },
   "overlay": {
@@ -4488,6 +4743,85 @@ export const [lightClass, light] = createTheme(vars, {
       "bgColor": vars.bgColor.muted
     }
   },
+  "prettylights": {
+    "syntax": {
+      "brackethighlighter": {
+        "angle": vars.prettylights.syntax.bracketHighlighterAngle,
+        "unmatched": vars.prettylights.syntax.bracketHighlighterUnmatched
+      },
+      "bracketHighlighterAngle": vars.base.color.neutral[9],
+      "bracketHighlighterUnmatched": vars.base.color.red[7],
+      "carriage": {
+        "return": {
+          "bg": vars.prettylights.syntax.carriage.return.bg,
+          "text": vars.prettylights.syntax.carriage.return.text
+        }
+      },
+      "carriageReturn": {
+        "bg": vars.base.color.red[5],
+        "text": vars.base.color.neutral[1]
+      },
+      "comment": vars.base.color.neutral[9],
+      "constant": vars.base.color.blue[6],
+      "constantOtherReferenceLink": vars.base.color.blue[8],
+      "entity": vars.base.color.purple[6],
+      "entityTag": vars.base.color.blue[6],
+      "invalid": {
+        "illegal": {
+          "bg": vars.prettylights.syntax.invalid.illegal.bg,
+          "text": vars.prettylights.syntax.invalid.illegal.text
+        }
+      },
+      "invalidIllegal": {
+        "bg": vars.bgColor.danger.muted,
+        "text": vars.fgColor.danger
+      },
+      "keyword": vars.base.color.red[5],
+      "markup": {
+        "bold": vars.base.color.neutral[13],
+        "changed": {
+          "bg": vars.base.color.orange[1],
+          "text": vars.base.color.orange[6]
+        },
+        "deleted": {
+          "bg": vars.base.color.red['0'],
+          "text": vars.base.color.red[7]
+        },
+        "heading": vars.base.color.blue[6],
+        "ignored": {
+          "bg": vars.base.color.blue[6],
+          "text": vars.base.color.neutral[6]
+        },
+        "inserted": {
+          "bg": vars.base.color.green['0'],
+          "text": vars.base.color.green[6]
+        },
+        "italic": vars.base.color.neutral[13],
+        "list": vars.base.color.yellow[9]
+      },
+      "meta": {
+        "diff": {
+          "range": vars.prettylights.syntax.meta.diff.range
+        }
+      },
+      "metaDiffRange": vars.base.color.purple[5],
+      "storage": {
+        "modifier": {
+          "import": vars.prettylights.syntax.storage.modifier.import
+        }
+      },
+      "storageModifierImport": vars.base.color.neutral[13],
+      "string": vars.base.color.blue[8],
+      "stringRegexp": vars.base.color.green[6],
+      "sublimelinter": {
+        "gutter": {
+          "mark": vars.prettylights.syntax.sublimeLinterGutterMark
+        }
+      },
+      "sublimeLinterGutterMark": vars.base.color.neutral[8],
+      "variable": vars.base.color.orange[6]
+    }
+  },
   "progressBar": {
     "bgColor": {
       "accent": vars.bgColor.accent.emphasis,
@@ -4507,7 +4841,7 @@ export const [lightClass, light] = createTheme(vars, {
   "reactionButton": {
     "selected": {
       "bgColor": {
-        "hover": "rgb(79.216% 92.549% 100%)",
+        "hover": "hsl(201.5 100% 89.6%)",
         "rest": vars.base.color.blue['0']
       },
       "fgColor": {
@@ -4528,7 +4862,6 @@ export const [lightClass, light] = createTheme(vars, {
   "shadow": {
     "floating": {
       "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12)",
-      "legacy": "0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
       "medium": "0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12)",
       "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
       "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12)"
@@ -4536,7 +4869,7 @@ export const [lightClass, light] = createTheme(vars, {
     "inset": "inset 0px 1px 0px 0px var(--base-color-neutral-13)",
     "resting": {
       "medium": "0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12)",
-      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 3px 0px var(--base-color-neutral-13)",
+      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 2px 0px var(--base-color-neutral-13)",
       "xsmall": "0px 1px 1px 0px var(--base-color-neutral-13)"
     }
   },
@@ -4573,9 +4906,9 @@ export const [lightClass, light] = createTheme(vars, {
   "text": {
     "body": {
       "lineHeight": {
-        "large": "1.5",
-        "medium": "1.42857",
-        "small": "1.66667"
+        "large": vars.base.text.lineHeight.normal,
+        "medium": vars.base.text.lineHeight.normal,
+        "small": vars.base.text.lineHeight.relaxed
       },
       "shorthand": {
         "large": {
@@ -4598,25 +4931,25 @@ export const [lightClass, light] = createTheme(vars, {
         }
       },
       "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
+        "large": vars.base.text.size.md,
+        "medium": vars.base.text.size.sm,
+        "small": vars.base.text.size.xs
       },
       "weight": vars.base.text.weight.normal
     },
     "caption": {
-      "lineHeight": "1.3333",
+      "lineHeight": vars.base.text.lineHeight.tight,
       "shorthand": {
         "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "lineHeight": vars.text.caption.lineHeight,
         "fontFamily": vars.fontStack.sansSerif
       },
-      "size": "12px",
+      "size": vars.base.text.size.xs,
       "weight": vars.base.text.weight.normal
     },
     "codeBlock": {
-      "lineHeight": "1.5385",
+      "lineHeight": vars.base.text.lineHeight.normal,
       "shorthand": {
         "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
@@ -4636,33 +4969,32 @@ export const [lightClass, light] = createTheme(vars, {
       "weight": vars.base.text.weight.normal
     },
     "display": {
-      "lineBoxHeight": "1.4",
-      "lineHeight": "1.4",
+      "lineHeight": vars.base.text.lineHeight.snug,
       "shorthand": {
         "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "fontFamily": vars.fontStack.sansSerifDisplay
       },
-      "size": "40px",
+      "size": vars.base.text.size['2xl'],
       "weight": vars.base.text.weight.medium
     },
     "subtitle": {
-      "lineHeight": "1.6",
+      "lineHeight": vars.base.text.lineHeight.relaxed,
       "shorthand": {
         "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "lineHeight": vars.text.subtitle.lineHeight,
         "fontFamily": vars.fontStack.sansSerifDisplay
       },
-      "size": "20px",
+      "size": vars.base.text.size.lg,
       "weight": vars.base.text.weight.normal
     },
     "title": {
       "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
+        "large": vars.base.text.lineHeight.normal,
+        "medium": vars.base.text.lineHeight.relaxed,
+        "small": vars.base.text.lineHeight.normal
       },
       "shorthand": {
         "large": {
@@ -4685,9 +5017,9 @@ export const [lightClass, light] = createTheme(vars, {
         }
       },
       "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
+        "large": vars.base.text.size.xl,
+        "medium": vars.base.text.size.lg,
+        "small": vars.base.text.size.md
       },
       "weight": {
         "large": vars.base.text.weight.semibold,
@@ -4721,10 +5053,39 @@ export const [lightClass, light] = createTheme(vars, {
     "iconColor": {
       "rest": vars.fgColor.muted
     }
+  },
+  "zIndex": {
+    "behind": "-1",
+    "default": vars.base.zIndex['0'],
+    "dropdown": vars.base.zIndex[200],
+    "modal": vars.base.zIndex[400],
+    "overlay": vars.base.zIndex[300],
+    "popover": vars.base.zIndex[500],
+    "skipLink": vars.base.zIndex[600],
+    "sticky": vars.base.zIndex[100]
   }
 });
 
 export const [lightHCClass, lightHC] = createTheme(vars, {
+  "ansi": {
+    "black": vars.base.color.neutral[13],
+    "blackBright": vars.base.color.neutral[11],
+    "blue": vars.base.color.blue[5],
+    "blueBright": vars.base.color.blue[4],
+    "cyan": "hsl(184 65.8% 31%)",
+    "cyanBright": "hsl(191.9 55.3% 42.9%)",
+    "gray": vars.base.color.neutral[9],
+    "green": vars.base.color.green[6],
+    "greenBright": vars.base.color.green[5],
+    "magenta": vars.base.color.purple[5],
+    "magentaBright": vars.base.color.purple[4],
+    "red": vars.base.color.red[5],
+    "redBright": vars.base.color.red[6],
+    "white": vars.base.color.neutral[9],
+    "whiteBright": vars.base.color.neutral[8],
+    "yellow": vars.base.color.yellow[8],
+    "yellowBright": vars.base.color.yellow[7]
+  },
   "avatar": {
     "bgColor": vars.base.color.neutral['0'],
     "borderColor": vars.borderColor.translucent,
@@ -4732,354 +5093,354 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
   },
   "base": {
     "color": {
-      "black": "rgb(0.39216% 1.5686% 3.5294%)",
+      "black": "hsl(217.5 80% 2%)",
       "blue": {
-        "0": "rgb(87.451% 96.863% 100%)",
-        "1": "rgb(61.176% 84.314% 100%)",
-        "2": "rgb(40.392% 70.196% 99.216%)",
-        "3": "rgb(21.176% 54.902% 97.647%)",
-        "4": "rgb(6.6667% 40.784% 89.02%)",
-        "5": "rgb(1.1765% 28.627% 70.588%)",
-        "6": "rgb(0.78431% 23.137% 58.431%)",
-        "7": "rgb(0.78431% 18.431% 47.843%)",
-        "8": "rgb(1.1765% 14.51% 38.824%)",
-        "9": "rgb(0.78431% 10.196% 29.02%)"
+        "0": "hsl(195 100% 93.7%)",
+        "1": "hsl(204.2 100% 80.6%)",
+        "2": "hsl(209.6 97.4% 69.8%)",
+        "3": "hsl(213.5 94.2% 59.4%)",
+        "4": "hsl(215.1 86.1% 47.8%)",
+        "5": "hsl(216.3 96.7% 35.9%)",
+        "6": "hsl(216.7 97.4% 29.6%)",
+        "7": "hsl(217.5 96.8% 24.3%)",
+        "8": "hsl(218.7 94.1% 20%)",
+        "9": "hsl(220 94.7% 14.9%)"
       },
       "coral": {
-        "0": "rgb(100% 94.118% 92.941%)",
-        "1": "rgb(100% 76.078% 71.373%)",
-        "2": "rgb(100% 56.078% 49.412%)",
-        "3": "rgb(80.392% 20.392% 14.51%)",
-        "4": "rgb(93.725% 35.686% 28.235%)",
-        "5": "rgb(62.353% 9.0196% 6.2745%)",
-        "6": "rgb(52.941% 2.7451% 2.3529%)",
-        "7": "rgb(43.529% 0.39216% 2.7451%)",
-        "8": "rgb(35.686% 0% 0.78431%)",
-        "9": "rgb(26.275% 0.78431% 0%)"
+        "0": "hsl(10 100% 96.5%)",
+        "1": "hsl(9.9 100% 85.7%)",
+        "2": "hsl(7.9 100% 74.7%)",
+        "3": "hsl(5.4 69.4% 47.5%)",
+        "4": "hsl(6.8 83.9% 61%)",
+        "5": "hsl(2.9 81.7% 34.3%)",
+        "6": "hsl(0.5 91.5% 27.6%)",
+        "7": "hsl(356.7 98.2% 22%)",
+        "8": "hsl(358.7 100% 17.8%)",
+        "9": "hsl(1.8 100% 13.1%)"
       },
       "green": {
-        "0": "rgb(82.353% 99.608% 85.882%)",
-        "1": "rgb(50.98% 89.804% 58.824%)",
-        "2": "rgb(26.275% 77.647% 38.824%)",
-        "3": "rgb(14.902% 63.137% 28.235%)",
-        "4": "rgb(6.6667% 49.804% 19.608%)",
-        "5": "rgb(1.9608% 36.471% 12.549%)",
-        "6": "rgb(0.78431% 29.804% 10.196%)",
-        "7": "rgb(0.39216% 23.922% 7.8431%)",
-        "8": "rgb(0% 19.216% 6.2745%)",
-        "9": "rgb(0% 13.725% 4.3137%)"
+        "0": "hsl(132.3 95.7% 91%)",
+        "1": "hsl(132.1 65.6% 70.4%)",
+        "2": "hsl(134.7 53.5% 52%)",
+        "3": "hsl(136.6 61.8% 39%)",
+        "4": "hsl(138 76.4% 28.2%)",
+        "5": "hsl(138.4 89.8% 19.2%)",
+        "6": "hsl(139.5 94.9% 15.3%)",
+        "7": "hsl(139 96.8% 12.2%)",
+        "8": "hsl(139.6 100% 9.6%)",
+        "9": "hsl(138.9 100% 6.9%)"
       },
       "inset": vars.base.color.neutral['0'],
       "neutral": {
         "0": vars.base.color.white,
-        "1": "rgb(96.471% 97.255% 98.039%)",
-        "2": "rgb(93.725% 94.902% 96.078%)",
-        "3": "rgb(90.196% 91.765% 93.725%)",
-        "4": "rgb(87.843% 90.196% 92.157%)",
-        "5": "rgb(85.49% 87.843% 90.588%)",
-        "6": "rgb(81.961% 85.098% 87.843%)",
-        "7": "rgb(78.431% 81.961% 85.49%)",
-        "8": "rgb(50.588% 54.51% 59.608%)",
-        "9": "rgb(34.902% 38.824% 43.137%)",
-        "10": "rgb(27.059% 29.804% 32.941%)",
-        "11": "rgb(22.353% 24.706% 27.451%)",
-        "12": "rgb(14.51% 16.078% 18.039%)",
+        "1": "hsl(210 28.6% 97.3%)",
+        "2": "hsl(210 23.1% 94.9%)",
+        "3": "hsl(213.3 22% 92%)",
+        "4": "hsl(207.3 21.6% 90%)",
+        "5": "hsl(212.3 21.3% 88%)",
+        "6": "hsl(208 19.5% 84.9%)",
+        "7": "hsl(210 19.6% 82%)",
+        "8": "hsl(213.9 10% 55.1%)",
+        "9": "hsl(211.4 10.6% 39%)",
+        "10": "hsl(212 9.8% 30%)",
+        "11": "hsl(212.3 10.2% 24.9%)",
+        "12": "hsl(213.3 10.8% 16.3%)",
         "13": vars.base.color.black
       },
       "orange": {
-        "0": "rgb(100% 94.902% 83.529%)",
-        "1": "rgb(100% 77.647% 48.235%)",
-        "2": "rgb(97.647% 58.824% 21.176%)",
-        "3": "rgb(86.275% 42.745% 10.196%)",
-        "4": "rgb(70.588% 31.765% 1.9608%)",
-        "5": "rgb(52.941% 21.961% 0%)",
-        "6": "rgb(43.922% 17.255% 0%)",
-        "7": "rgb(35.686% 13.725% 0%)",
-        "8": "rgb(28.627% 10.588% 0%)",
-        "9": "rgb(21.176% 7.0588% 0%)"
+        "0": "hsl(41.4 100% 91.8%)",
+        "1": "hsl(34.1 100% 74.1%)",
+        "2": "hsl(29.5 94.2% 59.4%)",
+        "3": "hsl(25.7 78.9% 48.2%)",
+        "4": "hsl(26.1 94.6% 36.3%)",
+        "5": "hsl(24.9 100% 26.5%)",
+        "6": "hsl(23.6 100% 22%)",
+        "7": "hsl(23.1 100% 17.8%)",
+        "8": "hsl(22.2 100% 14.3%)",
+        "9": "hsl(20 100% 10.6%)"
       },
       "pink": {
-        "0": "rgb(99.608% 93.725% 96.863%)",
-        "1": "rgb(100% 74.118% 87.843%)",
-        "2": "rgb(98.824% 52.941% 79.216%)",
-        "3": "rgb(92.941% 29.412% 68.627%)",
-        "4": "rgb(78.824% 14.118% 55.686%)",
-        "5": "rgb(59.216% 7.451% 40.784%)",
-        "6": "rgb(49.02% 4.7059% 34.118%)",
-        "7": "rgb(40% 3.1373% 27.843%)",
-        "8": "rgb(32.549% 1.5686% 22.745%)",
-        "9": "rgb(24.314% 0.78431% 16.863%)"
+        "0": "hsl(328 88.2% 96.7%)",
+        "1": "hsl(328.2 100% 87.1%)",
+        "2": "hsl(325.6 95.1% 75.9%)",
+        "3": "hsl(323 81.8% 61.2%)",
+        "4": "hsl(321.5 69.6% 46.5%)",
+        "5": "hsl(321.4 77.6% 33.3%)",
+        "6": "hsl(320.2 82.5% 26.9%)",
+        "7": "hsl(319.8 85.5% 21.6%)",
+        "8": "hsl(319 90.8% 17.1%)",
+        "9": "hsl(319 93.8% 12.5%)"
       },
       "purple": {
-        "0": "rgb(98.039% 94.118% 99.608%)",
-        "1": "rgb(87.843% 77.255% 100%)",
-        "2": "rgb(76.863% 60.784% 100%)",
-        "3": "rgb(63.922% 44.314% 96.863%)",
-        "4": "rgb(51.765% 29.02% 90.588%)",
-        "5": "rgb(38.431% 17.255% 73.725%)",
-        "6": "rgb(31.765% 14.51% 59.608%)",
-        "7": "rgb(25.49% 11.373% 48.235%)",
-        "8": "rgb(20.392% 9.0196% 38.824%)",
-        "9": "rgb(14.902% 5.8824% 28.627%)"
+        "0": "hsl(282.9 87.5% 96.9%)",
+        "1": "hsl(267.9 100% 88.6%)",
+        "2": "hsl(264.6 100% 80.4%)",
+        "3": "hsl(262.4 89.3% 70.6%)",
+        "4": "hsl(262.2 76.6% 59.8%)",
+        "5": "hsl(262.5 62.1% 45.5%)",
+        "6": "hsl(263 60.8% 37.1%)",
+        "7": "hsl(263 61.8% 29.8%)",
+        "8": "hsl(262.9 62.3% 23.9%)",
+        "9": "hsl(263.8 65.9% 17.3%)"
       },
       "red": {
-        "0": "rgb(100% 94.118% 93.333%)",
-        "1": "rgb(100% 75.686% 73.725%)",
-        "2": "rgb(100% 55.686% 54.118%)",
-        "3": "rgb(93.333% 35.294% 36.471%)",
-        "4": "rgb(83.529% 13.725% 17.255%)",
-        "5": "rgb(62.745% 6.6667% 12.157%)",
-        "6": "rgb(52.549% 2.3529% 11.373%)",
-        "7": "rgb(43.137% 0.39216% 10.196%)",
-        "8": "rgb(35.294% 0% 8.6275%)",
-        "9": "rgb(26.275% 0% 6.6667%)"
+        "0": "hsl(7.1 100% 96.7%)",
+        "1": "hsl(4.5 100% 86.9%)",
+        "2": "hsl(2.1 100% 77.1%)",
+        "3": "hsl(358.8 81.3% 64.3%)",
+        "4": "hsl(357 71.8% 48.6%)",
+        "5": "hsl(354.1 80.8% 34.7%)",
+        "6": "hsl(349.2 91.4% 27.5%)",
+        "7": "hsl(346.2 98.2% 21.8%)",
+        "8": "hsl(345.3 100% 17.6%)",
+        "9": "hsl(344.8 100% 13.1%)"
       },
-      "transparent": "rgb(100% 100% 100%)",
-      "white": "rgb(100% 100% 100%)",
+      "transparent": "hsl(0 0% 100%)",
+      "white": "hsl(0 0% 100%)",
       "yellow": {
-        "0": "rgb(98.824% 96.863% 74.51%)",
-        "1": "rgb(94.118% 80.784% 32.549%)",
-        "2": "rgb(83.529% 65.882% 14.118%)",
-        "3": "rgb(70.98% 51.765% 2.7451%)",
-        "4": "rgb(58.431% 39.216% 0%)",
-        "5": "rgb(45.49% 27.059% 0%)",
-        "6": "rgb(37.647% 21.569% 0%)",
-        "7": "rgb(30.588% 17.255% 0%)",
-        "8": "rgb(24.706% 13.333% 0%)",
-        "9": "rgb(18.039% 9.4118% 0%)"
+        "0": "hsl(55.2 91.2% 86.7%)",
+        "1": "hsl(47 84% 63.3%)",
+        "2": "hsl(44.7 71.1% 48.8%)",
+        "3": "hsl(43.1 92.6% 36.9%)",
+        "4": "hsl(40.3 100% 29.2%)",
+        "5": "hsl(35.7 100% 22.7%)",
+        "6": "hsl(34.4 100% 18.8%)",
+        "7": "hsl(33.8 100% 15.3%)",
+        "8": "hsl(32.4 100% 12.4%)",
+        "9": "hsl(31.3 100% 9%)"
       }
     },
     "display": {
       "color": {
         "auburn": {
-          "0": "rgb(94.902% 91.373% 91.373%)",
-          "1": "rgb(90.196% 83.922% 83.529%)",
-          "2": "rgb(83.137% 71.765% 70.98%)",
-          "3": "rgb(77.255% 61.961% 60.784%)",
-          "4": "rgb(70.588% 50.98% 49.412%)",
-          "5": "rgb(61.569% 38.039% 36.078%)",
-          "6": "rgb(54.118% 33.333% 31.765%)",
-          "7": "rgb(45.49% 27.843% 26.667%)",
-          "8": "rgb(36.471% 22.353% 21.569%)",
-          "9": "rgb(26.275% 16.078% 15.686%)"
+          "0": "hsl(0 25.7% 93.1%)",
+          "1": "hsl(3.5 25.4% 86.9%)",
+          "2": "hsl(3.9 26.5% 77.1%)",
+          "3": "hsl(4.3 26.6% 69%)",
+          "4": "hsl(4.4 26.5% 60%)",
+          "5": "hsl(4.6 26.1% 48.8%)",
+          "6": "hsl(4.2 26% 42.9%)",
+          "7": "hsl(3.8 26.1% 36.1%)",
+          "8": "hsl(3.2 25.7% 29%)",
+          "9": "hsl(2.2 25.2% 21%)"
         },
-        "black": "rgb(5.098% 6.6667% 9.0196%)",
+        "black": "hsl(216 27.8% 7.1%)",
         "blue": {
-          "0": "rgb(81.961% 94.118% 100%)",
-          "1": "rgb(67.843% 88.235% 100%)",
-          "2": "rgb(45.882% 78.431% 100%)",
-          "3": "rgb(27.843% 68.627% 100%)",
-          "4": "rgb(5.8824% 56.078% 100%)",
-          "5": "rgb(0% 43.137% 85.882%)",
-          "6": "rgb(0% 37.255% 80%)",
-          "7": "rgb(0% 30.196% 70.196%)",
-          "8": "rgb(0% 23.922% 60%)",
-          "9": "rgb(0% 16.863% 45.882%)"
+          "0": "hsl(199.6 100% 91%)",
+          "1": "hsl(202 100% 83.9%)",
+          "2": "hsl(203.9 100% 72.9%)",
+          "3": "hsl(206.1 100% 63.9%)",
+          "4": "hsl(208 100% 52.9%)",
+          "5": "hsl(209.9 100% 42.9%)",
+          "6": "hsl(212.1 100% 40%)",
+          "7": "hsl(214.2 100% 35.1%)",
+          "8": "hsl(216.1 100% 30%)",
+          "9": "hsl(217.9 100% 22.9%)"
         },
         "brown": {
-          "0": "rgb(93.333% 91.765% 88.627%)",
-          "1": "rgb(87.451% 84.314% 78.431%)",
-          "2": "rgb(79.608% 74.118% 64.314%)",
-          "3": "rgb(72.157% 64.314% 51.765%)",
-          "4": "rgb(65.098% 54.51% 39.216%)",
-          "5": "rgb(52.157% 42.745% 29.804%)",
-          "6": "rgb(45.882% 37.255% 26.275%)",
-          "7": "rgb(39.216% 31.765% 22.745%)",
-          "8": "rgb(31.765% 25.49% 18.431%)",
-          "9": "rgb(22.745% 18.039% 13.333%)"
+          "0": "hsl(40 26.1% 91%)",
+          "1": "hsl(39.1 26.4% 82.9%)",
+          "2": "hsl(38.5 27.3% 72%)",
+          "3": "hsl(36.9 26.8% 62%)",
+          "4": "hsl(35.5 27% 52.2%)",
+          "5": "hsl(34.7 27.3% 41%)",
+          "6": "hsl(33.6 27.2% 36.1%)",
+          "7": "hsl(32.9 26.6% 31%)",
+          "8": "hsl(31.8 26.6% 25.1%)",
+          "9": "hsl(30 26.1% 18%)"
         },
         "coral": {
-          "0": "rgb(100% 89.804% 85.882%)",
-          "1": "rgb(99.608% 80.784% 74.51%)",
-          "2": "rgb(98.824% 67.059% 57.255%)",
-          "3": "rgb(97.255% 52.941% 40.784%)",
-          "4": "rgb(94.902% 37.255% 22.745%)",
-          "5": "rgb(83.137% 20.784% 6.6667%)",
-          "6": "rgb(72.941% 18.039% 7.0588%)",
-          "7": "rgb(60.784% 15.294% 7.0588%)",
-          "8": "rgb(49.412% 12.549% 6.6667%)",
-          "9": "rgb(36.471% 9.4118% 5.4902%)"
+          "0": "hsl(16.7 100% 92.9%)",
+          "1": "hsl(15 97% 87.1%)",
+          "2": "hsl(14.2 94.6% 78%)",
+          "3": "hsl(12.9 91.1% 69%)",
+          "4": "hsl(12.1 87.6% 58.8%)",
+          "5": "hsl(11.1 85.2% 44.9%)",
+          "6": "hsl(10 82.4% 40%)",
+          "7": "hsl(9.2 79.2% 33.9%)",
+          "8": "hsl(8.3 76.2% 28%)",
+          "9": "hsl(7.6 73.8% 21%)"
         },
         "cyan": {
-          "0": "rgb(74.118% 95.686% 100%)",
-          "1": "rgb(47.843% 91.373% 100%)",
-          "2": "rgb(0% 81.569% 98.039%)",
-          "3": "rgb(0% 71.765% 85.882%)",
-          "4": "rgb(0% 60% 72.157%)",
-          "5": "rgb(0% 48.235% 58.039%)",
-          "6": "rgb(0% 41.569% 50.196%)",
-          "7": "rgb(0% 34.902% 41.961%)",
-          "8": "rgb(0% 28.235% 34.118%)",
-          "9": "rgb(0% 21.569% 25.882%)"
+          "0": "hsl(190 100% 87.1%)",
+          "1": "hsl(189.9 100% 73.9%)",
+          "2": "hsl(190.1 100% 49%)",
+          "3": "hsl(189.9 100% 42.9%)",
+          "4": "hsl(190.1 100% 36.1%)",
+          "5": "hsl(190.1 100% 29%)",
+          "6": "hsl(190.3 100% 25.1%)",
+          "7": "hsl(190.1 100% 21%)",
+          "8": "hsl(190.3 100% 17.1%)",
+          "9": "hsl(190 100% 12.9%)"
         },
         "gray": {
-          "0": "rgb(90.98% 92.549% 94.902%)",
-          "1": "rgb(82.353% 85.49% 89.412%)",
-          "2": "rgb(70.588% 75.294% 81.176%)",
-          "3": "rgb(60.784% 66.275% 73.333%)",
-          "4": "rgb(50.196% 56.078% 63.922%)",
-          "5": "rgb(39.216% 44.314% 50.98%)",
-          "6": "rgb(36.078% 39.608% 43.922%)",
-          "7": "rgb(30.588% 32.549% 35.294%)",
-          "8": "rgb(25.882% 26.667% 28.235%)",
-          "9": "rgb(18.824% 18.824% 19.216%)"
+          "0": "hsl(216 27.8% 92.9%)",
+          "1": "hsl(213.3 25% 85.9%)",
+          "2": "hsl(213.3 22% 75.9%)",
+          "3": "hsl(213.8 19% 67.1%)",
+          "4": "hsl(214.3 16% 57.1%)",
+          "5": "hsl(214 13% 45.1%)",
+          "6": "hsl(213 9.8% 40%)",
+          "7": "hsl(215 7.1% 32.9%)",
+          "8": "hsl(220 4.3% 27.1%)",
+          "9": "hsl(240 1% 19%)"
         },
         "green": {
-          "0": "rgb(79.216% 96.863% 79.216%)",
-          "1": "rgb(61.176% 92.941% 62.745%)",
-          "2": "rgb(32.941% 85.098% 38.039%)",
-          "3": "rgb(19.216% 74.902% 27.451%)",
-          "4": "rgb(18.824% 63.137% 27.843%)",
-          "5": "rgb(17.255% 50.588% 25.49%)",
-          "6": "rgb(16.863% 43.137% 24.706%)",
-          "7": "rgb(15.686% 36.078% 23.137%)",
-          "8": "rgb(14.51% 29.412% 20.392%)",
-          "9": "rgb(11.373% 20.784% 15.686%)"
+          "0": "hsl(120 73.8% 88%)",
+          "1": "hsl(123 69.2% 77.1%)",
+          "2": "hsl(125.9 63.6% 59%)",
+          "3": "hsl(128.9 59.2% 47.1%)",
+          "4": "hsl(132.2 54.1% 41%)",
+          "5": "hsl(134.8 49.1% 33.9%)",
+          "6": "hsl(137.9 43.8% 30%)",
+          "7": "hsl(141.9 39.4% 25.9%)",
+          "8": "hsl(143.7 33.9% 22%)",
+          "9": "hsl(147.5 29.3% 16.1%)"
         },
         "indigo": {
-          "0": "rgb(89.804% 91.373% 100%)",
-          "1": "rgb(82.353% 84.314% 99.608%)",
-          "2": "rgb(69.412% 72.549% 98.431%)",
-          "3": "rgb(59.216% 62.353% 96.863%)",
-          "4": "rgb(47.843% 50.98% 94.118%)",
-          "5": "rgb(35.294% 38.039% 90.588%)",
-          "6": "rgb(28.627% 30.588% 87.451%)",
-          "7": "rgb(22.353% 23.529% 83.529%)",
-          "8": "rgb(17.647% 17.647% 70.588%)",
-          "9": "rgb(14.51% 14.118% 48.235%)"
+          "0": "hsl(230.8 100% 94.9%)",
+          "1": "hsl(233.2 95.7% 91%)",
+          "2": "hsl(233.5 90.2% 83.9%)",
+          "3": "hsl(235 85.7% 78%)",
+          "4": "hsl(235.9 79.7% 71%)",
+          "5": "hsl(237 74.6% 62.9%)",
+          "6": "hsl(238 70.1% 58%)",
+          "7": "hsl(238.8 65% 52.9%)",
+          "8": "hsl(240 60% 44.1%)",
+          "9": "hsl(240.7 54.7% 31.2%)"
         },
         "lemon": {
-          "0": "rgb(96.863% 93.333% 63.137%)",
-          "1": "rgb(94.118% 85.882% 23.922%)",
-          "2": "rgb(84.706% 74.118% 5.4902%)",
-          "3": "rgb(76.078% 65.098% 3.9216%)",
-          "4": "rgb(65.098% 54.902% 2.7451%)",
-          "5": "rgb(52.549% 43.137% 1.5686%)",
-          "6": "rgb(47.059% 37.647% 0.78431%)",
-          "7": "rgb(39.608% 30.98% 0.39216%)",
-          "8": "rgb(32.157% 24.706% 0%)",
-          "9": "rgb(23.922% 18.039% 0%)"
+          "0": "hsl(53.7 84.3% 80%)",
+          "1": "hsl(53 85.6% 59%)",
+          "2": "hsl(52 87.8% 45.1%)",
+          "3": "hsl(50.9 90.2% 40%)",
+          "4": "hsl(50.2 91.9% 33.9%)",
+          "5": "hsl(48.9 94.2% 27.1%)",
+          "6": "hsl(47.8 96.7% 23.9%)",
+          "7": "hsl(46.8 98% 20%)",
+          "8": "hsl(46.1 100% 16.1%)",
+          "9": "hsl(45.2 100% 12%)"
         },
         "lime": {
-          "0": "rgb(89.02% 94.902% 70.98%)",
-          "1": "rgb(78.039% 89.804% 50.196%)",
-          "2": "rgb(60.784% 81.569% 22.353%)",
-          "3": "rgb(50.196% 70.98% 18.824%)",
-          "4": "rgb(42.353% 61.569% 18.431%)",
-          "5": "rgb(32.157% 47.843% 16.078%)",
-          "6": "rgb(27.843% 42.353% 15.686%)",
-          "7": "rgb(22.745% 35.686% 14.51%)",
-          "8": "rgb(18.431% 29.02% 12.941%)",
-          "9": "rgb(12.941% 20% 9.8039%)"
+          "0": "hsl(74.8 70.1% 82.9%)",
+          "1": "hsl(77.8 66% 70%)",
+          "2": "hsl(81.1 61.6% 52%)",
+          "3": "hsl(83.9 58.1% 44.9%)",
+          "4": "hsl(86.7 53.9% 40%)",
+          "5": "hsl(89.6 49.7% 32%)",
+          "6": "hsl(92.6 45.9% 29%)",
+          "7": "hsl(96.7 42.2% 25.1%)",
+          "8": "hsl(99.5 38.3% 21%)",
+          "9": "hsl(101.5 34.2% 14.9%)"
         },
         "olive": {
-          "0": "rgb(94.118% 94.118% 67.843%)",
-          "1": "rgb(85.882% 88.235% 43.922%)",
-          "2": "rgb(72.549% 78.431% 19.608%)",
-          "3": "rgb(60.784% 68.235% 19.608%)",
-          "4": "rgb(50.588% 58.431% 19.608%)",
-          "5": "rgb(39.216% 46.275% 17.647%)",
-          "6": "rgb(33.725% 40.784% 17.255%)",
-          "7": "rgb(28.627% 35.294% 16.863%)",
-          "8": "rgb(23.137% 28.627% 15.294%)",
-          "9": "rgb(16.471% 20% 12.157%)"
+          "0": "hsl(60 69.1% 81%)",
+          "1": "hsl(63.2 65.3% 66.1%)",
+          "2": "hsl(66 60% 49%)",
+          "3": "hsl(69.2 55.4% 43.9%)",
+          "4": "hsl(72.1 49.7% 39%)",
+          "5": "hsl(74.8 44.8% 32%)",
+          "6": "hsl(78 40.5% 29%)",
+          "7": "hsl(81.7 35.3% 26.1%)",
+          "8": "hsl(84.7 30.4% 22%)",
+          "9": "hsl(87 24.4% 16.1%)"
         },
         "orange": {
-          "0": "rgb(100% 90.588% 81.961%)",
-          "1": "rgb(99.608% 81.176% 66.667%)",
-          "2": "rgb(98.431% 68.627% 45.49%)",
-          "3": "rgb(96.471% 54.902% 25.49%)",
-          "4": "rgb(92.157% 40.392% 5.8824%)",
-          "5": "rgb(72.157% 31.373% 5.8824%)",
-          "6": "rgb(63.529% 27.451% 6.2745%)",
-          "7": "rgb(55.294% 23.529% 6.6667%)",
-          "8": "rgb(43.922% 18.824% 5.8824%)",
-          "9": "rgb(32.941% 13.725% 5.098%)"
+          "0": "hsl(28.7 100% 91%)",
+          "1": "hsl(26.4 97.7% 83.1%)",
+          "2": "hsl(26.2 94.4% 72%)",
+          "3": "hsl(24.9 91% 61%)",
+          "4": "hsl(24 88% 49%)",
+          "5": "hsl(23.1 84.9% 39%)",
+          "6": "hsl(22.2 82% 34.9%)",
+          "7": "hsl(20.8 78.5% 31%)",
+          "8": "hsl(20.4 76.4% 24.9%)",
+          "9": "hsl(18.6 73.2% 19%)"
         },
         "pine": {
-          "0": "rgb(74.902% 97.255% 85.882%)",
-          "1": "rgb(50.196% 93.725% 72.549%)",
-          "2": "rgb(11.373% 84.314% 50.588%)",
-          "3": "rgb(11.373% 74.902% 46.275%)",
-          "4": "rgb(10.196% 63.529% 40.392%)",
-          "5": "rgb(8.6275% 49.412% 32.549%)",
-          "6": "rgb(8.2353% 43.529% 29.412%)",
-          "7": "rgb(7.451% 36.471% 25.49%)",
-          "8": "rgb(6.6667% 29.412% 21.176%)",
-          "9": "rgb(5.098% 21.176% 15.294%)"
+          "0": "hsl(149.5 80.3% 86.1%)",
+          "1": "hsl(150.8 77.6% 72%)",
+          "2": "hsl(152.3 76.2% 47.8%)",
+          "3": "hsl(153 73.6% 43.1%)",
+          "4": "hsl(154 72.3% 36.9%)",
+          "5": "hsl(155.2 70.3% 29%)",
+          "6": "hsl(156 68.2% 25.9%)",
+          "7": "hsl(157.3 66.1% 22%)",
+          "8": "hsl(158.3 63% 18%)",
+          "9": "hsl(158 61.2% 13.1%)"
         },
         "pink": {
-          "0": "rgb(100% 89.804% 94.51%)",
-          "1": "rgb(99.216% 78.824% 88.627%)",
-          "2": "rgb(97.255% 64.706% 81.176%)",
-          "3": "rgb(94.51% 51.765% 73.725%)",
-          "4": "rgb(89.804% 36.471% 64.706%)",
-          "5": "rgb(80.784% 17.255% 52.157%)",
-          "6": "rgb(69.412% 18.431% 47.451%)",
-          "7": "rgb(55.686% 18.039% 40%)",
-          "8": "rgb(43.137% 16.863% 32.549%)",
-          "9": "rgb(30.196% 13.725% 23.922%)"
+          "0": "hsl(332.3 100% 94.9%)",
+          "1": "hsl(331.2 92.9% 89%)",
+          "2": "hsl(329.6 85.6% 81%)",
+          "3": "hsl(329.2 79.6% 73.1%)",
+          "4": "hsl(328.2 72.3% 63.1%)",
+          "5": "hsl(327 64.8% 49%)",
+          "6": "hsl(325.8 58% 43.9%)",
+          "7": "hsl(325 51.1% 36.9%)",
+          "8": "hsl(324.2 43.8% 30%)",
+          "9": "hsl(322.9 37.5% 22%)"
         },
         "plum": {
-          "0": "rgb(97.255% 89.804% 100%)",
-          "1": "rgb(94.118% 80.392% 99.608%)",
-          "2": "rgb(88.627% 65.49% 98.431%)",
-          "3": "rgb(83.137% 52.941% 96.863%)",
-          "4": "rgb(76.078% 39.216% 94.902%)",
-          "5": "rgb(65.882% 18.824% 90.98%)",
-          "6": "rgb(58.824% 11.765% 86.275%)",
-          "7": "rgb(49.02% 11.765% 72.157%)",
-          "8": "rgb(39.608% 11.373% 58.824%)",
-          "9": "rgb(27.843% 9.0196% 41.176%)"
+          "0": "hsl(283.8 100% 94.9%)",
+          "1": "hsl(282.9 96.1% 90%)",
+          "2": "hsl(282.1 91.3% 82%)",
+          "3": "hsl(281.3 87.5% 74.9%)",
+          "4": "hsl(279.7 84.5% 67.1%)",
+          "5": "hsl(279.1 80% 54.9%)",
+          "6": "hsl(277.9 76% 49%)",
+          "7": "hsl(277 72% 42%)",
+          "8": "hsl(275.7 67.6% 35.1%)",
+          "9": "hsl(275.1 64.1% 25.1%)"
         },
         "purple": {
-          "0": "rgb(94.51% 89.804% 100%)",
-          "1": "rgb(90.196% 82.353% 99.608%)",
-          "2": "rgb(81.961% 69.412% 98.824%)",
-          "3": "rgb(73.725% 56.863% 97.255%)",
-          "4": "rgb(65.098% 44.706% 95.294%)",
-          "5": "rgb(53.725% 29.804% 92.157%)",
-          "6": "rgb(47.059% 22.745% 89.412%)",
-          "7": "rgb(38.431% 13.725% 84.314%)",
-          "8": "rgb(30.98% 12.941% 67.059%)",
-          "9": "rgb(22.353% 10.588% 47.451%)"
+          "0": "hsl(267.7 100% 94.9%)",
+          "1": "hsl(267.3 95.7% 91%)",
+          "2": "hsl(265.6 92.6% 84.1%)",
+          "3": "hsl(265 88% 77.1%)",
+          "4": "hsl(264.2 84.3% 70%)",
+          "5": "hsl(263 79.9% 61%)",
+          "6": "hsl(261.9 75.9% 56.1%)",
+          "7": "hsl(261 72% 49%)",
+          "8": "hsl(260 67.6% 40%)",
+          "9": "hsl(259.1 63.5% 29%)"
         },
         "red": {
-          "0": "rgb(100% 88.627% 87.843%)",
-          "1": "rgb(99.608% 80.392% 80.392%)",
-          "2": "rgb(99.216% 64.706% 65.49%)",
-          "3": "rgb(98.431% 51.373% 53.725%)",
-          "4": "rgb(97.255% 32.941% 38.039%)",
-          "5": "rgb(87.451% 4.7059% 14.118%)",
-          "6": "rgb(77.255% 5.098% 15.686%)",
-          "7": "rgb(65.098% 4.7059% 16.078%)",
-          "8": "rgb(53.333% 4.7059% 15.294%)",
-          "9": "rgb(38.039% 3.9216% 12.549%)"
+          "0": "hsl(3.9 100% 93.9%)",
+          "1": "hsl(0 96.1% 90%)",
+          "2": "hsl(358.6 95.7% 82%)",
+          "3": "hsl(357 93.7% 74.9%)",
+          "4": "hsl(355.2 92.1% 65.1%)",
+          "5": "hsl(353.2 89.8% 46.1%)",
+          "6": "hsl(351.2 87.6% 41.2%)",
+          "7": "hsl(348.7 86.5% 34.9%)",
+          "8": "hsl(346.9 83.8% 29%)",
+          "9": "hsl(344.8 81.3% 21%)"
         },
         "teal": {
-          "0": "rgb(78.039% 96.078% 93.725%)",
-          "1": "rgb(53.725% 92.157% 88.235%)",
-          "2": "rgb(13.333% 82.745% 78.039%)",
-          "3": "rgb(11.373% 72.549% 70.588%)",
-          "4": "rgb(9.0196% 60.784% 60.784%)",
-          "5": "rgb(7.0588% 49.412% 50.588%)",
-          "6": "rgb(6.2745% 43.137% 45.882%)",
-          "7": "rgb(5.098% 35.686% 38.824%)",
-          "8": "rgb(3.9216% 28.235% 32.157%)",
-          "9": "rgb(2.7451% 21.569% 25.098%)"
+          "0": "hsl(172.2 69.7% 87.1%)",
+          "1": "hsl(173.9 71% 72.9%)",
+          "2": "hsl(175.9 72.2% 48%)",
+          "3": "hsl(178.1 72.9% 42%)",
+          "4": "hsl(180 74.2% 34.9%)",
+          "5": "hsl(181.6 75.5% 28.8%)",
+          "6": "hsl(184.2 75.9% 26.1%)",
+          "7": "hsl(185.6 76.8% 22%)",
+          "8": "hsl(188.3 78.3% 18%)",
+          "9": "hsl(189.5 80.3% 13.9%)"
         },
-        "white": "rgb(100% 100% 100%)",
+        "white": "hsl(0 0% 100%)",
         "yellow": {
-          "0": "rgb(100% 92.549% 61.961%)",
-          "1": "rgb(100% 83.922% 25.882%)",
-          "2": "rgb(92.157% 70.588% 0%)",
-          "3": "rgb(81.961% 61.569% 0%)",
-          "4": "rgb(72.157% 52.941% 0%)",
-          "5": "rgb(58.039% 41.569% 0%)",
-          "6": "rgb(50.196% 34.902% 0%)",
-          "7": "rgb(43.922% 30.196% 0%)",
-          "8": "rgb(36.078% 23.922% 0%)",
-          "9": "rgb(25.882% 16.863% 0%)"
+          "0": "hsl(48.2 100% 81%)",
+          "1": "hsl(47 100% 62.9%)",
+          "2": "hsl(46 100% 46.1%)",
+          "3": "hsl(45.1 100% 41%)",
+          "4": "hsl(44 100% 36.1%)",
+          "5": "hsl(43 100% 29%)",
+          "6": "hsl(41.7 100% 25.1%)",
+          "7": "hsl(41.3 100% 22%)",
+          "8": "hsl(39.8 100% 18%)",
+          "9": "hsl(39.1 100% 12.9%)"
         }
       }
     },
@@ -5098,6 +5459,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "1000": "1000ms"
     },
     "easing": {
+      "ease": "cubic-bezier(0.25, 0.1, 0.25, 1)",
       "easeIn": "cubic-bezier(0.7, 0.1, 0.75, 0.9)",
       "easeInOut": "cubic-bezier(0.6, 0, 0.2, 1)",
       "easeOut": "cubic-bezier(0.3, 0.8, 0.6, 1)",
@@ -5122,15 +5484,53 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "80": "80px",
       "96": "96px",
       "112": "112px",
-      "128": "128px"
+      "128": "128px",
+      "negative2": "-2px",
+      "negative4": "-4px",
+      "negative6": "-6px",
+      "negative8": "-8px",
+      "negative12": "-12px",
+      "negative16": "-16px",
+      "negative20": "-20px",
+      "negative24": "-24px",
+      "negative28": "-28px",
+      "negative32": "-32px",
+      "negative36": "-36px",
+      "negative40": "-40px",
+      "negative44": "-44px",
+      "negative48": "-48px"
     },
     "text": {
+      "lineHeight": {
+        "loose": "1.75",
+        "normal": "1.5",
+        "relaxed": "1.625",
+        "snug": "1.375",
+        "tight": "1.25"
+      },
+      "size": {
+        "2xl": "2.5rem",
+        "lg": "1.25rem",
+        "md": "1rem",
+        "sm": "0.875rem",
+        "xl": "2rem",
+        "xs": "0.75rem"
+      },
       "weight": {
         "light": "300",
         "medium": "500",
         "normal": "400",
         "semibold": "600"
       }
+    },
+    "zIndex": {
+      "0": "0",
+      "100": "100",
+      "200": "200",
+      "300": "300",
+      "400": "400",
+      "500": "500",
+      "600": "600"
     }
   },
   "bgColor": {
@@ -5182,7 +5582,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "muted": vars.base.color.pink['0']
     },
     "success": {
-      "emphasis": "rgb(12.157% 53.333% 23.922%)",
+      "emphasis": "hsl(137.1 62.9% 32.7%)",
       "muted": vars.base.color.green['0']
     },
     "transparent": vars.base.color.transparent,
@@ -5215,6 +5615,10 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "emphasis": "var(--border-width-default) solid var(--border-color-done-emphasis)",
       "muted": "var(--border-width-default) solid var(--border-color-done-muted)"
     },
+    "draft": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-draft-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-draft-muted)"
+    },
     "emphasis": "var(--border-width-default) solid var(--border-color-emphasis)",
     "muted": "var(--border-width-default) solid var(--border-color-muted)",
     "neutral": {
@@ -5237,6 +5641,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "emphasis": "var(--border-width-default) solid var(--border-color-success-emphasis)",
       "muted": "var(--border-width-default) solid var(--border-color-success-muted)"
     },
+    "translucent": "var(--border-width-default) solid var(--border-color-translucent)",
     "transparent": "var(--border-width-default) solid var(--border-color-transparent)",
     "upsell": {
       "emphasis": "var(--border-width-default) solid var(--border-color-upsell-emphasis)",
@@ -5312,11 +5717,6 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "thicker": "4px",
     "thin": "1px"
   },
-  "boxShadow": {
-    "thick": "inset 0 0 0 {borderWidth.thick}",
-    "thicker": "inset 0 0 0 {borderWidth.thicker}",
-    "thin": "inset 0 0 0 {borderWidth.thin}"
-  },
   "breakpoint": {
     "large": "1012px",
     "medium": "768px",
@@ -5345,6 +5745,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "rest": vars.fgColor.danger
       },
       "iconColor": {
+        "disabled": vars.button.danger.fgColor.disabled,
         "hover": vars.base.color.neutral['0'],
         "rest": vars.button.danger.fgColor.rest
       },
@@ -5367,6 +5768,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "rest": vars.control.borderColor.rest
       },
       "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
         "rest": vars.control.fgColor.rest
       },
       "shadow": {
@@ -5403,7 +5805,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "outline": {
       "bgColor": {
-        "active": "rgb(2.7451% 34.118% 72.941%)",
+        "active": "hsl(213.2 92.7% 37.8%)",
         "disabled": vars.control.bgColor.disabled,
         "hover": vars.bgColor.accent.emphasis,
         "rest": vars.control.bgColor.rest
@@ -5424,9 +5826,9 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "primary": {
       "bgColor": {
-        "active": "rgb(9.8039% 47.451% 20.784%)",
-        "disabled": "rgb(58.431% 84.706% 65.098%)",
-        "hover": "rgb(10.98% 50.588% 22.353%)",
+        "active": "hsl(137.5 65.8% 28.6%)",
+        "disabled": "hsl(135.2 46.2% 71.6%)",
+        "hover": "hsl(137.2 64.3% 30.8%)",
         "rest": vars.bgColor.success.emphasis
       },
       "borderColor": {
@@ -5440,6 +5842,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "rest": vars.fgColor.white
       },
       "iconColor": {
+        "disabled": vars.button.primary.fgColor.disabled,
         "rest": vars.fgColor.white
       },
       "shadow": {
@@ -5460,7 +5863,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "fgColor": {
         "disabled": vars.fgColor.danger,
         "hover": vars.base.color.neutral['0'],
-        "rest": "rgb(76.078% 10.98% 17.255%)"
+        "rest": "hsl(354.2 74.8% 43.5%)"
       }
     },
     "default": {
@@ -5610,88 +6013,88 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
   },
   "color": {
     "ansi": {
-      "black": vars.base.color.neutral[13],
-      "blackBright": vars.base.color.neutral[11],
-      "blue": vars.base.color.blue[5],
-      "blueBright": vars.base.color.blue[4],
-      "cyan": "rgb(10.588% 48.627% 51.373%)",
-      "cyanBright": "rgb(19.216% 57.255% 66.667%)",
-      "gray": vars.base.color.neutral[9],
-      "green": vars.base.color.green[6],
-      "greenBright": vars.base.color.green[5],
-      "magenta": vars.base.color.purple[5],
-      "magentaBright": vars.base.color.purple[4],
-      "red": vars.base.color.red[5],
-      "redBright": vars.base.color.red[6],
-      "white": vars.base.color.neutral[9],
-      "whiteBright": vars.base.color.neutral[8],
-      "yellow": vars.base.color.yellow[8],
-      "yellowBright": vars.base.color.yellow[7]
+      "black": vars.ansi.black,
+      "blackBright": vars.ansi.blackBright,
+      "blue": vars.ansi.blue,
+      "blueBright": vars.ansi.blueBright,
+      "cyan": vars.ansi.cyan,
+      "cyanBright": vars.ansi.cyanBright,
+      "gray": vars.ansi.gray,
+      "green": vars.ansi.green,
+      "greenBright": vars.ansi.greenBright,
+      "magenta": vars.ansi.magenta,
+      "magentaBright": vars.ansi.magentaBright,
+      "red": vars.ansi.red,
+      "redBright": vars.ansi.redBright,
+      "white": vars.ansi.white,
+      "whiteBright": vars.ansi.whiteBright,
+      "yellow": vars.ansi.yellow,
+      "yellowBright": vars.ansi.yellowBright
     },
     "prettylights": {
       "syntax": {
         "brackethighlighter": {
-          "angle": vars.base.color.neutral[9],
-          "unmatched": vars.base.color.red[7]
+          "angle": vars.prettylights.syntax.bracketHighlighterAngle,
+          "unmatched": vars.prettylights.syntax.bracketHighlighterUnmatched
         },
         "carriage": {
           "return": {
-            "bg": vars.base.color.red[5],
-            "text": vars.base.color.neutral[1]
+            "bg": vars.prettylights.syntax.carriage.return.bg,
+            "text": vars.prettylights.syntax.carriage.return.text
           }
         },
-        "comment": vars.base.color.neutral[9],
-        "constant": vars.base.color.blue[6],
-        "constantOtherReferenceLink": vars.base.color.blue[8],
-        "entity": vars.base.color.purple[6],
-        "entityTag": vars.base.color.blue[6],
+        "comment": vars.prettylights.syntax.comment,
+        "constant": vars.prettylights.syntax.constant,
+        "constantOtherReferenceLink": vars.prettylights.syntax.constantOtherReferenceLink,
+        "entity": vars.prettylights.syntax.entity,
+        "entityTag": vars.prettylights.syntax.entityTag,
         "invalid": {
           "illegal": {
-            "bg": vars.bgColor.danger.muted,
-            "text": vars.fgColor.danger
+            "bg": vars.prettylights.syntax.invalid.illegal.bg,
+            "text": vars.prettylights.syntax.invalid.illegal.text
           }
         },
-        "keyword": vars.base.color.red[5],
+        "keyword": vars.prettylights.syntax.keyword,
         "markup": {
-          "bold": vars.base.color.neutral[13],
+          "bold": vars.prettylights.syntax.markup.bold,
           "changed": {
-            "bg": vars.base.color.orange[1],
-            "text": vars.base.color.orange[6]
+            "bg": vars.prettylights.syntax.markup.changed.bg,
+            "text": vars.prettylights.syntax.markup.changed.text
           },
           "deleted": {
-            "bg": vars.base.color.red['0'],
-            "text": vars.base.color.red[7]
+            "bg": vars.prettylights.syntax.markup.deleted.bg,
+            "text": vars.prettylights.syntax.markup.deleted.text
           },
-          "heading": vars.base.color.blue[6],
+          "heading": vars.prettylights.syntax.markup.heading,
           "ignored": {
-            "bg": vars.base.color.blue[6],
-            "text": vars.base.color.neutral[6]
+            "bg": vars.prettylights.syntax.markup.ignored.bg,
+            "text": vars.prettylights.syntax.markup.ignored.text
           },
           "inserted": {
-            "bg": vars.base.color.green['0'],
-            "text": vars.base.color.green[6]
+            "bg": vars.prettylights.syntax.markup.inserted.bg,
+            "text": vars.prettylights.syntax.markup.inserted.text
           },
-          "italic": vars.base.color.neutral[13],
-          "list": vars.base.color.yellow[9]
+          "italic": vars.prettylights.syntax.markup.italic,
+          "list": vars.prettylights.syntax.markup.list
         },
         "meta": {
           "diff": {
-            "range": vars.base.color.purple[5]
+            "range": vars.prettylights.syntax.meta.diff.range
           }
         },
         "storage": {
           "modifier": {
-            "import": vars.base.color.neutral[13]
+            "import": vars.prettylights.syntax.storage.modifier.import
           }
         },
-        "string": vars.base.color.blue[8],
-        "stringRegexp": vars.base.color.green[6],
+        "string": vars.prettylights.syntax.string,
+        "stringRegexp": vars.prettylights.syntax.stringRegexp,
         "sublimelinter": {
           "gutter": {
-            "mark": vars.base.color.neutral[8]
+            "mark": vars.prettylights.syntax.sublimeLinterGutterMark
           }
         },
-        "variable": vars.base.color.orange[6]
+        "variable": vars.prettylights.syntax.variable
       }
     }
   },
@@ -5748,9 +6151,9 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "checked": {
       "bgColor": {
-        "active": "rgb(2.7451% 34.118% 72.941%)",
+        "active": "hsl(213.2 92.7% 37.8%)",
         "disabled": vars.fgColor.disabled,
-        "hover": "rgb(3.1373% 37.647% 79.216%)",
+        "hover": "hsl(212.8 92.4% 41.2%)",
         "rest": vars.bgColor.accent.emphasis
       },
       "borderColor": {
@@ -5784,9 +6187,9 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "large": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "10px",
       "paddingInline": {
+        "condensed": vars.base.size[8],
         "normal": vars.base.size[12],
         "spacious": vars.base.size[16]
       },
@@ -5794,7 +6197,6 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "medium": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "6px",
       "paddingInline": {
         "condensed": vars.base.size[8],
@@ -5809,11 +6211,11 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "small": {
       "gap": vars.base.size[4],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": vars.base.size[4],
       "paddingInline": {
         "condensed": vars.base.size[8],
-        "normal": vars.base.size[12]
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
       },
       "size": vars.base.size[28]
     },
@@ -5833,9 +6235,9 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "xlarge": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "14px",
       "paddingInline": {
+        "condensed": vars.base.size[8],
         "normal": vars.base.size[12],
         "spacious": vars.base.size[16]
       },
@@ -5843,7 +6245,6 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "xsmall": {
       "gap": vars.base.size[4],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "2px",
       "paddingInline": {
         "condensed": vars.base.size[4],
@@ -5875,12 +6276,14 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "medium": {
       "gap": {
+        "auto": vars.base.size[8],
         "condensed": vars.base.size[8],
         "spacious": vars.base.size[12]
       }
     },
     "small": {
       "gap": {
+        "auto": vars.base.size[8],
         "condensed": vars.base.size[8],
         "spacious": vars.base.size[16]
       }
@@ -6509,7 +6912,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "attention": vars.base.color.yellow[5],
     "black": vars.base.color.neutral[13],
     "closed": vars.fgColor.danger,
-    "danger": "rgb(81.961% 14.118% 18.431%)",
+    "danger": "hsl(356.2 70.6% 48%)",
     "default": vars.base.color.neutral[13],
     "disabled": vars.base.color.neutral[8],
     "done": vars.base.color.purple[5],
@@ -6527,14 +6930,16 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "white": vars.base.color.neutral['0']
   },
   "focus": {
-    "outline": "2px solid var(--focus-outline-color)",
-    "outlineColor": vars.borderColor.accent.emphasis
+    "outline": "var(--focus-outline-width) solid var(--focus-outline-color)",
+    "outlineColor": vars.focus.outlineColor,
+    "outlineOffset": "-2px",
+    "outlineWidth": "2px"
   },
   "fontStack": {
     "monospace": "\"ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace\"",
-    "sansSerif": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
-    "sansSerifDisplay": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
-    "system": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
+    "sansSerif": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "sansSerifDisplay": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "system": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
   },
   "header": {
     "bgColor": vars.base.color.neutral[12],
@@ -6809,10 +7214,31 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "active": vars.base.color.transparent
     }
   },
+  "motion": {
+    "duration": {
+      "long": vars.base.duration[500],
+      "medium": vars.base.duration[300],
+      "micro": vars.base.duration[100],
+      "short": vars.base.duration[200]
+    },
+    "easing": {
+      "enter": vars.base.easing.easeOut,
+      "exit": vars.base.easing.easeIn,
+      "hover": vars.base.easing.ease,
+      "linear": vars.base.easing.linear,
+      "move": vars.base.easing.easeInOut
+    },
+    "transition": {
+      "enter": "var(--motion-duration-medium) 0ms var(--motion-easing-enter)",
+      "exit": "var(--motion-duration-short) 0ms var(--motion-easing-exit)",
+      "hover": "var(--motion-duration-micro) 0ms var(--motion-easing-hover)",
+      "stateChange": "var(--motion-duration-short) 0ms var(--motion-easing-move)"
+    }
+  },
   "outline": {
     "focus": {
-      "offset": "-2px",
-      "width": "2px"
+      "offset": vars.focus.outlineOffset,
+      "width": vars.focus.outlineWidth
     }
   },
   "overlay": {
@@ -6850,6 +7276,85 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "bgColor": vars.bgColor.muted
     }
   },
+  "prettylights": {
+    "syntax": {
+      "brackethighlighter": {
+        "angle": vars.prettylights.syntax.bracketHighlighterAngle,
+        "unmatched": vars.prettylights.syntax.bracketHighlighterUnmatched
+      },
+      "bracketHighlighterAngle": vars.base.color.neutral[9],
+      "bracketHighlighterUnmatched": vars.base.color.red[7],
+      "carriage": {
+        "return": {
+          "bg": vars.prettylights.syntax.carriage.return.bg,
+          "text": vars.prettylights.syntax.carriage.return.text
+        }
+      },
+      "carriageReturn": {
+        "bg": vars.base.color.red[5],
+        "text": vars.base.color.neutral[1]
+      },
+      "comment": vars.base.color.neutral[9],
+      "constant": vars.base.color.blue[6],
+      "constantOtherReferenceLink": vars.base.color.blue[8],
+      "entity": vars.base.color.purple[6],
+      "entityTag": vars.base.color.blue[6],
+      "invalid": {
+        "illegal": {
+          "bg": vars.prettylights.syntax.invalid.illegal.bg,
+          "text": vars.prettylights.syntax.invalid.illegal.text
+        }
+      },
+      "invalidIllegal": {
+        "bg": vars.bgColor.danger.muted,
+        "text": vars.fgColor.danger
+      },
+      "keyword": vars.base.color.red[5],
+      "markup": {
+        "bold": vars.base.color.neutral[13],
+        "changed": {
+          "bg": vars.base.color.orange[1],
+          "text": vars.base.color.orange[6]
+        },
+        "deleted": {
+          "bg": vars.base.color.red['0'],
+          "text": vars.base.color.red[7]
+        },
+        "heading": vars.base.color.blue[6],
+        "ignored": {
+          "bg": vars.base.color.blue[6],
+          "text": vars.base.color.neutral[6]
+        },
+        "inserted": {
+          "bg": vars.base.color.green['0'],
+          "text": vars.base.color.green[6]
+        },
+        "italic": vars.base.color.neutral[13],
+        "list": vars.base.color.yellow[9]
+      },
+      "meta": {
+        "diff": {
+          "range": vars.prettylights.syntax.meta.diff.range
+        }
+      },
+      "metaDiffRange": vars.base.color.purple[5],
+      "storage": {
+        "modifier": {
+          "import": vars.prettylights.syntax.storage.modifier.import
+        }
+      },
+      "storageModifierImport": vars.base.color.neutral[13],
+      "string": vars.base.color.blue[8],
+      "stringRegexp": vars.base.color.green[6],
+      "sublimelinter": {
+        "gutter": {
+          "mark": vars.prettylights.syntax.sublimeLinterGutterMark
+        }
+      },
+      "sublimeLinterGutterMark": vars.base.color.neutral[8],
+      "variable": vars.base.color.orange[6]
+    }
+  },
   "progressBar": {
     "bgColor": {
       "accent": vars.bgColor.accent.emphasis,
@@ -6869,7 +7374,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
   "reactionButton": {
     "selected": {
       "bgColor": {
-        "hover": "rgb(79.216% 92.549% 100%)",
+        "hover": "hsl(201.5 100% 89.6%)",
         "rest": vars.base.color.blue['0']
       },
       "fgColor": {
@@ -6890,7 +7395,6 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
   "shadow": {
     "floating": {
       "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12)",
-      "legacy": "0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
       "medium": "0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12)",
       "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
       "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12)"
@@ -6898,7 +7402,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "inset": "inset 0px 1px 0px 0px var(--base-color-neutral-13)",
     "resting": {
       "medium": "0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12)",
-      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 3px 0px var(--base-color-neutral-13)",
+      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 2px 0px var(--base-color-neutral-13)",
       "xsmall": "0px 1px 1px 0px var(--base-color-neutral-13)"
     }
   },
@@ -6935,9 +7439,9 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
   "text": {
     "body": {
       "lineHeight": {
-        "large": "1.5",
-        "medium": "1.42857",
-        "small": "1.66667"
+        "large": vars.base.text.lineHeight.normal,
+        "medium": vars.base.text.lineHeight.normal,
+        "small": vars.base.text.lineHeight.relaxed
       },
       "shorthand": {
         "large": {
@@ -6960,25 +7464,25 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         }
       },
       "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
+        "large": vars.base.text.size.md,
+        "medium": vars.base.text.size.sm,
+        "small": vars.base.text.size.xs
       },
       "weight": vars.base.text.weight.normal
     },
     "caption": {
-      "lineHeight": "1.3333",
+      "lineHeight": vars.base.text.lineHeight.tight,
       "shorthand": {
         "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "lineHeight": vars.text.caption.lineHeight,
         "fontFamily": vars.fontStack.sansSerif
       },
-      "size": "12px",
+      "size": vars.base.text.size.xs,
       "weight": vars.base.text.weight.normal
     },
     "codeBlock": {
-      "lineHeight": "1.5385",
+      "lineHeight": vars.base.text.lineHeight.normal,
       "shorthand": {
         "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
@@ -6998,33 +7502,32 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "weight": vars.base.text.weight.normal
     },
     "display": {
-      "lineBoxHeight": "1.4",
-      "lineHeight": "1.4",
+      "lineHeight": vars.base.text.lineHeight.snug,
       "shorthand": {
         "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "fontFamily": vars.fontStack.sansSerifDisplay
       },
-      "size": "40px",
+      "size": vars.base.text.size['2xl'],
       "weight": vars.base.text.weight.medium
     },
     "subtitle": {
-      "lineHeight": "1.6",
+      "lineHeight": vars.base.text.lineHeight.relaxed,
       "shorthand": {
         "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "lineHeight": vars.text.subtitle.lineHeight,
         "fontFamily": vars.fontStack.sansSerifDisplay
       },
-      "size": "20px",
+      "size": vars.base.text.size.lg,
       "weight": vars.base.text.weight.normal
     },
     "title": {
       "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
+        "large": vars.base.text.lineHeight.normal,
+        "medium": vars.base.text.lineHeight.relaxed,
+        "small": vars.base.text.lineHeight.normal
       },
       "shorthand": {
         "large": {
@@ -7047,9 +7550,9 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         }
       },
       "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
+        "large": vars.base.text.size.xl,
+        "medium": vars.base.text.size.lg,
+        "small": vars.base.text.size.md
       },
       "weight": {
         "large": vars.base.text.weight.semibold,
@@ -7083,10 +7586,39 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "iconColor": {
       "rest": vars.fgColor.muted
     }
+  },
+  "zIndex": {
+    "behind": "-1",
+    "default": vars.base.zIndex['0'],
+    "dropdown": vars.base.zIndex[200],
+    "modal": vars.base.zIndex[400],
+    "overlay": vars.base.zIndex[300],
+    "popover": vars.base.zIndex[500],
+    "skipLink": vars.base.zIndex[600],
+    "sticky": vars.base.zIndex[100]
   }
 });
 
 export const [darkClass, dark] = createTheme(vars, {
+  "ansi": {
+    "black": vars.base.color.neutral[13],
+    "blackBright": vars.base.color.neutral[11],
+    "blue": vars.base.color.blue[5],
+    "blueBright": vars.base.color.blue[4],
+    "cyan": "hsl(184 65.8% 31%)",
+    "cyanBright": "hsl(191.9 55.3% 42.9%)",
+    "gray": vars.base.color.neutral[9],
+    "green": vars.base.color.green[6],
+    "greenBright": vars.base.color.green[5],
+    "magenta": vars.base.color.purple[5],
+    "magentaBright": vars.base.color.purple[4],
+    "red": vars.base.color.red[5],
+    "redBright": vars.base.color.red[6],
+    "white": vars.base.color.neutral[9],
+    "whiteBright": vars.base.color.neutral[8],
+    "yellow": vars.base.color.yellow[8],
+    "yellowBright": vars.base.color.yellow[7]
+  },
   "avatar": {
     "bgColor": vars.base.color.neutral['0'],
     "borderColor": vars.borderColor.translucent,
@@ -7094,354 +7626,354 @@ export const [darkClass, dark] = createTheme(vars, {
   },
   "base": {
     "color": {
-      "black": "rgb(0.39216% 1.5686% 3.5294%)",
+      "black": "hsl(217.5 80% 2%)",
       "blue": {
-        "0": "rgb(79.216% 90.98% 100%)",
-        "1": "rgb(64.706% 83.922% 100%)",
-        "2": "rgb(47.451% 75.294% 100%)",
-        "3": "rgb(34.51% 65.098% 100%)",
-        "4": "rgb(21.961% 54.51% 99.216%)",
-        "5": "rgb(12.157% 43.529% 92.157%)",
-        "6": "rgb(6.6667% 34.51% 78.039%)",
-        "7": "rgb(5.098% 25.49% 61.569%)",
-        "8": "rgb(4.7059% 17.647% 41.961%)",
-        "9": "rgb(1.9608% 11.373% 30.196%)"
+        "0": "hsl(206 100% 89.6%)",
+        "1": "hsl(207.3 100% 82.4%)",
+        "2": "hsl(208.2 100% 73.7%)",
+        "3": "hsl(212 100% 67.3%)",
+        "4": "hsl(214.7 98% 60.6%)",
+        "5": "hsl(216.5 83.6% 52.2%)",
+        "6": "hsl(216.6 84.3% 42.4%)",
+        "7": "hsl(218.3 84.7% 33.3%)",
+        "8": "hsl(219.2 79.8% 23.3%)",
+        "9": "hsl(220 87.8% 16.1%)"
       },
       "coral": {
-        "0": "rgb(100% 86.667% 82.353%)",
-        "1": "rgb(100% 76.078% 69.804%)",
-        "2": "rgb(100% 63.529% 54.51%)",
-        "3": "rgb(96.863% 50.588% 40%)",
-        "4": "rgb(91.765% 37.647% 27.059%)",
-        "5": "rgb(81.176% 27.451% 17.647%)",
-        "6": "rgb(67.451% 19.608% 12.549%)",
-        "7": "rgb(52.941% 12.549% 7.0588%)",
-        "8": "rgb(39.216% 5.098% 1.5686%)",
-        "9": "rgb(27.451% 2.7451% 0.39216%)"
+        "0": "hsl(14.7 100% 91.2%)",
+        "1": "hsl(12.5 100% 84.9%)",
+        "2": "hsl(11.9 100% 77.3%)",
+        "3": "hsl(11.2 90.1% 68.4%)",
+        "4": "hsl(9.8 79.7% 59.4%)",
+        "5": "hsl(9.3 64.3% 49.4%)",
+        "6": "hsl(7.7 68.6% 40%)",
+        "7": "hsl(7.2 76.5% 30%)",
+        "8": "hsl(5.6 92.3% 20.4%)",
+        "9": "hsl(5.2 97.2% 13.9%)"
       },
       "green": {
-        "0": "rgb(68.627% 96.078% 70.588%)",
-        "1": "rgb(49.412% 90.588% 52.941%)",
-        "2": "rgb(33.725% 82.745% 39.216%)",
-        "3": "rgb(24.706% 72.549% 31.373%)",
-        "4": "rgb(18.039% 62.745% 26.275%)",
-        "5": "rgb(13.725% 52.549% 21.176%)",
-        "6": "rgb(9.8039% 42.353% 18.039%)",
-        "7": "rgb(5.8824% 32.549% 13.725%)",
-        "8": "rgb(1.1765% 22.745% 8.6275%)",
-        "9": "rgb(1.5686% 14.902% 5.8824%)"
+        "0": "hsl(124.3 77.8% 82.4%)",
+        "1": "hsl(125.1 68.6% 70%)",
+        "2": "hsl(126.7 58.7% 58.2%)",
+        "3": "hsl(128.4 49.2% 48.6%)",
+        "4": "hsl(131.1 55.3% 40.4%)",
+        "5": "hsl(131.5 58.6% 33.1%)",
+        "6": "hsl(135.2 62.4% 26.1%)",
+        "7": "hsl(137.6 69.4% 19.2%)",
+        "8": "hsl(140.7 90.2% 12%)",
+        "9": "hsl(139.4 81% 8.2%)"
       },
       "inset": vars.base.color.black,
       "neutral": {
         "0": vars.base.color.black,
-        "1": "rgb(5.098% 6.6667% 9.0196%)",
-        "2": "rgb(8.2353% 10.588% 13.725%)",
-        "3": "rgb(12.941% 15.686% 18.824%)",
-        "4": "rgb(14.902% 17.255% 21.176%)",
-        "5": "rgb(16.471% 19.216% 23.529%)",
-        "6": "rgb(18.431% 21.569% 25.882%)",
-        "7": "rgb(23.922% 26.667% 30.196%)",
-        "8": "rgb(39.608% 42.353% 46.275%)",
-        "9": "rgb(56.863% 59.608% 63.137%)",
-        "10": "rgb(71.765% 74.118% 78.431%)",
-        "11": "rgb(81.961% 84.314% 87.843%)",
-        "12": "rgb(94.118% 96.471% 98.824%)",
+        "1": "hsl(216 27.8% 7.1%)",
+        "2": "hsl(214.3 25% 11%)",
+        "3": "hsl(212 18.5% 15.9%)",
+        "4": "hsl(217.5 17.4% 18%)",
+        "5": "hsl(216.7 17.6% 20%)",
+        "6": "hsl(214.7 16.8% 22.2%)",
+        "7": "hsl(213.8 11.6% 27.1%)",
+        "8": "hsl(215.3 7.8% 42.9%)",
+        "9": "hsl(213.8 7.8% 60%)",
+        "10": "hsl(218.8 13.4% 75.1%)",
+        "11": "hsl(216 19.5% 84.9%)",
+        "12": "hsl(210 66.7% 96.5%)",
         "13": vars.base.color.white
       },
       "orange": {
-        "0": "rgb(100% 87.451% 71.373%)",
-        "1": "rgb(100% 77.647% 50.196%)",
-        "2": "rgb(100% 65.098% 34.118%)",
-        "3": "rgb(94.118% 53.333% 24.314%)",
-        "4": "rgb(85.882% 42.745% 15.686%)",
-        "5": "rgb(74.118% 33.725% 11.373%)",
-        "6": "rgb(60.784% 25.882% 8.2353%)",
-        "7": "rgb(46.275% 17.647% 3.9216%)",
-        "8": "rgb(35.294% 11.765% 0.78431%)",
-        "9": "rgb(23.922% 7.451% 0%)"
+        "0": "hsl(33.7 100% 85.7%)",
+        "1": "hsl(33.1 100% 75.1%)",
+        "2": "hsl(28.2 100% 67.1%)",
+        "3": "hsl(24.9 85.6% 59.2%)",
+        "4": "hsl(23.1 71.3% 50.8%)",
+        "5": "hsl(21.4 73.4% 42.7%)",
+        "6": "hsl(20.1 76.1% 34.5%)",
+        "7": "hsl(19.4 84.4% 25.1%)",
+        "8": "hsl(19.1 95.7% 18%)",
+        "9": "hsl(18.7 100% 12%)"
       },
       "pink": {
-        "0": "rgb(100% 85.49% 92.549%)",
-        "1": "rgb(100% 74.51% 86.667%)",
-        "2": "rgb(100% 60.784% 80.784%)",
-        "3": "rgb(96.863% 47.059% 72.941%)",
-        "4": "rgb(85.882% 38.039% 63.529%)",
-        "5": "rgb(74.902% 29.412% 54.118%)",
-        "6": "rgb(61.961% 21.176% 43.922%)",
-        "7": "rgb(49.02% 14.118% 34.118%)",
-        "8": "rgb(36.863% 6.2745% 24.314%)",
-        "9": "rgb(25.882% 2.3529% 16.471%)"
+        "0": "hsl(330.8 100% 92.7%)",
+        "1": "hsl(331.4 100% 87.3%)",
+        "2": "hsl(329.4 100% 80.4%)",
+        "3": "hsl(328.8 88.8% 72%)",
+        "4": "hsl(328 62.9% 62%)",
+        "5": "hsl(327.4 47.5% 52.2%)",
+        "6": "hsl(326.5 49.1% 41.6%)",
+        "7": "hsl(325.6 55.3% 31.6%)",
+        "8": "hsl(324.6 70.9% 21.6%)",
+        "9": "hsl(324 83.3% 14.1%)"
       },
       "purple": {
-        "0": "rgb(92.941% 87.059% 100%)",
-        "1": "rgb(88.627% 77.255% 100%)",
-        "2": "rgb(82.353% 65.882% 100%)",
-        "3": "rgb(74.51% 56.078% 100%)",
-        "4": "rgb(67.059% 49.02% 97.255%)",
-        "5": "rgb(53.725% 34.118% 89.804%)",
-        "6": "rgb(43.137% 25.098% 78.824%)",
-        "7": "rgb(33.333% 18.824% 59.608%)",
-        "8": "rgb(23.529% 11.765% 43.922%)",
-        "9": "rgb(15.294% 6.2745% 32.157%)"
+        "0": "hsl(267.3 100% 93.5%)",
+        "1": "hsl(270 100% 88.6%)",
+        "2": "hsl(269 100% 82.9%)",
+        "3": "hsl(265.2 100% 78%)",
+        "4": "hsl(262.4 89.8% 73.1%)",
+        "5": "hsl(261.1 73.2% 62%)",
+        "6": "hsl(260.1 55.9% 52%)",
+        "7": "hsl(261.3 52% 39.2%)",
+        "8": "hsl(262 57.7% 27.8%)",
+        "9": "hsl(260.9 67.3% 19.2%)"
       },
       "red": {
-        "0": "rgb(100% 86.275% 84.314%)",
-        "1": "rgb(100% 75.686% 72.941%)",
-        "2": "rgb(100% 63.137% 59.608%)",
-        "3": "rgb(100% 48.235% 44.706%)",
-        "4": "rgb(97.255% 31.765% 28.627%)",
-        "5": "rgb(85.49% 21.176% 20%)",
-        "6": "rgb(71.373% 13.725% 14.118%)",
-        "7": "rgb(55.686% 8.2353% 9.8039%)",
-        "8": "rgb(40.392% 2.3529% 4.7059%)",
-        "9": "rgb(28.627% 0.78431% 0.78431%)"
+        "0": "hsl(7.5 100% 92.2%)",
+        "1": "hsl(6.1 100% 86.5%)",
+        "2": "hsl(5.2 100% 79.8%)",
+        "3": "hsl(3.8 100% 72.4%)",
+        "4": "hsl(2.7 92.6% 62.9%)",
+        "5": "hsl(1.1 69.3% 52.7%)",
+        "6": "hsl(359.6 67.7% 42.5%)",
+        "7": "hsl(358 74.2% 32%)",
+        "8": "hsl(356.3 89% 21.4%)",
+        "9": "hsl(0 94.7% 14.7%)"
       },
-      "transparent": "rgb(0% 0% 0%)",
-      "white": "rgb(100% 100% 100%)",
+      "transparent": "hsl(0 0% 0%)",
+      "white": "hsl(0 0% 100%)",
       "yellow": {
-        "0": "rgb(97.255% 89.02% 63.137%)",
-        "1": "rgb(94.902% 80% 37.647%)",
-        "2": "rgb(89.02% 70.196% 25.49%)",
-        "3": "rgb(82.353% 60% 13.333%)",
-        "4": "rgb(73.333% 50.196% 3.5294%)",
-        "5": "rgb(61.961% 41.569% 1.1765%)",
-        "6": "rgb(51.765% 32.549% 2.3529%)",
-        "7": "rgb(41.176% 24.314% 0%)",
-        "8": "rgb(29.412% 16.078% 0%)",
-        "9": "rgb(20.392% 10.196% 0%)"
+        "0": "hsl(45.5 86.1% 80.2%)",
+        "1": "hsl(44.4 84.9% 66.3%)",
+        "2": "hsl(42.2 74.3% 57.3%)",
+        "3": "hsl(40.6 72.1% 47.8%)",
+        "4": "hsl(40.1 90.8% 38.4%)",
+        "5": "hsl(39.9 96.3% 31.6%)",
+        "6": "hsl(36.7 91.3% 27.1%)",
+        "7": "hsl(35.4 100% 20.6%)",
+        "8": "hsl(32.8 100% 14.7%)",
+        "9": "hsl(30 100% 10.2%)"
       }
     },
     "display": {
       "color": {
         "auburn": {
-          "0": "rgb(94.902% 91.373% 91.373%)",
-          "1": "rgb(90.196% 83.922% 83.529%)",
-          "2": "rgb(83.137% 71.765% 70.98%)",
-          "3": "rgb(77.255% 61.961% 60.784%)",
-          "4": "rgb(70.588% 50.98% 49.412%)",
-          "5": "rgb(61.569% 38.039% 36.078%)",
-          "6": "rgb(54.118% 33.333% 31.765%)",
-          "7": "rgb(45.49% 27.843% 26.667%)",
-          "8": "rgb(36.471% 22.353% 21.569%)",
-          "9": "rgb(26.275% 16.078% 15.686%)"
+          "0": "hsl(0 25.7% 93.1%)",
+          "1": "hsl(3.5 25.4% 86.9%)",
+          "2": "hsl(3.9 26.5% 77.1%)",
+          "3": "hsl(4.3 26.6% 69%)",
+          "4": "hsl(4.4 26.5% 60%)",
+          "5": "hsl(4.6 26.1% 48.8%)",
+          "6": "hsl(4.2 26% 42.9%)",
+          "7": "hsl(3.8 26.1% 36.1%)",
+          "8": "hsl(3.2 25.7% 29%)",
+          "9": "hsl(2.2 25.2% 21%)"
         },
-        "black": "rgb(5.098% 6.6667% 9.0196%)",
+        "black": "hsl(216 27.8% 7.1%)",
         "blue": {
-          "0": "rgb(81.961% 94.118% 100%)",
-          "1": "rgb(67.843% 88.235% 100%)",
-          "2": "rgb(45.882% 78.431% 100%)",
-          "3": "rgb(27.843% 68.627% 100%)",
-          "4": "rgb(5.8824% 56.078% 100%)",
-          "5": "rgb(0% 43.137% 85.882%)",
-          "6": "rgb(0% 37.255% 80%)",
-          "7": "rgb(0% 30.196% 70.196%)",
-          "8": "rgb(0% 23.922% 60%)",
-          "9": "rgb(0% 16.863% 45.882%)"
+          "0": "hsl(199.6 100% 91%)",
+          "1": "hsl(202 100% 83.9%)",
+          "2": "hsl(203.9 100% 72.9%)",
+          "3": "hsl(206.1 100% 63.9%)",
+          "4": "hsl(208 100% 52.9%)",
+          "5": "hsl(209.9 100% 42.9%)",
+          "6": "hsl(212.1 100% 40%)",
+          "7": "hsl(214.2 100% 35.1%)",
+          "8": "hsl(216.1 100% 30%)",
+          "9": "hsl(217.9 100% 22.9%)"
         },
         "brown": {
-          "0": "rgb(93.333% 91.765% 88.627%)",
-          "1": "rgb(87.451% 84.314% 78.431%)",
-          "2": "rgb(79.608% 74.118% 64.314%)",
-          "3": "rgb(72.157% 64.314% 51.765%)",
-          "4": "rgb(65.098% 54.51% 39.216%)",
-          "5": "rgb(52.157% 42.745% 29.804%)",
-          "6": "rgb(45.882% 37.255% 26.275%)",
-          "7": "rgb(39.216% 31.765% 22.745%)",
-          "8": "rgb(31.765% 25.49% 18.431%)",
-          "9": "rgb(22.745% 18.039% 13.333%)"
+          "0": "hsl(40 26.1% 91%)",
+          "1": "hsl(39.1 26.4% 82.9%)",
+          "2": "hsl(38.5 27.3% 72%)",
+          "3": "hsl(36.9 26.8% 62%)",
+          "4": "hsl(35.5 27% 52.2%)",
+          "5": "hsl(34.7 27.3% 41%)",
+          "6": "hsl(33.6 27.2% 36.1%)",
+          "7": "hsl(32.9 26.6% 31%)",
+          "8": "hsl(31.8 26.6% 25.1%)",
+          "9": "hsl(30 26.1% 18%)"
         },
         "coral": {
-          "0": "rgb(100% 89.804% 85.882%)",
-          "1": "rgb(99.608% 80.784% 74.51%)",
-          "2": "rgb(98.824% 67.059% 57.255%)",
-          "3": "rgb(97.255% 52.941% 40.784%)",
-          "4": "rgb(94.902% 37.255% 22.745%)",
-          "5": "rgb(83.137% 20.784% 6.6667%)",
-          "6": "rgb(72.941% 18.039% 7.0588%)",
-          "7": "rgb(60.784% 15.294% 7.0588%)",
-          "8": "rgb(49.412% 12.549% 6.6667%)",
-          "9": "rgb(36.471% 9.4118% 5.4902%)"
+          "0": "hsl(16.7 100% 92.9%)",
+          "1": "hsl(15 97% 87.1%)",
+          "2": "hsl(14.2 94.6% 78%)",
+          "3": "hsl(12.9 91.1% 69%)",
+          "4": "hsl(12.1 87.6% 58.8%)",
+          "5": "hsl(11.1 85.2% 44.9%)",
+          "6": "hsl(10 82.4% 40%)",
+          "7": "hsl(9.2 79.2% 33.9%)",
+          "8": "hsl(8.3 76.2% 28%)",
+          "9": "hsl(7.6 73.8% 21%)"
         },
         "cyan": {
-          "0": "rgb(74.118% 95.686% 100%)",
-          "1": "rgb(47.843% 91.373% 100%)",
-          "2": "rgb(0% 81.569% 98.039%)",
-          "3": "rgb(0% 71.765% 85.882%)",
-          "4": "rgb(0% 60% 72.157%)",
-          "5": "rgb(0% 48.235% 58.039%)",
-          "6": "rgb(0% 41.569% 50.196%)",
-          "7": "rgb(0% 34.902% 41.961%)",
-          "8": "rgb(0% 28.235% 34.118%)",
-          "9": "rgb(0% 21.569% 25.882%)"
+          "0": "hsl(190 100% 87.1%)",
+          "1": "hsl(189.9 100% 73.9%)",
+          "2": "hsl(190.1 100% 49%)",
+          "3": "hsl(189.9 100% 42.9%)",
+          "4": "hsl(190.1 100% 36.1%)",
+          "5": "hsl(190.1 100% 29%)",
+          "6": "hsl(190.3 100% 25.1%)",
+          "7": "hsl(190.1 100% 21%)",
+          "8": "hsl(190.3 100% 17.1%)",
+          "9": "hsl(190 100% 12.9%)"
         },
         "gray": {
-          "0": "rgb(90.98% 92.549% 94.902%)",
-          "1": "rgb(82.353% 85.49% 89.412%)",
-          "2": "rgb(70.588% 75.294% 81.176%)",
-          "3": "rgb(60.784% 66.275% 73.333%)",
-          "4": "rgb(50.196% 56.078% 63.922%)",
-          "5": "rgb(39.216% 44.314% 50.98%)",
-          "6": "rgb(36.078% 39.608% 43.922%)",
-          "7": "rgb(30.588% 32.549% 35.294%)",
-          "8": "rgb(25.882% 26.667% 28.235%)",
-          "9": "rgb(18.824% 18.824% 19.216%)"
+          "0": "hsl(216 27.8% 92.9%)",
+          "1": "hsl(213.3 25% 85.9%)",
+          "2": "hsl(213.3 22% 75.9%)",
+          "3": "hsl(213.8 19% 67.1%)",
+          "4": "hsl(214.3 16% 57.1%)",
+          "5": "hsl(214 13% 45.1%)",
+          "6": "hsl(213 9.8% 40%)",
+          "7": "hsl(215 7.1% 32.9%)",
+          "8": "hsl(220 4.3% 27.1%)",
+          "9": "hsl(240 1% 19%)"
         },
         "green": {
-          "0": "rgb(79.216% 96.863% 79.216%)",
-          "1": "rgb(61.176% 92.941% 62.745%)",
-          "2": "rgb(32.941% 85.098% 38.039%)",
-          "3": "rgb(19.216% 74.902% 27.451%)",
-          "4": "rgb(18.824% 63.137% 27.843%)",
-          "5": "rgb(17.255% 50.588% 25.49%)",
-          "6": "rgb(16.863% 43.137% 24.706%)",
-          "7": "rgb(15.686% 36.078% 23.137%)",
-          "8": "rgb(14.51% 29.412% 20.392%)",
-          "9": "rgb(11.373% 20.784% 15.686%)"
+          "0": "hsl(120 73.8% 88%)",
+          "1": "hsl(123 69.2% 77.1%)",
+          "2": "hsl(125.9 63.6% 59%)",
+          "3": "hsl(128.9 59.2% 47.1%)",
+          "4": "hsl(132.2 54.1% 41%)",
+          "5": "hsl(134.8 49.1% 33.9%)",
+          "6": "hsl(137.9 43.8% 30%)",
+          "7": "hsl(141.9 39.4% 25.9%)",
+          "8": "hsl(143.7 33.9% 22%)",
+          "9": "hsl(147.5 29.3% 16.1%)"
         },
         "indigo": {
-          "0": "rgb(89.804% 91.373% 100%)",
-          "1": "rgb(82.353% 84.314% 99.608%)",
-          "2": "rgb(69.412% 72.549% 98.431%)",
-          "3": "rgb(59.216% 62.353% 96.863%)",
-          "4": "rgb(47.843% 50.98% 94.118%)",
-          "5": "rgb(35.294% 38.039% 90.588%)",
-          "6": "rgb(28.627% 30.588% 87.451%)",
-          "7": "rgb(22.353% 23.529% 83.529%)",
-          "8": "rgb(17.647% 17.647% 70.588%)",
-          "9": "rgb(14.51% 14.118% 48.235%)"
+          "0": "hsl(230.8 100% 94.9%)",
+          "1": "hsl(233.2 95.7% 91%)",
+          "2": "hsl(233.5 90.2% 83.9%)",
+          "3": "hsl(235 85.7% 78%)",
+          "4": "hsl(235.9 79.7% 71%)",
+          "5": "hsl(237 74.6% 62.9%)",
+          "6": "hsl(238 70.1% 58%)",
+          "7": "hsl(238.8 65% 52.9%)",
+          "8": "hsl(240 60% 44.1%)",
+          "9": "hsl(240.7 54.7% 31.2%)"
         },
         "lemon": {
-          "0": "rgb(96.863% 93.333% 63.137%)",
-          "1": "rgb(94.118% 85.882% 23.922%)",
-          "2": "rgb(84.706% 74.118% 5.4902%)",
-          "3": "rgb(76.078% 65.098% 3.9216%)",
-          "4": "rgb(65.098% 54.902% 2.7451%)",
-          "5": "rgb(52.549% 43.137% 1.5686%)",
-          "6": "rgb(47.059% 37.647% 0.78431%)",
-          "7": "rgb(39.608% 30.98% 0.39216%)",
-          "8": "rgb(32.157% 24.706% 0%)",
-          "9": "rgb(23.922% 18.039% 0%)"
+          "0": "hsl(53.7 84.3% 80%)",
+          "1": "hsl(53 85.6% 59%)",
+          "2": "hsl(52 87.8% 45.1%)",
+          "3": "hsl(50.9 90.2% 40%)",
+          "4": "hsl(50.2 91.9% 33.9%)",
+          "5": "hsl(48.9 94.2% 27.1%)",
+          "6": "hsl(47.8 96.7% 23.9%)",
+          "7": "hsl(46.8 98% 20%)",
+          "8": "hsl(46.1 100% 16.1%)",
+          "9": "hsl(45.2 100% 12%)"
         },
         "lime": {
-          "0": "rgb(89.02% 94.902% 70.98%)",
-          "1": "rgb(78.039% 89.804% 50.196%)",
-          "2": "rgb(60.784% 81.569% 22.353%)",
-          "3": "rgb(50.196% 70.98% 18.824%)",
-          "4": "rgb(42.353% 61.569% 18.431%)",
-          "5": "rgb(32.157% 47.843% 16.078%)",
-          "6": "rgb(27.843% 42.353% 15.686%)",
-          "7": "rgb(22.745% 35.686% 14.51%)",
-          "8": "rgb(18.431% 29.02% 12.941%)",
-          "9": "rgb(12.941% 20% 9.8039%)"
+          "0": "hsl(74.8 70.1% 82.9%)",
+          "1": "hsl(77.8 66% 70%)",
+          "2": "hsl(81.1 61.6% 52%)",
+          "3": "hsl(83.9 58.1% 44.9%)",
+          "4": "hsl(86.7 53.9% 40%)",
+          "5": "hsl(89.6 49.7% 32%)",
+          "6": "hsl(92.6 45.9% 29%)",
+          "7": "hsl(96.7 42.2% 25.1%)",
+          "8": "hsl(99.5 38.3% 21%)",
+          "9": "hsl(101.5 34.2% 14.9%)"
         },
         "olive": {
-          "0": "rgb(94.118% 94.118% 67.843%)",
-          "1": "rgb(85.882% 88.235% 43.922%)",
-          "2": "rgb(72.549% 78.431% 19.608%)",
-          "3": "rgb(60.784% 68.235% 19.608%)",
-          "4": "rgb(50.588% 58.431% 19.608%)",
-          "5": "rgb(39.216% 46.275% 17.647%)",
-          "6": "rgb(33.725% 40.784% 17.255%)",
-          "7": "rgb(28.627% 35.294% 16.863%)",
-          "8": "rgb(23.137% 28.627% 15.294%)",
-          "9": "rgb(16.471% 20% 12.157%)"
+          "0": "hsl(60 69.1% 81%)",
+          "1": "hsl(63.2 65.3% 66.1%)",
+          "2": "hsl(66 60% 49%)",
+          "3": "hsl(69.2 55.4% 43.9%)",
+          "4": "hsl(72.1 49.7% 39%)",
+          "5": "hsl(74.8 44.8% 32%)",
+          "6": "hsl(78 40.5% 29%)",
+          "7": "hsl(81.7 35.3% 26.1%)",
+          "8": "hsl(84.7 30.4% 22%)",
+          "9": "hsl(87 24.4% 16.1%)"
         },
         "orange": {
-          "0": "rgb(100% 90.588% 81.961%)",
-          "1": "rgb(99.608% 81.176% 66.667%)",
-          "2": "rgb(98.431% 68.627% 45.49%)",
-          "3": "rgb(96.471% 54.902% 25.49%)",
-          "4": "rgb(92.157% 40.392% 5.8824%)",
-          "5": "rgb(72.157% 31.373% 5.8824%)",
-          "6": "rgb(63.529% 27.451% 6.2745%)",
-          "7": "rgb(55.294% 23.529% 6.6667%)",
-          "8": "rgb(43.922% 18.824% 5.8824%)",
-          "9": "rgb(32.941% 13.725% 5.098%)"
+          "0": "hsl(28.7 100% 91%)",
+          "1": "hsl(26.4 97.7% 83.1%)",
+          "2": "hsl(26.2 94.4% 72%)",
+          "3": "hsl(24.9 91% 61%)",
+          "4": "hsl(24 88% 49%)",
+          "5": "hsl(23.1 84.9% 39%)",
+          "6": "hsl(22.2 82% 34.9%)",
+          "7": "hsl(20.8 78.5% 31%)",
+          "8": "hsl(20.4 76.4% 24.9%)",
+          "9": "hsl(18.6 73.2% 19%)"
         },
         "pine": {
-          "0": "rgb(74.902% 97.255% 85.882%)",
-          "1": "rgb(50.196% 93.725% 72.549%)",
-          "2": "rgb(11.373% 84.314% 50.588%)",
-          "3": "rgb(11.373% 74.902% 46.275%)",
-          "4": "rgb(10.196% 63.529% 40.392%)",
-          "5": "rgb(8.6275% 49.412% 32.549%)",
-          "6": "rgb(8.2353% 43.529% 29.412%)",
-          "7": "rgb(7.451% 36.471% 25.49%)",
-          "8": "rgb(6.6667% 29.412% 21.176%)",
-          "9": "rgb(5.098% 21.176% 15.294%)"
+          "0": "hsl(149.5 80.3% 86.1%)",
+          "1": "hsl(150.8 77.6% 72%)",
+          "2": "hsl(152.3 76.2% 47.8%)",
+          "3": "hsl(153 73.6% 43.1%)",
+          "4": "hsl(154 72.3% 36.9%)",
+          "5": "hsl(155.2 70.3% 29%)",
+          "6": "hsl(156 68.2% 25.9%)",
+          "7": "hsl(157.3 66.1% 22%)",
+          "8": "hsl(158.3 63% 18%)",
+          "9": "hsl(158 61.2% 13.1%)"
         },
         "pink": {
-          "0": "rgb(100% 89.804% 94.51%)",
-          "1": "rgb(99.216% 78.824% 88.627%)",
-          "2": "rgb(97.255% 64.706% 81.176%)",
-          "3": "rgb(94.51% 51.765% 73.725%)",
-          "4": "rgb(89.804% 36.471% 64.706%)",
-          "5": "rgb(80.784% 17.255% 52.157%)",
-          "6": "rgb(69.412% 18.431% 47.451%)",
-          "7": "rgb(55.686% 18.039% 40%)",
-          "8": "rgb(43.137% 16.863% 32.549%)",
-          "9": "rgb(30.196% 13.725% 23.922%)"
+          "0": "hsl(332.3 100% 94.9%)",
+          "1": "hsl(331.2 92.9% 89%)",
+          "2": "hsl(329.6 85.6% 81%)",
+          "3": "hsl(329.2 79.6% 73.1%)",
+          "4": "hsl(328.2 72.3% 63.1%)",
+          "5": "hsl(327 64.8% 49%)",
+          "6": "hsl(325.8 58% 43.9%)",
+          "7": "hsl(325 51.1% 36.9%)",
+          "8": "hsl(324.2 43.8% 30%)",
+          "9": "hsl(322.9 37.5% 22%)"
         },
         "plum": {
-          "0": "rgb(97.255% 89.804% 100%)",
-          "1": "rgb(94.118% 80.392% 99.608%)",
-          "2": "rgb(88.627% 65.49% 98.431%)",
-          "3": "rgb(83.137% 52.941% 96.863%)",
-          "4": "rgb(76.078% 39.216% 94.902%)",
-          "5": "rgb(65.882% 18.824% 90.98%)",
-          "6": "rgb(58.824% 11.765% 86.275%)",
-          "7": "rgb(49.02% 11.765% 72.157%)",
-          "8": "rgb(39.608% 11.373% 58.824%)",
-          "9": "rgb(27.843% 9.0196% 41.176%)"
+          "0": "hsl(283.8 100% 94.9%)",
+          "1": "hsl(282.9 96.1% 90%)",
+          "2": "hsl(282.1 91.3% 82%)",
+          "3": "hsl(281.3 87.5% 74.9%)",
+          "4": "hsl(279.7 84.5% 67.1%)",
+          "5": "hsl(279.1 80% 54.9%)",
+          "6": "hsl(277.9 76% 49%)",
+          "7": "hsl(277 72% 42%)",
+          "8": "hsl(275.7 67.6% 35.1%)",
+          "9": "hsl(275.1 64.1% 25.1%)"
         },
         "purple": {
-          "0": "rgb(94.51% 89.804% 100%)",
-          "1": "rgb(90.196% 82.353% 99.608%)",
-          "2": "rgb(81.961% 69.412% 98.824%)",
-          "3": "rgb(73.725% 56.863% 97.255%)",
-          "4": "rgb(65.098% 44.706% 95.294%)",
-          "5": "rgb(53.725% 29.804% 92.157%)",
-          "6": "rgb(47.059% 22.745% 89.412%)",
-          "7": "rgb(38.431% 13.725% 84.314%)",
-          "8": "rgb(30.98% 12.941% 67.059%)",
-          "9": "rgb(22.353% 10.588% 47.451%)"
+          "0": "hsl(267.7 100% 94.9%)",
+          "1": "hsl(267.3 95.7% 91%)",
+          "2": "hsl(265.6 92.6% 84.1%)",
+          "3": "hsl(265 88% 77.1%)",
+          "4": "hsl(264.2 84.3% 70%)",
+          "5": "hsl(263 79.9% 61%)",
+          "6": "hsl(261.9 75.9% 56.1%)",
+          "7": "hsl(261 72% 49%)",
+          "8": "hsl(260 67.6% 40%)",
+          "9": "hsl(259.1 63.5% 29%)"
         },
         "red": {
-          "0": "rgb(100% 88.627% 87.843%)",
-          "1": "rgb(99.608% 80.392% 80.392%)",
-          "2": "rgb(99.216% 64.706% 65.49%)",
-          "3": "rgb(98.431% 51.373% 53.725%)",
-          "4": "rgb(97.255% 32.941% 38.039%)",
-          "5": "rgb(87.451% 4.7059% 14.118%)",
-          "6": "rgb(77.255% 5.098% 15.686%)",
-          "7": "rgb(65.098% 4.7059% 16.078%)",
-          "8": "rgb(53.333% 4.7059% 15.294%)",
-          "9": "rgb(38.039% 3.9216% 12.549%)"
+          "0": "hsl(3.9 100% 93.9%)",
+          "1": "hsl(0 96.1% 90%)",
+          "2": "hsl(358.6 95.7% 82%)",
+          "3": "hsl(357 93.7% 74.9%)",
+          "4": "hsl(355.2 92.1% 65.1%)",
+          "5": "hsl(353.2 89.8% 46.1%)",
+          "6": "hsl(351.2 87.6% 41.2%)",
+          "7": "hsl(348.7 86.5% 34.9%)",
+          "8": "hsl(346.9 83.8% 29%)",
+          "9": "hsl(344.8 81.3% 21%)"
         },
         "teal": {
-          "0": "rgb(78.039% 96.078% 93.725%)",
-          "1": "rgb(53.725% 92.157% 88.235%)",
-          "2": "rgb(13.333% 82.745% 78.039%)",
-          "3": "rgb(11.373% 72.549% 70.588%)",
-          "4": "rgb(9.0196% 60.784% 60.784%)",
-          "5": "rgb(7.0588% 49.412% 50.588%)",
-          "6": "rgb(6.2745% 43.137% 45.882%)",
-          "7": "rgb(5.098% 35.686% 38.824%)",
-          "8": "rgb(3.9216% 28.235% 32.157%)",
-          "9": "rgb(2.7451% 21.569% 25.098%)"
+          "0": "hsl(172.2 69.7% 87.1%)",
+          "1": "hsl(173.9 71% 72.9%)",
+          "2": "hsl(175.9 72.2% 48%)",
+          "3": "hsl(178.1 72.9% 42%)",
+          "4": "hsl(180 74.2% 34.9%)",
+          "5": "hsl(181.6 75.5% 28.8%)",
+          "6": "hsl(184.2 75.9% 26.1%)",
+          "7": "hsl(185.6 76.8% 22%)",
+          "8": "hsl(188.3 78.3% 18%)",
+          "9": "hsl(189.5 80.3% 13.9%)"
         },
-        "white": "rgb(100% 100% 100%)",
+        "white": "hsl(0 0% 100%)",
         "yellow": {
-          "0": "rgb(100% 92.549% 61.961%)",
-          "1": "rgb(100% 83.922% 25.882%)",
-          "2": "rgb(92.157% 70.588% 0%)",
-          "3": "rgb(81.961% 61.569% 0%)",
-          "4": "rgb(72.157% 52.941% 0%)",
-          "5": "rgb(58.039% 41.569% 0%)",
-          "6": "rgb(50.196% 34.902% 0%)",
-          "7": "rgb(43.922% 30.196% 0%)",
-          "8": "rgb(36.078% 23.922% 0%)",
-          "9": "rgb(25.882% 16.863% 0%)"
+          "0": "hsl(48.2 100% 81%)",
+          "1": "hsl(47 100% 62.9%)",
+          "2": "hsl(46 100% 46.1%)",
+          "3": "hsl(45.1 100% 41%)",
+          "4": "hsl(44 100% 36.1%)",
+          "5": "hsl(43 100% 29%)",
+          "6": "hsl(41.7 100% 25.1%)",
+          "7": "hsl(41.3 100% 22%)",
+          "8": "hsl(39.8 100% 18%)",
+          "9": "hsl(39.1 100% 12.9%)"
         }
       }
     },
@@ -7460,6 +7992,7 @@ export const [darkClass, dark] = createTheme(vars, {
       "1000": "1000ms"
     },
     "easing": {
+      "ease": "cubic-bezier(0.25, 0.1, 0.25, 1)",
       "easeIn": "cubic-bezier(0.7, 0.1, 0.75, 0.9)",
       "easeInOut": "cubic-bezier(0.6, 0, 0.2, 1)",
       "easeOut": "cubic-bezier(0.3, 0.8, 0.6, 1)",
@@ -7484,15 +8017,53 @@ export const [darkClass, dark] = createTheme(vars, {
       "80": "80px",
       "96": "96px",
       "112": "112px",
-      "128": "128px"
+      "128": "128px",
+      "negative2": "-2px",
+      "negative4": "-4px",
+      "negative6": "-6px",
+      "negative8": "-8px",
+      "negative12": "-12px",
+      "negative16": "-16px",
+      "negative20": "-20px",
+      "negative24": "-24px",
+      "negative28": "-28px",
+      "negative32": "-32px",
+      "negative36": "-36px",
+      "negative40": "-40px",
+      "negative44": "-44px",
+      "negative48": "-48px"
     },
     "text": {
+      "lineHeight": {
+        "loose": "1.75",
+        "normal": "1.5",
+        "relaxed": "1.625",
+        "snug": "1.375",
+        "tight": "1.25"
+      },
+      "size": {
+        "2xl": "2.5rem",
+        "lg": "1.25rem",
+        "md": "1rem",
+        "sm": "0.875rem",
+        "xl": "2rem",
+        "xs": "0.75rem"
+      },
       "weight": {
         "light": "300",
         "medium": "500",
         "normal": "400",
         "semibold": "600"
       }
+    },
+    "zIndex": {
+      "0": "0",
+      "100": "100",
+      "200": "200",
+      "300": "300",
+      "400": "400",
+      "500": "500",
+      "600": "600"
     }
   },
   "bgColor": {
@@ -7544,7 +8115,7 @@ export const [darkClass, dark] = createTheme(vars, {
       "muted": vars.base.color.pink['0']
     },
     "success": {
-      "emphasis": "rgb(12.157% 53.333% 23.922%)",
+      "emphasis": "hsl(137.1 62.9% 32.7%)",
       "muted": vars.base.color.green['0']
     },
     "transparent": vars.base.color.transparent,
@@ -7577,6 +8148,10 @@ export const [darkClass, dark] = createTheme(vars, {
       "emphasis": "var(--border-width-default) solid var(--border-color-done-emphasis)",
       "muted": "var(--border-width-default) solid var(--border-color-done-muted)"
     },
+    "draft": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-draft-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-draft-muted)"
+    },
     "emphasis": "var(--border-width-default) solid var(--border-color-emphasis)",
     "muted": "var(--border-width-default) solid var(--border-color-muted)",
     "neutral": {
@@ -7599,6 +8174,7 @@ export const [darkClass, dark] = createTheme(vars, {
       "emphasis": "var(--border-width-default) solid var(--border-color-success-emphasis)",
       "muted": "var(--border-width-default) solid var(--border-color-success-muted)"
     },
+    "translucent": "var(--border-width-default) solid var(--border-color-translucent)",
     "transparent": "var(--border-width-default) solid var(--border-color-transparent)",
     "upsell": {
       "emphasis": "var(--border-width-default) solid var(--border-color-upsell-emphasis)",
@@ -7674,11 +8250,6 @@ export const [darkClass, dark] = createTheme(vars, {
     "thicker": "4px",
     "thin": "1px"
   },
-  "boxShadow": {
-    "thick": "inset 0 0 0 {borderWidth.thick}",
-    "thicker": "inset 0 0 0 {borderWidth.thicker}",
-    "thin": "inset 0 0 0 {borderWidth.thin}"
-  },
   "breakpoint": {
     "large": "1012px",
     "medium": "768px",
@@ -7707,6 +8278,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "rest": vars.fgColor.danger
       },
       "iconColor": {
+        "disabled": vars.button.danger.fgColor.disabled,
         "hover": vars.base.color.neutral['0'],
         "rest": vars.button.danger.fgColor.rest
       },
@@ -7729,6 +8301,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "rest": vars.control.borderColor.rest
       },
       "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
         "rest": vars.control.fgColor.rest
       },
       "shadow": {
@@ -7765,7 +8338,7 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "outline": {
       "bgColor": {
-        "active": "rgb(2.7451% 34.118% 72.941%)",
+        "active": "hsl(213.2 92.7% 37.8%)",
         "disabled": vars.control.bgColor.disabled,
         "hover": vars.bgColor.accent.emphasis,
         "rest": vars.control.bgColor.rest
@@ -7786,9 +8359,9 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "primary": {
       "bgColor": {
-        "active": "rgb(9.8039% 47.451% 20.784%)",
-        "disabled": "rgb(58.431% 84.706% 65.098%)",
-        "hover": "rgb(10.98% 50.588% 22.353%)",
+        "active": "hsl(137.5 65.8% 28.6%)",
+        "disabled": "hsl(135.2 46.2% 71.6%)",
+        "hover": "hsl(137.2 64.3% 30.8%)",
         "rest": vars.bgColor.success.emphasis
       },
       "borderColor": {
@@ -7802,6 +8375,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "rest": vars.fgColor.white
       },
       "iconColor": {
+        "disabled": vars.button.primary.fgColor.disabled,
         "rest": vars.fgColor.white
       },
       "shadow": {
@@ -7822,7 +8396,7 @@ export const [darkClass, dark] = createTheme(vars, {
       "fgColor": {
         "disabled": vars.fgColor.danger,
         "hover": vars.base.color.neutral['0'],
-        "rest": "rgb(76.078% 10.98% 17.255%)"
+        "rest": "hsl(354.2 74.8% 43.5%)"
       }
     },
     "default": {
@@ -7972,88 +8546,88 @@ export const [darkClass, dark] = createTheme(vars, {
   },
   "color": {
     "ansi": {
-      "black": vars.base.color.neutral[13],
-      "blackBright": vars.base.color.neutral[11],
-      "blue": vars.base.color.blue[5],
-      "blueBright": vars.base.color.blue[4],
-      "cyan": "rgb(10.588% 48.627% 51.373%)",
-      "cyanBright": "rgb(19.216% 57.255% 66.667%)",
-      "gray": vars.base.color.neutral[9],
-      "green": vars.base.color.green[6],
-      "greenBright": vars.base.color.green[5],
-      "magenta": vars.base.color.purple[5],
-      "magentaBright": vars.base.color.purple[4],
-      "red": vars.base.color.red[5],
-      "redBright": vars.base.color.red[6],
-      "white": vars.base.color.neutral[9],
-      "whiteBright": vars.base.color.neutral[8],
-      "yellow": vars.base.color.yellow[8],
-      "yellowBright": vars.base.color.yellow[7]
+      "black": vars.ansi.black,
+      "blackBright": vars.ansi.blackBright,
+      "blue": vars.ansi.blue,
+      "blueBright": vars.ansi.blueBright,
+      "cyan": vars.ansi.cyan,
+      "cyanBright": vars.ansi.cyanBright,
+      "gray": vars.ansi.gray,
+      "green": vars.ansi.green,
+      "greenBright": vars.ansi.greenBright,
+      "magenta": vars.ansi.magenta,
+      "magentaBright": vars.ansi.magentaBright,
+      "red": vars.ansi.red,
+      "redBright": vars.ansi.redBright,
+      "white": vars.ansi.white,
+      "whiteBright": vars.ansi.whiteBright,
+      "yellow": vars.ansi.yellow,
+      "yellowBright": vars.ansi.yellowBright
     },
     "prettylights": {
       "syntax": {
         "brackethighlighter": {
-          "angle": vars.base.color.neutral[9],
-          "unmatched": vars.base.color.red[7]
+          "angle": vars.prettylights.syntax.bracketHighlighterAngle,
+          "unmatched": vars.prettylights.syntax.bracketHighlighterUnmatched
         },
         "carriage": {
           "return": {
-            "bg": vars.base.color.red[5],
-            "text": vars.base.color.neutral[1]
+            "bg": vars.prettylights.syntax.carriage.return.bg,
+            "text": vars.prettylights.syntax.carriage.return.text
           }
         },
-        "comment": vars.base.color.neutral[9],
-        "constant": vars.base.color.blue[6],
-        "constantOtherReferenceLink": vars.base.color.blue[8],
-        "entity": vars.base.color.purple[6],
-        "entityTag": vars.base.color.blue[6],
+        "comment": vars.prettylights.syntax.comment,
+        "constant": vars.prettylights.syntax.constant,
+        "constantOtherReferenceLink": vars.prettylights.syntax.constantOtherReferenceLink,
+        "entity": vars.prettylights.syntax.entity,
+        "entityTag": vars.prettylights.syntax.entityTag,
         "invalid": {
           "illegal": {
-            "bg": vars.bgColor.danger.muted,
-            "text": vars.fgColor.danger
+            "bg": vars.prettylights.syntax.invalid.illegal.bg,
+            "text": vars.prettylights.syntax.invalid.illegal.text
           }
         },
-        "keyword": vars.base.color.red[5],
+        "keyword": vars.prettylights.syntax.keyword,
         "markup": {
-          "bold": vars.base.color.neutral[13],
+          "bold": vars.prettylights.syntax.markup.bold,
           "changed": {
-            "bg": vars.base.color.orange[1],
-            "text": vars.base.color.orange[6]
+            "bg": vars.prettylights.syntax.markup.changed.bg,
+            "text": vars.prettylights.syntax.markup.changed.text
           },
           "deleted": {
-            "bg": vars.base.color.red['0'],
-            "text": vars.base.color.red[7]
+            "bg": vars.prettylights.syntax.markup.deleted.bg,
+            "text": vars.prettylights.syntax.markup.deleted.text
           },
-          "heading": vars.base.color.blue[6],
+          "heading": vars.prettylights.syntax.markup.heading,
           "ignored": {
-            "bg": vars.base.color.blue[6],
-            "text": vars.base.color.neutral[6]
+            "bg": vars.prettylights.syntax.markup.ignored.bg,
+            "text": vars.prettylights.syntax.markup.ignored.text
           },
           "inserted": {
-            "bg": vars.base.color.green['0'],
-            "text": vars.base.color.green[6]
+            "bg": vars.prettylights.syntax.markup.inserted.bg,
+            "text": vars.prettylights.syntax.markup.inserted.text
           },
-          "italic": vars.base.color.neutral[13],
-          "list": vars.base.color.yellow[9]
+          "italic": vars.prettylights.syntax.markup.italic,
+          "list": vars.prettylights.syntax.markup.list
         },
         "meta": {
           "diff": {
-            "range": vars.base.color.purple[5]
+            "range": vars.prettylights.syntax.meta.diff.range
           }
         },
         "storage": {
           "modifier": {
-            "import": vars.base.color.neutral[13]
+            "import": vars.prettylights.syntax.storage.modifier.import
           }
         },
-        "string": vars.base.color.blue[8],
-        "stringRegexp": vars.base.color.green[6],
+        "string": vars.prettylights.syntax.string,
+        "stringRegexp": vars.prettylights.syntax.stringRegexp,
         "sublimelinter": {
           "gutter": {
-            "mark": vars.base.color.neutral[8]
+            "mark": vars.prettylights.syntax.sublimeLinterGutterMark
           }
         },
-        "variable": vars.base.color.orange[6]
+        "variable": vars.prettylights.syntax.variable
       }
     }
   },
@@ -8110,9 +8684,9 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "checked": {
       "bgColor": {
-        "active": "rgb(2.7451% 34.118% 72.941%)",
+        "active": "hsl(213.2 92.7% 37.8%)",
         "disabled": vars.fgColor.disabled,
-        "hover": "rgb(3.1373% 37.647% 79.216%)",
+        "hover": "hsl(212.8 92.4% 41.2%)",
         "rest": vars.bgColor.accent.emphasis
       },
       "borderColor": {
@@ -8146,9 +8720,9 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "large": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "10px",
       "paddingInline": {
+        "condensed": vars.base.size[8],
         "normal": vars.base.size[12],
         "spacious": vars.base.size[16]
       },
@@ -8156,7 +8730,6 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "medium": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "6px",
       "paddingInline": {
         "condensed": vars.base.size[8],
@@ -8171,11 +8744,11 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "small": {
       "gap": vars.base.size[4],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": vars.base.size[4],
       "paddingInline": {
         "condensed": vars.base.size[8],
-        "normal": vars.base.size[12]
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
       },
       "size": vars.base.size[28]
     },
@@ -8195,9 +8768,9 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "xlarge": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "14px",
       "paddingInline": {
+        "condensed": vars.base.size[8],
         "normal": vars.base.size[12],
         "spacious": vars.base.size[16]
       },
@@ -8205,7 +8778,6 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "xsmall": {
       "gap": vars.base.size[4],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "2px",
       "paddingInline": {
         "condensed": vars.base.size[4],
@@ -8237,12 +8809,14 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "medium": {
       "gap": {
+        "auto": vars.base.size[8],
         "condensed": vars.base.size[8],
         "spacious": vars.base.size[12]
       }
     },
     "small": {
       "gap": {
+        "auto": vars.base.size[8],
         "condensed": vars.base.size[8],
         "spacious": vars.base.size[16]
       }
@@ -8871,7 +9445,7 @@ export const [darkClass, dark] = createTheme(vars, {
     "attention": vars.base.color.yellow[5],
     "black": vars.base.color.neutral[13],
     "closed": vars.fgColor.danger,
-    "danger": "rgb(81.961% 14.118% 18.431%)",
+    "danger": "hsl(356.2 70.6% 48%)",
     "default": vars.base.color.neutral[13],
     "disabled": vars.base.color.neutral[8],
     "done": vars.base.color.purple[5],
@@ -8889,14 +9463,16 @@ export const [darkClass, dark] = createTheme(vars, {
     "white": vars.base.color.neutral['0']
   },
   "focus": {
-    "outline": "2px solid var(--focus-outline-color)",
-    "outlineColor": vars.borderColor.accent.emphasis
+    "outline": "var(--focus-outline-width) solid var(--focus-outline-color)",
+    "outlineColor": vars.focus.outlineColor,
+    "outlineOffset": "-2px",
+    "outlineWidth": "2px"
   },
   "fontStack": {
     "monospace": "\"ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace\"",
-    "sansSerif": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
-    "sansSerifDisplay": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
-    "system": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
+    "sansSerif": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "sansSerifDisplay": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "system": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
   },
   "header": {
     "bgColor": vars.base.color.neutral[12],
@@ -9171,10 +9747,31 @@ export const [darkClass, dark] = createTheme(vars, {
       "active": vars.base.color.transparent
     }
   },
+  "motion": {
+    "duration": {
+      "long": vars.base.duration[500],
+      "medium": vars.base.duration[300],
+      "micro": vars.base.duration[100],
+      "short": vars.base.duration[200]
+    },
+    "easing": {
+      "enter": vars.base.easing.easeOut,
+      "exit": vars.base.easing.easeIn,
+      "hover": vars.base.easing.ease,
+      "linear": vars.base.easing.linear,
+      "move": vars.base.easing.easeInOut
+    },
+    "transition": {
+      "enter": "var(--motion-duration-medium) 0ms var(--motion-easing-enter)",
+      "exit": "var(--motion-duration-short) 0ms var(--motion-easing-exit)",
+      "hover": "var(--motion-duration-micro) 0ms var(--motion-easing-hover)",
+      "stateChange": "var(--motion-duration-short) 0ms var(--motion-easing-move)"
+    }
+  },
   "outline": {
     "focus": {
-      "offset": "-2px",
-      "width": "2px"
+      "offset": vars.focus.outlineOffset,
+      "width": vars.focus.outlineWidth
     }
   },
   "overlay": {
@@ -9212,6 +9809,85 @@ export const [darkClass, dark] = createTheme(vars, {
       "bgColor": vars.bgColor.muted
     }
   },
+  "prettylights": {
+    "syntax": {
+      "brackethighlighter": {
+        "angle": vars.prettylights.syntax.bracketHighlighterAngle,
+        "unmatched": vars.prettylights.syntax.bracketHighlighterUnmatched
+      },
+      "bracketHighlighterAngle": vars.base.color.neutral[9],
+      "bracketHighlighterUnmatched": vars.base.color.red[7],
+      "carriage": {
+        "return": {
+          "bg": vars.prettylights.syntax.carriage.return.bg,
+          "text": vars.prettylights.syntax.carriage.return.text
+        }
+      },
+      "carriageReturn": {
+        "bg": vars.base.color.red[5],
+        "text": vars.base.color.neutral[1]
+      },
+      "comment": vars.base.color.neutral[9],
+      "constant": vars.base.color.blue[6],
+      "constantOtherReferenceLink": vars.base.color.blue[8],
+      "entity": vars.base.color.purple[6],
+      "entityTag": vars.base.color.blue[6],
+      "invalid": {
+        "illegal": {
+          "bg": vars.prettylights.syntax.invalid.illegal.bg,
+          "text": vars.prettylights.syntax.invalid.illegal.text
+        }
+      },
+      "invalidIllegal": {
+        "bg": vars.bgColor.danger.muted,
+        "text": vars.fgColor.danger
+      },
+      "keyword": vars.base.color.red[5],
+      "markup": {
+        "bold": vars.base.color.neutral[13],
+        "changed": {
+          "bg": vars.base.color.orange[1],
+          "text": vars.base.color.orange[6]
+        },
+        "deleted": {
+          "bg": vars.base.color.red['0'],
+          "text": vars.base.color.red[7]
+        },
+        "heading": vars.base.color.blue[6],
+        "ignored": {
+          "bg": vars.base.color.blue[6],
+          "text": vars.base.color.neutral[6]
+        },
+        "inserted": {
+          "bg": vars.base.color.green['0'],
+          "text": vars.base.color.green[6]
+        },
+        "italic": vars.base.color.neutral[13],
+        "list": vars.base.color.yellow[9]
+      },
+      "meta": {
+        "diff": {
+          "range": vars.prettylights.syntax.meta.diff.range
+        }
+      },
+      "metaDiffRange": vars.base.color.purple[5],
+      "storage": {
+        "modifier": {
+          "import": vars.prettylights.syntax.storage.modifier.import
+        }
+      },
+      "storageModifierImport": vars.base.color.neutral[13],
+      "string": vars.base.color.blue[8],
+      "stringRegexp": vars.base.color.green[6],
+      "sublimelinter": {
+        "gutter": {
+          "mark": vars.prettylights.syntax.sublimeLinterGutterMark
+        }
+      },
+      "sublimeLinterGutterMark": vars.base.color.neutral[8],
+      "variable": vars.base.color.orange[6]
+    }
+  },
   "progressBar": {
     "bgColor": {
       "accent": vars.bgColor.accent.emphasis,
@@ -9231,7 +9907,7 @@ export const [darkClass, dark] = createTheme(vars, {
   "reactionButton": {
     "selected": {
       "bgColor": {
-        "hover": "rgb(79.216% 92.549% 100%)",
+        "hover": "hsl(201.5 100% 89.6%)",
         "rest": vars.base.color.blue['0']
       },
       "fgColor": {
@@ -9252,7 +9928,6 @@ export const [darkClass, dark] = createTheme(vars, {
   "shadow": {
     "floating": {
       "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12)",
-      "legacy": "0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
       "medium": "0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12)",
       "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
       "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12)"
@@ -9260,7 +9935,7 @@ export const [darkClass, dark] = createTheme(vars, {
     "inset": "inset 0px 1px 0px 0px var(--base-color-neutral-13)",
     "resting": {
       "medium": "0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12)",
-      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 3px 0px var(--base-color-neutral-13)",
+      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 2px 0px var(--base-color-neutral-13)",
       "xsmall": "0px 1px 1px 0px var(--base-color-neutral-13)"
     }
   },
@@ -9297,9 +9972,9 @@ export const [darkClass, dark] = createTheme(vars, {
   "text": {
     "body": {
       "lineHeight": {
-        "large": "1.5",
-        "medium": "1.42857",
-        "small": "1.66667"
+        "large": vars.base.text.lineHeight.normal,
+        "medium": vars.base.text.lineHeight.normal,
+        "small": vars.base.text.lineHeight.relaxed
       },
       "shorthand": {
         "large": {
@@ -9322,25 +9997,25 @@ export const [darkClass, dark] = createTheme(vars, {
         }
       },
       "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
+        "large": vars.base.text.size.md,
+        "medium": vars.base.text.size.sm,
+        "small": vars.base.text.size.xs
       },
       "weight": vars.base.text.weight.normal
     },
     "caption": {
-      "lineHeight": "1.3333",
+      "lineHeight": vars.base.text.lineHeight.tight,
       "shorthand": {
         "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "lineHeight": vars.text.caption.lineHeight,
         "fontFamily": vars.fontStack.sansSerif
       },
-      "size": "12px",
+      "size": vars.base.text.size.xs,
       "weight": vars.base.text.weight.normal
     },
     "codeBlock": {
-      "lineHeight": "1.5385",
+      "lineHeight": vars.base.text.lineHeight.normal,
       "shorthand": {
         "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
@@ -9360,33 +10035,32 @@ export const [darkClass, dark] = createTheme(vars, {
       "weight": vars.base.text.weight.normal
     },
     "display": {
-      "lineBoxHeight": "1.4",
-      "lineHeight": "1.4",
+      "lineHeight": vars.base.text.lineHeight.snug,
       "shorthand": {
         "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "fontFamily": vars.fontStack.sansSerifDisplay
       },
-      "size": "40px",
+      "size": vars.base.text.size['2xl'],
       "weight": vars.base.text.weight.medium
     },
     "subtitle": {
-      "lineHeight": "1.6",
+      "lineHeight": vars.base.text.lineHeight.relaxed,
       "shorthand": {
         "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "lineHeight": vars.text.subtitle.lineHeight,
         "fontFamily": vars.fontStack.sansSerifDisplay
       },
-      "size": "20px",
+      "size": vars.base.text.size.lg,
       "weight": vars.base.text.weight.normal
     },
     "title": {
       "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
+        "large": vars.base.text.lineHeight.normal,
+        "medium": vars.base.text.lineHeight.relaxed,
+        "small": vars.base.text.lineHeight.normal
       },
       "shorthand": {
         "large": {
@@ -9409,9 +10083,9 @@ export const [darkClass, dark] = createTheme(vars, {
         }
       },
       "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
+        "large": vars.base.text.size.xl,
+        "medium": vars.base.text.size.lg,
+        "small": vars.base.text.size.md
       },
       "weight": {
         "large": vars.base.text.weight.semibold,
@@ -9445,10 +10119,39 @@ export const [darkClass, dark] = createTheme(vars, {
     "iconColor": {
       "rest": vars.fgColor.muted
     }
+  },
+  "zIndex": {
+    "behind": "-1",
+    "default": vars.base.zIndex['0'],
+    "dropdown": vars.base.zIndex[200],
+    "modal": vars.base.zIndex[400],
+    "overlay": vars.base.zIndex[300],
+    "popover": vars.base.zIndex[500],
+    "skipLink": vars.base.zIndex[600],
+    "sticky": vars.base.zIndex[100]
   }
 });
 
 export const [darkHCClass, darkHC] = createTheme(vars, {
+  "ansi": {
+    "black": vars.base.color.neutral[13],
+    "blackBright": vars.base.color.neutral[11],
+    "blue": vars.base.color.blue[5],
+    "blueBright": vars.base.color.blue[4],
+    "cyan": "hsl(184 65.8% 31%)",
+    "cyanBright": "hsl(191.9 55.3% 42.9%)",
+    "gray": vars.base.color.neutral[9],
+    "green": vars.base.color.green[6],
+    "greenBright": vars.base.color.green[5],
+    "magenta": vars.base.color.purple[5],
+    "magentaBright": vars.base.color.purple[4],
+    "red": vars.base.color.red[5],
+    "redBright": vars.base.color.red[6],
+    "white": vars.base.color.neutral[9],
+    "whiteBright": vars.base.color.neutral[8],
+    "yellow": vars.base.color.yellow[8],
+    "yellowBright": vars.base.color.yellow[7]
+  },
   "avatar": {
     "bgColor": vars.base.color.neutral['0'],
     "borderColor": vars.borderColor.translucent,
@@ -9456,354 +10159,354 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
   },
   "base": {
     "color": {
-      "black": "rgb(0.39216% 1.5686% 3.5294%)",
+      "black": "hsl(217.5 80% 2%)",
       "blue": {
-        "0": "rgb(79.216% 91.765% 100%)",
-        "1": "rgb(67.843% 86.275% 100%)",
-        "2": "rgb(56.863% 79.608% 100%)",
-        "3": "rgb(44.314% 71.765% 100%)",
-        "4": "rgb(36.078% 67.451% 100%)",
-        "5": "rgb(25.098% 61.961% 100%)",
-        "6": "rgb(19.216% 54.51% 97.255%)",
-        "7": "rgb(14.902% 44.706% 95.294%)",
-        "8": "rgb(11.765% 37.647% 83.529%)",
-        "9": "rgb(9.8039% 30.98% 69.412%)"
+        "0": "hsl(203.8 100% 89.6%)",
+        "1": "hsl(205.6 100% 83.9%)",
+        "2": "hsl(208.4 100% 78.4%)",
+        "3": "hsl(210.4 100% 72.2%)",
+        "4": "hsl(210.6 100% 68%)",
+        "5": "hsl(210.5 100% 62.5%)",
+        "6": "hsl(212.9 93.4% 58.2%)",
+        "7": "hsl(217.8 89.5% 55.1%)",
+        "8": "hsl(218.4 75.3% 47.6%)",
+        "9": "hsl(218.7 75.2% 39.6%)"
       },
       "coral": {
-        "0": "rgb(100% 87.059% 83.137%)",
-        "1": "rgb(100% 79.608% 72.549%)",
-        "2": "rgb(100% 70.196% 60.784%)",
-        "3": "rgb(100% 58.824% 49.02%)",
-        "4": "rgb(99.216% 51.765% 40.784%)",
-        "5": "rgb(98.824% 43.922% 30.98%)",
-        "6": "rgb(96.863% 31.765% 20%)",
-        "7": "rgb(87.843% 23.137% 12.941%)",
-        "8": "rgb(77.647% 14.902% 7.0588%)",
-        "9": "rgb(66.275% 8.2353% 0%)"
+        "0": "hsl(14 100% 91.6%)",
+        "1": "hsl(15.4 100% 86.3%)",
+        "2": "hsl(14.4 100% 80.4%)",
+        "3": "hsl(11.5 100% 74.5%)",
+        "4": "hsl(11.3 97.4% 70%)",
+        "5": "hsl(11.4 96.6% 64.9%)",
+        "6": "hsl(9.2 92.5% 58.4%)",
+        "7": "hsl(8.2 75.5% 50.4%)",
+        "8": "hsl(6.7 83.3% 42.4%)",
+        "9": "hsl(7.5 100% 33.1%)"
       },
       "green": {
-        "0": "rgb(67.451% 96.863% 71.373%)",
-        "1": "rgb(44.706% 94.118% 53.333%)",
-        "2": "rgb(29.02% 88.235% 40.784%)",
-        "3": "rgb(15.686% 84.314% 31.765%)",
-        "4": "rgb(3.9216% 78.039% 25.098%)",
-        "5": "rgb(3.5294% 70.588% 22.745%)",
-        "6": "rgb(0.78431% 63.529% 19.608%)",
-        "7": "rgb(0% 54.902% 17.255%)",
-        "8": "rgb(0% 46.667% 15.686%)",
-        "9": "rgb(0% 38.431% 13.333%)"
+        "0": "hsl(128 82.4% 82.2%)",
+        "1": "hsl(130.5 80.8% 69.4%)",
+        "2": "hsl(131.9 71.6% 58.6%)",
+        "3": "hsl(134.1 68.6% 50%)",
+        "4": "hsl(137.1 90.4% 41%)",
+        "5": "hsl(137.2 90.5% 37.1%)",
+        "6": "hsl(138 97.6% 32.2%)",
+        "7": "hsl(138.9 100% 27.5%)",
+        "8": "hsl(140.2 100% 23.3%)",
+        "9": "hsl(140.8 100% 19.2%)"
       },
       "inset": vars.base.color.black,
       "neutral": {
         "0": vars.base.color.black,
-        "1": "rgb(5.098% 6.6667% 9.0196%)",
-        "2": "rgb(8.2353% 10.588% 13.725%)",
-        "3": "rgb(12.941% 15.686% 18.824%)",
-        "4": "rgb(14.902% 17.255% 21.176%)",
-        "5": "rgb(16.471% 19.216% 23.529%)",
-        "6": "rgb(18.431% 21.569% 25.882%)",
-        "7": "rgb(23.922% 26.667% 30.196%)",
-        "8": "rgb(39.608% 42.353% 46.275%)",
-        "9": "rgb(56.863% 59.608% 63.137%)",
-        "10": "rgb(71.765% 74.118% 78.431%)",
-        "11": "rgb(81.961% 84.314% 87.843%)",
-        "12": "rgb(94.118% 96.471% 98.824%)",
+        "1": "hsl(216 27.8% 7.1%)",
+        "2": "hsl(214.3 25% 11%)",
+        "3": "hsl(212 18.5% 15.9%)",
+        "4": "hsl(217.5 17.4% 18%)",
+        "5": "hsl(216.7 17.6% 20%)",
+        "6": "hsl(214.7 16.8% 22.2%)",
+        "7": "hsl(213.8 11.6% 27.1%)",
+        "8": "hsl(215.3 7.8% 42.9%)",
+        "9": "hsl(213.8 7.8% 60%)",
+        "10": "hsl(218.8 13.4% 75.1%)",
+        "11": "hsl(216 19.5% 84.9%)",
+        "12": "hsl(210 66.7% 96.5%)",
         "13": vars.base.color.white
       },
       "orange": {
-        "0": "rgb(100% 88.235% 70.588%)",
-        "1": "rgb(100% 81.176% 52.549%)",
-        "2": "rgb(100% 71.765% 34.118%)",
-        "3": "rgb(99.608% 60.392% 17.647%)",
-        "4": "rgb(95.686% 54.51% 14.51%)",
-        "5": "rgb(90.588% 50.588% 11.373%)",
-        "6": "rgb(83.529% 43.922% 7.8431%)",
-        "7": "rgb(74.902% 36.863% 3.9216%)",
-        "8": "rgb(65.49% 29.804% 0%)",
-        "9": "rgb(56.078% 23.529% 0%)"
+        "0": "hsl(36 100% 85.3%)",
+        "1": "hsl(36.2 100% 76.3%)",
+        "2": "hsl(34.3 100% 67.1%)",
+        "3": "hsl(31.3 99.1% 58.6%)",
+        "4": "hsl(29.6 90.4% 55.1%)",
+        "5": "hsl(29.7 80.8% 51%)",
+        "6": "hsl(28.6 82.8% 45.7%)",
+        "7": "hsl(27.8 90% 39.4%)",
+        "8": "hsl(27.3 100% 32.7%)",
+        "9": "hsl(25.2 100% 28%)"
       },
       "pink": {
-        "0": "rgb(100% 86.275% 92.157%)",
-        "1": "rgb(100% 78.039% 88.235%)",
-        "2": "rgb(100% 67.843% 83.137%)",
-        "3": "rgb(100% 55.294% 78.039%)",
-        "4": "rgb(97.255% 48.627% 74.118%)",
-        "5": "rgb(93.725% 43.137% 69.412%)",
-        "6": "rgb(89.412% 33.725% 63.922%)",
-        "7": "rgb(82.353% 23.922% 56.863%)",
-        "8": "rgb(71.765% 17.255% 49.02%)",
-        "9": "rgb(61.176% 11.373% 41.569%)"
+        "0": "hsl(334.3 100% 93.1%)",
+        "1": "hsl(332.1 100% 89%)",
+        "2": "hsl(331.5 100% 83.9%)",
+        "3": "hsl(329.5 100% 77.6%)",
+        "4": "hsl(328.5 89.9% 72.9%)",
+        "5": "hsl(328.8 80.1% 68.4%)",
+        "6": "hsl(327.5 72.4% 61.6%)",
+        "7": "hsl(326.2 62.3% 53.1%)",
+        "8": "hsl(325 61.2% 44.5%)",
+        "9": "hsl(323.6 68.6% 36.3%)"
       },
       "purple": {
-        "0": "rgb(94.118% 87.451% 100%)",
-        "1": "rgb(90.196% 80% 100%)",
-        "2": "rgb(85.882% 71.765% 100%)",
-        "3": "rgb(79.608% 61.961% 100%)",
-        "4": "rgb(74.902% 56.078% 100%)",
-        "5": "rgb(72.157% 49.804% 100%)",
-        "6": "rgb(65.098% 41.961% 100%)",
-        "7": "rgb(58.431% 30.98% 99.216%)",
-        "8": "rgb(50.196% 19.216% 96.863%)",
-        "9": "rgb(41.176% 12.941% 84.314%)"
+        "0": "hsl(271.9 100% 93.7%)",
+        "1": "hsl(270.6 100% 90%)",
+        "2": "hsl(270 100% 85.9%)",
+        "3": "hsl(267.8 100% 81%)",
+        "4": "hsl(265.7 100% 78%)",
+        "5": "hsl(266.7 100% 74.9%)",
+        "6": "hsl(263.9 100% 71%)",
+        "7": "hsl(264.1 97.8% 65.1%)",
+        "8": "hsl(263.9 92.5% 58%)",
+        "9": "hsl(263.7 73.4% 48.6%)"
       },
       "red": {
-        "0": "rgb(100% 87.059% 85.882%)",
-        "1": "rgb(100% 78.824% 78.039%)",
-        "2": "rgb(100% 69.412% 68.627%)",
-        "3": "rgb(100% 58.039% 57.255%)",
-        "4": "rgb(100% 50.196% 50.196%)",
-        "5": "rgb(100% 41.569% 41.176%)",
-        "6": "rgb(100% 26.667% 27.059%)",
-        "7": "rgb(90.98% 16.471% 18.431%)",
-        "8": "rgb(80% 7.8431% 12.941%)",
-        "9": "rgb(67.843% 0.39216% 8.6275%)"
+        "0": "hsl(5 100% 92.9%)",
+        "1": "hsl(2.1 100% 89%)",
+        "2": "hsl(1.5 100% 84.3%)",
+        "3": "hsl(1.1 100% 78.6%)",
+        "4": "hsl(0 100% 75.1%)",
+        "5": "hsl(0.4 100% 70.6%)",
+        "6": "hsl(359.7 100% 63.3%)",
+        "7": "hsl(358.4 80.5% 53.7%)",
+        "8": "hsl(355.8 82.1% 43.9%)",
+        "9": "hsl(352.7 98.9% 34.1%)"
       },
-      "transparent": "rgb(0% 0% 0%)",
-      "white": "rgb(100% 100% 100%)",
+      "transparent": "hsl(0 0% 0%)",
+      "white": "hsl(0 0% 100%)",
       "yellow": {
-        "0": "rgb(98.431% 89.804% 61.961%)",
-        "1": "rgb(98.431% 83.922% 41.176%)",
-        "2": "rgb(96.863% 78.431% 26.275%)",
-        "3": "rgb(94.118% 71.765% 18.431%)",
-        "4": "rgb(92.941% 66.667% 15.294%)",
-        "5": "rgb(87.843% 60.784% 7.451%)",
-        "6": "rgb(78.431% 52.157% 3.1373%)",
-        "7": "rgb(68.235% 44.314% 1.5686%)",
-        "8": "rgb(58.039% 36.471% 0.78431%)",
-        "9": "rgb(48.235% 28.627% 0%)"
+        "0": "hsl(45.8 92.1% 80.2%)",
+        "1": "hsl(44.8 94.8% 69.8%)",
+        "2": "hsl(44.3 91.8% 61.6%)",
+        "3": "hsl(42.3 86.5% 56.3%)",
+        "4": "hsl(39.7 84.6% 54.1%)",
+        "5": "hsl(39.8 84.4% 47.6%)",
+        "6": "hsl(39.1 92.3% 40.8%)",
+        "7": "hsl(38.5 95.5% 34.9%)",
+        "8": "hsl(37.4 97.3% 29.4%)",
+        "9": "hsl(35.6 100% 24.1%)"
       }
     },
     "display": {
       "color": {
         "auburn": {
-          "0": "rgb(94.902% 91.373% 91.373%)",
-          "1": "rgb(90.196% 83.922% 83.529%)",
-          "2": "rgb(83.137% 71.765% 70.98%)",
-          "3": "rgb(77.255% 61.961% 60.784%)",
-          "4": "rgb(70.588% 50.98% 49.412%)",
-          "5": "rgb(61.569% 38.039% 36.078%)",
-          "6": "rgb(54.118% 33.333% 31.765%)",
-          "7": "rgb(45.49% 27.843% 26.667%)",
-          "8": "rgb(36.471% 22.353% 21.569%)",
-          "9": "rgb(26.275% 16.078% 15.686%)"
+          "0": "hsl(0 25.7% 93.1%)",
+          "1": "hsl(3.5 25.4% 86.9%)",
+          "2": "hsl(3.9 26.5% 77.1%)",
+          "3": "hsl(4.3 26.6% 69%)",
+          "4": "hsl(4.4 26.5% 60%)",
+          "5": "hsl(4.6 26.1% 48.8%)",
+          "6": "hsl(4.2 26% 42.9%)",
+          "7": "hsl(3.8 26.1% 36.1%)",
+          "8": "hsl(3.2 25.7% 29%)",
+          "9": "hsl(2.2 25.2% 21%)"
         },
-        "black": "rgb(5.098% 6.6667% 9.0196%)",
+        "black": "hsl(216 27.8% 7.1%)",
         "blue": {
-          "0": "rgb(81.961% 94.118% 100%)",
-          "1": "rgb(67.843% 88.235% 100%)",
-          "2": "rgb(45.882% 78.431% 100%)",
-          "3": "rgb(27.843% 68.627% 100%)",
-          "4": "rgb(5.8824% 56.078% 100%)",
-          "5": "rgb(0% 43.137% 85.882%)",
-          "6": "rgb(0% 37.255% 80%)",
-          "7": "rgb(0% 30.196% 70.196%)",
-          "8": "rgb(0% 23.922% 60%)",
-          "9": "rgb(0% 16.863% 45.882%)"
+          "0": "hsl(199.6 100% 91%)",
+          "1": "hsl(202 100% 83.9%)",
+          "2": "hsl(203.9 100% 72.9%)",
+          "3": "hsl(206.1 100% 63.9%)",
+          "4": "hsl(208 100% 52.9%)",
+          "5": "hsl(209.9 100% 42.9%)",
+          "6": "hsl(212.1 100% 40%)",
+          "7": "hsl(214.2 100% 35.1%)",
+          "8": "hsl(216.1 100% 30%)",
+          "9": "hsl(217.9 100% 22.9%)"
         },
         "brown": {
-          "0": "rgb(93.333% 91.765% 88.627%)",
-          "1": "rgb(87.451% 84.314% 78.431%)",
-          "2": "rgb(79.608% 74.118% 64.314%)",
-          "3": "rgb(72.157% 64.314% 51.765%)",
-          "4": "rgb(65.098% 54.51% 39.216%)",
-          "5": "rgb(52.157% 42.745% 29.804%)",
-          "6": "rgb(45.882% 37.255% 26.275%)",
-          "7": "rgb(39.216% 31.765% 22.745%)",
-          "8": "rgb(31.765% 25.49% 18.431%)",
-          "9": "rgb(22.745% 18.039% 13.333%)"
+          "0": "hsl(40 26.1% 91%)",
+          "1": "hsl(39.1 26.4% 82.9%)",
+          "2": "hsl(38.5 27.3% 72%)",
+          "3": "hsl(36.9 26.8% 62%)",
+          "4": "hsl(35.5 27% 52.2%)",
+          "5": "hsl(34.7 27.3% 41%)",
+          "6": "hsl(33.6 27.2% 36.1%)",
+          "7": "hsl(32.9 26.6% 31%)",
+          "8": "hsl(31.8 26.6% 25.1%)",
+          "9": "hsl(30 26.1% 18%)"
         },
         "coral": {
-          "0": "rgb(100% 89.804% 85.882%)",
-          "1": "rgb(99.608% 80.784% 74.51%)",
-          "2": "rgb(98.824% 67.059% 57.255%)",
-          "3": "rgb(97.255% 52.941% 40.784%)",
-          "4": "rgb(94.902% 37.255% 22.745%)",
-          "5": "rgb(83.137% 20.784% 6.6667%)",
-          "6": "rgb(72.941% 18.039% 7.0588%)",
-          "7": "rgb(60.784% 15.294% 7.0588%)",
-          "8": "rgb(49.412% 12.549% 6.6667%)",
-          "9": "rgb(36.471% 9.4118% 5.4902%)"
+          "0": "hsl(16.7 100% 92.9%)",
+          "1": "hsl(15 97% 87.1%)",
+          "2": "hsl(14.2 94.6% 78%)",
+          "3": "hsl(12.9 91.1% 69%)",
+          "4": "hsl(12.1 87.6% 58.8%)",
+          "5": "hsl(11.1 85.2% 44.9%)",
+          "6": "hsl(10 82.4% 40%)",
+          "7": "hsl(9.2 79.2% 33.9%)",
+          "8": "hsl(8.3 76.2% 28%)",
+          "9": "hsl(7.6 73.8% 21%)"
         },
         "cyan": {
-          "0": "rgb(74.118% 95.686% 100%)",
-          "1": "rgb(47.843% 91.373% 100%)",
-          "2": "rgb(0% 81.569% 98.039%)",
-          "3": "rgb(0% 71.765% 85.882%)",
-          "4": "rgb(0% 60% 72.157%)",
-          "5": "rgb(0% 48.235% 58.039%)",
-          "6": "rgb(0% 41.569% 50.196%)",
-          "7": "rgb(0% 34.902% 41.961%)",
-          "8": "rgb(0% 28.235% 34.118%)",
-          "9": "rgb(0% 21.569% 25.882%)"
+          "0": "hsl(190 100% 87.1%)",
+          "1": "hsl(189.9 100% 73.9%)",
+          "2": "hsl(190.1 100% 49%)",
+          "3": "hsl(189.9 100% 42.9%)",
+          "4": "hsl(190.1 100% 36.1%)",
+          "5": "hsl(190.1 100% 29%)",
+          "6": "hsl(190.3 100% 25.1%)",
+          "7": "hsl(190.1 100% 21%)",
+          "8": "hsl(190.3 100% 17.1%)",
+          "9": "hsl(190 100% 12.9%)"
         },
         "gray": {
-          "0": "rgb(90.98% 92.549% 94.902%)",
-          "1": "rgb(82.353% 85.49% 89.412%)",
-          "2": "rgb(70.588% 75.294% 81.176%)",
-          "3": "rgb(60.784% 66.275% 73.333%)",
-          "4": "rgb(50.196% 56.078% 63.922%)",
-          "5": "rgb(39.216% 44.314% 50.98%)",
-          "6": "rgb(36.078% 39.608% 43.922%)",
-          "7": "rgb(30.588% 32.549% 35.294%)",
-          "8": "rgb(25.882% 26.667% 28.235%)",
-          "9": "rgb(18.824% 18.824% 19.216%)"
+          "0": "hsl(216 27.8% 92.9%)",
+          "1": "hsl(213.3 25% 85.9%)",
+          "2": "hsl(213.3 22% 75.9%)",
+          "3": "hsl(213.8 19% 67.1%)",
+          "4": "hsl(214.3 16% 57.1%)",
+          "5": "hsl(214 13% 45.1%)",
+          "6": "hsl(213 9.8% 40%)",
+          "7": "hsl(215 7.1% 32.9%)",
+          "8": "hsl(220 4.3% 27.1%)",
+          "9": "hsl(240 1% 19%)"
         },
         "green": {
-          "0": "rgb(79.216% 96.863% 79.216%)",
-          "1": "rgb(61.176% 92.941% 62.745%)",
-          "2": "rgb(32.941% 85.098% 38.039%)",
-          "3": "rgb(19.216% 74.902% 27.451%)",
-          "4": "rgb(18.824% 63.137% 27.843%)",
-          "5": "rgb(17.255% 50.588% 25.49%)",
-          "6": "rgb(16.863% 43.137% 24.706%)",
-          "7": "rgb(15.686% 36.078% 23.137%)",
-          "8": "rgb(14.51% 29.412% 20.392%)",
-          "9": "rgb(11.373% 20.784% 15.686%)"
+          "0": "hsl(120 73.8% 88%)",
+          "1": "hsl(123 69.2% 77.1%)",
+          "2": "hsl(125.9 63.6% 59%)",
+          "3": "hsl(128.9 59.2% 47.1%)",
+          "4": "hsl(132.2 54.1% 41%)",
+          "5": "hsl(134.8 49.1% 33.9%)",
+          "6": "hsl(137.9 43.8% 30%)",
+          "7": "hsl(141.9 39.4% 25.9%)",
+          "8": "hsl(143.7 33.9% 22%)",
+          "9": "hsl(147.5 29.3% 16.1%)"
         },
         "indigo": {
-          "0": "rgb(89.804% 91.373% 100%)",
-          "1": "rgb(82.353% 84.314% 99.608%)",
-          "2": "rgb(69.412% 72.549% 98.431%)",
-          "3": "rgb(59.216% 62.353% 96.863%)",
-          "4": "rgb(47.843% 50.98% 94.118%)",
-          "5": "rgb(35.294% 38.039% 90.588%)",
-          "6": "rgb(28.627% 30.588% 87.451%)",
-          "7": "rgb(22.353% 23.529% 83.529%)",
-          "8": "rgb(17.647% 17.647% 70.588%)",
-          "9": "rgb(14.51% 14.118% 48.235%)"
+          "0": "hsl(230.8 100% 94.9%)",
+          "1": "hsl(233.2 95.7% 91%)",
+          "2": "hsl(233.5 90.2% 83.9%)",
+          "3": "hsl(235 85.7% 78%)",
+          "4": "hsl(235.9 79.7% 71%)",
+          "5": "hsl(237 74.6% 62.9%)",
+          "6": "hsl(238 70.1% 58%)",
+          "7": "hsl(238.8 65% 52.9%)",
+          "8": "hsl(240 60% 44.1%)",
+          "9": "hsl(240.7 54.7% 31.2%)"
         },
         "lemon": {
-          "0": "rgb(96.863% 93.333% 63.137%)",
-          "1": "rgb(94.118% 85.882% 23.922%)",
-          "2": "rgb(84.706% 74.118% 5.4902%)",
-          "3": "rgb(76.078% 65.098% 3.9216%)",
-          "4": "rgb(65.098% 54.902% 2.7451%)",
-          "5": "rgb(52.549% 43.137% 1.5686%)",
-          "6": "rgb(47.059% 37.647% 0.78431%)",
-          "7": "rgb(39.608% 30.98% 0.39216%)",
-          "8": "rgb(32.157% 24.706% 0%)",
-          "9": "rgb(23.922% 18.039% 0%)"
+          "0": "hsl(53.7 84.3% 80%)",
+          "1": "hsl(53 85.6% 59%)",
+          "2": "hsl(52 87.8% 45.1%)",
+          "3": "hsl(50.9 90.2% 40%)",
+          "4": "hsl(50.2 91.9% 33.9%)",
+          "5": "hsl(48.9 94.2% 27.1%)",
+          "6": "hsl(47.8 96.7% 23.9%)",
+          "7": "hsl(46.8 98% 20%)",
+          "8": "hsl(46.1 100% 16.1%)",
+          "9": "hsl(45.2 100% 12%)"
         },
         "lime": {
-          "0": "rgb(89.02% 94.902% 70.98%)",
-          "1": "rgb(78.039% 89.804% 50.196%)",
-          "2": "rgb(60.784% 81.569% 22.353%)",
-          "3": "rgb(50.196% 70.98% 18.824%)",
-          "4": "rgb(42.353% 61.569% 18.431%)",
-          "5": "rgb(32.157% 47.843% 16.078%)",
-          "6": "rgb(27.843% 42.353% 15.686%)",
-          "7": "rgb(22.745% 35.686% 14.51%)",
-          "8": "rgb(18.431% 29.02% 12.941%)",
-          "9": "rgb(12.941% 20% 9.8039%)"
+          "0": "hsl(74.8 70.1% 82.9%)",
+          "1": "hsl(77.8 66% 70%)",
+          "2": "hsl(81.1 61.6% 52%)",
+          "3": "hsl(83.9 58.1% 44.9%)",
+          "4": "hsl(86.7 53.9% 40%)",
+          "5": "hsl(89.6 49.7% 32%)",
+          "6": "hsl(92.6 45.9% 29%)",
+          "7": "hsl(96.7 42.2% 25.1%)",
+          "8": "hsl(99.5 38.3% 21%)",
+          "9": "hsl(101.5 34.2% 14.9%)"
         },
         "olive": {
-          "0": "rgb(94.118% 94.118% 67.843%)",
-          "1": "rgb(85.882% 88.235% 43.922%)",
-          "2": "rgb(72.549% 78.431% 19.608%)",
-          "3": "rgb(60.784% 68.235% 19.608%)",
-          "4": "rgb(50.588% 58.431% 19.608%)",
-          "5": "rgb(39.216% 46.275% 17.647%)",
-          "6": "rgb(33.725% 40.784% 17.255%)",
-          "7": "rgb(28.627% 35.294% 16.863%)",
-          "8": "rgb(23.137% 28.627% 15.294%)",
-          "9": "rgb(16.471% 20% 12.157%)"
+          "0": "hsl(60 69.1% 81%)",
+          "1": "hsl(63.2 65.3% 66.1%)",
+          "2": "hsl(66 60% 49%)",
+          "3": "hsl(69.2 55.4% 43.9%)",
+          "4": "hsl(72.1 49.7% 39%)",
+          "5": "hsl(74.8 44.8% 32%)",
+          "6": "hsl(78 40.5% 29%)",
+          "7": "hsl(81.7 35.3% 26.1%)",
+          "8": "hsl(84.7 30.4% 22%)",
+          "9": "hsl(87 24.4% 16.1%)"
         },
         "orange": {
-          "0": "rgb(100% 90.588% 81.961%)",
-          "1": "rgb(99.608% 81.176% 66.667%)",
-          "2": "rgb(98.431% 68.627% 45.49%)",
-          "3": "rgb(96.471% 54.902% 25.49%)",
-          "4": "rgb(92.157% 40.392% 5.8824%)",
-          "5": "rgb(72.157% 31.373% 5.8824%)",
-          "6": "rgb(63.529% 27.451% 6.2745%)",
-          "7": "rgb(55.294% 23.529% 6.6667%)",
-          "8": "rgb(43.922% 18.824% 5.8824%)",
-          "9": "rgb(32.941% 13.725% 5.098%)"
+          "0": "hsl(28.7 100% 91%)",
+          "1": "hsl(26.4 97.7% 83.1%)",
+          "2": "hsl(26.2 94.4% 72%)",
+          "3": "hsl(24.9 91% 61%)",
+          "4": "hsl(24 88% 49%)",
+          "5": "hsl(23.1 84.9% 39%)",
+          "6": "hsl(22.2 82% 34.9%)",
+          "7": "hsl(20.8 78.5% 31%)",
+          "8": "hsl(20.4 76.4% 24.9%)",
+          "9": "hsl(18.6 73.2% 19%)"
         },
         "pine": {
-          "0": "rgb(74.902% 97.255% 85.882%)",
-          "1": "rgb(50.196% 93.725% 72.549%)",
-          "2": "rgb(11.373% 84.314% 50.588%)",
-          "3": "rgb(11.373% 74.902% 46.275%)",
-          "4": "rgb(10.196% 63.529% 40.392%)",
-          "5": "rgb(8.6275% 49.412% 32.549%)",
-          "6": "rgb(8.2353% 43.529% 29.412%)",
-          "7": "rgb(7.451% 36.471% 25.49%)",
-          "8": "rgb(6.6667% 29.412% 21.176%)",
-          "9": "rgb(5.098% 21.176% 15.294%)"
+          "0": "hsl(149.5 80.3% 86.1%)",
+          "1": "hsl(150.8 77.6% 72%)",
+          "2": "hsl(152.3 76.2% 47.8%)",
+          "3": "hsl(153 73.6% 43.1%)",
+          "4": "hsl(154 72.3% 36.9%)",
+          "5": "hsl(155.2 70.3% 29%)",
+          "6": "hsl(156 68.2% 25.9%)",
+          "7": "hsl(157.3 66.1% 22%)",
+          "8": "hsl(158.3 63% 18%)",
+          "9": "hsl(158 61.2% 13.1%)"
         },
         "pink": {
-          "0": "rgb(100% 89.804% 94.51%)",
-          "1": "rgb(99.216% 78.824% 88.627%)",
-          "2": "rgb(97.255% 64.706% 81.176%)",
-          "3": "rgb(94.51% 51.765% 73.725%)",
-          "4": "rgb(89.804% 36.471% 64.706%)",
-          "5": "rgb(80.784% 17.255% 52.157%)",
-          "6": "rgb(69.412% 18.431% 47.451%)",
-          "7": "rgb(55.686% 18.039% 40%)",
-          "8": "rgb(43.137% 16.863% 32.549%)",
-          "9": "rgb(30.196% 13.725% 23.922%)"
+          "0": "hsl(332.3 100% 94.9%)",
+          "1": "hsl(331.2 92.9% 89%)",
+          "2": "hsl(329.6 85.6% 81%)",
+          "3": "hsl(329.2 79.6% 73.1%)",
+          "4": "hsl(328.2 72.3% 63.1%)",
+          "5": "hsl(327 64.8% 49%)",
+          "6": "hsl(325.8 58% 43.9%)",
+          "7": "hsl(325 51.1% 36.9%)",
+          "8": "hsl(324.2 43.8% 30%)",
+          "9": "hsl(322.9 37.5% 22%)"
         },
         "plum": {
-          "0": "rgb(97.255% 89.804% 100%)",
-          "1": "rgb(94.118% 80.392% 99.608%)",
-          "2": "rgb(88.627% 65.49% 98.431%)",
-          "3": "rgb(83.137% 52.941% 96.863%)",
-          "4": "rgb(76.078% 39.216% 94.902%)",
-          "5": "rgb(65.882% 18.824% 90.98%)",
-          "6": "rgb(58.824% 11.765% 86.275%)",
-          "7": "rgb(49.02% 11.765% 72.157%)",
-          "8": "rgb(39.608% 11.373% 58.824%)",
-          "9": "rgb(27.843% 9.0196% 41.176%)"
+          "0": "hsl(283.8 100% 94.9%)",
+          "1": "hsl(282.9 96.1% 90%)",
+          "2": "hsl(282.1 91.3% 82%)",
+          "3": "hsl(281.3 87.5% 74.9%)",
+          "4": "hsl(279.7 84.5% 67.1%)",
+          "5": "hsl(279.1 80% 54.9%)",
+          "6": "hsl(277.9 76% 49%)",
+          "7": "hsl(277 72% 42%)",
+          "8": "hsl(275.7 67.6% 35.1%)",
+          "9": "hsl(275.1 64.1% 25.1%)"
         },
         "purple": {
-          "0": "rgb(94.51% 89.804% 100%)",
-          "1": "rgb(90.196% 82.353% 99.608%)",
-          "2": "rgb(81.961% 69.412% 98.824%)",
-          "3": "rgb(73.725% 56.863% 97.255%)",
-          "4": "rgb(65.098% 44.706% 95.294%)",
-          "5": "rgb(53.725% 29.804% 92.157%)",
-          "6": "rgb(47.059% 22.745% 89.412%)",
-          "7": "rgb(38.431% 13.725% 84.314%)",
-          "8": "rgb(30.98% 12.941% 67.059%)",
-          "9": "rgb(22.353% 10.588% 47.451%)"
+          "0": "hsl(267.7 100% 94.9%)",
+          "1": "hsl(267.3 95.7% 91%)",
+          "2": "hsl(265.6 92.6% 84.1%)",
+          "3": "hsl(265 88% 77.1%)",
+          "4": "hsl(264.2 84.3% 70%)",
+          "5": "hsl(263 79.9% 61%)",
+          "6": "hsl(261.9 75.9% 56.1%)",
+          "7": "hsl(261 72% 49%)",
+          "8": "hsl(260 67.6% 40%)",
+          "9": "hsl(259.1 63.5% 29%)"
         },
         "red": {
-          "0": "rgb(100% 88.627% 87.843%)",
-          "1": "rgb(99.608% 80.392% 80.392%)",
-          "2": "rgb(99.216% 64.706% 65.49%)",
-          "3": "rgb(98.431% 51.373% 53.725%)",
-          "4": "rgb(97.255% 32.941% 38.039%)",
-          "5": "rgb(87.451% 4.7059% 14.118%)",
-          "6": "rgb(77.255% 5.098% 15.686%)",
-          "7": "rgb(65.098% 4.7059% 16.078%)",
-          "8": "rgb(53.333% 4.7059% 15.294%)",
-          "9": "rgb(38.039% 3.9216% 12.549%)"
+          "0": "hsl(3.9 100% 93.9%)",
+          "1": "hsl(0 96.1% 90%)",
+          "2": "hsl(358.6 95.7% 82%)",
+          "3": "hsl(357 93.7% 74.9%)",
+          "4": "hsl(355.2 92.1% 65.1%)",
+          "5": "hsl(353.2 89.8% 46.1%)",
+          "6": "hsl(351.2 87.6% 41.2%)",
+          "7": "hsl(348.7 86.5% 34.9%)",
+          "8": "hsl(346.9 83.8% 29%)",
+          "9": "hsl(344.8 81.3% 21%)"
         },
         "teal": {
-          "0": "rgb(78.039% 96.078% 93.725%)",
-          "1": "rgb(53.725% 92.157% 88.235%)",
-          "2": "rgb(13.333% 82.745% 78.039%)",
-          "3": "rgb(11.373% 72.549% 70.588%)",
-          "4": "rgb(9.0196% 60.784% 60.784%)",
-          "5": "rgb(7.0588% 49.412% 50.588%)",
-          "6": "rgb(6.2745% 43.137% 45.882%)",
-          "7": "rgb(5.098% 35.686% 38.824%)",
-          "8": "rgb(3.9216% 28.235% 32.157%)",
-          "9": "rgb(2.7451% 21.569% 25.098%)"
+          "0": "hsl(172.2 69.7% 87.1%)",
+          "1": "hsl(173.9 71% 72.9%)",
+          "2": "hsl(175.9 72.2% 48%)",
+          "3": "hsl(178.1 72.9% 42%)",
+          "4": "hsl(180 74.2% 34.9%)",
+          "5": "hsl(181.6 75.5% 28.8%)",
+          "6": "hsl(184.2 75.9% 26.1%)",
+          "7": "hsl(185.6 76.8% 22%)",
+          "8": "hsl(188.3 78.3% 18%)",
+          "9": "hsl(189.5 80.3% 13.9%)"
         },
-        "white": "rgb(100% 100% 100%)",
+        "white": "hsl(0 0% 100%)",
         "yellow": {
-          "0": "rgb(100% 92.549% 61.961%)",
-          "1": "rgb(100% 83.922% 25.882%)",
-          "2": "rgb(92.157% 70.588% 0%)",
-          "3": "rgb(81.961% 61.569% 0%)",
-          "4": "rgb(72.157% 52.941% 0%)",
-          "5": "rgb(58.039% 41.569% 0%)",
-          "6": "rgb(50.196% 34.902% 0%)",
-          "7": "rgb(43.922% 30.196% 0%)",
-          "8": "rgb(36.078% 23.922% 0%)",
-          "9": "rgb(25.882% 16.863% 0%)"
+          "0": "hsl(48.2 100% 81%)",
+          "1": "hsl(47 100% 62.9%)",
+          "2": "hsl(46 100% 46.1%)",
+          "3": "hsl(45.1 100% 41%)",
+          "4": "hsl(44 100% 36.1%)",
+          "5": "hsl(43 100% 29%)",
+          "6": "hsl(41.7 100% 25.1%)",
+          "7": "hsl(41.3 100% 22%)",
+          "8": "hsl(39.8 100% 18%)",
+          "9": "hsl(39.1 100% 12.9%)"
         }
       }
     },
@@ -9822,6 +10525,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "1000": "1000ms"
     },
     "easing": {
+      "ease": "cubic-bezier(0.25, 0.1, 0.25, 1)",
       "easeIn": "cubic-bezier(0.7, 0.1, 0.75, 0.9)",
       "easeInOut": "cubic-bezier(0.6, 0, 0.2, 1)",
       "easeOut": "cubic-bezier(0.3, 0.8, 0.6, 1)",
@@ -9846,15 +10550,53 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "80": "80px",
       "96": "96px",
       "112": "112px",
-      "128": "128px"
+      "128": "128px",
+      "negative2": "-2px",
+      "negative4": "-4px",
+      "negative6": "-6px",
+      "negative8": "-8px",
+      "negative12": "-12px",
+      "negative16": "-16px",
+      "negative20": "-20px",
+      "negative24": "-24px",
+      "negative28": "-28px",
+      "negative32": "-32px",
+      "negative36": "-36px",
+      "negative40": "-40px",
+      "negative44": "-44px",
+      "negative48": "-48px"
     },
     "text": {
+      "lineHeight": {
+        "loose": "1.75",
+        "normal": "1.5",
+        "relaxed": "1.625",
+        "snug": "1.375",
+        "tight": "1.25"
+      },
+      "size": {
+        "2xl": "2.5rem",
+        "lg": "1.25rem",
+        "md": "1rem",
+        "sm": "0.875rem",
+        "xl": "2rem",
+        "xs": "0.75rem"
+      },
       "weight": {
         "light": "300",
         "medium": "500",
         "normal": "400",
         "semibold": "600"
       }
+    },
+    "zIndex": {
+      "0": "0",
+      "100": "100",
+      "200": "200",
+      "300": "300",
+      "400": "400",
+      "500": "500",
+      "600": "600"
     }
   },
   "bgColor": {
@@ -9906,7 +10648,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "muted": vars.base.color.pink['0']
     },
     "success": {
-      "emphasis": "rgb(12.157% 53.333% 23.922%)",
+      "emphasis": "hsl(137.1 62.9% 32.7%)",
       "muted": vars.base.color.green['0']
     },
     "transparent": vars.base.color.transparent,
@@ -9939,6 +10681,10 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "emphasis": "var(--border-width-default) solid var(--border-color-done-emphasis)",
       "muted": "var(--border-width-default) solid var(--border-color-done-muted)"
     },
+    "draft": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-draft-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-draft-muted)"
+    },
     "emphasis": "var(--border-width-default) solid var(--border-color-emphasis)",
     "muted": "var(--border-width-default) solid var(--border-color-muted)",
     "neutral": {
@@ -9961,6 +10707,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "emphasis": "var(--border-width-default) solid var(--border-color-success-emphasis)",
       "muted": "var(--border-width-default) solid var(--border-color-success-muted)"
     },
+    "translucent": "var(--border-width-default) solid var(--border-color-translucent)",
     "transparent": "var(--border-width-default) solid var(--border-color-transparent)",
     "upsell": {
       "emphasis": "var(--border-width-default) solid var(--border-color-upsell-emphasis)",
@@ -10036,11 +10783,6 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "thicker": "4px",
     "thin": "1px"
   },
-  "boxShadow": {
-    "thick": "inset 0 0 0 {borderWidth.thick}",
-    "thicker": "inset 0 0 0 {borderWidth.thicker}",
-    "thin": "inset 0 0 0 {borderWidth.thin}"
-  },
   "breakpoint": {
     "large": "1012px",
     "medium": "768px",
@@ -10069,6 +10811,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "rest": vars.fgColor.danger
       },
       "iconColor": {
+        "disabled": vars.button.danger.fgColor.disabled,
         "hover": vars.base.color.neutral['0'],
         "rest": vars.button.danger.fgColor.rest
       },
@@ -10091,6 +10834,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "rest": vars.control.borderColor.rest
       },
       "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
         "rest": vars.control.fgColor.rest
       },
       "shadow": {
@@ -10127,7 +10871,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "outline": {
       "bgColor": {
-        "active": "rgb(2.7451% 34.118% 72.941%)",
+        "active": "hsl(213.2 92.7% 37.8%)",
         "disabled": vars.control.bgColor.disabled,
         "hover": vars.bgColor.accent.emphasis,
         "rest": vars.control.bgColor.rest
@@ -10148,9 +10892,9 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "primary": {
       "bgColor": {
-        "active": "rgb(9.8039% 47.451% 20.784%)",
-        "disabled": "rgb(58.431% 84.706% 65.098%)",
-        "hover": "rgb(10.98% 50.588% 22.353%)",
+        "active": "hsl(137.5 65.8% 28.6%)",
+        "disabled": "hsl(135.2 46.2% 71.6%)",
+        "hover": "hsl(137.2 64.3% 30.8%)",
         "rest": vars.bgColor.success.emphasis
       },
       "borderColor": {
@@ -10164,6 +10908,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "rest": vars.fgColor.white
       },
       "iconColor": {
+        "disabled": vars.button.primary.fgColor.disabled,
         "rest": vars.fgColor.white
       },
       "shadow": {
@@ -10184,7 +10929,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "fgColor": {
         "disabled": vars.fgColor.danger,
         "hover": vars.base.color.neutral['0'],
-        "rest": "rgb(76.078% 10.98% 17.255%)"
+        "rest": "hsl(354.2 74.8% 43.5%)"
       }
     },
     "default": {
@@ -10334,88 +11079,88 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
   },
   "color": {
     "ansi": {
-      "black": vars.base.color.neutral[13],
-      "blackBright": vars.base.color.neutral[11],
-      "blue": vars.base.color.blue[5],
-      "blueBright": vars.base.color.blue[4],
-      "cyan": "rgb(10.588% 48.627% 51.373%)",
-      "cyanBright": "rgb(19.216% 57.255% 66.667%)",
-      "gray": vars.base.color.neutral[9],
-      "green": vars.base.color.green[6],
-      "greenBright": vars.base.color.green[5],
-      "magenta": vars.base.color.purple[5],
-      "magentaBright": vars.base.color.purple[4],
-      "red": vars.base.color.red[5],
-      "redBright": vars.base.color.red[6],
-      "white": vars.base.color.neutral[9],
-      "whiteBright": vars.base.color.neutral[8],
-      "yellow": vars.base.color.yellow[8],
-      "yellowBright": vars.base.color.yellow[7]
+      "black": vars.ansi.black,
+      "blackBright": vars.ansi.blackBright,
+      "blue": vars.ansi.blue,
+      "blueBright": vars.ansi.blueBright,
+      "cyan": vars.ansi.cyan,
+      "cyanBright": vars.ansi.cyanBright,
+      "gray": vars.ansi.gray,
+      "green": vars.ansi.green,
+      "greenBright": vars.ansi.greenBright,
+      "magenta": vars.ansi.magenta,
+      "magentaBright": vars.ansi.magentaBright,
+      "red": vars.ansi.red,
+      "redBright": vars.ansi.redBright,
+      "white": vars.ansi.white,
+      "whiteBright": vars.ansi.whiteBright,
+      "yellow": vars.ansi.yellow,
+      "yellowBright": vars.ansi.yellowBright
     },
     "prettylights": {
       "syntax": {
         "brackethighlighter": {
-          "angle": vars.base.color.neutral[9],
-          "unmatched": vars.base.color.red[7]
+          "angle": vars.prettylights.syntax.bracketHighlighterAngle,
+          "unmatched": vars.prettylights.syntax.bracketHighlighterUnmatched
         },
         "carriage": {
           "return": {
-            "bg": vars.base.color.red[5],
-            "text": vars.base.color.neutral[1]
+            "bg": vars.prettylights.syntax.carriage.return.bg,
+            "text": vars.prettylights.syntax.carriage.return.text
           }
         },
-        "comment": vars.base.color.neutral[9],
-        "constant": vars.base.color.blue[6],
-        "constantOtherReferenceLink": vars.base.color.blue[8],
-        "entity": vars.base.color.purple[6],
-        "entityTag": vars.base.color.blue[6],
+        "comment": vars.prettylights.syntax.comment,
+        "constant": vars.prettylights.syntax.constant,
+        "constantOtherReferenceLink": vars.prettylights.syntax.constantOtherReferenceLink,
+        "entity": vars.prettylights.syntax.entity,
+        "entityTag": vars.prettylights.syntax.entityTag,
         "invalid": {
           "illegal": {
-            "bg": vars.bgColor.danger.muted,
-            "text": vars.fgColor.danger
+            "bg": vars.prettylights.syntax.invalid.illegal.bg,
+            "text": vars.prettylights.syntax.invalid.illegal.text
           }
         },
-        "keyword": vars.base.color.red[5],
+        "keyword": vars.prettylights.syntax.keyword,
         "markup": {
-          "bold": vars.base.color.neutral[13],
+          "bold": vars.prettylights.syntax.markup.bold,
           "changed": {
-            "bg": vars.base.color.orange[1],
-            "text": vars.base.color.orange[6]
+            "bg": vars.prettylights.syntax.markup.changed.bg,
+            "text": vars.prettylights.syntax.markup.changed.text
           },
           "deleted": {
-            "bg": vars.base.color.red['0'],
-            "text": vars.base.color.red[7]
+            "bg": vars.prettylights.syntax.markup.deleted.bg,
+            "text": vars.prettylights.syntax.markup.deleted.text
           },
-          "heading": vars.base.color.blue[6],
+          "heading": vars.prettylights.syntax.markup.heading,
           "ignored": {
-            "bg": vars.base.color.blue[6],
-            "text": vars.base.color.neutral[6]
+            "bg": vars.prettylights.syntax.markup.ignored.bg,
+            "text": vars.prettylights.syntax.markup.ignored.text
           },
           "inserted": {
-            "bg": vars.base.color.green['0'],
-            "text": vars.base.color.green[6]
+            "bg": vars.prettylights.syntax.markup.inserted.bg,
+            "text": vars.prettylights.syntax.markup.inserted.text
           },
-          "italic": vars.base.color.neutral[13],
-          "list": vars.base.color.yellow[9]
+          "italic": vars.prettylights.syntax.markup.italic,
+          "list": vars.prettylights.syntax.markup.list
         },
         "meta": {
           "diff": {
-            "range": vars.base.color.purple[5]
+            "range": vars.prettylights.syntax.meta.diff.range
           }
         },
         "storage": {
           "modifier": {
-            "import": vars.base.color.neutral[13]
+            "import": vars.prettylights.syntax.storage.modifier.import
           }
         },
-        "string": vars.base.color.blue[8],
-        "stringRegexp": vars.base.color.green[6],
+        "string": vars.prettylights.syntax.string,
+        "stringRegexp": vars.prettylights.syntax.stringRegexp,
         "sublimelinter": {
           "gutter": {
-            "mark": vars.base.color.neutral[8]
+            "mark": vars.prettylights.syntax.sublimeLinterGutterMark
           }
         },
-        "variable": vars.base.color.orange[6]
+        "variable": vars.prettylights.syntax.variable
       }
     }
   },
@@ -10472,9 +11217,9 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "checked": {
       "bgColor": {
-        "active": "rgb(2.7451% 34.118% 72.941%)",
+        "active": "hsl(213.2 92.7% 37.8%)",
         "disabled": vars.fgColor.disabled,
-        "hover": "rgb(3.1373% 37.647% 79.216%)",
+        "hover": "hsl(212.8 92.4% 41.2%)",
         "rest": vars.bgColor.accent.emphasis
       },
       "borderColor": {
@@ -10508,9 +11253,9 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "large": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "10px",
       "paddingInline": {
+        "condensed": vars.base.size[8],
         "normal": vars.base.size[12],
         "spacious": vars.base.size[16]
       },
@@ -10518,7 +11263,6 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "medium": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "6px",
       "paddingInline": {
         "condensed": vars.base.size[8],
@@ -10533,11 +11277,11 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "small": {
       "gap": vars.base.size[4],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": vars.base.size[4],
       "paddingInline": {
         "condensed": vars.base.size[8],
-        "normal": vars.base.size[12]
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
       },
       "size": vars.base.size[28]
     },
@@ -10557,9 +11301,9 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "xlarge": {
       "gap": vars.base.size[8],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "14px",
       "paddingInline": {
+        "condensed": vars.base.size[8],
         "normal": vars.base.size[12],
         "spacious": vars.base.size[16]
       },
@@ -10567,7 +11311,6 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "xsmall": {
       "gap": vars.base.size[4],
-      "lineBoxHeight": vars.base.size[20],
       "paddingBlock": "2px",
       "paddingInline": {
         "condensed": vars.base.size[4],
@@ -10599,12 +11342,14 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "medium": {
       "gap": {
+        "auto": vars.base.size[8],
         "condensed": vars.base.size[8],
         "spacious": vars.base.size[12]
       }
     },
     "small": {
       "gap": {
+        "auto": vars.base.size[8],
         "condensed": vars.base.size[8],
         "spacious": vars.base.size[16]
       }
@@ -11233,7 +11978,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "attention": vars.base.color.yellow[5],
     "black": vars.base.color.neutral[13],
     "closed": vars.fgColor.danger,
-    "danger": "rgb(81.961% 14.118% 18.431%)",
+    "danger": "hsl(356.2 70.6% 48%)",
     "default": vars.base.color.neutral[13],
     "disabled": vars.base.color.neutral[8],
     "done": vars.base.color.purple[5],
@@ -11251,14 +11996,16 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "white": vars.base.color.neutral['0']
   },
   "focus": {
-    "outline": "2px solid var(--focus-outline-color)",
-    "outlineColor": vars.borderColor.accent.emphasis
+    "outline": "var(--focus-outline-width) solid var(--focus-outline-color)",
+    "outlineColor": vars.focus.outlineColor,
+    "outlineOffset": "-2px",
+    "outlineWidth": "2px"
   },
   "fontStack": {
     "monospace": "\"ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace\"",
-    "sansSerif": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
-    "sansSerifDisplay": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
-    "system": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
+    "sansSerif": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "sansSerifDisplay": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "system": "\"'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans Backtick Fix', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
   },
   "header": {
     "bgColor": vars.base.color.neutral[12],
@@ -11533,10 +12280,31 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "active": vars.base.color.transparent
     }
   },
+  "motion": {
+    "duration": {
+      "long": vars.base.duration[500],
+      "medium": vars.base.duration[300],
+      "micro": vars.base.duration[100],
+      "short": vars.base.duration[200]
+    },
+    "easing": {
+      "enter": vars.base.easing.easeOut,
+      "exit": vars.base.easing.easeIn,
+      "hover": vars.base.easing.ease,
+      "linear": vars.base.easing.linear,
+      "move": vars.base.easing.easeInOut
+    },
+    "transition": {
+      "enter": "var(--motion-duration-medium) 0ms var(--motion-easing-enter)",
+      "exit": "var(--motion-duration-short) 0ms var(--motion-easing-exit)",
+      "hover": "var(--motion-duration-micro) 0ms var(--motion-easing-hover)",
+      "stateChange": "var(--motion-duration-short) 0ms var(--motion-easing-move)"
+    }
+  },
   "outline": {
     "focus": {
-      "offset": "-2px",
-      "width": "2px"
+      "offset": vars.focus.outlineOffset,
+      "width": vars.focus.outlineWidth
     }
   },
   "overlay": {
@@ -11574,6 +12342,85 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "bgColor": vars.bgColor.muted
     }
   },
+  "prettylights": {
+    "syntax": {
+      "brackethighlighter": {
+        "angle": vars.prettylights.syntax.bracketHighlighterAngle,
+        "unmatched": vars.prettylights.syntax.bracketHighlighterUnmatched
+      },
+      "bracketHighlighterAngle": vars.base.color.neutral[9],
+      "bracketHighlighterUnmatched": vars.base.color.red[7],
+      "carriage": {
+        "return": {
+          "bg": vars.prettylights.syntax.carriage.return.bg,
+          "text": vars.prettylights.syntax.carriage.return.text
+        }
+      },
+      "carriageReturn": {
+        "bg": vars.base.color.red[5],
+        "text": vars.base.color.neutral[1]
+      },
+      "comment": vars.base.color.neutral[9],
+      "constant": vars.base.color.blue[6],
+      "constantOtherReferenceLink": vars.base.color.blue[8],
+      "entity": vars.base.color.purple[6],
+      "entityTag": vars.base.color.blue[6],
+      "invalid": {
+        "illegal": {
+          "bg": vars.prettylights.syntax.invalid.illegal.bg,
+          "text": vars.prettylights.syntax.invalid.illegal.text
+        }
+      },
+      "invalidIllegal": {
+        "bg": vars.bgColor.danger.muted,
+        "text": vars.fgColor.danger
+      },
+      "keyword": vars.base.color.red[5],
+      "markup": {
+        "bold": vars.base.color.neutral[13],
+        "changed": {
+          "bg": vars.base.color.orange[1],
+          "text": vars.base.color.orange[6]
+        },
+        "deleted": {
+          "bg": vars.base.color.red['0'],
+          "text": vars.base.color.red[7]
+        },
+        "heading": vars.base.color.blue[6],
+        "ignored": {
+          "bg": vars.base.color.blue[6],
+          "text": vars.base.color.neutral[6]
+        },
+        "inserted": {
+          "bg": vars.base.color.green['0'],
+          "text": vars.base.color.green[6]
+        },
+        "italic": vars.base.color.neutral[13],
+        "list": vars.base.color.yellow[9]
+      },
+      "meta": {
+        "diff": {
+          "range": vars.prettylights.syntax.meta.diff.range
+        }
+      },
+      "metaDiffRange": vars.base.color.purple[5],
+      "storage": {
+        "modifier": {
+          "import": vars.prettylights.syntax.storage.modifier.import
+        }
+      },
+      "storageModifierImport": vars.base.color.neutral[13],
+      "string": vars.base.color.blue[8],
+      "stringRegexp": vars.base.color.green[6],
+      "sublimelinter": {
+        "gutter": {
+          "mark": vars.prettylights.syntax.sublimeLinterGutterMark
+        }
+      },
+      "sublimeLinterGutterMark": vars.base.color.neutral[8],
+      "variable": vars.base.color.orange[6]
+    }
+  },
   "progressBar": {
     "bgColor": {
       "accent": vars.bgColor.accent.emphasis,
@@ -11593,7 +12440,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
   "reactionButton": {
     "selected": {
       "bgColor": {
-        "hover": "rgb(79.216% 92.549% 100%)",
+        "hover": "hsl(201.5 100% 89.6%)",
         "rest": vars.base.color.blue['0']
       },
       "fgColor": {
@@ -11614,7 +12461,6 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
   "shadow": {
     "floating": {
       "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12)",
-      "legacy": "0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
       "medium": "0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12)",
       "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
       "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12)"
@@ -11622,7 +12468,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "inset": "inset 0px 1px 0px 0px var(--base-color-neutral-13)",
     "resting": {
       "medium": "0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12)",
-      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 3px 0px var(--base-color-neutral-13)",
+      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 2px 0px var(--base-color-neutral-13)",
       "xsmall": "0px 1px 1px 0px var(--base-color-neutral-13)"
     }
   },
@@ -11659,9 +12505,9 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
   "text": {
     "body": {
       "lineHeight": {
-        "large": "1.5",
-        "medium": "1.42857",
-        "small": "1.66667"
+        "large": vars.base.text.lineHeight.normal,
+        "medium": vars.base.text.lineHeight.normal,
+        "small": vars.base.text.lineHeight.relaxed
       },
       "shorthand": {
         "large": {
@@ -11684,25 +12530,25 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         }
       },
       "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
+        "large": vars.base.text.size.md,
+        "medium": vars.base.text.size.sm,
+        "small": vars.base.text.size.xs
       },
       "weight": vars.base.text.weight.normal
     },
     "caption": {
-      "lineHeight": "1.3333",
+      "lineHeight": vars.base.text.lineHeight.tight,
       "shorthand": {
         "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "lineHeight": vars.text.caption.lineHeight,
         "fontFamily": vars.fontStack.sansSerif
       },
-      "size": "12px",
+      "size": vars.base.text.size.xs,
       "weight": vars.base.text.weight.normal
     },
     "codeBlock": {
-      "lineHeight": "1.5385",
+      "lineHeight": vars.base.text.lineHeight.normal,
       "shorthand": {
         "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
@@ -11722,33 +12568,32 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "weight": vars.base.text.weight.normal
     },
     "display": {
-      "lineBoxHeight": "1.4",
-      "lineHeight": "1.4",
+      "lineHeight": vars.base.text.lineHeight.snug,
       "shorthand": {
         "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "fontFamily": vars.fontStack.sansSerifDisplay
       },
-      "size": "40px",
+      "size": vars.base.text.size['2xl'],
       "weight": vars.base.text.weight.medium
     },
     "subtitle": {
-      "lineHeight": "1.6",
+      "lineHeight": vars.base.text.lineHeight.relaxed,
       "shorthand": {
         "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "lineHeight": vars.text.subtitle.lineHeight,
         "fontFamily": vars.fontStack.sansSerifDisplay
       },
-      "size": "20px",
+      "size": vars.base.text.size.lg,
       "weight": vars.base.text.weight.normal
     },
     "title": {
       "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
+        "large": vars.base.text.lineHeight.normal,
+        "medium": vars.base.text.lineHeight.relaxed,
+        "small": vars.base.text.lineHeight.normal
       },
       "shorthand": {
         "large": {
@@ -11771,9 +12616,9 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         }
       },
       "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
+        "large": vars.base.text.size.xl,
+        "medium": vars.base.text.size.lg,
+        "small": vars.base.text.size.md
       },
       "weight": {
         "large": vars.base.text.weight.semibold,
@@ -11807,5 +12652,15 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "iconColor": {
       "rest": vars.fgColor.muted
     }
+  },
+  "zIndex": {
+    "behind": "-1",
+    "default": vars.base.zIndex['0'],
+    "dropdown": vars.base.zIndex[200],
+    "modal": vars.base.zIndex[400],
+    "overlay": vars.base.zIndex[300],
+    "popover": vars.base.zIndex[500],
+    "skipLink": vars.base.zIndex[600],
+    "sticky": vars.base.zIndex[100]
   }
 });

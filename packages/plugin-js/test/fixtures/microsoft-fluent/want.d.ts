@@ -21,6 +21,7 @@ export type Typography = Pick<TypographyTokenNormalized, "$type" | "$value" | "$
 export type Color = Pick<ColorTokenNormalized, "$type" | "$value" | "$description" | "$extensions" | "$deprecated">;
 
 export interface Tokens {
+  "effects.elevation0": Shadow;
   "effects.elevation4": Shadow;
   "effects.elevation8": Shadow;
   "effects.elevation16": Shadow;
