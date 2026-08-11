@@ -1,5 +1,15 @@
 # @terrazzo/token-tools
 
+## 2.7.0
+
+### Patch Changes
+
+- [#816](https://github.com/terrazzoapp/terrazzo/pull/816) [`27df11f`](https://github.com/terrazzoapp/terrazzo/commit/27df11f184b74d0a4ab98ebc600d3b7db5826670) Thanks [@drwpow](https://github.com/drwpow)! - Add isValidDTCGType util
+
+- [#815](https://github.com/terrazzoapp/terrazzo/pull/815) [`b1b78c6`](https://github.com/terrazzoapp/terrazzo/commit/b1b78c6d64890f01e64492633c643f5fb3496d69) Thanks [@drwpow](https://github.com/drwpow)! - Update colorjs.io to v0.7
+- Updated dependencies []:
+  - @terrazzo/token-types@2.7.0
+
 ## 2.6.0
 
 ### Patch Changes

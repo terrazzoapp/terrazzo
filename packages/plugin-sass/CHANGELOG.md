@@ -1,5 +1,16 @@
 # @terrazzo/plugin-sass
 
+## 2.7.0
+
+### Patch Changes
+
+- [#815](https://github.com/terrazzoapp/terrazzo/pull/815) [`b1b78c6`](https://github.com/terrazzoapp/terrazzo/commit/b1b78c6d64890f01e64492633c643f5fb3496d69) Thanks [@drwpow](https://github.com/drwpow)! - Update colorjs.io to v0.7
+- Updated dependencies [[`b1b78c6`](https://github.com/terrazzoapp/terrazzo/commit/b1b78c6d64890f01e64492633c643f5fb3496d69), [`27df11f`](https://github.com/terrazzoapp/terrazzo/commit/27df11f184b74d0a4ab98ebc600d3b7db5826670), [`27df11f`](https://github.com/terrazzoapp/terrazzo/commit/27df11f184b74d0a4ab98ebc600d3b7db5826670), [`66ad1d1`](https://github.com/terrazzoapp/terrazzo/commit/66ad1d1722ab989bb5ba6a8fe2baa0678ff7d38d), [`2eb3974`](https://github.com/terrazzoapp/terrazzo/commit/2eb3974e2400995a955bb837691c6dabab9c9a83), [`b1b78c6`](https://github.com/terrazzoapp/terrazzo/commit/b1b78c6d64890f01e64492633c643f5fb3496d69)]:
+  - @terrazzo/plugin-css@2.7.0
+  - @terrazzo/token-tools@2.7.0
+  - @terrazzo/cli@2.7.0
+  - @terrazzo/parser@2.7.0
+
 ## 2.6.0
 
 ### Patch Changes
