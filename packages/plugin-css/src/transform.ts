@@ -72,23 +72,18 @@ export default function transformCSS({
       const pInclude = p.include ? cachedMatcher.tokenIDMatch(p.include) : () => true;
       const pExclude = p.exclude ? cachedMatcher.tokenIDMatch(p.exclude) : () => false;
 
-      // if partial: true passed, validate this is both an orthogonal resolver, AND input has keys
-      if (p.partial) {
-        if (!resolver.orthogonal) {
-          logger.error({
-            group: 'plugin',
-            label: PLUGIN_NAME,
-            message:
-              'partial: true can only apply to an orthogonal resolver (see docs for more info).',
-          });
-        }
-        if (Object.keys(p.input).length === 0) {
-          logger.error({
-            group: 'plugin',
-            label: PLUGIN_NAME,
-            message: 'partial: true requires specifying at least 1 modifier for input',
-          });
-        }
+      // warn if trying to omit modifiers on a non-orthogonal resolver
+      if (
+        Array.isArray(p.only?.modifiers) &&
+        p.only.modifiers?.length > 0 && // specifying [] (no modifiers) is not subject to orthogonality
+        !resolver.orthogonal
+      ) {
+        logger.warn({
+          group: 'plugin',
+          label: PLUGIN_NAME,
+          message:
+            'Specifying `only.modifiers` on a non-orthogonal resolver may generate incorrect output. See docs.',
+        });
       }
 
       // oxlint-disable-next-line func-style
@@ -97,11 +92,7 @@ export default function transformCSS({
       // Note: if we throw an error here without specifying the input, a user may
       // find it impossible to debug the issue
       try {
-        const tokens = resolver.apply(
-          input,
-          // if partial: true, only apply the modifiers listed
-          { modifiers: p.partial ? Object.keys(p.input) : undefined },
-        );
+        const tokens = resolver.apply(input, p.only);
         for (const token of Object.values(tokens)) {
           if (!includeToken(token.id)) {
             continue;
@@ -125,9 +116,7 @@ export default function transformCSS({
               input,
               // Store description in metadata for plugin-css to access later
               meta: {
-                'plugin-css': {
-                  description: token.$description,
-                },
+                'plugin-css': { description: token.$description },
                 'token-listing': { name: localID },
               },
             });
@@ -142,9 +131,7 @@ export default function transformCSS({
                 mode: '.',
                 // Store description in metadata for plugin-css to access later
                 meta: {
-                  'plugin-css': {
-                    description: token.$description,
-                  },
+                  'plugin-css': { description: token.$description },
                   'token-listing': { name: localID },
                 },
               });

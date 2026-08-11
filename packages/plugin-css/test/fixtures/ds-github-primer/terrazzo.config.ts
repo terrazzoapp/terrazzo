@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     css({
       filename: 'primer.css',
+      exclude: ['control.minTarget.auto'],
       permutations: [
         { prepare: (contents) => `:root {\n  ${contents}\n}`, input: { size: 'default' } },
         { prepare: (contents) => `@media (pointer: coarse) {\n  ${contents}\n}`, input: { size: 'coarse' } },
