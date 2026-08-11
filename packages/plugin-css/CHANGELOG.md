@@ -1,5 +1,14 @@
 # @terrazzo/plugin-css
 
+## 2.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`6f0bcab`](https://github.com/terrazzoapp/terrazzo/commit/6f0bcab10cf060f8f15b1881de90a54f47d6f977)]:
+  - @terrazzo/cli@2.7.1
+  - @terrazzo/parser@2.7.1
+  - @terrazzo/token-tools@2.7.1
+
 ## 2.7.0
 
 ### Minor Changes
