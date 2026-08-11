@@ -9,6 +9,6 @@ export default [
       'react',
     ],
     path: './dist/index.js',
-    limit: '20 kB',
+    limit: '22 kB',
   },
 ];

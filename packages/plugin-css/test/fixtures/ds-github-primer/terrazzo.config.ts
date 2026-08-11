@@ -8,8 +8,10 @@ export default defineConfig({
   plugins: [
     css({
       filename: 'primer.css',
+      exclude: ['control.minTarget.auto'],
       permutations: [
         { prepare: (contents) => `:root {\n  ${contents}\n}`, input: { size: 'default' } },
+        { prepare: (contents) => `@media (pointer: coarse) {\n  ${contents}\n}`, input: { size: 'coarse' } },
         { prepare: (contents) => `[data-theme="light"] {\n  ${contents}\n}`, input: { theme: 'light' } },
         { prepare: (contents) => `[data-theme="light-hc"] {\n  ${contents}\n}`, input: { theme: 'light-hc' } },
         { prepare: (contents) => `[data-theme="dark"] {\n  ${contents}\n}`, input: { theme: 'dark' } },

@@ -4,8 +4,7 @@ export const DOCS_NAV = [
     title: 'Guides',
     items: [
       { url: '/docs/guides/dtcg/', title: 'DTCG Tokens' },
-      { url: '/docs/guides/resolvers/', title: 'Resolvers' },
-      { url: '/docs/guides/resolver-contexts/', title: 'Resolver Contexts' },
+      { url: '/docs/guides/resolvers/', title: 'Resolvers & Theming' },
       { url: '/docs/guides/import-from-figma/', title: 'Import from Figma' },
       { url: '/docs/guides/styleguide/', title: 'DS Styleguide' },
       { url: '/docs/guides/migrating-v2/', title: 'Migrating to 2.x' },

@@ -84,6 +84,7 @@ export default defineConfig({
     'prefer-for-of': 'off',
     'prefer-named-capture-group': 'off',
     'prefer-set-has': 'off',
+    'prefer-template': 'error',
     'require-unicode-regexp': 'off',
     'simple-import-sort/imports': 'error',
     'sort-imports': 'off', // handled by eslint-plugin-simple-import-sort

@@ -163,7 +163,7 @@ export function createResolver(
       for (const item of resolverSource.resolutionOrder) {
         switch (item.type) {
           case 'set': {
-            if (options?.sets && !options.sets.includes(item.name)) {
+            if (Array.isArray(options?.sets) && !options.sets.includes(item.name)) {
               continue;
             }
             for (const s of item.sources) {
@@ -172,7 +172,7 @@ export function createResolver(
             break;
           }
           case 'modifier': {
-            if (options?.modifiers && !options.modifiers.includes(item.name)) {
+            if (Array.isArray(options?.modifiers) && !options.modifiers.includes(item.name)) {
               continue;
             }
             const context = input[item.name]!;

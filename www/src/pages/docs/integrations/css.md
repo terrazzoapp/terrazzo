@@ -257,12 +257,12 @@ You control the wrapper CSS, so check for mistakes! If using `@media` queries, r
 
 If you inspect the output CSS, you may find more variables than expected in the media queries. This is necessary the way CSS works: if a CSS variable is an alias of another, when the base value changes, all aliases must be redeclared otherwise they are referencing the old value in the parent scope. At first glance, this seems like a bug, with variables being redeclared with the same values, but in actuality it’s necessary so your mode selectors cascade correctly.
 
-### Selective token output
+### Omitting individual tokens
 
 The CSS plugin can filter which tokens are output to CSS. This is useful if you want to generate CSS for only a subset of your tokens, and
 can be applied at the plugin or permutation level using `include` and `exclude` token globs.
 
-#### Selective output at the plugin level
+#### Omitting tokens globally
 
 :::code-group
 
@@ -282,7 +282,7 @@ export default defineConfig({
 
 :::
 
-#### Selective output at the permutation level
+#### Omitting tokens in individual permutations
 
 :::code-group
 
@@ -309,6 +309,55 @@ export default defineConfig({
   ],
 });
 ```
+
+:::
+
+#### Omitting modifiers/sets (advanced)
+
+An alternate method of excluding tokens by ID is excluding specific modifiers and sets if using a resolver. This is desirable when your resolver is set up in a way that aligns with your desired CSS output, and this is less work than [excluding tokens by ID](#omitting-tokens-in-individual-permutations).
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      permutations: [
+        // Default input needed, otherwise base tokens won’t be declared
+        {
+          input: {},
+          prepare: (contents) => `:root {\n  ${contents}}`,
+        },
+        {
+          input: { mode: "light" },
+          prepare: (contents) => `[data-theme="light"] {\n  color-scheme: light;\n  ${contents}}`,
+          only: { modifiers: ["mode"], sets: ["foundation"] },
+        },
+        {
+          input: { mode: "dark" },
+          prepare: (contents) => `[data-theme="dark"] {\n  color-scheme: dark;\n  ${contents}}`,
+          only: { modifiers: ["mode"], sets: ["foundation"] },
+        },
+      ],
+    }),
+  ],
+});
+```
+
+Now `{ mode: "light" }` and `{ mode: "dark" }` will ONLY output tokens referenced in `#/modifiers/mode` and `#/sets/foundation`.
+
+Each permutation requires manual listing of `modifiers` and `sets` because Terrazzo doesn’t understand all the ways your CSS selectors may overlap and combine in your application. So the extra config gives you an escape hatch to generate any CSS needed without having to refactor your resolver file (plugins should always adapt to the resolver file, not the other way around).
+
+There are a few caveats with this method to ensure correct output:
+
+- Each permutation must still resolve all its aliases and `$ref`s internally, so you’ll get “token not found” errors if you try and omit too much. The fix is simply adding the missing `sets`.
+- You’ll get a warning if you specify `only.modifiers` with a [non-orthogonal resolver](/docs/guides/resolvers#orthogonality). This is because Terrazzo knows that token’s final value is declared in multiple permutations, so you’re likely subject to CSS cascade and generated CSS specificity which may come back to bite you.
+- This is known to sidestep Terrazzo’s automated checks that ensure that downstream tokens are output (this removes them at the step before the CSS plugin sees them, as if they were never declared in the first place). So you may have to manually re-add some semantic tokens if they’re missing.
+
+:::tip
+
+There’s no right or wrong way to compose your resolver, however, this method only really reduces CSS output for systems that don’t modify their primitive values, and only modify semantic values. The reason is that when the primitive values are modified, all semantic tokens must be redeclared, which defeats the point of duplication.
 
 :::
 
