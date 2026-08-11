@@ -1,3 +1,4 @@
+export * from './alias.js';
 export * from './border.js';
 export * from './color.js';
 export * from './font-weight.js';

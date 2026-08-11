@@ -126,6 +126,29 @@ export function normalize(
       break;
     }
 
+    // Note: this normalization shouldn’t ever be necessary, but in resolvers
+    // that introduce new tokens in the non-default permutation, they can bypass
+    // validation checks, leading to this normalization.
+    // See https://github.com/terrazzoapp/terrazzo/issues/654#issuecomment-5255484839
+    case 'transition': {
+      for (const mode of Object.keys(token.mode)) {
+        const $value = token.mode[mode]!.$value as any;
+        if (typeof $value !== 'object') {
+          return;
+        }
+        if (!$value.duration) {
+          $value.duration = { value: 0, unit: 'ms' };
+        }
+        if (!$value.delay) {
+          $value.delay = { value: 0, unit: 'ms' };
+        }
+        if (!$value.timingFunction) {
+          $value.timingFunction = [0, 0, 1, 1];
+        }
+      }
+      break;
+    }
+
     case 'typography': {
       for (const mode of Object.keys(token.mode)) {
         const $value = token.mode[mode]!.$value as any;

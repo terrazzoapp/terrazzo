@@ -9,6 +9,7 @@ import {
   CachedWildcardMatcher,
   type GroupNormalized,
   isAlias,
+  isValidDTCGType,
   parseAlias,
   type TokenNormalized,
   type TokenNormalizedSet,
@@ -555,7 +556,10 @@ export function resolveAliases(
         }
 
         if (!isAlias(value)) {
-          if (!expectedTypes?.includes('string') && (value.includes('{') || value.includes('}'))) {
+          if (
+            (!expectedTypes?.[0] || isValidDTCGType(expectedTypes[0])) &&
+            (value.includes('{') || value.includes('}'))
+          ) {
             logger.error({ ...aliasEntry, message: 'Invalid alias syntax.', node });
           }
           return { $value: value };

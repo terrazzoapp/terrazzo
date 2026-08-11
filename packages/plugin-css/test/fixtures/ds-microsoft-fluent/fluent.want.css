@@ -3,10 +3,11 @@
  * ------------------------------------------- */
 
 :root {
-  --effects-elevation4: 0 1.6px 3.6px 3.6px rgb(0% 0% 0% / 0.132), 0 0.3px 0.9px 0.9px rgb(0% 0% 0% / 0.108);
-  --effects-elevation8: 0 3.2px 7.2px 7.2px rgb(0% 0% 0% / 0.132), 0 0.6px 1.8px 1.8px rgb(0% 0% 0% / 0.108);
-  --effects-elevation16: 0 6.4px 14.4px 14.4px rgb(0% 0% 0% / 0.132), 0 1.2px 3.6px 3.6px rgb(0% 0% 0% / 0.108);
-  --effects-elevation64: 0 25.6px 57.6px 57.6px rgb(0% 0% 0% / 0.22), 0 4.8px 14.4px 14.4px rgb(0% 0% 0% / 0.18);
+  --effects-elevation0: 0px 0px 0px 0px rgb(0% 0% 0% / 0);
+  --effects-elevation4: 0px 1.6px 3.6px 0px rgb(0% 0% 0% / 0.132), 0px 0.3px 0.9px 0px rgb(0% 0% 0% / 0.108);
+  --effects-elevation8: 0px 3.2px 7.2px 0px rgb(0% 0% 0% / 0.132), 0px 0.6px 1.8px 0px rgb(0% 0% 0% / 0.108);
+  --effects-elevation16: 0px 6.4px 14.4px 0px rgb(0% 0% 0% / 0.132), 0px 1.2px 3.6px 0px rgb(0% 0% 0% / 0.108);
+  --effects-elevation64: 0px 25.6px 57.6px 0px rgb(0% 0% 0% / 0.132), 0px 4.8px 14.4px 0px rgb(0% 0% 0% / 0.108);
   --effects-rounded-corner2: 2px;
   --effects-rounded-corner4: 4px;
   --effects-rounded-corner6: 6px;
@@ -194,8 +195,8 @@
   --semantic-colors-button-text-disabled: rgb(63.137% 62.353% 61.569%);
   --semantic-colors-button-text-hovered: rgb(12.549% 12.157% 11.765%);
   --semantic-colors-button-text-pressed: rgb(12.549% 12.157% 11.765%);
-  --semantic-colors-card-shadow: 0 1.6px 3.6px 3.6px rgb(0% 0% 0% / 0.132), 0 0.3px 0.9px 0.9px rgb(0% 0% 0% / 0.108);
-  --semantic-colors-card-shadow-hovered: 0 3.2px 7.2px 7.2px rgb(0% 0% 0% / 0.132), 0 0.6px 1.8px 1.8px rgb(0% 0% 0% / 0.108);
+  --semantic-colors-card-shadow: var(--effects-elevation4);
+  --semantic-colors-card-shadow-hovered: var(--effects-elevation8);
   --semantic-colors-card-standout-background: rgb(100% 100% 100%);
   --semantic-colors-default-state-background: rgb(98.039% 97.647% 97.255%);
   --semantic-colors-disabled-background: rgb(95.294% 94.902% 94.51%);
@@ -275,10 +276,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  --effects-elevation4: 0 1.6px 3.6px 3.6px rgb(0% 0% 0% / 0.132), 0 0.3px 0.9px 0.9px rgb(0% 0% 0% / 0.108);
-  --effects-elevation8: 0 3.2px 7.2px 7.2px rgb(0% 0% 0% / 0.132), 0 0.6px 1.8px 1.8px rgb(0% 0% 0% / 0.108);
-  --effects-elevation16: 0 6.4px 14.4px 14.4px rgb(0% 0% 0% / 0.132), 0 1.2px 3.6px 3.6px rgb(0% 0% 0% / 0.108);
-  --effects-elevation64: 0 25.6px 57.6px 57.6px rgb(0% 0% 0% / 0.22), 0 4.8px 14.4px 14.4px rgb(0% 0% 0% / 0.18);
+  --effects-elevation0: 0px 0px 0px 0px rgb(0% 0% 0% / 0);
+  --effects-elevation4: 0px 1.6px 3.6px 0px rgb(0% 0% 0% / 0.132), 0px 0.3px 0.9px 0px rgb(0% 0% 0% / 0.108);
+  --effects-elevation8: 0px 3.2px 7.2px 0px rgb(0% 0% 0% / 0.132), 0px 0.6px 1.8px 0px rgb(0% 0% 0% / 0.108);
+  --effects-elevation16: 0px 6.4px 14.4px 0px rgb(0% 0% 0% / 0.132), 0px 1.2px 3.6px 0px rgb(0% 0% 0% / 0.108);
+  --effects-elevation64: 0px 25.6px 57.6px 0px rgb(0% 0% 0% / 0.132), 0px 4.8px 14.4px 0px rgb(0% 0% 0% / 0.108);
   --effects-rounded-corner2: 2px;
   --effects-rounded-corner4: 4px;
   --effects-rounded-corner6: 6px;
@@ -466,8 +468,8 @@
   --semantic-colors-button-text-disabled: rgb(63.137% 62.353% 61.569%);
   --semantic-colors-button-text-hovered: rgb(12.549% 12.157% 11.765%);
   --semantic-colors-button-text-pressed: rgb(12.549% 12.157% 11.765%);
-  --semantic-colors-card-shadow: 0 1.6px 3.6px 3.6px rgb(0% 0% 0% / 0.132), 0 0.3px 0.9px 0.9px rgb(0% 0% 0% / 0.108);
-  --semantic-colors-card-shadow-hovered: 0 0 1px 1px rgb(0% 0% 0%);
+  --semantic-colors-card-shadow: var(--effects-elevation4);
+  --semantic-colors-card-shadow-hovered: var(--effects-elevation8);
   --semantic-colors-card-standout-background: rgb(100% 100% 100%);
   --semantic-colors-default-state-background: rgb(98.039% 97.647% 97.255%);
   --semantic-colors-disabled-background: rgb(95.294% 94.902% 94.51%);

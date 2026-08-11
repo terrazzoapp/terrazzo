@@ -888,6 +888,30 @@ font:
       },
     ],
     [
+      'valid: bad syntax for custom $type',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              boxShadow: {
+                thin: {
+                  $value: 'inset 0 0 0 {borderWidth.thin}',
+                  $description: 'Thin shadow used instead of a border to prevent layout shift',
+                  $type: 'custom-string',
+                },
+              },
+            },
+          },
+        ],
+        want: {
+          tokens: {
+            'boxShadow.thin': { $value: 'inset 0 0 0 {borderWidth.thin}' },
+          },
+        },
+      },
+    ],
+    [
       'invalid: circular',
       {
         given: [
