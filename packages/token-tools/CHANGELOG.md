@@ -1,5 +1,12 @@
 # @terrazzo/token-tools
 
+## 2.7.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @terrazzo/token-types@2.7.1
+
 ## 2.7.0
 
 ### Patch Changes
