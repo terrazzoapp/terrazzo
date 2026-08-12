@@ -107,6 +107,37 @@ function generatePropertyDefinitions(
   const properties: CSSRule[] = [];
   const seen = new Set<string>();
 
+  // @property initial-value can't contain var() references as the rule would be
+  // invalid. Aliases are resolvable at build time though: so we resolve them to their
+  // literal values then aliased tokens keep a typed syntax instead of '*'
+  const valueByLocalID = new Map<string, string>();
+  for (const token of tokens) {
+    if (!token.localID || token.mode !== '.') {
+      continue;
+    }
+    if (token.type === 'SINGLE_VALUE' && typeof token.value === 'string') {
+      valueByLocalID.set(token.localID, token.value);
+    } else if (token.type === 'MULTI_VALUE') {
+      for (const [name, subValue] of Object.entries(token.value)) {
+        valueByLocalID.set(name === '.' ? token.localID : `${token.localID}-${name}`, subValue);
+      }
+    }
+  }
+  const FULL_VAR_REF_RE = /^var\((--[^)]+)\)$/;
+  function resolveInitialValue(value: string, depth = 0): string {
+    const ref = value.match(FULL_VAR_REF_RE);
+    if (!ref || depth > 10) {
+      return value;
+    }
+    const target = valueByLocalID.get(ref[1]!);
+    return target === undefined ? value : resolveInitialValue(target, depth + 1);
+  }
+  // Anything still containing var() after resolution (e.g. a reference inside
+  // a shadow layer) can't be an initial-value.
+  function isIndependent(value: string): boolean {
+    return !value.includes('var(');
+  }
+
   for (const token of tokens) {
     const localID = token.localID;
     if (!localID) {
@@ -123,8 +154,9 @@ function generatePropertyDefinitions(
         continue;
       }
       seen.add(localID);
-      if (!token.token.aliasOf && cssSyntax !== '*') {
-        properties.push(generatePropertyDefinition(localID, cssSyntax, token.value));
+      const value = resolveInitialValue(token.value);
+      if (cssSyntax !== '*' && isIndependent(value)) {
+        properties.push(generatePropertyDefinition(localID, cssSyntax, value));
       } else {
         properties.push(generatePropertyDefinition(localID, '*'));
       }
@@ -136,8 +168,9 @@ function generatePropertyDefinitions(
         }
         seen.add(subID);
         const subSyntax = SUB_PROPERTY_SYNTAX[token.token.$type]?.[name] ?? '*';
-        if (!token.token.aliasOf && subSyntax !== '*') {
-          properties.push(generatePropertyDefinition(subID, subSyntax, subValue));
+        const value = resolveInitialValue(subValue);
+        if (subSyntax !== '*' && isIndependent(value)) {
+          properties.push(generatePropertyDefinition(subID, subSyntax, value));
         } else {
           properties.push(generatePropertyDefinition(subID, '*'));
         }
