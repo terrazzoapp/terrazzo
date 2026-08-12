@@ -4,6 +4,7 @@ import { isAlias } from '@terrazzo/token-tools';
 
 import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
+import { isTypographyKeyword } from '../lib/keywords.js';
 
 export const VALID_NUMBER = 'core/valid-number';
 
@@ -42,6 +43,7 @@ const rule: LintRule<typeof ERROR_NAN> = {
             typeof token.originalValue.$value === 'object' &&
             token.originalValue.$value.lineHeight &&
             !isAlias(token.originalValue.$value.lineHeight as string) &&
+            !isTypographyKeyword('lineHeight', token.originalValue.$value.lineHeight) &&
             typeof token.originalValue.$value.lineHeight !== 'object'
           ) {
             validateNumber(token.originalValue.$value.lineHeight, {
