@@ -99,6 +99,14 @@ function generatePropertyDefinition(
   return rule([`@property ${localID}`], children);
 }
 
+const FULL_VAR_REF_RE = /^var\((--[^)]+)\)$/;
+
+// Anything still containing var() after alias resolution (e.g. a reference
+// inside a shadow layer) can't be an initial-value.
+function isIndependent(value: string): boolean {
+  return !value.includes('var(');
+}
+
 function generatePropertyDefinitions(
   getTransforms: BuildHookOptions['getTransforms'],
   options: { include: (id: string) => boolean; exclude: (id: string) => boolean },
@@ -123,7 +131,6 @@ function generatePropertyDefinitions(
       }
     }
   }
-  const FULL_VAR_REF_RE = /^var\((--[^)]+)\)$/;
   function resolveInitialValue(value: string, depth = 0): string {
     const ref = value.match(FULL_VAR_REF_RE);
     if (!ref || depth > 10) {
@@ -132,12 +139,6 @@ function generatePropertyDefinitions(
     const target = valueByLocalID.get(ref[1]!);
     return target === undefined ? value : resolveInitialValue(target, depth + 1);
   }
-  // Anything still containing var() after resolution (e.g. a reference inside
-  // a shadow layer) can't be an initial-value.
-  function isIndependent(value: string): boolean {
-    return !value.includes('var(');
-  }
-
   for (const token of tokens) {
     const localID = token.localID;
     if (!localID) {
