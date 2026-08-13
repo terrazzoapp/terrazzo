@@ -59,6 +59,7 @@ describe('fixtures', () => {
     ['option: baseSelector (deprecated)', { dir: 'option-base-selector', output: ['index.css'] }],
     ['option: colorScheme (deprecated)', { dir: 'option-color-scheme', output: ['index.css'] }],
     ['option: propertyDefinitions', { dir: 'option-property-defs', output: ['index.css'] }],
+    ['option: variableName', { dir: 'option-variable-name', output: ['index.css'] }],
     ['DS: Adobe Spectrum', { dir: 'ds-adobe-spectrum', output: ['spectrum.css'] }],
     ['DS: Figma SDS', { dir: 'ds-figma-sds', output: ['sds.css'] }],
     ['DS: GitHub Primer', { dir: 'ds-github-primer', output: ['primer.css'] }],
@@ -86,33 +87,7 @@ describe('fixtures', () => {
   );
 });
 
-describe('option: variableName', () => {
-  // A `variableName()` that returns a bare name (as the README example does) still has
-  // to produce valid custom properties; without the `--` prefix every declaration is
-  // invalid CSS that browsers silently drop.
-  it('prefixes `--` when variableName() omits it', async () => {
-    const cwd = new URL('./fixtures/option-variable-name/', import.meta.url);
-    await execaNode({ cwd })`${cmd} build`;
-    const css = await fs.readFile(new URL('./index.css', cwd), 'utf8');
 
-    // every declaration emitted for a token must be a custom property
-    const declarations = [...css.matchAll(/^ {2}([^\s:]+):/gm)].map(([, name]) => name!);
-    expect(declarations.length).toBeGreaterThan(0);
-    expect(declarations.filter((name) => !name.startsWith('--'))).toEqual([]);
-
-    expect(css).toContain('--color-brand: rgb(100% 0% 50%);');
-    // aliases have to reference the prefixed name too, not `var(color-brand)`
-    expect(css).toContain('--color-primary: var(--color-brand);');
-
-    // shorthands are assembled from localID separately, so they must not drift from
-    // the properties actually declared above them
-    const references = [...css.matchAll(/var\((--[^),]+)\)/g)].map(([, name]) => name!);
-    expect(references.length).toBeGreaterThan(0);
-    expect(references.filter((name) => !declarations.includes(name))).toEqual([]);
-
-    await expect(css).toMatchFileSnapshot(fileURLToPath(new URL('./index.want.css', cwd)));
-  }, 20_000);
-});
 
 describe('CLI', () => {
   it('--watch', async () => {
