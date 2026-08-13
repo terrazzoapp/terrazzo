@@ -37,9 +37,6 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
         values[t.$type] = new Set();
       }
 
-      // skip aliases (note: $value will be resolved). `aliasOf` already holds a plain token
-      // ID rather than a `{…}` reference, so it is enough on its own, and the check belongs
-      // out here: an aliased color reaches the deepEqual branch below, which never had one.
       if (typeof t.aliasOf === 'string') {
         continue;
       }

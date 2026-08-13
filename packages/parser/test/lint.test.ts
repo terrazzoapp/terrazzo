@@ -872,8 +872,6 @@ describe('rules', () => {
     const reported = errors.filter((error) => !error.includes('Lint failed with error'));
     if (want.success) {
       expect(result).toBeTruthy();
-      // A truthy result on its own says nothing about what the rule reported, so a
-      // success fixture used to pass while the rule under test raised errors.
       expect(reported).toEqual([]);
     } else {
       expect(reported).toEqual(want.errors);
