@@ -194,7 +194,7 @@ export function printNode(
 
   if (node.type === 'Declaration') {
     if (node.comment) {
-      output += `${indent}/* ${node.comment} */\n`;
+      output += `${indent}/* ${node.comment.replaceAll('*/', String.raw`*\/`)} */\n`;
     }
     output += `${indent}${node.property}: ${node.value};\n`;
     return output;

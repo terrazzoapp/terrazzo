@@ -256,6 +256,30 @@ describe('printRules', () => {
     `);
   });
 
+  it('comment containing a comment terminator', () => {
+    const rules: CSSRule[] = [
+      {
+        type: 'Rule',
+        prelude: [':root'],
+        children: [
+          {
+            type: 'Declaration',
+            property: '--color-blue-6',
+            value: '#acd8fc',
+            comment: 'Blue 6 */ } body { display: none;',
+          },
+          { type: 'Declaration', property: '--color-blue-7', value: '#8ec8f6', comment: 'Blue 7' },
+        ],
+      },
+    ];
+    expect(printRules(rules)).toBe(`:root {
+  /* Blue 6 *\\/ } body { display: none; */
+  --color-blue-6: #acd8fc;
+  /* Blue 7 */
+  --color-blue-7: #8ec8f6;
+}`);
+  });
+
   it('4 spaces', () => {
     const rules: CSSRule[] = [
       {
