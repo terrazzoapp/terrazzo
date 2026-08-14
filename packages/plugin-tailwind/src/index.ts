@@ -96,12 +96,55 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
             const localID = options?.variableName
               ? options.variableName(defaultName, { token, path, relName })
               : defaultName;
-            setTransform(token.id, {
-              ...query,
-              format: FORMAT_TAILWIND,
-              localID,
-              value: typeof token.value === 'object' ? token.value['.']! : token.value,
-            });
+            if (typeof token.value === 'object' && token.value !== null) {
+              if ('.' in token.value) {
+                setTransform(token.id, {
+                  ...query,
+                  format: FORMAT_TAILWIND,
+                  localID,
+                  value: token.value['.'],
+                });
+              } else {
+                // Composite token (e.g. typography): unpack sub-properties into Tailwind tokens
+                const subprops = token.value as Record<string, string>;
+                if ('fontSize' in subprops) {
+                  setTransform(token.id, {
+                    ...query,
+                    format: FORMAT_TAILWIND,
+                    localID,
+                    value: subprops.fontSize,
+                  });
+                  for (const [prop, val] of Object.entries(subprops)) {
+                    if (prop !== 'fontSize') {
+                      const kebabProp = prop.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+                      setTransform(`${token.id}#${prop}`, {
+                        ...query,
+                        format: FORMAT_TAILWIND,
+                        localID: `${localID}--${kebabProp}`,
+                        value: val,
+                      });
+                    }
+                  }
+                } else {
+                  for (const [prop, val] of Object.entries(subprops)) {
+                    const kebabProp = prop.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+                    setTransform(`${token.id}#${prop}`, {
+                      ...query,
+                      format: FORMAT_TAILWIND,
+                      localID: `${localID}--${kebabProp}`,
+                      value: val,
+                    });
+                  }
+                }
+              }
+            } else {
+              setTransform(token.id, {
+                ...query,
+                format: FORMAT_TAILWIND,
+                localID,
+                value: token.value,
+              });
+            }
           }
         }
       }
