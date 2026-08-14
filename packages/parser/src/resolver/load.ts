@@ -286,16 +286,8 @@ export function calculatePermutations(options: [string, string[]][]) {
 
 /** Determine Resolver orthogonality using as little work as possible */
 function isResolverOrthogonal(resolver: ResolverSourceNormalized, logger: Logger): boolean {
-  // Keep a record of which tokens are in which modifier.
-  // Note that modifiers are allowed to have multiple appearances of the same
-  // token! So don’t simply return `false` on the reappearance of the same
-  // token, only return `false` for a token that appeared in another modifier.
   const tokensByModifier: Record<string, string> = {};
 
-  // Note: this is a muuuuch lighter-weight walking utility than we need
-  // anywhere else. We want this to be as fast as possible, and do as little
-  // work as possible, and also have the unique property of stopping the walk
-  // under certain conditions.
   function discoverTokens(
     node: any,
     onVisit: (id: string) => boolean | undefined,
