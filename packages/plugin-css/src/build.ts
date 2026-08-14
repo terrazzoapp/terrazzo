@@ -123,7 +123,7 @@ function generatePropertyDefinitions(
         continue;
       }
       seen.add(localID);
-      if (!token.token.aliasOf && cssSyntax !== '*') {
+      if (!token.token.aliasOf && cssSyntax !== '*' && !token.value.includes('var(')) {
         properties.push(generatePropertyDefinition(localID, cssSyntax, token.value));
       } else {
         properties.push(generatePropertyDefinition(localID, '*'));
@@ -136,7 +136,7 @@ function generatePropertyDefinitions(
         }
         seen.add(subID);
         const subSyntax = SUB_PROPERTY_SYNTAX[token.token.$type]?.[name] ?? '*';
-        if (!token.token.aliasOf && subSyntax !== '*') {
+        if (!token.token.aliasOf && subSyntax !== '*' && !subValue.includes('var(')) {
           properties.push(generatePropertyDefinition(subID, subSyntax, subValue));
         } else {
           properties.push(generatePropertyDefinition(subID, '*'));
