@@ -87,8 +87,6 @@ describe('fixtures', () => {
   );
 });
 
-
-
 describe('CLI', () => {
   it('--watch', async () => {
     // note: this test is identical to "default"; just duplicated so 2 tests can
