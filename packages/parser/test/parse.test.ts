@@ -1295,7 +1295,7 @@ describe('Transform', () => {
       },
     });
     const bytes = new Uint8Array([0xEF, 0xBB, 0xBF, ...new TextEncoder().encode(jsonStr)]);
-    const { tokens } = await parse([{ src: bytes, filename: 'tokens.json' }], {
+    const { tokens } = await parse([{ src: bytes, filename: new URL('file:///tokens.json') }], {
       config: defineConfig({}, { cwd: new URL('file:///') }),
     });
     expect(tokens['color.blue']?.$value).toBeDefined();
