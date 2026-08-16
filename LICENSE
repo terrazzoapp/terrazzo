@@ -1,34 +1,6 @@
-# terrazzo (Marko1olo Custom Fork License)
+MIT License
 
-**Copyright (c) 2026 Адольф Петушков / Adolf Petushkov**
-
----
-
-## 🇷🇺 Русская Версия (Russian Version)
-
-Кастомный открытый форк репозитория marko1olo/terrazzo. Модификации внесены для оптимизации.
----
-
-### 🤝 Мейнтейнеры, Контрибьюторы и ИИ (Maintainers & AI Welcome)
-* **Приветствуем всех контрибьюторов:** Мы искренне рады пул-реквестам (PR), багрепортам, оптимизациям и помощи в развитии проекта от любых мейнтейнеров и разработчиков!
-* **Разрешение на обучение ИИ:** Код, документация и архитектура открыты для исследования, обучения нейросетей, агентных ИИ-инструментов (Claude, Codex, Antigravity, LLM) и машинного обучения.
-
-
----
-
-## 🇬🇧 English Version
-
-Custom open fork of repository marko1olo/terrazzo. Modifications created for performance and features.
----
-
-### 🤝 Maintainers, Contributors & AI Welcome
-* **Contributors Welcome:** We sincerely welcome pull requests (PRs), bug reports, optimizations, and contributions from any maintainer or developer!
-* **AI Training & Agent Access:** Code, documentation, and architecture are open for research, neural network training, agentic AI tools (Claude Code, Codex, Antigravity, LLMs), and machine learning.
-
-
----
-
-### 📜 Standard Legal Terms & Disclaimer / Официальные Условия
+Copyright (c) 2021 Drew Powers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
