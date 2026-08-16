@@ -1,14 +1,14 @@
-import type fsType from 'node:fs/promises';
+import type fsType from "node:fs/promises";
 
-import type { InputSource, InputSourceWithDocument } from '@terrazzo/json-schema-tools';
-import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
+import type { InputSource, InputSourceWithDocument } from "@terrazzo/json-schema-tools";
+import { pluralize, type TokenNormalizedSet } from "@terrazzo/token-tools";
 
-import lintRunner from '../lint/index.js';
-import Logger from '../logger.js';
-import { createSyntheticResolver } from '../resolver/create-synthetic-resolver.js';
-import { loadResolver } from '../resolver/load.js';
-import type { ConfigInit, ParseOptions, Resolver } from '../types.js';
-import { loadSources } from './load.js';
+import lintRunner from "../lint/index.js";
+import Logger from "../logger.js";
+import { createSyntheticResolver } from "../resolver/create-synthetic-resolver.js";
+import { loadResolver } from "../resolver/load.js";
+import type { ConfigInit, ParseOptions, Resolver } from "../types.js";
+import { loadSources } from "./load.js";
 
 export interface ParseResult {
   tokens: TokenNormalizedSet;
@@ -37,18 +37,18 @@ export default async function parse(
 
   // 0. validate
   if (inputs.length === 0) {
-    logger.error({ group: 'parser', label: 'init', message: 'Nothing to parse.' });
+    logger.error({ group: "parser", label: "init", message: "Nothing to parse." });
   }
   for (let i = 0; i < inputs.length; i++) {
     if (
       !inputs[i] ||
-      typeof inputs[i] !== 'object' ||
+      typeof inputs[i] !== "object" ||
       !inputs[i]?.src ||
       (inputs[i]?.filename && !(inputs[i]!.filename instanceof URL))
     ) {
       logger.error({
-        group: 'parser',
-        label: 'init',
+        group: "parser",
+        label: "init",
         message: `Input ${i}: expected { src: any; filename: URL }`,
       });
     }
@@ -79,9 +79,9 @@ export default async function parse(
     sources = tokenResult.sources;
   }
   logger.debug({
-    message: 'Loaded tokens',
-    group: 'parser',
-    label: 'core',
+    message: "Loaded tokens",
+    group: "parser",
+    label: "core",
     timing: performance.now() - initStart,
   });
 
@@ -89,9 +89,9 @@ export default async function parse(
     const lintStart = performance.now();
     await lintRunner({ tokens, sources, config, logger });
     logger.debug({
-      message: 'Lint finished',
-      group: 'plugin',
-      label: 'lint',
+      message: "Lint finished",
+      group: "plugin",
+      label: "lint",
       timing: performance.now() - lintStart,
     });
   }
@@ -100,16 +100,16 @@ export default async function parse(
   const finalResolver =
     resolver || (await createSyntheticResolver(tokens, { config, logger, req, sources }));
   logger.debug({
-    message: 'Resolver finalized',
-    group: 'parser',
-    label: 'core',
+    message: "Resolver finalized",
+    group: "parser",
+    label: "core",
     timing: performance.now() - resolverTiming,
   });
 
   logger.debug({
-    message: 'Finish all parser tasks',
-    group: 'parser',
-    label: 'core',
+    message: "Finish all parser tasks",
+    group: "parser",
+    label: "core",
     timing: performance.now() - totalStart,
   });
 
@@ -117,8 +117,8 @@ export default async function parse(
     const { errorCount } = logger.stats();
     if (errorCount > 0) {
       logger.error({
-        group: 'parser',
-        message: `Parser encountered ${errorCount} ${pluralize(errorCount, 'error', 'errors')}. Exiting.`,
+        group: "parser",
+        message: `Parser encountered ${errorCount} ${pluralize(errorCount, "error", "errors")}. Exiting.`,
       });
     }
   }
@@ -156,11 +156,11 @@ let fs: typeof fsType | undefined;
 
 /** Fallback req */
 async function defaultReq(src: URL, _origin: URL) {
-  if (src.protocol === 'file:') {
+  if (src.protocol === "file:") {
     if (!fs) {
-      fs = await import('node:fs/promises');
+      fs = await import("node:fs/promises");
     }
-    return await fs.readFile(src, 'utf8');
+    return await fs.readFile(src, "utf8");
   }
   const res = await fetch(src);
   if (!res.ok) {
