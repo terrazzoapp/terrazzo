@@ -118,7 +118,7 @@ export default async function parse(
     if (errorCount > 0) {
       logger.error({
         group: 'parser',
-        message: `Parser encountered ${errorCount} ${pluralize(errorCount, "error", "errors")}. Exiting.`,
+        message: `Parser encountered ${errorCount} ${pluralize(errorCount, 'error', 'errors')}. Exiting.`,
       });
     }
   }
