@@ -24,17 +24,17 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
   defaultOptions: {
     ignore: [],
   },
-  validate({ tokens, options, report }) {
+  lint({ tokens, options, report }) {
     const isIgnored = cachedLintMatcher(options.ignore ?? []);
     const valueMap = new Map<string, string>();
 
     for (const [id, token] of Object.entries(tokens)) {
-      if (isIgnored(id)) {
+      if (isIgnored.match(id)) {
         continue;
       }
 
       for (const [mode, value] of Object.entries(token)) {
-        // Skip aliases: if the token mode is an alias (e.g. { originalValue: '{foo}' } or has alias reference),
+        // Skip aliases: if the token mode is an alias (e.g. { aliasOf: ... }),
         // it is an intentional reference rather than a duplicated literal value.
         if (value && typeof value === 'object' && 'aliasOf' in value && value.aliasOf) {
           continue;
