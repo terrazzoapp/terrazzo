@@ -60,7 +60,7 @@ describe('Additional cases', () => {
           filename: DEFAULT_FILENAME,
           src: Buffer.concat([
             // a BOM survives fs.readFile(), and the tokenizer rejects it if it isn’t stripped
-            Buffer.from([0xef, 0xbb, 0xbf]),
+            Buffer.from([0xEF, 0xBB, 0xBF]),
             Buffer.from(
               '{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}',
               'utf8',
