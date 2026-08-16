@@ -1287,10 +1287,10 @@ describe('Transform', () => {
   });
   it('decodes buffer source with UTF-8 BOM', async () => {
     const jsonStr = JSON.stringify({
-      color: {
-        blue: {
-          $type: 'color',
-          $value: '#0000ff',
+      size: {
+        large: {
+          $type: 'dimension',
+          $value: { value: 1, unit: 'rem' },
         },
       },
     });
@@ -1298,6 +1298,6 @@ describe('Transform', () => {
     const { tokens } = await parse([{ src: bytes, filename: new URL('file:///tokens.json') }], {
       config: defineConfig({}, { cwd: new URL('file:///') }),
     });
-    expect(tokens['color.blue']?.$value).toBeDefined();
+    expect(tokens['size.large']?.$value).toEqual({ value: 1, unit: 'rem' });
   });
 });
