@@ -1290,7 +1290,7 @@ describe('Transform', () => {
       color: {
         blue: {
           $type: 'color',
-          $value: { colorSpace: 'srgb', channels: [0, 0, 1], alpha: 1 },
+          $value: '#0000ff',
         },
       },
     });
