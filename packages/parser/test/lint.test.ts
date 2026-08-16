@@ -29,7 +29,6 @@ import {
 
 const cwd = new URL(import.meta.url);
 const DEFAULT_FILENAME = new URL('file:///tokens.json');
-
 type Test = [string, TestOptions];
 
 interface TestOptions {
