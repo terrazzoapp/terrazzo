@@ -1294,7 +1294,7 @@ describe('Transform', () => {
         },
       },
     });
-    const bytes = new Uint8Array([0xef, 0xbb, 0xbf, ...new TextEncoder().encode(jsonStr)]);
+    const bytes = new Uint8Array([239, 187, 191, ...new TextEncoder().encode(jsonStr)]);
     const { tokens } = await parse([{ src: bytes, filename: new URL('file:///tokens.json') }], {
       config: defineConfig({}, { cwd: new URL('file:///') }),
     });
