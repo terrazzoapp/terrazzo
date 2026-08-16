@@ -1,7 +1,6 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from 'vitest';
 
-import { defineConfig, type Logger, parse } from "../src/index.js";
-
+import { defineConfig, type Logger, parse } from '../src/index.js';
 import {
   A11Y_MIN_CONTRAST,
   A11Y_MIN_FONT_SIZE,
@@ -26,11 +25,10 @@ import {
   type RuleRequiredTypographyPropertiesOptions,
   type RuleValidTypographyOptions,
   VALID_TYPOGRAPHY,
-} from "../src/lint/plugin-core/index.js";
+} from '../src/lint/plugin-core/index.js';
 
 const cwd = new URL(import.meta.url);
-
-const DEFAULT_FILENAME = new URL("file:///tokens.json");
+const DEFAULT_FILENAME = new URL('file:///tokens.json');
 
 type Test = [string, TestOptions];
 
