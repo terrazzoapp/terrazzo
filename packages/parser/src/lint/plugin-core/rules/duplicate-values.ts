@@ -1,98 +1,61 @@
-import type { LintRule } from "../../../types.js";
+import type { LintRule } from '../../../types.js';
+import { docsLink } from '../lib/docs.js';
+import { cachedLintMatcher } from '../lib/matchers.js';
 
-import { docsLink } from "../lib/docs.js";
-
-import { cachedLintMatcher } from "../lib/matchers.js";
-
-export const DUPLICATE_VALUES = "core/duplicate-values";
+export const DUPLICATE_VALUES = 'core/duplicate-values';
 
 export interface RuleDuplicateValueOptions {
   /** Token IDs to ignore. Supports globs (`*`). */
-
   ignore?: string[];
 }
 
-const ERROR_DUPLICATE_VALUE = "ERROR_DUPLICATE_VALUE";
+const ERROR_DUPLICATE_VALUE = 'ERROR_DUPLICATE_VALUE';
 
 const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = {
   meta: {
     messages: {
-      [ERROR_DUPLICATE_VALUE]: "{{ id }} declared a duplicate value",
+      [ERROR_DUPLICATE_VALUE]: '{{ id }} declared a duplicate value',
     },
-
     docs: {
-      description: "Enforce tokens can’t redeclare the same value (excludes aliases).",
-
+      description: 'Enforce tokens can’t redeclare the same value (excludes aliases).',
       url: docsLink(DUPLICATE_VALUES),
     },
   },
+  defaultOptions: {
+    ignore: [],
+  },
+  validate({ tokens, options, report }) {
+    const isIgnored = cachedLintMatcher(options.ignore ?? []);
+    const valueMap = new Map<string, string>();
 
-  defaultOptions: {},
-
-  create({ report, tokens, options }) {
-    const values: Record<string, Set<any>> = {};
-
-    const shouldIgnore = options.ignore ? cachedLintMatcher.tokenIDMatch(options.ignore) : null;
-
-    for (const t of Object.values(tokens)) {
-      // skip ignored tokens
-
-      if (shouldIgnore?.(t.id)) {
+    for (const [id, token] of Object.entries(tokens)) {
+      if (isIgnored(id)) {
         continue;
       }
 
-      if (!values[t.$type]) {
-        values[t.$type] = new Set();
-      }
+      for (const [mode, value] of Object.entries(token)) {
+        // Skip aliases: if the token mode is an alias (e.g. { originalValue: '{foo}' } or has alias reference),
+        // it is an intentional reference rather than a duplicated literal value.
+        if (value && typeof value === 'object' && 'aliasOf' in value && value.aliasOf) {
+          continue;
+        }
 
-      if (typeof t.aliasOf === "string") {
-        continue;
-      }
+        const serialized = JSON.stringify(value?.$value);
+        if (!serialized) {
+          continue;
+        }
 
-      // primitives: direct comparison is easy
-
-      if (
-        t.$type === "boolean" ||
-        t.$type === "fontWeight" ||
-        t.$type === "link" ||
-        t.$type === "number" ||
-        t.$type === "string"
-      ) {
-        if (values[t.$type]?.has(t.$value)) {
+        const key = `${mode}:${serialized}`;
+        const existing = valueMap.get(key);
+        if (existing && existing !== id) {
           report({
             messageId: ERROR_DUPLICATE_VALUE,
-
-            data: { id: t.id },
-
-            node: t.source.node,
-
-            filename: t.source.filename,
+            node: token[mode]?.node,
+            data: { id },
           });
+        } else {
+          valueMap.set(key, id);
         }
-
-        values[t.$type]?.add(t.$value);
-      } else {
-        // everything else: use deepEqual
-
-        for (const v of values[t.$type]!.values() ?? []) {
-          // TODO: don’t JSON.stringify
-
-          if (JSON.stringify(t.$value) === JSON.stringify(v)) {
-            report({
-              messageId: ERROR_DUPLICATE_VALUE,
-
-              data: { id: t.id },
-
-              node: t.source.node,
-
-              filename: t.source.filename,
-            });
-
-            break;
-          }
-        }
-
-        values[t.$type]!.add(t.$value);
       }
     }
   },
