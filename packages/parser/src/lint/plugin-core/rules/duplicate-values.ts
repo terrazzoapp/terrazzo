@@ -1,27 +1,34 @@
-import type { LintRule } from '../../../types.js';
-import { docsLink } from '../lib/docs.js';
-import { cachedLintMatcher } from '../lib/matchers.js';
+import type { LintRule } from "../../../types.js";
 
-export const DUPLICATE_VALUES = 'core/duplicate-values';
+import { docsLink } from "../lib/docs.js";
+
+import { cachedLintMatcher } from "../lib/matchers.js";
+
+export const DUPLICATE_VALUES = "core/duplicate-values";
 
 export interface RuleDuplicateValueOptions {
   /** Token IDs to ignore. Supports globs (`*`). */
+
   ignore?: string[];
 }
 
-const ERROR_DUPLICATE_VALUE = 'ERROR_DUPLICATE_VALUE';
+const ERROR_DUPLICATE_VALUE = "ERROR_DUPLICATE_VALUE";
 
 const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = {
   meta: {
     messages: {
-      [ERROR_DUPLICATE_VALUE]: '{{ id }} declared a duplicate value',
+      [ERROR_DUPLICATE_VALUE]: "{{ id }} declared a duplicate value",
     },
+
     docs: {
-      description: 'Enforce tokens can’t redeclare the same value (excludes aliases).',
+      description: "Enforce tokens can’t redeclare the same value (excludes aliases).",
+
       url: docsLink(DUPLICATE_VALUES),
     },
   },
+
   defaultOptions: {},
+
   create({ report, tokens, options }) {
     const values: Record<string, Set<any>> = {};
 
@@ -29,6 +36,7 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
 
     for (const t of Object.values(tokens)) {
       // skip ignored tokens
+
       if (shouldIgnore?.(t.id)) {
         continue;
       }
@@ -37,23 +45,27 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
         values[t.$type] = new Set();
       }
 
-      if (typeof t.aliasOf === 'string') {
+      if (typeof t.aliasOf === "string") {
         continue;
       }
 
       // primitives: direct comparison is easy
+
       if (
-        t.$type === 'boolean' ||
-        t.$type === 'fontWeight' ||
-        t.$type === 'link' ||
-        t.$type === 'number' ||
-        t.$type === 'string'
+        t.$type === "boolean" ||
+        t.$type === "fontWeight" ||
+        t.$type === "link" ||
+        t.$type === "number" ||
+        t.$type === "string"
       ) {
         if (values[t.$type]?.has(t.$value)) {
           report({
             messageId: ERROR_DUPLICATE_VALUE,
+
             data: { id: t.id },
+
             node: t.source.node,
+
             filename: t.source.filename,
           });
         }
@@ -61,18 +73,25 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
         values[t.$type]?.add(t.$value);
       } else {
         // everything else: use deepEqual
+
         for (const v of values[t.$type]!.values() ?? []) {
           // TODO: don’t JSON.stringify
+
           if (JSON.stringify(t.$value) === JSON.stringify(v)) {
             report({
               messageId: ERROR_DUPLICATE_VALUE,
+
               data: { id: t.id },
+
               node: t.source.node,
+
               filename: t.source.filename,
             });
+
             break;
           }
         }
+
         values[t.$type]!.add(t.$value);
       }
     }
