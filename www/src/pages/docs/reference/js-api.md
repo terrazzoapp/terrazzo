@@ -229,7 +229,7 @@ Because DTCG tokens can be used with or without a resolver file, this is a separ
 ### Basic usage
 
 ```ts
-import { createResolver, parse } from "@terrazzo/parser";
+import { parse } from "@terrazzo/parser";
 
 const sources = [
   {
@@ -241,53 +241,44 @@ const sources = [
 ];
 
 const { resolver } = await parse(sources, { config });
-const r = createResolver(resolver);
 
-r.apply(); // get base set ⚠️ only possible if resolver declared 0 modifiers
-r.apply({ theme: "light", size: "desktop" }); // tokens for theme: light; size: desktop
-r.apply({ theme: "dark", size: "mobile" }); // tokens for theme: dark; size: mobile
+resolver.apply({}); // tokens resolved from default modifiers contexts
+resolver.apply({ theme: "light", size: "desktop" }); // tokens for theme: light; size: desktop
+resolver.apply({ theme: "dark", size: "mobile" }); // tokens for theme: dark; size: mobile
 ```
 
-The parser will only return a `resolver` if it was handed one. This will be `undefined` otherwise.
+If a resolver is passed as a source to `parse()`, it must be the only source.
 
-It must be passed to `createResolver()`
-
-:::tip
-
-The resolver should always be passed to `parse()` first because resolvers can contain inline tokens and `$ref`s. Providing your own resolver to `createResolver()` is technically doable, but very tricky.
-
-:::
+The parser will return a `resolver` object if it was handed a resolver.json file, otherwise it will generate a new one internally which has a unique set containing all the tokens and a unique modifier with contexts derived from the unique legacy modes found across all tokens.
 
 ### Working with permutations
 
 ```ts
-import { createResolver, parse } from "@terrazzo/parser";
+import { parse } from "@terrazzo/parser";
 
 const { resolver } = await parse(sources, { config });
-const r = createResolver(resolver);
 
-for (const input of r.listPermutations() ?? [{}]) {
-  r.apply(input); // tokens for this input
+for (const input of resolver.listPermutations?.() ?? [{}]) {
+  resolver.apply(input); // tokens for this input
 }
 ```
 
 It’s up to you to specify all the permutations desired.
 
-The `listPermutations` API will return an array of all possible inputs for the specified modifiers, if
-that list of inputs is less than the configured maximum (`permutationLimit`). This guards against combinatorial explosions
-in complex resolvers.
+The `listPermutations` API will return an array of all possible inputs for the specified modifiers only if
+that list of inputs is less than the configured maximum (`permutationLimit`), if it is more `listPermutations` will be `undefined`.
+This guards against combinatorial explosions in complex resolvers.
 
-If the resolver specified zero modifiers, the `listPermutations` will return `[{}]` so you can still produce at least 1 valid tokens set. Thus, it will never be an empty array.
+If the resolver specified zero modifiers, `listPermutations` will return `[{}]` so you can still produce at least 1 valid tokens set. Thus, it will never be an empty array.
 
 ### Partial resolver application
 
 ```ts
-import { createResolver, parse } from "@terrazzo/parser";
+import { parse } from "@terrazzo/parser";
 
 const { resolver } = await parse(sources, { config });
-const r = createResolver(resolver);
 
-r.apply({ theme: "light" }, { modifiers: ["theme"], resolveAlises: false });
+resolver.apply({ theme: "light" }, { modifiers: ["theme"], resolveAliases: false });
 ```
 
 It may be useful to apply an input to only a specific subset of tokens within the resolver.
@@ -296,24 +287,24 @@ The second argument to `apply` is an object that allows you to specify to which 
 wish to apply the input. This may offer a great time saving on repeated applications across
 multiple inputs.
 
-By default, `apply` will resolve DTCG aliases. If a only a subset of tokens are processed, this is likely
+By default, `apply` will resolve DTCG aliases. If only subsets of tokens are processed, this is likely
 to cause reference errors. Setting `resolveAliases` to `false` will return unresolved aliases and enable
 partial application.
 
 Note that `$extends` directives that reference tokens outside of the subset will fail to resolve
-regardless of the `resolveAlaises` setting.
+regardless of the `resolveAliases` setting.
 
 ### API
 
 #### createResolver
 
-`createResolver(resolver)` returns a resolver with the following methods:
+`createResolver(resolverSource: ResolverSourceNormalized, resolverOptions: CreateResolverOptions)` returns a resolver with the following methods:
 
-| Name                 | Type                                                                                 | Description                                                                                                                                           |
-| :------------------- | :----------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **apply**            | `(input: Record<string, string>, options?: ResolverApplicationOptions) => TokensMap` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                                                             |
-| **listPermutations** | `() => Record<string, string>[]`                                                     | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).                                                |
-| **isValidInput**     | `(input: Record<string, string>, throwError?: boolean) => boolean`                   | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |
-| **getPermutationID** | `(input: Record<string, string>) => string`                                          | Returns a stable, deterministic ID from an input. This can also be parsed by JSON back into a normalized input.                                       |
-| **orthogonal**       | `boolean`                                                                            | Returns `true` if all modifiers operate on unique tokens. This is all-or-nothing—a resolver is only orthogonal if all modifiers are.                  |
-| **source**           | Resolver                                                                             | Original resolver, in case you want to manually verify something or implement new logic.                                                              |
+| Name                 | Type                                                                                          | Description                                                                                                                                           |
+| :------------------- | :-------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **apply**            | `(input: Record<string, string>, options?: ResolverApplicationOptions) => TokenNormalizedSet` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                                                             |
+| **listPermutations** | `undefined \| () => Record<string, string>[]`                                                 | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).                                                |
+| **isValidInput**     | `(input: Record<string, string>, throwError?: boolean) => boolean`                            | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |
+| **getPermutationID** | `(input: Record<string, string>) => string`                                                   | Returns a stable, deterministic ID from an input. This can also be parsed by JSON back into a normalized input.                                       |
+| **orthogonal**       | `boolean`                                                                                     | Returns `true` if all modifiers operate on unique tokens. This is all-or-nothing—a resolver is only orthogonal if all modifiers are.                  |
+| **source**           | `ResolverSourceNormalized`                                                                    | The resolver source, a representation of the resolver.json file where all tokens are loaded and flattened in-memory for performance reason.           |
