@@ -4,27 +4,31 @@
   "sets": {
     "primitives": {
       "sources": [{ "$ref": "primitives.json" }]
+    },
+    "invariants": {
+      "sources": [{ "$ref": "invariants.json" }]
     }
   },
   "modifiers": {
     "theme": {
       "default": "orange",
       "contexts": {
-        "orange": [{ "$ref": "themes.json#orange" }],
-        "blue": [{ "$ref": "themes.json#blue" }]
+        "orange": [{ "$ref": "themes.json#theme-orange" }],
+        "blue": [{ "$ref": "themes.json#theme-blue" }]
       }
     },
     "mode": {
       "default": "light",
       "contexts": {
-        "light": [{ "$ref": "modes.json#light" }],
-        "dark": [{ "$ref": "modes.json#dark" }]
+        "light": [{ "$ref": "modes.json#mode-light" }],
+        "dark": [{ "$ref": "modes.json#mode-dark" }]
       }
     }
   },
   "resolutionOrder": [
     { "$ref": "#/modifiers/theme" },
     { "$ref": "#/modifiers/mode" },
-    { "$ref": "#/sets/primitives" }
+    { "$ref": "#/sets/primitives" },
+    { "$ref": "#/sets/invariants" }
   ]
 }
