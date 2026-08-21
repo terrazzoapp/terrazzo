@@ -8,6 +8,7 @@ import type {
   Token,
   TokenNormalized,
   TokenTransformedMultiValue,
+  TokenTransformedSingleValue,
   TypographyTokenNormalized,
 } from '../types.js';
 import type { TransformCSSValueOptions } from './css-types.js';
@@ -17,6 +18,24 @@ import { transformFontWeight } from './font-weight.js';
 import { defaultAliasTransform } from './lib.js';
 import { transformNumber } from './number.js';
 import { transformString } from './string.js';
+
+/**
+ * Transform a sub-value by its actual shape rather than by the property it
+ * arrived under: the dimension slots also carry numbers and CSS keywords.
+ */
+function transformDimensionLike(
+  subvalue: unknown,
+  options: TransformCSSValueOptions,
+): TokenTransformedSingleValue['value'] {
+  if (subvalue && typeof subvalue === 'object' && 'value' in subvalue) {
+    return transformDimension({ $value: subvalue } as DimensionTokenNormalized, options);
+  }
+  // number is allowed for `line-height: 1.5` and `paragraph-spacing: 0`
+  if (typeof subvalue === 'number') {
+    return transformNumber({ $value: subvalue } as NumberTokenNormalized, options);
+  }
+  return transformString({ $value: subvalue } as StringTokenNormalized, options);
+}
 
 /** Convert typography value to multiple CSS values */
 export function transformTypography(
@@ -50,14 +69,6 @@ export function transformTypography(
           );
           break;
         }
-        case 'fontSize':
-        case 'letterSpacing': {
-          transformedValue = transformDimension(
-            { $value: subvalue } as DimensionTokenNormalized,
-            options,
-          );
-          break;
-        }
         case 'fontWeight': {
           transformedValue = transformFontWeight(
             { $value: subvalue } as FontWeightTokenNormalized,
@@ -65,39 +76,8 @@ export function transformTypography(
           );
           break;
         }
-        case 'lineHeight': {
-          if (typeof subvalue === 'number') {
-            transformedValue = transformNumber(
-              { $value: subvalue } as NumberTokenNormalized,
-              options,
-            );
-          } else {
-            transformedValue = transformDimension(
-              { $value: subvalue } as DimensionTokenNormalized,
-              options,
-            );
-          }
-          break;
-        }
         default: {
-          // For other typography properties, dimensions are the only other likely token type
-          if (subvalue && typeof subvalue === 'object' && 'value' in subvalue) {
-            transformedValue = transformDimension(
-              { $value: subvalue } as DimensionTokenNormalized,
-              options,
-            );
-          } else if (typeof subvalue === 'number') {
-            // number is technically allowed for things like `paragraph-spacing: 0`
-            transformedValue = transformNumber(
-              { $value: subvalue } as NumberTokenNormalized,
-              options,
-            );
-          } else {
-            transformedValue = transformString(
-              { $value: subvalue } as StringTokenNormalized,
-              options,
-            );
-          }
+          transformedValue = transformDimensionLike(subvalue, options);
           break;
         }
       }

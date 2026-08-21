@@ -570,6 +570,20 @@ describe('transformDimension', () => {
       },
     ],
     [
+      'legacy string value',
+      {
+        given: [{ $value: '1rem' }, { tokensSet: {}, permutation: {} }],
+        want: { success: '1rem' },
+      },
+    ],
+    [
+      'bare number value',
+      {
+        given: [{ $value: 0 }, { tokensSet: {}, permutation: {} }],
+        want: { success: '0' },
+      },
+    ],
+    [
       '0.75em',
       {
         given: [{ $value: { value: 0.75, unit: 'em' } }, { tokensSet: {}, permutation: {} }],
@@ -936,6 +950,88 @@ describe('transformTypography', () => {
         want: {
           success: {
             'font-family': 'var(--font-sans-font-family)',
+          },
+        },
+      },
+    ],
+    [
+      'keyword subvalues',
+      {
+        given: [
+          {
+            $value: {
+              fontSize: 'inherit',
+              letterSpacing: 'normal',
+              lineHeight: 'normal',
+            },
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: {
+            'font-size': 'inherit',
+            'letter-spacing': 'normal',
+            'line-height': 'normal',
+          },
+        },
+      },
+    ],
+    [
+      'legacy string dimensions',
+      {
+        given: [
+          {
+            $value: {
+              fontSize: '1rem',
+              letterSpacing: '0.125em',
+              lineHeight: '1.5',
+            },
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: {
+            'font-size': '1rem',
+            'letter-spacing': '0.125em',
+            'line-height': '1.5',
+          },
+        },
+      },
+    ],
+    [
+      'numeric lineHeight stays unitless',
+      {
+        given: [
+          {
+            $value: {
+              fontSize: { value: 16, unit: 'px' },
+              lineHeight: 1.5,
+            },
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: {
+            'font-size': '16px',
+            'line-height': '1.5',
+          },
+        },
+      },
+    ],
+    [
+      'bare numeric letterSpacing',
+      {
+        given: [
+          {
+            $value: {
+              letterSpacing: 0,
+            },
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: {
+            'letter-spacing': '0',
           },
         },
       },
