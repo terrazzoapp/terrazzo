@@ -92,21 +92,29 @@ const publishedVariablesResponse = {
   },
 };
 
+function mockVariableResponses({
+  local = localVariablesResponse,
+  published = publishedVariablesResponse,
+}: {
+  local?: object;
+  published?: object;
+} = {}) {
+  globalThis.fetch = vi.fn().mockImplementation((url: string) =>
+    Promise.resolve(
+      new Response(
+        {
+          [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]: JSON.stringify(local),
+          [`https://api.figma.com/v1/files/${FILE_KEY}/variables/published`]:
+            JSON.stringify(published),
+        }[url],
+      ),
+    ),
+  );
+}
+
 describe('getVariables', () => {
   beforeEach(() => {
-    globalThis.fetch = vi.fn().mockImplementation((url: string) =>
-      Promise.resolve(
-        new Response(
-          {
-            [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]:
-              JSON.stringify(localVariablesResponse),
-            [`https://api.figma.com/v1/files/${FILE_KEY}/variables/published`]: JSON.stringify(
-              publishedVariablesResponse,
-            ),
-          }[url],
-        ),
-      ),
-    );
+    mockVariableResponses();
   });
 
   afterAll(() => {
@@ -180,6 +188,215 @@ describe('getVariables', () => {
           $value: '{foundation.hidden}',
         }),
       },
+    });
+  });
+
+  it('applies number name matching only to FLOAT variables and aliases', async () => {
+    const floatCollectionID = 'VariableCollectionId:float';
+    const stringCollectionID = 'VariableCollectionId:string';
+    const booleanCollectionID = 'VariableCollectionId:boolean';
+    const floatID = 'VariableID:float';
+    const floatAliasID = 'VariableID:float-alias';
+    const stringID = 'VariableID:string';
+    const stringAliasID = 'VariableID:string-alias';
+    const booleanID = 'VariableID:boolean';
+    const variableCollections = Object.fromEntries(
+      [
+        [floatCollectionID, 'float'],
+        [stringCollectionID, 'string'],
+        [booleanCollectionID, 'boolean'],
+      ].map(([id, name]) => [
+        id,
+        {
+          defaultModeId: MODE_ID,
+          id,
+          name,
+          remote: false,
+          modes: [{ modeId: MODE_ID, name: 'default' }],
+          hiddenFromPublishing: false,
+        },
+      ]),
+    );
+    const variables = {
+      [floatID]: {
+        id: floatID,
+        name: 'Layer/order',
+        variableCollectionId: floatCollectionID,
+        resolvedType: 'FLOAT',
+        valuesByMode: { [MODE_ID]: 42 },
+        description: '',
+        codeSyntax: {},
+      },
+      [floatAliasID]: {
+        id: floatAliasID,
+        name: 'Layer/order alias',
+        variableCollectionId: floatCollectionID,
+        resolvedType: 'FLOAT',
+        valuesByMode: { [MODE_ID]: { type: 'VARIABLE_ALIAS', id: floatID } },
+        description: '',
+        codeSyntax: {},
+      },
+      [stringID]: {
+        id: stringID,
+        name: 'Layer/order',
+        variableCollectionId: stringCollectionID,
+        resolvedType: 'STRING',
+        valuesByMode: { [MODE_ID]: '42' },
+        description: '',
+        codeSyntax: {},
+      },
+      [stringAliasID]: {
+        id: stringAliasID,
+        name: 'Layer/order alias',
+        variableCollectionId: stringCollectionID,
+        resolvedType: 'STRING',
+        valuesByMode: { [MODE_ID]: { type: 'VARIABLE_ALIAS', id: stringID } },
+        description: '',
+        codeSyntax: {},
+      },
+      [booleanID]: {
+        id: booleanID,
+        name: 'Layer/order',
+        variableCollectionId: booleanCollectionID,
+        resolvedType: 'BOOLEAN',
+        valuesByMode: { [MODE_ID]: true },
+        description: '',
+        codeSyntax: {},
+      },
+    };
+    mockVariableResponses({
+      local: {
+        status: 200,
+        error: false,
+        meta: { variableCollections, variables },
+      },
+      published: {
+        status: 200,
+        error: false,
+        meta: {
+          variables: Object.fromEntries(Object.keys(variables).map((id) => [id, { id }])),
+        },
+      },
+    });
+
+    const result = await getVariables(FILE_KEY, {
+      logger: { error() {}, warn() {}, info() {}, success() {} } as never,
+      matchers: {
+        fontFamily: undefined,
+        fontWeight: undefined,
+        number: /^Layer\//,
+      },
+    });
+
+    expect(result.code.sets.float.sources[0].layer).toEqual({
+      order: expect.objectContaining({ $type: 'number', $value: 42 }),
+      orderAlias: expect.objectContaining({ $type: 'number', $value: '{layer.order}' }),
+    });
+    expect(result.code.sets.string.sources[0].layer).toEqual({
+      order: expect.objectContaining({ $type: 'string', $value: '42' }),
+      orderAlias: expect.objectContaining({ $type: 'string', $value: '{layer.order}' }),
+    });
+    expect(result.code.sets.boolean.sources[0].layer.order).toEqual(
+      expect.objectContaining({ $type: 'boolean', $value: true }),
+    );
+  });
+
+  it('maps valid duration and cubic-bezier strings without coercing incompatible values', async () => {
+    const collectionID = 'VariableCollectionId:motion';
+    const durationID = 'VariableID:duration';
+    const numericDurationID = 'VariableID:numeric-duration';
+    const easingID = 'VariableID:easing';
+    const invalidEasingID = 'VariableID:invalid-easing';
+    const variables = {
+      [durationID]: {
+        id: durationID,
+        name: 'Motion/duration',
+        variableCollectionId: collectionID,
+        resolvedType: 'STRING',
+        valuesByMode: { [MODE_ID]: '150ms' },
+        description: '',
+        codeSyntax: {},
+      },
+      [numericDurationID]: {
+        id: numericDurationID,
+        name: 'Motion/duration numeric',
+        variableCollectionId: collectionID,
+        resolvedType: 'FLOAT',
+        valuesByMode: { [MODE_ID]: 150 },
+        description: '',
+        codeSyntax: {},
+      },
+      [easingID]: {
+        id: easingID,
+        name: 'Motion/easing',
+        variableCollectionId: collectionID,
+        resolvedType: 'STRING',
+        valuesByMode: { [MODE_ID]: 'cubic-bezier(0.25, 0.1, 0.25, 1)' },
+        description: '',
+        codeSyntax: {},
+      },
+      [invalidEasingID]: {
+        id: invalidEasingID,
+        name: 'Motion/invalid easing',
+        variableCollectionId: collectionID,
+        resolvedType: 'STRING',
+        valuesByMode: { [MODE_ID]: 'ease-in' },
+        description: '',
+        codeSyntax: {},
+      },
+    };
+    mockVariableResponses({
+      local: {
+        status: 200,
+        error: false,
+        meta: {
+          variableCollections: {
+            [collectionID]: {
+              defaultModeId: MODE_ID,
+              id: collectionID,
+              name: 'motion',
+              remote: false,
+              modes: [{ modeId: MODE_ID, name: 'default' }],
+              hiddenFromPublishing: false,
+            },
+          },
+          variables,
+        },
+      },
+      published: {
+        status: 200,
+        error: false,
+        meta: {
+          variables: Object.fromEntries(Object.keys(variables).map((id) => [id, { id }])),
+        },
+      },
+    });
+
+    const result = await getVariables(FILE_KEY, {
+      logger: { error() {}, warn() {}, info() {}, success() {} } as never,
+      matchers: {
+        cubicBezier: /easing/i,
+        duration: /duration/i,
+      },
+    });
+
+    expect(result.code.sets.motion.sources[0].motion).toEqual({
+      duration: expect.objectContaining({
+        $type: 'duration',
+        $value: { value: 150, unit: 'ms' },
+      }),
+      durationNumeric: expect.objectContaining({
+        $type: 'dimension',
+        $value: { value: 150, unit: 'px' },
+      }),
+      easing: expect.objectContaining({
+        $type: 'cubicBezier',
+        $value: [0.25, 0.1, 0.25, 1],
+      }),
+      invalidEasing: expect.objectContaining({
+        $type: 'string',
+        $value: 'ease-in',
+      }),
     });
   });
 });

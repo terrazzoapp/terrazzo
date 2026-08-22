@@ -19,6 +19,10 @@ export interface importFromFigmaOptions {
   fontWeightNames?: string;
   /** RegEx for overriding Variable types with number tokens */
   numberNames?: string;
+  /** RegEx for overriding STRING Variable types with duration tokens */
+  durationNames?: string;
+  /** RegEx for overriding STRING Variable types with cubicBezier tokens */
+  cubicBezierNames?: string;
 }
 
 export interface FigmaOutput {
@@ -37,6 +41,8 @@ export async function importFromFigma({
   fontFamilyNames = '/fontFamily$',
   fontWeightNames = '/fontWeight$',
   numberNames,
+  durationNames,
+  cubicBezierNames,
 }: importFromFigmaOptions): Promise<FigmaOutput> {
   const fileKey = getFileID(url);
   if (!fileKey) {
@@ -65,6 +71,8 @@ export async function importFromFigma({
               logger,
               unpublished,
               matchers: {
+                cubicBezier: cubicBezierNames ? new RegExp(cubicBezierNames) : undefined,
+                duration: durationNames ? new RegExp(durationNames) : undefined,
                 fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
                 fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
                 number: numberNames ? new RegExp(numberNames) : undefined,

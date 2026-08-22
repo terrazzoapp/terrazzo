@@ -47,6 +47,8 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
       fontFamilyNames: flags['font-family-names'],
       fontWeightNames: flags['font-weight-names'],
       numberNames: flags['number-names'],
+      durationNames: flags['duration-names'],
+      cubicBezierNames: flags['cubic-bezier-names'],
     });
     const end = performance.now() - start;
 

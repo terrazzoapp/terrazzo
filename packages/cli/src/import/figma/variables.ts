@@ -1,7 +1,28 @@
-import type { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-api-spec';
-import type { Logger } from '@terrazzo/parser';
+import type {
+  LocalVariable,
+  LocalVariableCollection,
+  RGBA,
+  VariableResolvedDataType,
+} from '@figma/rest-api-spec';
+import type { CubicBezierValue, DurationValue, Logger } from '@terrazzo/parser';
 
 import { formatName, getFileLocalVariables, getFilePublishedVariables } from './lib.js';
+
+export type FigmaVariableTokenType =
+  | 'cubicBezier'
+  | 'duration'
+  | 'fontFamily'
+  | 'fontWeight'
+  | 'number';
+
+export type FigmaVariableMatchers = Partial<Record<FigmaVariableTokenType, RegExp>>;
+
+const FIGMA_TYPE_MAP: Record<VariableResolvedDataType, string> = {
+  BOOLEAN: 'boolean',
+  COLOR: 'color',
+  FLOAT: 'dimension',
+  STRING: 'string',
+};
 
 function getAliasID(value: unknown): string | undefined {
   if (
@@ -17,6 +38,106 @@ function getAliasID(value: unknown): string | undefined {
   return undefined;
 }
 
+function getTypeOverride(
+  variable: LocalVariable,
+  matchers: FigmaVariableMatchers,
+): FigmaVariableTokenType | undefined {
+  if (variable.resolvedType === 'STRING' && matchers.fontFamily?.test(variable.name)) {
+    return 'fontFamily';
+  }
+  if (
+    (variable.resolvedType === 'FLOAT' || variable.resolvedType === 'STRING') &&
+    matchers.fontWeight?.test(variable.name)
+  ) {
+    return 'fontWeight';
+  }
+  if (variable.resolvedType === 'FLOAT' && matchers.number?.test(variable.name)) {
+    return 'number';
+  }
+  if (variable.resolvedType === 'STRING' && matchers.duration?.test(variable.name)) {
+    return 'duration';
+  }
+  if (variable.resolvedType === 'STRING' && matchers.cubicBezier?.test(variable.name)) {
+    return 'cubicBezier';
+  }
+}
+
+function parseDuration(value: unknown): DurationValue | undefined {
+  if (typeof value !== 'string') {
+    return;
+  }
+  const match = value.match(/^\s*(\d+(?:\.\d+)?|\.\d+)\s*(ms|s)\s*$/i);
+  if (!match) {
+    return;
+  }
+  const number = Number(match[1]);
+  if (!Number.isFinite(number)) {
+    return;
+  }
+  return { value: number, unit: match[2]!.toLowerCase() === 's' ? 's' : 'ms' };
+}
+
+function parseCubicBezier(value: unknown): CubicBezierValue | undefined {
+  if (typeof value !== 'string') {
+    return;
+  }
+  const numberPattern = String.raw`[+-]?(?:\d+(?:\.\d+)?|\.\d+)`;
+  const match = value.match(
+    new RegExp(
+      `^\\s*cubic-bezier\\(\\s*(${numberPattern})\\s*,\\s*(${numberPattern})\\s*,\\s*(${numberPattern})\\s*,\\s*(${numberPattern})\\s*\\)\\s*$`,
+      'i',
+    ),
+  );
+  if (!match) {
+    return;
+  }
+  const points: [number, number, number, number] = [
+    Number(match[1]),
+    Number(match[2]),
+    Number(match[3]),
+    Number(match[4]),
+  ];
+  if (
+    points.some((point) => typeof point !== 'number' || !Number.isFinite(point)) ||
+    points[0] < 0 ||
+    points[0] > 1 ||
+    points[2] < 0 ||
+    points[2] > 1
+  ) {
+    return;
+  }
+  return points;
+}
+
+function applyTypeOverride(
+  type: FigmaVariableTokenType,
+  value: unknown,
+): { $type: FigmaVariableTokenType; $value: unknown } | undefined {
+  switch (type) {
+    case 'cubicBezier': {
+      const parsed = parseCubicBezier(value);
+      return parsed ? { $type: type, $value: parsed } : undefined;
+    }
+    case 'duration': {
+      const parsed = parseDuration(value);
+      return parsed ? { $type: type, $value: parsed } : undefined;
+    }
+    case 'fontFamily': {
+      return { $type: type, $value: String(value).split(',') };
+    }
+    case 'fontWeight': {
+      return { $type: type, $value: value };
+    }
+    case 'number': {
+      return typeof value === 'number' ? { $type: type, $value: value } : undefined;
+    }
+    default: {
+      const exhaustiveType: never = type;
+      throw new TypeError(`Unknown Figma Variable type override: ${exhaustiveType}`);
+    }
+  }
+}
+
 /** /v1/files/:file_key/variables/published | /v1/files/:file_key/variables/local */
 export async function getVariables(
   fileKey: string,
@@ -27,7 +148,7 @@ export async function getVariables(
   }: {
     logger: Logger;
     unpublished?: boolean;
-    matchers: Record<'fontFamily' | 'fontWeight' | 'number', RegExp | undefined>;
+    matchers: FigmaVariableMatchers;
   },
 ): Promise<{ count: number; remoteCount: number; code: any }> {
   const result: { count: number; remoteCount: number; code: any } = {
@@ -102,11 +223,7 @@ export async function getVariables(
       result.code.sets[collectionName] = { sources: [{}] };
     }
 
-    const matches =
-      (matchers.fontFamily?.test(variable.name) && 'fontFamily') ||
-      (matchers.fontWeight?.test(variable.name) && 'fontWeight') ||
-      (matchers.number?.test(variable.name) && 'number') ||
-      undefined;
+    const typeOverride = getTypeOverride(variable, matchers);
 
     for (const [modeID, value] of Object.entries(variable.valuesByMode)) {
       const modeName = modeIDToName[modeID]!;
@@ -140,29 +257,25 @@ export async function getVariables(
       const isAliasOfID = getAliasID(value);
       if (isAliasOfID) {
         if (allVariables[isAliasOfID]) {
-          tokenBase.$type =
-            matches ||
-            { COLOR: 'color', BOOLEAN: 'boolean', STRING: 'string', FLOAT: 'dimension' }[
-              variable.resolvedType
-            ];
+          tokenBase.$type = typeOverride || FIGMA_TYPE_MAP[variable.resolvedType];
           tokenBase.$value = `{${allVariables[isAliasOfID].name.split('/').map(formatName).join('.')}}`;
         } else {
           remoteIDs.add(isAliasOfID);
           continue;
         }
-      } else if (matches === 'fontFamily') {
-        tokenBase.$type = 'fontFamily';
-        tokenBase.$value = String(value).split(',');
-      } else if (matches === 'fontWeight') {
-        tokenBase.$type = 'fontWeight';
-        tokenBase.$value = value;
-      } else if (matches === 'number') {
-        if (typeof value === 'object') {
-          throw new TypeError(`Can’t coerce ${variable.name} into number type.`);
+      } else if (typeOverride) {
+        const overriddenToken = applyTypeOverride(typeOverride, value);
+        if (overriddenToken) {
+          tokenBase.$type = overriddenToken.$type;
+          tokenBase.$value = overriddenToken.$value;
+        } else {
+          logger.warn({
+            group: 'import',
+            message: `Could not convert ${variable.name} to ${typeOverride}; preserving its Figma ${variable.resolvedType} type.`,
+          });
         }
-        tokenBase.$type = 'number';
-        tokenBase.$value = Number(value); // fun fact: this coerces booleans correctly
-      } else {
+      }
+      if (tokenBase.$value === undefined) {
         switch (variable.resolvedType) {
           case 'BOOLEAN':
           case 'STRING': {
@@ -180,6 +293,10 @@ export async function getVariables(
             tokenBase.$type = 'color';
             tokenBase.$value = { colorSpace: 'srgb', components: [r, g, b], alpha: a };
             break;
+          }
+          default: {
+            const exhaustiveType: never = variable.resolvedType;
+            throw new TypeError(`Unknown Figma Variable resolved type: ${exhaustiveType}`);
           }
         }
       }
