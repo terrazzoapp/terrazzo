@@ -19,6 +19,16 @@ export function helpCmd() {
       --skip-styles  Don’t import styles
       --skip-variables
                      Don’t import variables
+      --font-family-names [regex]
+                     Override matching STRING Variables as fontFamily
+      --font-weight-names [regex]
+                     Override matching FLOAT or STRING Variables as fontWeight
+      --number-names [regex]
+                     Override matching FLOAT Variables as number
+      --duration-names [regex]
+                     Override matching STRING Variables as duration
+      --cubic-bezier-names [regex]
+                     Override matching STRING Variables as cubicBezier
 
   [options]
     --help           Show this message
