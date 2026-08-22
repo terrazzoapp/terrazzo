@@ -75,6 +75,8 @@ Since Figma Styles & Variables don’t map 1:1 with DTCG token types, these are 
 | Variable `STRING`  | [string](/docs/reference/tokens/#string) (⚠️ non-standard type)                                                                                                         |
 | Variable `BOOLEAN` | [boolean](/docs/reference/tokens/#boolean) (⚠️ non-standard type)                                                                                                       |
 
+Text styles preserve pixel or font-size-relative line height according to Figma’s declared unit. Font styles are normalized to CSS-compatible `normal`, `italic`, or `oblique` values, and supported paragraph spacing, indentation, text case, and decoration fields are included. Styles that don’t contain a usable token value, such as an effect style containing only blur effects, are omitted.
+
 #### Grid type
 
 The Grid type is a little special—since it’s a complex concept, it’s represented by a group instead:
@@ -120,18 +122,28 @@ The Grid type is a little special—since it’s a complex concept, it’s repre
 
 The group will only show the `grid`, `rows`, or `columns` subgroups if they appear in the style. If a style has duplicates of the same type, only the first type will be exported.
 
-#### String and Boolean types
+#### Variable type overrides
 
-DTCG does not allow string types, but these are a dominant typeof Figma Variable, especially in typography. In order to override certain Variables by name, pass in `--[type]-names` flags:
+DTCG does not allow string types, but these are a dominant type of Figma Variable, especially in typography. To override certain Variables by name, pass `--[type]-names` flags:
 
 ```sh
 npx tz import [file] \
-    --font-family-names ".*/(family|fontName}$" \
+    --font-family-names ".*/(family|fontName)$" \
     --font-weight-names ".*/weight$" \
-    --number-names ".*/lineHeight$"
+    --number-names ".*/lineHeight$" \
+    --duration-names ".*/duration$" \
+    --cubic-bezier-names ".*/easing$"
 ```
 
-The flags are RegEx patterns, so passing in a string will return any match. You can also use slashes to get more specific with token targets.
+The flags are RegEx patterns, so passing in a string will return any match. You can also use slashes to get more specific with token targets. Matching is constrained by the Figma Variable’s resolved type:
+
+- `--number-names` only overrides `FLOAT` Variables. `STRING` and `BOOLEAN` Variables with the same name remain their original type.
+- `--font-family-names`, `--duration-names`, and `--cubic-bezier-names` only override `STRING` Variables.
+- `--font-weight-names` accepts `FLOAT` and `STRING` Variables for backward compatibility.
+- Duration values must use `ms` or `s` units, such as `150ms` or `0.2s`.
+- Cubic Bézier values must use CSS `cubic-bezier(x1, y1, x2, y2)` syntax. The first and third control points must be between 0 and 1.
+
+Values that match a name but can’t be parsed remain their original Figma type and value.
 
 ### Libraries
 
@@ -142,6 +154,8 @@ npx tz import [file] --unpublished
 ```
 
 If the file has nothing published, it will grab Styles and Variables in the file regardless of the `--unpublished` flag.
+
+When updating an existing resolver through `--output`, Terrazzo preserves its explicit `resolutionOrder`. New resolver files use the imported source order.
 
 ### CLI Flags
 
@@ -156,3 +170,5 @@ You can add all the following flags to `tz import`:
 | `--font-family-names [regex]`  | Import these names as [fontFamily](/docs/reference/tokens/#font-family) tokens. Accepts RegEx. (default: `/fontFamily$`) |
 | `--font-weight-names [regex]`  | Import these names as [fontWeight](/docs/reference/tokens/#font-weight) tokens. Accepts RegEx. (default: `/fontWeight$`) |
 | `--number-names [regex]`       | Import these names as [number](/docs/reference/tokens/#number) tokens. Accepts RegEx. (default: undefined)               |
+| `--duration-names [regex]`     | Import matching string names as [duration](/docs/reference/tokens/#duration) tokens. Accepts RegEx.                      |
+| `--cubic-bezier-names [regex]` | Import matching string names as [cubicBezier](/docs/reference/tokens/#cubic-bezier) tokens. Accepts RegEx.               |
