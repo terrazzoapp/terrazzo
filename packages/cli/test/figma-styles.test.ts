@@ -82,10 +82,24 @@ describe('textStyle', () => {
 });
 
 describe('effectStyle', () => {
-  it('keeps shadow effects and ignores valueless blur effects', () => {
+  it.each([
+    {
+      name: 'background blur',
+      effects: [{ type: 'BACKGROUND_BLUR', visible: true, radius: 32 }],
+    },
+    {
+      name: 'layer blur',
+      effects: [{ type: 'LAYER_BLUR', visible: true, radius: 8 }],
+    },
+    { name: 'empty effect list', effects: [] },
+  ])('returns no shadow value for $name', ({ effects }) => {
+    expect(effectStyle({ effects } as never)).toBe(undefined);
+  });
+
+  it('keeps DROP_SHADOW and INNER_SHADOW effects while ignoring blur', () => {
     const value = effectStyle({
       effects: [
-        { type: 'LAYER_BLUR', visible: true, radius: 8 },
+        { type: 'BACKGROUND_BLUR', visible: true, radius: 32 },
         {
           type: 'DROP_SHADOW',
           visible: true,
@@ -94,19 +108,32 @@ describe('effectStyle', () => {
           offset: { x: 0, y: 2 },
           radius: 4,
         },
+        {
+          type: 'INNER_SHADOW',
+          visible: true,
+          color: { r: 1, g: 1, b: 1, a: 0.4 },
+          blendMode: 'NORMAL',
+          offset: { x: 1, y: -1 },
+          radius: 2,
+          spread: 1,
+        },
       ],
     } as never);
 
-    expect(value).toHaveLength(1);
+    expect(value).toHaveLength(2);
     expect(value?.[0]).toEqual(
       expect.objectContaining({
         inset: false,
         blur: { value: 4, unit: 'px' },
       }),
     );
-    expect(
-      effectStyle({ effects: [{ type: 'LAYER_BLUR', visible: true, radius: 8 }] } as never),
-    ).toBe(undefined);
+    expect(value?.[1]).toEqual(
+      expect.objectContaining({
+        inset: true,
+        blur: { value: 2, unit: 'px' },
+        spread: { value: 1, unit: 'px' },
+      }),
+    );
   });
 });
 
@@ -136,9 +163,11 @@ describe('gridStyles', () => {
 });
 
 describe('getStyles', () => {
-  it('omits styles that cannot produce a value', async () => {
+  it('diagnoses and omits unsupported effects without emitting valueless tokens', async () => {
     const fileKey = 'AaAaAaAaAaAaAaAaAa';
-    const styleID = '1:1';
+    const blurStyleID = '1:1';
+    const emptyStyleID = '1:2';
+    const shadowStyleID = '1:3';
     vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
     vi.spyOn(globalThis, 'fetch').mockImplementation((input) => {
       const responses: Record<string, object> = {
@@ -150,9 +179,31 @@ describe('getStyles', () => {
               {
                 key: 'blur-key',
                 file_key: fileKey,
-                node_id: styleID,
+                node_id: blurStyleID,
                 style_type: 'EFFECT',
-                name: 'blur/default',
+                name: 'blur/button',
+                description: '',
+                created_at: '2026-01-01T00:00:00Z',
+                updated_at: '2026-01-01T00:00:00Z',
+                user: {},
+              },
+              {
+                key: 'empty-key',
+                file_key: fileKey,
+                node_id: emptyStyleID,
+                style_type: 'EFFECT',
+                name: 'effect/empty',
+                description: '',
+                created_at: '2026-01-01T00:00:00Z',
+                updated_at: '2026-01-01T00:00:00Z',
+                user: {},
+              },
+              {
+                key: 'shadow-key',
+                file_key: fileKey,
+                node_id: shadowStyleID,
+                style_type: 'EFFECT',
+                name: 'shadow/default',
                 description: '',
                 created_at: '2026-01-01T00:00:00Z',
                 updated_at: '2026-01-01T00:00:00Z',
@@ -161,32 +212,76 @@ describe('getStyles', () => {
             ],
           },
         },
-        [`https://api.figma.com/v1/files/${fileKey}/nodes?ids=${styleID}`]: {
-          nodes: {
-            [styleID]: {
-              document: {
-                effects: [{ type: 'LAYER_BLUR', visible: true, radius: 8 }],
+        [`https://api.figma.com/v1/files/${fileKey}/nodes?ids=${blurStyleID},${emptyStyleID},${shadowStyleID}`]:
+          {
+            nodes: {
+              [blurStyleID]: {
+                document: {
+                  effects: [{ type: 'BACKGROUND_BLUR', visible: true, radius: 32 }],
+                },
+              },
+              [emptyStyleID]: {
+                document: {
+                  effects: [],
+                },
+              },
+              [shadowStyleID]: {
+                document: {
+                  effects: [
+                    {
+                      type: 'DROP_SHADOW',
+                      visible: true,
+                      color: { r: 0, g: 0, b: 0, a: 0.2 },
+                      blendMode: 'NORMAL',
+                      offset: { x: 0, y: 2 },
+                      radius: 4,
+                    },
+                  ],
+                },
               },
             },
           },
-        },
       };
       return Promise.resolve(Response.json(responses[input.toString()]));
     });
     const logger = {
       error: vi.fn(),
-      warn() {},
+      warn: vi.fn(),
       info() {},
       success() {},
     };
 
     const result = await getStyles(fileKey, { logger: logger as never });
+    const styles = result.code.sets.styles.sources[0];
 
-    expect(result.code.sets.styles.sources[0]).toEqual({});
-    expect(result.count).toBe(0);
-    expect(logger.error).toHaveBeenCalledWith(
-      expect.objectContaining({ message: 'Could not parse effect for blur/default' }),
+    expect(styles.blur).toBe(undefined);
+    expect(styles.effect).toBe(undefined);
+    expect(Object.keys(styles)).toEqual(['shadow']);
+    expect(styles.shadow.default).toEqual(
+      expect.objectContaining({
+        $type: 'shadow',
+        $value: [
+          expect.objectContaining({
+            inset: false,
+            blur: { value: 4, unit: 'px' },
+          }),
+        ],
+      }),
     );
+    expect(styles.shadow.default).toHaveProperty('$value');
+    expect(result.count).toBe(1);
+    expect(logger.warn).toHaveBeenCalledTimes(2);
+    expect(logger.warn).toHaveBeenCalledWith(
+      expect.objectContaining({
+        message: 'Skipping unsupported non-shadow effect style blur/button',
+      }),
+    );
+    expect(logger.warn).toHaveBeenCalledWith(
+      expect.objectContaining({
+        message: 'Skipping unsupported non-shadow effect style effect/empty',
+      }),
+    );
+    expect(logger.error).not.toHaveBeenCalled();
   });
 
   it('imports TEXT styles with the exact DTCG 2025.10 typography shape', async () => {

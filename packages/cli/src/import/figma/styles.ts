@@ -112,11 +112,11 @@ export async function getStyles(
       case 'EFFECT': {
         const $value = effectStyle(styleNode.document);
         if (!$value) {
-          logger.error({
+          logger.warn({
             group: 'import',
-            message: `Could not parse effect for ${s.name}`,
-            continueOnError: true,
+            message: `Skipping unsupported non-shadow effect style ${s.name}`,
           });
+          break;
         }
         tokenBase.$type = 'shadow';
         tokenBase.$value = $value;
