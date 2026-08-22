@@ -53,7 +53,6 @@ export async function getStyles(
 
   const fileNodes = await getFileNodes(fileKey, { ids: [...styleNodeIDs], logger });
 
-  result.count += styleNodeIDs.size;
   for (const [id, s] of stylesByID) {
     const styleNode = fileNodes.nodes[id];
     if (!styleNode) {
@@ -144,6 +143,7 @@ export async function getStyles(
           node = node[key];
         }
         node[name] = layoutGrids;
+        result.count++;
         break;
       }
     }
@@ -160,6 +160,7 @@ export async function getStyles(
         node = node[key];
       }
       node[name] = tokenBase;
+      result.count++;
     }
   }
 
@@ -257,109 +258,23 @@ export function textStyle(node: Node): TypographyValue | undefined {
   const typography: TypographyValue = {
     fontFamily: style.fontFamily.split(',').map((family) => family.trim()),
     fontWeight: style.fontWeight!,
-    fontStyle: normalizeFontStyle(style),
     fontSize: { value: style.fontSize!, unit: 'px' },
     letterSpacing: { value: style.letterSpacing || 0, unit: 'px' },
     lineHeight: getLineHeight(style),
   };
 
-  if ('paragraphSpacing' in style && Number.isFinite(style.paragraphSpacing)) {
-    typography.paragraphSpacing = { value: style.paragraphSpacing!, unit: 'px' };
-  }
-  if ('paragraphIndent' in style && Number.isFinite(style.paragraphIndent)) {
-    typography.paragraphIndent = { value: style.paragraphIndent!, unit: 'px' };
-  }
-  if ('listSpacing' in style && Number.isFinite(style.listSpacing)) {
-    typography.listSpacing = { value: style.listSpacing!, unit: 'px' };
-  }
-  applyTextCase(typography, style.textCase);
-  applyTextDecoration(typography, 'textDecoration' in style ? style.textDecoration : undefined);
-
   return typography;
 }
 
-function getLineHeight(style: TypeStyle): TypographyValue['lineHeight'] {
+function getLineHeight(style: TypeStyle): number {
   if (style.lineHeightUnit === 'FONT_SIZE_%' && Number.isFinite(style.lineHeightPercentFontSize)) {
     return style.lineHeightPercentFontSize! / 100;
   }
-  if (Number.isFinite(style.lineHeightPx)) {
-    return { value: style.lineHeightPx!, unit: 'px' };
+  if (Number.isFinite(style.lineHeightPx) && style.fontSize) {
+    return style.lineHeightPx! / style.fontSize;
   }
   if (Number.isFinite(style.lineHeightPercentFontSize)) {
     return style.lineHeightPercentFontSize! / 100;
   }
   return 1;
-}
-
-function normalizeFontStyle(style: TypeStyle): string | undefined {
-  if (style.italic || /italic/i.test(style.fontStyle || '')) {
-    return 'italic';
-  }
-  if (/oblique/i.test(style.fontStyle || '')) {
-    return 'oblique';
-  }
-  return style.fontStyle ? 'normal' : undefined;
-}
-
-function applyTextCase(typography: TypographyValue, textCase: TypeStyle['textCase']): void {
-  switch (textCase) {
-    case 'ORIGINAL': {
-      typography.textTransform = 'none';
-      break;
-    }
-    case 'UPPER': {
-      typography.textTransform = 'uppercase';
-      break;
-    }
-    case 'LOWER': {
-      typography.textTransform = 'lowercase';
-      break;
-    }
-    case 'TITLE': {
-      typography.textTransform = 'capitalize';
-      break;
-    }
-    case 'SMALL_CAPS': {
-      typography.fontVariantCaps = 'small-caps';
-      break;
-    }
-    case 'SMALL_CAPS_FORCED': {
-      typography.fontVariantCaps = 'all-small-caps';
-      break;
-    }
-    case undefined: {
-      break;
-    }
-    default: {
-      const exhaustiveTextCase: never = textCase;
-      throw new TypeError(`Unknown Figma text case: ${exhaustiveTextCase}`);
-    }
-  }
-}
-
-function applyTextDecoration(
-  typography: TypographyValue,
-  textDecoration: TypeStyle['textDecoration'],
-): void {
-  switch (textDecoration) {
-    case 'NONE': {
-      typography.textDecoration = 'none';
-      break;
-    }
-    case 'STRIKETHROUGH': {
-      typography.textDecoration = 'line-through';
-      break;
-    }
-    case 'UNDERLINE': {
-      typography.textDecoration = 'underline';
-      break;
-    }
-    case undefined: {
-      break;
-    }
-    default: {
-      const exhaustiveTextDecoration: never = textDecoration;
-      throw new TypeError(`Unknown Figma text decoration: ${exhaustiveTextDecoration}`);
-    }
-  }
 }

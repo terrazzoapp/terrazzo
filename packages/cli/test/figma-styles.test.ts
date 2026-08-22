@@ -27,7 +27,7 @@ describe('textStyle', () => {
         lineHeightPx: 20,
         lineHeightPercentFontSize: 142.857,
       },
-      expected: { value: 20, unit: 'px' },
+      expected: 20 / 14,
     },
     {
       name: 'font-size percent',
@@ -47,13 +47,13 @@ describe('textStyle', () => {
         lineHeightPx: 24,
         lineHeightPercentFontSize: 150,
       },
-      expected: { value: 24, unit: 'px' },
+      expected: 1.5,
     },
   ])('uses the $name line-height representation', ({ style, expected }) => {
-    expect(textStyle({ style } as never)?.lineHeight).toEqual(expected);
+    expect(textStyle({ style } as never)?.lineHeight).toBeCloseTo(expected);
   });
 
-  it('normalizes CSS typography fields exposed by Figma', () => {
+  it('omits Figma text semantics outside the DTCG typography contract', () => {
     const value = textStyle({
       style: {
         ...baseTextStyle,
@@ -62,6 +62,7 @@ describe('textStyle', () => {
         lineHeightPx: 24,
         paragraphSpacing: 12,
         paragraphIndent: 4,
+        listSpacing: 8,
         textCase: 'UPPER',
         textDecoration: 'STRIKETHROUGH',
       },
@@ -70,49 +71,13 @@ describe('textStyle', () => {
     expect(value).toEqual({
       fontFamily: ['Inter'],
       fontWeight: 400,
-      fontStyle: 'italic',
       fontSize: { value: 16, unit: 'px' },
       letterSpacing: { value: 0, unit: 'px' },
-      lineHeight: { value: 24, unit: 'px' },
-      paragraphSpacing: { value: 12, unit: 'px' },
-      paragraphIndent: { value: 4, unit: 'px' },
-      textTransform: 'uppercase',
-      textDecoration: 'line-through',
+      lineHeight: 1.5,
     });
-  });
-
-  it.each([
-    ['Regular', false, 'normal'],
-    ['Oblique', false, 'oblique'],
-    ['Regular', true, 'italic'],
-  ])('normalizes %s with italic=%s to %s', (fontStyle, italic, expected) => {
-    expect(
-      textStyle({
-        style: {
-          ...baseTextStyle,
-          fontStyle,
-          italic,
-          lineHeightUnit: 'PIXELS',
-          lineHeightPx: 24,
-        },
-      } as never)?.fontStyle,
-    ).toBe(expected);
-  });
-
-  it.each([
-    ['SMALL_CAPS', 'small-caps'],
-    ['SMALL_CAPS_FORCED', 'all-small-caps'],
-  ])('maps Figma %s text case to font variant caps', (textCase, expected) => {
-    expect(
-      textStyle({
-        style: {
-          ...baseTextStyle,
-          lineHeightUnit: 'PIXELS',
-          lineHeightPx: 24,
-          textCase,
-        },
-      } as never)?.fontVariantCaps,
-    ).toBe(expected);
+    expect(Object.keys(value!).toSorted()).toEqual(
+      ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'lineHeight'].toSorted(),
+    );
   });
 });
 
@@ -218,9 +183,81 @@ describe('getStyles', () => {
     const result = await getStyles(fileKey, { logger: logger as never });
 
     expect(result.code.sets.styles.sources[0]).toEqual({});
+    expect(result.count).toBe(0);
     expect(logger.error).toHaveBeenCalledWith(
       expect.objectContaining({ message: 'Could not parse effect for blur/default' }),
     );
+  });
+
+  it('imports TEXT styles with the exact DTCG 2025.10 typography shape', async () => {
+    const fileKey = 'BbBbBbBbBbBbBbBbBb';
+    const styleID = '2:2';
+    vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
+    vi.spyOn(globalThis, 'fetch').mockImplementation((input) => {
+      const responses: Record<string, object> = {
+        [`https://api.figma.com/v1/files/${fileKey}/styles`]: {
+          error: false,
+          status: 200,
+          meta: {
+            styles: [
+              {
+                key: 'text-key',
+                file_key: fileKey,
+                node_id: styleID,
+                style_type: 'TEXT',
+                name: 'text/body',
+                description: '',
+                created_at: '2026-01-01T00:00:00Z',
+                updated_at: '2026-01-01T00:00:00Z',
+                user: {},
+              },
+            ],
+          },
+        },
+        [`https://api.figma.com/v1/files/${fileKey}/nodes?ids=${styleID}`]: {
+          nodes: {
+            [styleID]: {
+              document: {
+                style: {
+                  ...baseTextStyle,
+                  fontStyle: 'Italic',
+                  lineHeightUnit: 'PIXELS',
+                  lineHeightPx: 24,
+                  paragraphSpacing: 12,
+                  paragraphIndent: 4,
+                  listSpacing: 8,
+                  textCase: 'UPPER',
+                  textDecoration: 'UNDERLINE',
+                },
+              },
+            },
+          },
+        },
+      };
+      return Promise.resolve(Response.json(responses[input.toString()]));
+    });
+    const logger = {
+      error: vi.fn(),
+      warn() {},
+      info() {},
+      success() {},
+    };
+
+    const result = await getStyles(fileKey, { logger: logger as never });
+    const token = result.code.sets.styles.sources[0].text.body;
+
+    expect(token.$type).toBe('typography');
+    expect(token.$value).toEqual({
+      fontFamily: ['Inter'],
+      fontSize: { value: 16, unit: 'px' },
+      fontWeight: 400,
+      letterSpacing: { value: 0, unit: 'px' },
+      lineHeight: 1.5,
+    });
+    expect(Object.keys(token.$value).toSorted()).toEqual(
+      ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'lineHeight'].toSorted(),
+    );
+    expect(result.count).toBe(1);
   });
 });
 
@@ -261,6 +298,9 @@ describe('DTCG validation', () => {
       { config: defineConfig({}, { cwd: new URL(import.meta.url) }), skipLint: true },
     );
 
+    expect(Object.keys(typography!).toSorted()).toEqual(
+      ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'lineHeight'].toSorted(),
+    );
     expect(result.tokens.typography?.$value).toEqual(typography);
     expect(result.tokens.shadow?.$value).toEqual(shadow);
   });

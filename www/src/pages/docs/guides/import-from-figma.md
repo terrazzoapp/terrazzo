@@ -75,7 +75,7 @@ Since Figma Styles & Variables don’t map 1:1 with DTCG token types, these are 
 | Variable `STRING`  | [string](/docs/reference/tokens/#string) (⚠️ non-standard type)                                                                                                         |
 | Variable `BOOLEAN` | [boolean](/docs/reference/tokens/#boolean) (⚠️ non-standard type)                                                                                                       |
 
-Text styles preserve pixel or font-size-relative line height according to Figma’s declared unit. Font styles are normalized to CSS-compatible `normal`, `italic`, or `oblique` values, and supported paragraph spacing, indentation, text case, and decoration fields are included. Styles that don’t contain a usable token value, such as an effect style containing only blur effects, are omitted.
+Text style `$value` objects contain only the five fields allowed and required by the DTCG 2025.10 typography schema: `fontFamily`, `fontSize`, `fontWeight`, `letterSpacing`, and `lineHeight`. Pixel line heights are converted to a font-size multiplier. Figma’s font style, paragraph and list spacing, indentation, text case, and decoration fields are deliberately omitted because the DTCG schema rejects additional typography properties; they are not preserved as extensions until Terrazzo defines a stable extension contract for them. Styles that don’t contain a usable token value, such as an effect style containing only blur effects, are omitted and excluded from the imported Style count.
 
 #### Grid type
 
@@ -144,6 +144,8 @@ The flags are RegEx patterns, so passing in a string will return any match. You 
 - Cubic Bézier values must use CSS `cubic-bezier(x1, y1, x2, y2)` syntax. The first and third control points must be between 0 and 1.
 
 Values that match a name but can’t be parsed remain their original Figma type and value.
+
+Generic `STRING` and `BOOLEAN` Variables are retained for compatibility, but those token types are outside the strict DTCG 2025.10 type enum. A resolver containing them is therefore not guaranteed to pass strict DTCG schema validation unless they are mapped to standard types or removed.
 
 ### Libraries
 
