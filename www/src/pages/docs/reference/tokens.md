@@ -162,12 +162,12 @@ A font weight as defined in [DTCG 8.4](https://www.designtokens.org/tr/2025.10/f
 | Property       | Type     | Description                                                                                                                           |
 | :------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | `$type`        | `string` | **Required.** `"fontWeight"`                                                                                                          |
-| `$value`       | `number` | **Required.** Either a font weight number `1` (lightest) –`999` (heaviest), or an [approved alias](#aliases) of a font weight number. |
+| `$value`       | `number` | **Required.** Either a font weight number `1` (lightest)–`1000` (heaviest), or an [approved alias](#aliases) of a font weight number. |
 | `$description` | `string` | (Optional) A description of this token and its intended usage.                                                                        |
 
 ### Aliases
 
-A font weight can be a number from `1` (lightest) – `999` (heaviest), but the following string keywords may also be used (and _only_ the following words):
+A font weight can be a number from `1` (lightest)–`1000` (heaviest), but the following string keywords may also be used (and _only_ the following words):
 
 | Weight | Alias                        |
 | :----- | :--------------------------- |
