@@ -37,6 +37,10 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
       });
     }
 
+    const oldFile =
+      flags.output && fsSync.existsSync(flags.output)
+        ? JSON.parse(await fs.readFile(flags.output, 'utf8'))
+        : {};
     const start = performance.now();
     const result = await importFromFigma({
       url: url!,
@@ -49,21 +53,17 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
       numberNames: flags['number-names'],
       durationNames: flags['duration-names'],
       cubicBezierNames: flags['cubic-bezier-names'],
+      resolutionOrder: oldFile.resolutionOrder,
     });
     const end = performance.now() - start;
 
     if (flags.output) {
-      const oldFile = fsSync.existsSync(flags.output)
-        ? JSON.parse(await fs.readFile(flags.output, 'utf8'))
-        : {};
       // merge with old file, if any
       const code = {
         $schema: result.code.$schema, // Reset $schema
         version: result.code.version, // Reset version
         // Note: it’s important to have resolutionOrder higher up, since sets and modifiers will be a mess
-        resolutionOrder: oldFile.resolutionOrder?.length
-          ? oldFile.resolutionOrder
-          : result.code.resolutionOrder, // Rely on old file, since the Figma file won’t understand resolutionOrder
+        resolutionOrder: result.code.resolutionOrder,
         sets: result.code.sets, // Overwrite old sets
         modifiers: result.code.modifiers, // Overwrite old modifiers
         $defs: oldFile.$defs, // Just in case

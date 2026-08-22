@@ -6,6 +6,10 @@ import { formatNumber, getFileID } from './lib.js';
 import { getStyles } from './styles.js';
 import { getVariables } from './variables.js';
 
+export interface FigmaResolutionOrderEntry {
+  $ref: string;
+}
+
 export interface importFromFigmaOptions {
   url: string;
   logger: Logger;
@@ -23,6 +27,8 @@ export interface importFromFigmaOptions {
   durationNames?: string;
   /** RegEx for overriding STRING Variable types with cubicBezier tokens */
   cubicBezierNames?: string;
+  /** Explicit Resolver order to preserve. By default, imported groups are listed in discovery order. */
+  resolutionOrder?: readonly FigmaResolutionOrderEntry[];
 }
 
 export interface FigmaOutput {
@@ -43,6 +49,7 @@ export async function importFromFigma({
   numberNames,
   durationNames,
   cubicBezierNames,
+  resolutionOrder,
 }: importFromFigmaOptions): Promise<FigmaOutput> {
   const fileKey = getFileID(url);
   if (!fileKey) {
@@ -55,7 +62,7 @@ export async function importFromFigma({
     code: {
       $schema: 'https://www.designtokens.org/schemas/2025.10/resolver.json',
       version: '2025.10',
-      resolutionOrder: [],
+      resolutionOrder: resolutionOrder?.map((entry) => ({ ...entry })) ?? [],
       sets: {},
       modifiers: {},
     },
@@ -63,7 +70,7 @@ export async function importFromFigma({
 
   try {
     const [styles, vars] = await Promise.all([
-      ...(skipStyles ? [] : [getStyles(fileKey!, { logger })]),
+      ...(skipStyles ? [] : [getStyles(fileKey!, { logger, unpublished })]),
       ...(skipVariables
         ? []
         : [
@@ -98,10 +105,11 @@ export async function importFromFigma({
     logger.error({ group: 'import', message: (error as Error).message });
   }
 
-  // Arbitrarily guess on resolutionOrder
-  for (const group of ['sets', 'modifiers'] as const) {
-    for (const name of Object.keys(result.code[group])) {
-      result.code.resolutionOrder.push({ $ref: `#/${group}/${name}` });
+  if (resolutionOrder === undefined) {
+    for (const group of ['sets', 'modifiers'] as const) {
+      for (const name of Object.keys(result.code[group])) {
+        result.code.resolutionOrder.push({ $ref: `#/${group}/${name}` });
+      }
     }
   }
 
