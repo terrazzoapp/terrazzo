@@ -361,7 +361,7 @@ export interface ResolverApplicationOptions {
    * Limit input application only to the listed sets.
    *
    * In combination with `modifiers`, this will limit output to only
-   * tokens declared within the options given. If tokens are referenced by alises
+   * tokens declared within the options given. If tokens are referenced by aliases
    * outside these options, the application will fail unless `resolveAliases` is
    * set to false.
    */
@@ -370,17 +370,57 @@ export interface ResolverApplicationOptions {
    * Limit input application only to the listed modifiers.
    *
    * In combination with `sets`, this will limit output to only
-   * tokens declared within the options given. If tokens are referenced by alises
+   * tokens declared within the options given. If tokens are referenced by aliases
    * outside these options, the application will fail unless `resolveAliases` is
    * set to false.
    */
   modifiers?: string[];
 }
 
-export interface Resolver<
+export interface ResolverExtrasOperationOptions {
+  /**
+   * Resolve DTCG aliases when applying the input.
+   *
+   * @default true
+   */
+  resolveAliases?: boolean;
+  /**
+   * Limit input application only to the listed modifiers.
+   *
+   * this will limit output to only tokens declared within the options given.
+   * If the tokens are referenced by aliases outside these options,
+   * the application will fail unless `resolveAliases` is set to false.
+   */
+  modifiers?: string[];
+
+  /**
+   * Limit output to only tokens that are aliases of other tokens,
+   * only tokens that are primitives (not aliases), or both.
+   *
+   * @default 'both'
+   */
+  tokenOrigin?: 'alias' | 'primitive' | 'both';
+}
+
+export interface ResolverBase<
   Inputs extends Record<string, string[]> = Record<string, string[]>,
   Input = Record<keyof Inputs, Inputs[keyof Inputs][number]>,
 > {
+  /**
+   * Do all modifiers in this resolver operate on unique tokens?
+   *
+   * This is all-or-nothing, if even a single token is referenced in 2
+   * modifiers, the entire resolver is non-orthogonal.
+   */
+  orthogonal: boolean;
+  /**
+   * Default input for this resolver based on the default context of each modifiers
+   */
+  inputDefault: ResolverInput;
+  /**
+   * The original resolver document, simplified
+   */
+  source: ResolverSourceNormalized;
   /**
    * Supply values to modifiers to produce a final tokens set. This caches the
    * results, so calling a 2nd time with the same inputs will return the same
@@ -398,17 +438,31 @@ export interface Resolver<
   listPermutations?: () => Input[];
   /* Generate a stable ID from any input */
   getPermutationID: (input: Input) => string;
-  /** The original resolver document, simplified */
-  source: ResolverSourceNormalized;
   /** Helper function for permutations—see if a particular input is valid. Automatically applies default values. */
   isValidInput: (input: Input, throwError?: boolean) => boolean;
+}
+
+export interface Resolver extends ResolverBase {
+  /** Extra helper functions to manipulate tokens. */
+  extras: ResolverExtras;
+}
+
+export interface ResolverExtras {
   /**
-   * Do all modifiers in this resolver operate on unique tokens?
+   * Produce a token set that only contains tokens with the same value across the different modifiers passed as options.
+   * If no modifiers option is passed, it will return the tokens with the same value across all modifier permutations.
    *
-   * This is all-or-nothing, if even a single token is referenced in 2
-   * modifiers, the entire resolver is non-orthogonal.
+   * This is useful for generating a "baseline" set of tokens that are guaranteed to be present across different permutations.
    */
-  orthogonal: boolean;
+  intersection(options?: ResolverExtrasOperationOptions): TokenNormalizedSet;
+
+  /**
+   * Produce a token set that only contains tokens with unique values across the different modifiers passed as options.
+   * If no modifiers option is passed, it will return the tokens with unique values across all modifier permutations.
+   *
+   * This is useful for generating sets of tokens that have unique values across their permutations.
+   */
+  symmetricDifference(options?: ResolverExtrasOperationOptions): TokenNormalizedSet;
 }
 
 export interface ResolverSource {
@@ -557,3 +611,24 @@ export interface RefMapEntry {
 }
 
 export type RefMap = Record<string, RefMapEntry>;
+
+export interface CreateResolverOptions {
+  config: ConfigInit;
+  logger: Logger;
+  sources: InputSourceWithDocument[];
+  orthogonal: boolean;
+}
+
+export interface LoadResolverOptions {
+  config: ConfigInit;
+  logger: Logger;
+  req: (url: URL, origin: URL) => Promise<string>;
+  yamlToMomoa?: typeof ytm;
+}
+
+export interface ResolveTokensOptions {
+  input: Partial<ResolverInput>;
+  resolutionOrder: ResolverSourceNormalized['resolutionOrder'];
+  logger: Logger;
+  options?: ResolverApplicationOptions;
+}

@@ -1,13 +1,18 @@
 {
-  "$type": "color",
-  "orange": {
-    "color": {
-      "$value": "{orange}"
+  "theme-orange": {
+    "main-color": {
+      "$value": "{light-orange-400}"
+    },
+    "secondary-color": {
+      "$value": "{dark-blue-400}"
     }
   },
-  "blue": {
-    "color": {
-      "$value": "{blue}"
+  "theme-blue": {
+    "main-color": {
+      "$value": "{light-blue-400}"
+    },
+    "secondary-color": {
+      "$value": "{dark-blue-400}"
     }
   }
 }
