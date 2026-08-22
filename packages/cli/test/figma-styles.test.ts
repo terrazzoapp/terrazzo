@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
 import { defineConfig, parse } from '@terrazzo/parser';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { effectStyle, getStyles, gridStyles, textStyle } from '../src/import/figma/styles.js';
 
