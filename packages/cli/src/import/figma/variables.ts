@@ -78,31 +78,33 @@ function matches(matcher: RegExp | undefined, value: string): boolean {
   return matcher.test(value);
 }
 
-function getDirectTypeOverride(
+function getDirectTypeOverrides(
   variable: LocalVariable,
   matchers: FigmaVariableMatchers,
-): FigmaVariableTypeOverride | undefined {
+): Set<FigmaVariableTypeOverride> {
+  const overrides = new Set<FigmaVariableTypeOverride>();
   if (variable.resolvedType === 'STRING' && matches(matchers.fontFamily, variable.name)) {
-    return 'fontFamily';
+    overrides.add('fontFamily');
   }
   if (
     (variable.resolvedType === 'FLOAT' || variable.resolvedType === 'STRING') &&
     matches(matchers.fontWeight, variable.name)
   ) {
-    return 'fontWeight';
+    overrides.add('fontWeight');
   }
   if (matches(matchers.number, variable.name)) {
-    return 'legacyNumber';
+    overrides.add('legacyNumber');
   }
   if (variable.resolvedType === 'FLOAT' && matches(matchers.numberFloat, variable.name)) {
-    return 'number';
+    overrides.add('number');
   }
   if (variable.resolvedType === 'STRING' && matches(matchers.duration, variable.name)) {
-    return 'duration';
+    overrides.add('duration');
   }
   if (variable.resolvedType === 'STRING' && matches(matchers.cubicBezier, variable.name)) {
-    return 'cubicBezier';
+    overrides.add('cubicBezier');
   }
+  return overrides;
 }
 
 function parseDuration(value: unknown): DurationValue | undefined {
@@ -155,7 +157,6 @@ function parseCubicBezier(value: unknown): CubicBezierValue | undefined {
 function applyTypeOverride(
   type: FigmaVariableTypeOverride,
   value: unknown,
-  variableName = 'value',
 ): { $type: FigmaVariableTokenType; $value: unknown } | undefined {
   switch (type) {
     case 'cubicBezier': {
@@ -180,9 +181,10 @@ function applyTypeOverride(
     }
     case 'legacyNumber': {
       if (typeof value === 'object') {
-        throw new TypeError(`Can’t coerce ${variableName} into number type.`);
+        return;
       }
-      return { $type: 'number', $value: Number(value) };
+      const number = Number(value);
+      return Number.isFinite(number) ? { $type: 'number', $value: number } : undefined;
     }
     case 'number': {
       return typeof value === 'number' ? { $type: type, $value: value } : undefined;
@@ -243,11 +245,12 @@ function getTypeOverrides(
       }
     }
 
-    const directOverrides = new Set(
-      component
-        .map((componentID) => getDirectTypeOverride(variables[componentID]!, matchers))
-        .filter((override): override is FigmaVariableTypeOverride => override !== undefined),
-    );
+    const directOverrides = new Set<FigmaVariableTypeOverride>();
+    for (const componentID of component) {
+      for (const override of getDirectTypeOverrides(variables[componentID]!, matchers)) {
+        directOverrides.add(override);
+      }
+    }
     if (directOverrides.has('legacyNumber') && directOverrides.has('number')) {
       directOverrides.delete('number');
     }
@@ -267,7 +270,7 @@ function getTypeOverrides(
     for (const componentID of component) {
       const variable = variables[componentID]!;
       for (const value of Object.values(variable.valuesByMode)) {
-        if (getAliasID(value) || applyTypeOverride(typeOverride!, value, variable.name)) {
+        if (getAliasID(value) || applyTypeOverride(typeOverride!, value)) {
           continue;
         }
         logger.warn({
@@ -415,7 +418,7 @@ export async function getVariables(
           continue;
         }
       } else if (typeOverride) {
-        const overriddenToken = applyTypeOverride(typeOverride, value, variable.name);
+        const overriddenToken = applyTypeOverride(typeOverride, value);
         if (overriddenToken) {
           tokenBase.$type = overriddenToken.$type;
           tokenBase.$value = overriddenToken.$value;

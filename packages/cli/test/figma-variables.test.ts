@@ -304,6 +304,7 @@ describe('getVariables', () => {
       logger: { error() {}, warn() {}, info() {}, success() {} } as never,
       matchers: {
         number: /^Layer\//,
+        numberFloat: /^Layer\//,
       },
     });
 
@@ -317,6 +318,207 @@ describe('getVariables', () => {
     });
     expect(legacyResult.code.sets.boolean.sources[0].layer.order).toEqual(
       expect.objectContaining({ $type: 'number', $value: 1 }),
+    );
+  });
+
+  it('limits legacy number coercion to finite alias-component values', async () => {
+    const collectionID = 'VariableCollectionId:legacy-numbers';
+    const cases = [
+      {
+        key: 'string',
+        resolvedType: 'STRING',
+        value: '42',
+        expectedType: 'number',
+        expectedValue: 42,
+      },
+      {
+        key: 'boolean',
+        resolvedType: 'BOOLEAN',
+        value: false,
+        expectedType: 'number',
+        expectedValue: 0,
+      },
+      {
+        key: 'invalid',
+        resolvedType: 'STRING',
+        value: 'not-a-number',
+        expectedType: 'string',
+        expectedValue: 'not-a-number',
+      },
+      {
+        key: 'nonfinite',
+        resolvedType: 'STRING',
+        value: '1e999',
+        expectedType: 'string',
+        expectedValue: '1e999',
+      },
+    ];
+    const variables: Record<string, object> = {};
+    for (const testCase of cases) {
+      const leafID = `VariableID:legacy-${testCase.key}-leaf`;
+      const aliasID = `VariableID:legacy-${testCase.key}-alias`;
+      variables[leafID] = {
+        id: leafID,
+        name: `Legacy/${testCase.key} raw`,
+        variableCollectionId: collectionID,
+        resolvedType: testCase.resolvedType,
+        valuesByMode: { [MODE_ID]: testCase.value },
+        description: '',
+        codeSyntax: {},
+      };
+      variables[aliasID] = {
+        id: aliasID,
+        name: `Legacy/${testCase.key} alias`,
+        variableCollectionId: collectionID,
+        resolvedType: testCase.resolvedType,
+        valuesByMode: { [MODE_ID]: { type: 'VARIABLE_ALIAS', id: leafID } },
+        description: '',
+        codeSyntax: {},
+      };
+    }
+    mockVariableResponses({
+      local: {
+        status: 200,
+        error: false,
+        meta: {
+          variableCollections: {
+            [collectionID]: {
+              defaultModeId: MODE_ID,
+              id: collectionID,
+              name: 'legacy',
+              remote: false,
+              modes: [{ modeId: MODE_ID, name: 'default' }],
+              hiddenFromPublishing: false,
+            },
+          },
+          variables,
+        },
+      },
+      published: {
+        status: 200,
+        error: false,
+        meta: {
+          variables: Object.fromEntries(Object.keys(variables).map((id) => [id, { id }])),
+        },
+      },
+    });
+    const logger = { error() {}, warn: vi.fn(), info() {}, success() {} };
+
+    const result = await getVariables(FILE_KEY, {
+      logger: logger as never,
+      matchers: { number: /^Legacy\// },
+    });
+    const legacy = result.code.sets.legacy.sources[0].legacy;
+
+    for (const testCase of cases) {
+      const rawName = `${testCase.key}Raw`;
+      const aliasName = `${testCase.key}Alias`;
+      expect(legacy[rawName]).toEqual(
+        expect.objectContaining({
+          $type: testCase.expectedType,
+          $value: testCase.expectedValue,
+        }),
+      );
+      expect(legacy[aliasName]).toEqual(
+        expect.objectContaining({
+          $type: testCase.expectedType,
+          $value: `{legacy.${rawName}}`,
+        }),
+      );
+    }
+    expect(logger.warn).toHaveBeenCalledTimes(2);
+    expect(JSON.stringify(result.code)).not.toContain('"$value":null');
+  });
+
+  it('preserves mixed-mode alias components when direct matchers conflict', async () => {
+    const collectionID = 'VariableCollectionId:conflicts';
+    const alternateModeID = '1:2';
+    const sourceID = 'VariableID:conflict-source';
+    const targetID = 'VariableID:conflict-target';
+    const variables = {
+      [sourceID]: {
+        id: sourceID,
+        name: 'Motion/fontFamily',
+        variableCollectionId: collectionID,
+        resolvedType: 'STRING',
+        valuesByMode: {
+          [MODE_ID]: '150ms',
+          [alternateModeID]: { type: 'VARIABLE_ALIAS', id: targetID },
+        },
+        description: '',
+        codeSyntax: {},
+      },
+      [targetID]: {
+        id: targetID,
+        name: 'Motion/raw value',
+        variableCollectionId: collectionID,
+        resolvedType: 'STRING',
+        valuesByMode: {
+          [MODE_ID]: '150ms',
+          [alternateModeID]: '200ms',
+        },
+        description: '',
+        codeSyntax: {},
+      },
+    };
+    mockVariableResponses({
+      local: {
+        status: 200,
+        error: false,
+        meta: {
+          variableCollections: {
+            [collectionID]: {
+              defaultModeId: MODE_ID,
+              id: collectionID,
+              name: 'conflicts',
+              remote: false,
+              modes: [
+                { modeId: MODE_ID, name: 'default' },
+                { modeId: alternateModeID, name: 'alternate' },
+              ],
+              hiddenFromPublishing: false,
+            },
+          },
+          variables,
+        },
+      },
+      published: {
+        status: 200,
+        error: false,
+        meta: {
+          variables: Object.fromEntries(Object.keys(variables).map((id) => [id, { id }])),
+        },
+      },
+    });
+    const logger = { error() {}, warn: vi.fn(), info() {}, success() {} };
+
+    const result = await getVariables(FILE_KEY, {
+      logger: logger as never,
+      matchers: {
+        fontFamily: /\/fontFamily$/,
+        duration: /fontFamily$/,
+        number: /fontFamily$/,
+        cubicBezier: /fontFamily$/,
+      },
+    });
+    const defaultTokens = result.code.modifiers.conflicts.contexts.default[0].motion;
+    const alternateTokens = result.code.modifiers.conflicts.contexts.alternate[0].motion;
+
+    expect(defaultTokens.fontFamily).toEqual(
+      expect.objectContaining({ $type: 'string', $value: '150ms' }),
+    );
+    expect(defaultTokens.rawValue).toEqual(
+      expect.objectContaining({ $type: 'string', $value: '150ms' }),
+    );
+    expect(alternateTokens.fontFamily).toEqual(
+      expect.objectContaining({ $type: 'string', $value: '{motion.rawValue}' }),
+    );
+    expect(alternateTokens.rawValue).toEqual(
+      expect.objectContaining({ $type: 'string', $value: '200ms' }),
+    );
+    expect(logger.warn).toHaveBeenCalledOnce();
+    expect(logger.warn).toHaveBeenCalledWith(
+      expect.objectContaining({ message: expect.stringContaining('Conflicting type overrides') }),
     );
   });
 

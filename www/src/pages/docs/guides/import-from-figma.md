@@ -138,14 +138,14 @@ npx tz import [file] \
 The flags are RegEx patterns, so passing in a string will return any match. You can also use slashes to get more specific with token targets. Matching is constrained by the Figma Variable’s resolved type:
 
 - `--number-float-names` overrides only `FLOAT` Variables. `STRING` and `BOOLEAN` Variables with the same name remain their original type.
-- `--number-names` is deprecated but retains its historical behavior for compatibility: matching primitive `FLOAT`, `STRING`, and `BOOLEAN` values are coerced with JavaScript’s `Number()` function.
+- `--number-names` is deprecated but retains its historical behavior for compatibility: matching primitive `FLOAT`, `STRING`, and `BOOLEAN` values are coerced with JavaScript’s `Number()` function when the result is finite. Invalid or non-finite results remain their original Figma type and value. If both number flags match a `FLOAT` Variable, legacy `--number-names` behavior wins explicitly.
 - `--font-family-names`, `--duration-names`, and `--cubic-bezier-names` only override `STRING` Variables.
 - `--font-weight-names` accepts `FLOAT` and `STRING` Variables for backward compatibility.
 - Font weights must be numbers from 1 through 1000 or a DTCG font-weight keyword such as `normal`, `semi-bold`, or `bold`. Invalid matches remain their original Figma type and value.
 - Duration values must use `ms` or `s` units, such as `150ms`, `-0.2s`, or `+.5ms`.
 - Cubic Bézier values must use CSS `cubic-bezier(x1, y1, x2, y2)` syntax. The first and third control points must be between 0 and 1.
 
-Type overrides propagate through alias chains, even when only one differently named Variable matches. This keeps aliases and their targets on the same token type. Values that match a name but can’t be parsed remain their original Figma type and value.
+Type overrides propagate through alias chains, even when only one differently named Variable matches. This keeps aliases and their targets on the same token type. Values that match a name but can’t be parsed remain their original Figma type and value. If incompatible matcher flags overlap on one Variable or anywhere in an alias chain, Terrazzo warns and preserves the Figma types for the entire chain.
 
 Generic `STRING` and `BOOLEAN` Variables are retained for compatibility, but those token types are outside the strict DTCG 2025.10 type enum. A resolver containing them is therefore not guaranteed to pass strict DTCG schema validation unless they are mapped to standard types or removed.
 
