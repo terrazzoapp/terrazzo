@@ -31,6 +31,61 @@ describe('importFromFigma options', () => {
     expect(result.code.resolutionOrder).toEqual(resolutionOrder);
   });
 
+  it('regenerates discovery order when explicit resolution order is empty', async () => {
+    vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
+    vi.spyOn(globalThis, 'fetch').mockImplementation((input) => {
+      const responses: Record<string, object> = {
+        [`https://api.figma.com/v1/files/${FILE_KEY}/styles`]: {
+          error: false,
+          status: 200,
+          meta: {
+            styles: [
+              {
+                key: 'published-style-key',
+                file_key: FILE_KEY,
+                node_id: STYLE_ID,
+                style_type: 'EFFECT',
+                name: 'elevation/default',
+                description: '',
+                created_at: '2026-01-01T00:00:00Z',
+                updated_at: '2026-01-01T00:00:00Z',
+                user: {},
+              },
+            ],
+          },
+        },
+        [`https://api.figma.com/v1/files/${FILE_KEY}/nodes?ids=${STYLE_ID}`]: {
+          nodes: {
+            [STYLE_ID]: {
+              document: {
+                effects: [
+                  {
+                    type: 'DROP_SHADOW',
+                    visible: true,
+                    color: { r: 0, g: 0, b: 0, a: 0.25 },
+                    blendMode: 'NORMAL',
+                    offset: { x: 0, y: 2 },
+                    radius: 4,
+                  },
+                ],
+              },
+            },
+          },
+        },
+      };
+      return Promise.resolve(Response.json(responses[input.toString()]));
+    });
+
+    const result = await importFromFigma({
+      url: FILE_URL,
+      logger,
+      resolutionOrder: [],
+      skipVariables: true,
+    });
+
+    expect(result.code.resolutionOrder).toEqual([{ $ref: '#/sets/styles' }]);
+  });
+
   it.each([
     {
       name: 'published',

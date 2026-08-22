@@ -65,7 +65,10 @@ export async function importFromFigma({
     code: {
       $schema: 'https://www.designtokens.org/schemas/2025.10/resolver.json',
       version: '2025.10',
-      resolutionOrder: resolutionOrder?.map((entry) => ({ ...entry })) ?? [],
+      resolutionOrder:
+        resolutionOrder && resolutionOrder.length > 0
+          ? resolutionOrder.map((entry) => ({ ...entry }))
+          : [],
       sets: {},
       modifiers: {},
     },
@@ -109,7 +112,7 @@ export async function importFromFigma({
     logger.error({ group: 'import', message: (error as Error).message });
   }
 
-  if (resolutionOrder === undefined) {
+  if (!resolutionOrder?.length) {
     for (const group of ['sets', 'modifiers'] as const) {
       for (const name of Object.keys(result.code[group])) {
         result.code.resolutionOrder.push({ $ref: `#/${group}/${name}` });
