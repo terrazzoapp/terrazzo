@@ -15,7 +15,18 @@ export type FigmaVariableTokenType =
   | 'fontWeight'
   | 'number';
 
-export type FigmaVariableMatchers = Partial<Record<FigmaVariableTokenType, RegExp>>;
+export interface FigmaVariableMatchers {
+  cubicBezier?: RegExp;
+  duration?: RegExp;
+  fontFamily?: RegExp;
+  fontWeight?: RegExp;
+  /** @deprecated Coerces any matching primitive value with Number(). */
+  number?: RegExp;
+  /** Overrides only matching FLOAT Variables as number tokens. */
+  numberFloat?: RegExp;
+}
+
+type FigmaVariableTypeOverride = FigmaVariableTokenType | 'legacyNumber';
 
 const FIGMA_TYPE_MAP: Record<VariableResolvedDataType, string> = {
   BOOLEAN: 'boolean',
@@ -38,26 +49,58 @@ function getAliasID(value: unknown): string | undefined {
   return undefined;
 }
 
-function getTypeOverride(
+const FONT_WEIGHT_VALUES = new Set([
+  'thin',
+  'hairline',
+  'extra-light',
+  'ultra-light',
+  'light',
+  'normal',
+  'regular',
+  'book',
+  'medium',
+  'semi-bold',
+  'demi-bold',
+  'bold',
+  'extra-bold',
+  'ultra-bold',
+  'black',
+  'heavy',
+  'extra-black',
+  'ultra-black',
+]);
+
+function matches(matcher: RegExp | undefined, value: string): boolean {
+  if (!matcher) {
+    return false;
+  }
+  matcher.lastIndex = 0;
+  return matcher.test(value);
+}
+
+function getDirectTypeOverride(
   variable: LocalVariable,
   matchers: FigmaVariableMatchers,
-): FigmaVariableTokenType | undefined {
-  if (variable.resolvedType === 'STRING' && matchers.fontFamily?.test(variable.name)) {
+): FigmaVariableTypeOverride | undefined {
+  if (variable.resolvedType === 'STRING' && matches(matchers.fontFamily, variable.name)) {
     return 'fontFamily';
   }
   if (
     (variable.resolvedType === 'FLOAT' || variable.resolvedType === 'STRING') &&
-    matchers.fontWeight?.test(variable.name)
+    matches(matchers.fontWeight, variable.name)
   ) {
     return 'fontWeight';
   }
-  if (variable.resolvedType === 'FLOAT' && matchers.number?.test(variable.name)) {
+  if (matches(matchers.number, variable.name)) {
+    return 'legacyNumber';
+  }
+  if (variable.resolvedType === 'FLOAT' && matches(matchers.numberFloat, variable.name)) {
     return 'number';
   }
-  if (variable.resolvedType === 'STRING' && matchers.duration?.test(variable.name)) {
+  if (variable.resolvedType === 'STRING' && matches(matchers.duration, variable.name)) {
     return 'duration';
   }
-  if (variable.resolvedType === 'STRING' && matchers.cubicBezier?.test(variable.name)) {
+  if (variable.resolvedType === 'STRING' && matches(matchers.cubicBezier, variable.name)) {
     return 'cubicBezier';
   }
 }
@@ -66,7 +109,7 @@ function parseDuration(value: unknown): DurationValue | undefined {
   if (typeof value !== 'string') {
     return;
   }
-  const match = value.match(/^\s*(\d+(?:\.\d+)?|\.\d+)\s*(ms|s)\s*$/i);
+  const match = value.match(/^\s*([+-]?(?:\d+(?:\.\d+)?|\.\d+))\s*(ms|s)\s*$/i);
   if (!match) {
     return;
   }
@@ -110,8 +153,9 @@ function parseCubicBezier(value: unknown): CubicBezierValue | undefined {
 }
 
 function applyTypeOverride(
-  type: FigmaVariableTokenType,
+  type: FigmaVariableTypeOverride,
   value: unknown,
+  variableName = 'value',
 ): { $type: FigmaVariableTokenType; $value: unknown } | undefined {
   switch (type) {
     case 'cubicBezier': {
@@ -126,7 +170,19 @@ function applyTypeOverride(
       return { $type: type, $value: String(value).split(',') };
     }
     case 'fontWeight': {
-      return { $type: type, $value: value };
+      if (
+        (typeof value === 'number' && Number.isFinite(value) && value >= 1 && value <= 1000) ||
+        (typeof value === 'string' && FONT_WEIGHT_VALUES.has(value))
+      ) {
+        return { $type: type, $value: value };
+      }
+      return;
+    }
+    case 'legacyNumber': {
+      if (typeof value === 'object') {
+        throw new TypeError(`Can’t coerce ${variableName} into number type.`);
+      }
+      return { $type: 'number', $value: Number(value) };
     }
     case 'number': {
       return typeof value === 'number' ? { $type: type, $value: value } : undefined;
@@ -136,6 +192,98 @@ function applyTypeOverride(
       throw new TypeError(`Unknown Figma Variable type override: ${exhaustiveType}`);
     }
   }
+}
+
+function getTokenType(type: FigmaVariableTypeOverride): FigmaVariableTokenType {
+  return type === 'legacyNumber' ? 'number' : type;
+}
+
+function getTypeOverrides(
+  variables: Record<string, LocalVariable>,
+  matchers: FigmaVariableMatchers,
+  logger: Logger,
+): Map<string, FigmaVariableTypeOverride> {
+  const neighbors = new Map<string, Set<string>>();
+  for (const [id, variable] of Object.entries(variables)) {
+    if (!neighbors.has(id)) {
+      neighbors.set(id, new Set());
+    }
+    for (const value of Object.values(variable.valuesByMode)) {
+      const aliasID = getAliasID(value);
+      if (!aliasID || !variables[aliasID]) {
+        continue;
+      }
+      neighbors.get(id)!.add(aliasID);
+      if (!neighbors.has(aliasID)) {
+        neighbors.set(aliasID, new Set());
+      }
+      neighbors.get(aliasID)!.add(id);
+    }
+  }
+
+  const resolvedOverrides = new Map<string, FigmaVariableTypeOverride>();
+  const visited = new Set<string>();
+  for (const id of Object.keys(variables)) {
+    if (visited.has(id)) {
+      continue;
+    }
+    const component: string[] = [];
+    const pending = [id];
+    while (pending.length > 0) {
+      const nextID = pending.pop()!;
+      if (visited.has(nextID)) {
+        continue;
+      }
+      visited.add(nextID);
+      component.push(nextID);
+      for (const neighbor of neighbors.get(nextID) || []) {
+        if (!visited.has(neighbor)) {
+          pending.push(neighbor);
+        }
+      }
+    }
+
+    const directOverrides = new Set(
+      component
+        .map((componentID) => getDirectTypeOverride(variables[componentID]!, matchers))
+        .filter((override): override is FigmaVariableTypeOverride => override !== undefined),
+    );
+    if (directOverrides.has('legacyNumber') && directOverrides.has('number')) {
+      directOverrides.delete('number');
+    }
+    if (directOverrides.size === 0) {
+      continue;
+    }
+    if (directOverrides.size > 1) {
+      logger.warn({
+        group: 'import',
+        message: `Conflicting type overrides in Figma Variable alias chain: ${component.map((componentID) => variables[componentID]!.name).join(', ')}. Preserving Figma types.`,
+      });
+      continue;
+    }
+
+    const [typeOverride] = directOverrides;
+    let canApplyToComponent = true;
+    for (const componentID of component) {
+      const variable = variables[componentID]!;
+      for (const value of Object.values(variable.valuesByMode)) {
+        if (getAliasID(value) || applyTypeOverride(typeOverride!, value, variable.name)) {
+          continue;
+        }
+        logger.warn({
+          group: 'import',
+          message: `Could not convert ${variable.name} to ${getTokenType(typeOverride!)}; preserving its Figma ${variable.resolvedType} type.`,
+        });
+        canApplyToComponent = false;
+      }
+    }
+    if (canApplyToComponent) {
+      for (const componentID of component) {
+        resolvedOverrides.set(componentID, typeOverride!);
+      }
+    }
+  }
+  return resolvedOverrides;
 }
 
 /** /v1/files/:file_key/variables/published | /v1/files/:file_key/variables/local */
@@ -206,6 +354,7 @@ export async function getVariables(
   }
 
   const remoteIDs = new Set<string>();
+  const typeOverrides = getTypeOverrides(finalVariables, matchers, logger);
 
   for (const id of Object.keys(finalVariables)) {
     const variable = finalVariables[id]!;
@@ -223,7 +372,7 @@ export async function getVariables(
       result.code.sets[collectionName] = { sources: [{}] };
     }
 
-    const typeOverride = getTypeOverride(variable, matchers);
+    const typeOverride = typeOverrides.get(id);
 
     for (const [modeID, value] of Object.entries(variable.valuesByMode)) {
       const modeName = modeIDToName[modeID]!;
@@ -257,21 +406,23 @@ export async function getVariables(
       const isAliasOfID = getAliasID(value);
       if (isAliasOfID) {
         if (allVariables[isAliasOfID]) {
-          tokenBase.$type = typeOverride || FIGMA_TYPE_MAP[variable.resolvedType];
+          tokenBase.$type = typeOverride
+            ? getTokenType(typeOverride)
+            : FIGMA_TYPE_MAP[variable.resolvedType];
           tokenBase.$value = `{${allVariables[isAliasOfID].name.split('/').map(formatName).join('.')}}`;
         } else {
           remoteIDs.add(isAliasOfID);
           continue;
         }
       } else if (typeOverride) {
-        const overriddenToken = applyTypeOverride(typeOverride, value);
+        const overriddenToken = applyTypeOverride(typeOverride, value, variable.name);
         if (overriddenToken) {
           tokenBase.$type = overriddenToken.$type;
           tokenBase.$value = overriddenToken.$value;
         } else {
           logger.warn({
             group: 'import',
-            message: `Could not convert ${variable.name} to ${typeOverride}; preserving its Figma ${variable.resolvedType} type.`,
+            message: `Could not convert ${variable.name} to ${getTokenType(typeOverride)}; preserving its Figma ${variable.resolvedType} type.`,
           });
         }
       }

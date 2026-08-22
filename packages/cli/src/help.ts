@@ -15,7 +15,7 @@ export function helpCmd() {
     lab              Manage your tokens with a web interface
     import [path]    Import from a Figma Design file
       --o [file]     Save imported JSON
-      --unpublished  Include unpublished Variables
+      --unpublished  Include unpublished Styles and Variables
       --skip-styles  Don’t import styles
       --skip-variables
                      Don’t import variables
@@ -24,6 +24,8 @@ export function helpCmd() {
       --font-weight-names [regex]
                      Override matching FLOAT or STRING Variables as fontWeight
       --number-names [regex]
+                     Deprecated: coerce matching primitives as number
+      --number-float-names [regex]
                      Override matching FLOAT Variables as number
       --duration-names [regex]
                      Override matching STRING Variables as duration

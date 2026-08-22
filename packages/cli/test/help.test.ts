@@ -17,7 +17,10 @@ describe('helpCmd', () => {
     expect(output).toContain('--font-family-names [regex]');
     expect(output).toContain('--font-weight-names [regex]');
     expect(output).toContain('--number-names [regex]');
+    expect(output).toContain('Deprecated: coerce matching primitives as number');
+    expect(output).toContain('--number-float-names [regex]');
     expect(output).toContain('--duration-names [regex]');
     expect(output).toContain('--cubic-bezier-names [regex]');
+    expect(output).toContain('Include unpublished Styles and Variables');
   });
 });

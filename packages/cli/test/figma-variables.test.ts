@@ -191,7 +191,7 @@ describe('getVariables', () => {
     });
   });
 
-  it('applies number name matching only to FLOAT variables and aliases', async () => {
+  it('offers FLOAT-only number matching without changing legacy coercion', async () => {
     const floatCollectionID = 'VariableCollectionId:float';
     const stringCollectionID = 'VariableCollectionId:string';
     const booleanCollectionID = 'VariableCollectionId:boolean';
@@ -284,7 +284,7 @@ describe('getVariables', () => {
       matchers: {
         fontFamily: undefined,
         fontWeight: undefined,
-        number: /^Layer\//,
+        numberFloat: /^Layer\//,
       },
     });
 
@@ -299,11 +299,34 @@ describe('getVariables', () => {
     expect(result.code.sets.boolean.sources[0].layer.order).toEqual(
       expect.objectContaining({ $type: 'boolean', $value: true }),
     );
+
+    const legacyResult = await getVariables(FILE_KEY, {
+      logger: { error() {}, warn() {}, info() {}, success() {} } as never,
+      matchers: {
+        number: /^Layer\//,
+      },
+    });
+
+    expect(legacyResult.code.sets.float.sources[0].layer).toEqual({
+      order: expect.objectContaining({ $type: 'number', $value: 42 }),
+      orderAlias: expect.objectContaining({ $type: 'number', $value: '{layer.order}' }),
+    });
+    expect(legacyResult.code.sets.string.sources[0].layer).toEqual({
+      order: expect.objectContaining({ $type: 'number', $value: 42 }),
+      orderAlias: expect.objectContaining({ $type: 'number', $value: '{layer.order}' }),
+    });
+    expect(legacyResult.code.sets.boolean.sources[0].layer.order).toEqual(
+      expect.objectContaining({ $type: 'number', $value: 1 }),
+    );
   });
 
   it('maps valid duration and cubic-bezier strings without coercing incompatible values', async () => {
     const collectionID = 'VariableCollectionId:motion';
     const durationID = 'VariableID:duration';
+    const negativeDurationID = 'VariableID:negative-duration';
+    const positiveDurationID = 'VariableID:positive-duration';
+    const decimalDurationID = 'VariableID:decimal-duration';
+    const invalidDurationID = 'VariableID:invalid-duration';
     const numericDurationID = 'VariableID:numeric-duration';
     const easingID = 'VariableID:easing';
     const invalidEasingID = 'VariableID:invalid-easing';
@@ -314,6 +337,42 @@ describe('getVariables', () => {
         variableCollectionId: collectionID,
         resolvedType: 'STRING',
         valuesByMode: { [MODE_ID]: '150ms' },
+        description: '',
+        codeSyntax: {},
+      },
+      [negativeDurationID]: {
+        id: negativeDurationID,
+        name: 'Motion/duration negative',
+        variableCollectionId: collectionID,
+        resolvedType: 'STRING',
+        valuesByMode: { [MODE_ID]: '-150ms' },
+        description: '',
+        codeSyntax: {},
+      },
+      [positiveDurationID]: {
+        id: positiveDurationID,
+        name: 'Motion/duration positive',
+        variableCollectionId: collectionID,
+        resolvedType: 'STRING',
+        valuesByMode: { [MODE_ID]: '+0.2s' },
+        description: '',
+        codeSyntax: {},
+      },
+      [decimalDurationID]: {
+        id: decimalDurationID,
+        name: 'Motion/duration decimal',
+        variableCollectionId: collectionID,
+        resolvedType: 'STRING',
+        valuesByMode: { [MODE_ID]: '.5ms' },
+        description: '',
+        codeSyntax: {},
+      },
+      [invalidDurationID]: {
+        id: invalidDurationID,
+        name: 'Motion/duration invalid',
+        variableCollectionId: collectionID,
+        resolvedType: 'STRING',
+        valuesByMode: { [MODE_ID]: '1e3ms' },
         description: '',
         codeSyntax: {},
       },
@@ -385,6 +444,22 @@ describe('getVariables', () => {
         $type: 'duration',
         $value: { value: 150, unit: 'ms' },
       }),
+      durationNegative: expect.objectContaining({
+        $type: 'duration',
+        $value: { value: -150, unit: 'ms' },
+      }),
+      durationPositive: expect.objectContaining({
+        $type: 'duration',
+        $value: { value: 0.2, unit: 's' },
+      }),
+      durationDecimal: expect.objectContaining({
+        $type: 'duration',
+        $value: { value: 0.5, unit: 'ms' },
+      }),
+      durationInvalid: expect.objectContaining({
+        $type: 'string',
+        $value: '1e3ms',
+      }),
       durationNumeric: expect.objectContaining({
         $type: 'dimension',
         $value: { value: 150, unit: 'px' },
@@ -398,5 +473,237 @@ describe('getVariables', () => {
         $value: 'ease-in',
       }),
     });
+  });
+
+  it('propagates overrides through mismatched-name multi-hop aliases with cycle safety', async () => {
+    const collectionID = 'VariableCollectionId:aliases';
+    const chains = [
+      {
+        key: 'duration',
+        resolvedType: 'STRING',
+        value: '-25ms',
+        expectedType: 'duration',
+      },
+      {
+        key: 'cubicBezier',
+        resolvedType: 'STRING',
+        value: 'cubic-bezier(0.1, 0.2, 0.3, 1)',
+        expectedType: 'cubicBezier',
+      },
+      {
+        key: 'fontFamily',
+        resolvedType: 'STRING',
+        value: 'Inter, Arial',
+        expectedType: 'fontFamily',
+      },
+      {
+        key: 'fontWeight',
+        resolvedType: 'FLOAT',
+        value: 500,
+        expectedType: 'fontWeight',
+      },
+      {
+        key: 'number',
+        resolvedType: 'FLOAT',
+        value: 4,
+        expectedType: 'number',
+      },
+    ];
+    const variables: Record<string, object> = {};
+    for (const chain of chains) {
+      const sourceID = `VariableID:${chain.key}-source`;
+      const middleID = `VariableID:${chain.key}-middle`;
+      const targetID = `VariableID:${chain.key}-target`;
+      variables[sourceID] = {
+        id: sourceID,
+        name: `${chain.key}/source`,
+        variableCollectionId: collectionID,
+        resolvedType: chain.resolvedType,
+        valuesByMode: { [MODE_ID]: { type: 'VARIABLE_ALIAS', id: middleID } },
+        description: '',
+        codeSyntax: {},
+      };
+      variables[middleID] = {
+        id: middleID,
+        name: `${chain.key}/different middle name`,
+        variableCollectionId: collectionID,
+        resolvedType: chain.resolvedType,
+        valuesByMode: { [MODE_ID]: { type: 'VARIABLE_ALIAS', id: targetID } },
+        description: '',
+        codeSyntax: {},
+      };
+      variables[targetID] = {
+        id: targetID,
+        name: `${chain.key}/raw target`,
+        variableCollectionId: collectionID,
+        resolvedType: chain.resolvedType,
+        valuesByMode: { [MODE_ID]: chain.value },
+        description: '',
+        codeSyntax: {},
+      };
+    }
+    const cycleSourceID = 'VariableID:cycle-source';
+    const cycleTargetID = 'VariableID:cycle-target';
+    variables[cycleSourceID] = {
+      id: cycleSourceID,
+      name: 'cycle/source',
+      variableCollectionId: collectionID,
+      resolvedType: 'STRING',
+      valuesByMode: { [MODE_ID]: { type: 'VARIABLE_ALIAS', id: cycleTargetID } },
+      description: '',
+      codeSyntax: {},
+    };
+    variables[cycleTargetID] = {
+      id: cycleTargetID,
+      name: 'cycle/different target',
+      variableCollectionId: collectionID,
+      resolvedType: 'STRING',
+      valuesByMode: { [MODE_ID]: { type: 'VARIABLE_ALIAS', id: cycleSourceID } },
+      description: '',
+      codeSyntax: {},
+    };
+    mockVariableResponses({
+      local: {
+        status: 200,
+        error: false,
+        meta: {
+          variableCollections: {
+            [collectionID]: {
+              defaultModeId: MODE_ID,
+              id: collectionID,
+              name: 'aliases',
+              remote: false,
+              modes: [{ modeId: MODE_ID, name: 'default' }],
+              hiddenFromPublishing: false,
+            },
+          },
+          variables,
+        },
+      },
+      published: {
+        status: 200,
+        error: false,
+        meta: {
+          variables: Object.fromEntries(Object.keys(variables).map((id) => [id, { id }])),
+        },
+      },
+    });
+
+    const result = await getVariables(FILE_KEY, {
+      logger: { error() {}, warn() {}, info() {}, success() {} } as never,
+      matchers: {
+        duration: /^(?:duration|cycle)\/source$/,
+        cubicBezier: /^cubicBezier\/source$/,
+        fontFamily: /^fontFamily\/source$/,
+        fontWeight: /^fontWeight\/source$/,
+        numberFloat: /^number\/source$/,
+      },
+    });
+
+    for (const { key, expectedType } of chains) {
+      const group = result.code.sets.aliases.sources[0][key];
+      expect(group.source.$type).toBe(expectedType);
+      expect(group.differentMiddleName.$type).toBe(expectedType);
+      expect(group.rawTarget.$type).toBe(expectedType);
+    }
+    expect(result.code.sets.aliases.sources[0].cycle.source.$type).toBe('duration');
+    expect(result.code.sets.aliases.sources[0].cycle.differentTarget.$type).toBe('duration');
+  });
+
+  it('accepts only DTCG fontWeight values and preserves invalid values', async () => {
+    const collectionID = 'VariableCollectionId:font-weight';
+    const values = [
+      ['minimum', 'FLOAT', 1],
+      ['maximum', 'FLOAT', 1000],
+      ['too low', 'FLOAT', 0],
+      ['too high', 'FLOAT', 1001],
+      ['allowed string', 'STRING', 'semi-bold'],
+      ['invalid string', 'STRING', 'Semi Bold'],
+      ['numeric string', 'STRING', '400'],
+    ] as const;
+    const variables: Record<string, object> = Object.fromEntries(
+      values.map(([name, resolvedType, value]) => {
+        const id = `VariableID:font-weight-${name}`;
+        return [
+          id,
+          {
+            id,
+            name: `weight/${name}`,
+            variableCollectionId: collectionID,
+            resolvedType,
+            valuesByMode: { [MODE_ID]: value },
+            description: '',
+            codeSyntax: {},
+          },
+        ];
+      }),
+    );
+    const invalidAliasID = 'VariableID:font-weight-invalid-alias';
+    variables[invalidAliasID] = {
+      id: invalidAliasID,
+      name: 'weight/invalid alias',
+      variableCollectionId: collectionID,
+      resolvedType: 'STRING',
+      valuesByMode: {
+        [MODE_ID]: { type: 'VARIABLE_ALIAS', id: 'VariableID:font-weight-invalid string' },
+      },
+      description: '',
+      codeSyntax: {},
+    };
+    mockVariableResponses({
+      local: {
+        status: 200,
+        error: false,
+        meta: {
+          variableCollections: {
+            [collectionID]: {
+              defaultModeId: MODE_ID,
+              id: collectionID,
+              name: 'font weights',
+              remote: false,
+              modes: [{ modeId: MODE_ID, name: 'default' }],
+              hiddenFromPublishing: false,
+            },
+          },
+          variables,
+        },
+      },
+      published: {
+        status: 200,
+        error: false,
+        meta: {
+          variables: Object.fromEntries(Object.keys(variables).map((id) => [id, { id }])),
+        },
+      },
+    });
+    const logger = { error() {}, warn: vi.fn(), info() {}, success() {} };
+
+    const result = await getVariables(FILE_KEY, {
+      logger: logger as never,
+      matchers: { fontWeight: /^weight\// },
+    });
+    const weights = result.code.sets.fontWeights.sources[0].weight;
+
+    expect(weights.minimum).toEqual(expect.objectContaining({ $type: 'fontWeight', $value: 1 }));
+    expect(weights.maximum).toEqual(expect.objectContaining({ $type: 'fontWeight', $value: 1000 }));
+    expect(weights.allowedString).toEqual(
+      expect.objectContaining({ $type: 'fontWeight', $value: 'semi-bold' }),
+    );
+    expect(weights.tooLow).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: { value: 0, unit: 'px' } }),
+    );
+    expect(weights.tooHigh).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: { value: 1001, unit: 'px' } }),
+    );
+    expect(weights.invalidString).toEqual(
+      expect.objectContaining({ $type: 'string', $value: 'Semi Bold' }),
+    );
+    expect(weights.numericString).toEqual(
+      expect.objectContaining({ $type: 'string', $value: '400' }),
+    );
+    expect(weights.invalidAlias).toEqual(
+      expect.objectContaining({ $type: 'string', $value: '{weight.invalidString}' }),
+    );
+    expect(logger.warn).toHaveBeenCalledTimes(4);
   });
 });

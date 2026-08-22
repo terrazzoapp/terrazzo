@@ -51,6 +51,7 @@ export async function importCmd({ flags, positionals, logger }: ImportCmdOptions
       fontFamilyNames: flags['font-family-names'],
       fontWeightNames: flags['font-weight-names'],
       numberNames: flags['number-names'],
+      numberFloatNames: flags['number-float-names'],
       durationNames: flags['duration-names'],
       cubicBezierNames: flags['cubic-bezier-names'],
       resolutionOrder: oldFile.resolutionOrder,

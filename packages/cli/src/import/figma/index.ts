@@ -21,8 +21,10 @@ export interface importFromFigmaOptions {
   fontFamilyNames?: string;
   /** RegEx for overriding Variable types with fontWeight tokens */
   fontWeightNames?: string;
-  /** RegEx for overriding Variable types with number tokens */
+  /** @deprecated RegEx for coercing matching primitive Variables with Number(). */
   numberNames?: string;
+  /** RegEx for overriding FLOAT Variable types with number tokens */
+  numberFloatNames?: string;
   /** RegEx for overriding STRING Variable types with duration tokens */
   durationNames?: string;
   /** RegEx for overriding STRING Variable types with cubicBezier tokens */
@@ -47,6 +49,7 @@ export async function importFromFigma({
   fontFamilyNames = '/fontFamily$',
   fontWeightNames = '/fontWeight$',
   numberNames,
+  numberFloatNames,
   durationNames,
   cubicBezierNames,
   resolutionOrder,
@@ -83,6 +86,7 @@ export async function importFromFigma({
                 fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
                 fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
                 number: numberNames ? new RegExp(numberNames) : undefined,
+                numberFloat: numberFloatNames ? new RegExp(numberFloatNames) : undefined,
               },
             }),
           ]),
