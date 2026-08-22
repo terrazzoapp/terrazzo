@@ -4,11 +4,11 @@ import type {
   Node,
   PublishedStyle,
   Style,
+  TypeStyle,
 } from '@figma/rest-api-spec';
 import type {
   ColorValue,
   DimensionToken,
-  DimensionValue,
   GradientValue,
   Logger,
   NumberToken,
@@ -53,7 +53,6 @@ export async function getStyles(
 
   const fileNodes = await getFileNodes(fileKey, { ids: [...styleNodeIDs], logger });
 
-  result.count += styleNodeIDs.size;
   for (const [id, s] of stylesByID) {
     const styleNode = fileNodes.nodes[id];
     if (!styleNode) {
@@ -131,6 +130,7 @@ export async function getStyles(
             message: `Could not parse grid for ${s.name}`,
             continueOnError: true,
           });
+          break;
         }
         // Note: Grids scaffold out multiple sub-components, so we need to “cheat” a little here
         let node = result.code.sets.styles.sources[0];
@@ -143,12 +143,13 @@ export async function getStyles(
           node = node[key];
         }
         node[name] = layoutGrids;
+        result.count++;
         break;
       }
     }
 
     // Only place in tree if we got a value for it
-    if (tokenBase.$type !== undefined) {
+    if (tokenBase.$value !== undefined) {
       let node = result.code.sets.styles.sources[0];
       const path = s.name.split('/').map(formatName);
       const name = path.pop()!;
@@ -159,6 +160,7 @@ export async function getStyles(
         node = node[key];
       }
       node[name] = tokenBase;
+      result.count++;
     }
   }
 
@@ -233,7 +235,7 @@ export function gridStyles(
     }
     values[pattern] = {
       sectionSize: { $type: 'dimension', $value: { value: grid.sectionSize, unit: 'px' } },
-      gutterSize: { $type: 'dimension', $value: { value: grid.sectionSize, unit: 'px' } },
+      gutterSize: { $type: 'dimension', $value: { value: grid.gutterSize, unit: 'px' } },
     };
     if (grid.count > 0) {
       values[pattern].count = { $type: 'number', $value: grid.count };
@@ -248,21 +250,31 @@ export function textStyle(node: Node): TypographyValue | undefined {
     return;
   }
 
-  let lineHeight: string | number | DimensionValue = 1;
-  if ('lineHeightPercentFontSize' in node.style) {
-    lineHeight = node.style.lineHeightPercentFontSize!;
-  } else if ('lineHeightPx' in node.style) {
-    lineHeight = { value: node.style.lineHeightPx!, unit: 'px' };
+  const { style } = node;
+  if (!style.fontFamily || !Number.isFinite(style.fontWeight) || !Number.isFinite(style.fontSize)) {
+    return;
   }
 
-  return {
-    fontFamily: [node.style.fontFamily!],
-    fontWeight: node.style.fontWeight,
-    fontStyle: node.style.fontStyle,
-    fontSize: node.style.fontSize
-      ? { value: node.style.fontSize, unit: 'px' }
-      : { value: 1, unit: 'em' },
-    letterSpacing: { value: node.style.letterSpacing ?? 0, unit: 'px' },
-    lineHeight,
+  const typography: TypographyValue = {
+    fontFamily: style.fontFamily.split(',').map((family) => family.trim()),
+    fontWeight: style.fontWeight!,
+    fontSize: { value: style.fontSize!, unit: 'px' },
+    letterSpacing: { value: style.letterSpacing || 0, unit: 'px' },
+    lineHeight: getLineHeight(style),
   };
+
+  return typography;
+}
+
+function getLineHeight(style: TypeStyle): number {
+  if (style.lineHeightUnit === 'FONT_SIZE_%' && Number.isFinite(style.lineHeightPercentFontSize)) {
+    return style.lineHeightPercentFontSize! / 100;
+  }
+  if (Number.isFinite(style.lineHeightPx) && style.fontSize) {
+    return style.lineHeightPx! / style.fontSize;
+  }
+  if (Number.isFinite(style.lineHeightPercentFontSize)) {
+    return style.lineHeightPercentFontSize! / 100;
+  }
+  return 1;
 }

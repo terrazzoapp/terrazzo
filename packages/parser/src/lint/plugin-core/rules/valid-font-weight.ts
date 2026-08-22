@@ -13,7 +13,7 @@ const ERROR_STYLE = 'ERROR_STYLE';
 export interface RuleFontWeightOptions {
   /**
    * Enforce either:
-   * - "numbers" (0-999)
+   * - "numbers" (1-1000)
    * - "names" ("light", "medium", "bold", etc.)
    */
   style?: 'numbers' | 'names';
@@ -22,11 +22,11 @@ export interface RuleFontWeightOptions {
 const rule: LintRule<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions> = {
   meta: {
     messages: {
-      [ERROR]: `Must either be a valid number (0 - 999) or a valid font weight: ${new Intl.ListFormat('en-us', { type: 'disjunction' }).format(Object.keys(FONT_WEIGHTS))}.`,
+      [ERROR]: `Must either be a valid number (1 - 1000) or a valid font weight: ${new Intl.ListFormat('en-us', { type: 'disjunction' }).format(Object.keys(FONT_WEIGHTS))}.`,
       [ERROR_STYLE]: 'Expected style {{ style }}, received {{ value }}.',
     },
     docs: {
-      description: 'Require number tokens to follow the format.',
+      description: 'Require font weight tokens to use DTCG-valid values.',
       url: docsLink(VALID_FONT_WEIGHT),
     },
   },
@@ -50,7 +50,11 @@ const rule: LintRule<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions> =
           break;
         }
         case 'typography': {
-          if (typeof t.originalValue.$value === 'object' && t.originalValue.$value.fontWeight) {
+          if (
+            typeof t.originalValue.$value === 'object' &&
+            t.originalValue.$value &&
+            'fontWeight' in t.originalValue.$value
+          ) {
             if (t.partialAliasOf?.fontWeight) {
               continue;
             }
@@ -95,7 +99,7 @@ function validateFontWeight(
   } else if (typeof value === 'number') {
     if (options.style === 'names') {
       report({ messageId: ERROR_STYLE, data: { style: 'names', value }, node, filename });
-    } else if (!(value >= 0 && value < 1000)) {
+    } else if (!(value >= 1 && value <= 1000)) {
       report({ messageId: ERROR, node, filename });
     }
   } else {

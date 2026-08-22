@@ -6,6 +6,10 @@ import { formatNumber, getFileID } from './lib.js';
 import { getStyles } from './styles.js';
 import { getVariables } from './variables.js';
 
+export interface FigmaResolutionOrderEntry {
+  $ref: string;
+}
+
 export interface importFromFigmaOptions {
   url: string;
   logger: Logger;
@@ -17,8 +21,16 @@ export interface importFromFigmaOptions {
   fontFamilyNames?: string;
   /** RegEx for overriding Variable types with fontWeight tokens */
   fontWeightNames?: string;
-  /** RegEx for overriding Variable types with number tokens */
+  /** @deprecated RegEx for coercing matching primitive Variables with Number(). */
   numberNames?: string;
+  /** RegEx for overriding FLOAT Variable types with number tokens */
+  numberFloatNames?: string;
+  /** RegEx for overriding STRING Variable types with duration tokens */
+  durationNames?: string;
+  /** RegEx for overriding STRING Variable types with cubicBezier tokens */
+  cubicBezierNames?: string;
+  /** Explicit Resolver order to preserve. By default, imported groups are listed in discovery order. */
+  resolutionOrder?: readonly FigmaResolutionOrderEntry[];
 }
 
 export interface FigmaOutput {
@@ -37,6 +49,10 @@ export async function importFromFigma({
   fontFamilyNames = '/fontFamily$',
   fontWeightNames = '/fontWeight$',
   numberNames,
+  numberFloatNames,
+  durationNames,
+  cubicBezierNames,
+  resolutionOrder,
 }: importFromFigmaOptions): Promise<FigmaOutput> {
   const fileKey = getFileID(url);
   if (!fileKey) {
@@ -49,7 +65,10 @@ export async function importFromFigma({
     code: {
       $schema: 'https://www.designtokens.org/schemas/2025.10/resolver.json',
       version: '2025.10',
-      resolutionOrder: [],
+      resolutionOrder:
+        resolutionOrder && resolutionOrder.length > 0
+          ? resolutionOrder.map((entry) => ({ ...entry }))
+          : [],
       sets: {},
       modifiers: {},
     },
@@ -57,7 +76,7 @@ export async function importFromFigma({
 
   try {
     const [styles, vars] = await Promise.all([
-      ...(skipStyles ? [] : [getStyles(fileKey!, { logger })]),
+      ...(skipStyles ? [] : [getStyles(fileKey!, { logger, unpublished })]),
       ...(skipVariables
         ? []
         : [
@@ -65,9 +84,12 @@ export async function importFromFigma({
               logger,
               unpublished,
               matchers: {
+                cubicBezier: cubicBezierNames ? new RegExp(cubicBezierNames) : undefined,
+                duration: durationNames ? new RegExp(durationNames) : undefined,
                 fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
                 fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
                 number: numberNames ? new RegExp(numberNames) : undefined,
+                numberFloat: numberFloatNames ? new RegExp(numberFloatNames) : undefined,
               },
             }),
           ]),
@@ -90,10 +112,11 @@ export async function importFromFigma({
     logger.error({ group: 'import', message: (error as Error).message });
   }
 
-  // Arbitrarily guess on resolutionOrder
-  for (const group of ['sets', 'modifiers'] as const) {
-    for (const name of Object.keys(result.code[group])) {
-      result.code.resolutionOrder.push({ $ref: `#/${group}/${name}` });
+  if (!resolutionOrder?.length) {
+    for (const group of ['sets', 'modifiers'] as const) {
+      for (const name of Object.keys(result.code[group])) {
+        result.code.resolutionOrder.push({ $ref: `#/${group}/${name}` });
+      }
     }
   }
 

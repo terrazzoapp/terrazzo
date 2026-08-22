@@ -1,4 +1,6 @@
 import fs from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { Logger } from '@terrazzo/parser';
@@ -21,6 +23,21 @@ describe('import', () => {
       'utf8',
     );
     const FIGMA_GET_STYLES = await fs.readFile(new URL('./get-styles.json', cwd), 'utf8');
+    const FIGMA_GET_FILE = JSON.stringify({
+      styles: Object.fromEntries(
+        JSON.parse(FIGMA_GET_STYLES).meta.styles.map(
+          ({
+            node_id,
+            style_type,
+            ...style
+          }: {
+            node_id: string;
+            style_type: string;
+            [key: string]: unknown;
+          }) => [node_id, { ...style, styleType: style_type }],
+        ),
+      ),
+    });
 
     beforeEach(() => {
       vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
@@ -30,6 +47,7 @@ describe('import', () => {
         Promise.resolve(
           new Response(
             {
+              [`https://api.figma.com/v1/files/${FILE_KEY}`]: FIGMA_GET_FILE,
               [`https://api.figma.com/v1/files/${FILE_KEY}/nodes`]: FIGMA_GET_FILE_NODES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/styles`]: FIGMA_GET_STYLES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]:
@@ -104,6 +122,26 @@ describe('import', () => {
       await expect(
         await fs.readFile(new URL('./import-unpublished.actual.json', cwd), 'utf8'),
       ).toMatchFileSnapshot(fileURLToPath(new URL('./import-unpublished.want.json', cwd)));
+    });
+
+    it('regenerates an empty resolutionOrder when updating an output file', async () => {
+      const tempDirectory = await fs.mkdtemp(join(tmpdir(), 'terrazzo-figma-import-'));
+      const output = join(tempDirectory, 'resolver.json');
+      await fs.writeFile(output, JSON.stringify({ resolutionOrder: [] }));
+
+      try {
+        await importCmd({
+          logger: new Logger(),
+          positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
+          flags: { output },
+        });
+
+        const result = JSON.parse(await fs.readFile(output, 'utf8'));
+        expect(result.resolutionOrder.length).toBeGreaterThan(0);
+        expect(result.resolutionOrder[0]).toEqual({ $ref: '#/sets/styles' });
+      } finally {
+        await fs.rm(tempDirectory, { recursive: true });
+      }
     });
 
     it('--font-family-names, --font-weight-names, --number-names', async () => {

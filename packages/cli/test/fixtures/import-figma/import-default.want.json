@@ -100,7 +100,6 @@
                     "SF Pro"
                   ],
                   "fontWeight": 400,
-                  "fontStyle": "Regular",
                   "fontSize": {
                     "value": 14,
                     "unit": "px"
@@ -109,7 +108,7 @@
                     "value": 0,
                     "unit": "px"
                   },
-                  "lineHeight": 7.142857074737549
+                  "lineHeight": 0.07142857142857142
                 },
                 "$extensions": {
                   "figma.com": {
@@ -128,7 +127,6 @@
                     "SF Pro"
                   ],
                   "fontWeight": 400,
-                  "fontStyle": "Regular",
                   "fontSize": {
                     "value": 16,
                     "unit": "px"
@@ -137,7 +135,7 @@
                     "value": 0,
                     "unit": "px"
                   },
-                  "lineHeight": 6.25
+                  "lineHeight": 0.0625
                 },
                 "$extensions": {
                   "figma.com": {
@@ -238,7 +236,7 @@
                 "gutterSize": {
                   "$type": "dimension",
                   "$value": {
-                    "value": 20,
+                    "value": 0,
                     "unit": "px"
                   }
                 },
@@ -258,7 +256,7 @@
                 "gutterSize": {
                   "$type": "dimension",
                   "$value": {
-                    "value": 4,
+                    "value": 20,
                     "unit": "px"
                   }
                 },
@@ -278,7 +276,7 @@
                 "gutterSize": {
                   "$type": "dimension",
                   "$value": {
-                    "value": 10,
+                    "value": 0,
                     "unit": "px"
                   }
                 }

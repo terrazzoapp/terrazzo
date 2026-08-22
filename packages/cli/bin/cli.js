@@ -73,6 +73,9 @@ const { values: flags, positionals } = parseArgs({
     'font-family-names': { type: 'string' },
     'font-weight-names': { type: 'string' },
     'number-names': { type: 'string' },
+    'number-float-names': { type: 'string' },
+    'duration-names': { type: 'string' },
+    'cubic-bezier-names': { type: 'string' },
   },
 });
 

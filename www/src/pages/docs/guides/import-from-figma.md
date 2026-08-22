@@ -75,6 +75,8 @@ Since Figma Styles & Variables don’t map 1:1 with DTCG token types, these are 
 | Variable `STRING`  | [string](/docs/reference/tokens/#string) (⚠️ non-standard type)                                                                                                         |
 | Variable `BOOLEAN` | [boolean](/docs/reference/tokens/#boolean) (⚠️ non-standard type)                                                                                                       |
 
+Text style `$value` objects contain only the five fields allowed and required by the DTCG 2025.10 typography schema: `fontFamily`, `fontSize`, `fontWeight`, `letterSpacing`, and `lineHeight`. Pixel line heights are converted to a font-size multiplier. Figma’s font style, paragraph and list spacing, indentation, text case, and decoration fields are deliberately omitted because the DTCG schema rejects additional typography properties; they are not preserved as extensions until Terrazzo defines a stable extension contract for them. Styles that don’t contain a usable token value, such as an effect style containing only blur effects, are omitted and excluded from the imported Style count.
+
 #### Grid type
 
 The Grid type is a little special—since it’s a complex concept, it’s represented by a group instead:
@@ -120,18 +122,32 @@ The Grid type is a little special—since it’s a complex concept, it’s repre
 
 The group will only show the `grid`, `rows`, or `columns` subgroups if they appear in the style. If a style has duplicates of the same type, only the first type will be exported.
 
-#### String and Boolean types
+#### Variable type overrides
 
-DTCG does not allow string types, but these are a dominant typeof Figma Variable, especially in typography. In order to override certain Variables by name, pass in `--[type]-names` flags:
+DTCG does not allow string types, but these are a dominant type of Figma Variable, especially in typography. To override certain Variables by name, pass `--[type]-names` flags:
 
 ```sh
 npx tz import [file] \
-    --font-family-names ".*/(family|fontName}$" \
+    --font-family-names ".*/(family|fontName)$" \
     --font-weight-names ".*/weight$" \
-    --number-names ".*/lineHeight$"
+    --number-float-names ".*/lineHeight$" \
+    --duration-names ".*/duration$" \
+    --cubic-bezier-names ".*/easing$"
 ```
 
-The flags are RegEx patterns, so passing in a string will return any match. You can also use slashes to get more specific with token targets.
+The flags are RegEx patterns, so passing in a string will return any match. You can also use slashes to get more specific with token targets. Matching is constrained by the Figma Variable’s resolved type:
+
+- `--number-float-names` overrides only `FLOAT` Variables. `STRING` and `BOOLEAN` Variables with the same name remain their original type.
+- `--number-names` is deprecated but retains its historical behavior for compatibility: matching primitive `FLOAT`, `STRING`, and `BOOLEAN` values are coerced with JavaScript’s `Number()` function when the result is finite. Invalid or non-finite results remain their original Figma type and value. If both number flags match a `FLOAT` Variable, legacy `--number-names` behavior wins explicitly.
+- `--font-family-names`, `--duration-names`, and `--cubic-bezier-names` only override `STRING` Variables.
+- `--font-weight-names` accepts `FLOAT` and `STRING` Variables for backward compatibility.
+- Font weights must be numbers from 1 through 1000 or a DTCG font-weight keyword such as `normal`, `semi-bold`, or `bold`. Invalid matches remain their original Figma type and value.
+- Duration values must use `ms` or `s` units, such as `150ms`, `-0.2s`, or `+.5ms`.
+- Cubic Bézier values must use CSS `cubic-bezier(x1, y1, x2, y2)` syntax. The first and third control points must be between 0 and 1.
+
+Type overrides propagate through alias chains, even when only one differently named Variable matches. This keeps aliases and their targets on the same token type. Values that match a name but can’t be parsed remain their original Figma type and value. If incompatible matcher flags overlap on one Variable or anywhere in an alias chain, Terrazzo warns and preserves the Figma types for the entire chain.
+
+Generic `STRING` and `BOOLEAN` Variables are retained for compatibility, but those token types are outside the strict DTCG 2025.10 type enum. A resolver containing them is therefore not guaranteed to pass strict DTCG schema validation unless they are mapped to standard types or removed.
 
 ### Libraries
 
@@ -141,7 +157,9 @@ If the Figma file has a [Published Library](https://help.figma.com/hc/en-us/arti
 npx tz import [file] --unpublished
 ```
 
-If the file has nothing published, it will grab Styles and Variables in the file regardless of the `--unpublished` flag.
+Without `--unpublished`, Terrazzo imports only Styles and Variables returned by Figma’s published-library endpoints. It does not fall back to local unpublished Styles or Variables when nothing is published.
+
+When updating an existing resolver through `--output`, Terrazzo preserves its explicit `resolutionOrder`. New resolver files use the imported source order.
 
 ### CLI Flags
 
@@ -155,4 +173,7 @@ You can add all the following flags to `tz import`:
 | `--skip-variables`             | Don’t import Variables from this file (required if not on the Enterprise Plan).                                          |
 | `--font-family-names [regex]`  | Import these names as [fontFamily](/docs/reference/tokens/#font-family) tokens. Accepts RegEx. (default: `/fontFamily$`) |
 | `--font-weight-names [regex]`  | Import these names as [fontWeight](/docs/reference/tokens/#font-weight) tokens. Accepts RegEx. (default: `/fontWeight$`) |
-| `--number-names [regex]`       | Import these names as [number](/docs/reference/tokens/#number) tokens. Accepts RegEx. (default: undefined)               |
+| `--number-names [regex]`       | Deprecated compatibility option. Coerce matching primitive values as [number](/docs/reference/tokens/#number) tokens.    |
+| `--number-float-names [regex]` | Import matching `FLOAT` names as [number](/docs/reference/tokens/#number) tokens. Accepts RegEx.                         |
+| `--duration-names [regex]`     | Import matching string names as [duration](/docs/reference/tokens/#duration) tokens. Accepts RegEx.                      |
+| `--cubic-bezier-names [regex]` | Import matching string names as [cubicBezier](/docs/reference/tokens/#cubic-bezier) tokens. Accepts RegEx.               |
