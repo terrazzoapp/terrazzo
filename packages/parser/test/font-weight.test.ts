@@ -5,6 +5,15 @@ import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 describe('8.4 Font Weight', () => {
   const tests: Test[] = [
     [
+      'valid: number',
+      {
+        given: [
+          { filename: DEFAULT_FILENAME, src: { bold: { $type: 'fontWeight', $value: 700 } } },
+        ],
+        want: { tokens: { bold: { $value: 700 } } },
+      },
+    ],
+    [
       'valid: number boundaries',
       {
         given: [
@@ -109,6 +118,26 @@ lint:lint: 1 error`,
   2 |   "weight": {
   3 |     "$type": "fontWeight",
 > 4 |     "$value": 0
+    |               ^
+  5 |   }
+  6 | }
+
+lint:lint: 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: number out of range',
+      {
+        given: [
+          { filename: DEFAULT_FILENAME, src: { kakarot: { $type: 'fontWeight', $value: 9001 } } },
+        ],
+        want: {
+          error: `lint:core/valid-font-weight: Must either be a valid number (1 - 1000) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
+
+  2 |   "kakarot": {
+  3 |     "$type": "fontWeight",
+> 4 |     "$value": 9001
     |               ^
   5 |   }
   6 | }
