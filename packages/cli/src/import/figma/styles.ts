@@ -258,6 +258,7 @@ export function textStyle(node: Node): TypographyValue | undefined {
   const typography: TypographyValue = {
     fontFamily: style.fontFamily.split(',').map((family) => family.trim()),
     fontWeight: style.fontWeight!,
+    fontStyle: style.fontStyle,
     fontSize: { value: style.fontSize!, unit: 'px' },
     letterSpacing: { value: style.letterSpacing || 0, unit: 'px' },
     lineHeight: getLineHeight(style),

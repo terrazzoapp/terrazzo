@@ -78,6 +78,34 @@
                     ],
                     "alpha": 0.25
                   }
+                },
+                {
+                  "inset": true,
+                  "offsetX": {
+                    "value": 1,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": -1,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 2,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 1,
+                    "unit": "px"
+                  },
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      1,
+                      1,
+                      1
+                    ],
+                    "alpha": 0.4
+                  }
                 }
               ],
               "$extensions": {
@@ -100,6 +128,7 @@
                     "SF Pro"
                   ],
                   "fontWeight": 400,
+                  "fontStyle": "Regular",
                   "fontSize": {
                     "value": 14,
                     "unit": "px"
@@ -127,6 +156,7 @@
                     "SF Pro"
                   ],
                   "fontWeight": 400,
+                  "fontStyle": "Regular",
                   "fontSize": {
                     "value": 16,
                     "unit": "px"
