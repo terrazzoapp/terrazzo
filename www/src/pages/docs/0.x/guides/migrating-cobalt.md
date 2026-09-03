@@ -96,7 +96,7 @@ See [the Config docs](/docs/reference/config/) for more info.
 
 Plugins will need to update to [the new Plugin API](/docs/reference/plugin-api/) in order to run. The same basic format is kept, but the plugin hooks have changed and have more features to make working with tokens even easier (hopefully it empowers even better workflows while reducing code!). In a nutshell:
 
-- There’s a new concept of calling `getTransform()` and `setTransform()` to “query” for tokens/modes. This is how plugins share more work than they could before!
+- There’s a new concept of calling `getTransforms()` and `setTransform()` to “query” for tokens/modes. This is how plugins share more work than they could before!
 - The [build() hook](/docs/reference/plugin-api/#build) still builds files, but you should move most of your work into [the new transform() hook](/docs/reference/plugin-api#api)
 - The [new transform() hook](/docs/reference/plugin-api#api) is where you can calculate token values and expose them to other plugins (so long as they query the right `format`)
 - The Linting API has been changed to be simpler and allow for throwing code errors on specific lines/columns.
