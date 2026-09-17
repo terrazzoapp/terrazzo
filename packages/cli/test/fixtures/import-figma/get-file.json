@@ -1,0 +1,51 @@
+{
+  "name": "My File",
+  "lastModified": "2025-10-30T12:00:00Z",
+  "version": "1",
+  "role": "owner",
+  "editorType": "figma",
+  "styles": {
+    "16:3": {
+      "key": "5706e062721a96556d321af763097aa1c8d8eb1c",
+      "name": "elevation/100",
+      "styleType": "EFFECT",
+      "remote": false,
+      "description": "Default shadow."
+    },
+    "4:3": {
+      "key": "b2079c5e25ef3a330ff92c173487ec0fbc406eb6",
+      "name": "text/body/medium",
+      "styleType": "TEXT",
+      "remote": false,
+      "description": "Default body text style."
+    },
+    "4:11": {
+      "key": "421ab6dfaf40958be927a5e20d5c6a0d9d419f0b",
+      "name": "text/body/extraLarge",
+      "styleType": "TEXT",
+      "remote": false,
+      "description": "Renamed locally, not yet republished."
+    },
+    "16:2": {
+      "key": "783ebbacdd204a8bab90e9c9115aa3f75751ea96",
+      "name": "style/green/100",
+      "styleType": "FILL",
+      "remote": false,
+      "description": ""
+    },
+    "20:2": {
+      "key": "6cd916da62c28968d21fc26660506cb679ea75e6",
+      "name": "grid/base",
+      "styleType": "GRID",
+      "remote": false,
+      "description": ""
+    },
+    "16:5": {
+      "key": "",
+      "name": "elevation/200",
+      "styleType": "EFFECT",
+      "remote": false,
+      "description": "Unpublished shadow."
+    }
+  }
+}

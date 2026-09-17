@@ -88,6 +88,46 @@
                   "updated_at": "2025-10-30T12:00:00Z"
                 }
               }
+            },
+            "200": {
+              "$type": "shadow",
+              "$description": "Unpublished shadow.",
+              "$value": [
+                {
+                  "inset": false,
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 8,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 16,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 2,
+                    "unit": "px"
+                  },
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "alpha": 0.5
+                  }
+                }
+              ],
+              "$extensions": {
+                "figma.com": {
+                  "name": "elevation/200",
+                  "node_id": "16:5"
+                }
+              }
             }
           },
           "text": {
@@ -120,9 +160,9 @@
                   }
                 }
               },
-              "large": {
+              "extraLarge": {
                 "$type": "typography",
-                "$description": "Large body text style.",
+                "$description": "Renamed locally, not yet republished.",
                 "$value": {
                   "fontFamily": [
                     "SF Pro"
@@ -141,7 +181,7 @@
                 },
                 "$extensions": {
                   "figma.com": {
-                    "name": "text/body/large",
+                    "name": "text/body/extraLarge",
                     "node_id": "4:11",
                     "created_at": "2025-10-30T12:00:00Z",
                     "updated_at": "2025-10-30T12:00:00Z"
@@ -167,57 +207,6 @@
                   "figma.com": {
                     "name": "style/green/100",
                     "node_id": "16:2",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
-                  }
-                }
-              }
-            },
-            "gradient": {
-              "100": {
-                "$type": "gradient",
-                "$value": [
-                  {
-                    "position": 0,
-                    "color": {
-                      "colorSpace": "srgb",
-                      "components": [
-                        0.9221681356430054,
-                        0.0945836678147316,
-                        0.0945836678147316
-                      ],
-                      "alpha": 1
-                    }
-                  },
-                  {
-                    "position": 0.33173078298568726,
-                    "color": {
-                      "colorSpace": "srgb",
-                      "components": [
-                        0.18287979066371918,
-                        0.2011471837759018,
-                        0.5482274889945984
-                      ],
-                      "alpha": 1
-                    }
-                  },
-                  {
-                    "position": 1,
-                    "color": {
-                      "colorSpace": "srgb",
-                      "components": [
-                        0.7361242175102234,
-                        0.18885448575019836,
-                        0.9351313710212708
-                      ],
-                      "alpha": 1
-                    }
-                  }
-                ],
-                "$extensions": {
-                  "figma.com": {
-                    "name": "style/gradient/100",
-                    "node_id": "16:4",
                     "created_at": "2025-10-30T12:00:00Z",
                     "updated_at": "2025-10-30T12:00:00Z"
                   }

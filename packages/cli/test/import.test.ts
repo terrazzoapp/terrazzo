@@ -1,4 +1,6 @@
 import fs from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { Logger } from '@terrazzo/parser';
@@ -21,6 +23,7 @@ describe('import', () => {
       'utf8',
     );
     const FIGMA_GET_STYLES = await fs.readFile(new URL('./get-styles.json', cwd), 'utf8');
+    const FIGMA_GET_FILE = await fs.readFile(new URL('./get-file.json', cwd), 'utf8');
 
     beforeEach(() => {
       vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
@@ -30,6 +33,7 @@ describe('import', () => {
         Promise.resolve(
           new Response(
             {
+              [`https://api.figma.com/v1/files/${FILE_KEY}`]: FIGMA_GET_FILE,
               [`https://api.figma.com/v1/files/${FILE_KEY}/nodes`]: FIGMA_GET_FILE_NODES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/styles`]: FIGMA_GET_STYLES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]:
@@ -92,7 +96,9 @@ describe('import', () => {
     });
 
     it('--unpublished', async () => {
-      // This should contain legacy/* variables that the previous snapshots did not
+      // This should contain legacy/* variables and the elevation/200 style that the previous
+      // snapshots did not, drop style/gradient/100, which is published but no longer in the file,
+      // and use the local name of text/body/extraLarge, which is renamed but not yet republished
       await importCmd({
         logger: new Logger(),
         positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
@@ -104,6 +110,42 @@ describe('import', () => {
       await expect(
         await fs.readFile(new URL('./import-unpublished.actual.json', cwd), 'utf8'),
       ).toMatchFileSnapshot(fileURLToPath(new URL('./import-unpublished.want.json', cwd)));
+    });
+
+    it.each([
+      {
+        name: 'keeps an existing resolutionOrder',
+        oldOrder: [{ $ref: '#/sets/styles' }, { $ref: '#/modifiers/mode' }],
+        want: [{ $ref: '#/sets/styles' }, { $ref: '#/modifiers/mode' }],
+      },
+      {
+        name: 'falls back to discovery order for an empty resolutionOrder',
+        oldOrder: [],
+        want: [{ $ref: '#/sets/styles' }],
+      },
+      {
+        // The output file is hand-editable, so resolutionOrder can be any JSON value
+        name: 'falls back to discovery order for a non-array resolutionOrder',
+        oldOrder: 'not an array',
+        want: [{ $ref: '#/sets/styles' }],
+      },
+    ])('$name', async ({ oldOrder, want }) => {
+      const directory = await fs.mkdtemp(join(tmpdir(), 'terrazzo-import-figma-'));
+      const output = join(directory, 'resolver.json');
+      await fs.writeFile(output, JSON.stringify({ resolutionOrder: oldOrder }));
+
+      try {
+        await importCmd({
+          logger: new Logger(),
+          positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
+          flags: { output, 'skip-variables': true },
+        });
+
+        const { resolutionOrder } = JSON.parse(await fs.readFile(output, 'utf8'));
+        expect(resolutionOrder).toEqual(want);
+      } finally {
+        await fs.rm(directory, { recursive: true });
+      }
     });
 
     it('--font-family-names, --font-weight-names, --number-names', async () => {
