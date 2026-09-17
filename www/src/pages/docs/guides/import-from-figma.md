@@ -68,7 +68,7 @@ Since Figma Styles & Variables don’t map 1:1 with DTCG token types, these are 
 | :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Style `FILL`       | [color](/docs/reference/tokens/#color) if a solid fill, or<br>[gradient](/docs/reference/tokens/#gradient) if a gradient fill (complex fills may not translate cleanly) |
 | Style `TEXT`       | [typography](/docs/reference/tokens/#typography)                                                                                                                        |
-| Style `EFFECT`     | [shadow](/docs/reference/tokens/#shadow)                                                                                                                                |
+| Style `EFFECT`     | [shadow](/docs/reference/tokens/#shadow) from drop & inner shadows (Terrazzo skips blur-only styles)                                                                    |
 | Style `GRID`       | Group of [dimension](/docs/reference/tokens/#dimension) & [number](/docs/reference/tokens/#number) tokens                                                               |
 | Variable `COLOR`   | [color](/docs/reference/tokens/#color)                                                                                                                                  |
 | Variable `FLOAT`   | [dimension](/docs/reference/tokens/#dimension) (px)                                                                                                                     |

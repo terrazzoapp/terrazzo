@@ -68,6 +68,39 @@
         "created_at": "2025-10-30T12:00:00Z",
         "updated_at": "2025-10-30T12:00:00Z",
         "user": {}
+      },
+      {
+        "key": "blur-button",
+        "file_key": ":file_key",
+        "node_id": "30:1",
+        "style_type": "EFFECT",
+        "name": "Blur/Button",
+        "description": "Background blur.",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
+      },
+      {
+        "key": "progressive-background-blur",
+        "file_key": ":file_key",
+        "node_id": "30:2",
+        "style_type": "EFFECT",
+        "name": "Drop Shadow/Header",
+        "description": "Progressive background blur.",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
+      },
+      {
+        "key": "empty-effect",
+        "file_key": ":file_key",
+        "node_id": "30:3",
+        "style_type": "EFFECT",
+        "name": "Effect/Empty",
+        "description": "Empty effect.",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
       }
     ]
   },
