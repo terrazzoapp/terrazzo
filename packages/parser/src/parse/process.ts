@@ -50,16 +50,20 @@ export function processTokens(
 
   // 1. Inline $refs to discover any additional tokens
   const refMap: RefMap = {};
-  function resolveRef(node: momoa.StringNode, chain: string[]): momoa.AnyNode {
+  function resolveRef(node: momoa.StringNode, chain: string[]): momoa.AnyNode | undefined {
     const { subpath } = parseRef(node.value);
     assert(subpath, logger, { ...entry, message: 'Can’t resolve $ref', node, src: rootSource.src });
     const next = findNode(rootSource.document, subpath);
-    assert(next, logger, {
-      ...entry,
-      message: "Can't find $ref",
-      node,
-      src: rootSource.src,
-    });
+    if (shouldResolveAliases) {
+      assert(next, logger, {
+        ...entry,
+        message: 'Can’t find $ref',
+        node,
+        src: rootSource.src,
+      });
+    } else if (!next) {
+      return;
+    }
     if (next?.type === 'Object') {
       const next$ref = getObjMember(next, '$ref');
       if (next$ref && next$ref.type === 'String') {
@@ -77,39 +81,37 @@ export function processTokens(
     }
     return next;
   }
-  if (shouldResolveAliases) {
-    const inlineStart = performance.now();
-    traverse(rootSource.document, {
-      enter(node, _parent, rawPath) {
-        if (rawPath.includes('$extensions') || node.type !== 'Object') {
-          return;
-        }
-        const $ref = node.type === 'Object' ? getObjMember(node, '$ref') : undefined;
-        if (!$ref) {
-          return;
-        }
-        assertStringNode($ref, logger, {
-          ...entry,
-          message: 'Invalid $ref. Expected string.',
-          node: $ref,
-          src: rootSource.src,
-        });
-        const jsonID = encodeFragment(rawPath);
-        refMap[jsonID] = { filename: rootSource.filename.href, refChain: [$ref.value] };
-        const resolved = resolveRef($ref, refMap[jsonID]!.refChain);
-        if (resolved.type === 'Object') {
-          node.members.splice(
-            node.members.findIndex((m) => m.name.type === 'String' && m.name.value === '$ref'),
-            1,
-          );
-          replaceNode(node, mergeObjects(resolved, node));
-        } else {
-          replaceNode(node, resolved);
-        }
-      },
-    });
-    logger.debug({ ...entry, message: 'Inline aliases', timing: performance.now() - inlineStart });
-  }
+  const inlineStart = performance.now();
+  traverse(rootSource.document, {
+    enter(node, _parent, rawPath) {
+      if (rawPath.includes('$extensions') || node.type !== 'Object') {
+        return;
+      }
+      const $ref = node.type === 'Object' ? getObjMember(node, '$ref') : undefined;
+      if (!$ref) {
+        return;
+      }
+      assertStringNode($ref, logger, {
+        ...entry,
+        message: 'Invalid $ref. Expected string.',
+        node: $ref,
+        src: rootSource.src,
+      });
+      const jsonID = encodeFragment(rawPath);
+      refMap[jsonID] = { filename: rootSource.filename.href, refChain: [$ref.value] };
+      const resolved = resolveRef($ref, refMap[jsonID]!.refChain);
+      if (resolved?.type === 'Object') {
+        node.members.splice(
+          node.members.findIndex((m) => m.name.type === 'String' && m.name.value === '$ref'),
+          1,
+        );
+        replaceNode(node, mergeObjects(resolved, node));
+      } else if (resolved) {
+        replaceNode(node, resolved);
+      }
+    },
+  });
+  logger.debug({ ...entry, message: 'Inline aliases', timing: performance.now() - inlineStart });
 
   // 2. Resolve $extends to discover any more additional tokens
   function flatten$extends(node: momoa.ObjectNode, chain: string[]) {

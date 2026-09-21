@@ -1,0 +1,12 @@
+{
+  "$type": "color",
+  "semi-light-blue": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": {
+        "$ref": "#/light-blue/$value/components"
+      },
+      "alpha": 0.5
+    }
+  }
+}

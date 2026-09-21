@@ -4,6 +4,9 @@
   "sets": {
     "primitives": {
       "sources": [{ "$ref": "primitives.json" }]
+    },
+    "opacified": {
+      "sources": [{"$ref":  "opacified.json"}]
     }
   },
   "modifiers": {
@@ -25,6 +28,7 @@
   "resolutionOrder": [
     { "$ref": "#/modifiers/theme" },
     { "$ref": "#/modifiers/mode" },
+    { "$ref": "#/sets/opacified" },
     { "$ref": "#/sets/primitives" }
   ]
 }

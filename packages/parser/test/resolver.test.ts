@@ -8,6 +8,8 @@ import defineConfig from '../src/config.js';
 import Logger from '../src/logger.js';
 import parse from '../src/parse/index.js';
 import { calculatePermutations, validateResolver } from '../src/resolver/index.js';
+import { transformCSSValue } from '@terrazzo/token-tools/css';
+import type { ColorValueNormalized } from '@terrazzo/token-types/src/index.js';
 
 describe('Resolver module', () => {
   describe('core', () => {
@@ -598,6 +600,39 @@ describe('partial application', () => {
       { modifiers: ['theme'], sets: [], resolveAliases: false },
     );
     expect(new Set(Object.keys(themeTokens))).toEqual(new Set(['color']));
+  });
+
+  it('handles partial aliases', async () => {
+    const resolver = await loadResolver();
+    const fullyResolved = resolver.apply(
+      {},
+      { sets: ['opacified', 'primitives'], resolveAliases: true },
+    );
+    expect(Object.keys(fullyResolved)).toContain('semi-light-blue');
+    expect(
+      transformCSSValue(fullyResolved['semi-light-blue']!, {
+        color: { legacyHex: true },
+        permutation: {},
+        tokensSet: fullyResolved,
+      }),
+    ).toEqual('#8fbaff80');
+
+    expect(() => resolver.apply({}, { sets: ['opacified'], resolveAliases: true })).toThrow(
+      'Can’t find $ref',
+    );
+
+    const partialResolved = resolver.apply(
+      {},
+      { sets: ['opacified', 'primitives'], resolveAliases: false },
+    );
+    expect(Object.keys(partialResolved)).toContain('semi-light-blue');
+    expect(
+      transformCSSValue(partialResolved['semi-light-blue']!, {
+        color: { legacyHex: true },
+        permutation: {},
+        tokensSet: partialResolved,
+      }),
+    ).toEqual('#8fbaff80');
   });
 });
 
