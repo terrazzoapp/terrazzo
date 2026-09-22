@@ -1,4 +1,6 @@
 import fs from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { Logger } from '@terrazzo/parser';
@@ -104,6 +106,42 @@ describe('import', () => {
       await expect(
         await fs.readFile(new URL('./import-unpublished.actual.json', cwd), 'utf8'),
       ).toMatchFileSnapshot(fileURLToPath(new URL('./import-unpublished.want.json', cwd)));
+    });
+
+    it.each([
+      {
+        name: 'keeps an existing resolutionOrder',
+        oldOrder: [{ $ref: '#/sets/styles' }, { $ref: '#/modifiers/mode' }],
+        want: [{ $ref: '#/sets/styles' }, { $ref: '#/modifiers/mode' }],
+      },
+      {
+        name: 'falls back to discovery order for an empty resolutionOrder',
+        oldOrder: [],
+        want: [{ $ref: '#/sets/styles' }],
+      },
+      {
+        // The output file is hand-editable, so resolutionOrder can be any JSON value
+        name: 'falls back to discovery order for a non-array resolutionOrder',
+        oldOrder: 'not an array',
+        want: [{ $ref: '#/sets/styles' }],
+      },
+    ])('$name', async ({ oldOrder, want }) => {
+      const directory = await fs.mkdtemp(join(tmpdir(), 'terrazzo-import-figma-'));
+      const output = join(directory, 'resolver.json');
+      await fs.writeFile(output, JSON.stringify({ resolutionOrder: oldOrder }));
+
+      try {
+        await importCmd({
+          logger: new Logger(),
+          positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
+          flags: { output, 'skip-variables': true },
+        });
+
+        const { resolutionOrder } = JSON.parse(await fs.readFile(output, 'utf8'));
+        expect(resolutionOrder).toEqual(want);
+      } finally {
+        await fs.rm(directory, { recursive: true });
+      }
     });
 
     it('--font-family-names, --font-weight-names, --number-names', async () => {
