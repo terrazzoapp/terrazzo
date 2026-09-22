@@ -63,108 +63,108 @@ export async function getStyles(
       continue;
     }
 
-    const styleType = 'style_type' in s ? s.style_type : s.styleType;
-    const tokenBase = {
-      $type: undefined as any,
-      $description: s.description || undefined,
-      $value: undefined as any,
-      $extensions: {
-        'figma.com': {
-          name: s.name,
-          node_id: id,
-          created_at: 'created_at' in s ? s.created_at : undefined,
-          updated_at: 'updated_at' in s ? s.updated_at : undefined,
-        },
-      },
-    };
-
-    switch (styleType) {
-      case 'FILL': {
-        const $value = fillStyle(styleNode.document);
-        if (!$value) {
-          logger.error({
-            group: 'import',
-            message: `Could not parse fill for ${s.name}`,
-            continueOnError: true,
-          });
-        }
-        if (Array.isArray($value)) {
-          tokenBase.$type = 'gradient';
-        } else {
-          tokenBase.$type = 'color';
-        }
-        tokenBase.$value = $value;
-        break;
-      }
-      case 'TEXT': {
-        const $value = textStyle(styleNode.document);
-        if (!$value) {
-          logger.error({
-            group: 'import',
-            message: `Could not parse text for ${s.name}`,
-            continueOnError: true,
-          });
-        }
-        tokenBase.$type = 'typography';
-        tokenBase.$value = $value;
-        break;
-      }
-      case 'EFFECT': {
-        const $value = effectStyle(styleNode.document);
-        if (!$value) {
-          logger.warn({
-            group: 'import',
-            message: `Skipping unsupported non-shadow effect style ${s.name}`,
-          });
-          break;
-        }
-        tokenBase.$type = 'shadow';
-        tokenBase.$value = $value;
-        break;
-      }
-      case 'GRID': {
-        const layoutGrids = gridStyles(styleNode.document);
-        if (!layoutGrids) {
-          logger.error({
-            group: 'import',
-            message: `Could not parse grid for ${s.name}`,
-            continueOnError: true,
-          });
-          break;
-        }
-        // Note: Grids scaffold out multiple sub-components, so we need to “cheat” a little here
-        let node = result.code.sets.styles.sources[0];
-        const path = s.name.split('/').map(formatName);
-        const name = path.pop()!;
-        for (const key of path) {
-          if (!(key in node)) {
-            node[key] = {};
-          }
-          node = node[key];
-        }
-        node[name] = layoutGrids;
-        result.count++;
-        break;
-      }
+    const styleNodeValue = styleToNode(s, styleNode.document, { id, logger });
+    if (!styleNodeValue) {
+      continue;
     }
 
-    // Only place in tree if we got a value for it
-    if (tokenBase.$value !== undefined) {
-      let node = result.code.sets.styles.sources[0];
-      const path = s.name.split('/').map(formatName);
-      const name = path.pop()!;
-      for (const key of path) {
-        if (!(key in node)) {
-          node[key] = {};
-        }
-        node = node[key];
-      }
-      node[name] = tokenBase;
-      result.count++;
-    }
+    placeAtPath(result.code.sets.styles.sources[0], s.name, styleNodeValue);
+    result.count++;
   }
 
   return result;
+}
+
+/** Return the node to place in the token tree for a Style, or `undefined` to omit it */
+function styleToNode(
+  s: Style | PublishedStyle,
+  document: Node,
+  { id, logger }: { id: string; logger: Logger },
+): Record<string, any> | undefined {
+  const $description = s.description || undefined;
+  const $extensions = {
+    'figma.com': {
+      name: s.name,
+      node_id: id,
+      created_at: 'created_at' in s ? s.created_at : undefined,
+      updated_at: 'updated_at' in s ? s.updated_at : undefined,
+    },
+  };
+
+  const styleType = 'style_type' in s ? s.style_type : s.styleType;
+  switch (styleType) {
+    case 'FILL': {
+      const $value = fillStyle(document);
+      if (!$value) {
+        logger.error({
+          group: 'import',
+          message: `Could not parse fill for ${s.name}`,
+          continueOnError: true,
+        });
+        return;
+      }
+      return {
+        $type: Array.isArray($value) ? 'gradient' : 'color',
+        $description,
+        $value,
+        $extensions,
+      };
+    }
+    case 'TEXT': {
+      const $value = textStyle(document);
+      if (!$value) {
+        logger.error({
+          group: 'import',
+          message: `Could not parse text for ${s.name}`,
+          continueOnError: true,
+        });
+        return;
+      }
+      return { $type: 'typography', $description, $value, $extensions };
+    }
+    case 'EFFECT': {
+      const $value = effectStyle(document);
+      if (!$value) {
+        logger.warn({
+          group: 'import',
+          message: `Skipping unsupported non-shadow effect style ${s.name}`,
+        });
+        return;
+      }
+      return { $type: 'shadow', $description, $value, $extensions };
+    }
+    case 'GRID': {
+      const layoutGrids = gridStyles(document);
+      if (!layoutGrids) {
+        logger.error({
+          group: 'import',
+          message: `Could not parse grid for ${s.name}`,
+          continueOnError: true,
+        });
+        return;
+      }
+      // Note: Grids scaffold out multiple sub-components, so this is a group rather than a token
+      return layoutGrids;
+    }
+    default: {
+      const unhandled: never = styleType;
+      throw new Error(`Unhandled Figma Style type ${unhandled}`);
+    }
+  }
+}
+
+/** Place a value in the token tree at a slash-separated Style name */
+function placeAtPath(root: any, styleName: string, value: unknown) {
+  const path = styleName.split('/').map(formatName);
+  const name = path.pop()!;
+  let node = root;
+  for (const key of path) {
+    if (!(key in node)) {
+      node[key] = {};
+    }
+    node = node[key];
+  }
+  node[name] = value;
 }
 
 /** Return a shadow token from an effect */
