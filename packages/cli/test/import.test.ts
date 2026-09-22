@@ -21,6 +21,7 @@ describe('import', () => {
       'utf8',
     );
     const FIGMA_GET_STYLES = await fs.readFile(new URL('./get-styles.json', cwd), 'utf8');
+    const FIGMA_GET_FILE = await fs.readFile(new URL('./get-file.json', cwd), 'utf8');
 
     beforeEach(() => {
       vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');
@@ -30,6 +31,7 @@ describe('import', () => {
         Promise.resolve(
           new Response(
             {
+              [`https://api.figma.com/v1/files/${FILE_KEY}`]: FIGMA_GET_FILE,
               [`https://api.figma.com/v1/files/${FILE_KEY}/nodes`]: FIGMA_GET_FILE_NODES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/styles`]: FIGMA_GET_STYLES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]:
@@ -48,10 +50,17 @@ describe('import', () => {
     });
 
     it('default', async () => {
+      const logger = new Logger();
+      const warn = vi.spyOn(logger, 'warn');
       await importCmd({
-        logger: new Logger(),
+        logger,
         positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
         flags: { output: 'test/fixtures/import-figma/import-default.actual.json' },
+      });
+      // elevation/legacy is still published, but was deleted from the file since
+      expect(warn).toHaveBeenCalledWith({
+        group: 'import',
+        message: 'Style elevation/legacy not found in file nodes. Does it need to be published?',
       });
       const actual = new URL('./import-default.actual.json', cwd);
       const actualSrc = await fs.readFile(actual, 'utf8');
@@ -92,15 +101,21 @@ describe('import', () => {
     });
 
     it('--unpublished', async () => {
-      // This should contain legacy/* variables that the previous snapshots did not
+      // This snapshot of variables and styles from the unpublished state of the Figma file is expected
+      // to differ from the previous published one.
+      const logger = new Logger();
+      const warn = vi.spyOn(logger, 'warn');
       await importCmd({
-        logger: new Logger(),
+        logger,
         positionals: ['import', `https://www.figma.com/design/${FILE_KEY}/My-File?node-id=1:1`],
         flags: {
           output: 'test/fixtures/import-figma/import-unpublished.actual.json',
           unpublished: true,
         },
       });
+      expect(warn).not.toHaveBeenCalledWith(
+        expect.objectContaining({ message: expect.stringMatching(/^Style /) }),
+      );
       await expect(
         await fs.readFile(new URL('./import-unpublished.actual.json', cwd), 'utf8'),
       ).toMatchFileSnapshot(fileURLToPath(new URL('./import-unpublished.want.json', cwd)));

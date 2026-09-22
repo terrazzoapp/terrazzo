@@ -72,6 +72,29 @@
       "schemaVersion": 0,
       "styles": {}
     },
+    "16:5": {
+      "document": {
+        "id": "16:5",
+        "name": "elevation/200",
+        "type": "RECTANGLE",
+        "effects": [
+          {
+            "type": "DROP_SHADOW",
+            "visible": true,
+            "color": { "r": 0, "g": 0, "b": 0, "a": 0.5 },
+            "blendMode": "NORMAL",
+            "offset": { "x": 0, "y": 8 },
+            "radius": 16,
+            "spread": 2,
+            "showShadowBehindNode": false
+          }
+        ]
+      },
+      "components": {},
+      "componentSets": {},
+      "schemaVersion": 0,
+      "styles": {}
+    },
     "4:3": {
       "document": {
         "id": "4:3",

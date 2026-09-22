@@ -38,10 +38,25 @@ export async function getStyles(
   const stylesByID = new Map<string, Style | PublishedStyle>();
 
   if (unpublished) {
-    const styles = await getFile(fileKey, { logger });
-    for (const [id, style] of Object.entries(styles.styles)) {
+    // The file endpoint lists every style, but omits the created_at/updated_at that the styles
+    // endpoint reports, so copy those from the published record wherever one exists.
+    const [file, published] = await Promise.all([
+      getFile(fileKey, { logger }),
+      getFileStyles(fileKey, { logger }),
+    ]);
+    for (const [id, style] of Object.entries(file.styles)) {
       styleNodeIDs.add(id);
       stylesByID.set(id, style);
+    }
+    for (const style of published.meta.styles) {
+      const localStyle = stylesByID.get(style.node_id);
+      if (localStyle) {
+        stylesByID.set(style.node_id, {
+          ...localStyle,
+          created_at: style.created_at,
+          updated_at: style.updated_at,
+        });
+      }
     }
   } else {
     const styles = await getFileStyles(fileKey, { logger });
