@@ -1,5 +1,15 @@
 # @terrazzo/plugin-sass
 
+## 2.7.2
+
+### Patch Changes
+
+- Updated dependencies [[`ea62814`](https://github.com/terrazzoapp/terrazzo/commit/ea62814ae670c2807a2bf97936dda712dff20062)]:
+  - @terrazzo/token-tools@2.7.2
+  - @terrazzo/cli@2.7.2
+  - @terrazzo/parser@2.7.2
+  - @terrazzo/plugin-css@2.7.2
+
 ## 2.7.1
 
 ### Patch Changes
