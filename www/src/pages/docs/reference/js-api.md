@@ -44,7 +44,7 @@ for (const { filename, contents } of buildResult) {
 It’s worth noting the JS API is a little more manual work than the [CLI](/docs/):
 
 - `parse()` and `build()` are distinct steps that each do some of the work.
-- `defineConfig()` needs a <abbr title="Current Working Directory">cwd</abbr> so it can resolve files (this can even be a remote URL, so long as it’s a URL())
+- `defineConfig()` needs a <abbr title="Current Working Directory">cwd</abbr> so it can resolve files (this can even be a remote URL, so long as it’s a `URL()` object)
 - The AST generated from `parse()` must get passed into `build()` so the error messages can point to the right lines in the source file.
 - The `build()` step only returns a final array of `outputFiles`in memory but doesn’t write them to disk. It’s up to you to write them to disk, upload them somewhere, etc.
 
@@ -278,7 +278,7 @@ import { parse } from "@terrazzo/parser";
 
 const { resolver } = await parse(sources, { config });
 
-resolver.apply({ theme: "light" }, { modifiers: ["theme"], resolveAliases: false });
+const tokens = resolver.apply({ theme: "light" }, { modifiers: ["theme"], resolveAliases: false });
 ```
 
 It may be useful to apply an input to only a specific subset of tokens within the resolver.
@@ -294,17 +294,65 @@ partial application.
 Note that `$extends` directives that reference tokens outside of the subset will fail to resolve
 regardless of the `resolveAliases` setting.
 
+### Set operations
+
+Set operations allows you to filter tokens based on the permutations of the resolver.
+
+They can be useful for filtering tokens whose values don't change across modifiers, or on the contrary, tokens whose values change across modifiers.
+
+:::tip
+`intersection` and `symmetricalDifference` perform commutative set operations, meaning that the order of the modifiers doesn't change the result.
+:::
+
+Both accept the same `ResolverCommutativeSetOperationOptions` options, which are:
+
+| Name               | Type                                               | Default     | Description                                                                       |
+| :----------------- | :------------------------------------------------- | :---------- | :-------------------------------------------------------------------------------- |
+| **modifiers**      | `undefined \| string[]`                            | `[]`        | Like the `apply` method, restrict the operation to the included modifiers subset. |
+| **resolveAliases** | `undefined \| boolean`                             | `true`      | Like the `apply` method, resolve DTCG aliases when applying the input.            |
+| **filter**         | `undefined \| (token: TokenNormalized) => boolean` | `undefined` | Filter tokens based on specific criteria.                                         |
+
+#### intersection
+
+```ts
+import { parse } from "@terrazzo/parser";
+
+const { resolver } = await parse(sources, { config });
+
+const tokens = resolver.intersection({
+  modifiers: ["theme"],
+  filter: (token) => !!token.aliasOf?.length,
+});
+```
+
+In the above example `tokens` will contain all the tokens that have unchanged values across all permutations of the `theme` modifier, and that are aliases.
+
+#### symmetricDifference
+
+```ts
+import { parse } from "@terrazzo/parser";
+
+const { resolver } = await parse(sources, { config });
+
+const tokens = resolver.symmetricDifference({ modifiers: ["theme", "mode"] });
+```
+
+In this example, `symmetricDifference` does the opposite of `intersection`, in this case `tokens` will contain all the tokens that have changing values across all the permutations of the `theme` and `mode` modifiers.
+This time, we also do not use the `filter` option.
+
 ### API
 
 #### createResolver
 
-`createResolver(resolverSource: ResolverSourceNormalized, resolverOptions: CreateResolverOptions)` returns a resolver with the following methods:
+`createResolver(resolverSource: ResolverSourceNormalized, resolverOptions: CreateResolverOptions)` returns a resolver with the following properties:
 
-| Name                 | Type                                                                                          | Description                                                                                                                                           |
-| :------------------- | :-------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **apply**            | `(input: Record<string, string>, options?: ResolverApplicationOptions) => TokenNormalizedSet` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                                                             |
-| **listPermutations** | `undefined \| () => Record<string, string>[]`                                                 | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).                                                |
-| **isValidInput**     | `(input: Record<string, string>, throwError?: boolean) => boolean`                            | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |
-| **getPermutationID** | `(input: Record<string, string>) => string`                                                   | Returns a stable, deterministic ID from an input. This can also be parsed by JSON back into a normalized input.                                       |
-| **orthogonal**       | `boolean`                                                                                     | Returns `true` if all modifiers operate on unique tokens. This is all-or-nothing—a resolver is only orthogonal if all modifiers are.                  |
-| **source**           | `ResolverSourceNormalized`                                                                    | The resolver source, a representation of the resolver.json file where all tokens are loaded and flattened in-memory for performance reason.           |
+| Name                    | Type                                                                                          | Description                                                                                                                                           |
+| :---------------------- | :-------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **apply**               | `(input: Record<string, string>, options?: ResolverApplicationOptions) => TokenNormalizedSet` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                                                             |
+| **listPermutations**    | `undefined \| () => Record<string, string>[]`                                                 | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).                                                |
+| **isValidInput**        | `(input: Record<string, string>, throwError?: boolean) => boolean`                            | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |
+| **getPermutationID**    | `(input: Record<string, string>) => string`                                                   | Returns a stable, deterministic ID from an input. This can also be parsed by JSON back into a normalized input.                                       |
+| **intersection**        | `(options?: ResolverCommutativeSetOperationOptions) => TokenNormalizedSet`                    | Use `apply()` then does an intersection operation and return a token set where all the tokens have unchanged values across permutations.              |
+| **symmetricDifference** | `(options?: ResolverCommutativeSetOperationOptions) => TokenNormalizedSet`                    | Use `apply()` then does an symmetric difference operation and return a token set where all the tokens have changed values across permutations.        |
+| **orthogonal**          | `boolean`                                                                                     | Returns `true` if all modifiers operate on unique tokens. This is all-or-nothing—a resolver is only orthogonal if all modifiers are.                  |
+| **source**              | `ResolverSourceNormalized`                                                                    | The resolver source, a representation of the resolver.json file where all tokens are loaded and flattened in-memory for performance reason.           |

@@ -5,22 +5,18 @@ import {
   maybeRawJSON,
 } from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
-import type yamlToMomoa from 'yaml-to-momoa';
 
 import { toMomoa } from '../lib/momoa.js';
-import { destructiveMerge, getPermutationID } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
-import { processTokens } from '../parse/process.js';
-import type { ConfigInit, Resolver, ResolverInput, ResolverSourceNormalized } from '../types.js';
+import type {
+  LoadResolverOptions,
+  Resolver,
+  ResolverInput,
+  ResolverSourceNormalized,
+} from '../types.js';
+import { createResolver } from './create-resolver.js';
 import { normalizeResolver } from './normalize.js';
 import { isLikelyResolver, validateResolver } from './validate.js';
-
-export interface LoadResolverOptions {
-  config: ConfigInit;
-  logger: Logger;
-  req: (url: URL, origin: URL) => Promise<string>;
-  yamlToMomoa?: typeof yamlToMomoa;
-}
 
 /** Quick-parse input sources and find a resolver */
 export async function loadResolver(
@@ -116,174 +112,6 @@ export async function loadResolver(
   };
 }
 
-export interface CreateResolverOptions {
-  config: ConfigInit;
-  logger: Logger;
-  sources: InputSourceWithDocument[];
-  orthogonal: boolean;
-}
-
-/** Create an interface to resolve permutations */
-export function createResolver(
-  resolverSource: ResolverSourceNormalized,
-  { config, logger, sources, orthogonal }: CreateResolverOptions,
-): Resolver {
-  const inputDefaults: ResolverInput = {};
-  const validContexts: Record<string, string[]> = {};
-  const allPermutations: ResolverInput[] = [];
-
-  const resolverCache: Record<string, any> = {};
-
-  // Important: by iterating over resolutionOrder, we
-  // filter out unused modifiers/irrelevant contexts.
-  for (const m of resolverSource.resolutionOrder) {
-    if (m.type === 'modifier') {
-      if (typeof m.default === 'string') {
-        inputDefaults[m.name] = m.default!;
-      }
-      validContexts[m.name] = Object.keys(m.contexts);
-    }
-  }
-
-  const permutationCount = Object.values(validContexts).reduce(
-    (acc, context) => acc * context.length,
-    1,
-  );
-
-  return {
-    apply(inputRaw, options) {
-      const tokensRaw: TokenNormalizedSet = {};
-      const input = { ...inputDefaults, ...inputRaw };
-      const permutationID = getPermutationID(input, options);
-
-      if (resolverCache[permutationID]) {
-        return resolverCache[permutationID];
-      }
-
-      for (const item of resolverSource.resolutionOrder) {
-        switch (item.type) {
-          case 'set': {
-            if (Array.isArray(options?.sets) && !options.sets.includes(item.name)) {
-              continue;
-            }
-            for (const s of item.sources) {
-              destructiveMerge(tokensRaw, s);
-            }
-            break;
-          }
-          case 'modifier': {
-            if (Array.isArray(options?.modifiers) && !options.modifiers.includes(item.name)) {
-              continue;
-            }
-            const context = input[item.name]!;
-            const resolverSources = item.contexts[context];
-            if (!resolverSources) {
-              logger.error({
-                group: 'resolver',
-                message: `Modifier ${item.name} has no context ${JSON.stringify(context)}.`,
-              });
-            }
-            for (const s of resolverSources ?? []) {
-              destructiveMerge(tokensRaw, s);
-            }
-            break;
-          }
-        }
-      }
-
-      const src = JSON.stringify(tokensRaw, undefined, 2);
-      const rootSource = {
-        filename: resolverSource._source.filename!,
-        document: toMomoa(src),
-        src,
-      };
-      const tokens = processTokens(rootSource, {
-        config,
-        logger,
-        sourceByFilename: { [resolverSource._source.filename!.href]: rootSource },
-        isResolver: true,
-        resolveAliases: options?.resolveAliases ?? true,
-        sources,
-      });
-      resolverCache[permutationID] = tokens;
-      return tokens;
-    },
-    orthogonal,
-    source: resolverSource,
-    listPermutations:
-      permutationCount <= config.permutationLimit
-        ? () => {
-            // only do work on first call, then cache subsequent work. this could be thousands of possible values!
-            if (allPermutations.length === 0) {
-              allPermutations.push(...calculatePermutations(Object.entries(validContexts)));
-            }
-            return allPermutations;
-          }
-        : undefined,
-    isValidInput(input, throwError = false) {
-      if (!input || typeof input !== 'object') {
-        logger.error({ group: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });
-      }
-      for (const k of Object.keys(input)) {
-        if (!(k in validContexts)) {
-          if (throwError) {
-            logger.error({ group: 'resolver', message: `No such modifier ${JSON.stringify(k)}` });
-          }
-          return false; // 1. invalid if unknown modifier name
-        }
-      }
-      for (const [name, contexts] of Object.entries(validContexts)) {
-        // Note: empty strings are valid! Don’t check for truthiness.
-        if (name in input) {
-          if (name === 'tzMode') {
-            continue; // reserved modifier
-          }
-          if (!contexts.includes(input[name]!)) {
-            if (throwError) {
-              logger.error({
-                group: 'resolver',
-                message: `Modifier "${name}" has no context ${JSON.stringify(input[name])}.`,
-              });
-            }
-            return false; // 2. invalid if unknown context
-          }
-        } else if (!(name in inputDefaults)) {
-          if (throwError) {
-            logger.error({
-              group: 'resolver',
-              message: `Modifier "${name}" missing value (no default set).`,
-            });
-          }
-          return false; // 3. invalid if omitted, and no default
-        }
-      }
-      return true;
-    },
-    getPermutationID(input) {
-      this.isValidInput(input, true);
-      return getPermutationID({ ...inputDefaults, ...input });
-    },
-  };
-}
-
-/** Calculate all permutations */
-export function calculatePermutations(options: [string, string[]][]) {
-  const permutationCount = [1];
-  for (const [_name, contexts] of options) {
-    permutationCount.push(contexts.length * (permutationCount.at(-1) || 1));
-  }
-  const permutations: Record<string, string>[] = [];
-  for (let i = 0; i < permutationCount.at(-1)!; i++) {
-    const input: ResolverInput = {};
-    for (let j = 0; j < options.length; j++) {
-      const [name, contexts] = options[j]!;
-      input[name] = contexts[Math.floor(i / permutationCount[j]!) % contexts.length]!;
-    }
-    permutations.push(input);
-  }
-  return permutations.length > 0 ? permutations : [{}];
-}
-
 /** Determine Resolver orthogonality using as little work as possible */
 function isResolverOrthogonal(resolver: ResolverSourceNormalized, logger: Logger): boolean {
   // Keep a record of which tokens are in which modifier.
@@ -350,4 +178,22 @@ function isResolverOrthogonal(resolver: ResolverSourceNormalized, logger: Logger
   }
 
   return true;
+}
+
+/** Calculate all permutations */
+export function calculatePermutations(options: [string, string[]][]) {
+  const permutationCount = [1];
+  for (const [_name, contexts] of options) {
+    permutationCount.push(contexts.length * (permutationCount.at(-1) || 1));
+  }
+  const permutations: Record<string, string>[] = [];
+  for (let i = 0; i < permutationCount.at(-1)!; i++) {
+    const input: ResolverInput = {};
+    for (let j = 0; j < options.length; j++) {
+      const [name, contexts] = options[j]!;
+      input[name] = contexts[Math.floor(i / permutationCount[j]!) % contexts.length]!;
+    }
+    permutations.push(input);
+  }
+  return permutations.length > 0 ? permutations : [{}];
 }
