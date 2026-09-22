@@ -1,5 +1,13 @@
 # @terrazzo/token-tools
 
+## 2.7.2
+
+### Patch Changes
+
+- [#821](https://github.com/terrazzoapp/terrazzo/pull/821) [`ea62814`](https://github.com/terrazzoapp/terrazzo/commit/ea62814ae670c2807a2bf97936dda712dff20062) Thanks [@unpunnyfuns](https://github.com/unpunnyfuns)! - Fix dimension values that aren't `{ value, unit }` objects emitting `undefinedundefined`
+- Updated dependencies []:
+  - @terrazzo/token-types@2.7.2
+
 ## 2.7.1
 
 ### Patch Changes
