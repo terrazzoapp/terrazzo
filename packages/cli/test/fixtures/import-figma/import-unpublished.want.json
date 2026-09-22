@@ -83,9 +83,7 @@
               "$extensions": {
                 "figma.com": {
                   "name": "elevation/100",
-                  "node_id": "16:3",
-                  "created_at": "2025-10-30T12:00:00Z",
-                  "updated_at": "2025-10-30T12:00:00Z"
+                  "node_id": "16:3"
                 }
               }
             },
@@ -154,9 +152,7 @@
                 "$extensions": {
                   "figma.com": {
                     "name": "text/body/medium",
-                    "node_id": "4:3",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
+                    "node_id": "4:3"
                   }
                 }
               },
@@ -182,9 +178,7 @@
                 "$extensions": {
                   "figma.com": {
                     "name": "text/body/extraLarge",
-                    "node_id": "4:11",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
+                    "node_id": "4:11"
                   }
                 }
               }
@@ -206,9 +200,7 @@
                 "$extensions": {
                   "figma.com": {
                     "name": "style/green/100",
-                    "node_id": "16:2",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
+                    "node_id": "16:2"
                   }
                 }
               }
@@ -257,9 +249,7 @@
                 "$extensions": {
                   "figma.com": {
                     "name": "style/gradient/100",
-                    "node_id": "16:4",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
+                    "node_id": "16:4"
                   }
                 }
               }
