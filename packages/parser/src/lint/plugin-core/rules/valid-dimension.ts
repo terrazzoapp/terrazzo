@@ -4,6 +4,7 @@ import { isAlias } from '@terrazzo/token-tools';
 
 import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
+import { isTypographyKeyword } from '../lib/keywords.js';
 
 export const VALID_DIMENSION = 'core/valid-dimension';
 
@@ -157,7 +158,8 @@ const rule: LintRule<
                   isAlias(t.originalValue.$value[property] as string) ||
                   // special case: lineHeight may be a number
                   (property === 'lineHeight' &&
-                    typeof t.originalValue.$value[property] === 'number')
+                    typeof t.originalValue.$value[property] === 'number') ||
+                  isTypographyKeyword(property, t.originalValue.$value[property])
                 ) {
                   continue;
                 }

@@ -54,6 +54,45 @@ describe('9.7 Typography', () => {
       },
     ],
     [
+      'valid: lineHeight (keyword)',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              typography: {
+                body: { $type: 'typography', $value: { ...DEFAULT_VALID, lineHeight: 'normal' } },
+              },
+            },
+          },
+        ],
+        want: {
+          tokens: { 'typography.body': { $value: { ...DEFAULT_VALID, lineHeight: 'normal' } } },
+        },
+      },
+    ],
+    [
+      'valid: letterSpacing (keyword)',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              typography: {
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, letterSpacing: 'normal' },
+                },
+              },
+            },
+          },
+        ],
+        want: {
+          tokens: { 'typography.body': { $value: { ...DEFAULT_VALID, letterSpacing: 'normal' } } },
+        },
+      },
+    ],
+    [
       'valid: fontFamily alias',
       {
         given: [
