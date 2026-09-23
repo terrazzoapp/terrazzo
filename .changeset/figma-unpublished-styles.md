@@ -2,4 +2,4 @@
 "@terrazzo/cli": patch
 ---
 
-Apply `--unpublished` to Figma Style import. Styles are now read from the file as they currently are, including local renames and deletions and remote Styles used from other libraries. They no longer carry the published `created_at`/`updated_at`.
+Apply `--unpublished` to Figma Style import. Styles are now read from the file as they currently are, including local renames and deletions. Remote Styles used from other libraries are resolved from their source files. Unpublished Styles no longer carry the published `created_at`/`updated_at`.

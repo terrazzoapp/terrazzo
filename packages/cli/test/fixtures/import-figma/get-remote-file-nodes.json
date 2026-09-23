@@ -1,0 +1,27 @@
+{
+  "name": "Remote Library",
+  "lastModified": "2025-10-30T12:00:00Z",
+  "version": "1",
+  "role": "viewer",
+  "editorType": "figma",
+  "nodes": {
+    "30:1": {
+      "document": {
+        "id": "30:1",
+        "name": "brand/blue/100",
+        "type": "RECTANGLE",
+        "fills": [
+          {
+            "blendMode": "NORMAL",
+            "type": "SOLID",
+            "color": { "r": 0, "g": 0.3803921639919281, "b": 0.8352941274642944, "a": 1 }
+          }
+        ]
+      },
+      "components": {},
+      "componentSets": {},
+      "schemaVersion": 0,
+      "styles": {}
+    }
+  }
+}

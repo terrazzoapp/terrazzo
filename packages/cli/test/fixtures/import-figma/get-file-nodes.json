@@ -95,24 +95,6 @@
       "schemaVersion": 0,
       "styles": {}
     },
-    "30:1": {
-      "document": {
-        "id": "30:1",
-        "name": "brand/blue/100",
-        "type": "RECTANGLE",
-        "fills": [
-          {
-            "blendMode": "NORMAL",
-            "type": "SOLID",
-            "color": { "r": 0, "g": 0.3803921639919281, "b": 0.8352941274642944, "a": 1 }
-          }
-        ]
-      },
-      "components": {},
-      "componentSets": {},
-      "schemaVersion": 0,
-      "styles": {}
-    },
     "4:3": {
       "document": {
         "id": "4:3",

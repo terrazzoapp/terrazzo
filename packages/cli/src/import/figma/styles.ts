@@ -1,5 +1,6 @@
 import type {
   DropShadowEffect,
+  GetFileNodesResponse,
   InnerShadowEffect,
   Node,
   PublishedStyle,
@@ -16,7 +17,10 @@ import type {
   TypographyValue,
 } from '@terrazzo/parser';
 
-import { formatName, getFile, getFileNodes, getFileStyles } from './lib.js';
+import { formatName, getFile, getFileNodes, getFileStyles, getStyle } from './lib.js';
+
+type StyleMetadata = Style | PublishedStyle;
+type StyleNode = NonNullable<GetFileNodesResponse['nodes'][string]>;
 
 /** /v1/files/:file_key/styles */
 export async function getStyles(
@@ -34,28 +38,24 @@ export async function getStyles(
     },
   };
 
-  const styleNodeIDs = new Set<string>();
-  const stylesByID = new Map<string, Style | PublishedStyle>();
+  const stylesByID = new Map<string, StyleMetadata>();
 
   if (unpublished) {
     const styles = await getFile(fileKey, { logger });
     for (const [id, style] of Object.entries(styles.styles)) {
-      styleNodeIDs.add(id);
       stylesByID.set(id, style);
     }
   } else {
     const styles = await getFileStyles(fileKey, { logger });
     for (const style of styles.meta.styles) {
-      styleNodeIDs.add(style.node_id);
       stylesByID.set(style.node_id, style);
     }
   }
 
-  const fileNodes = await getFileNodes(fileKey, { ids: [...styleNodeIDs], logger });
+  const styleNodesByID = await getStyleNodes(fileKey, stylesByID, { logger });
 
-  result.count += styleNodeIDs.size;
   for (const [id, s] of stylesByID) {
-    const styleNode = fileNodes.nodes[id];
+    const styleNode = styleNodesByID.get(id);
     if (!styleNode) {
       logger.warn({
         group: 'import',
@@ -63,6 +63,7 @@ export async function getStyles(
       });
       continue;
     }
+    result.count++;
 
     const styleType = 'style_type' in s ? s.style_type : s.styleType;
     const tokenBase = {
@@ -163,6 +164,64 @@ export async function getStyles(
   }
 
   return result;
+}
+
+async function getStyleNodes(
+  fileKey: string,
+  stylesByID: Map<string, StyleMetadata>,
+  { logger }: { logger: Logger },
+): Promise<Map<string, StyleNode>> {
+  const localStyleNodeIDs: string[] = [];
+  const remoteStyles: [styleID: string, style: Style][] = [];
+  for (const [id, style] of stylesByID) {
+    if ('remote' in style && style.remote) {
+      remoteStyles.push([id, style]);
+    } else {
+      localStyleNodeIDs.push(id);
+    }
+  }
+
+  const styleNodesByID = new Map<string, StyleNode>();
+  if (localStyleNodeIDs.length > 0) {
+    const localFileNodes = await getFileNodes(fileKey, { ids: localStyleNodeIDs, logger });
+    for (const id of localStyleNodeIDs) {
+      const styleNode = localFileNodes.nodes[id];
+      if (styleNode) {
+        styleNodesByID.set(id, styleNode);
+      }
+    }
+  }
+
+  const remoteStylesByFile = new Map<string, { styleID: string; sourceNodeID: string }[]>();
+  const remoteStyleLocations = await Promise.all(
+    remoteStyles.map(async ([styleID, style]) => {
+      const { meta } = await getStyle(style.key, { logger });
+      return { styleID, sourceFileKey: meta.file_key, sourceNodeID: meta.node_id };
+    }),
+  );
+  for (const { styleID, sourceFileKey, sourceNodeID } of remoteStyleLocations) {
+    const styles = remoteStylesByFile.get(sourceFileKey) ?? [];
+    styles.push({ styleID, sourceNodeID });
+    remoteStylesByFile.set(sourceFileKey, styles);
+  }
+
+  await Promise.all(
+    [...remoteStylesByFile].map(async ([sourceFileKey, styles]) => {
+      const sourceNodeIDs = styles.map(({ sourceNodeID }) => sourceNodeID);
+      const sourceFileNodes = await getFileNodes(sourceFileKey, {
+        ids: sourceNodeIDs,
+        logger,
+      });
+      for (const { styleID, sourceNodeID } of styles) {
+        const styleNode = sourceFileNodes.nodes[sourceNodeID];
+        if (styleNode) {
+          styleNodesByID.set(styleID, styleNode);
+        }
+      }
+    }),
+  );
+
+  return styleNodesByID;
 }
 
 /** Return a shadow token from an effect */

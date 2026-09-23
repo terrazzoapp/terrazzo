@@ -4,6 +4,7 @@ import type {
   GetFileStylesResponse,
   GetLocalVariablesResponse,
   GetPublishedVariablesResponse,
+  GetStyleResponse,
 } from '@figma/rest-api-spec';
 import type { Logger } from '@terrazzo/parser';
 import { camelCase as sculeCamelCase } from 'scule';
@@ -99,6 +100,18 @@ export async function getFileStyles(fileKey: string, { logger }: { logger: Logge
     logger.error({ group: 'import', message: `${res.status} ${await res.text()}` });
   }
   return (await res.json()) as GetFileStylesResponse;
+}
+
+/** /v1/styles/:key */
+export async function getStyle(key: string, { logger }: { logger: Logger }) {
+  const res = await fetch(API.styles.replace(KEY, key), {
+    method: 'GET',
+    headers: getFigmaAuthHeaders(logger),
+  });
+  if (!res.ok) {
+    logger.error({ group: 'import', message: `${res.status} ${await res.text()}` });
+  }
+  return (await res.json()) as GetStyleResponse;
 }
 
 /** /v1/files/:file_key/variables/local */

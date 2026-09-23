@@ -12,7 +12,7 @@ Figma Variables and Styles translate well to DTCG tokens! This guide will show y
 To import from Figma, you’ll need:
 
 1. A [personal access token](https://developers.figma.com/docs/rest-api/authentication/#access-tokens) or [OAuth token](https://developers.figma.com/docs/rest-api/authentication/#oauth-apps) with access to the file(s) you want to load Variables & Styles from
-   - For **Styles**, it needs 3 [scopes](https://developers.figma.com/docs/rest-api/scopes/): `file_content:read`, `team_library_content:read`, and `library_content:read`.
+   - For **Styles**, it needs 4 [scopes](https://developers.figma.com/docs/rest-api/scopes/): `file_content:read`, `library_assets:read`, `team_library_content:read`, and `library_content:read`.
    - For **Variables**, it needs 1 [scope](https://developers.figma.com/docs/rest-api/scopes/): `file_variables:read`.
 2. An Enterprise plan to access Variables (with free accounts, only Styles are importable)
 
@@ -141,7 +141,7 @@ If the Figma file has a [Published Library](https://help.figma.com/hc/en-us/arti
 npx tz import [file] --unpublished
 ```
 
-With `--unpublished`, Styles are read from the file itself rather than the Published Library. This also includes remote Styles from other libraries used in the file.
+With `--unpublished`, Styles are read from the file itself rather than the Published Library. Remote Styles used in the file are resolved and read from their source libraries, which the access token must be able to access.
 
 If the file has nothing published, it will grab Styles and Variables in the file regardless of the `--unpublished` flag.
 

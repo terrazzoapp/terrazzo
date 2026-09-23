@@ -11,7 +11,13 @@ describe('import', () => {
     const cwd = new URL('./fixtures/import-figma/', import.meta.url);
 
     const FILE_KEY = 'AaAaAaAaAaAaAaAaAa';
+    const REMOTE_FILE_KEY = 'BbBbBbBbBbBbBbBbBb';
+    const REMOTE_STYLE_KEY = 'e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8f7e6d5';
     const FIGMA_GET_FILE_NODES = await fs.readFile(new URL('./get-file-nodes.json', cwd), 'utf8');
+    const FIGMA_GET_REMOTE_FILE_NODES = await fs.readFile(
+      new URL('./get-remote-file-nodes.json', cwd),
+      'utf8',
+    );
     const FIGMA_GET_LOCAL_VARIABLES = await fs.readFile(
       new URL('./get-local-variables.json', cwd),
       'utf8',
@@ -21,6 +27,7 @@ describe('import', () => {
       'utf8',
     );
     const FIGMA_GET_STYLES = await fs.readFile(new URL('./get-styles.json', cwd), 'utf8');
+    const FIGMA_GET_STYLE = await fs.readFile(new URL('./get-style.json', cwd), 'utf8');
     const FIGMA_GET_FILE = await fs.readFile(new URL('./get-file.json', cwd), 'utf8');
 
     beforeEach(() => {
@@ -34,6 +41,9 @@ describe('import', () => {
               [`https://api.figma.com/v1/files/${FILE_KEY}`]: FIGMA_GET_FILE,
               [`https://api.figma.com/v1/files/${FILE_KEY}/nodes`]: FIGMA_GET_FILE_NODES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/styles`]: FIGMA_GET_STYLES,
+              [`https://api.figma.com/v1/files/${REMOTE_FILE_KEY}/nodes`]:
+                FIGMA_GET_REMOTE_FILE_NODES,
+              [`https://api.figma.com/v1/styles/${REMOTE_STYLE_KEY}`]: FIGMA_GET_STYLE,
               [`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`]:
                 FIGMA_GET_LOCAL_VARIABLES,
               [`https://api.figma.com/v1/files/${FILE_KEY}/variables/published`]:
@@ -109,6 +119,7 @@ describe('import', () => {
       // - remote Styles from other libraries appear (brand/blue/100)
       // - Style timestamps are dropped, as they describe the last publish
       const logger = new Logger();
+      const info = vi.spyOn(logger, 'info');
       const warn = vi.spyOn(logger, 'warn');
       await importCmd({
         logger,
@@ -121,6 +132,19 @@ describe('import', () => {
       expect(warn).not.toHaveBeenCalledWith(
         expect.objectContaining({ message: expect.stringMatching(/^Style /) }),
       );
+      expect(info).toHaveBeenCalledWith(
+        expect.objectContaining({ message: expect.stringMatching(/, 8 Styles →/) }),
+      );
+      const requestedURLs = vi.mocked(globalThis.fetch).mock.calls.map(([url]) => url.toString());
+      expect(requestedURLs).toContain(`https://api.figma.com/v1/styles/${REMOTE_STYLE_KEY}`);
+      expect(requestedURLs).toContain(
+        `https://api.figma.com/v1/files/${REMOTE_FILE_KEY}/nodes?ids=30:1`,
+      );
+      const localNodesRequest = requestedURLs.find((url) =>
+        url.startsWith(`https://api.figma.com/v1/files/${FILE_KEY}/nodes?`),
+      );
+      expect(localNodesRequest).toBeDefined();
+      expect(localNodesRequest).not.toContain('30:1');
       await expect(
         await fs.readFile(new URL('./import-unpublished.actual.json', cwd), 'utf8'),
       ).toMatchFileSnapshot(fileURLToPath(new URL('./import-unpublished.want.json', cwd)));
