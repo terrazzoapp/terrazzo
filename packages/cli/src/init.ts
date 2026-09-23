@@ -7,18 +7,11 @@ import { fileURLToPath } from 'node:url';
 import { confirm, intro, multiselect, outro, select, spinner } from '@clack/prompts';
 import type { Logger } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
-import { detect } from 'detect-package-manager';
 import { generate } from 'escodegen';
 import { type ESTree, parseModule } from 'meriyah';
+import { type Agent, detect, resolveCommand } from 'package-manager-detector';
 
 import { cwd, loadConfig, printError } from './shared.js';
-
-const INSTALL_COMMAND = {
-  npm: 'install -D --silent',
-  yarn: 'add -D --silent',
-  pnpm: 'add -D --silent',
-  bun: 'install -D --silent',
-};
 
 const SYNTAX_SETTINGS = {
   format: {
@@ -92,7 +85,14 @@ export interface InitOptions {
 export async function initCmd({ logger }: InitOptions) {
   try {
     intro('⛋ Welcome to Terrazzo');
-    const packageManager = await detect({ cwd: fileURLToPath(cwd) });
+
+    const detectedPackageManager = await detect({ cwd: fileURLToPath(cwd) });
+
+    if (!detectedPackageManager) {
+      throw new Error('Could not detect a package manager.');
+    }
+
+    const packageManager = detectedPackageManager.agent;
 
     // TODO: pass in CLI flags?
     const { config, configPath = 'terrazzo.config.ts' } = await loadConfig({
@@ -131,16 +131,7 @@ export async function initCmd({ logger }: InitOptions) {
       if (ds) {
         const s = spinner();
         s.start('Downloading');
-        await new Promise((resolve, reject) => {
-          // security: spawn() is much safer than exec()
-          const subprocess = spawn(
-            packageManager,
-            [INSTALL_COMMAND[packageManager], 'dtcg-examples'],
-            { cwd },
-          );
-          subprocess.on('error', reject);
-          subprocess.on('exit', resolve);
-        });
+        await addPackages(packageManager, ['dtcg-examples']);
         s.stop('Download complete');
 
         if (hasExistingConfig) {
@@ -182,17 +173,7 @@ export async function initCmd({ logger }: InitOptions) {
       const pluginCount = `${newPlugins.length} ${pluralize(newPlugins.length, 'plugin', 'plugins')}`;
       const s = spinner();
       s.start(`Installing ${pluginCount}`);
-      // note: this is async to show the spinner
-      await new Promise((resolve, reject) => {
-        // security: spawn() is much safer than exec()
-        const subprocess = spawn(
-          packageManager,
-          [INSTALL_COMMAND[packageManager], newPlugins.join(' ')],
-          { cwd },
-        );
-        subprocess.on('error', reject);
-        subprocess.on('exit', resolve);
-      });
+      await addPackages(packageManager, newPlugins);
       s.message('Updating config');
 
       await updateConfigPlugins(configPath, plugins);
@@ -211,6 +192,31 @@ export async function initCmd({ logger }: InitOptions) {
     printError((error as Error).message);
     process.exit(1);
   }
+}
+
+async function addPackages(packageManager: Agent, packages: string[]) {
+  const command = resolveCommand(packageManager, 'add', ['-D', ...packages]);
+
+  if (!command) {
+    throw new Error(`Package manager ${packageManager} does not support adding dependencies.`);
+  }
+
+  await new Promise<void>((resolve, reject) => {
+    // security: spawn() is much safer than exec()
+    const subprocess = spawn(command.command, command.args, { cwd, stdio: 'ignore' });
+    subprocess.on('error', reject);
+    subprocess.on('close', (code, signal) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(
+          new Error(
+            `Package manager ${packageManager} exited with ${signal ? `signal ${signal}` : `code ${code}`}.`,
+          ),
+        );
+      }
+    });
+  });
 }
 
 async function newConfigFile(configPath: string, tokens: string[], imports: ImportSpec[] = []) {
