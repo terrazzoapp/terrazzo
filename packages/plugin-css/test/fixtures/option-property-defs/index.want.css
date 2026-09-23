@@ -3,8 +3,15 @@
  * ------------------------------------------- */
 
 @property --color-alias {
-  syntax: '*';
+  syntax: '<color>';
   inherits: true;
+  initial-value: rgb(0% 0% 100%);
+}
+
+@property --color-alias-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(0% 0% 100%);
 }
 
 @property --color-blue {
@@ -13,14 +20,60 @@
   initial-value: rgb(0% 0% 100%);
 }
 
+@property --shadow-focus {
+  syntax: '*';
+  inherits: true;
+}
+
 @property --space-md {
   syntax: '<length>';
   inherits: true;
   initial-value: 16px;
 }
 
+@property --type-heading-font-family {
+  syntax: '*';
+  inherits: true;
+}
+
+@property --type-heading-font-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 2rem;
+}
+
+@property --type-heading-font-weight {
+  syntax: '<integer>';
+  inherits: true;
+  initial-value: 700;
+}
+
+@property --type-heading-line-height {
+  syntax: '*';
+  inherits: true;
+}
+
+@property --type-heading {
+  syntax: '*';
+  inherits: true;
+}
+
+@property --type-size-lg {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 2rem;
+}
+
 :root {
   --color-alias: var(--color-blue);
+  --color-alias-2: var(--color-alias);
   --color-blue: rgb(0% 0% 100%);
+  --shadow-focus: 0px 0px 0px 2px var(--color-blue);
   --space-md: 16px;
+  --type-heading-font-family: "Inter", sans-serif;
+  --type-heading-font-size: var(--type-size-lg);
+  --type-heading-font-weight: 700;
+  --type-heading-line-height: 1.2;
+  --type-heading: var(--type-heading-font-weight) var(--type-heading-font-size)/var(--type-heading-line-height) var(--type-heading-font-family);
+  --type-size-lg: 2rem;
 }
