@@ -141,6 +141,8 @@ If the Figma file has a [Published Library](https://help.figma.com/hc/en-us/arti
 npx tz import [file] --unpublished
 ```
 
+With `--unpublished`, Styles are read from the file itself rather than the Published Library.
+
 If the file has nothing published, it will grab Styles and Variables in the file regardless of the `--unpublished` flag.
 
 ### CLI Flags

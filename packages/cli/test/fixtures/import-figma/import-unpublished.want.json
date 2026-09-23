@@ -83,9 +83,47 @@
               "$extensions": {
                 "figma.com": {
                   "name": "elevation/100",
-                  "node_id": "16:3",
-                  "created_at": "2025-10-30T12:00:00Z",
-                  "updated_at": "2025-10-30T12:00:00Z"
+                  "node_id": "16:3"
+                }
+              }
+            },
+            "200": {
+              "$type": "shadow",
+              "$description": "Added locally after the last publish, so only --unpublished imports it.",
+              "$value": [
+                {
+                  "inset": false,
+                  "offsetX": {
+                    "value": 0,
+                    "unit": "px"
+                  },
+                  "offsetY": {
+                    "value": 8,
+                    "unit": "px"
+                  },
+                  "blur": {
+                    "value": 16,
+                    "unit": "px"
+                  },
+                  "spread": {
+                    "value": 2,
+                    "unit": "px"
+                  },
+                  "color": {
+                    "colorSpace": "srgb",
+                    "components": [
+                      0,
+                      0,
+                      0
+                    ],
+                    "alpha": 0.5
+                  }
+                }
+              ],
+              "$extensions": {
+                "figma.com": {
+                  "name": "elevation/200",
+                  "node_id": "16:5"
                 }
               }
             }
@@ -114,15 +152,13 @@
                 "$extensions": {
                   "figma.com": {
                     "name": "text/body/medium",
-                    "node_id": "4:3",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
+                    "node_id": "4:3"
                   }
                 }
               },
-              "large": {
+              "extraLarge": {
                 "$type": "typography",
-                "$description": "Large body text style.",
+                "$description": "Renamed locally after the last publish (was text/body/large).",
                 "$value": {
                   "fontFamily": [
                     "SF Pro"
@@ -141,10 +177,8 @@
                 },
                 "$extensions": {
                   "figma.com": {
-                    "name": "text/body/large",
-                    "node_id": "4:11",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
+                    "name": "text/body/extraLarge",
+                    "node_id": "4:11"
                   }
                 }
               }
@@ -166,9 +200,7 @@
                 "$extensions": {
                   "figma.com": {
                     "name": "style/green/100",
-                    "node_id": "16:2",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
+                    "node_id": "16:2"
                   }
                 }
               }
@@ -217,9 +249,7 @@
                 "$extensions": {
                   "figma.com": {
                     "name": "style/gradient/100",
-                    "node_id": "16:4",
-                    "created_at": "2025-10-30T12:00:00Z",
-                    "updated_at": "2025-10-30T12:00:00Z"
+                    "node_id": "16:4"
                   }
                 }
               }

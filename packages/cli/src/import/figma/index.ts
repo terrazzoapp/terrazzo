@@ -57,7 +57,7 @@ export async function importFromFigma({
 
   try {
     const [styles, vars] = await Promise.all([
-      ...(skipStyles ? [] : [getStyles(fileKey!, { logger })]),
+      ...(skipStyles ? [] : [getStyles(fileKey!, { logger, unpublished })]),
       ...(skipVariables
         ? []
         : [

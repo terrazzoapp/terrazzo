@@ -59,12 +59,23 @@
         "user": {}
       },
       {
-        "key": "6cd916da62c28968d21fc26660506cb679ea75e6",
+        "key": "3924254fb8aa77ab89b935b9460211f465b86807",
         "file_key": ":file_key",
         "node_id": "20:2",
         "style_type": "GRID",
         "name": "grid/base",
         "description": "",
+        "created_at": "2025-10-30T12:00:00Z",
+        "updated_at": "2025-10-30T12:00:00Z",
+        "user": {}
+      },
+      {
+        "key": "0c1b2d9f4e8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c",
+        "file_key": ":file_key",
+        "node_id": "16:6",
+        "style_type": "EFFECT",
+        "name": "elevation/legacy",
+        "description": "Deleted locally after the last publish.",
         "created_at": "2025-10-30T12:00:00Z",
         "updated_at": "2025-10-30T12:00:00Z",
         "user": {}

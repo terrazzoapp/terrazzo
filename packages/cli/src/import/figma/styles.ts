@@ -34,26 +34,23 @@ export async function getStyles(
     },
   };
 
-  const styleNodeIDs = new Set<string>();
   const stylesByID = new Map<string, Style | PublishedStyle>();
 
   if (unpublished) {
     const styles = await getFile(fileKey, { logger });
     for (const [id, style] of Object.entries(styles.styles)) {
-      styleNodeIDs.add(id);
       stylesByID.set(id, style);
     }
   } else {
     const styles = await getFileStyles(fileKey, { logger });
     for (const style of styles.meta.styles) {
-      styleNodeIDs.add(style.node_id);
       stylesByID.set(style.node_id, style);
     }
   }
 
-  const fileNodes = await getFileNodes(fileKey, { ids: [...styleNodeIDs], logger });
+  const fileNodes = await getFileNodes(fileKey, { ids: [...stylesByID.keys()], logger });
 
-  result.count += styleNodeIDs.size;
+  result.count += stylesByID.size;
   for (const [id, s] of stylesByID) {
     const styleNode = fileNodes.nodes[id];
     if (!styleNode) {
