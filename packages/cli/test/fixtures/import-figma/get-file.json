@@ -59,7 +59,7 @@
       "name": "brand/blue/100",
       "styleType": "FILL",
       "remote": true,
-      "description": "Remote style from another library. The file lists it, so only --unpublished imports it."
+      "description": "Remote style from another library used by the file."
     }
   }
 }
