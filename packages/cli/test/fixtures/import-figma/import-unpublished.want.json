@@ -314,6 +314,29 @@
                 }
               }
             }
+          },
+          "brand": {
+            "blue": {
+              "100": {
+                "$type": "color",
+                "$description": "Remote style from another library. The file lists it, so only --unpublished imports it.",
+                "$value": {
+                  "colorSpace": "srgb",
+                  "components": [
+                    0,
+                    0.3803921639919281,
+                    0.8352941274642944
+                  ],
+                  "alpha": 1
+                },
+                "$extensions": {
+                  "figma.com": {
+                    "name": "brand/blue/100",
+                    "node_id": "30:1"
+                  }
+                }
+              }
+            }
           }
         }
       ]

@@ -101,8 +101,13 @@ describe('import', () => {
     });
 
     it('--unpublished', async () => {
-      // This snapshot of variables and styles from the unpublished state of the Figma file is expected
-      // to differ from the previous published one.
+      // Published vs unpublished: values always come from the file as it is now. For Styles, which
+      // ones are imported and under which names follows the file instead of the last publish:
+      // - additions appear (elevation/200), as do legacy/* Variables
+      // - renames appear under the new name (text/body/large is imported as text/body/extraLarge)
+      // - removals disappear (elevation/legacy)
+      // - remote Styles from other libraries appear (brand/blue/100)
+      // - Style timestamps are dropped, as they describe the last publish
       const logger = new Logger();
       const warn = vi.spyOn(logger, 'warn');
       await importCmd({
