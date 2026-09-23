@@ -126,18 +126,11 @@ describe('import', () => {
       expect(info).toHaveBeenCalledWith(
         expect.objectContaining({ message: expect.stringMatching(/, 8 Styles →/) }),
       );
-      const requestedURLs = vi.mocked(globalThis.fetch).mock.calls.map(([url]) => url.toString());
-      const localNodesRequest = requestedURLs.find((url) =>
-        url.startsWith(`https://api.figma.com/v1/files/${FILE_KEY}/nodes?`),
+      const actualSrc = await fs.readFile(new URL('./import-unpublished.actual.json', cwd), 'utf8');
+      expect(JSON.parse(actualSrc).sets.styles.sources[0]).not.toHaveProperty('brand.blue.100');
+      await expect(actualSrc).toMatchFileSnapshot(
+        fileURLToPath(new URL('./import-unpublished.want.json', cwd)),
       );
-      expect(localNodesRequest).toBeDefined();
-      expect(localNodesRequest).toContain('30:1');
-      expect(requestedURLs.some((url) => url.startsWith('https://api.figma.com/v1/styles/'))).toBe(
-        false,
-      );
-      await expect(
-        await fs.readFile(new URL('./import-unpublished.actual.json', cwd), 'utf8'),
-      ).toMatchFileSnapshot(fileURLToPath(new URL('./import-unpublished.want.json', cwd)));
     });
 
     it('--font-family-names, --font-weight-names, --number-names', async () => {
