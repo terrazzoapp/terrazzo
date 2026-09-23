@@ -53,7 +53,6 @@ export async function getStyles(
 
   const fileNodes = await getFileNodes(fileKey, { ids: [...styleNodeIDs], logger });
 
-  result.count += styleNodeIDs.size;
   for (const [id, s] of stylesByID) {
     const styleNode = fileNodes.nodes[id];
     if (!styleNode) {
@@ -113,11 +112,11 @@ export async function getStyles(
       case 'EFFECT': {
         const $value = effectStyle(styleNode.document);
         if (!$value) {
-          logger.error({
+          logger.warn({
             group: 'import',
-            message: `Could not parse effect for ${s.name}`,
-            continueOnError: true,
+            message: `Skipping unsupported non-shadow effect style ${s.name}`,
           });
+          break;
         }
         tokenBase.$type = 'shadow';
         tokenBase.$value = $value;
@@ -131,6 +130,7 @@ export async function getStyles(
             message: `Could not parse grid for ${s.name}`,
             continueOnError: true,
           });
+          break;
         }
         // Note: Grids scaffold out multiple sub-components, so we need to “cheat” a little here
         let node = result.code.sets.styles.sources[0];
@@ -143,12 +143,13 @@ export async function getStyles(
           node = node[key];
         }
         node[name] = layoutGrids;
+        result.count++;
         break;
       }
     }
 
     // Only place in tree if we got a value for it
-    if (tokenBase.$type !== undefined) {
+    if (tokenBase.$value !== undefined) {
       let node = result.code.sets.styles.sources[0];
       const path = s.name.split('/').map(formatName);
       const name = path.pop()!;
@@ -159,6 +160,7 @@ export async function getStyles(
         node = node[key];
       }
       node[name] = tokenBase;
+      result.count++;
     }
   }
 
