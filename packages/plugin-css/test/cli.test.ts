@@ -18,6 +18,10 @@ describe('fixtures', () => {
     ['shadow', { dir: 'type-shadow', output: ['index.css'] }],
     ['transition', { dir: 'type-transition', output: ['index.css'] }],
     ['typography', { dir: 'type-typography', output: ['index.css'] }],
+    [
+      'typography (sub-values alias sibling tokens)',
+      { dir: 'type-typography-sibling-alias', output: ['index.css'] },
+    ],
     ['string', { dir: 'type-string', output: ['index.css'] }],
     ['boolean', { dir: 'type-boolean', output: ['index.css'] }],
     ['color (legacy modes)', { dir: 'mode-type-color', output: ['index.css'] }],
@@ -27,6 +31,10 @@ describe('fixtures', () => {
     ['shadow (legacy modes)', { dir: 'mode-type-shadow', output: ['index.css'] }],
     ['transition (legacy modes)', { dir: 'mode-type-transition', output: ['index.css'] }],
     ['typography (legacy modes)', { dir: 'mode-type-typography', output: ['index.css'] }],
+    [
+      'typography (sub-values alias sibling tokens, legacy)',
+      { dir: 'type-typography-sibling-alias-legacy', output: ['index.css'] },
+    ],
     ['string (legacy modes)', { dir: 'mode-type-string', output: ['index.css'] }],
     ['boolean (legacy modes)', { dir: 'mode-type-boolean', output: ['index.css'] }],
     ['permutations with include', { dir: 'permutations-include', output: ['index.css'] }],
