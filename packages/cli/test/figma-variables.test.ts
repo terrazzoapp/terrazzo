@@ -30,6 +30,7 @@ const localVariablesResponse = {
     variables: {
       [HIDDEN_LEAF_ID]: {
         id: HIDDEN_LEAF_ID,
+        key: 'hidden-leaf-key',
         name: 'foundation/leaf',
         variableCollectionId: COLLECTION_ID,
         resolvedType: 'COLOR',
@@ -42,6 +43,7 @@ const localVariablesResponse = {
       },
       [HIDDEN_ALIAS_TARGET_ID]: {
         id: HIDDEN_ALIAS_TARGET_ID,
+        key: 'hidden-target-key',
         name: 'foundation/hidden',
         variableCollectionId: COLLECTION_ID,
         resolvedType: 'COLOR',
@@ -54,6 +56,7 @@ const localVariablesResponse = {
       },
       [PUBLISHED_ALIAS_ID]: {
         id: PUBLISHED_ALIAS_ID,
+        key: 'published-alias-key',
         name: 'semantic/published',
         variableCollectionId: COLLECTION_ID,
         resolvedType: 'COLOR',
@@ -66,6 +69,7 @@ const localVariablesResponse = {
       },
       [UNPUBLISHED_VISIBLE_ID]: {
         id: UNPUBLISHED_VISIBLE_ID,
+        key: 'unpublished-visible-key',
         name: 'semantic/unpublished',
         variableCollectionId: COLLECTION_ID,
         resolvedType: 'COLOR',
@@ -181,5 +185,24 @@ describe('getVariables', () => {
         }),
       },
     });
+  });
+
+  it('preserves each variable’s key beside its id in $extensions["figma.com"]', async () => {
+    const result = await getVariables(FILE_KEY, {
+      logger: { error() {}, warn() {}, info() {}, success() {} } as never,
+      matchers: {
+        fontFamily: undefined,
+        fontWeight: undefined,
+        number: undefined,
+      },
+    });
+
+    const base = result.code.sets.base.sources[0];
+    expect(base.foundation.leaf.$extensions['figma.com']).toEqual(
+      expect.objectContaining({ id: HIDDEN_LEAF_ID, key: 'hidden-leaf-key' }),
+    );
+    expect(base.semantic.published.$extensions['figma.com']).toEqual(
+      expect.objectContaining({ id: PUBLISHED_ALIAS_ID, key: 'published-alias-key' }),
+    );
   });
 });
