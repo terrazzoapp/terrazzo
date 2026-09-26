@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { type CSSDeclaration, type CSSRule, getIndentFromPrepare, printRules } from '../src/lib.js';
+import {
+  type CSSDeclaration,
+  type CSSRule,
+  getIndentFromPrepare,
+  isSelfReference,
+  printRules,
+} from '../src/lib.js';
 
 describe('printRules', () => {
   it('basic', () => {
@@ -377,4 +383,22 @@ describe('getIndentFromPrepare', () => {
   //       { indentChar: '  ', indentLv: 2 },
   //     ]);
   //   });
+});
+
+describe('isSelfReference', () => {
+  it('flags a variable that reads itself', () => {
+    expect(isSelfReference('--text-heading-font-size', 'var(--text-heading-font-size)')).toBe(true);
+  });
+
+  it('allows a reference to a different variable', () => {
+    expect(isSelfReference('--text-heading-font-size', 'var(--font-size-700)')).toBe(false);
+  });
+
+  it('allows a literal value', () => {
+    expect(isSelfReference('--text-heading-letter-spacing', '0em')).toBe(false);
+  });
+
+  it('allows a fallback that mentions the same name', () => {
+    expect(isSelfReference('--x', 'var(--y, var(--x))')).toBe(false);
+  });
 });

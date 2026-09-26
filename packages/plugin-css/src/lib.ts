@@ -282,6 +282,18 @@ export function hasDecl(list: (CSSRule | CSSDeclaration)[], property: string): b
   return list.some((d) => d.type === 'Declaration' && d.property === property);
 }
 
+/**
+ * Is this declaration a variable that reads itself (`--x: var(--x)`)? Such a
+ * declaration can never resolve, and it happens when a composite token’s
+ * sub-value aliases a sibling token that already owns the same variable name
+ * (e.g. `typography.heading.$value.fontSize` → `{typography.heading.fontSize}`).
+ * The sibling token declares the variable with its real value, so the
+ * self-reference must be skipped rather than emitted.
+ */
+export function isSelfReference(property: string, value: string): boolean {
+  return value === `var(${property})`;
+}
+
 /** Add a declaration only if it’s unique (note: CSS, by design, allows duplication—it’s how fallbacks happen. Only use this if fallbacks aren’t needed. */
 export function addDeclUnique(
   list: (CSSRule | CSSDeclaration)[],
