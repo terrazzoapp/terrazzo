@@ -1,8 +1,16 @@
 import type { Plugin } from '@terrazzo/parser';
 import { tokenToColor } from '@terrazzo/token-tools';
-import { to as convert } from 'colorjs.io/fn';
+import { ColorSpace, spaces, to as convert } from 'colorjs.io/fn';
 
 /* oxlint-disable require-await */
+
+// colorjs.io's tree-shakeable `/fn` entrypoint registers no color spaces by default.
+// Register them explicitly rather than relying on another package (e.g. @terrazzo/token-tools)
+// to have already done so as an import side effect on a *shared* colorjs.io module instance —
+// that only works when every dependent resolves to the same physical copy of colorjs.io.
+for (const space of Object.values(spaces)) {
+  ColorSpace.register(space);
+}
 
 export const FORMAT = 'swift';
 
