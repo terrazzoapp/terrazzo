@@ -41,11 +41,7 @@ export function buildJS({
     value,
     // Note: id MUST have modifiers sorted alphabetically, so we can index them shallowly
     id: JSON.stringify(
-      Object.fromEntries(
-        Object.entries(value).toSorted((a, b) =>
-          localeCompare(a[0], b[0]),
-        ),
-      ),
+      Object.fromEntries(Object.entries(value).toSorted((a, b) => localeCompare(a[0], b[0]))),
     ),
   }));
   output += 'export const PERMUTATIONS = {\n';
