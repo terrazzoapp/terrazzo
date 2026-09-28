@@ -116,7 +116,9 @@ function jsIdent(name: string): string {
   return /^[A-Za-z$_]/.test(name) ? name : `_${name}`;
 }
 
+const localeCompare = new Intl.Collator('en-us', { numeric: true }).compare;
+
 /** JS compiler-optimizable comparator */
 export function alphaComparator(a: TokenTransformed, b: TokenTransformed): number {
-  return a.id.localeCompare(b.id, 'en-us', { numeric: true });
+  return localeCompare(a.id, b.id);
 }
