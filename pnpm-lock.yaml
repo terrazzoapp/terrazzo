@@ -429,6 +429,22 @@ importers:
         specifier: 'catalog:'
         version: 0.1.0
 
+  packages/plugin-android:
+    dependencies:
+      '@terrazzo/token-tools':
+        specifier: workspace:^
+        version: link:../token-tools
+      colorjs.io:
+        specifier: 'catalog:'
+        version: 0.7.1
+    devDependencies:
+      '@terrazzo/cli':
+        specifier: workspace:*
+        version: link:../cli
+      '@terrazzo/parser':
+        specifier: workspace:^
+        version: link:../parser
+
   packages/plugin-css:
     dependencies:
       '@terrazzo/token-tools':
