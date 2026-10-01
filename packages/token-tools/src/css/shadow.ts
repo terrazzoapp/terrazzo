@@ -15,10 +15,13 @@ export function transformShadowLayer(
   value: ShadowValueNormalized,
   options: TransformCSSValueOptions & {
     colorValue: string;
-    partialAliasOf?: Partial<Record<keyof typeof value, string>>;
+    partialAliasOf?: Exclude<ShadowTokenNormalized['partialAliasOf'], undefined>[number];
   },
 ): string | Record<string, string> {
   const { tokensSet, colorValue, partialAliasOf, transformAlias = defaultAliasTransform } = options;
+  if (typeof partialAliasOf === 'string') {
+    return transformAlias(tokensSet[partialAliasOf]!);
+  }
   const offsetX = partialAliasOf?.offsetX
     ? transformAlias(tokensSet[partialAliasOf.offsetX]!)
     : transformDimension({ $value: value.offsetX } as DimensionTokenNormalized, options);
@@ -58,9 +61,12 @@ export function transformShadow(
   if (token.aliasChain?.[0]) {
     return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
+
   const colors = token.$value.map((v, i) =>
+    token.partialAliasOf?.[i] &&
+    typeof token.partialAliasOf?.[i] !== 'string' &&
     token.partialAliasOf?.[i]?.color
-      ? transformAlias(tokensSet[token.partialAliasOf[i]!.color!]!)
+      ? transformAlias(tokensSet[token.partialAliasOf[i].color]!)
       : transformColor({ $value: v.color } as ColorTokenNormalized, options),
   );
   const isHDR = colors.some((c) => typeof c === 'object');

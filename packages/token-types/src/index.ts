@@ -524,7 +524,7 @@ export interface NumberTokenNormalized extends TokenNormalizedCore<'number'> {
 export interface ShadowTokenNormalized extends TokenNormalizedCore<'shadow'> {
   $value: ShadowValueNormalized[];
   /** Parts of this token rely on others */
-  partialAliasOf: Record<keyof ShadowValue, string | undefined>[] | undefined;
+  partialAliasOf: (string | Record<keyof ShadowValue, string | undefined>)[] | undefined;
   /** @deprecated */
   mode: ModeMap<ShadowTokenNormalized>;
   originalValue: ShadowToken | AliasToken | undefined;
