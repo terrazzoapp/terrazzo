@@ -219,7 +219,7 @@ export interface StrokeStyleValueExpanded {
  */
 export interface ShadowToken extends TokenCore {
   $type: 'shadow';
-  $value: ShadowValue | ShadowValue[] | AliasValue;
+  $value: ShadowValue | AliasValue | (ShadowValue | AliasValue)[];
 }
 
 export interface ShadowValue {
