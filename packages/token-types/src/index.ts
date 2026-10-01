@@ -25,7 +25,7 @@ export type Token =
 
 export type TokensSet = Record<string, Token>;
 
-export type AliasValue = string;
+export type AliasValue = `{${string}}`;
 
 export interface AliasToken extends TokenCore {
   $type?: never;

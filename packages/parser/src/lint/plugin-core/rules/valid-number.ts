@@ -41,7 +41,7 @@ const rule: LintRule<typeof ERROR_NAN> = {
           if (
             typeof token.originalValue.$value === 'object' &&
             token.originalValue.$value.lineHeight &&
-            !isAlias(token.originalValue.$value.lineHeight as string) &&
+            !isAlias(token.originalValue.$value.lineHeight) &&
             typeof token.originalValue.$value.lineHeight !== 'object'
           ) {
             validateNumber(token.originalValue.$value.lineHeight, {
