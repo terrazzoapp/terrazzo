@@ -98,8 +98,11 @@ const rule: LintRule<
         }
         case 'shadow': {
           for (let shadowI = 0; shadowI < t.$value.length; shadowI++) {
+            const partialAlias = t.partialAliasOf?.[shadowI];
+            if (partialAlias && (typeof partialAlias === 'string' || partialAlias.color)) {
+              continue;
+            }
             if (
-              !t.partialAliasOf?.[shadowI]?.color &&
               // oxlint-disable-next-line no-non-null-assertion
               !inGamut(tokenToColor(t.$value[shadowI]!.color), options.gamut)
             ) {
