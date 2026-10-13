@@ -129,6 +129,7 @@ export async function getVariables(
           'figma.com': {
             name: variable.name,
             id: variable.id,
+            key: variable.key,
             variableCollectionId: variable.variableCollectionId,
             codeSyntax:
               Object.keys(variable.codeSyntax).length > 0 ? variable.codeSyntax : undefined,
