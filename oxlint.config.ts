@@ -80,6 +80,7 @@ export default defineConfig({
     'no-unused-expressions': 'off', // side effects are real
     'no-var': 'error',
     'no-warning-comments': 'off', // I will die before I stop this
+    'one-var': 'off', // this is a stupid rule
     'prefer-destructuring': 'off', // TODO: enable when "let" bug is fixed
     'prefer-for-of': 'off',
     'prefer-named-capture-group': 'off',

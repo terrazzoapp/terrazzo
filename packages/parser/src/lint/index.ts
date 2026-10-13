@@ -73,7 +73,7 @@ export default async function lintRunner({
               if (descriptor.message) {
                 message = descriptor.message;
               } else {
-                if (!(descriptor.messageId! in (rule.meta?.messages ?? {}))) {
+                if (!(descriptor.messageId in (rule.meta?.messages ?? {}))) {
                   logger.error({
                     group: 'lint',
                     label: `${plugin.name}:${id}`,

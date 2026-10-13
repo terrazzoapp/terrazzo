@@ -410,7 +410,7 @@ export interface ColorValueNormalized {
   colorSpace: ColorSpace;
   /** Color components. Will be normalized to 1 unless the colorspace prevents it (e.g. XYZ, LAB) */
   components: (number | null)[];
-  /** Alpha component, normalized from 0 – 1 */
+  /** Alpha component, normalized from 0 – 1 */
   alpha: number;
   /** Hex fallback (for sRGB) */
   hex?: string;

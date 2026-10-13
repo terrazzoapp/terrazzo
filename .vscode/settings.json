@@ -4,12 +4,6 @@
     "https://turbo.build": true,
     "https://unpkg.com": true
   },
-  "[css]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[astro]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
   "[javascript]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
@@ -19,16 +13,10 @@
   "[json]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
-  "[markdown]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
   "[typescript]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
-  "[yaml]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  }
 }
