@@ -1,5 +1,14 @@
 # @terrazzo/plugin-css-in-js
 
+## 2.8.0
+
+### Patch Changes
+
+- Updated dependencies [[`18332d4`](https://github.com/terrazzoapp/terrazzo/commit/18332d441cf415fa4b20625634ddd1420fd06244), [`585fb43`](https://github.com/terrazzoapp/terrazzo/commit/585fb432c4061026c8c584bc6618c5312046087f), [`1392f4d`](https://github.com/terrazzoapp/terrazzo/commit/1392f4de4f1affb0e3081192e4268fbcb43940e2)]:
+  - @terrazzo/cli@2.8.0
+  - @terrazzo/parser@2.8.0
+  - @terrazzo/plugin-css@2.8.0
+
 ## 2.7.1
 
 ### Patch Changes

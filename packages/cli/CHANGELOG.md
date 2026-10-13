@@ -1,5 +1,16 @@
 # @terrazzo/cli
 
+## 2.8.0
+
+### Patch Changes
+
+- [#846](https://github.com/terrazzoapp/terrazzo/pull/846) [`18332d4`](https://github.com/terrazzoapp/terrazzo/commit/18332d441cf415fa4b20625634ddd1420fd06244) Thanks [@tomasz](https://github.com/tomasz)! - Omit unsupported non-shadow Figma effect styles instead of emitting valueless shadow tokens.
+
+- [#860](https://github.com/terrazzoapp/terrazzo/pull/860) [`1392f4d`](https://github.com/terrazzoapp/terrazzo/commit/1392f4de4f1affb0e3081192e4268fbcb43940e2) Thanks [@roboteich](https://github.com/roboteich)! - Preserve each Figma variable’s `key` beside its `id` in `$extensions["figma.com"]` on import, so exported tokens can be joined back to the variable after a republish or from another file
+- Updated dependencies [[`585fb43`](https://github.com/terrazzoapp/terrazzo/commit/585fb432c4061026c8c584bc6618c5312046087f), [`571a33e`](https://github.com/terrazzoapp/terrazzo/commit/571a33e2ef4ecd7f41796615af8f0ac26bf579f2), [`ea62814`](https://github.com/terrazzoapp/terrazzo/commit/ea62814ae670c2807a2bf97936dda712dff20062)]:
+  - @terrazzo/parser@2.8.0
+  - @terrazzo/token-tools@2.8.0
+
 ## 2.7.1
 
 ### Patch Changes
