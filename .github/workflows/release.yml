@@ -23,9 +23,9 @@ jobs:
       - run: pnpm run build
       - uses: changesets/action@v2
         with:
-          version: pnpm run version
-          publish: pnpm exec changeset publish
-          commit: "[ci] release"
-          title: "[ci] release"
+          version-script: pnpm run version
+          publish-script: pnpm exec changeset publish
+          commit-message: "[ci] release"
+          pr-title: "[ci] release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
