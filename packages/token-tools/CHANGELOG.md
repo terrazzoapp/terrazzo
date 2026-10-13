@@ -1,5 +1,17 @@
 # @terrazzo/token-tools
 
+## 2.8.0
+
+### Minor Changes
+
+- [#865](https://github.com/terrazzoapp/terrazzo/pull/865) [`571a33e`](https://github.com/terrazzoapp/terrazzo/commit/571a33e2ef4ecd7f41796615af8f0ac26bf579f2) Thanks [@mrginglymus](https://github.com/mrginglymus)! - CSS shadow values now strip trailing zero-valued dimensions
+
+### Patch Changes
+
+- [#821](https://github.com/terrazzoapp/terrazzo/pull/821) [`ea62814`](https://github.com/terrazzoapp/terrazzo/commit/ea62814ae670c2807a2bf97936dda712dff20062) Thanks [@unpunnyfuns](https://github.com/unpunnyfuns)! - Fix dimension values that aren't `{ value, unit }` objects emitting `undefinedundefined`
+- Updated dependencies []:
+  - @terrazzo/token-types@2.8.0
+
 ## 2.7.1
 
 ### Patch Changes

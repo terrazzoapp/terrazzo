@@ -1,5 +1,14 @@
 # @terrazzo/parser
 
+## 2.8.0
+
+### Patch Changes
+
+- [#842](https://github.com/terrazzoapp/terrazzo/pull/842) [`585fb43`](https://github.com/terrazzoapp/terrazzo/commit/585fb432c4061026c8c584bc6618c5312046087f) Thanks [@tomasz](https://github.com/tomasz)! - Align `core/valid-font-weight` with DTCG 2025.10 by accepting numeric weights from 1 through 1000 inclusive.
+- Updated dependencies [[`571a33e`](https://github.com/terrazzoapp/terrazzo/commit/571a33e2ef4ecd7f41796615af8f0ac26bf579f2), [`ea62814`](https://github.com/terrazzoapp/terrazzo/commit/ea62814ae670c2807a2bf97936dda712dff20062)]:
+  - @terrazzo/token-tools@2.8.0
+  - @terrazzo/token-types@2.8.0
+
 ## 2.7.1
 
 ### Patch Changes
