@@ -33,7 +33,20 @@ export function transformShadowLayer(
     : transformDimension({ $value: value.spread } as DimensionTokenNormalized, options);
   const inset = value?.inset === true ? 'inset' : undefined;
 
-  return [inset, offsetX, offsetY, blur, spread, colorValue].filter(Boolean).join(' ');
+  const values = [offsetX, offsetY];
+  if (inset) {
+    values.unshift(inset);
+  }
+
+  // Test for and remove trailing zero-valued dimensions
+  if (!/^0\w/.test(spread)) {
+    values.push(blur, spread);
+  } else if (!/^0\w/.test(blur)) {
+    values.push(blur);
+  }
+  values.push(colorValue);
+
+  return values.join(' ');
 }
 
 /** Convert shadow value to CSS */

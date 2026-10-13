@@ -9,7 +9,7 @@
   --color-greenblue: var(--color-green);
   --color-red: rgb(100% 0% 0%);
   --gradient-g-b: rgb(0% 100% 0%) 0%, rgb(0% 0% 100%) 100%;
-  --shadow: 0px 4px 8px 0px rgb(0% 0% 0% / 0.1);
+  --shadow: 0px 4px 8px rgb(0% 0% 0% / 0.1);
   --transition: 0ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
   --typography-body: var(--typography-body-font-weight) var(--typography-body-font-size)/var(--typography-body-line-height) var(--typography-body-font-family);
   --typography-body-font-family: var(--typography-family-body);
@@ -50,7 +50,7 @@
     --color-greenblue: var(--color-blue);
     --color-red: rgb(100% 0% 0%);
     --gradient-g-b: rgb(0% 100% 0%) 0%, rgb(0% 0% 100%) 100%;
-    --shadow: 0px 4px 8px 0px rgb(0% 0% 0% / 0.1);
+    --shadow: 0px 4px 8px rgb(0% 0% 0% / 0.1);
     --transition: 0ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
     --typography-body: var(--typography-body-font-weight) var(--typography-body-font-size)/var(--typography-body-line-height) var(--typography-body-font-family);
     --typography-body-font-family: var(--typography-family-body);

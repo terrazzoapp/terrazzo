@@ -793,7 +793,7 @@ describe('transformShadow', () => {
           },
           { tokensSet: {}, permutation: {} },
         ],
-        want: { success: '0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.1)' },
+        want: { success: '0px 0.25rem 0.5rem rgb(0% 0% 0% / 0.1)' },
       },
     ],
     [
@@ -811,14 +811,64 @@ describe('transformShadow', () => {
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.25, unit: 'rem' },
                 blur: { value: 0.5, unit: 'rem' },
-                spread: { value: 0, unit: 'px' },
+                spread: { value: 0, unit: 'rem' },
                 inset: true,
               },
             ],
           } as any,
           { tokensSet: {}, permutation: {} },
         ],
-        want: { success: 'inset 0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.1)' },
+        want: { success: 'inset 0px 0.25rem 0.5rem rgb(0% 0% 0% / 0.1)' },
+      },
+    ],
+    [
+      'zero-blur, zero-spread',
+      {
+        given: [
+          {
+            $value: [
+              {
+                color: {
+                  colorSpace: 'srgb',
+                  components: [0, 0, 0],
+                  alpha: 0.1,
+                },
+                offsetX: { value: 0, unit: 'px' },
+                offsetY: { value: 0.25, unit: 'rem' },
+                blur: { value: 0, unit: 'rem' },
+                spread: { value: 0, unit: 'rem' },
+                inset: false,
+              },
+            ],
+          } as any,
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: { success: '0px 0.25rem rgb(0% 0% 0% / 0.1)' },
+      },
+    ],
+    [
+      'zero-blur, non-zero-spread',
+      {
+        given: [
+          {
+            $value: [
+              {
+                color: {
+                  colorSpace: 'srgb',
+                  components: [0, 0, 0],
+                  alpha: 0.1,
+                },
+                offsetX: { value: 0, unit: 'px' },
+                offsetY: { value: 0.25, unit: 'rem' },
+                blur: { value: 0, unit: 'rem' },
+                spread: { value: 0.5, unit: 'rem' },
+                inset: false,
+              },
+            ],
+          } as any,
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: { success: '0px 0.25rem 0rem 0.5rem rgb(0% 0% 0% / 0.1)' },
       },
     ],
     [
@@ -856,8 +906,7 @@ describe('transformShadow', () => {
           { tokensSet: {}, permutation: {} },
         ],
         want: {
-          success:
-            '0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.05), 0px 0.5rem 1rem 0px rgb(0% 0% 0% / 0.05)',
+          success: '0px 0.25rem 0.5rem rgb(0% 0% 0% / 0.05), 0px 0.5rem 1rem rgb(0% 0% 0% / 0.05)',
         },
       },
     ],
