@@ -1,28 +1,22 @@
 {
   "formatter": {
-    "language_server": { "name": "biome" }
+    "language_server": { "name": "oxc" }
   },
   "languages": {
-    "Astro": {
-      "formatter": { "language_server": { "name": "biome" } }
-    },
-    "HTML": {
-      "formatter": { "language_server": { "name": "biome" } }
-    },
     "JavaScript": {
-      "formatter": { "language_server": { "name": "biome" } }
+      "formatter": { "language_server": { "name": "oxc" } }
     },
     "JSON": {
-      "formatter": { "language_server": { "name": "biome" } }
+      "formatter": { "language_server": { "name": "oxc" } }
     },
     "JSONC": {
-      "formatter": { "language_server": { "name": "biome" } }
+      "formatter": { "language_server": { "name": "oxc" } }
     },
     "TSX": {
-      "formatter": { "language_server": { "name": "biome" } }
+      "formatter": { "language_server": { "name": "oxc" } }
     },
     "TypeScript": {
-      "formatter": { "language_server": { "name": "biome" } }
+      "formatter": { "language_server": { "name": "oxc" } }
     }
   }
 }

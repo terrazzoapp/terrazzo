@@ -14,39 +14,33 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
         with:
-          node-version: 24
-      - uses: pnpm/action-setup@v6
-        with:
-          run_install: true
+          install: true
+          cache: true
+          runtime: node@26
       - run: pnpm run lint
   test:
-    strategy:
-      matrix:
-        node-version: [24]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
         with:
-          node-version: ${{ matrix.node-version }}
-      - uses: pnpm/action-setup@v6
-        with:
-          run_install: true
+          install: true
+          cache: true
+          runtime: node@26
       - run: pnpm exec playwright install
       - run: pnpm test
   test-node-20:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
         with:
-          node-version: 20
-      - uses: pnpm/action-setup@v6
-        with:
-          run_install: true
+          install: true
+          cache: true
+          runtime: node@26
       - run: pnpm exec playwright install
       - run: pnpm run build
       - run: pnpm --filter @terrazzo/cli run test
@@ -57,24 +51,22 @@ jobs:
   # test-macos:
   #   runs-on: macos-latest
   #   steps:
-  #     - uses: actions/checkout@v6
-  #     - uses: actions/setup-node@v6
+  #     - uses: actions/checkout@v7
+  #     - uses: actions/setup-node@v7
   #       with:
-  #         node-version: 24
-  #     - uses: pnpm/action-setup@v6
-  #       with:
-  #         run_install: true
+  #         node-version: 26
+  #       cache: pnpm
+  #     - run: pnpm i
   #     - run: pnpm exec playwright install
   #     - run: pnpm test
   test-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
         with:
-          node-version: 24
-      - uses: pnpm/action-setup@v6
-        with:
-          run_install: true
+          install: true
+          cache: true
+          runtime: node@26
       - run: pnpm exec playwright install
       - run: pnpm -r build && pnpm -r test
