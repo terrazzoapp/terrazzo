@@ -14,6 +14,21 @@ describe('8.4 Font Weight', () => {
       },
     ],
     [
+      'valid: number boundaries',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              minimum: { $type: 'fontWeight', $value: 1 },
+              maximum: { $type: 'fontWeight', $value: 1000 },
+            },
+          },
+        ],
+        want: { tokens: { minimum: { $value: 1 }, maximum: { $value: 1000 } } },
+      },
+    ],
+    [
       'valid: weight name',
       {
         given: [
@@ -78,7 +93,7 @@ describe('8.4 Font Weight', () => {
           },
         ],
         want: {
-          error: `lint:core/valid-font-weight: Must either be a valid number (0 - 999) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
+          error: `lint:core/valid-font-weight: Must either be a valid number (1 - 1000) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
 
   2 |   "thinnish": {
   3 |     "$type": "fontWeight",
@@ -92,13 +107,53 @@ lint:lint: 1 error`,
       },
     ],
     [
-      'invalid: number out of range',
+      'invalid: number below lower boundary',
+      {
+        given: [
+          { filename: DEFAULT_FILENAME, src: { weight: { $type: 'fontWeight', $value: 0 } } },
+        ],
+        want: {
+          error: `lint:core/valid-font-weight: Must either be a valid number (1 - 1000) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
+
+  2 |   "weight": {
+  3 |     "$type": "fontWeight",
+> 4 |     "$value": 0
+    |               ^
+  5 |   }
+  6 | }
+
+lint:lint: 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: number above upper boundary',
+      {
+        given: [
+          { filename: DEFAULT_FILENAME, src: { weight: { $type: 'fontWeight', $value: 1001 } } },
+        ],
+        want: {
+          error: `lint:core/valid-font-weight: Must either be a valid number (1 - 1000) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
+
+  2 |   "weight": {
+  3 |     "$type": "fontWeight",
+> 4 |     "$value": 1001
+    |               ^
+  5 |   }
+  6 | }
+
+lint:lint: 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: number far above upper boundary',
       {
         given: [
           { filename: DEFAULT_FILENAME, src: { kakarot: { $type: 'fontWeight', $value: 9001 } } },
         ],
         want: {
-          error: `lint:core/valid-font-weight: Must either be a valid number (0 - 999) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
+          error: `lint:core/valid-font-weight: Must either be a valid number (1 - 1000) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
 
   2 |   "kakarot": {
   3 |     "$type": "fontWeight",
@@ -106,6 +161,41 @@ lint:lint: 1 error`,
     |               ^
   5 |   }
   6 | }
+
+lint:lint: 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: typography subvalue of 0',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              body: {
+                $type: 'typography',
+                $value: {
+                  fontFamily: 'Inter',
+                  fontSize: { value: 1, unit: 'rem' },
+                  fontWeight: 0,
+                  letterSpacing: { value: 0, unit: 'rem' },
+                  lineHeight: 1.5,
+                },
+              },
+            },
+          },
+        ],
+        want: {
+          error: `lint:core/valid-font-weight: Must either be a valid number (1 - 1000) or a valid font weight: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
+
+   8 |         "unit": "rem"
+   9 |       },
+> 10 |       "fontWeight": 0,
+     |                     ^
+  11 |       "letterSpacing": {
+  12 |         "value": 0,
+  13 |         "unit": "rem"
 
 lint:lint: 1 error`,
         },
