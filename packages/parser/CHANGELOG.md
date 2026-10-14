@@ -1,5 +1,17 @@
 # @terrazzo/parser
 
+## 2.9.0
+
+### Minor Changes
+
+- [#867](https://github.com/terrazzoapp/terrazzo/pull/867) [`6e91ba8`](https://github.com/terrazzoapp/terrazzo/commit/6e91ba829dc39281c2a3616f362352e05507db00) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Update shadow token types and css processing to allow lists of aliases
+
+### Patch Changes
+
+- Updated dependencies [[`6e91ba8`](https://github.com/terrazzoapp/terrazzo/commit/6e91ba829dc39281c2a3616f362352e05507db00)]:
+  - @terrazzo/token-tools@2.9.0
+  - @terrazzo/token-types@2.9.0
+
 ## 2.8.0
 
 ### Patch Changes
