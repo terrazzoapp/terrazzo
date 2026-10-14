@@ -39,6 +39,7 @@ function makeVarValue(token: TokenTransformed): string {
 }
 
 const utilityMatcher = new CachedWildcardMatcher();
+const localeCompare = new Intl.Collator().compare;
 
 export default function generateUtilityCSS(
   groups: Partial<Record<UtilityCSSGroup, string[]>>,
@@ -47,7 +48,7 @@ export default function generateUtilityCSS(
 ): CSSRule[] {
   const root: CSSRule[] = [];
   const groupEntries = Object.entries(groups);
-  groupEntries.sort((a, b) => a[0].localeCompare(b[0]));
+  groupEntries.sort((a, b) => localeCompare(a[0], b[0]));
 
   for (const [group, selectors] of groupEntries) {
     const selectorMatcher = utilityMatcher.match(selectors);

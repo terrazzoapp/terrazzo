@@ -142,6 +142,8 @@ export interface CSSRule {
   children: (CSSRule | CSSDeclaration)[];
 }
 
+const localeCompare = new Intl.Collator('en-us', { numeric: true }).compare;
+
 /**
  * Convert CSSRules into a formatted, indented CSS string.
  * The reason we’re using this homemade version instead of something like css-tree is:
@@ -169,7 +171,7 @@ export function printRules(
   if (alphabetize) {
     sortedNodes.sort((a, b) => {
       if (a.type === 'Declaration' && b.type === 'Declaration') {
-        return a.property.localeCompare(b.property, 'en-us', { numeric: true });
+        return localeCompare(a.property, b.property);
       }
       return 0;
     });

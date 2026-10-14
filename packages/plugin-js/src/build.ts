@@ -11,6 +11,7 @@ import { pascalCase } from 'scule';
 import { FILE_HEADER, TYPE_MAP } from './lib.js';
 
 const RESOLVER_JSDOC_COMMENT = '/** Produce a token set from a given input. */';
+const localeCompare = new Intl.Collator('en-us', { numeric: true }).compare;
 
 export function buildJS({
   resolver,
@@ -40,11 +41,7 @@ export function buildJS({
     value,
     // Note: id MUST have modifiers sorted alphabetically, so we can index them shallowly
     id: JSON.stringify(
-      Object.fromEntries(
-        Object.entries(value).toSorted((a, b) =>
-          a[0].localeCompare(b[0], 'en-us', { numeric: true }),
-        ),
-      ),
+      Object.fromEntries(Object.entries(value).toSorted((a, b) => localeCompare(a[0], b[0]))),
     ),
   }));
   output += 'export const PERMUTATIONS = {\n';
