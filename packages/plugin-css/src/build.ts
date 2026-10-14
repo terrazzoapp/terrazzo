@@ -10,6 +10,7 @@ import {
   decl,
   FORMAT_ID,
   getIndentFromPrepare,
+  isSelfReference,
   PLUGIN_NAME,
   printRules,
   rule,
@@ -257,6 +258,9 @@ export default function buildCSS({
         else {
           for (const [name, subValue] of Object.entries(token.value)) {
             const subValueID = makeSubValueId(localID, name, token);
+            if (isSelfReference(subValueID, subValue)) {
+              continue;
+            }
             addDeclUnique(root, decl(subValueID, subValue, getDescription(token)));
           }
           // Note: always generate shorthand AFTER other declarations
@@ -389,6 +393,9 @@ export default function buildCSS({
       else if (token.type === 'MULTI_VALUE') {
         for (const [name, value] of Object.entries(token.value)) {
           const property = name === '.' ? localID : makeSubValueId(localID, name, token);
+          if (isSelfReference(property, value)) {
+            continue;
+          }
           addDeclUnique(rootRule.children, decl(property, value, getDescription(token)));
         }
         // Note: always place shorthand after other values
@@ -482,6 +489,9 @@ export default function buildCSS({
       else {
         for (const [name, subValue] of Object.entries(token.value)) {
           const subValueID = makeSubValueId(localID, name, token);
+          if (isSelfReference(subValueID, subValue)) {
+            continue;
+          }
           addDeclUnique(modeRule.children, decl(subValueID, subValue, getDescription(token)));
         }
         // Note: always generate shorthand after other declarations
