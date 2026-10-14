@@ -1,5 +1,19 @@
 # @terrazzo/plugin-css
 
+## 2.9.0
+
+### Minor Changes
+
+- [#867](https://github.com/terrazzoapp/terrazzo/pull/867) [`6e91ba8`](https://github.com/terrazzoapp/terrazzo/commit/6e91ba829dc39281c2a3616f362352e05507db00) Thanks [@mrginglymus](https://github.com/mrginglymus)! - Update shadow token types and css processing to allow lists of aliases
+
+### Patch Changes
+
+- [#858](https://github.com/terrazzoapp/terrazzo/pull/858) [`6796e89`](https://github.com/terrazzoapp/terrazzo/commit/6796e89effd033949264f919e7405010162482da) Thanks [@roboteich](https://github.com/roboteich)! - Fix composite sub-values that alias a sibling token emitting a variable that reads itself (`--heading-font-size: var(--heading-font-size)`) and silently dropping the sibling’s real value
+- Updated dependencies [[`6e91ba8`](https://github.com/terrazzoapp/terrazzo/commit/6e91ba829dc39281c2a3616f362352e05507db00)]:
+  - @terrazzo/token-tools@2.9.0
+  - @terrazzo/parser@2.9.0
+  - @terrazzo/cli@2.9.0
+
 ## 2.8.0
 
 ### Patch Changes
