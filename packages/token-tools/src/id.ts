@@ -1,10 +1,11 @@
+import type { AliasValue } from '@terrazzo/token-types';
 import wcmatch from 'wildcard-match';
 
 const ALIAS_RE = /^\{([^}]+)\}$/;
 
 /** Is this token an alias of another? */
-export function isAlias(value: string): boolean {
-  return ALIAS_RE.test(value);
+export function isAlias<T>(value: T | AliasValue): value is AliasValue {
+  return typeof value === 'string' && ALIAS_RE.test(value);
 }
 
 const _CATCHALL_MATCHER = wcmatch('.*');

@@ -93,10 +93,11 @@ const rule: LintRule<
         }
         case 'shadow': {
           for (let shadowI = 0; shadowI < t.$value.length; shadowI++) {
-            if (
-              !t.partialAliasOf?.[shadowI]?.color &&
-              t.$value[shadowI]!.color.colorSpace !== options.colorSpace
-            ) {
+            const partialAlias = t.partialAliasOf?.[shadowI];
+            if (partialAlias && (typeof partialAlias === 'string' || partialAlias.color)) {
+              continue;
+            }
+            if (t.$value[shadowI]!.color.colorSpace !== options.colorSpace) {
               report({
                 messageId: ERROR_SHADOW,
                 data: { id: t.id, colorSpace: options.colorSpace },

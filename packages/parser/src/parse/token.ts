@@ -511,7 +511,7 @@ export function resolveAliases(
           logger.error({ ...aliasEntry, message: `Could not resolve alias ${alias}.` });
         }
         refChain.push(nextRef);
-        if (isAlias(nextToken!.originalValue! as string)) {
+        if (isAlias(nextToken!.originalValue!)) {
           return resolveInner(nextToken!.originalValue! as string, refChain);
         }
         return nextJSONID;

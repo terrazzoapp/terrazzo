@@ -79,11 +79,7 @@ function validateGradient(
           });
         }
       }
-      if (
-        'position' in stop &&
-        typeof stop.position !== 'number' &&
-        !isAlias(stop.position as string)
-      ) {
+      if ('position' in stop && typeof stop.position !== 'number' && !isAlias(stop.position)) {
         report({
           messageId: ERROR_POSITION,
           data: { value: stop.position },

@@ -75,7 +75,7 @@ const rule: LintRule<
             const $valueNode = getObjMember(t.source.node, '$value') as momoa.ObjectNode;
             const dashArray = getObjMember($valueNode, 'dashArray') as momoa.ArrayNode;
             for (let i = 0; i < t.originalValue.$value.dashArray.length; i++) {
-              if (isAlias(t.originalValue.$value.dashArray[i] as string)) {
+              if (isAlias(t.originalValue.$value.dashArray[i])) {
                 continue;
               }
               validateDimension(t.originalValue.$value.dashArray[i], {
@@ -91,7 +91,7 @@ const rule: LintRule<
         case 'border': {
           const $valueNode = getObjMember(t.source.node, '$value') as momoa.ObjectNode;
           if (typeof t.originalValue.$value === 'object') {
-            if (t.originalValue.$value.width && !isAlias(t.originalValue.$value.width as string)) {
+            if (t.originalValue.$value.width && !isAlias(t.originalValue.$value.width)) {
               validateDimension(t.originalValue.$value.width, {
                 node: getObjMember($valueNode, 'width'),
                 filename: t.source.filename,
@@ -106,7 +106,7 @@ const rule: LintRule<
               const style = getObjMember($valueNode, 'style') as momoa.ObjectNode;
               const dashArray = getObjMember(style, 'dashArray') as momoa.ArrayNode;
               for (let i = 0; i < t.originalValue.$value.style.dashArray.length; i++) {
-                if (isAlias(t.originalValue.$value.style.dashArray[i] as string)) {
+                if (isAlias(t.originalValue.$value.style.dashArray[i])) {
                   continue;
                 }
                 validateDimension(t.originalValue.$value.style.dashArray[i], {
@@ -133,11 +133,15 @@ const rule: LintRule<
                 $valueNode.type === 'Array'
                   ? ($valueNode.elements[i]!.value as momoa.ObjectNode)
                   : $valueNode;
+              const value = valueArray[i];
+              if (!value || isAlias(value)) {
+                continue;
+              }
               for (const property of ['offsetX', 'offsetY', 'blur', 'spread'] as const) {
-                if (isAlias(valueArray[i]![property] as string)) {
+                if (isAlias(value[property])) {
                   continue;
                 }
-                validateDimension(valueArray[i]![property], {
+                validateDimension(value[property], {
                   node: getObjMember(node, property),
                   filename: t.source.filename,
                   options,
@@ -154,7 +158,7 @@ const rule: LintRule<
             for (const property of ['fontSize', 'lineHeight', 'letterSpacing'] as const) {
               if (property in t.originalValue.$value) {
                 if (
-                  isAlias(t.originalValue.$value[property] as string) ||
+                  isAlias(t.originalValue.$value[property]) ||
                   // special case: lineHeight may be a number
                   (property === 'lineHeight' &&
                     typeof t.originalValue.$value[property] === 'number')
