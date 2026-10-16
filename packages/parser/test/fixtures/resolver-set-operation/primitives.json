@@ -1,0 +1,210 @@
+{
+  "light-blue-200": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8,
+        0.9,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#cce5ff"
+    },
+    "$type": "color"
+  },
+  "light-blue-400": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6,
+        0.8,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#99ccff"
+    },
+    "$type": "color"
+  },
+  "light-blue-600": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.4,
+        0.7,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#66b2ff"
+    },
+    "$type": "color"
+  },
+  "light-blue-800": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.2,
+        0.6,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#3399ff"
+    },
+    "$type": "color"
+  },
+  "dark-blue-200": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.13,
+        0.8
+      ],
+      "alpha": 1,
+      "hex": "#0022cc"
+    },
+    "$type": "color"
+  },
+  "dark-blue-400": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.1,
+        0.6
+      ],
+      "alpha": 1,
+      "hex": "#001a99"
+    },
+    "$type": "color"
+  },
+  "dark-blue-600": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.06,
+        0.4
+      ],
+      "alpha": 1,
+      "hex": "#001166"
+    },
+    "$type": "color"
+  },
+  "dark-blue-800": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.03,
+        0.2
+      ],
+      "alpha": 1,
+      "hex": "#000933"
+    },
+    "$type": "color"
+  },
+  "light-orange-200": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.93,
+        0.8
+      ],
+      "alpha": 1,
+      "hex": "#ffeecc"
+    },
+    "$type": "color"
+  },
+  "light-orange-400": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.86,
+        0.6
+      ],
+      "alpha": 1,
+      "hex": "#ffdd99"
+    },
+    "$type": "color"
+  },
+  "light-orange-600": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.8,
+        0.4
+      ],
+      "alpha": 1,
+      "hex": "#ffcc66"
+    },
+    "$type": "color"
+  },
+  "light-orange-800": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.73,
+        0.2
+      ],
+      "alpha": 1,
+      "hex": "#ffbb33"
+    },
+    "$type": "color"
+  },
+  "dark-orange-200": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8,
+        0.32,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#cc5200"
+    },
+    "$type": "color"
+  },
+  "dark-orange-400": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6,
+        0.25,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#994000"
+    },
+    "$type": "color"
+  },
+  "dark-orange-600": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.4,
+        0.17,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#662b00"
+    },
+    "$type": "color"
+  },
+  "dark-orange-800": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.2,
+        0.08,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#331500"
+    },
+    "$type": "color"
+  }
+}

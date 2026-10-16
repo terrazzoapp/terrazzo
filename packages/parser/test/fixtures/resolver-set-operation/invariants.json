@@ -1,0 +1,28 @@
+{
+"purple": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.4,
+        0.2,
+        0.6
+      ],
+      "alpha": 1,
+      "hex": "#663399"
+    },
+    "$type": "color"
+  },
+  "papaya": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.9,
+        0.8
+      ],
+      "alpha": 1,
+      "hex": "#ffefd5"
+    },
+    "$type": "color"
+  }
+}
