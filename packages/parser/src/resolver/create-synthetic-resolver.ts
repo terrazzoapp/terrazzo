@@ -3,7 +3,7 @@ import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 
 import type Logger from '../logger.js';
 import type { ConfigInit, Group, Resolver, TokenNormalized, TokenNormalizedSet } from '../types.js';
-import { createResolver } from './load.js';
+import { createResolver } from './create-resolver.js';
 import { normalizeResolver } from './normalize.js';
 
 export interface CreateSyntheticResolverOptions {
