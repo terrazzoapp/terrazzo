@@ -1,5 +1,15 @@
 # @terrazzo/plugin-css-in-js
 
+## 2.10.0
+
+### Patch Changes
+
+- [#863](https://github.com/terrazzoapp/terrazzo/pull/863) [`d6586f7`](https://github.com/terrazzoapp/terrazzo/commit/d6586f72ce6a903b5023fdc8a78a29181dad70d6) Thanks [@dominikschreiber](https://github.com/dominikschreiber)! - Uses new Intl.Collator.compare() instead of localeCompare() for a 50% build performance boost.
+- Updated dependencies [[`9305ad1`](https://github.com/terrazzoapp/terrazzo/commit/9305ad1192aa040cde02622e7f08ac484743437f), [`0dc88b5`](https://github.com/terrazzoapp/terrazzo/commit/0dc88b54315bead2ec09eb10c1c9022112f42600), [`d6586f7`](https://github.com/terrazzoapp/terrazzo/commit/d6586f72ce6a903b5023fdc8a78a29181dad70d6)]:
+  - @terrazzo/cli@2.10.0
+  - @terrazzo/parser@2.10.0
+  - @terrazzo/plugin-css@2.10.0
+
 ## 2.9.0
 
 ### Patch Changes
