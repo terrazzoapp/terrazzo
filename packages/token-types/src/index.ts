@@ -25,7 +25,7 @@ export type Token =
 
 export type TokensSet = Record<string, Token>;
 
-export type AliasValue = string;
+export type AliasValue = `{${string}}`;
 
 export interface AliasToken extends TokenCore {
   $type?: never;
@@ -219,7 +219,7 @@ export interface StrokeStyleValueExpanded {
  */
 export interface ShadowToken extends TokenCore {
   $type: 'shadow';
-  $value: ShadowValue | ShadowValue[] | AliasValue;
+  $value: ShadowValue | AliasValue | (ShadowValue | AliasValue)[];
 }
 
 export interface ShadowValue {
@@ -410,7 +410,7 @@ export interface ColorValueNormalized {
   colorSpace: ColorSpace;
   /** Color components. Will be normalized to 1 unless the colorspace prevents it (e.g. XYZ, LAB) */
   components: (number | null)[];
-  /** Alpha component, normalized from 0 – 1 */
+  /** Alpha component, normalized from 0 – 1 */
   alpha: number;
   /** Hex fallback (for sRGB) */
   hex?: string;
@@ -524,7 +524,7 @@ export interface NumberTokenNormalized extends TokenNormalizedCore<'number'> {
 export interface ShadowTokenNormalized extends TokenNormalizedCore<'shadow'> {
   $value: ShadowValueNormalized[];
   /** Parts of this token rely on others */
-  partialAliasOf: Record<keyof ShadowValue, string | undefined>[] | undefined;
+  partialAliasOf: (string | Record<keyof ShadowValue, string | undefined>)[] | undefined;
   /** @deprecated */
   mode: ModeMap<ShadowTokenNormalized>;
   originalValue: ShadowToken | AliasToken | undefined;

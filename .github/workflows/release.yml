@@ -14,19 +14,18 @@ jobs:
   changelog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
         with:
-          node-version: 24
-      - uses: pnpm/action-setup@v6
-        with:
-          run_install: true
+          install: true
+          cache: false # don’t risk a bad publish from bad cache
+          runtime: node@26
       - run: pnpm run build
-      - uses: changesets/action@v1
+      - uses: changesets/action@v2
         with:
-          version: pnpm run version
-          publish: pnpm exec changeset publish
-          commit: "[ci] release"
-          title: "[ci] release"
+          version-script: pnpm run version
+          publish-script: pnpm exec changeset publish
+          commit-message: "[ci] release"
+          pr-title: "[ci] release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,24 +1,4 @@
-import type {
-  AliasValue,
-  BooleanValue,
-  BorderValue,
-  ColorValue,
-  CubicBezierValue,
-  DimensionValue,
-  DurationValue,
-  FontFamilyValue,
-  FontWeightValue,
-  GradientValue,
-  LinkValue,
-  Logger,
-  NumberValue,
-  ShadowValue,
-  StringValue,
-  StrokeStyleValue,
-  TokenNormalized,
-  TransitionValue,
-  TypographyValue,
-} from '@terrazzo/parser';
+import type { Logger, Token, TokenNormalized } from '@terrazzo/parser';
 
 export const FORMAT_ID = 'token-listing';
 
@@ -56,25 +36,7 @@ export interface TokenListingExtension {
   previewValue?: string | number;
 
   /** Original value of the token, with aliases preserved. */
-  originalValue?:
-    | AliasValue
-    | BooleanValue
-    | BorderValue
-    | ColorValue
-    | CubicBezierValue
-    | DimensionValue
-    | DurationValue
-    | FontFamilyValue
-    | FontWeightValue
-    | GradientValue
-    | LinkValue
-    | NumberValue
-    | ShadowValue
-    | ShadowValue[]
-    | StringValue
-    | StrokeStyleValue
-    | TransitionValue
-    | TypographyValue;
+  originalValue?: Token['$value'];
 }
 
 export interface ListedToken {

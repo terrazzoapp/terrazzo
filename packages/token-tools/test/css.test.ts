@@ -570,6 +570,20 @@ describe('transformDimension', () => {
       },
     ],
     [
+      'legacy string value',
+      {
+        given: [{ $value: '1rem' }, { tokensSet: {}, permutation: {} }],
+        want: { success: '1rem' },
+      },
+    ],
+    [
+      'bare number value',
+      {
+        given: [{ $value: 0 }, { tokensSet: {}, permutation: {} }],
+        want: { success: '0' },
+      },
+    ],
+    [
       '0.75em',
       {
         given: [{ $value: { value: 0.75, unit: 'em' } }, { tokensSet: {}, permutation: {} }],
@@ -779,7 +793,7 @@ describe('transformShadow', () => {
           },
           { tokensSet: {}, permutation: {} },
         ],
-        want: { success: '0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.1)' },
+        want: { success: '0px 0.25rem 0.5rem rgb(0% 0% 0% / 0.1)' },
       },
     ],
     [
@@ -797,14 +811,64 @@ describe('transformShadow', () => {
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.25, unit: 'rem' },
                 blur: { value: 0.5, unit: 'rem' },
-                spread: { value: 0, unit: 'px' },
+                spread: { value: 0, unit: 'rem' },
                 inset: true,
               },
             ],
           } as any,
           { tokensSet: {}, permutation: {} },
         ],
-        want: { success: 'inset 0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.1)' },
+        want: { success: 'inset 0px 0.25rem 0.5rem rgb(0% 0% 0% / 0.1)' },
+      },
+    ],
+    [
+      'zero-blur, zero-spread',
+      {
+        given: [
+          {
+            $value: [
+              {
+                color: {
+                  colorSpace: 'srgb',
+                  components: [0, 0, 0],
+                  alpha: 0.1,
+                },
+                offsetX: { value: 0, unit: 'px' },
+                offsetY: { value: 0.25, unit: 'rem' },
+                blur: { value: 0, unit: 'rem' },
+                spread: { value: 0, unit: 'rem' },
+                inset: false,
+              },
+            ],
+          } as any,
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: { success: '0px 0.25rem rgb(0% 0% 0% / 0.1)' },
+      },
+    ],
+    [
+      'zero-blur, non-zero-spread',
+      {
+        given: [
+          {
+            $value: [
+              {
+                color: {
+                  colorSpace: 'srgb',
+                  components: [0, 0, 0],
+                  alpha: 0.1,
+                },
+                offsetX: { value: 0, unit: 'px' },
+                offsetY: { value: 0.25, unit: 'rem' },
+                blur: { value: 0, unit: 'rem' },
+                spread: { value: 0.5, unit: 'rem' },
+                inset: false,
+              },
+            ],
+          } as any,
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: { success: '0px 0.25rem 0rem 0.5rem rgb(0% 0% 0% / 0.1)' },
       },
     ],
     [
@@ -842,8 +906,7 @@ describe('transformShadow', () => {
           { tokensSet: {}, permutation: {} },
         ],
         want: {
-          success:
-            '0px 0.25rem 0.5rem 0px rgb(0% 0% 0% / 0.05), 0px 0.5rem 1rem 0px rgb(0% 0% 0% / 0.05)',
+          success: '0px 0.25rem 0.5rem rgb(0% 0% 0% / 0.05), 0px 0.5rem 1rem rgb(0% 0% 0% / 0.05)',
         },
       },
     ],
@@ -936,6 +999,88 @@ describe('transformTypography', () => {
         want: {
           success: {
             'font-family': 'var(--font-sans-font-family)',
+          },
+        },
+      },
+    ],
+    [
+      'keyword subvalues',
+      {
+        given: [
+          {
+            $value: {
+              fontSize: 'inherit',
+              letterSpacing: 'normal',
+              lineHeight: 'normal',
+            },
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: {
+            'font-size': 'inherit',
+            'letter-spacing': 'normal',
+            'line-height': 'normal',
+          },
+        },
+      },
+    ],
+    [
+      'legacy string dimensions',
+      {
+        given: [
+          {
+            $value: {
+              fontSize: '1rem',
+              letterSpacing: '0.125em',
+              lineHeight: '1.5',
+            },
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: {
+            'font-size': '1rem',
+            'letter-spacing': '0.125em',
+            'line-height': '1.5',
+          },
+        },
+      },
+    ],
+    [
+      'numeric lineHeight stays unitless',
+      {
+        given: [
+          {
+            $value: {
+              fontSize: { value: 16, unit: 'px' },
+              lineHeight: 1.5,
+            },
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: {
+            'font-size': '16px',
+            'line-height': '1.5',
+          },
+        },
+      },
+    ],
+    [
+      'bare numeric letterSpacing',
+      {
+        given: [
+          {
+            $value: {
+              letterSpacing: 0,
+            },
+          },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: {
+          success: {
+            'letter-spacing': '0',
           },
         },
       },

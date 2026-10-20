@@ -40,7 +40,7 @@ describe('tz check', () => {
   });
 
   it('invalid', async () => {
-    // oxlint-disable-next-line func-style
+    // oxlint-disable-next-line func-style,consistent-function-scoping
     const command = async () => {
       const cwd = new URL('../', import.meta.url);
       await execaNode({

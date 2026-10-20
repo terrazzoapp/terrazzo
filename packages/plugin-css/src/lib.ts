@@ -282,6 +282,11 @@ export function hasDecl(list: (CSSRule | CSSDeclaration)[], property: string): b
   return list.some((d) => d.type === 'Declaration' && d.property === property);
 }
 
+/** Is this declaration a variable that reads itself (`--x: var(--x)`)? */
+export function isSelfReference(property: string, value: string): boolean {
+  return value === `var(${property})`;
+}
+
 /** Add a declaration only if it’s unique (note: CSS, by design, allows duplication—it’s how fallbacks happen. Only use this if fallbacks aren’t needed. */
 export function addDeclUnique(
   list: (CSSRule | CSSDeclaration)[],

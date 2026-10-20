@@ -1,5 +1,11 @@
 # @terrazzo/plugin-swift
 
+## 0.3.4
+
+### Patch Changes
+
+Package refresh to dedupe common dependencies
+
 ## 0.3.3
 
 ### Patch Changes

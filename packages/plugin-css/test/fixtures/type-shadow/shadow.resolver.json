@@ -9,9 +9,6 @@
       "sources": [
         {
           "shadow": {
-            "base": {
-              "$value": "{shadow.simple}"
-            },
             "simple": {
               "$type": "shadow",
               "$value": {
@@ -82,6 +79,14 @@
                   "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.12 }
                 }
               ]
+            },
+            "alias": {
+              "$type": "shadow",
+              "$value": "{shadow.simple}"
+            },
+            "alias-layered": {
+              "$type": "shadow",
+              "$value": ["{shadow.simple}", "{shadow.inset}"]
             }
           }
         }

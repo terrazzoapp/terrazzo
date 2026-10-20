@@ -48,17 +48,18 @@
     "@terrazzo/tiles": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
-    "dtcg-examples": "catalog:",
-    "monaco-editor": "^0.55.1"
+    "dtcg-examples": "catalog:"
   },
   "devDependencies": {
-    "@base-ui/react": "^1.6.0",
+    "@base-ui/react": "^1.9.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
+    "monaco-editor": "^0.57.0",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "vite": "catalog:",
     "vite-tsconfig-paths": "^6.1.1"

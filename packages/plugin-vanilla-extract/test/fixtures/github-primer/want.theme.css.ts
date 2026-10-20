@@ -3217,7 +3217,7 @@ export const [lightClass, light] = createTheme(vars, {
         "rest": vars.button.danger.fgColor.rest
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-red-9)"
+        "selected": "inset 0px 1px var(--base-color-red-9)"
       }
     },
     "default": {
@@ -3239,7 +3239,7 @@ export const [lightClass, light] = createTheme(vars, {
         "rest": vars.control.fgColor.rest
       },
       "shadow": {
-        "resting": "0px 1px 0px 0px var(--base-color-neutral-13)"
+        "resting": "0px 1px var(--base-color-neutral-13)"
       }
     },
     "inactive": {
@@ -3288,7 +3288,7 @@ export const [lightClass, light] = createTheme(vars, {
         "rest": vars.fgColor.accent
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-blue-9)"
+        "selected": "inset 0px 1px var(--base-color-blue-9)"
       }
     },
     "primary": {
@@ -3313,7 +3313,7 @@ export const [lightClass, light] = createTheme(vars, {
         "rest": vars.fgColor.white
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-green-9)"
+        "selected": "inset 0px 1px var(--base-color-green-9)"
       }
     },
     "star": {
@@ -4861,16 +4861,16 @@ export const [lightClass, light] = createTheme(vars, {
   },
   "shadow": {
     "floating": {
-      "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12)",
+      "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px var(--base-color-neutral-12)",
       "medium": "0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12)",
-      "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
-      "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12)"
+      "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px var(--base-color-neutral-12)",
+      "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px var(--base-color-neutral-12)"
     },
-    "inset": "inset 0px 1px 0px 0px var(--base-color-neutral-13)",
+    "inset": "inset 0px 1px var(--base-color-neutral-13)",
     "resting": {
-      "medium": "0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12)",
-      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 2px 0px var(--base-color-neutral-13)",
-      "xsmall": "0px 1px 1px 0px var(--base-color-neutral-13)"
+      "medium": "0px 1px 1px var(--base-color-neutral-12), 0px 3px 6px var(--base-color-neutral-12)",
+      "small": "0px 1px 1px var(--base-color-neutral-13), 0px 1px 2px var(--base-color-neutral-13)",
+      "xsmall": "0px 1px 1px var(--base-color-neutral-13)"
     }
   },
   "sideNav": {
@@ -5750,7 +5750,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "rest": vars.button.danger.fgColor.rest
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-red-9)"
+        "selected": "inset 0px 1px var(--base-color-red-9)"
       }
     },
     "default": {
@@ -5772,7 +5772,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "rest": vars.control.fgColor.rest
       },
       "shadow": {
-        "resting": "0px 1px 0px 0px var(--base-color-neutral-13)"
+        "resting": "0px 1px var(--base-color-neutral-13)"
       }
     },
     "inactive": {
@@ -5821,7 +5821,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "rest": vars.fgColor.accent
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-blue-9)"
+        "selected": "inset 0px 1px var(--base-color-blue-9)"
       }
     },
     "primary": {
@@ -5846,7 +5846,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "rest": vars.fgColor.white
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-green-9)"
+        "selected": "inset 0px 1px var(--base-color-green-9)"
       }
     },
     "star": {
@@ -7394,16 +7394,16 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
   },
   "shadow": {
     "floating": {
-      "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12)",
+      "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px var(--base-color-neutral-12)",
       "medium": "0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12)",
-      "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
-      "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12)"
+      "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px var(--base-color-neutral-12)",
+      "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px var(--base-color-neutral-12)"
     },
-    "inset": "inset 0px 1px 0px 0px var(--base-color-neutral-13)",
+    "inset": "inset 0px 1px var(--base-color-neutral-13)",
     "resting": {
-      "medium": "0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12)",
-      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 2px 0px var(--base-color-neutral-13)",
-      "xsmall": "0px 1px 1px 0px var(--base-color-neutral-13)"
+      "medium": "0px 1px 1px var(--base-color-neutral-12), 0px 3px 6px var(--base-color-neutral-12)",
+      "small": "0px 1px 1px var(--base-color-neutral-13), 0px 1px 2px var(--base-color-neutral-13)",
+      "xsmall": "0px 1px 1px var(--base-color-neutral-13)"
     }
   },
   "sideNav": {
@@ -8283,7 +8283,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "rest": vars.button.danger.fgColor.rest
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-red-9)"
+        "selected": "inset 0px 1px var(--base-color-red-9)"
       }
     },
     "default": {
@@ -8305,7 +8305,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "rest": vars.control.fgColor.rest
       },
       "shadow": {
-        "resting": "0px 1px 0px 0px var(--base-color-neutral-13)"
+        "resting": "0px 1px var(--base-color-neutral-13)"
       }
     },
     "inactive": {
@@ -8354,7 +8354,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "rest": vars.fgColor.accent
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-blue-9)"
+        "selected": "inset 0px 1px var(--base-color-blue-9)"
       }
     },
     "primary": {
@@ -8379,7 +8379,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "rest": vars.fgColor.white
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-green-9)"
+        "selected": "inset 0px 1px var(--base-color-green-9)"
       }
     },
     "star": {
@@ -9927,16 +9927,16 @@ export const [darkClass, dark] = createTheme(vars, {
   },
   "shadow": {
     "floating": {
-      "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12)",
+      "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px var(--base-color-neutral-12)",
       "medium": "0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12)",
-      "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
-      "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12)"
+      "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px var(--base-color-neutral-12)",
+      "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px var(--base-color-neutral-12)"
     },
-    "inset": "inset 0px 1px 0px 0px var(--base-color-neutral-13)",
+    "inset": "inset 0px 1px var(--base-color-neutral-13)",
     "resting": {
-      "medium": "0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12)",
-      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 2px 0px var(--base-color-neutral-13)",
-      "xsmall": "0px 1px 1px 0px var(--base-color-neutral-13)"
+      "medium": "0px 1px 1px var(--base-color-neutral-12), 0px 3px 6px var(--base-color-neutral-12)",
+      "small": "0px 1px 1px var(--base-color-neutral-13), 0px 1px 2px var(--base-color-neutral-13)",
+      "xsmall": "0px 1px 1px var(--base-color-neutral-13)"
     }
   },
   "sideNav": {
@@ -10816,7 +10816,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "rest": vars.button.danger.fgColor.rest
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-red-9)"
+        "selected": "inset 0px 1px var(--base-color-red-9)"
       }
     },
     "default": {
@@ -10838,7 +10838,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "rest": vars.control.fgColor.rest
       },
       "shadow": {
-        "resting": "0px 1px 0px 0px var(--base-color-neutral-13)"
+        "resting": "0px 1px var(--base-color-neutral-13)"
       }
     },
     "inactive": {
@@ -10887,7 +10887,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "rest": vars.fgColor.accent
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-blue-9)"
+        "selected": "inset 0px 1px var(--base-color-blue-9)"
       }
     },
     "primary": {
@@ -10912,7 +10912,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "rest": vars.fgColor.white
       },
       "shadow": {
-        "selected": "inset 0px 1px 0px 0px var(--base-color-green-9)"
+        "selected": "inset 0px 1px var(--base-color-green-9)"
       }
     },
     "star": {
@@ -12460,16 +12460,16 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
   },
   "shadow": {
     "floating": {
-      "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px 0px var(--base-color-neutral-12)",
+      "large": "0px 0px 0px 1px var(--overlay-border-color), 0px 40px 80px var(--base-color-neutral-12)",
       "medium": "0px 0px 0px 1px var(--overlay-border-color), 0px 8px 16px -4px var(--base-color-neutral-12), 0px 4px 32px -4px var(--base-color-neutral-12), 0px 24px 48px -12px var(--base-color-neutral-12), 0px 48px 96px -24px var(--base-color-neutral-12)",
-      "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px 0px var(--base-color-neutral-12)",
-      "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px 0px var(--base-color-neutral-12)"
+      "small": "0px 0px 0px 1px var(--overlay-border-color), 0px 6px 12px -3px var(--base-color-neutral-12), 0px 6px 18px var(--base-color-neutral-12)",
+      "xlarge": "0px 0px 0px 1px var(--overlay-border-color), 0px 56px 112px var(--base-color-neutral-12)"
     },
-    "inset": "inset 0px 1px 0px 0px var(--base-color-neutral-13)",
+    "inset": "inset 0px 1px var(--base-color-neutral-13)",
     "resting": {
-      "medium": "0px 1px 1px 0px var(--base-color-neutral-12), 0px 3px 6px 0px var(--base-color-neutral-12)",
-      "small": "0px 1px 1px 0px var(--base-color-neutral-13), 0px 1px 2px 0px var(--base-color-neutral-13)",
-      "xsmall": "0px 1px 1px 0px var(--base-color-neutral-13)"
+      "medium": "0px 1px 1px var(--base-color-neutral-12), 0px 3px 6px var(--base-color-neutral-12)",
+      "small": "0px 1px 1px var(--base-color-neutral-13), 0px 1px 2px var(--base-color-neutral-13)",
+      "xsmall": "0px 1px 1px var(--base-color-neutral-13)"
     }
   },
   "sideNav": {

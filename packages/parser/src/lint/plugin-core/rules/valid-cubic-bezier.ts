@@ -43,7 +43,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
           if (
             typeof t.originalValue.$value === 'object' &&
             t.originalValue.$value.timingFunction &&
-            !isAlias(t.originalValue.$value.timingFunction as string)
+            !isAlias(t.originalValue.$value.timingFunction)
           ) {
             const $valueNode = getObjMember(t.source.node, '$value') as momoa.ObjectNode;
             validateCubicBezier(t.originalValue.$value.timingFunction, {

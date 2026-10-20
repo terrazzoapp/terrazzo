@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/token-tools",
-  "version": "2.7.1",
+  "version": "2.9.0",
   "description": "Various utilities for token types",
   "license": "MIT",
   "type": "module",
@@ -46,6 +46,6 @@
     "@humanwhocodes/momoa": "catalog:",
     "@terrazzo/token-types": "workspace:^",
     "colorjs.io": "catalog:",
-    "wildcard-match": "^5.1.4"
+    "wildcard-match": "^5.1.6"
   }
 }

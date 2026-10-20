@@ -71,10 +71,7 @@ const rule: LintRule<
           if (typeof t.originalValue.$value === 'object') {
             const $valueNode = getObjMember(t.source.node, '$value');
             for (const property of ['duration', 'delay'] as const) {
-              if (
-                t.originalValue.$value[property] &&
-                !isAlias(t.originalValue.$value[property] as string)
-              ) {
+              if (t.originalValue.$value[property] && !isAlias(t.originalValue.$value[property])) {
                 validateDuration(t.originalValue.$value[property], {
                   node: getObjMember($valueNode as momoa.ObjectNode, property)!,
                   filename: t.source.filename,
