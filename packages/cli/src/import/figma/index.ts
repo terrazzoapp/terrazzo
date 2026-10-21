@@ -1,4 +1,4 @@
-import type { Logger } from '@terrazzo/parser';
+import type { Logger, ReferenceObject } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
 
@@ -19,6 +19,8 @@ export interface importFromFigmaOptions {
   fontWeightNames?: string;
   /** RegEx for overriding Variable types with number tokens */
   numberNames?: string;
+  /** Explicit Resolver order to preserve. By default, imported groups are listed in discovery order. */
+  resolutionOrder?: readonly ReferenceObject[];
 }
 
 export interface FigmaOutput {
@@ -37,6 +39,7 @@ export async function importFromFigma({
   fontFamilyNames = '/fontFamily$',
   fontWeightNames = '/fontWeight$',
   numberNames,
+  resolutionOrder,
 }: importFromFigmaOptions): Promise<FigmaOutput> {
   const fileKey = getFileID(url);
   if (!fileKey) {
@@ -49,7 +52,8 @@ export async function importFromFigma({
     code: {
       $schema: 'https://www.designtokens.org/schemas/2025.10/resolver.json',
       version: '2025.10',
-      resolutionOrder: [],
+      // `importCmd` reads this from a hand-editable output file, so it may be any JSON value
+      resolutionOrder: Array.isArray(resolutionOrder) ? [...resolutionOrder] : [],
       sets: {},
       modifiers: {},
     },
@@ -91,9 +95,11 @@ export async function importFromFigma({
   }
 
   // Arbitrarily guess on resolutionOrder
-  for (const group of ['sets', 'modifiers'] as const) {
-    for (const name of Object.keys(result.code[group])) {
-      result.code.resolutionOrder.push({ $ref: `#/${group}/${name}` });
+  if (!Array.isArray(resolutionOrder) || resolutionOrder.length === 0) {
+    for (const group of ['sets', 'modifiers'] as const) {
+      for (const name of Object.keys(result.code[group])) {
+        result.code.resolutionOrder.push({ $ref: `#/${group}/${name}` });
+      }
     }
   }
 
