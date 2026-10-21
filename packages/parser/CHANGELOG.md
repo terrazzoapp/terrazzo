@@ -1,5 +1,18 @@
 # @terrazzo/parser
 
+## 2.10.0
+
+### Minor Changes
+
+- [#830](https://github.com/terrazzoapp/terrazzo/pull/830) [`0dc88b5`](https://github.com/terrazzoapp/terrazzo/commit/0dc88b54315bead2ec09eb10c1c9022112f42600) Thanks [@AngelRionCervi](https://github.com/AngelRionCervi)! - Add extra methods for token set operations
+
+### Patch Changes
+
+- [#863](https://github.com/terrazzoapp/terrazzo/pull/863) [`d6586f7`](https://github.com/terrazzoapp/terrazzo/commit/d6586f72ce6a903b5023fdc8a78a29181dad70d6) Thanks [@dominikschreiber](https://github.com/dominikschreiber)! - Uses new Intl.Collator.compare() instead of localeCompare() for a 50% build performance boost.
+- Updated dependencies []:
+  - @terrazzo/token-tools@2.10.0
+  - @terrazzo/token-types@2.10.0
+
 ## 2.9.0
 
 ### Minor Changes
