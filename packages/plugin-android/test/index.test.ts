@@ -18,6 +18,18 @@ async function run(dir: string, options: AndroidPluginOptions) {
   return { cwd, result };
 }
 
+async function runResolver(dir: string, options: AndroidPluginOptions) {
+  const cwd = new URL(`./${dir}/`, import.meta.url);
+  const config = defineConfig({ outDir: dir, plugins: [android(options)] }, { cwd });
+  const resolverJSON = new URL('./tokens.resolver.json', cwd);
+  const { tokens, resolver, sources } = await parse(
+    [{ filename: resolverJSON, src: fs.readFileSync(resolverJSON, 'utf8') }],
+    { config },
+  );
+  const result = await build(tokens, { config, resolver, sources });
+  return { cwd, result };
+}
+
 describe('@terrazzo/plugin-android', () => {
   it('color, with light and dark modes', async () => {
     const { cwd, result } = await run('color', {
@@ -37,6 +49,34 @@ describe('@terrazzo/plugin-android', () => {
     expect(file!.contents).not.toContain('WantDark');
     expect(file!.contents).not.toContain('package ');
     await expect(file!.contents).toMatchFileSnapshot(fileURLToPath(new URL(file!.filename, cwd)));
+  });
+
+  it('resolver, with a theme modifier', async () => {
+    const { cwd, result } = await runResolver('resolver', {
+      packageName: 'com.example.tokens',
+      objectName: 'Want',
+    });
+    const [file] = result.outputFiles;
+    expect(file!.contents).toContain('object WantDark : Want');
+    await expect(file!.contents).toMatchFileSnapshot(fileURLToPath(new URL(file!.filename, cwd)));
+  });
+
+  it('resolver, with custom inputs', async () => {
+    const { result } = await runResolver('resolver', {
+      objectName: 'Want',
+      light: { theme: 'dark' },
+      dark: { theme: 'light' },
+    });
+    const [file] = result.outputFiles;
+    const [light, dark] = String(file!.contents).split('object WantDark');
+    expect(light).toContain('colorSemanticOverlay = Color(0f, 0f, 0f, 0.7f');
+    expect(dark).toContain('colorSemanticOverlay = Color(0f, 0f, 0f, 0.5f');
+  });
+
+  it('errors on a resolver input that does not exist', async () => {
+    await expect(runResolver('resolver', { light: { theme: 'sepia' } })).rejects.toThrow(
+      'Modifier "theme" has no context "sepia"',
+    );
   });
 
   it('toPropertyName', () => {

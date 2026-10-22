@@ -1,4 +1,4 @@
-import type { Plugin } from '@terrazzo/parser';
+import type { Plugin, ResolverInput } from '@terrazzo/parser';
 import { tokenToColor } from '@terrazzo/token-tools';
 import { to as convert } from 'colorjs.io/fn';
 
@@ -7,6 +7,9 @@ import { to as convert } from 'colorjs.io/fn';
 export const FORMAT = 'android';
 
 const PLUGIN_NAME = '@terrazzo/plugin-android';
+
+const DEFAULT_LIGHT: ResolverInput = { theme: 'light' };
+const DEFAULT_DARK: ResolverInput = { theme: 'dark' };
 
 export interface AndroidPluginOptions {
   /**
@@ -18,6 +21,16 @@ export interface AndroidPluginOptions {
    * @default "Tokens"
    */
   objectName?: string;
+  /**
+   * Resolver input for the light object.
+   * @default { theme: "light" }
+   */
+  light?: ResolverInput;
+  /**
+   * Resolver input for the dark object. Without a valid one, no dark object is generated.
+   * @default { theme: "dark" }
+   */
+  dark?: ResolverInput;
 }
 
 /** Kotlin hard keywords, which can’t be used as a property name without backticks */
@@ -55,38 +68,78 @@ const KOTLIN_KEYWORDS = new Set([
 export default function PluginAndroid({
   packageName,
   objectName = 'Tokens',
+  light: lightOption,
+  dark: darkOption,
 }: AndroidPluginOptions = {}): Plugin {
+  // Set by transform, read by build. Undefined means fall back to $extensions.mode.
+  let lightInput: ResolverInput | undefined;
+  let darkInput: ResolverInput | undefined;
+
+  function meta(id: string) {
+    return { 'token-listing': { name: `${objectName}.${toPropertyName(id)}` } };
+  }
+
   return {
     name: PLUGIN_NAME,
-    async transform({ tokens, setTransform }) {
-      for (const [id, token] of Object.entries(tokens)) {
-        switch (token.$type) {
-          case 'color': {
-            for (const [mode, modeValue] of Object.entries(token.mode)) {
-              if (!modeValue) {
-                continue;
-              }
-              const parsed = tokenToColor(modeValue.$value);
-              const {
-                coords: [red, green, blue],
-                alpha,
-              } = convert(parsed, 'p3', { inGamut: true });
-              setTransform(id, {
+    async transform({ tokens, resolver, setTransform }) {
+      // An input the user passed must be valid, so error on it. The defaults only apply if the resolver has a "theme" modifier.
+      const light = lightOption ?? DEFAULT_LIGHT;
+      const dark = darkOption ?? DEFAULT_DARK;
+      lightInput = resolver.isValidInput(light, !!lightOption) ? light : undefined;
+      darkInput = lightInput && resolver.isValidInput(dark, !!darkOption) ? dark : undefined;
+
+      if (lightInput) {
+        for (const input of [lightInput, darkInput]) {
+          if (!input) {
+            continue;
+          }
+          for (const token of Object.values(resolver.apply(input))) {
+            // TODO: other types
+            if (token.$type === 'color') {
+              setTransform(token.id, {
                 format: FORMAT,
-                mode,
-                value: `Color(${[red, green, blue, alpha].map(toFloat).join(', ')}, ColorSpaces.DisplayP3)`,
-                meta: { 'token-listing': { name: `${objectName}.${toPropertyName(token.id)}` } },
+                input,
+                value: toComposeColor(token.$value),
+                meta: meta(token.id),
               });
             }
-            break;
           }
+        }
+        return;
+      }
 
-          // TODO: other types
+      // No resolver input matched: read $extensions.mode instead
+      for (const [id, token] of Object.entries(tokens)) {
+        if (token.$type !== 'color') {
+          continue;
+        }
+        for (const [mode, modeValue] of Object.entries(token.mode)) {
+          if (!modeValue) {
+            continue;
+          }
+          setTransform(id, {
+            format: FORMAT,
+            mode,
+            value: toComposeColor(modeValue.$value),
+            meta: meta(token.id),
+          });
         }
       }
     },
     async build({ context, getTransforms, outputFile }) {
-      const colors = getTransforms({ id: '*', format: FORMAT, mode: '.' }).toSorted((a, b) =>
+      function getLight(id: string) {
+        return lightInput
+          ? getTransforms({ id, format: FORMAT, input: lightInput })
+          : getTransforms({ id, format: FORMAT, mode: '.' });
+      }
+      function getDark(id: string) {
+        if (darkInput) {
+          return getTransforms({ id, format: FORMAT, input: darkInput });
+        }
+        return lightInput ? [] : getTransforms({ id, format: FORMAT, mode: 'dark' });
+      }
+
+      const colors = getLight('*').toSorted((a, b) =>
         a.token.id.localeCompare(b.token.id, 'en', { numeric: true }),
       );
       if (colors.length === 0) {
@@ -111,7 +164,7 @@ export default function PluginAndroid({
           });
         }
         seen.set(name, token.token.id);
-        const [darkToken] = getTransforms({ id: token.token.id, format: FORMAT, mode: 'dark' });
+        const [darkToken] = getDark(token.token.id);
         members.push({
           name,
           description: token.token.$description,
@@ -171,6 +224,15 @@ export function toPropertyName(id: string): string {
     name = `_${name}`;
   }
   return KOTLIN_KEYWORDS.has(name) ? `\`${name}\`` : name;
+}
+
+/** Color token value → Compose Color in Display P3, mapped into gamut */
+function toComposeColor(value: Parameters<typeof tokenToColor>[0]): string {
+  const {
+    coords: [red, green, blue],
+    alpha,
+  } = convert(tokenToColor(value), 'p3', { inGamut: true });
+  return `Color(${[red, green, blue, alpha].map(toFloat).join(', ')}, ColorSpaces.DisplayP3)`;
 }
 
 /** Kotlin Float literal, rounded to what a Float can hold (0.984313725 → 0.984314f, 1 → 1f) */
