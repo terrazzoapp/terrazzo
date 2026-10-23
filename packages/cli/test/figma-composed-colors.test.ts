@@ -78,6 +78,64 @@ function fixtures(): Record<string, LocalVariable> {
 }
 
 describe('Figma composed colors', () => {
+  it.each([false, true])(
+    'scopes reused IDs to the source collection with matching name=%s',
+    (matchingName) => {
+      const variables = fixtures();
+      const source = {
+        ...collections.theme!,
+        id: 'source',
+        defaultModeId: 'shared',
+        modes: [{ modeId: 'shared', name: 'Light colorblind' }],
+      };
+      const target = {
+        ...collections.other!,
+        id: 'target',
+        defaultModeId: 'fallback',
+        modes: [
+          { modeId: 'shared', name: 'Light protanopia deuteranopia' },
+          { modeId: 'fallback', name: 'Default' },
+          ...(matchingName ? [{ modeId: 'matching', name: 'Light colorblind' }] : []),
+        ],
+      };
+      variables.palette = variable('palette', 'COLOR', {
+        shared: { r: 1, g: 0, b: 0, a: 1 },
+        matching: { r: 0, g: 1, b: 0, a: 1 },
+        fallback: { r: 0, g: 0, b: 1, a: 1 },
+      });
+      variables.palette.variableCollectionId = 'target';
+      variables.opacity = variable('opacity', 'FLOAT', { shared: 100, matching: 25, fallback: 50 });
+      variables.opacity.variableCollectionId = 'target';
+      const result = resolveComposedColor(
+        { color: alias('palette'), opacity: alias('opacity') },
+        'shared',
+        {
+          sourceCollectionID: 'source',
+          variables,
+          collections: { target, source },
+          remoteIDs: new Set(),
+        },
+      );
+      expect(result).toEqual(
+        matchingName ? { r: 0, g: 1, b: 0, a: 0.25 } : { r: 0, g: 0, b: 1, a: 0.5 },
+      );
+    },
+  );
+
+  it('reuses a mode ID for references within the source collection', () => {
+    const variables = fixtures();
+    variables.opacity = variable('opacity', 'FLOAT', { light: 100, dark: 25 });
+    variables.opacity.variableCollectionId = 'theme';
+    expect(
+      resolveComposedColor({ color: alias('palette'), opacity: alias('opacity') }, 'dark', {
+        sourceCollectionID: 'theme',
+        variables,
+        collections,
+        remoteIDs: new Set(),
+      })?.a,
+    ).toBe(0.25);
+  });
+
   afterEach(() => {
     vi.unstubAllGlobals();
     vi.unstubAllEnvs();
@@ -95,6 +153,7 @@ describe('Figma composed colors', () => {
     expect(
       resolveComposedColor({ color: alias('palette'), opacity }, 'light', {
         variables: fixtures(),
+        sourceCollectionID: 'theme',
         collections,
         remoteIDs: new Set(),
       }),
@@ -105,6 +164,7 @@ describe('Figma composed colors', () => {
     expect(
       resolveComposedColor({ color: { r: 1, g: 0, b: 0 }, opacity: alias('opacity') }, 'light', {
         variables: fixtures(),
+        sourceCollectionID: 'theme',
         collections,
         remoteIDs: new Set(),
       }),
@@ -115,6 +175,7 @@ describe('Figma composed colors', () => {
     expect(
       resolveComposedColor({ color: alias('semantic'), opacity: 25 }, 'dark', {
         variables: fixtures(),
+        sourceCollectionID: 'theme',
         collections,
         remoteIDs: new Set(),
       }),
@@ -128,6 +189,7 @@ describe('Figma composed colors', () => {
     expect(
       resolveComposedColor({ color: alias('palette'), opacity: alias('opacity') }, 'dark', {
         variables,
+        sourceCollectionID: 'theme',
         collections,
         remoteIDs: new Set(),
       })?.a,
@@ -139,6 +201,7 @@ describe('Figma composed colors', () => {
     expect(
       resolveComposedColor({ color: alias('missing'), opacity: 50 }, 'light', {
         variables: fixtures(),
+        sourceCollectionID: 'theme',
         collections,
         remoteIDs,
       }),
@@ -152,6 +215,7 @@ describe('Figma composed colors', () => {
     expect(() =>
       resolveComposedColor({ color: alias('palette'), opacity: 50 }, 'light', {
         variables,
+        sourceCollectionID: 'theme',
         collections,
         remoteIDs: new Set(),
       }),
@@ -162,6 +226,7 @@ describe('Figma composed colors', () => {
     expect(() =>
       resolveComposedColor({ color: alias('palette'), opacity }, 'light', {
         variables: fixtures(),
+        sourceCollectionID: 'theme',
         collections,
         remoteIDs: new Set(),
       }),
@@ -172,6 +237,7 @@ describe('Figma composed colors', () => {
     expect(() =>
       resolveComposedColor({ color: alias('opacity'), opacity: 50 }, 'light', {
         variables: fixtures(),
+        sourceCollectionID: 'theme',
         collections,
         remoteIDs: new Set(),
       }),

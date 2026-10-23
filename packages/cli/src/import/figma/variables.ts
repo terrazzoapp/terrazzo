@@ -134,6 +134,7 @@ export async function getVariables(
       const isAliasOfID = getAliasID(value);
       if (variable.resolvedType === 'COLOR' && isComposedColor(value)) {
         const color = resolveComposedColor(value, modeID, {
+          sourceCollectionID: variable.variableCollectionId,
           variables: allVariables,
           collections: variableCollections,
           remoteIDs,

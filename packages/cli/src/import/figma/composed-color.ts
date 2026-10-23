@@ -35,15 +35,19 @@ export function resolveComposedColor(
     variables,
     collections,
     remoteIDs,
+    sourceCollectionID,
   }: {
     variables: Record<string, LocalVariable>;
     collections: Record<string, LocalVariableCollection>;
     remoteIDs: Set<string>;
+    sourceCollectionID: string;
   },
 ): RGBA | undefined {
-  const modeName = Object.values(collections)
-    .flatMap((collection) => collection.modes)
-    .find((mode) => mode.modeId === modeID)?.name;
+  const sourceCollection = collections[sourceCollectionID];
+  if (!sourceCollection) {
+    throw new Error(`Missing Figma source collection: ${sourceCollectionID}`);
+  }
+  const modeName = sourceCollection.modes.find((mode) => mode.modeId === modeID)?.name;
   const active = new Set<string>();
 
   function resolve(input: unknown): unknown {
@@ -62,7 +66,7 @@ export function resolveComposedColor(
         throw new Error(`Missing Figma collection for composed color alias: ${id}`);
       }
       const targetModeID =
-        modeID in variable.valuesByMode
+        variable.variableCollectionId === sourceCollectionID && modeID in variable.valuesByMode
           ? modeID
           : (collection.modes.find(
               (mode) => modeName !== undefined && formatName(mode.name) === formatName(modeName),
