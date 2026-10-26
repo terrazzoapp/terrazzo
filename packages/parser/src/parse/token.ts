@@ -230,11 +230,9 @@ export function groupFromNode(
   }
 
   // first, copy all parent groups’ properties into local, since they cascade
-  const groupIDs = Object.keys(groups);
-  groupIDs.sort(); // these may not be sorted; re-sort just in case (order determines final values)
-  for (const groupID of groupIDs) {
-    const isParentGroup = jsonID.startsWith(groupID) && groupID !== jsonID;
-    if (isParentGroup) {
+  for (let i = 0; i < path.length; i++) {
+    const groupID = encodeFragment(path.slice(0, i));
+    if (groups[groupID]) {
       groups[jsonID].$deprecated = groups[groupID]?.$deprecated ?? groups[jsonID].$deprecated;
       groups[jsonID].$description = groups[groupID]?.$description ?? groups[jsonID].$description;
       groups[jsonID].$type = groups[groupID]?.$type ?? groups[jsonID].$type;
