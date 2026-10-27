@@ -1,11 +1,13 @@
 import type {
   DropShadowEffect,
   InnerShadowEffect,
+  LocalVariable,
   Node,
   PublishedStyle,
   Style,
 } from '@figma/rest-api-spec';
 import type {
+  AliasValue,
   ColorValue,
   DimensionToken,
   DimensionValue,
@@ -17,14 +19,26 @@ import type {
 } from '@terrazzo/parser';
 
 import { formatName, getFile, getFileNodes, getFileStyles } from './lib.js';
+import { canImportStyleBinding, type VariableMatchers } from './variable-bindings.js';
 
 /** /v1/files/:file_key/styles */
 export async function getStyles(
   fileKey: string,
-  { logger, unpublished }: { logger: Logger; unpublished?: boolean },
-): Promise<{ count: number; code: any }> {
-  const result: { count: number; code: any } = {
+  {
+    logger,
+    unpublished,
+    variables,
+    matchers,
+  }: {
+    logger: Logger;
+    unpublished?: boolean;
+    variables?: Record<string, LocalVariable>;
+    matchers?: VariableMatchers;
+  },
+): Promise<{ count: number; code: any; variableIDs: Set<string> }> {
+  const result: { count: number; code: any; variableIDs: Set<string> } = {
     count: 0,
+    variableIDs: new Set(),
     code: {
       sets: {
         styles: {
@@ -110,7 +124,12 @@ export async function getStyles(
         break;
       }
       case 'EFFECT': {
-        const $value = effectStyle(styleNode.document);
+        const $value = effectStyle(styleNode.document, {
+          variables,
+          variableIDs: result.variableIDs,
+          logger,
+          matchers,
+        });
         if (!$value) {
           logger.warn({
             group: 'import',
@@ -168,24 +187,67 @@ export async function getStyles(
 }
 
 /** Return a shadow token from an effect */
-export function effectStyle(node: Node): ShadowValue[] | undefined {
+export function effectStyle(
+  node: Node,
+  {
+    variables,
+    variableIDs = new Set(),
+    logger,
+    matchers,
+  }: {
+    variables?: Record<string, LocalVariable>;
+    variableIDs?: Set<string>;
+    logger?: Logger;
+    matchers?: VariableMatchers;
+  } = {},
+): ShadowValue[] | undefined {
   if ('effects' in node) {
     const shadows = node.effects.filter(
       (e) => e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW',
     ) as (DropShadowEffect | InnerShadowEffect)[];
     if (shadows.length > 0) {
-      return shadows.map((s) => ({
-        inset: s.type === 'INNER_SHADOW',
-        offsetX: { value: s.offset.x, unit: 'px' },
-        offsetY: { value: s.offset.y, unit: 'px' },
-        blur: { value: s.radius, unit: 'px' },
-        spread: { value: s.spread ?? 0, unit: 'px' },
-        color: {
-          colorSpace: 'srgb',
-          components: [s.color.r, s.color.g, s.color.b],
-          alpha: s.color.a,
-        },
-      }));
+      return shadows.map((s) => {
+        function value(
+          field: 'color' | 'offsetX' | 'offsetY' | 'radius' | 'spread',
+          fallback: ColorValue | DimensionValue,
+        ): ColorValue | DimensionValue | AliasValue {
+          const id = s.boundVariables?.[field]?.id;
+          if (!variables || !id) {
+            return fallback;
+          }
+          const importable = canImportStyleBinding(id, field === 'color' ? 'color' : 'dimension', {
+            variables,
+            matchers,
+          });
+          if (!importable) {
+            logger?.warn({
+              group: 'import',
+              message: `Unable to resolve shadow ${field} binding ${id}; using the raw value.`,
+            });
+            return fallback;
+          }
+          variableIDs.add(id);
+          return `{${variables[id]!.name.split('/').map(formatName).join('.')}}`;
+        }
+        return {
+          inset: s.type === 'INNER_SHADOW',
+          offsetX: value('offsetX', { value: s.offset.x, unit: 'px' }) as
+            | DimensionValue
+            | AliasValue,
+          offsetY: value('offsetY', { value: s.offset.y, unit: 'px' }) as
+            | DimensionValue
+            | AliasValue,
+          blur: value('radius', { value: s.radius, unit: 'px' }) as DimensionValue | AliasValue,
+          spread: value('spread', { value: s.spread ?? 0, unit: 'px' }) as
+            | DimensionValue
+            | AliasValue,
+          color: value('color', {
+            colorSpace: 'srgb',
+            components: [s.color.r, s.color.g, s.color.b],
+            alpha: s.color.a,
+          }) as ColorValue | AliasValue,
+        };
+      });
     }
   }
 }

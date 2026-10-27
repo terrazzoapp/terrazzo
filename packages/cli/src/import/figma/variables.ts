@@ -1,4 +1,9 @@
-import type { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-api-spec';
+import type {
+  GetLocalVariablesResponse,
+  LocalVariable,
+  LocalVariableCollection,
+  RGBA,
+} from '@figma/rest-api-spec';
 import type { Logger } from '@terrazzo/parser';
 
 import { formatName, getFileLocalVariables, getFilePublishedVariables } from './lib.js';
@@ -24,10 +29,14 @@ export async function getVariables(
     logger,
     unpublished,
     matchers,
+    localVariables,
+    additionalVariableIDs = [],
   }: {
     logger: Logger;
     unpublished?: boolean;
     matchers: Record<'fontFamily' | 'fontWeight' | 'number', RegExp | undefined>;
+    localVariables?: GetLocalVariablesResponse;
+    additionalVariableIDs?: Iterable<string>;
   },
 ): Promise<{ count: number; remoteCount: number; code: any }> {
   const result: { count: number; remoteCount: number; code: any } = {
@@ -45,7 +54,7 @@ export async function getVariables(
   const modeIDToName: Record<string, string> = {}; // Note: this can have duplicate values; they’ll be scoped in separate modifier contexts
 
   // We must always fetch local variables, no matter what, to get the data we need
-  const local = await getFileLocalVariables(fileKey, { logger });
+  const local = localVariables ?? (await getFileLocalVariables(fileKey, { logger }));
   for (const id of Object.keys(local.meta.variables)) {
     allVariables[id] = local.meta.variables[id]!;
   }
@@ -68,6 +77,11 @@ export async function getVariables(
     }
   }
 
+  for (const id of additionalVariableIDs) {
+    if (allVariables[id]) {
+      finalVariables[id] = allVariables[id]!;
+    }
+  }
   const pendingIDs = Object.keys(finalVariables);
   for (let i = 0; i < pendingIDs.length; i++) {
     const variable = finalVariables[pendingIDs[i]!];
