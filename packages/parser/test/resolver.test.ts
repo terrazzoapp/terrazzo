@@ -602,6 +602,44 @@ describe('partial application', () => {
   });
 });
 
+describe('resolver set as ref in modifiers and sets sources', () => {
+  // oxlint-disable-next-line consistent-function-scoping
+  async function loadResolver() {
+    const cwd = new URL('./fixtures/resolver-set-as-ref/', import.meta.url);
+    const filename = new URL('./resolver.json', cwd);
+    const config = defineConfig({}, { cwd });
+    const result = await parse(
+      [
+        {
+          filename,
+          src: await fs.readFile(filename, 'utf8'),
+        },
+      ],
+      { config },
+    );
+    return result.resolver;
+  }
+
+  it('resolves tokens correctly for "size-mode" modifier and "primitive" set', async () => {
+    const resolver = await loadResolver();
+    const tokens = resolver.apply({});
+    const result = new Set(Object.keys(tokens));
+
+    expect(result).toEqual(
+      new Set([
+        'breakpoint.md',
+        'breakpoint.xl',
+        'duration.fast',
+        'duration.normal',
+        'papaya',
+        'purple',
+        'light-blue-200',
+        'light-blue-400',
+      ]),
+    );
+  });
+});
+
 describe('set operations', () => {
   // oxlint-disable-next-line consistent-function-scoping
   async function loadResolver() {

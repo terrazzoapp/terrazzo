@@ -1,0 +1,58 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "Example Design System",
+  "version": "2025.10",
+  "resolutionOrder": [
+    {
+      "$ref": "#/sets/common"
+    },
+    {
+      "$ref": "#/sets/primitive"
+    },
+    {
+      "$ref": "#/modifiers/size-mode"
+    }
+  ],
+  "sets": {
+    "primitive": {
+      "sources": [
+        {
+          "$ref": "#/sets/common"
+        },
+        {
+          "$ref": "./primitive.json"
+        }
+      ]
+    },
+    "common": {
+      "sources": [
+        {
+          "$ref": "./common.json"
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "size-mode": {
+      "default": "md",
+      "contexts": {
+        "md": [
+          {
+            "$ref": "#/sets/common"
+          },
+          {
+            "$ref": "./invariants.json"
+          }
+        ],
+        "xl": [
+          {
+            "$ref": "#/sets/common"
+          },
+          {
+            "$ref": "./invariants.json"
+          }
+        ]
+      }
+    }
+  }
+}
