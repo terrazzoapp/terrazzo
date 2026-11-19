@@ -1,11 +1,20 @@
 import type { TokenNormalized, TransformHookOptions } from '@terrazzo/parser';
 import {
   makeCSSVar,
+  type SubValueAliasContext,
   transformCSSValue,
   type TransformCSSValueOptions,
 } from '@terrazzo/token-tools/css';
 
-import { cachedMatcher, type CSSPluginOptions, FORMAT_ID, PLUGIN_NAME } from './lib.js';
+import {
+  cachedMatcher,
+  createSubValueIdFormatter,
+  type CSSPluginOptions,
+  FORMAT_ID,
+  PLUGIN_NAME,
+} from './lib.js';
+
+const LEGACY_PERMUTATION_ID = JSON.stringify({ tzMode: '*' });
 
 export interface TransformOptions {
   transform: TransformHookOptions;
@@ -26,6 +35,7 @@ export default function transformCSS({
     legacyHex,
     transform: customTransform,
     variableName,
+    subValueVariableName,
   },
 }: TransformOptions) {
   function transformName(token: TokenNormalized) {
@@ -42,8 +52,37 @@ export default function transformCSS({
     }
     return makeCSSVar(token.id);
   }
-  // oxlint-disable-next-line func-style
-  const transformAlias = (token: TokenNormalized) => `var(${transformName(token)})`;
+
+  const formatSubValueId = createSubValueIdFormatter({ subValueVariableName, logger });
+
+  function createTransformAlias({
+    mode,
+    input,
+    permutationID,
+  }: {
+    mode: string;
+    input: Record<string, string>;
+    permutationID: string;
+  }) {
+    return (token: TokenNormalized, subValue?: SubValueAliasContext) => {
+      if (subValue) {
+        const parentVarName = transformName(subValue.parentToken);
+        // The aliased parent token may not have been transformed yet, so `value` is empty here.
+        const subVarName = formatSubValueId(parentVarName, subValue.subValueName, {
+          id: subValue.parentToken.id,
+          localID: parentVarName,
+          mode,
+          input,
+          permutationID,
+          token: subValue.parentToken,
+          type: 'MULTI_VALUE',
+          value: {},
+        });
+        return `var(${subVarName})`;
+      }
+      return `var(${transformName(token)})`;
+    };
+  }
 
   const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
   const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
@@ -92,6 +131,12 @@ export default function transformCSS({
       // Note: if we throw an error here without specifying the input, a user may
       // find it impossible to debug the issue
       try {
+        const permutationID = resolver.getPermutationID(input);
+        const transformAlias = createTransformAlias({
+          mode: '.',
+          input,
+          permutationID,
+        });
         const tokens = resolver.apply(input, p.only);
         for (const token of Object.values(tokens)) {
           if (!includeToken(token.id)) {
@@ -159,6 +204,11 @@ export default function transformCSS({
     }
     for (const mode of Object.keys(token.mode)) {
       const tokenArgs: TokenNormalized = { ...token, ...(token.mode[mode] as any) };
+      const transformAlias = createTransformAlias({
+        mode,
+        input: { tzMode: mode },
+        permutationID: LEGACY_PERMUTATION_ID,
+      });
       const options: TransformCSSValueOptions = {
         tokensSet: baseTokens,
         transformAlias,

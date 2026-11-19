@@ -1,6 +1,8 @@
+import { Logger } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
 
 import {
+  createSubValueIdFormatter,
   type CSSDeclaration,
   type CSSRule,
   getIndentFromPrepare,
@@ -400,5 +402,26 @@ describe('isSelfReference', () => {
 
   it('allows a fallback that mentions the same name', () => {
     expect(isSelfReference('--x', 'var(--y, var(--x))')).toBe(false);
+  });
+});
+
+describe('createSubValueIdFormatter', () => {
+  const token = { id: 'typography.body' } as any;
+
+  it('defaults to hyphen separator', () => {
+    const formatSubValueId = createSubValueIdFormatter({ logger: new Logger() });
+    expect(formatSubValueId('--ds_typography__body', 'font-size', token)).toBe(
+      '--ds_typography__body-font-size',
+    );
+  });
+
+  it('applies custom subValueVariableName', () => {
+    const formatSubValueId = createSubValueIdFormatter({
+      logger: new Logger(),
+      subValueVariableName: (variableName, subValueName) => `${variableName}__${subValueName}`,
+    });
+    expect(formatSubValueId('--ds_typography__body', 'font-size', token)).toBe(
+      '--ds_typography__body__font-size',
+    );
   });
 });

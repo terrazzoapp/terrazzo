@@ -4,6 +4,7 @@ import { generateShorthand, makeCSSVar } from '@terrazzo/token-tools/css';
 import {
   addDeclUnique,
   cachedMatcher,
+  createSubValueIdFormatter,
   type CSSDeclaration,
   type CSSPluginOptions,
   type CSSRule,
@@ -102,7 +103,15 @@ function generatePropertyDefinition(
 
 function generatePropertyDefinitions(
   getTransforms: BuildHookOptions['getTransforms'],
-  options: { include: (id: string) => boolean; exclude: (id: string) => boolean },
+  options: {
+    include: (id: string) => boolean;
+    exclude: (id: string) => boolean;
+    formatSubValueId: (
+      variableName: string,
+      subValueName: string,
+      token: TokenTransformed,
+    ) => string;
+  },
 ): CSSRule[] {
   const tokens = getTransforms({ format: FORMAT_ID });
   const properties: CSSRule[] = [];
@@ -119,19 +128,26 @@ function generatePropertyDefinitions(
 
     const cssSyntax = TOKEN_TYPE_SYNTAX[token.token.$type] ?? '*';
 
+    let singleValue: string | undefined;
     if (token.type === 'SINGLE_VALUE') {
+      singleValue = token.value;
+    } else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
+      singleValue = token.value.srgb;
+    }
+
+    if (singleValue !== undefined) {
       if (seen.has(localID)) {
         continue;
       }
       seen.add(localID);
       if (!token.token.aliasOf && cssSyntax !== '*') {
-        properties.push(generatePropertyDefinition(localID, cssSyntax, token.value));
+        properties.push(generatePropertyDefinition(localID, cssSyntax, singleValue));
       } else {
         properties.push(generatePropertyDefinition(localID, '*'));
       }
     } else if (token.type === 'MULTI_VALUE') {
       for (const [name, subValue] of Object.entries(token.value)) {
-        const subID = name === '.' ? localID : `${localID}-${name}`;
+        const subID = name === '.' ? localID : options.formatSubValueId(localID, name, token);
         if (seen.has(subID)) {
           continue;
         }
@@ -167,26 +183,17 @@ export default function buildCSS({
   omitTypographyShorthand,
   subValueVariableName,
 }: BuildFormatOptions): string {
-  function makeSubValueId(variableName: string, subValueName: string, token: TokenTransformed) {
-    const customName = subValueVariableName?.(variableName, subValueName, token);
-    if (customName !== undefined) {
-      if (typeof customName !== 'string') {
-        logger.error({
-          group: 'plugin',
-          label: PLUGIN_NAME,
-          message: `subValueVariableName() must return a string; received ${customName}`,
-        });
-      }
-      return customName;
-    }
-    return `${variableName}-${subValueName}`;
-  }
+  const formatSubValueId = createSubValueIdFormatter({ subValueVariableName, logger });
 
   const include = userInclude ? cachedMatcher.tokenIDMatch(userInclude) : () => true;
   const exclude = userExclude ? cachedMatcher.tokenIDMatch(userExclude) : () => false;
   let propertyDefsNodes: CSSRule[] = [];
   if (propertyDefinitions) {
-    propertyDefsNodes = generatePropertyDefinitions(getTransforms, { include, exclude });
+    propertyDefsNodes = generatePropertyDefinitions(getTransforms, {
+      include,
+      exclude,
+      formatSubValueId,
+    });
   }
   if (permutations?.length) {
     let output = '';
@@ -222,7 +229,7 @@ export default function buildCSS({
         if (!includeToken(token.id)) {
           continue;
         }
-        const localID = makeCSSVar(token.localID ?? token.token.id);
+        const localID = token.localID ?? makeCSSVar(token.token.id);
         const aliasTokens = token.token.aliasedBy?.length
           ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy, input: p.input })
           : [];
@@ -246,9 +253,14 @@ export default function buildCSS({
             // handle aliases within color gamut media queries
             for (const alias of aliasTokens) {
               if (alias.localID && typeof alias.value === 'string') {
-                const aliasID = makeCSSVar(alias.localID);
-                addDeclUnique(hdrColors.p3, decl(aliasID, alias.value, getDescription(alias)));
-                addDeclUnique(hdrColors.rec2020, decl(aliasID, alias.value, getDescription(alias)));
+                addDeclUnique(
+                  hdrColors.p3,
+                  decl(alias.localID, alias.value, getDescription(alias)),
+                );
+                addDeclUnique(
+                  hdrColors.rec2020,
+                  decl(alias.localID, alias.value, getDescription(alias)),
+                );
               }
             }
           }
@@ -257,7 +269,7 @@ export default function buildCSS({
         // multi-value token
         else {
           for (const [name, subValue] of Object.entries(token.value)) {
-            const subValueID = makeSubValueId(localID, name, token);
+            const subValueID = name === '.' ? localID : formatSubValueId(localID, name, token);
             if (isSelfReference(subValueID, subValue)) {
               continue;
             }
@@ -268,6 +280,8 @@ export default function buildCSS({
             token: { ...token.token, $value: token.value as any },
             localID,
             omitTypographyShorthand,
+            subValueVariableName: (variableName, subValueName) =>
+              formatSubValueId(variableName, subValueName, token),
           });
           if (shorthand) {
             addDeclUnique(root, decl(localID, shorthand, getDescription(token)));
@@ -315,6 +329,7 @@ export default function buildCSS({
           getTransforms({ format: FORMAT_ID, input: permutations[0]?.input ?? {} }),
           {
             logger,
+            subValueVariableName,
           },
         ),
       );
@@ -353,7 +368,7 @@ export default function buildCSS({
         continue;
       }
 
-      const localID = token.localID ?? token.token.id;
+      const localID = token.localID ?? makeCSSVar(token.token.id);
       const aliasTokens = token.token.aliasedBy?.length
         ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy })
         : [];
@@ -392,7 +407,7 @@ export default function buildCSS({
       // multi-value token
       else if (token.type === 'MULTI_VALUE') {
         for (const [name, value] of Object.entries(token.value)) {
-          const property = name === '.' ? localID : makeSubValueId(localID, name, token);
+          const property = name === '.' ? localID : formatSubValueId(localID, name, token);
           if (isSelfReference(property, value)) {
             continue;
           }
@@ -403,12 +418,11 @@ export default function buildCSS({
           token: { ...token.token, $value: token.value as any },
           localID,
           omitTypographyShorthand,
+          subValueVariableName: (variableName, subValueName) =>
+            formatSubValueId(variableName, subValueName, token),
         });
         if (shorthand) {
-          addDeclUnique(
-            rootRule.children,
-            decl(token.localID ?? token.token.id, shorthand, getDescription(token)),
-          );
+          addDeclUnique(rootRule.children, decl(localID, shorthand, getDescription(token)));
         }
       }
     }
@@ -441,7 +455,7 @@ export default function buildCSS({
       rec2020: [] as CSSDeclaration[],
     };
     for (const token of selectorTokens) {
-      const localID = token.localID ?? token.token.id;
+      const localID = token.localID ?? makeCSSVar(token.token.id);
       const aliasedBy = token.token.mode[selector.mode]?.aliasedBy?.length
         ? token.token.mode[selector.mode]!.aliasedBy
         : token.token.aliasedBy;
@@ -488,7 +502,7 @@ export default function buildCSS({
       // multi-value token
       else {
         for (const [name, subValue] of Object.entries(token.value)) {
-          const subValueID = makeSubValueId(localID, name, token);
+          const subValueID = name === '.' ? localID : formatSubValueId(localID, name, token);
           if (isSelfReference(subValueID, subValue)) {
             continue;
           }
@@ -499,6 +513,8 @@ export default function buildCSS({
           token: { ...token.token, $value: token.value as any },
           localID,
           omitTypographyShorthand,
+          subValueVariableName: (variableName, subValueName) =>
+            formatSubValueId(variableName, subValueName, token),
         });
         if (shorthand) {
           addDeclUnique(modeRule.children, decl(localID, shorthand, getDescription(token)));
@@ -529,7 +545,10 @@ export default function buildCSS({
       output += '\n\n';
     }
     output += printRules(
-      generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, mode: '.' }), { logger }),
+      generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, mode: '.' }), {
+        logger,
+        subValueVariableName,
+      }),
     );
   }
 
