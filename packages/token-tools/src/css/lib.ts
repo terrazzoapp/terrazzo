@@ -1,7 +1,15 @@
 import type { TokenNormalized } from '../types.js';
 
+export interface SubValueAliasContext {
+  parentToken: TokenNormalized;
+  subValueName: string;
+}
+
 /** Function that generates a var(…) statement */
-export type IDGenerator<T = TokenNormalized> = (token: T) => string;
+export type IDGenerator<T = TokenNormalized> = (
+  token: T,
+  subValue?: SubValueAliasContext,
+) => string;
 
 export function defaultAliasTransform(token: TokenNormalized) {
   if (!token) {
@@ -15,37 +23,40 @@ export function generateShorthand({
   token,
   localID,
   omitTypographyShorthand,
+  subValueVariableName,
 }: {
   token: TokenNormalized;
   localID: string;
   omitTypographyShorthand?: boolean;
+  subValueVariableName?: (variableName: string, subValueName: string) => string;
 }): string | undefined {
+  const baseVar = localID.startsWith('--') ? localID : makeCSSVar(localID);
+  function subValueVar(name: string) {
+    return `var(${subValueVariableName ? subValueVariableName(baseVar, name) : `${baseVar}-${name}`})`;
+  }
+
   switch (token.$type) {
     case 'transition': {
-      return ['duration', 'delay', 'timing-function']
-        .map((p) => makeCSSVar(`${localID}-${p}`, { wrapVar: true }))
-        .join(' ');
+      return ['duration', 'delay', 'timing-function'].map((p) => subValueVar(p)).join(' ');
     }
     case 'typography': {
       if (omitTypographyShorthand) {
         return undefined;
       }
-      // oxlint-disable-next-line func-style
-      const typeVar = (name: string) => makeCSSVar(`${localID}-${name}`, { wrapVar: true });
       // Note: typography tokens should have both of these properties, but this is just being defensive
       if ('font-size' in token.$value && 'font-family' in token.$value) {
         let output = '';
         for (const prop of ['font-style', 'font-variant', 'font-weight']) {
           if (prop in token.$value) {
-            output += ` ${typeVar(prop)}`;
+            output += ` ${subValueVar(prop)}`;
           }
         }
-        let fontSizeVar = typeVar('font-size');
+        let fontSizeVar = subValueVar('font-size');
         if ('line-height' in token.$value) {
-          fontSizeVar += `/${typeVar('line-height')}`;
+          fontSizeVar += `/${subValueVar('line-height')}`;
         }
         output += ` ${fontSizeVar}`;
-        output += ` ${typeVar('font-family')}`;
+        output += ` ${subValueVar('font-family')}`;
         return output.trim();
       }
       break;

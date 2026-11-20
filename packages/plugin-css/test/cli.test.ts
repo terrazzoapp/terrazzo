@@ -53,6 +53,10 @@ describe('fixtures', () => {
       'option: subValueVariableName',
       { dir: 'option-sub-value-variable-name', output: ['index.css'] },
     ],
+    [
+      'option: variableName and subValueVariableName',
+      { dir: 'option-variable-name-and-sub-value', output: ['index.css'] },
+    ],
     ['option: transform (manual hex)', { dir: 'option-transform-hex', output: ['index.css'] }],
     [
       'option: transform (exclude tokens)',

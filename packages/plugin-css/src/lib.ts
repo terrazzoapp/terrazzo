@@ -1,4 +1,4 @@
-import type { TokenNormalized, TokenTransformed } from '@terrazzo/parser';
+import type { Logger, TokenNormalized, TokenTransformed } from '@terrazzo/parser';
 import { CachedWildcardMatcher } from '@terrazzo/token-tools';
 import type { TransformCSSValueOptions } from '@terrazzo/token-tools/css';
 
@@ -297,4 +297,38 @@ export function addDeclUnique(
   if (!hasDecl(list, declaration.property)) {
     list.push(declaration);
   }
+}
+
+/** Ensure a CSS custom property name starts with `--` without modifying the rest of the name. */
+export function ensureCSSVarPrefix(name: string): string {
+  return name.startsWith('--') ? name : `--${name}`;
+}
+
+/** Create a formatter for composite token sub-value CSS variable names. */
+export function createSubValueIdFormatter({
+  subValueVariableName,
+  logger,
+}: {
+  subValueVariableName?: CSSPluginOptions['subValueVariableName'];
+  logger: Logger;
+}) {
+  return function formatSubValueId(
+    variableName: string,
+    subValueName: string,
+    token: TokenTransformed,
+  ): string {
+    const customName = subValueVariableName?.(variableName, subValueName, token);
+    if (customName !== undefined) {
+      if (typeof customName !== 'string') {
+        logger.error({
+          group: 'plugin',
+          label: PLUGIN_NAME,
+          message: `subValueVariableName() must return a string; received ${customName}`,
+        });
+        return customName;
+      }
+      return ensureCSSVarPrefix(customName);
+    }
+    return `${variableName}-${subValueName}`;
+  };
 }

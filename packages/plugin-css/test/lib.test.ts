@@ -1,8 +1,12 @@
+import { build, defineConfig, Logger, parse } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
 
+import cssPlugin from '../src/index.js';
 import {
+  createSubValueIdFormatter,
   type CSSDeclaration,
   type CSSRule,
+  ensureCSSVarPrefix,
   getIndentFromPrepare,
   isSelfReference,
   printRules,
@@ -400,5 +404,137 @@ describe('isSelfReference', () => {
 
   it('allows a fallback that mentions the same name', () => {
     expect(isSelfReference('--x', 'var(--y, var(--x))')).toBe(false);
+  });
+});
+
+describe('ensureCSSVarPrefix', () => {
+  it('keeps names that already start with -- verbatim', () => {
+    expect(ensureCSSVarPrefix('--ds_color__brandBlue')).toBe('--ds_color__brandBlue');
+    expect(ensureCSSVarPrefix('--text-md--line-height')).toBe('--text-md--line-height');
+  });
+
+  it('prepends -- without modifying casing or separators', () => {
+    expect(ensureCSSVarPrefix('ds_color__brandBlue')).toBe('--ds_color__brandBlue');
+    expect(ensureCSSVarPrefix('color-brandBlue')).toBe('--color-brandBlue');
+  });
+});
+
+describe('createSubValueIdFormatter', () => {
+  const token = { id: 'typography.body' } as any;
+
+  it('defaults to hyphen separator', () => {
+    const formatSubValueId = createSubValueIdFormatter({ logger: new Logger() });
+    expect(formatSubValueId('--ds_typography__body', 'font-size', token)).toBe(
+      '--ds_typography__body-font-size',
+    );
+  });
+
+  it('applies custom subValueVariableName', () => {
+    const formatSubValueId = createSubValueIdFormatter({
+      logger: new Logger(),
+      subValueVariableName: (variableName, subValueName) => `${variableName}__${subValueName}`,
+    });
+    expect(formatSubValueId('--ds_typography__body', 'font-size', token)).toBe(
+      '--ds_typography__body__font-size',
+    );
+  });
+
+  it('prepends -- if subValueVariableName omits it', () => {
+    const formatSubValueId = createSubValueIdFormatter({
+      logger: new Logger(),
+      subValueVariableName: (variableName, subValueName) =>
+        `${variableName.replace(/^--/, '')}__${subValueName}`,
+    });
+    expect(formatSubValueId('--ds_typography__body', 'font-size', token)).toBe(
+      '--ds_typography__body__font-size',
+    );
+  });
+});
+
+describe('variableName without -- prefix and subValueVariableName input consistency', () => {
+  it('prepends -- and passes consistent token.input across transform and build', async () => {
+    const seenInputs: Record<string, string>[] = [];
+    const config = defineConfig(
+      {
+        lint: { rules: { 'core/consistent-naming': 'off' } },
+        plugins: [
+          cssPlugin({
+            variableName: (token) => token.id.replaceAll('.', '_'),
+            subValueVariableName: (variableName, subValueName, token) => {
+              seenInputs.push(token.input);
+              return `${variableName}__${subValueName}`;
+            },
+            permutations: [
+              {
+                input: {},
+                prepare: (contents) => `:root {\n  ${contents}\n}`,
+              },
+            ],
+          }),
+        ],
+      },
+      { cwd: new URL('http://localhost:8080') },
+    );
+
+    const resolverSrc = {
+      $schema: 'https://www.designtokens.org/schemas/2025.10/resolver.json',
+      version: '2025.10',
+      resolutionOrder: [{ $ref: '#/sets/base' }, { $ref: '#/modifiers/theme' }],
+      sets: {
+        base: {
+          sources: [
+            {
+              color: {
+                brandBlue: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0, 0, 1] },
+                },
+                primary: {
+                  $type: 'color',
+                  $value: '{color.brandBlue}',
+                },
+              },
+              font: {
+                bodyText: {
+                  $type: 'typography',
+                  $value: {
+                    fontFamily: ['Inter'],
+                    fontSize: { value: 16, unit: 'px' },
+                  },
+                },
+                labelFont: {
+                  $type: 'typography',
+                  $value: '{font.bodyText}',
+                },
+              },
+            },
+          ],
+        },
+      },
+      modifiers: {
+        theme: {
+          contexts: { light: [{}] },
+          default: 'light',
+        },
+      },
+    };
+
+    const { tokens, resolver, sources } = await parse(
+      { filename: new URL('fs://tokens.resolver.json'), src: resolverSrc },
+      { config },
+    );
+    const result = await build(tokens, { resolver, sources, config });
+    const cssOut = result.outputFiles.find((f) => f.filename === 'index.css')?.contents;
+
+    expect(cssOut).toContain('--color_brandBlue: rgb(0% 0% 100%);');
+    expect(cssOut).toContain('--color_primary: var(--color_brandBlue);');
+    expect(cssOut).toContain('--font_labelFont__font-size: var(--font_bodyText__font-size);');
+    expect(cssOut).toContain(
+      '--font_bodyText: var(--font_bodyText__font-size) var(--font_bodyText__font-family);',
+    );
+    expect(seenInputs.length).toBeGreaterThan(0);
+    for (const input of seenInputs) {
+      expect(input).toEqual({ theme: 'light' });
+    }
   });
 });
