@@ -299,6 +299,11 @@ export function addDeclUnique(
   }
 }
 
+/** Ensure a CSS custom property name starts with `--` without modifying the rest of the name. */
+export function ensureCSSVarPrefix(name: string): string {
+  return name.startsWith('--') ? name : `--${name}`;
+}
+
 /** Create a formatter for composite token sub-value CSS variable names. */
 export function createSubValueIdFormatter({
   subValueVariableName,
@@ -320,8 +325,9 @@ export function createSubValueIdFormatter({
           label: PLUGIN_NAME,
           message: `subValueVariableName() must return a string; received ${customName}`,
         });
+        return customName;
       }
-      return customName;
+      return ensureCSSVarPrefix(customName);
     }
     return `${variableName}-${subValueName}`;
   };

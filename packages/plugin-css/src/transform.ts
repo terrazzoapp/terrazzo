@@ -10,11 +10,13 @@ import {
   cachedMatcher,
   createSubValueIdFormatter,
   type CSSPluginOptions,
+  ensureCSSVarPrefix,
   FORMAT_ID,
   PLUGIN_NAME,
 } from './lib.js';
 
-const LEGACY_PERMUTATION_ID = JSON.stringify({ tzMode: '*' });
+const LEGACY_PERMUTATION_INPUT = { tzMode: '*' };
+const LEGACY_PERMUTATION_ID = JSON.stringify(LEGACY_PERMUTATION_INPUT);
 
 export interface TransformOptions {
   transform: TransformHookOptions;
@@ -47,8 +49,9 @@ export default function transformCSS({
           label: PLUGIN_NAME,
           message: `variableName() must return a string; received ${customName}`,
         });
+        return customName;
       }
-      return customName;
+      return ensureCSSVarPrefix(customName);
     }
     return makeCSSVar(token.id);
   }
@@ -134,7 +137,7 @@ export default function transformCSS({
         const permutationID = resolver.getPermutationID(input);
         const transformAlias = createTransformAlias({
           mode: '.',
-          input,
+          input: JSON.parse(permutationID),
           permutationID,
         });
         const tokens = resolver.apply(input, p.only);
@@ -206,7 +209,7 @@ export default function transformCSS({
       const tokenArgs: TokenNormalized = { ...token, ...(token.mode[mode] as any) };
       const transformAlias = createTransformAlias({
         mode,
-        input: { tzMode: mode },
+        input: LEGACY_PERMUTATION_INPUT,
         permutationID: LEGACY_PERMUTATION_ID,
       });
       const options: TransformCSSValueOptions = {
