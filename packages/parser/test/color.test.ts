@@ -55,6 +55,38 @@ describe('8.1 Color', () => {
       },
     ],
     [
+      'valid: object ("none" component)',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              color: {
+                grey: {
+                  $type: 'color',
+                  $value: { colorSpace: 'oklch', components: [0.6, 0, 'none'] },
+                },
+                white: {
+                  $type: 'color',
+                  $value: { colorSpace: 'hsl', components: ['none', 0, 100], hex: '#ffffff' },
+                },
+              },
+            },
+          },
+        ],
+        want: {
+          tokens: {
+            'color.grey': {
+              $value: { alpha: 1, components: [0.6, 0, 'none'], colorSpace: 'oklch' },
+            },
+            'color.white': {
+              $value: { alpha: 1, components: ['none', 0, 100], colorSpace: 'hsl', hex: '#ffffff' },
+            },
+          },
+        },
+      },
+    ],
+    [
       'invalid: string',
       {
         given: [

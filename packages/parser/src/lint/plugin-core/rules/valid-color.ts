@@ -243,6 +243,9 @@ function validateColor(
       const coords = Object.values(csData.coords);
       if (components?.length === coords.length) {
         for (let i = 0; i < components.length; i++) {
+          if (components[i] === 'none') {
+            continue;
+          }
           const range = coords[i]?.range ?? coords[i]?.refRange;
           if (
             !Number.isFinite(components[i]) ||

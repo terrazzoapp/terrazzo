@@ -79,7 +79,7 @@ export function tokenToColor(value: ColorValueNormalized): ColorConstructor & Pl
   return {
     spaceId: space.id,
     space,
-    coords: value.components as Coords,
+    coords: value.components.map((c) => ((c as unknown) === 'none' ? null : c)) as Coords,
     alpha: value.alpha,
   };
 }

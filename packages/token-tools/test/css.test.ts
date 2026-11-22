@@ -491,6 +491,36 @@ describe('transformColor', () => {
       },
     ],
     [
+      'oklch (none hue)',
+      {
+        given: [
+          { $value: { colorSpace: 'oklch', components: [0.6, 0, 'none'] } },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: { success: 'oklch(60% 0 none)' },
+      },
+    ],
+    [
+      'hsl (none hue)',
+      {
+        given: [
+          { $value: { colorSpace: 'hsl', components: ['none', 0, 100] } },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: { success: 'hsl(none 0% 100%)' },
+      },
+    ],
+    [
+      'srgb (none component)',
+      {
+        given: [
+          { $value: { colorSpace: 'srgb', components: [1, 'none', 0] } },
+          { tokensSet: {}, permutation: {} },
+        ],
+        want: { success: 'rgb(100% none 0%)' },
+      },
+    ],
+    [
       'unknown colorSpace',
       {
         given: [
