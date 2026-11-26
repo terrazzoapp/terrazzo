@@ -15,8 +15,7 @@ import {
   PLUGIN_NAME,
 } from './lib.js';
 
-const LEGACY_PERMUTATION_INPUT = { tzMode: '*' };
-const LEGACY_PERMUTATION_ID = JSON.stringify(LEGACY_PERMUTATION_INPUT);
+const LEGACY_PERMUTATION_ID = JSON.stringify({ tzMode: '*' });
 
 export interface TransformOptions {
   transform: TransformHookOptions;
@@ -58,15 +57,8 @@ export default function transformCSS({
 
   const formatSubValueId = createSubValueIdFormatter({ subValueVariableName, logger });
 
-  function createTransformAlias({
-    mode,
-    input,
-    permutationID,
-  }: {
-    mode: string;
-    input: Record<string, string>;
-    permutationID: string;
-  }) {
+  function createTransformAlias(mode: string, permutationID: string) {
+    const input: Record<string, string> = JSON.parse(permutationID);
     return (token: TokenNormalized, subValue?: SubValueAliasContext) => {
       if (subValue) {
         const parentVarName = transformName(subValue.parentToken);
@@ -134,12 +126,7 @@ export default function transformCSS({
       // Note: if we throw an error here without specifying the input, a user may
       // find it impossible to debug the issue
       try {
-        const permutationID = resolver.getPermutationID(input);
-        const transformAlias = createTransformAlias({
-          mode: '.',
-          input: JSON.parse(permutationID),
-          permutationID,
-        });
+        const transformAlias = createTransformAlias('.', resolver.getPermutationID(input));
         const tokens = resolver.apply(input, p.only);
         for (const token of Object.values(tokens)) {
           if (!includeToken(token.id)) {
@@ -207,11 +194,7 @@ export default function transformCSS({
     }
     for (const mode of Object.keys(token.mode)) {
       const tokenArgs: TokenNormalized = { ...token, ...(token.mode[mode] as any) };
-      const transformAlias = createTransformAlias({
-        mode,
-        input: LEGACY_PERMUTATION_INPUT,
-        permutationID: LEGACY_PERMUTATION_ID,
-      });
+      const transformAlias = createTransformAlias(mode, LEGACY_PERMUTATION_ID);
       const options: TransformCSSValueOptions = {
         tokensSet: baseTokens,
         transformAlias,
