@@ -1,5 +1,4 @@
 import './CopyButton.css';
-
 import { Check, Copy } from '@terrazzo/icons';
 import clsx from 'clsx';
 import { type ComponentProps, useRef, useState } from 'react';

@@ -1,11 +1,9 @@
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-
 import { defineConfig } from '@terrazzo/parser';
 import { execaNode } from 'execa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
-
 import sass from '../src/index.js';
 
 describe('@terrazzo/plugin-scss', () => {

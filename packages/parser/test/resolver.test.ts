@@ -1,9 +1,7 @@
 import fs from 'node:fs/promises';
-
 import * as momoa from '@humanwhocodes/momoa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
-
 import defineConfig from '../src/config.js';
 import Logger from '../src/logger.js';
 import parse from '../src/parse/index.js';

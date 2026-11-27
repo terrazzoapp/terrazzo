@@ -1,8 +1,6 @@
 import type fsType from 'node:fs/promises';
-
 import type { InputSource, InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
-
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import { createSyntheticResolver } from '../resolver/create-synthetic-resolver.js';

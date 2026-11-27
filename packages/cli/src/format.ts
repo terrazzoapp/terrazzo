@@ -1,13 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
-
 import * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers, traverse } from '@terrazzo/json-schema-tools';
 import { defineConfig, type Logger, parse } from '@terrazzo/parser';
 import { isAlias } from '@terrazzo/token-tools';
 import yaml from 'yaml';
 import yamlToMomoa from 'yaml-to-momoa';
-
 import { cwd, printError } from './shared.js';
 
 export interface NormalizeOptions {

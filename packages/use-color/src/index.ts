@@ -2,13 +2,13 @@ import { type ColorValue, type ColorValueNormalized, tokenToColor } from '@terra
 import {
   ColorSpace,
   type ColorTypes,
+  to as convert,
   getColor,
   HSV,
   Okhsl,
   Okhsv,
   type PlainColorObject,
   serialize,
-  to as convert,
 } from 'colorjs.io/fn';
 import React, { useCallback, useRef, useState } from 'react';
 

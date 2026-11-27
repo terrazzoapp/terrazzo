@@ -10,7 +10,6 @@ import {
   traverse,
 } from '@terrazzo/json-schema-tools';
 import { type GroupNormalized, isAlias, type TokenNormalizedSet } from '@terrazzo/token-tools';
-
 import { alphaComparator } from '../lib/array.js';
 import { filterResolverPaths } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';

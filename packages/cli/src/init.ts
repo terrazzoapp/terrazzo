@@ -3,14 +3,12 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
 import { confirm, intro, multiselect, outro, select, spinner } from '@clack/prompts';
 import type { Logger } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
 import { generate } from 'escodegen';
 import { type ESTree, parseModule } from 'meriyah';
 import { type Agent, detect, resolveCommand } from 'package-manager-detector';
-
 import { cwd, loadConfig, printError } from './shared.js';
 
 const SYNTAX_SETTINGS = {

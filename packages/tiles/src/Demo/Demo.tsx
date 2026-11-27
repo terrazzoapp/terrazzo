@@ -1,8 +1,6 @@
 import './Demo.css';
-
 import { type ComponentProps, useEffect, useState } from 'react';
 import type { CodeOptionsSingleTheme, CodeToHastOptions } from 'shiki';
-
 import CopyButton from '../CopyButton/CopyButton.js';
 
 const shiki = import('shiki');

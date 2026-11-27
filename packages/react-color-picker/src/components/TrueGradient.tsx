@@ -1,6 +1,5 @@
 import type { PlainColorObject } from 'colorjs.io/fn';
 import { type ComponentProps, useEffect, useRef, useState } from 'react';
-
 import { GradientOklab } from '../lib/webgl.js';
 
 export interface TrueGradientProps extends ComponentProps<'canvas'> {

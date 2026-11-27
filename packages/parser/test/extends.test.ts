@@ -1,5 +1,4 @@
 import { describe, it } from 'vitest';
-
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('$extends', () => {

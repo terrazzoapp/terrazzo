@@ -1,9 +1,7 @@
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-
 import { Logger } from '@terrazzo/parser';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-
 import { importCmd } from '../src/index.js';
 
 describe('import', () => {

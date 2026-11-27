@@ -1,5 +1,4 @@
 import { describe, expect, test } from 'vitest';
-
 import { defineConfig, type Logger, parse } from '../src/index.js';
 import {
   A11Y_MIN_CONTRAST,

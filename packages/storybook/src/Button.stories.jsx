@@ -1,5 +1,4 @@
 import { Button } from '@terrazzo/tiles';
-
 import StickerSheet from './components/StickerSheet.tsx';
 
 export default {

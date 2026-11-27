@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-
 import { padStr } from '../src/string.js';
 
 describe('padStr', () => {

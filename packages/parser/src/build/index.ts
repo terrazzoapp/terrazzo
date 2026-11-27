@@ -1,6 +1,5 @@
 import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import { CachedWildcardMatcher, type TokenNormalized } from '@terrazzo/token-tools';
-
 import Logger, { type LogEntry } from '../logger.js';
 import type {
   BuildRunnerResult,

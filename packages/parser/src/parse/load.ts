@@ -10,7 +10,6 @@ import {
   traverse,
 } from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
-
 import { toMomoa } from '../lib/momoa.js';
 import { filterResolverPaths } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';

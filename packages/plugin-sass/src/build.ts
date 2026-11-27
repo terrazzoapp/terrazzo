@@ -1,5 +1,4 @@
 import { type BuildHookOptions, MULTI_VALUE } from '@terrazzo/parser';
-
 import { cachedMatcher, FORMAT_ID, type SassPluginOptions } from './lib.js';
 import {
   CssVarReferenceSassToken,

@@ -1,6 +1,5 @@
 import type { Logger, ModeMap, Plugin, TokenNormalized, TransformParams } from '@terrazzo/parser';
 import type { TokenTransformed } from '@terrazzo/token-tools';
-
 import type {
   PlatformOption,
   TokenListing,

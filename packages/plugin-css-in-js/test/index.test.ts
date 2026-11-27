@@ -1,6 +1,5 @@
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-
 import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
 

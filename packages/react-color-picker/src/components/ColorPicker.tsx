@@ -1,12 +1,10 @@
 import './ColorPicker.css.js';
-
 import { ColorFilterOutline } from '@terrazzo/icons';
 import { Select, SelectItem } from '@terrazzo/tiles';
 import type useColor from '@terrazzo/use-color';
 import clsx from 'clsx';
-import { serialize, to as convert } from 'colorjs.io/fn';
+import { to as convert, serialize } from 'colorjs.io/fn';
 import { type ComponentProps, useEffect, useMemo, useState } from 'react';
-
 import ColorChannelSlider from './ColorChannelSlider.js';
 
 /** sRGB → P3 → Rec2020 */

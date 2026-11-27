@@ -1,5 +1,4 @@
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
-
 import { getVariables } from '../src/import/figma/variables.js';
 
 vi.stubEnv('FIGMA_ACCESS_TOKEN', 'fig_fake_token');

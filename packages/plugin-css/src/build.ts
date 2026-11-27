@@ -1,6 +1,5 @@
 import type { BuildHookOptions, Config, Logger, TokenTransformed } from '@terrazzo/parser';
 import { generateShorthand, makeCSSVar } from '@terrazzo/token-tools/css';
-
 import {
   addDeclUnique,
   cachedMatcher,

@@ -1,6 +1,5 @@
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as CSS_FORMAT_ID } from '@terrazzo/plugin-css';
-
 import build from './build.js';
 import { FORMAT_ID, type SassPluginOptions } from './lib.js';
 

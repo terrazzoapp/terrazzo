@@ -1,6 +1,5 @@
 import type { Logger, TokenNormalized } from '@terrazzo/parser';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-
 import { computePreviewValue } from '../src/utils/preview-value.js';
 import { mapValues } from '../src/utils/utils.js';
 

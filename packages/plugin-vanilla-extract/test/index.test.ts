@@ -1,11 +1,9 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-
 import { defineConfig } from '@terrazzo/parser';
 import css from '@terrazzo/plugin-css';
 import { execa } from 'execa';
 import { describe, expect, it } from 'vitest';
-
 import vanillaExtract from '../src/index.js';
 
 describe('vanilla-extract', () => {

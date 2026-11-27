@@ -12,8 +12,6 @@ export default defineConfig({
 
   ignorePatterns: ['**/dist/**', '**/test/fixtures/**'],
 
-  jsPlugins: [{ name: 'simple-import-sort', specifier: 'eslint-plugin-simple-import-sort' }],
-
   overrides: [
     // test overrides
     {
@@ -87,8 +85,13 @@ export default defineConfig({
     'prefer-set-has': 'off',
     'prefer-template': 'error',
     'require-unicode-regexp': 'off',
-    'simple-import-sort/imports': 'error',
-    'sort-imports': 'off', // handled by eslint-plugin-simple-import-sort
+    'sort-imports': [
+      'error',
+      {
+        ignoreDeclarationSort: true,
+        ignoreCase: true,
+      },
+    ],
     'sort-keys': 'off', // nice idea, but impractical at this point
     'unicorn/relative-url-style': ['error', 'always'],
     'unicorn/no-array-callback-reference': 'off', // too opinionated

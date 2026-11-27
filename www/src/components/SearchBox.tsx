@@ -1,5 +1,4 @@
 import './SearchBox.css';
-
 import { Document, Heading, Pilcrow } from '@terrazzo/icons';
 import { OmniBar, OmniBarResult, type OmniBarResultProps } from '@terrazzo/tiles';
 import { liteClient } from 'algoliasearch/lite';

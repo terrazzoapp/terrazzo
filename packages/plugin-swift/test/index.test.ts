@@ -1,9 +1,7 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
-
 import swift from '../src/index.js';
 
 describe('@terrazzo/plugin-swift', () => {

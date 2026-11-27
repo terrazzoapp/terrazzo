@@ -1,6 +1,5 @@
 import { tokenToColor } from '@terrazzo/token-tools';
 import { inGamut } from 'colorjs.io/fn';
-
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 import { cachedLintMatcher } from '../lib/matchers.js';

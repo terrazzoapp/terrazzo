@@ -1,12 +1,10 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-
 import { defineConfig } from '@terrazzo/parser';
 import css from '@terrazzo/plugin-css';
 import { execa, execaNode } from 'execa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, test } from 'vitest';
-
 import tailwind from '../src/index.js';
 
 const cmd = '../../../../cli/bin/cli.js';

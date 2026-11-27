@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { type ComponentProps, type ReactNode, useContext, useEffect } from 'react';
-
 import { NestedContext } from './Group.js';
 import { Context } from './Root.js';
 

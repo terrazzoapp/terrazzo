@@ -1,7 +1,6 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
 import { BORDER_REQUIRED_PROPERTIES } from '@terrazzo/token-tools';
-
 import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 

@@ -1,5 +1,4 @@
 import './OmniBar.css';
-
 import clsx from 'clsx';
 import {
   type ComponentProps,
@@ -10,7 +9,6 @@ import {
   useRef,
   useState,
 } from 'react';
-
 import Kbd from '../Kbd/Kbd.js';
 
 // oxlint-disable-next-line no-empty-interface, no-empty-object-type

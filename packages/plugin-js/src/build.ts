@@ -7,7 +7,6 @@ import {
   type TokenNormalized,
 } from '@terrazzo/parser';
 import { pascalCase } from 'scule';
-
 import { FILE_HEADER, TYPE_MAP } from './lib.js';
 
 const RESOLVER_JSDOC_COMMENT = '/** Produce a token set from a given input. */';

@@ -1,5 +1,4 @@
 import { describe, expect, test } from 'vitest';
-
 import { parseRef } from '../src/index.js';
 
 describe('parseRef', () => {

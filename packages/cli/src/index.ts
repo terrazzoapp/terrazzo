@@ -1,9 +1,7 @@
 import fsSync from 'node:fs';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
-
 import { type Config, type ConfigInit, defineConfig as defineConfigCore } from '@terrazzo/parser';
-
 import { cwd } from './shared.js';
 
 export * from './build.js';

@@ -1,6 +1,5 @@
 import { tokenToColor } from '@terrazzo/token-tools';
 import { contrastWCAG21 } from 'colorjs.io/fn';
-
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 

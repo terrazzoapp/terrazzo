@@ -1,5 +1,4 @@
 import './SubtleInput.css';
-
 import clsx from 'clsx';
 import type { ComponentProps } from 'react';
 

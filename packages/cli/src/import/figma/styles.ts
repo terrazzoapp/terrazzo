@@ -17,7 +17,6 @@ import type {
   ShadowValue,
   TypographyValue,
 } from '@terrazzo/parser';
-
 import { formatName, getFile, getFileNodes, getFileStyles } from './lib.js';
 import { canImportStyleBinding, type VariableMatchers } from './variable-bindings.js';
 

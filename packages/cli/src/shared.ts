@@ -1,13 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-
 import { type ConfigInit, defineConfig, type Logger } from '@terrazzo/parser';
 import pc from 'picocolors';
 import { createServer, type ViteDevServer } from 'vite';
 import { ViteNodeRunner } from 'vite-node/client';
 import { ViteNodeServer } from 'vite-node/server';
-
 import { getFigmaAuthHeaders } from './import/figma/lib.js';
 
 export const cwd = new URL(`${pathToFileURL(process.cwd())}/`); // trailing slash needed to interpret as directory

@@ -1,5 +1,4 @@
 import { makeCSSVar } from '@terrazzo/token-tools/css';
-
 import { getIndent } from './lib.js';
 
 export type SassMapKey = string | number;

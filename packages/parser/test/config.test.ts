@@ -1,6 +1,5 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
-
 import defineConfig from '../src/config.js';
 import parse from '../src/parse/index.js';
 

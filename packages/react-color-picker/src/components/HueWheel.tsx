@@ -1,5 +1,4 @@
 import { type ComponentProps, useEffect, useRef, useState } from 'react';
-
 import { HueWheel as HueWheelWebGL } from '../lib/webgl.js';
 
 export type HueWheelProps = ComponentProps<'canvas'>;

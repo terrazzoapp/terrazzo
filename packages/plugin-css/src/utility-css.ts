@@ -1,7 +1,6 @@
 import type { Logger, TokenTransformed } from '@terrazzo/parser';
 import { CachedWildcardMatcher, kebabCase } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
-
 import {
   createSubValueIdFormatter,
   type CSSPluginOptions,

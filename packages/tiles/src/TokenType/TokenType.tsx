@@ -1,5 +1,4 @@
 import './TokenType.css';
-
 import {
   BorderToken,
   ColorToken,

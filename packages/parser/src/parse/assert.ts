@@ -1,5 +1,4 @@
 import type * as momoa from '@humanwhocodes/momoa';
-
 import type Logger from '../logger.js';
 import type { LogEntry } from '../logger.js';
 

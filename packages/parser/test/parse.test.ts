@@ -2,7 +2,6 @@ import * as momoa from '@humanwhocodes/momoa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 import yamlToMomoa from 'yaml-to-momoa';
-
 import defineConfig from '../src/config.js';
 import parse from '../src/parse/index.js';
 import { cwd, DEFAULT_FILENAME } from './test-utils.js';

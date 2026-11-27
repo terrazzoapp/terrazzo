@@ -1,5 +1,4 @@
 import type { Plugin } from '@terrazzo/parser';
-
 import { buildDTS, buildJS } from './build.js';
 import { DEFAULT_PROPERTIES, FORMAT_ID, type JSPluginOptions } from './lib.js';
 

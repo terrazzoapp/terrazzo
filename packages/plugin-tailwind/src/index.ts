@@ -2,11 +2,9 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import { relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
-
 import {
   buildFileHeader,
   flattenThemeObj,

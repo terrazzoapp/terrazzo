@@ -1,6 +1,5 @@
 import { build, defineConfig, Logger, parse } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
-
 import cssPlugin from '../src/index.js';
 import {
   createSubValueIdFormatter,

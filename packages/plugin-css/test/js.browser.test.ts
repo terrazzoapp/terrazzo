@@ -1,6 +1,5 @@
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
-
 import css from '../src/index.js';
 
 describe('Browser', () => {

@@ -1,5 +1,4 @@
 import './Slider.css';
-
 import { useDrag } from '@use-gesture/react';
 import clsx from 'clsx';
 import {
@@ -11,7 +10,6 @@ import {
   useRef,
   useState,
 } from 'react';
-
 import { clamp, snap } from '../lib/number.js';
 import SubtleInput from '../SubtleInput/SubtleInput.js';
 

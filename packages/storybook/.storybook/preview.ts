@@ -4,7 +4,6 @@ import '@terrazzo/fonts/instrument-sans.css';
 import '@terrazzo/tiles/all-components.css';
 import '@terrazzo/react-color-picker/styles.css';
 import './global.css';
-
 import type { Preview } from '@storybook/react-vite';
 
 const preview: Preview = {

@@ -14,7 +14,18 @@ export default defineConfig({
 
   semi: true,
   singleQuote: true,
-  sortImports: false,
+  sortImports: {
+    "groups": [
+      "builtin",
+      "external",
+      "parent",
+      "sibling",
+      "index",
+      "style",
+      "unknown",
+    ],
+    newlinesBetween: false,
+  },
   sortPackageJson: false,
   tabWidth: 2,
 });

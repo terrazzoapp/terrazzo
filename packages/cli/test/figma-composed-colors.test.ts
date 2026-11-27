@@ -1,6 +1,5 @@
 import type { LocalVariable, LocalVariableCollection } from '@figma/rest-api-spec';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-
 import { getAliasIDs, resolveComposedColor } from '../src/import/figma/composed-color.js';
 import { getVariables } from '../src/import/figma/variables.js';
 

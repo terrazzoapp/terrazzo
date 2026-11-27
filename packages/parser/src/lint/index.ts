@@ -1,8 +1,7 @@
 import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
-
-import type { default as Logger, LogEntry } from '../logger.js';
+import type { LogEntry, default as Logger } from '../logger.js';
 import type { ConfigInit } from '../types.js';
 import { cachedLintMatcher } from './plugin-core/lib/matchers.js';
 

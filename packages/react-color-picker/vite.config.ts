@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';

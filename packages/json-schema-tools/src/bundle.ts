@@ -1,6 +1,5 @@
 import * as momoa from '@humanwhocodes/momoa';
 import type yamlToMomoa from 'yaml-to-momoa';
-
 import { findNode, getObjMember, JSONError, mergeDocuments, traverseAsync } from './momoa.js';
 import { encodeFragment, parseRef } from './parse-ref.js';
 import type { InputSource, InputSourceWithDocument } from './types.js';

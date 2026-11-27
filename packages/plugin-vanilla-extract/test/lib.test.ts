@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-
 import { isJSIdent, serializeValue } from '../src/lib.js';
 
 describe('isJSIdent', () => {

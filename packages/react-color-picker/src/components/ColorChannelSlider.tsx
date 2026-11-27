@@ -1,10 +1,8 @@
 import './ColorChannelSlider.css.js';
-
 import { Slider } from '@terrazzo/tiles';
 import type { default as useColor } from '@terrazzo/use-color';
-import { type ColorSpace, get, serialize, set, to as convert } from 'colorjs.io/fn';
+import { type ColorSpace, to as convert, get, serialize, set } from 'colorjs.io/fn';
 import { type ReactElement, useMemo } from 'react';
-
 import HueWheel from './HueWheel.js';
 import TrueGradient from './TrueGradient.js';
 

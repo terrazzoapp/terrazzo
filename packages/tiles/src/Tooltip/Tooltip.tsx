@@ -1,15 +1,14 @@
 import './Tooltip.css';
-
 import {
   Arrow,
   Content,
   Portal,
   Provider,
+  type TooltipProps as RadixTooltipProps,
   Root,
   type TooltipArrowProps,
   type TooltipContentProps,
   type TooltipPortalProps,
-  type TooltipProps as RadixTooltipProps,
   type TooltipTriggerProps,
   Trigger,
 } from '@radix-ui/react-tooltip';

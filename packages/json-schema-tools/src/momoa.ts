@@ -1,5 +1,4 @@
 import * as momoa from '@humanwhocodes/momoa';
-
 import type { ValueNodeWithIndex } from './types.js';
 
 /* oxlint-disable no-await-in-loop */

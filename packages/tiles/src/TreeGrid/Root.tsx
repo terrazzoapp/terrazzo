@@ -7,7 +7,6 @@ import {
   useRef,
   useState,
 } from 'react';
-
 import { addToSet, removeFromSet } from '../lib/set.js';
 
 /* oxlint-disable func-style */
