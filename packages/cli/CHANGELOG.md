@@ -1,5 +1,20 @@
 # @terrazzo/cli
 
+## 2.11.0
+
+### Minor Changes
+
+- [#900](https://github.com/terrazzoapp/terrazzo/pull/900) [`0309733`](https://github.com/terrazzoapp/terrazzo/commit/030973391499750363f56589823625632edbbf59) Thanks [@drwpow](https://github.com/drwpow)! - Drop vite-node for loading terrazzo.config.ts. Loading of .ts configs is still supported in older versions of Node. If your version of Node.js supports .ts execution, it will now run natively for a speedup. If not, it will fall back to tsx. This is not considered a breaking change, because influencing Terrazzo's behavior based on a vite config was never a supported API (in fact the opposite—most folks expect Terrazzo to operate independently of Vite)
+
+### Patch Changes
+
+- [#883](https://github.com/terrazzoapp/terrazzo/pull/883) [`02a0cb6`](https://github.com/terrazzoapp/terrazzo/commit/02a0cb6e7f0b3aeb36c950b2010fc03187b13a03) Thanks [@heddendorp](https://github.com/heddendorp)! - Import Figma composed color variables with numeric or aliased opacity instead of emitting undefined color components. Resolve composed values for the corresponding named mode (or the referenced collection default), include nested alias dependencies, and detect cyclic references.
+
+- [#886](https://github.com/terrazzoapp/terrazzo/pull/886) [`5c2c7e5`](https://github.com/terrazzoapp/terrazzo/commit/5c2c7e5ba47232e8f0785e0977955617d81aea7a) Thanks [@heddendorp](https://github.com/heddendorp)! - Preserve Figma shadow colour and geometry variable bindings as DTCG references, including hidden style-variable dependencies, so effect styles respect resolver modes instead of freezing their raw values. Styles-only imports retain raw values.
+- Updated dependencies [[`1bc6833`](https://github.com/terrazzoapp/terrazzo/commit/1bc68336ab9dd9f77c11df027a3b9baa83cab35d), [`fd00dae`](https://github.com/terrazzoapp/terrazzo/commit/fd00dae63a8a56809c8d5c4d854954a4c75f3d0b), [`433afa1`](https://github.com/terrazzoapp/terrazzo/commit/433afa1ab688e71300582dcca2702eaa26907b35), [`2cb5b3b`](https://github.com/terrazzoapp/terrazzo/commit/2cb5b3b4ef981492529d4fc94b2d8ff435b7e777)]:
+  - @terrazzo/parser@2.11.0
+  - @terrazzo/token-tools@2.11.0
+
 ## 2.10.0
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @terrazzo/token-tools
 
+## 2.11.0
+
+### Minor Changes
+
+- [#893](https://github.com/terrazzoapp/terrazzo/pull/893) [`433afa1`](https://github.com/terrazzoapp/terrazzo/commit/433afa1ab688e71300582dcca2702eaa26907b35) Thanks [@chuganzy](https://github.com/chuganzy)! - Apply custom `variableName` and `subValueVariableName` consistently across permutation declarations, HDR color gamut aliases, `@property` definitions, composite shorthand references, typography-to-typography aliases, and utility CSS.
+
+### Patch Changes
+
+- [#894](https://github.com/terrazzoapp/terrazzo/pull/894) [`2cb5b3b`](https://github.com/terrazzoapp/terrazzo/commit/2cb5b3b4ef981492529d4fc94b2d8ff435b7e777) Thanks [@gasparoff](https://github.com/gasparoff)! - Accept the DTCG `"none"` keyword in color components: `core/valid-color` no longer reports it as out of range, and CSS output keeps it as `none` instead of producing `NaN` values
+- Updated dependencies []:
+  - @terrazzo/token-types@2.11.0
+
 ## 2.10.0
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-android",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Generate Jetpack Compose code using DTCG design tokens JSON.",
   "license": "MIT",
   "type": "module",
