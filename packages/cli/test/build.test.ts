@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
@@ -38,13 +39,28 @@ describe('tz build', () => {
       `);
     });
 
-    it('config: no default export', async () => {
+    // Note: while splitting tests by platform isn’t normally a good idea, this
+    // Windows case is a really important one to guard against resolution AND
+    // have the error message make it really clear what it tried to resolve.
+    // Obfuscating this only hurts users and future bugfixes.
+
+    it.skipIf(os.platform() === 'win32')('config: no default export (Non-Windows)', async () => {
       const cwd = new URL('./fixtures/error-no-default-export/', import.meta.url);
       await expect(() => execaNode({ cwd })`${cmd} build`).rejects
         .toThrowErrorMatchingInlineSnapshot(`
         [ExecaError: Command failed with exit code 1: ../../../bin/cli.js build
 
-        ✗  config: No default export found in terrazzo.config.js. See https://terrazzo.dev/docs for instructions.]
+        ✗  config: No default export found in file://terrazzo.config.js. See https://terrazzo.dev/docs for instructions.]
+      `);
+    });
+
+    it.skipIf(os.platform() !== 'win32')('config: no default export (Windows)', async () => {
+      const cwd = new URL('./fixtures/error-no-default-export/', import.meta.url);
+      await expect(() => execaNode({ cwd })`${cmd} build`).rejects
+        .toThrowErrorMatchingInlineSnapshot(`
+        [ExecaError: Command failed with exit code 1: ../../../bin/cli.js build
+
+        ✗  config: No default export found in file:///D:/a/terrazzo/terrazzo/packages/cli/test/fixtures/error-no-default-export/terrazzo.config.js. See https://terrazzo.dev/docs for instructions.]
       `);
     });
   });

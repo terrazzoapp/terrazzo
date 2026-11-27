@@ -52,11 +52,11 @@ jobs:
   #   runs-on: macos-latest
   #   steps:
   #     - uses: actions/checkout@v7
-  #     - uses: actions/setup-node@v7
+  #     - uses: pnpm/setup@v3
   #       with:
-  #         node-version: 26
-  #       cache: pnpm
-  #     - run: pnpm i
+  #         install: true
+  #         cache: true
+  #         runtime: node@26
   #     - run: pnpm exec playwright install
   #     - run: pnpm test
   test-windows:
@@ -69,4 +69,5 @@ jobs:
           cache: true
           runtime: node@26
       - run: pnpm exec playwright install
-      - run: pnpm -r build && pnpm -r test
+      - run: pnpm run build
+      - run: pnpm test

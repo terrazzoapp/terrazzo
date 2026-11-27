@@ -236,8 +236,10 @@ export function printSuccess(message: string, startTime?: number) {
 export function resolveConfig(filename?: string): string | undefined {
   // --config [configpath]
   if (filename && fs.existsSync(new URL(filename, cwd))) {
-    // Note: ':' is a lazy test for Windows-style absolute paths, e.g. "C:\…" (this is not a protocol as it’s on the local filesystem)
-    if (!filename.startsWith('/') && !filename.startsWith('.') && !filename.includes(':')) {
+    if (/^[A-Za-z]:/.test(filename)) {
+      return `file://${filename.replaceAll('\\', '/')}`;
+    }
+    if (!filename.startsWith('/') && !filename.startsWith('.')) {
       return `./${filename}`;
     }
     return filename;
@@ -247,7 +249,7 @@ export function resolveConfig(filename?: string): string | undefined {
   for (const ext of ['.ts', '.js', '.mts', '.cts', '.mjs', '.cjs']) {
     const maybeFilename = `terrazzo.config${ext}`;
     if (fs.existsSync(new URL(maybeFilename, cwd))) {
-      return fileURLToPath(new URL(maybeFilename, cwd));
+      return new URL(maybeFilename, cwd).href;
     }
   }
 }
