@@ -2,7 +2,7 @@ import type { Logger } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
 
-import { formatNumber, getFileID } from './lib.js';
+import { formatNumber, getFileID, getFileLocalVariables } from './lib.js';
 import { getStyles } from './styles.js';
 import { getVariables } from './variables.js';
 
@@ -56,22 +56,30 @@ export async function importFromFigma({
   };
 
   try {
-    const [styles, vars] = await Promise.all([
-      ...(skipStyles ? [] : [getStyles(fileKey!, { logger })]),
-      ...(skipVariables
-        ? []
-        : [
-            getVariables(fileKey!, {
-              logger,
-              unpublished,
-              matchers: {
-                fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
-                fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
-                number: numberNames ? new RegExp(numberNames) : undefined,
-              },
-            }),
-          ]),
-    ]);
+    const matchers = {
+      fontFamily: fontFamilyNames ? new RegExp(fontFamilyNames) : undefined,
+      fontWeight: fontWeightNames ? new RegExp(fontWeightNames) : undefined,
+      number: numberNames ? new RegExp(numberNames) : undefined,
+    };
+    const localVariables = skipVariables
+      ? undefined
+      : await getFileLocalVariables(fileKey!, { logger });
+    const styles = skipStyles
+      ? undefined
+      : await getStyles(fileKey!, {
+          logger,
+          variables: localVariables?.meta.variables,
+          matchers,
+        });
+    const vars = skipVariables
+      ? undefined
+      : await getVariables(fileKey!, {
+          logger,
+          unpublished,
+          localVariables,
+          additionalVariableIDs: styles?.variableIDs,
+          matchers,
+        });
     if (styles) {
       result.styleCount += styles.count;
       result.code = merge(result.code, styles.code);
