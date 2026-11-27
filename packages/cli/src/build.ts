@@ -29,6 +29,39 @@ export interface BuildOptions {
   logger: Logger;
 }
 
+/**
+ * Serialize async rebuild calls: if a build is in progress, coalesce any
+ * incoming requests so only the most recent one runs after the current build.
+ */
+export function createBuildQueue<T>(
+  runBuild: (arg: T) => Promise<void>,
+): (arg: T) => Promise<void> {
+  let active: Promise<void> | undefined;
+  let queued: { arg: T } | undefined;
+
+  return (arg: T) => {
+    if (active) {
+      queued = { arg };
+      return active;
+    }
+
+    async function step(item: T): Promise<void> {
+      await runBuild(item);
+      if (queued) {
+        const next = queued;
+        queued = undefined;
+        return step(next.arg);
+      }
+    }
+    active = step(arg).finally(() => {
+      active = undefined;
+      queued = undefined;
+    });
+
+    return active;
+  };
+}
+
 /** tz build */
 export async function buildCmd({ config, configPath, flags, logger }: BuildOptions) {
   try {
@@ -66,36 +99,37 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
         minute: '2-digit',
       });
 
-      // oxlint-disable-next-line no-inner-declarations
-      async function rebuild({
-        messageBefore,
-        messageAfter,
-      }: { messageBefore?: string; messageAfter?: string } = {}) {
-        try {
-          if (messageBefore) {
-            logger.info({ group: 'plugin', label: 'watch', message: messageBefore });
+      const rebuild = createBuildQueue(
+        async ({
+          messageBefore,
+          messageAfter,
+        }: { messageBefore?: string; messageAfter?: string } = {}) => {
+          try {
+            if (messageBefore) {
+              logger.info({ group: 'plugin', label: 'watch', message: messageBefore });
+            }
+            rawSchemas = await loadTokens(config.tokens, { logger });
+            if (!rawSchemas) {
+              throw new Error(
+                `Error loading ${path.relative(fileURLToPath(cwd), fileURLToPath(config.tokens[0] || DEFAULT_TOKENS_PATH))}`,
+              );
+            }
+            const parseResult = await parse(rawSchemas, { config, logger, skipLint, yamlToMomoa });
+            tokens = parseResult.tokens;
+            sources = parseResult.sources;
+            resolver = parseResult.resolver;
+            result = await build(tokens, { resolver, sources, config, logger });
+            if (messageAfter) {
+              logger.info({ group: 'plugin', label: 'watch', message: messageAfter });
+            }
+            writeFiles(result, { config, logger });
+          } catch (error) {
+            // oxlint-disable-next-line no-console
+            console.error(pc.red(`✗  ${(error as Error).message || (error as string)}`));
+            // don’t exit! we’re watching, so continue as long as possible
           }
-          rawSchemas = await loadTokens(config.tokens, { logger });
-          if (!rawSchemas) {
-            throw new Error(
-              `Error loading ${path.relative(fileURLToPath(cwd), fileURLToPath(config.tokens[0] || DEFAULT_TOKENS_PATH))}`,
-            );
-          }
-          const parseResult = await parse(rawSchemas, { config, logger, skipLint, yamlToMomoa });
-          tokens = parseResult.tokens;
-          sources = parseResult.sources;
-          resolver = parseResult.resolver;
-          result = await build(tokens, { resolver, sources, config, logger });
-          if (messageAfter) {
-            logger.info({ group: 'plugin', label: 'watch', message: messageAfter });
-          }
-          writeFiles(result, { config, logger });
-        } catch (error) {
-          // oxlint-disable-next-line no-console
-          console.error(pc.red(`✗  ${(error as Error).message || (error as string)}`));
-          // don’t exit! we’re watching, so continue as long as possible
-        }
-      }
+        },
+      );
 
       const tokenWatcher = chokidar.watch(config.tokens.map((filename) => fileURLToPath(filename)));
       tokenWatcher.on('change', async (filename) => {

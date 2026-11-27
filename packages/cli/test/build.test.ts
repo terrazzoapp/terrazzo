@@ -3,6 +3,7 @@ import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { execaNode } from 'execa';
 import { describe, expect, it } from 'vitest';
+import { createBuildQueue } from '../src/build.js';
 
 const cmd = '../../../bin/cli.js';
 
@@ -62,6 +63,36 @@ describe('tz build', () => {
 
         ✗  config: No default export found in file:///D:/a/terrazzo/terrazzo/packages/cli/test/fixtures/error-no-default-export/terrazzo.config.js. See https://terrazzo.dev/docs for instructions.]
       `);
+    });
+  });
+
+  describe('watch build queue', () => {
+    it('queues only the latest rebuild while a build is in progress', async () => {
+      const started: string[] = [];
+      const finished: string[] = [];
+      let releaseFirst!: () => void;
+      const firstGate = new Promise<void>((resolve) => {
+        releaseFirst = resolve;
+      });
+
+      const enqueue = createBuildQueue(async (label: string) => {
+        started.push(label);
+        if (label === 'first') {
+          await firstGate;
+        }
+        finished.push(label);
+      });
+
+      const p1 = enqueue('first');
+      const p2 = enqueue('second');
+      const p3 = enqueue('third');
+
+      expect(started).toEqual(['first']);
+      releaseFirst();
+      await Promise.all([p1, p2, p3]);
+
+      expect(started).toEqual(['first', 'third']);
+      expect(finished).toEqual(['first', 'third']);
     });
   });
 });
