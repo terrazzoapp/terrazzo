@@ -1,21 +1,13 @@
 import type { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-api-spec';
 import type { Logger } from '@terrazzo/parser';
 
+import {
+  getAliasID,
+  getAliasIDs,
+  isComposedColor,
+  resolveComposedColor,
+} from './composed-color.js';
 import { formatName, getFileLocalVariables, getFilePublishedVariables } from './lib.js';
-
-function getAliasID(value: unknown): string | undefined {
-  if (
-    typeof value === 'object' &&
-    value &&
-    'type' in value &&
-    value.type === 'VARIABLE_ALIAS' &&
-    'id' in value &&
-    typeof value.id === 'string'
-  ) {
-    return value.id;
-  }
-  return undefined;
-}
 
 /** /v1/files/:file_key/variables/published | /v1/files/:file_key/variables/local */
 export async function getVariables(
@@ -75,12 +67,13 @@ export async function getVariables(
       continue;
     }
     for (const value of Object.values(variable.valuesByMode)) {
-      const aliasID = getAliasID(value);
-      if (!aliasID || !allVariables[aliasID] || aliasID in finalVariables) {
-        continue;
+      for (const aliasID of getAliasIDs(value)) {
+        if (!allVariables[aliasID] || aliasID in finalVariables) {
+          continue;
+        }
+        finalVariables[aliasID] = allVariables[aliasID]!;
+        pendingIDs.push(aliasID);
       }
-      finalVariables[aliasID] = allVariables[aliasID]!;
-      pendingIDs.push(aliasID);
     }
   }
 
@@ -139,7 +132,23 @@ export async function getVariables(
 
       // If this token is an alias of another, keep this as a value override
       const isAliasOfID = getAliasID(value);
-      if (isAliasOfID) {
+      if (variable.resolvedType === 'COLOR' && isComposedColor(value)) {
+        const color = resolveComposedColor(value, modeID, {
+          sourceCollectionID: variable.variableCollectionId,
+          variables: allVariables,
+          collections: variableCollections,
+          remoteIDs,
+        });
+        if (!color) {
+          continue;
+        }
+        tokenBase.$type = 'color';
+        tokenBase.$value = {
+          colorSpace: 'srgb',
+          components: [color.r, color.g, color.b],
+          alpha: color.a,
+        };
+      } else if (isAliasOfID) {
         if (allVariables[isAliasOfID]) {
           tokenBase.$type =
             matches ||
