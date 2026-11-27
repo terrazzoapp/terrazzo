@@ -3,9 +3,6 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { type ConfigInit, defineConfig, type Logger } from '@terrazzo/parser';
 import pc from 'picocolors';
-import { createServer, type ViteDevServer } from 'vite';
-import { ViteNodeRunner } from 'vite-node/client';
-import { ViteNodeServer } from 'vite-node/server';
 import { getFigmaAuthHeaders } from './import/figma/lib.js';
 
 export const cwd = new URL(`${pathToFileURL(process.cwd())}/`); // trailing slash needed to interpret as directory
@@ -43,7 +40,6 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
    * Vite server for loading .ts config files
    * TODO: remove me when Node 24 is the oldest-supported Node version
    */
-  let viteServer: ViteDevServer | undefined;
   try {
     let config: ConfigInit = {
       tokens: [DEFAULT_TOKENS_PATH],
@@ -72,36 +68,35 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
 
     const resolvedConfigPath = resolveConfig(configPath);
     if (resolvedConfigPath) {
+      let mod: any;
       try {
-        // Note: we create a vite-node instance only when resolving the config,
-        // because in most scenarios we only ever need this once and never again.
-        // even in watch mode we don’t reload the config, so keeping a vite-node
-        // “hot” instance doesn’t provide obvious benefits (only potential memory leaks)
-        viteServer = await createServer({ mode: 'development' });
-        const viteNodeServer = new ViteNodeServer(viteServer as any);
-        const viteNodeRunner = new ViteNodeRunner({
-          root: viteServer.config.root,
-          base: viteServer.config.base,
-          fetchModule(...args) {
-            return viteNodeServer.fetchModule(...args);
-          },
-          resolveId(...args) {
-            return viteNodeServer.resolveId(...args);
-          },
-        });
-        const mod = await viteNodeRunner.executeFile(resolvedConfigPath);
-        if (!mod.default) {
-          // we format it immediately below
-          throw new Error(
-            `No default export found in ${resolvedConfigPath.replace(fileURLToPath(cwd), '')}. See https://terrazzo.dev/docs for instructions.`,
-          );
-        }
-        config = defineConfig(mod.default, { cwd, logger });
-        if (flags['no-lint']) {
-          config.lint.build.enabled = false;
-        }
+        mod = await import(resolvedConfigPath);
       } catch (error) {
-        logger.error({ group: 'config', message: (error as Error).message || (error as string) });
+        // --- Node.js 20.x support, delete on upgrade --- //
+        // oxlint-disable-next-line no-negated-condition
+        if (!mod) {
+          logger.warn({
+            group: 'config',
+            message:
+              'Node 22.0 and older will no longer work in the next major release of Terrazzo. Please update to a LTS version.',
+          });
+          const { tsImport } = await import('tsx/esm/api');
+          mod = await tsImport(resolvedConfigPath, fileURLToPath(cwd));
+        }
+        // --- End Node.js 20.x support --- //
+        else {
+          logger.error({ group: 'config', message: (error as Error).message || (error as string) });
+        }
+      }
+      if (!mod.default) {
+        logger.error({
+          group: 'config',
+          message: `No default export found in ${resolvedConfigPath.replace(fileURLToPath(cwd), '')}. See https://terrazzo.dev/docs for instructions.`,
+        });
+      }
+      config = defineConfig(mod.default, { cwd, logger });
+      if (flags['no-lint']) {
+        config.lint.build.enabled = false;
       }
     } else if (cmd !== 'init' && cmd !== 'check') {
       logger.error({
@@ -110,22 +105,12 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
       });
     }
 
-    // clean up
-    if (viteServer) {
-      await viteServer?.close();
-    }
-
     return {
       config,
       configPath: resolvedConfigPath,
     };
   } catch (error) {
     printError((error as Error).message);
-
-    // clean up
-    if (viteServer) {
-      await viteServer.close();
-    }
 
     process.exit(1);
   }
@@ -251,6 +236,10 @@ export function printSuccess(message: string, startTime?: number) {
 export function resolveConfig(filename?: string): string | undefined {
   // --config [configpath]
   if (filename && fs.existsSync(new URL(filename, cwd))) {
+    // Note: ':' is a lazy test for Windows-style absolute paths, e.g. "C:\…" (this is not a protocol as it’s on the local filesystem)
+    if (!filename.startsWith('/') && !filename.startsWith('.') && !filename.includes(':')) {
+      return `./${filename}`;
+    }
     return filename;
   }
   // note: the order isn’t significant; just try for most-common first.
