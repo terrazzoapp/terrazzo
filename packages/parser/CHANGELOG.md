@@ -1,5 +1,18 @@
 # @terrazzo/parser
 
+## 2.11.0
+
+### Patch Changes
+
+- [#890](https://github.com/terrazzoapp/terrazzo/pull/890) [`1bc6833`](https://github.com/terrazzoapp/terrazzo/commit/1bc68336ab9dd9f77c11df027a3b9baa83cab35d) Thanks [@AngelRionCervi](https://github.com/AngelRionCervi)! - Fix an issue where the resolution of locally referenced sets in the resolver was handled the same way as groups of tokens.
+
+- [#884](https://github.com/terrazzoapp/terrazzo/pull/884) [`fd00dae`](https://github.com/terrazzoapp/terrazzo/commit/fd00dae63a8a56809c8d5c4d854954a4c75f3d0b) Thanks [@dominikschreiber](https://github.com/dominikschreiber)! - Reduces token.groupFromNode() complexity by determining parents from token path.
+
+- [#894](https://github.com/terrazzoapp/terrazzo/pull/894) [`2cb5b3b`](https://github.com/terrazzoapp/terrazzo/commit/2cb5b3b4ef981492529d4fc94b2d8ff435b7e777) Thanks [@gasparoff](https://github.com/gasparoff)! - Accept the DTCG `"none"` keyword in color components: `core/valid-color` no longer reports it as out of range, and CSS output keeps it as `none` instead of producing `NaN` values
+- Updated dependencies [[`433afa1`](https://github.com/terrazzoapp/terrazzo/commit/433afa1ab688e71300582dcca2702eaa26907b35), [`2cb5b3b`](https://github.com/terrazzoapp/terrazzo/commit/2cb5b3b4ef981492529d4fc94b2d8ff435b7e777)]:
+  - @terrazzo/token-tools@2.11.0
+  - @terrazzo/token-types@2.11.0
+
 ## 2.10.0
 
 ### Minor Changes
