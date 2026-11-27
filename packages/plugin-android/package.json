@@ -1,0 +1,51 @@
+{
+  "name": "@terrazzo/plugin-android",
+  "version": "0.0.0",
+  "description": "Generate Jetpack Compose code using DTCG design tokens JSON.",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "keywords": [
+    "design tokens",
+    "dtcg",
+    "dtfm",
+    "w3c",
+    "android",
+    "kotlin",
+    "jetpack compose"
+  ],
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "homepage": "https://terrazzo.app/docs/integrations/android",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/plugin-android/"
+  },
+  "scripts": {
+    "build": "tsc -b tsconfig.build.json && attw --profile esm-only --pack .",
+    "dev": "tsc -b tsconfig.build.json -w",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint --quiet && oxfmt --check && tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/parser": "workspace:^"
+  },
+  "dependencies": {
+    "@terrazzo/token-tools": "workspace:^",
+    "colorjs.io": "catalog:"
+  },
+  "devDependencies": {
+    "@terrazzo/cli": "workspace:*",
+    "@terrazzo/parser": "workspace:^"
+  }
+}

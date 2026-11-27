@@ -1,0 +1,36 @@
+{
+  "color": {
+    "$type": "color",
+    "primitive": {
+      "blue": {
+        "1": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [0.050980392156862744, 0.08235294117647059, 0.12549019607843137],
+            "alpha": 1,
+            "hex": "#0d1520"
+          }
+        },
+        "9": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [0, 0.5647058823529412, 1],
+            "alpha": 1,
+            "hex": "#0090ff"
+          }
+        },
+        "12": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [0.7607843137254902, 0.9019607843137255, 1],
+            "alpha": 1,
+            "hex": "#c2e6ff"
+          }
+        }
+      }
+    },
+    "semantic": {
+      "overlay": { "$value": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.7 } }
+    }
+  }
+}

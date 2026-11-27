@@ -1,0 +1,12 @@
+{
+  "color": {
+    "$type": "color",
+    "semantic": {
+      "brand": {
+        "$description": "Brand green, outside sRGB",
+        "$value": { "colorSpace": "display-p3", "components": [0.1, 0.8, 0.3], "alpha": 1 }
+      },
+      "link": { "$value": "{color.primitive.blue.9}" }
+    }
+  }
+}

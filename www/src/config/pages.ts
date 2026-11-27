@@ -17,6 +17,7 @@ export const DOCS_NAV = [
   {
     title: 'Integrations',
     items: [
+      { url: '/docs/integrations/android/', title: 'Android' },
       { url: '/docs/integrations/css/', title: 'CSS' },
       { url: '/docs/integrations/css-in-js/', title: 'CSS-in-JS' },
       { url: '/docs/integrations/sass/', title: 'Sass' },
