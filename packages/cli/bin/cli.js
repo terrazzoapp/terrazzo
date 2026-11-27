@@ -28,9 +28,7 @@
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import { parseArgs } from 'node:util';
-
 import { Logger } from '@terrazzo/parser';
-
 import {
   buildCmd,
   checkCmd,

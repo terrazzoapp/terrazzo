@@ -1,5 +1,4 @@
-import { type ColorConstructor, inGamut, serialize, to as convert } from 'colorjs.io/fn';
-
+import { type ColorConstructor, to as convert, inGamut, serialize } from 'colorjs.io/fn';
 import { parseColor, tokenToColor } from '../color.js';
 import type { ColorTokenNormalized, TokenTransformed } from '../types.js';
 import type { TransformCSSValueOptions } from './css-types.js';

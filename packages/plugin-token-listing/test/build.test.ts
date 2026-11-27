@@ -1,10 +1,8 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-
 import { build, defineConfig, type Logger, parse, type Plugin } from '@terrazzo/parser';
 import css from '@terrazzo/plugin-css';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-
 import listing, {
   type CustomFunctionParams,
   type ListedToken,

@@ -5,7 +5,6 @@ import type {
   RGBA,
 } from '@figma/rest-api-spec';
 import type { Logger } from '@terrazzo/parser';
-
 import {
   getAliasID,
   getAliasIDs,

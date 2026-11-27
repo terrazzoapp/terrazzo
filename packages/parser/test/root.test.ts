@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-
 import defineConfig from '../src/config.js';
 import { parse } from '../src/index.js';
 

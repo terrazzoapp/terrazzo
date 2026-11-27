@@ -14,7 +14,6 @@ import {
   type TokenNormalized,
   type TokenNormalizedSet,
 } from '@terrazzo/token-tools';
-
 import { alphaComparator } from '../lib/array.js';
 import type { default as Logger } from '../logger.js';
 import type { Config, ReferenceObject, RefMap } from '../types.js';

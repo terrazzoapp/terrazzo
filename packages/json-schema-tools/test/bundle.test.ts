@@ -1,8 +1,6 @@
 import fs from 'node:fs/promises';
-
 import * as momoa from '@humanwhocodes/momoa';
 import { describe, expect, it } from 'vitest';
-
 import { bundle } from '../src/index.js';
 
 describe('bundle', () => {

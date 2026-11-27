@@ -1,7 +1,6 @@
 import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember } from '@terrazzo/json-schema-tools';
 import { FONT_WEIGHTS, isAlias, parseColor } from '@terrazzo/token-tools';
-
 import type Logger from '../logger.js';
 
 interface PreValidatedToken {

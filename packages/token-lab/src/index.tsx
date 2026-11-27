@@ -1,5 +1,4 @@
 import './tailwind.config.css';
-
 import { useRouter } from './hooks/router.js';
 import Config from './pages/config.js';
 import Index from './pages/index.js';

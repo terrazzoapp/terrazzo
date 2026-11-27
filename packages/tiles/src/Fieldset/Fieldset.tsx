@@ -1,5 +1,4 @@
 import './Fieldset.css';
-
 import clsx from 'clsx';
 import type { ComponentProps, ReactNode } from 'react';
 

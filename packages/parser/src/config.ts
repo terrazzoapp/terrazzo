@@ -1,5 +1,4 @@
 import { merge } from 'merge-anything';
-
 import coreLintPlugin, { RECOMMENDED_CONFIG } from './lint/plugin-core/index.js';
 import Logger from './logger.js';
 import type { Config, ConfigInit, ConfigOptions, LintRuleSeverity } from './types.js';

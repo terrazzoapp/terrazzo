@@ -1,9 +1,7 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
-
 import android, { type AndroidPluginOptions, toPropertyName } from '../src/index.js';
 
 async function run(dir: string, options: AndroidPluginOptions) {

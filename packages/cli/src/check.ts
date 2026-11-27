@@ -1,6 +1,5 @@
 import { type ConfigInit, type Logger, parse } from '@terrazzo/parser';
 import yamlToMomoa from 'yaml-to-momoa';
-
 import { loadTokens, printError, printSuccess, resolveTokenPath } from './shared.js';
 
 export interface CheckOptions {

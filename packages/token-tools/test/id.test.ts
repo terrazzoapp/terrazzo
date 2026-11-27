@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-
 import { CachedWildcardMatcher, isAlias, makeAlias, parseAlias, splitID } from '../src/id.js';
 
 describe('isAlias', () => {

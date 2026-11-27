@@ -1,5 +1,4 @@
 import type { LocalVariable, LocalVariableCollection, RGBA } from '@figma/rest-api-spec';
-
 import { formatName } from './lib.js';
 
 export function getAliasID(value: unknown): string | undefined {

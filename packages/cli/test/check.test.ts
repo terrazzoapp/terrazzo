@@ -1,5 +1,4 @@
 import os from 'node:os';
-
 import { execaNode } from 'execa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';

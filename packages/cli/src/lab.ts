@@ -2,10 +2,8 @@ import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import { Readable, Writable } from 'node:stream';
 import { fileURLToPath } from 'node:url';
-
 import type { ConfigInit, Logger } from '@terrazzo/parser';
 import mime from 'mime';
-
 import type { Flags } from './shared.js';
 
 export interface LabBuildOptions {

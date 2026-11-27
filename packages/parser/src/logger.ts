@@ -1,7 +1,6 @@
 import * as momoa from '@humanwhocodes/momoa';
 import { CachedWildcardMatcher } from '@terrazzo/token-tools';
 import pc from 'picocolors';
-
 import { codeFrameColumns } from './lib/code-frame.js';
 
 export const LOG_ORDER = ['error', 'warn', 'info', 'debug'] as const;

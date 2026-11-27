@@ -5,7 +5,6 @@ import {
   maybeRawJSON,
 } from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
-
 import { toMomoa } from '../lib/momoa.js';
 import type Logger from '../logger.js';
 import type {

@@ -1,19 +1,18 @@
 import './Select.css';
-
 import {
   Content,
   Icon,
   Portal,
+  SelectItem as RadixSelectItem,
+  type SelectItemProps as RadixSelectItemProps,
+  SelectLabel as RadixSelectLabel,
+  type SelectProps as RadixSelectProps,
   Root,
   ScrollDownButton,
   ScrollUpButton,
-  SelectItem as RadixSelectItem,
   SelectItemIndicator,
-  type SelectItemProps as RadixSelectItemProps,
   SelectItemText,
-  SelectLabel as RadixSelectLabel,
   type SelectLabelProps,
-  type SelectProps as RadixSelectProps,
   Trigger,
   Value,
   Viewport,

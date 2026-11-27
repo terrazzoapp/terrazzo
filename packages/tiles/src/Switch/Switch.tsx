@@ -1,5 +1,4 @@
 import './Switch.css';
-
 import clsx from 'clsx';
 import { type ComponentProps, type ReactNode, useId } from 'react';
 

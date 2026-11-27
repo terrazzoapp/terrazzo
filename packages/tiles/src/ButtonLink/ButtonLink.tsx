@@ -1,5 +1,4 @@
 import '../Button/Button.css'; // note: a component should NEVER import another’s styles, but this is a special case
-
 import clsx from 'clsx';
 import type { ComponentProps } from 'react';
 

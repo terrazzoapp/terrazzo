@@ -1,5 +1,4 @@
 import type { Plugin } from '@terrazzo/parser';
-
 import getBuild from './build.js';
 import type { TokenListingPluginOptions } from './lib.js';
 

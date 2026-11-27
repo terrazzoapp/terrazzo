@@ -1,7 +1,6 @@
 import type { Logger } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
-
 import { formatNumber, getFileID, getFileLocalVariables } from './lib.js';
 import { getStyles } from './styles.js';
 import { getVariables } from './variables.js';

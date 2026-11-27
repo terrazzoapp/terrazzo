@@ -1,7 +1,6 @@
 import * as momoa from '@humanwhocodes/momoa';
 import type { TokenNormalized, TokenNormalizedSet } from '@terrazzo/token-tools';
 import { describe, expect, it } from 'vitest';
-
 import Logger from '../src/logger.js';
 import { aliasToTokenRef, graphAliases, refToTokenID } from '../src/parse/token.js';
 import type { RefMap } from '../src/types.js';

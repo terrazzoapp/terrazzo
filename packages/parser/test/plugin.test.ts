@@ -1,6 +1,5 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
-
 import { build, defineConfig, parse } from '../src/index.js';
 
 describe('Plugin API', () => {

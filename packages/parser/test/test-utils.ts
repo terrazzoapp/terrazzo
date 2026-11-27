@@ -1,7 +1,6 @@
 import stripAnsi from 'strip-ansi';
 import { expect } from 'vitest';
 import yamlToMomoa from 'yaml-to-momoa';
-
 import { defineConfig, parse, type TokensJSONError } from '../src/index.js';
 
 export const cwd = new URL(import.meta.url);

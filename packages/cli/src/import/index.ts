@@ -1,9 +1,7 @@
 import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
-
 import type { Logger } from '@terrazzo/parser';
 import { pluralize } from '@terrazzo/token-tools';
-
 import { importFromFigma, isFigmaPath } from './figma/index.js';
 import { formatNumber } from './figma/lib.js';
 

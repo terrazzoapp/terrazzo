@@ -1,7 +1,6 @@
 import * as momoa from '@humanwhocodes/momoa';
 import { bundle, encodeFragment, parseRef, replaceNode } from '@terrazzo/json-schema-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
-
 import type Logger from '../logger.js';
 import type { Group, ReferenceObject, ResolverSourceNormalized } from '../types.js';
 import { isRecord, isReferenceObject } from '../utils.js';

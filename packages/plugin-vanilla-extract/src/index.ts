@@ -1,7 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
 import { camelCase } from 'scule';
-
 import {
   FORMAT_ID as FORMAT_VANILLA,
   generateTheme,

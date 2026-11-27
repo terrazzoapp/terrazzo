@@ -8,7 +8,6 @@ import type {
   TokenTransformedBase,
 } from '@terrazzo/token-types';
 import type ytm from 'yaml-to-momoa';
-
 import type Logger from './logger.js';
 
 // Export some types as a convenience, because they originally came from this package

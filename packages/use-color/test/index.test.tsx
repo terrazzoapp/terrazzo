@@ -15,7 +15,6 @@ import {
 } from 'colorjs.io/fn';
 import { useEffect } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
-
 import useColor, { type ColorInput, type ColorOutput, parse } from '../src/index.js';
 
 type ColorType = ReturnType<typeof useColor>[0];

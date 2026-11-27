@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-
 import { relPath } from '../src/utils.js';
 
 describe('relPath', () => {

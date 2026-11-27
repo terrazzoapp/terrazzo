@@ -7,7 +7,6 @@ import {
   STROKE_STYLE_STRING_VALUES,
   TRANSITION_REQUIRED_PROPERTIES,
 } from '@terrazzo/token-tools';
-
 import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 

@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-
 import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import { defineConfig } from 'vitest/config';

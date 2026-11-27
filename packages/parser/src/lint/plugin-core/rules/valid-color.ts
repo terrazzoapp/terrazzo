@@ -11,7 +11,6 @@ import {
   parseColor,
   type ShadowValue,
 } from '@terrazzo/token-tools';
-
 import type { LintRule, LintRuleContext } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 

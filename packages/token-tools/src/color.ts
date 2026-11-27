@@ -23,7 +23,6 @@ import {
   XYZ_D50,
   XYZ_D65,
 } from 'colorjs.io/fn';
-
 import type { ColorSpace, ColorValueNormalized } from './types.js';
 
 /** Complete list of CSS Module 4 color spaces */

@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import yamlToMomoa from 'yaml-to-momoa';
-
 import defineConfig from '../src/config.js';
 import { parse } from '../src/index.js';
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';

@@ -1,5 +1,4 @@
 import type { ReactElement } from 'react';
-
 import c from './StickerSheet.module.css';
 
 export interface StickerSheetProps {

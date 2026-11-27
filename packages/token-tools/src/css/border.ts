@@ -1,7 +1,5 @@
 import '../color.js'; // load Color.js side-effects
-
 import { inGamut, parse } from 'colorjs.io/fn';
-
 import type {
   BorderTokenNormalized,
   ColorTokenNormalized,

@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
 import {
   build,
   type BuildRunnerResult,
@@ -12,7 +11,6 @@ import {
 import chokidar from 'chokidar';
 import pc from 'picocolors';
 import yamlToMomoa from 'yaml-to-momoa';
-
 import {
   cwd,
   DEFAULT_TOKENS_PATH,

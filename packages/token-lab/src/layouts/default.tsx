@@ -1,6 +1,5 @@
 import { Button } from '@base-ui/react/button';
 import { Config, Docs, Lint, Output, Resolver, Token } from '@terrazzo/icons';
-
 import Link from '../components/link.js';
 
 export interface LayoutProps {

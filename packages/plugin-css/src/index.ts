@@ -1,5 +1,4 @@
 import type { Plugin } from '@terrazzo/parser';
-
 import buildCSS from './build.js';
 import { type CSSPluginOptions, FILE_PREFIX, PLUGIN_NAME } from './lib.js';
 import transformCSS from './transform.js';

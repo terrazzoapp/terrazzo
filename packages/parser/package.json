@@ -61,7 +61,6 @@
     }
   },
   "devDependencies": {
-    "eslint-plugin-simple-import-sort": "^13.0.0",
     "yaml-to-momoa": "catalog:"
   }
 }

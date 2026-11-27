@@ -1,7 +1,6 @@
 import type { LocalVariable, Node } from '@figma/rest-api-spec';
 import { defineConfig, Logger, parse } from '@terrazzo/parser';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-
 import { importFromFigma } from '../src/import/figma/index.js';
 import { effectStyle } from '../src/import/figma/styles.js';
 
