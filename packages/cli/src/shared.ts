@@ -218,16 +218,14 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
           logger.error({ group: 'config', message: `${filename.href}: ${error}` });
           return;
         }
+      } else if (fs.existsSync(filename)) {
+        allTokens.push({ filename, src: fs.readFileSync(filename, 'utf8') });
       } else {
-        if (fs.existsSync(filename)) {
-          allTokens.push({ filename, src: fs.readFileSync(filename, 'utf8') });
-        } else {
-          logger.error({
-            group: 'config',
-            message: `Could not locate ${path.relative(cwd.href, filename.href)}. To create one, run \`npx tz init\`.`,
-          });
-          return;
-        }
+        logger.error({
+          group: 'config',
+          message: `Could not locate ${path.relative(cwd.href, filename.href)}. To create one, run \`npx tz init\`.`,
+        });
+        return;
       }
     }
     /* oxlint-enable no-await-in-loop */

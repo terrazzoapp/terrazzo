@@ -7,7 +7,7 @@ export interface CustomTransformOptions {
 export function validateCustomTransform(value: unknown, { $type }: CustomTransformOptions) {
   if (value) {
     if ((typeof value !== 'string' && typeof value !== 'object') || Array.isArray(value)) {
-      throw new Error(
+      throw new TypeError(
         `transform(): expected string or Object of strings, received ${Array.isArray(value) ? 'Array' : typeof value}`,
       );
     }
