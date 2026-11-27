@@ -3,6 +3,8 @@ import { CachedWildcardMatcher, kebabCase } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 
 import {
+  createSubValueIdFormatter,
+  type CSSPluginOptions,
   type CSSRule,
   decl,
   PLUGIN_NAME,
@@ -34,8 +36,12 @@ function makePrelude(
   ];
 }
 
+function getVarName(token: TokenTransformed): string {
+  return token.localID ?? makeCSSVar(token.token.id);
+}
+
 function makeVarValue(token: TokenTransformed): string {
-  return makeCSSVar(token.localID ?? token.token.id, { wrapVar: true });
+  return `var(${getVarName(token)})`;
 }
 
 const utilityMatcher = new CachedWildcardMatcher();
@@ -44,8 +50,15 @@ const localeCompare = new Intl.Collator().compare;
 export default function generateUtilityCSS(
   groups: Partial<Record<UtilityCSSGroup, string[]>>,
   tokens: TokenTransformed[],
-  { logger }: { logger: Logger },
+  {
+    logger,
+    subValueVariableName,
+  }: {
+    logger: Logger;
+    subValueVariableName?: CSSPluginOptions['subValueVariableName'];
+  },
 ): CSSRule[] {
+  const formatSubValueId = createSubValueIdFormatter({ subValueVariableName, logger });
   const root: CSSRule[] = [];
   const groupEntries = Object.entries(groups);
   groupEntries.sort((a, b) => localeCompare(a[0], b[0]));
@@ -71,10 +84,7 @@ export default function generateUtilityCSS(
               break;
             }
             case 'gradient': {
-              const value = decl(
-                'background-image',
-                `linear-gradient(${makeCSSVar(token.localID ?? token.token.id, { wrapVar: true })})`,
-              );
+              const value = decl('background-image', `linear-gradient(${makeVarValue(token)})`);
               root.push(rule(prelude, [value]));
             }
           }
@@ -118,12 +128,12 @@ export default function generateUtilityCSS(
         for (const token of matchingTokens) {
           const prelude = makePrelude(token, 'font');
           if (token.token.$type === 'typography' && token.type === 'MULTI_VALUE') {
-            const value = Object.keys(token.value).map((property) =>
-              decl(
-                property,
-                makeCSSVar(`${token.localID ?? token.token.id}-${property}`, { wrapVar: true }),
-              ),
-            );
+            const localID = getVarName(token);
+            const value = Object.keys(token.value).map((property) => {
+              const subValueID =
+                property === '.' ? localID : formatSubValueId(localID, property, token);
+              return decl(property, `var(${subValueID})`);
+            });
             root.push(rule(prelude, value));
           } else {
             const property = {

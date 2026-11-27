@@ -9,5 +9,5 @@
   --ds-typography-page-title__line-height: 1.25;
   --ds-typography-page-title__font-variation-settings: "wght" 140, "opsz" 100, "wdth" 50;
   --ds-typography-page-title__letter-spacing: 0.125em;
-  --ds-typography-page-title: var(--ds-typography-page-title-font-weight) var(--ds-typography-page-title-font-size)/var(--ds-typography-page-title-line-height) var(--ds-typography-page-title-font-family);
+  --ds-typography-page-title: var(--ds-typography-page-title__font-weight) var(--ds-typography-page-title__font-size)/var(--ds-typography-page-title__line-height) var(--ds-typography-page-title__font-family);
 }

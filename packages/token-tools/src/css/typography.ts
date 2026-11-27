@@ -46,20 +46,23 @@ export function transformTypography(
   const output: Record<string, string> = {};
   for (const [property, subvalue] of Object.entries(token.$value)) {
     let transformedValue: string;
+    const subProperty = kebabCase(property);
     const aliasedID = token.aliasChain?.[0] ?? token.partialAliasOf?.[property];
     if (aliasedID) {
       const resolvedToken = tokensSet[aliasedID] as TypographyTokenNormalized;
-      transformedValue = transformAlias(
-        // Pass a complete sub-token, not a bare `{ id }` stub, so recursive consumers can resolve it.
+      transformedValue =
         resolvedToken.$type === 'typography'
-          ? ({
-              id: `${aliasedID}-${property}`,
-              $type: typographySubValueType(property, subvalue),
-              $value: subvalue,
-              mode: { '.': { $value: subvalue } },
-            } as TokenNormalized)
-          : resolvedToken,
-      );
+          ? transformAlias(
+              // Pass a complete sub-token, not a bare `{ id }` stub, so recursive consumers can resolve it.
+              {
+                id: `${aliasedID}-${subProperty}`,
+                $type: typographySubValueType(property, subvalue),
+                $value: subvalue,
+                mode: { '.': { $value: subvalue } },
+              } as TokenNormalized,
+              { parentToken: resolvedToken, subValueName: subProperty },
+            )
+          : transformAlias(resolvedToken);
     } else {
       switch (property) {
         case 'fontFamily': {
@@ -82,7 +85,7 @@ export function transformTypography(
         }
       }
     }
-    output[kebabCase(property)] = transformedValue;
+    output[subProperty] = transformedValue;
   }
   return output;
 }

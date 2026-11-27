@@ -1,0 +1,52 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [{ "$ref": "#/sets/base" }],
+  "sets": {
+    "base": {
+      "sources": [
+        {
+          "color": {
+            "brandBlue": {
+              "$type": "color",
+              "$value": { "colorSpace": "srgb", "components": [0, 0.1, 0.34] }
+            },
+            "wideVivid": {
+              "$type": "color",
+              "$value": { "colorSpace": "oklch", "components": [0.7, 0.25, 145] }
+            }
+          },
+          "theme": {
+            "fgBrand": {
+              "$type": "color",
+              "$value": "{color.brandBlue}"
+            },
+            "fgVivid": {
+              "$type": "color",
+              "$value": "{color.wideVivid}"
+            }
+          },
+          "text": {
+            "md--line-height": {
+              "$type": "dimension",
+              "$value": { "value": 24, "unit": "px" }
+            }
+          },
+          "typography": {
+            "bodyText": {
+              "$type": "typography",
+              "$value": {
+                "fontFamily": ["Inter", "sans-serif"],
+                "fontSize": { "value": 16, "unit": "px" }
+              }
+            },
+            "labelFont": {
+              "$type": "typography",
+              "$value": "{typography.bodyText}"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

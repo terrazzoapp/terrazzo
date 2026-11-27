@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  generateShorthand,
   makeCSSVar,
   transformBoolean,
   transformColor,
@@ -1125,5 +1126,116 @@ describe('transformTypography', () => {
       expect((error as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
+  });
+
+  it('passes kebab-case sub-token id and SubValueAliasContext when aliasing typography', () => {
+    const parentToken = {
+      id: 'font.bodyText',
+      $type: 'typography',
+      $value: {
+        fontFamily: ['Inter'],
+        fontSize: { value: 16, unit: 'px' },
+      },
+    } as any;
+    const seen: { id: string; parentId?: string; subValueName?: string }[] = [];
+    const result = transformTypography(
+      {
+        id: 'card.labelFont',
+        $type: 'typography',
+        $value: parentToken.$value,
+        aliasChain: ['font.bodyText'],
+      } as any,
+      {
+        tokensSet: { 'font.bodyText': parentToken },
+        permutation: {},
+        transformAlias: (subToken, subValue) => {
+          seen.push({
+            id: subToken.id,
+            parentId: subValue?.parentToken.id,
+            subValueName: subValue?.subValueName,
+          });
+          return subValue
+            ? `var(--ds_${subValue.parentToken.id.replaceAll('.', '__')}__${subValue.subValueName})`
+            : `var(--ds_${subToken.id.replaceAll('.', '__')})`;
+        },
+      },
+    );
+
+    expect(seen).toEqual([
+      { id: 'font.bodyText-font-family', parentId: 'font.bodyText', subValueName: 'font-family' },
+      { id: 'font.bodyText-font-size', parentId: 'font.bodyText', subValueName: 'font-size' },
+    ]);
+    expect(result).toEqual({
+      'font-family': 'var(--ds_font__bodyText__font-family)',
+      'font-size': 'var(--ds_font__bodyText__font-size)',
+    });
+  });
+});
+
+describe('generateShorthand', () => {
+  const typographyToken = {
+    $type: 'typography',
+    $value: {
+      'font-family': '"Inter", sans-serif',
+      'font-size': '16px',
+      'font-weight': '400',
+      'line-height': '1.5',
+    },
+  } as any;
+
+  it('preserves custom localID without re-normalizing', () => {
+    expect(
+      generateShorthand({
+        token: typographyToken,
+        localID: '--ds_typography__bodyText',
+      }),
+    ).toBe(
+      'var(--ds_typography__bodyText-font-weight) var(--ds_typography__bodyText-font-size)/var(--ds_typography__bodyText-line-height) var(--ds_typography__bodyText-font-family)',
+    );
+  });
+
+  it('uses subValueVariableName for typography shorthand', () => {
+    expect(
+      generateShorthand({
+        token: typographyToken,
+        localID: '--ds_typography__bodyText',
+        subValueVariableName: (variableName, subValueName) => `${variableName}__${subValueName}`,
+      }),
+    ).toBe(
+      'var(--ds_typography__bodyText__font-weight) var(--ds_typography__bodyText__font-size)/var(--ds_typography__bodyText__line-height) var(--ds_typography__bodyText__font-family)',
+    );
+  });
+
+  it('uses subValueVariableName for transition shorthand', () => {
+    expect(
+      generateShorthand({
+        token: { $type: 'transition', $value: {} } as any,
+        localID: '--ds_motion__fast',
+        subValueVariableName: (variableName, subValueName) => `${variableName}__${subValueName}`,
+      }),
+    ).toBe(
+      'var(--ds_motion__fast__duration) var(--ds_motion__fast__delay) var(--ds_motion__fast__timing-function)',
+    );
+  });
+
+  it('normalizes raw token IDs that do not start with --', () => {
+    expect(
+      generateShorthand({
+        token: typographyToken,
+        localID: 'typography.bodyText',
+      }),
+    ).toBe(
+      'var(--typography-body-text-font-weight) var(--typography-body-text-font-size)/var(--typography-body-text-line-height) var(--typography-body-text-font-family)',
+    );
+  });
+
+  it('omits typography shorthand when omitTypographyShorthand is true', () => {
+    expect(
+      generateShorthand({
+        token: typographyToken,
+        localID: '--ds_typography__bodyText',
+        omitTypographyShorthand: true,
+      }),
+    ).toBeUndefined();
   });
 });
