@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@base-ui/react": "^1.9.0",
-    "@tailwindcss/vite": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.5",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
@@ -60,7 +60,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "sharp": "^0.35.5",
-    "tailwindcss": "^4.3.3",
+    "tailwindcss": "^4.3.5",
     "vite": "catalog:",
     "vite-tsconfig-paths": "^6.1.1"
   }

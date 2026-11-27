@@ -73,7 +73,7 @@ describe('serializeValue', () => {
       id: "color.'.-07",
       localID: "color.'.-07",
       type: 'MULTI_VALUE',
-      value: { __cssName: "--color-\\'--07" },
+      value: { __cssName: String.raw`--color-\'--07` },
     },
     {
       id: '1.2.3',
