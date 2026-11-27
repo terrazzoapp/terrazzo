@@ -1,0 +1,28 @@
+{
+  "light-blue-200": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8,
+        0.9,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#cce5ff"
+    },
+    "$type": "color"
+  },
+  "light-blue-400": {
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6,
+        0.8,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#99ccff"
+    },
+    "$type": "color"
+  }
+}

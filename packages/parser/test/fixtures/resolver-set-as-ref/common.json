@@ -1,0 +1,12 @@
+{
+  "breakpoint": {
+    "$type": "dimension",
+    "md": { "$value": { "value": 768, "unit": "px" } },
+    "xl": { "$value": { "value": 1280, "unit": "px" } }
+  },
+  "duration": {
+    "$type": "duration",
+    "fast": { "$value": { "value": 150, "unit": "ms" } },
+    "normal": { "$value": { "value": 300, "unit": "ms" } }
+  }
+}

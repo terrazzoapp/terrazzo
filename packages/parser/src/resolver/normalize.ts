@@ -4,13 +4,14 @@ import type yamlToMomoa from 'yaml-to-momoa';
 
 import type Logger from '../logger.js';
 import type { Group, ReferenceObject, ResolverSourceNormalized } from '../types.js';
+import { isRecord, isReferenceObject } from '../utils.js';
 
 export interface NormalizeResolverOptions {
   logger: Logger;
   yamlToMomoa?: typeof yamlToMomoa;
   filename: URL;
   req: (url: URL, origin: URL) => Promise<string>;
-  src?: any;
+  src?: string | Record<string, unknown>;
 }
 
 /** Normalize resolver (assuming it’s been validated) */
@@ -35,7 +36,6 @@ export async function normalizeResolver(
   const resolverSource = momoa.evaluate(
     resolverBundle.document,
   ) as unknown as ResolverSourceNormalized;
-
   // Resolve $refs, but in a very different way than everywhere else These are
   // all _evaluated_, meaning initialized in JS memory. Unlike in the AST, when
   // we resolve these they’ll share memory points (which isn’t possible in the
@@ -43,19 +43,15 @@ export async function normalizeResolver(
   // place where we’re dealing with shared, initialized JS memory.
   replaceNode(document, resolverBundle.document); // inject $defs into the root document
   for (const set of Object.values(resolverSource.sets ?? {})) {
-    for (const source of set.sources) {
-      resolvePartials(source, { resolver: resolverSource, logger });
-    }
+    resolveGroups(set.sources, resolverSource, logger);
   }
   for (const modifier of Object.values(resolverSource.modifiers ?? {})) {
     for (const context of Object.values(modifier.contexts)) {
-      for (const source of context) {
-        resolvePartials(source, { resolver: resolverSource, logger });
-      }
+      resolveGroups(context, resolverSource, logger);
     }
   }
   for (const item of resolverSource.resolutionOrder ?? []) {
-    resolvePartials(item, { resolver: resolverSource, logger });
+    resolvePartials(item, resolverSource, logger);
   }
 
   return {
@@ -75,13 +71,8 @@ export async function normalizeResolver(
 /** Resolve $refs for already-initialized JS */
 function resolvePartials(
   source: Group | ReferenceObject,
-  {
-    resolver,
-    logger,
-  }: {
-    resolver: any;
-    logger: Logger;
-  },
+  resolver: ResolverSourceNormalized,
+  logger: Logger,
 ) {
   if (!source) {
     return;
@@ -89,48 +80,79 @@ function resolvePartials(
   const entry = { group: 'parser' as const, label: 'resolver' };
   if (Array.isArray(source)) {
     for (const item of source) {
-      resolvePartials(item, { resolver, logger });
+      resolvePartials(item, resolver, logger);
     }
   } else if (typeof source === 'object') {
-    for (const k of Object.keys(source)) {
-      if (k === '$ref') {
-        const $ref = (source as any)[k] as string;
-        const { url, subpath = [] } = parseRef($ref);
-        if (url !== '.' || subpath.length === 0) {
-          logger.error({ ...entry, message: `Could not load $ref ${JSON.stringify($ref)}` });
-        }
-        const found = findObject(resolver, subpath ?? [], logger);
+    const $ref = isReferenceObject(source) && parseRef(source.$ref);
+    if ($ref) {
+      const { url, subpath = [] } = $ref;
+      if (url !== '.' || subpath.length === 0) {
+        logger.error({ ...entry, message: `Could not load $ref ${JSON.stringify($ref)}` });
+      }
+      const found = findObject(resolver, subpath ?? [], logger);
+      if (found) {
         if (subpath[0] === 'sets' || subpath[0] === 'modifiers') {
           found.type = subpath[0].replace(/s$/, '');
           found.name = subpath[1];
         }
-        if (found) {
-          for (const k2 of Object.keys(found)) {
-            (source as any)[k2] = found[k2];
-          }
-          delete (source as any).$ref;
-        } else {
-          logger.error({ ...entry, message: `Could not find ${JSON.stringify($ref)}` });
-        }
+        Object.assign(source, found);
+        Reflect.deleteProperty(source, '$ref');
       } else {
-        resolvePartials((source as any)[k], { resolver, logger });
+        logger.error({ ...entry, message: `Could not find ${JSON.stringify($ref)}` });
+      }
+    } else {
+      for (const value of Object.values(source)) {
+        resolvePartials(value, resolver, logger);
       }
     }
   }
 }
 
-function findObject(dict: Record<string, any>, path: string[], logger: Logger): any {
+function findObject(dict: unknown, path: string[], logger: Logger) {
   let node = dict;
   for (const idRaw of path) {
     const id = idRaw.replaceAll('~', '~0').replaceAll('/', '~1');
-    if (!(id in node)) {
+    if (!isRecord(node) || !(id in node)) {
       logger.error({
         group: 'parser',
         label: 'resolver',
         message: `Could not load $ref ${encodeFragment(path)}`,
       });
+      return;
     }
     node = node[id];
   }
-  return node;
+  return isRecord(node) ? node : undefined;
+}
+
+function resolveGroups(
+  sources: (Group | ReferenceObject)[],
+  resolver: ResolverSourceNormalized,
+  logger: Logger,
+) {
+  for (let i = 0; i < sources.length; i++) {
+    const source = sources[i];
+    if (!source) {
+      continue;
+    }
+    const ref = isReferenceObject(source) && parseRef(source.$ref);
+    // if the source is a referenced set, add its previously resolved sources to the sources array
+    if (ref && ref.subpath?.[0] === 'sets' && typeof ref.subpath?.[1] === 'string') {
+      const setName = ref.subpath[1];
+      const set = resolver.sets?.[setName];
+      if (!set) {
+        logger.error({
+          group: 'parser',
+          label: 'resolver',
+          message: `Could not find ${JSON.stringify(source.$ref)}`,
+        });
+        continue;
+      }
+      sources.splice(i, 1, ...set.sources);
+      i += set.sources.length - 1;
+    } else {
+      // if the source is not a locally referenced set, it can be resolved as a normal Group
+      resolvePartials(source, resolver, logger);
+    }
+  }
 }
